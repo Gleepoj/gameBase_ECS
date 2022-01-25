@@ -24,6 +24,7 @@ enum AreaEquation {
 	EqCurl;
 	EqDiverge;
 	EqConverge;
+	EqRepel;
 }
 
 enum AreaInfluence {

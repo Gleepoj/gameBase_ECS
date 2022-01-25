@@ -1,5 +1,6 @@
 package solv;
 
+import h3d.Vector;
 import dn.Bresenham;
 
 typedef CellStruct = {index:Int,x:Int,y:Int,abx:Int,aby:Int,u:Float,v:Float}
@@ -16,6 +17,7 @@ class SolverModifier extends Entity {
 
 	public var isBlowing(get,never):Bool;inline function get_isBlowing()return blowingIsActive;
 	
+	var equation:Equation;
 
 	var blowingIsActive:Bool;
 	var parentEntity:Entity;
@@ -26,10 +28,13 @@ class SolverModifier extends Entity {
 	public function new(x:Int, y:Int, ?entity:Entity) {
 		super(x, y);
 		ALL.push(this);
+
+		equation = new Equation(areaEquation);
+
 		actualizeAndStoreAreaCells();
 		computeCaseDistanceToCenterAreaCase();
         informCellUVFields();
-        //printEquation();
+        
 
 		if(entity != null){
 			parentEntity = entity;
@@ -54,8 +59,8 @@ class SolverModifier extends Entity {
 
 	public function getInformedCellsIndex() {
 		var list:Array<Int> = [];
-			for(iCell in informedCells){
-				list.push(iCell.index);
+			for(cell in informedCells){
+				list.push(cell.index);
 			}
 		return list;
 	}
@@ -77,11 +82,6 @@ class SolverModifier extends Entity {
 	}
 	
 	//Private functions//
-	private function printEquation() {
-		for(c in informedCells){
-			trace(Equation.curl(c.abx,c.aby));
-		}
-	}
 
 	private function stickToParentEntity(){
 		if(parentEntity != null){
@@ -107,9 +107,9 @@ class SolverModifier extends Entity {
     private function informCellUVFields() {
 		if (isBlowing){
 			for (cell in informedCells){
-				var equation = Equation.curl(cell.abx,cell.aby);
-				cell.u = equation.x;
-				cell.v = equation.y;
+				var eq = equation.compute(new Vector(cell.abx,cell.aby));
+				cell.u = eq.x;
+				cell.v = eq.y;
 			}
 		}
     }
