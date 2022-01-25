@@ -1,6 +1,5 @@
 package solv;
 
-import dn.CiAssert;
 import dn.Bresenham;
 
 typedef CellStruct = {index:Int,x:Int,y:Int,abx:Int,aby:Int,u:Float,v:Float}
@@ -10,17 +9,10 @@ class SolverModifier extends Entity {
 
 	var solver(get, never):Solver;inline function get_solver()return Game.ME.solver;
 
-	var areaShape:AreaShape = AsCircle;
 	var areaInfluence:AreaInfluence = AiSmall;
-	var areaEquation:AreaEquation = AeCurl;
-	var ah:Int = 5;
-	var aw:Int = 5;
-	var areaRadius:Int = 3;
+	var areaEquation:AreaEquation = EqCurl;
 
-	
-	
-	var cxTopRectangle(get, never):Int;inline function get_cxTopRectangle()return Math.floor(cx - (aw / 2))+1;
-	var cyTopRectangle(get, never):Int;inline function get_cyTopRectangle()return Math.floor(cy - (ah / 2))+1;
+	var areaRadius:Int = 3;
 
 	public var isBlowing(get,never):Bool;inline function get_isBlowing()return blowingIsActive;
 	
@@ -34,9 +26,11 @@ class SolverModifier extends Entity {
 	public function new(x:Int, y:Int, ?entity:Entity) {
 		super(x, y);
 		ALL.push(this);
-		storeInfluencedCell();
+		actualizeAndStoreAreaCells();
+		computeCaseDistanceToCenterAreaCase();
         informCellUVFields();
-        
+        //printEquation();
+
 		if(entity != null){
 			parentEntity = entity;
 			setPosCase(parentEntity.cx,parentEntity.cy);
@@ -50,65 +44,11 @@ class SolverModifier extends Entity {
 		angle += 0.1;
         
 		stickToParentEntity();
-		actualizeAreaCells();
+		actualizeAndStoreAreaCells();
+		computeCaseDistanceToCenterAreaCase();
 		informCellUVFields();
 
 	}
-
-	private function stickToParentEntity(){
-		if(parentEntity != null){
-			setPosPixel(parentEntity.attachX,parentEntity.attachY);
-		}
-	}
-
-	private function storeInfluencedCell() {
-		informedCells = [];
-
-		switch (areaShape) {
-			case AsSquare:
-               // var list = Bresenham.getRectangle(cx, cy, aw, ah);
-			    //var list =  
-				//pushAreaCells_toInformedCells(list);
-				return;
-			case AsCircle:
-                var list = Bresenham.getDisc(cx,cy, areaRadius);
-                pushAreaCells_toInformedCells(list);
-				return;
-			case AsLine:
-				return;
-		}
-	}
-
-	private function actualizeAreaCells(){
-		var list = Bresenham.getDisc(cx,cy, areaRadius);
-		informedCells = [];
-		pushAreaCells_toInformedCells(list);
-	}
-
-	private function pushAreaCells_toInformedCells(list:Array<{x:Int,y:Int}>) {
-		for (l in list) {
-            var ind = solver.computeSolverIndexFromCxCy(l.x,l.y);
-			if (solver.testIfIndexIsInArray(ind)) {
-				informedCells.push({index: ind,x:l.x,y:l.y,abx: 0,aby: 0,u: 0,v: 0});
-			}
-		}
-	}
-
-    private function informCellUVFields() {
-		if (isBlowing){
-			for (cell in informedCells){
-				cell.u = 0;
-				cell.v = 1;
-			}
-		}
-    }
-
-    private function computeCaseDistanceToCenterAreaCase() {
-        for (cell in informedCells) {
-		    cell.abx = cell.x - cx;
-			cell.aby = cell.y - cy;
-        }
-    }
 	
 	//API//
 
@@ -135,5 +75,51 @@ class SolverModifier extends Entity {
 			blowingIsActive = false;
 		    spr.colorize(0xff00af);
 	}
+	
+	//Private functions//
+	private function printEquation() {
+		for(c in informedCells){
+			trace(Equation.curl(c.abx,c.aby));
+		}
+	}
+
+	private function stickToParentEntity(){
+		if(parentEntity != null){
+			setPosPixel(parentEntity.attachX,parentEntity.attachY);
+		}
+	}
+
+	private function actualizeAndStoreAreaCells(){
+		var list = Bresenham.getDisc(cx,cy, areaRadius);
+		informedCells = [];
+		pushAreaCells_toInformedCells(list);
+	}
+
+	private function pushAreaCells_toInformedCells(list:Array<{x:Int,y:Int}>) {
+		for (l in list) {
+            var ind = solver.computeSolverIndexFromCxCy(l.x,l.y);
+			if (solver.testIfIndexIsInArray(ind)) {
+				informedCells.push({index: ind,x:l.x,y:l.y,abx: 0,aby: 0,u: 0,v: 0});
+			}
+		}
+	}
+
+    private function informCellUVFields() {
+		if (isBlowing){
+			for (cell in informedCells){
+				var equation = Equation.curl(cell.abx,cell.aby);
+				cell.u = equation.x;
+				cell.v = equation.y;
+			}
+		}
+    }
+
+    private function computeCaseDistanceToCenterAreaCase() {
+        for (cell in informedCells) {
+		    cell.abx = cell.x - cx;
+			cell.aby = cell.y - cy;
+        }
+    }
+	
 
 }

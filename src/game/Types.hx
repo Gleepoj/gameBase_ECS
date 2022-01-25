@@ -20,16 +20,10 @@ enum Affect {
 	Stun;
 }
 
-enum AreaShape {
-	AsCircle;
-	AsSquare;
-	AsLine;
-}
-
 enum AreaEquation {
-	AeCurl;
-	AeDiverge;
-	AeConverge;
+	EqCurl;
+	EqDiverge;
+	EqConverge;
 }
 
 enum AreaInfluence {

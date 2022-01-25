@@ -230,7 +230,7 @@
 			}
 		}
 	], "enums": [], "externalEnums": [
-		{ "identifier": "Affect", "uid": 3, "values": [{ "id": "Stun", "tileId": null, "color": 0, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "2f04e7543c54946f8e943a09757e4b5f" },
+		{ "identifier": "Affect", "uid": 3, "values": [{ "id": "Stun", "tileId": null, "color": 0, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "7d5dedc959a31124631562cf83a257f2" },
 		{ "identifier": "GameAction", "uid": 23, "values": [
 			{ "id": "Blow", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "DebugSlowMo", "tileId": null, "color": 0, "__tileSrcRect": null },
@@ -243,22 +243,17 @@
 			{ "id": "Restart", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "ScreenshotMode", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "ShapeWind", "tileId": null, "color": 0, "__tileSrcRect": null }
-		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "2f04e7543c54946f8e943a09757e4b5f" },
-		{ "identifier": "AreaShape", "uid": 24, "values": [
-			{ "id": "AsCircle", "tileId": null, "color": 0, "__tileSrcRect": null },
-			{ "id": "AsLine", "tileId": null, "color": 0, "__tileSrcRect": null },
-			{ "id": "AsSquare", "tileId": null, "color": 0, "__tileSrcRect": null }
-		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "2f04e7543c54946f8e943a09757e4b5f" },
+		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "7d5dedc959a31124631562cf83a257f2" },
 		{ "identifier": "AreaEquation", "uid": 25, "values": [
 			{ "id": "AeConverge", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "AeCurl", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "AeDiverge", "tileId": null, "color": 0, "__tileSrcRect": null }
-		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "2f04e7543c54946f8e943a09757e4b5f" },
+		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "7d5dedc959a31124631562cf83a257f2" },
 		{ "identifier": "AreaInfluence", "uid": 26, "values": [
 			{ "id": "AiLarge", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "AiMedium", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "AiSmall", "tileId": null, "color": 0, "__tileSrcRect": null }
-		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "2f04e7543c54946f8e943a09757e4b5f" }
+		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "7d5dedc959a31124631562cf83a257f2" }
 	], "levelFields": [] },
 	"levels": [
 		{
