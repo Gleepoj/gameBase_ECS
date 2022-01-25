@@ -66,8 +66,9 @@ class SolverModifier extends Entity {
 
 		switch (areaShape) {
 			case AsSquare:
-                var list = Bresenham.getRectangle(cx, cy, aw, ah);
-				pushAreaCells_toInformedCells(list);
+               // var list = Bresenham.getRectangle(cx, cy, aw, ah);
+			    //var list =  
+				//pushAreaCells_toInformedCells(list);
 				return;
 			case AsCircle:
                 var list = Bresenham.getDisc(cx,cy, areaRadius);
