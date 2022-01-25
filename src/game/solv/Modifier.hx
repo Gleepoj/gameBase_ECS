@@ -5,15 +5,15 @@ import dn.Bresenham;
 
 typedef CellStruct = {index:Int,x:Int,y:Int,abx:Int,aby:Int,u:Float,v:Float}
 
-class SolverModifier extends Entity {
-	public static var ALL:Array<SolverModifier> = [];
+class Modifier extends Entity {
+	public static var ALL:Array<Modifier> = [];
 
 	var solver(get, never):Solver;inline function get_solver()return Game.ME.solver;
 
 	var areaInfluence:AreaInfluence = AiSmall;
 	var areaEquation:AreaEquation = EqCurl;
 
-	var areaRadius:Int = 3;
+	var areaRadius:Int = 5;
 
 	public var isBlowing(get,never):Bool;inline function get_isBlowing()return blowingIsActive;
 	
@@ -22,6 +22,8 @@ class SolverModifier extends Entity {
 	var blowingIsActive:Bool;
 	var parentEntity:Entity;
 	var angle:Float = 0;
+
+	var color:UInt = 0xff00af;
 
 	var informedCells:Array<CellStruct> = [];
 
@@ -42,7 +44,7 @@ class SolverModifier extends Entity {
 		}
 
         spr.set(D.tiles.fxCircle15);
-        spr.colorize(0xff00af);
+        spr.colorize(color);
 	}
 	
 	override function update() {
@@ -54,7 +56,15 @@ class SolverModifier extends Entity {
 		informCellUVFields();
 
 	}
+	override function postUpdate() {
+		super.postUpdate();
+		spr.colorize(color);
+	}
 	
+	override function dispose() {
+		super.dispose();
+		ALL.remove(this);
+	}
 	//API//
 
 	public function getInformedCellsIndex() {
@@ -69,16 +79,16 @@ class SolverModifier extends Entity {
 		return informedCells;
 	}
 
-	public function activateFan(){
+	public function activateModifier(){
 		if (blowingIsActive == false)
 			blowingIsActive = true;
-			spr.colorize(0xff0000);
+			color = 0xff0000;
 	}
 
-	public function deactivateFan(){
+	public function deactivateModifier(){
 		if (blowingIsActive == true)
 			blowingIsActive = false;
-		    spr.colorize(0xff00af);
+		    color = 0xff00af;
 	}
 	
 	//Private functions//

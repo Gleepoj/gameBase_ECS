@@ -4,7 +4,7 @@ import solv.Boids;
 import solv.DebugSolver;
 import solv.FluidSolver;
 
-import solv.SolverModifier;
+import solv.Modifier;
 
 import h3d.Vector;
 
@@ -40,7 +40,7 @@ class Solver extends dn.Process {
     override public function fixedUpdate() {
         super.fixedUpdate();
 
-        for (e in SolverModifier.ALL){
+        for (e in Modifier.ALL){
             if (e.isBlowing){
                 var cells = e.getInformedCells();
                 for(c in cells){
@@ -67,37 +67,14 @@ class Solver extends dn.Process {
 
     }
 
-    private function turnOffFanCells() {
-        for (e in SolverModifier.ALL){
-            var l = e.getInformedCellsIndex();
-            graphicsDebug.turnOffListOfCells(l);
-        }
-    }
-
-    private function highlightModifierCell() {
-        for (e in SolverModifier.ALL){
-            var index = computeSolverIndexFromCxCy(e.cx,e.cy);
-            graphicsDebug.pushSelectedCell(index);
-        }
-    }
-
-    public function addForce(cx:Int, cy:Int, dx:Float, dy:Float):Void {
-		var speed:Float = dx * dx  + dy * dy * aspectRatio2;
-		if(speed > 0) {
-			var velocityMult:Float = 20.0;
-			var index:Int = solver.getIndexForCellPosition(cx,cy);
-
-			solver.uOld[index] += dx * velocityMult;
-			solver.vOld[index] += dy * velocityMult;
-		}
+    override public function onDispose() {
+		super.onDispose();
+        graphicsDebug.dispose();
+        Boids.ALL = [];
+        Modifier.ALL=[];
 	}
-
-    private function setUVatIndex(u:Float,v:Float,index:Int){
-        solver.u[index] = u;
-        solver.v[index] = v;
-        solver.uOld[index] = u;
-        solver.vOld[index] = v;
-    }
+    
+    //API//
 
 	public  function getUVatCoord(cx:Int,cy:Int) {
         if (testIfCellIsInGrid(cx,cy)){
@@ -124,12 +101,39 @@ class Solver extends dn.Process {
      
         return false;   
     }
+ 
+    //PRIVATE//
 
-	override public function onDispose() {
-		super.onDispose();
-        graphicsDebug.dispose();
-        Boids.ALL = [];
-        SolverModifier.ALL=[];
+    private function turnOffFanCells() {
+        for (e in Modifier.ALL){
+            var l = e.getInformedCellsIndex();
+            graphicsDebug.turnOffListOfCells(l);
+        }
+    }
+
+    private function highlightModifierCell() {
+        for (e in Modifier.ALL){
+            var index = computeSolverIndexFromCxCy(e.cx,e.cy);
+            graphicsDebug.pushSelectedCell(index);
+        }
+    }
+
+    private function addForce(cx:Int, cy:Int, dx:Float, dy:Float):Void {
+		var speed:Float = dx * dx  + dy * dy * aspectRatio2;
+		if(speed > 0) {
+			var velocityMult:Float = 20.0;
+			var index:Int = solver.getIndexForCellPosition(cx,cy);
+
+			solver.uOld[index] += dx * velocityMult;
+			solver.vOld[index] += dy * velocityMult;
+		}
 	}
-   
+
+    private function setUVatIndex(u:Float,v:Float,index:Int){
+        solver.u[index] = u;
+        solver.v[index] = v;
+        solver.uOld[index] = u;
+        solver.vOld[index] = v;
+    }
+  
 }

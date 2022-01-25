@@ -1,25 +1,23 @@
-package sample;
+package aleiiioa;
 
-import solv.SolverModifier;
+import solv.Modifier;
 import solv.Boids;
 /**
 	This small class just creates a SamplePlayer instance in current level
 **/
-class SampleGame extends Game {
+
+class Aleiiioa extends Game {
 
 
 
 	public function new() {
 		super();
-		//createRootInLayers(scroller, Const.DP_FRONT);
-
-		//Solver init
 	}
 	
 	override function startLevel(l:World_Level) {
 		super.startLevel(l);
 		new SamplePlayer();
-		new SolverModifier(20,30);
+		new Modifier(20,30);
 		
 		for (i in 0...25){
 			for( j in 0...25){

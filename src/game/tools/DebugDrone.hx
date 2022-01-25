@@ -1,4 +1,4 @@
-package en;
+package tools;
 
 /**
 	This Entity is intended for quick debugging / level exploration.

@@ -66,7 +66,7 @@ class Console extends h2d.Console {
 		// Create a debug drone
 		#if debug
 		this.addCommand("drone", [], ()->{
-			new en.DebugDrone();
+			new tools.DebugDrone();
 		});
 		#end
 		this.addCommand("grid", [], ()->{

@@ -2,12 +2,7 @@ package solv;
 
 import hxd.Math;
 import h3d.Vector;
-import solv.FluidSolver;
 
-// ici pouront etre iom[plementer] differente steering behaviors de reynols ou des trajet plus basique  ?
-// un state enum de behaviors une fonction compute qui switche entre les differentes demandes 
-// la possibilite de desactive les behaviors par le bool is Autonomous permet d'utiliser le boids 
-//comme simple "lecteur" de vent
  
 class Boids extends Entity{
     public static var ALL:Array<Boids> = [];
@@ -83,12 +78,4 @@ class Boids extends Entity{
         return steering;
     }
 
-
-    /* function capMaxForce(_steer:Vector,_maxForce) {
-        if (desired.lengthSq() > _maxForce*_maxForce){
-            _steer.normalize();
-            _steer.multiply(_maxForce);
-        }
-        return _steer;
-    } */
 }

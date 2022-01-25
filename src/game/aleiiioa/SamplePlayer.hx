@@ -1,7 +1,7 @@
-package sample;
+package aleiiioa;
 
 //import solv.ViiEmitter;
-import solv.SolverModifier;
+import solv.Modifier;
 
 
 /**
@@ -21,20 +21,15 @@ class SamplePlayer extends Entity {
 	var onGround(get,never) : Bool;
 		inline function get_onGround() return !destroyed && dy==0 && yr==1 && level.hasCollision(cx,cy+1);
 
-	//var emit :ViiEmitter;
-	var fan :SolverModifier;
+	var modifier :Modifier;
 
 	public function new() {
 		super(5,5);
-		//emit = new ViiEmitter(5,5);
-		fan = new SolverModifier(5,5,this);
-		// Start point using level entity "PlayerStart"
+		modifier = new Modifier(5,5,this);
 		var start = level.data.l_Entities.all_PlayerStart[0];
 
 		if( start!=null )
 			setPosCase(start.cx, start.cy);
-			//emit.setPosCase(start.cx,start.cy);
-			//fan.setPosCase(start.cx,start.cy);
 
 		// Misc inits
 		frictX = 0.84;
@@ -96,14 +91,17 @@ class SamplePlayer extends Entity {
 
 	/**
 		Control inputs are checked at the beginning of the frame.
-		VERY IMPORTANT NOTE: because game physics only occur during the `fixedUpdate` (at a constant 30 FPS), no physics increment should ever happen here! What this means is that you can SET a physics value (eg. see the Jump below), but not make any calculation that happens over multiple frames (eg. increment X speed when walking).
+		VERY IMPORTANT NOTE: because game physics only occur during the `fixedUpdate` (at a constant 30 FPS), 
+		no physics increment should ever happen here!
+		 What this means is that you can SET a physics value (eg. see the Jump below), 
+		 but not make any calculation that happens over multiple frames (eg. increment X speed when walking).
 	**/
+
 	override function preUpdate() {
 		super.preUpdate();
 
 		xSpeed = 0;
 		ySpeed = 0;
-		//emit.setBlowingStatus(false);
 		
 		if( onGround )
 			cd.setS("recentlyOnGround",0.1); // allows "just-in-time" jumps
@@ -118,29 +116,27 @@ class SamplePlayer extends Entity {
 			ca.rumble(0.05, 0.06);
 		}
 		if (!ca.isDown(Blow)){
-			//emit.setBlowingStatus(false);
 		}
 
-		if (ca.isDown(Blow)){
-			//emit.blow(dx,dy);
-			//emit.setBlowingStatus(true); 
+		if (ca.isDown(Blow)){			 
 		}
 
 		if (ca.isDown(ShapeWind)){
-			if(!fan.isBlowing)
-				fan.activateFan();
+			if(!modifier.isBlowing)
+				modifier.activateModifier();
 		}
 		if (!ca.isDown(ShapeWind)){
-			//emit.shape();
-			if(fan.isBlowing)
-				fan.deactivateFan();
+			if(modifier.isBlowing)
+				modifier.deactivateModifier();
 		}
 		// Walk
+		// As mentioned above, we don't touch physics values (eg. `dx`) here. 
+		//We just store some "requested walk speed", which will be applied to actual physics in fixedUpdate.
+
 		if ( ca.getAnalogDist(MoveY)>0){
 			ySpeed = ca.getAnalogValue(MoveY); 
 		}
 		if( ca.getAnalogDist(MoveX)>0 ) {
-			// As mentioned above, we don't touch physics values (eg. `dx`) here. We just store some "requested walk speed", which will be applied to actual physics in fixedUpdate.
 			xSpeed = ca.getAnalogValue(MoveX); // -1 to 1
 		}
 	}
@@ -148,10 +144,6 @@ class SamplePlayer extends Entity {
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
-
-		// Gravity
-		//if( !onGround )
-		//	dy+=0.05;
 
 		// Apply requested walk movement
 		if( ySpeed!=0 ) {
@@ -162,9 +154,5 @@ class SamplePlayer extends Entity {
 			var speed = 0.075;
 			dx += xSpeed * speed;
 		}
-
-		//emit.dx = dx;
-		//emit.dy = dy;
-		//emit.setPosPixel(attachX,attachY);
 	}
 }
