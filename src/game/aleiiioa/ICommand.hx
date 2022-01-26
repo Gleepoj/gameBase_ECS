@@ -1,41 +1,52 @@
 package aleiiioa;
 
 import solv.Modifier;
-//import aleiiioa.ICommand;
+
 interface ICommand {
-    public  function execute():Void;
+    public  function execute(m:Modifier):Void;
 }
 
 
 class Curl implements  ICommand {
-    var puppet:Modifier;
-    public function new(e:Modifier) {
-        puppet = e;
+    public function new() {
     }
-    public function execute() {
-        puppet.changeEquationType(EqCurl);
-        puppet.activateModifier();
+
+    public function execute(m:Modifier) {
+        m.changeEquationType(EqCurl);
+        m.activateModifier();
         
     }
 }
 
 class Converge implements  ICommand {
-    var puppet:Modifier;
-    public function new(e:Modifier) {
-        puppet = e;
+    public function new() {
+        
     }
-    public function execute() {
-        puppet.activateModifier();
+    public function execute(m:Modifier) {
+        m.changeEquationType(EqCurl);
+        m.activateModifier();
     }
 }
+
 class Diverge implements  ICommand {
-    var puppet:Modifier;
-    public function new(e:Modifier) {
-        puppet = e;
+    
+    public function new() {
+        
     }
-    public function execute() {
-        puppet.changeEquationType(EqDiverge);
-        puppet.activateModifier();
-        trace("ok diverge");
+
+    public function execute(m:Modifier) {
+        m.changeEquationType(EqDiverge);
+        m.activateModifier();
+    }
+}
+
+class TurnOff implements  ICommand {
+    
+    public function new() {
+        
+    }
+    
+    public function execute(m:Modifier) {
+        m.deactivateModifier();
     }
 }

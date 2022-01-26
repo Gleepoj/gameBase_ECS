@@ -1,5 +1,6 @@
 package solv;
 
+import aleiiioa.ICommand;
 import h3d.Vector;
 import dn.Bresenham;
 
@@ -27,9 +28,19 @@ class Modifier extends Entity {
 
 	var informedCells:Array<CellStruct> = [];
 
+	public var curl:Curl;
+    public var diverge:Diverge;
+    public var converge:Converge;
+	public var turnOff:TurnOff;
+
 	public function new(x:Int, y:Int, ?entity:Entity) {
 		super(x, y);
 		ALL.push(this);
+
+		curl     = new Curl();
+        diverge  = new Diverge();
+        converge = new Converge();
+		turnOff  = new TurnOff();
 
 		equation = new Equation(areaEquation);
 
@@ -93,6 +104,9 @@ class Modifier extends Entity {
 		refresh();
 	}
 	//Private functions//
+	public function order(com:ICommand) {
+        com.execute(this);
+    }
 
 	private function stickToParentEntity(){
 		if(parentEntity != null){

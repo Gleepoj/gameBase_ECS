@@ -31,7 +31,7 @@ class SamplePlayer extends Entity {
 		super(5,5);
 		modifier = new Modifier(5,5,this);
 		var start = level.data.l_Entities.all_PlayerStart[0];
-		remote = new Invoker(modifier);
+		//remote = new Invoker(modifier);
 		if( start!=null )
 			setPosCase(start.cx, start.cy);
 
@@ -120,20 +120,17 @@ class SamplePlayer extends Entity {
 			ca.rumble(0.05, 0.06);
 		}
 		if (!ca.isDown(Blow)){
+			modifier.order(modifier.turnOff);
 		}
 
 		if (ca.isDown(Blow)){	
-			remote.diverge.execute();	 
+			modifier.order(modifier.diverge);	 
 		}
 
 		if (ca.isDown(ShapeWind)){
-			if(!modifier.isBlowing)
-				remote.curl.execute();
-				//modifier.activateModifier();
+
 		}
 		if (!ca.isDown(ShapeWind)){
-			//if(modifier.isBlowing)
-				//modifier.deactivateModifier();
 		}
 		// Walk
 		// As mentioned above, we don't touch physics values (eg. `dx`) here. 

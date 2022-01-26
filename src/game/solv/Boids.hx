@@ -17,7 +17,8 @@ class Boids extends Entity{
     var desired:Vector;
     var steer:Vector;
     var angle:Float;
-
+    
+    var target:Entity;
     var targetLocation:Vector;
     var targetAngle:Float = 0 ;
     
@@ -25,6 +26,7 @@ class Boids extends Entity{
     var autonomy:Bool = true;
     var influenceOnFluid:Bool = false;
     
+    var isChasing(get,never):Bool;inline function get_isChasing() { if(target != null) return true; else return false;};
     var isAutonomous(get,never):Bool; inline function get_isAutonomous() return autonomy;
     public var isOnSurface(get,never):Bool; inline function get_isOnSurface()return influenceOnFluid;
     
@@ -50,12 +52,22 @@ class Boids extends Entity{
         
         if (!solver.testIfCellIsInGrid(cx,cy))
             destroy();
+        
+        velocity.x = dx;
+        velocity.y = dy;
 
-
-        targetLocation.x = Math.floor(attachX+(Math.cos(targetAngle)*60));
-        targetLocation.y = Math.floor(attachY+(Math.sin(targetAngle)*60));
-
-        steer = computeFlowfieldSteering();
+        location.x = attachX;
+        location.y = attachY;
+        
+        if (target != null){
+            targetLocation.x = target.attachX;
+            targetLocation.y = target.attachY;
+        }
+        
+        if(isChasing)
+            steer = computeTrackingSteering();
+        if(!isChasing)
+            steer = computeFlowfieldSteering();
 
         if(isAutonomous)
             dx += steer.x;
@@ -63,13 +75,27 @@ class Boids extends Entity{
         
     }
     
+    public function trackEntity(e:Entity) {
+        target = e;  
+    }
+    
+    //desired_velocity = normalize (position - target) * max_speed
+    //steering = desired_velocity - velocity
+    
+    private function computeTrackingSteering() {
+        var _temp =  targetLocation.sub(location);//location.sub(targetLocation);
+        var l = desired.length();
+        desired =  _temp.multiply(0.01);
+        
+        var steering = desired.sub(velocity);
+        //desired.multiply(0.00001);
+        return steering;
+    }
 
-    public function computeFlowfieldSteering() {
-        velocity.x = dx;
-        velocity.y = dy;
+    private function computeFlowfieldSteering() {
+
 
         desired = solver.getUVatCoord(cx,cy); 
-        angle = Math.atan2(desired.y,desired.x);
         
         var l = desired.length();
         desired.multiply(maxSpeed*l);
