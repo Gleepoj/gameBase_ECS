@@ -1,6 +1,8 @@
 package aleiiioa;
 
 //import solv.ViiEmitter;
+import aleiiioa.ICommand.Curl;
+//import aleiiioa.ICommand.Boost;
 import solv.Modifier;
 
 
@@ -17,6 +19,8 @@ class SamplePlayer extends Entity {
 	var xSpeed = 0.;
 	var ySpeed = 0.;
 
+	var boost:Curl;
+	var remote:Invoker;
 	// This is TRUE if the player is not falling
 	var onGround(get,never) : Bool;
 		inline function get_onGround() return !destroyed && dy==0 && yr==1 && level.hasCollision(cx,cy+1);
@@ -27,7 +31,7 @@ class SamplePlayer extends Entity {
 		super(5,5);
 		modifier = new Modifier(5,5,this);
 		var start = level.data.l_Entities.all_PlayerStart[0];
-
+		remote = new Invoker(modifier);
 		if( start!=null )
 			setPosCase(start.cx, start.cy);
 
@@ -118,16 +122,18 @@ class SamplePlayer extends Entity {
 		if (!ca.isDown(Blow)){
 		}
 
-		if (ca.isDown(Blow)){			 
+		if (ca.isDown(Blow)){	
+			remote.diverge.execute();	 
 		}
 
 		if (ca.isDown(ShapeWind)){
 			if(!modifier.isBlowing)
-				modifier.activateModifier();
+				remote.curl.execute();
+				//modifier.activateModifier();
 		}
 		if (!ca.isDown(ShapeWind)){
-			if(modifier.isBlowing)
-				modifier.deactivateModifier();
+			//if(modifier.isBlowing)
+				//modifier.deactivateModifier();
 		}
 		// Walk
 		// As mentioned above, we don't touch physics values (eg. `dx`) here. 

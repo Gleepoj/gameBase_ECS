@@ -51,9 +51,7 @@ class Modifier extends Entity {
 		angle += 0.1;
         
 		stickToParentEntity();
-		actualizeAndStoreAreaCells();
-		computeCaseDistanceToCenterAreaCase();
-		informCellUVFields();
+		refresh();
 
 	}
 	override function postUpdate() {
@@ -90,13 +88,22 @@ class Modifier extends Entity {
 			blowingIsActive = false;
 		    color = 0xff00af;
 	}
-	
+	public function changeEquationType(eqType:AreaEquation) {
+		equation = new Equation(eqType);
+		refresh();
+	}
 	//Private functions//
 
 	private function stickToParentEntity(){
 		if(parentEntity != null){
 			setPosPixel(parentEntity.attachX,parentEntity.attachY);
 		}
+	}
+
+	private function refresh(){
+		actualizeAndStoreAreaCells();
+		computeCaseDistanceToCenterAreaCase();
+		informCellUVFields();
 	}
 
 	private function actualizeAndStoreAreaCells(){
@@ -117,9 +124,9 @@ class Modifier extends Entity {
     private function informCellUVFields() {
 		if (isBlowing){
 			for (cell in informedCells){
-				var eq = equation.compute(new Vector(cell.abx,cell.aby));
-				cell.u = eq.x;
-				cell.v = eq.y;
+				var eqVector = equation.compute(new Vector(cell.abx,cell.aby));
+				cell.u = eqVector.x;
+				cell.v = eqVector.y;
 			}
 		}
     }
