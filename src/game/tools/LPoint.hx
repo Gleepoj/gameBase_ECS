@@ -1,5 +1,7 @@
 package tools;
 
+import h2d.Graphics.GPoint;
+
 class LPoint {
 	/** Grid based X **/
 	public var cx : Int;
@@ -65,11 +67,14 @@ class LPoint {
 			return !Game.exists() ? -1. : levelY*Const.SCALE + Game.ME.scroller.y;
 		}
 
-
+	public var spr:HSprite;
 
 	private inline function new() {
 		cx = cy = 0;
 		xr = yr = 0;
+
+		
+
 	}
 
 	@:keep
@@ -95,6 +100,7 @@ class LPoint {
 		this.cy = y;
 		this.xr = xr;
 		this.yr = yr;
+		
 		return this;
 	}
 
@@ -102,6 +108,7 @@ class LPoint {
 	public inline function setLevelPixel(x:Float,y:Float) {
 		setLevelPixelX(x);
 		setLevelPixelY(y);
+		
 		return this;
 	}
 
@@ -126,7 +133,17 @@ class LPoint {
 		else
 			return M.dist(this.cx+this.xr, this.cy+this.yr, tcx+txr, tcy+tyr);
 	}
-
+	public function initSpr(){
+		spr = new HSprite(Assets.tiles);
+		Game.ME.scroller.add(spr, Const.DP_MAIN);
+		spr.set(D.tiles.fxCircle7);
+		spr.colorize(0x00f0f0);
+		spr.x = levelX;
+		spr.y = levelY;
+	}
+	public function updatePoint(x,y) {
+		setLevelPixel(x,y);
+	}
 	/** Distance to something else, in level pixels **/
 	public inline function distPx(?e:Entity, ?pt:LPoint, ?lvlX=0., ?lvlY=0.) {
 		if( e!=null )

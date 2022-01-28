@@ -19,13 +19,19 @@ class Aleiiioa extends Game {
 		player = new SamplePlayer();
 		new Modifier(20,30);
 		
-		for (i in 0...25){
-			for( j in 0...25){
-			 var b = new Boids(5+i*2,5+ j*2);
+		for (i in 0...35){
+			for( j in 0...30){
+			 var b = new Boids(5+i*1,5+ j*1);
 			 b.trackEntity(player);
 			}
 		}
 
+		/* for (i in 0...10){
+			for( j in 0...30){
+			 var b = new Boids(5+i*2,5+ j*2);
+			}
+		} */ 
+ 
 	}
 }
 

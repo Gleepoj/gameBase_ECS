@@ -40,6 +40,19 @@ class Diverge implements  ICommand {
     }
 }
 
+
+class Repel implements  ICommand {
+    
+    public function new() {
+        
+    }
+
+    public function execute(m:Modifier) {
+        m.changeEquationType(EqRepel);
+        m.activateModifier();
+    }
+}
+
 class TurnOff implements  ICommand {
     
     public function new() {

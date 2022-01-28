@@ -31,6 +31,7 @@ class Modifier extends Entity {
 	public var curl:Curl;
     public var diverge:Diverge;
     public var converge:Converge;
+	public var repel:Repel;
 	public var turnOff:TurnOff;
 
 	public function new(x:Int, y:Int, ?entity:Entity) {
@@ -40,6 +41,7 @@ class Modifier extends Entity {
 		curl     = new Curl();
         diverge  = new Diverge();
         converge = new Converge();
+		repel = new Repel();
 		turnOff  = new TurnOff();
 
 		equation = new Equation(areaEquation);

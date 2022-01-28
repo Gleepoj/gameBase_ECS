@@ -1,6 +1,7 @@
 package aleiiioa;
 
 //import solv.ViiEmitter;
+import solv.Boids;
 import aleiiioa.ICommand.Curl;
 //import aleiiioa.ICommand.Boost;
 import solv.Modifier;
@@ -121,16 +122,26 @@ class SamplePlayer extends Entity {
 		}
 		if (!ca.isDown(Blow)){
 			modifier.order(modifier.turnOff);
+			
+		}
+		if (!ca.isDown(ShapeWind)){
+			modifier.order(modifier.turnOff);
+		}
+		if (!ca.isDown(Jump)){
+			modifier.order(modifier.turnOff);
 		}
 
 		if (ca.isDown(Blow)){	
-			modifier.order(modifier.diverge);	 
+			modifier.order(modifier.diverge);	
+ 
 		}
 
 		if (ca.isDown(ShapeWind)){
-
+			modifier.order(modifier.curl);
 		}
-		if (!ca.isDown(ShapeWind)){
+
+		if (ca.isDown(Jump)){
+			modifier.order(modifier.repel);
 		}
 		// Walk
 		// As mentioned above, we don't touch physics values (eg. `dx`) here. 
