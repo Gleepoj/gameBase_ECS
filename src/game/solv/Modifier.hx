@@ -1,6 +1,6 @@
 package solv;
 
-import aleiiioa.ICommand;
+import solv.ModifierCommand;
 import h3d.Vector;
 import dn.Bresenham;
 
@@ -105,11 +105,12 @@ class Modifier extends Entity {
 		equation = new Equation(eqType);
 		refresh();
 	}
-	//Private functions//
-	public function order(com:ICommand) {
+	
+	public function order(com:ModifierCommand) {
         com.execute(this);
     }
-
+	
+	//Private functions//
 	private function stickToParentEntity(){
 		if(parentEntity != null){
 			setPosPixel(parentEntity.attachX,parentEntity.attachY);

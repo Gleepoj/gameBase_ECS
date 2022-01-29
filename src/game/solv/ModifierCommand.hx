@@ -1,13 +1,13 @@
-package aleiiioa;
+package solv;
 
 import solv.Modifier;
 
-interface ICommand {
+interface ModifierCommand {
     public  function execute(m:Modifier):Void;
 }
 
 
-class Curl implements  ICommand {
+class Curl implements  ModifierCommand {
     public function new() {
     }
 
@@ -18,7 +18,7 @@ class Curl implements  ICommand {
     }
 }
 
-class Converge implements  ICommand {
+class Converge implements  ModifierCommand {
     public function new() {
         
     }
@@ -28,7 +28,7 @@ class Converge implements  ICommand {
     }
 }
 
-class Diverge implements  ICommand {
+class Diverge implements  ModifierCommand {
     
     public function new() {
         
@@ -41,7 +41,7 @@ class Diverge implements  ICommand {
 }
 
 
-class Repel implements  ICommand {
+class Repel implements  ModifierCommand {
     
     public function new() {
         
@@ -53,7 +53,7 @@ class Repel implements  ICommand {
     }
 }
 
-class TurnOff implements  ICommand {
+class TurnOff implements  ModifierCommand {
     
     public function new() {
         
