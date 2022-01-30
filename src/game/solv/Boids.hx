@@ -12,8 +12,8 @@ class Boids extends Entity{
 
     public var solver(get,never):Solver; inline function get_solver() return Game.ME.solver;
     public var maxSpeed = 0.8;
-    public var maxForce = 0.7;
-    public var mass = 2;// * Math.random(2);//Math.random(3);
+    public var maxForce = 0.05;
+    public var mass = 0.5;// * Math.random(2);//Math.random(3);
 
     var location :Vector;
     var velocity :Vector;
@@ -168,8 +168,8 @@ class Boids extends Entity{
     private function eulerIntegration(steering:Vector){
         // not the exact Reynols integration
         var _temp = steering.clone();
-        var _limitTemp = _temp.limit(maxForce);
-        var accel = _limitTemp.divide(mass);
+        var _limitTemp = VectorUtils.limitVector(_temp,maxForce);
+        var accel = VectorUtils.divideVector(_limitTemp,mass);
         return accel;
     }
 

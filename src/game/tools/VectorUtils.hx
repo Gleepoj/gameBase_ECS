@@ -22,4 +22,18 @@ class VectorUtils {
             var u = _u.normalized();
             return v.dot(u);
     }
+
+    public static function divideVector(v:Vector,f:Float) {
+        return new Vector(v.x / f, v.y / f, v.z / f, v.w);
+    }
+
+    public static function limitVector(vector:Vector,max:Float){
+		var _temp:Vector = new Vector(0,0,0);
+        var lSq = vector.lengthSq();
+		if(lSq > max*max){
+			_temp = divideVector(vector,Math.sqrt(lSq));
+			_temp.scale(max);
+		}
+        return _temp;
+	}
 }
