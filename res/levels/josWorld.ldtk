@@ -463,6 +463,70 @@
 									"params": ["39,45"]
 								}]
 							}]
+						},
+						{
+							"__identifier": "Boides",
+							"__grid": [19,15],
+							"__pivot": [0.5,0.5],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 27,
+							"px": [304,247],
+							"fieldInstances": [{
+								"__identifier": "Path",
+								"__value": [
+									{ "cx": 24, "cy": 16 },
+									{ "cx": 19, "cy": 24 },
+									{ "cx": 29, "cy": 29 },
+									{ "cx": 30, "cy": 23 },
+									{ "cx": 36, "cy": 19 },
+									{ "cx": 28, "cy": 35 },
+									{ "cx": 17, "cy": 32 },
+									{ "cx": 11, "cy": 26 },
+									{ "cx": 12, "cy": 2 }
+								],
+								"__type": "Array<Point>",
+								"defUid": 29,
+								"realEditorValues": [
+									{
+										"id": "V_String",
+										"params": ["24,16"]
+									},
+									{
+										"id": "V_String",
+										"params": ["19,24"]
+									},
+									{
+										"id": "V_String",
+										"params": ["29,29"]
+									},
+									{
+										"id": "V_String",
+										"params": ["30,23"]
+									},
+									{
+										"id": "V_String",
+										"params": ["36,19"]
+									},
+									{
+										"id": "V_String",
+										"params": ["28,35"]
+									},
+									{
+										"id": "V_String",
+										"params": ["17,32"]
+									},
+									{
+										"id": "V_String",
+										"params": ["11,26"]
+									},
+									{
+										"id": "V_String",
+										"params": ["12,2"]
+									}
+								]
+							}]
 						}
 					]
 				},

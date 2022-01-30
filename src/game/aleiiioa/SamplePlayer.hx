@@ -1,9 +1,5 @@
 package aleiiioa;
 
-//import solv.ViiEmitter;
-import solv.Boids;
-//import aleiiioa.ICommand.Curl;
-//import aleiiioa.ICommand.Boost;
 import solv.Modifier;
 
 
@@ -32,7 +28,7 @@ class SamplePlayer extends Entity {
 		super(5,5);
 		modifier = new Modifier(5,5,this);
 		var start = level.data.l_Entities.all_PlayerStart[0];
-		//remote = new Invoker(modifier);
+		
 		if( start!=null )
 			setPosCase(start.cx, start.cy);
 
@@ -132,7 +128,8 @@ class SamplePlayer extends Entity {
 		}
 
 		if (ca.isDown(Blow)){	
-			modifier.order(modifier.diverge);	
+			modifier.order(modifier.diverge);
+			new en.Bullet(centerX,centerY);	
  
 		}
 

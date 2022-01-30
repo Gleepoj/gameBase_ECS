@@ -3,6 +3,7 @@ package tools;
 import h3d.Vector;
 
 class VectorUtils {
+    // not a pure vector projection: return vecproj + a ligth offset for path steering behavior (var f)
     public static function vectorProjection(_aLocation:Vector,_predictLocation:Vector,_bLocation:Vector) {
             var u = _bLocation.sub(_aLocation);
             var uBis = _bLocation.sub(_aLocation);
@@ -12,8 +13,8 @@ class VectorUtils {
         
             uBis.normalize();
             var p = uBis.multiply(sp);
-            var f = uBis.multiply(Math.abs(0.3*sp));
-            var n = p.add(f);
+            var offset = uBis.multiply(Math.abs(0.3*sp));
+            var n = p.add(offset);
             return _aLocation.add(n);
         }
     

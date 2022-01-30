@@ -21,15 +21,15 @@ class Aleiiioa extends Game {
 		for (b in level.data.l_Entities.all_Boides){
 			var boide = new Boids(b.cx,b.cy);
 			boide.addPath(b.f_Path);
-			boide.trackEntity(player);
+			//boide.track(player,b.f_Path);
 		}
 
-/* 		for (i in 0...35){
+		for (i in 0...20){
 			for( j in 0...30){
-			 var b = new Boids(5+i*1,5+ j*1);
-			 b.trackEntity(player);
+			new Boids(5+i*2,5+ j*2);
+			 //b.trackEntity(player);
 			}
-		} */
+		}
 
 		/* for (i in 0...10){
 			for( j in 0...30){

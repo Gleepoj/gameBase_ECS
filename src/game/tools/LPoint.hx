@@ -1,5 +1,6 @@
 package tools;
 
+import h3d.Vector;
 import h2d.Graphics.GPoint;
 
 class LPoint {
@@ -133,6 +134,7 @@ class LPoint {
 		else
 			return M.dist(this.cx+this.xr, this.cy+this.yr, tcx+txr, tcy+tyr);
 	}
+	
 	public function initSpr(){
 		spr = new HSprite(Assets.tiles);
 		Game.ME.scroller.add(spr, Const.DP_MAIN);
@@ -140,6 +142,10 @@ class LPoint {
 		spr.colorize(0x00f0f0);
 		spr.x = levelX;
 		spr.y = levelY;
+	}
+
+	public function toVector() {
+		return new Vector(levelXi,levelYi);
 	}
 	public function updatePoint(x,y) {
 		setLevelPixel(x,y);
