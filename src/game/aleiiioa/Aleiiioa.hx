@@ -20,8 +20,9 @@ class Aleiiioa extends Game {
 		new Modifier(20,30);
 		for (b in level.data.l_Entities.all_Boides){
 			var boide = new Boids(b.cx,b.cy);
-			boide.addPath(b.f_Path);
-			//boide.track(player,b.f_Path);
+			//boide.addPath(b.f_Path);
+			boide.track(player,b.f_Path);
+			boide.pathPriority = true;
 		}
 
 		for (i in 0...20){

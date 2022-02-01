@@ -1,7 +1,6 @@
 package solv;
 
 import ldtk.Point;
-import hxd.Math;
 import h3d.Vector;
 import tools.LPoint;
 
@@ -10,10 +9,10 @@ import tools.LPoint;
 class Boids extends Entity{
     public static var ALL:Array<Boids> = [];
 
-    public var solver(get,never):Solver; inline function get_solver() return Game.ME.solver;
-    public var maxSpeed = 0.8;
-    public var maxForce = 0.05;
-    public var mass = 0.5;// * Math.random(2);//Math.random(3);
+    var solver(get,never):Solver; inline function get_solver() return Game.ME.solver;
+    var maxSpeed = 0.8;
+    var maxForce = 0.05;
+    var mass = 0.5;// * Math.random(2);//Math.random(3);
 
     var location :Vector;
     var velocity :Vector;
@@ -28,13 +27,13 @@ class Boids extends Entity{
     var autonomy:Bool = true;
     var influenceOnFluid:Bool = false;
     
-    var isChasing(get,never):Bool;inline function get_isChasing() { if(target != null) return true; else return false;};
-    var isOnTrack(get,never):Bool;inline function get_isOnTrack() { if(path.length != 0) return true; else return false;};
+    var isChasing(get,never):Bool;inline function get_isChasing() { if(target != null && !pathPriority) return true; else return false;};
+    var isOnPath(get,never):Bool;inline function get_isOnPath() { if(path.length != 0) return true; else return false;};
     var isAutonomous(get,never):Bool; inline function get_isAutonomous() return autonomy;
     public var isOnSurface(get,never):Bool; inline function get_isOnSurface()return influenceOnFluid;
     
     public var path:Array<LPoint>;
-
+    public var pathPriority:Bool = false;
 
     var currentStart:LPoint;
     var currentEnd:LPoint;
@@ -58,29 +57,12 @@ class Boids extends Entity{
         
     }
 
-    public function addPath(_path:Array<Point>) {
-        
-        var po0 = tools.LPoint.fromCaseCenter(cx,cy);
-        path.push(po0);
-
-        for(p in _path){
-            var po = tools.LPoint.fromCaseCenter(p.cx,p.cy);
-            path.push(po);
-        }
-        
-        startIndex = 0;
-        endIndex = 1;
-        currentStart = path[startIndex];
-        currentEnd   = path[endIndex];
-    }
-
+    
     public function track(?e:Entity,?_path:Array<Point>) {
         if(e != null)
             target = e;  
         if(_path != null)
             addPath(_path);
-            //trace('la ca marche ? donc imprime ca $_path');
-            
     }
 
     override public function fixedUpdate() {
@@ -95,12 +77,12 @@ class Boids extends Entity{
 
         if(isChasing)
             steer = seek(targetLocation);
-        if(isOnTrack && !isChasing){
+        if(isOnPath && !isChasing){
             updatePathPosition();
-            steer = followPath();
+            steer = seek(getTargetFromPath());
         }
-        if(!isChasing && !isOnTrack)
-            steer = followFlowfield();
+        if(!isChasing && !isOnPath)
+            steer = getSteerFromFlowfield();
 
         
         var  a = eulerIntegration(steer);
@@ -111,21 +93,7 @@ class Boids extends Entity{
         
     }
 
-    private function updateVectors(){
-        location.x = centerX;
-        location.y = centerY;
-
-        velocity.x = dx;
-        velocity.y = dy;
-        
-        predicted = predict(location,velocity);
-
-        if (target != null){
-            targetLocation.x = target.centerX;
-            targetLocation.y = target.centerY;
-        }
-    }
-
+    
     private function seek(_target:Vector){
         desired = _target.sub(location);
         desired.normalize();
@@ -135,26 +103,7 @@ class Boids extends Entity{
         return steer;
     }
 
-    
-    private function followFlowfield() {
 
-        desired = solver.getUVatCoord(cx,cy); 
-        var steer = desired.sub(velocity);
-        return steer;
-    }
-
-    private function followPath() {
-        var p = predict(location,velocity);
-        var t = VectorUtils.vectorProjection(currentStart.toVector(),p,currentEnd.toVector());
-        var d = p.distance(t);
-        
-        if (d<5){
-            var dest = currentEnd.toVector();
-            return seek(dest);
-        }
-        return seek(t);
-
-    }
 
     private function predict(_location:Vector,_velocity:Vector) {
         var predict = _velocity.clone();
@@ -172,13 +121,66 @@ class Boids extends Entity{
         var accel = VectorUtils.divideVector(_limitTemp,mass);
         return accel;
     }
+        
+    private function getSteerFromFlowfield() {
+
+        desired = solver.getUVatCoord(cx,cy); 
+        var steer = desired.sub(velocity);
+        return steer;
+    }
+
+    private function getTargetFromPath() {
+        var p = predict(location,velocity);
+        var targetClosestOnPath = VectorUtils.vectorProjection(currentStart.toVector(),p,currentEnd.toVector());
+        var d = p.distance(targetClosestOnPath);
+        
+        if (d<5){
+            var targetCurrentEnd = currentEnd.toVector();
+            return targetCurrentEnd;
+        }
+        return targetClosestOnPath;
+    }
 
     private function updatePathPosition() {
         if(checkIfBoidHadReachEnd())
-            incrementCurrentPoints();
+            setNextSegmentOnPath();
     }
 
-    private function incrementCurrentPoints() {
+
+
+    private function addPath(_path:Array<Point>) {
+        
+        var po0 = tools.LPoint.fromCaseCenter(cx,cy);
+        path.push(po0);
+
+        for(p in _path){
+            var po = tools.LPoint.fromCaseCenter(p.cx,p.cy);
+            path.push(po);
+        }
+        
+        startIndex = 0;
+        endIndex = 1;
+        currentStart = path[startIndex];
+        currentEnd   = path[endIndex];
+    }
+
+    private function updateVectors(){
+        location.x = centerX;
+        location.y = centerY;
+
+        velocity.x = dx;
+        velocity.y = dy;
+        
+        predicted = predict(location,velocity);
+
+        if (target != null){
+            targetLocation.x = target.centerX;
+            targetLocation.y = target.centerY;
+        }
+    }
+
+
+    private function setNextSegmentOnPath() {
 
         if (endIndex < path.length-1){
             startIndex += 1;
@@ -188,7 +190,6 @@ class Boids extends Entity{
         }
 
     }
-
     private function checkIfBoidHadReachEnd(){
         var ce = currentEnd.toVector();
         var dist = ce.distance(location);
