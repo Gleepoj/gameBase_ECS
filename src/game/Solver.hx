@@ -39,7 +39,6 @@ class Solver extends dn.Process {
     
     override public function fixedUpdate() {
         super.fixedUpdate();
-
         for (e in Modifier.ALL){
             if (e.isBlowing){
                 var cells = e.getInformedCells();
@@ -61,9 +60,9 @@ class Solver extends dn.Process {
 
     override public function postUpdate() {
         super.postUpdate();
-
-        graphicsDebug.renderDebugGrid();
         highlightModifierCell();
+        graphicsDebug.renderDebugGrid();
+        
 
     }
 
@@ -112,6 +111,7 @@ class Solver extends dn.Process {
     }
 
     private function highlightModifierCell() {
+        graphicsDebug.clearSelectedCell();
         for (e in Modifier.ALL){
             var index = computeSolverIndexFromCxCy(e.cx,e.cy);
             graphicsDebug.pushSelectedCell(index);

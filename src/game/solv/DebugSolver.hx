@@ -59,7 +59,10 @@ class DebugSolver {
             turnOffCellVisibility(index);
         }
     }
-
+    public function clearSelectedCell() {
+        selectedCells = [];
+    }
+    
     public function pushSelectedCell(index:Int) {
         for (c in selectedCells){
             if (c == index)

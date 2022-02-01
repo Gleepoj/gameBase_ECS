@@ -17,25 +17,19 @@ class Aleiiioa extends Game {
 	override function startLevel(l:World_Level) {
 		super.startLevel(l);
 		player = new SamplePlayer();
-		new Modifier(20,30);
-		for (b in level.data.l_Entities.all_Boides){
+		new Ship(20,30,player);
+		
+		 for (b in level.data.l_Entities.all_Boides){
 			var boide = new Boids(b.cx,b.cy);
-			//boide.addPath(b.f_Path);
 			boide.track(player,b.f_Path);
 			boide.pathPriority = true;
 		}
-
-		for (i in 0...20){
+ 
+/* 		for (i in 0...20){
 			for( j in 0...30){
 			new Boids(5+i*2,5+ j*2);
 			}
-		}
-
-		/* for (i in 0...10){
-			for( j in 0...30){
-			 var b = new Boids(5+i*2,5+ j*2);
-			}
-		} */ 
+		} */
  
 	}
 }

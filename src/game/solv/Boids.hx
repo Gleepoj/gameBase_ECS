@@ -8,13 +8,13 @@ import tools.LPoint;
  
 class Boids extends Entity{
     public static var ALL:Array<Boids> = [];
-
+    //la dependance au solver pourrait etre diminuer par un observer ? 
     var solver(get,never):Solver; inline function get_solver() return Game.ME.solver;
     var maxSpeed = 0.8;
     var maxForce = 0.05;
     var mass = 0.5;// * Math.random(2);//Math.random(3);
 
-    var location :Vector;
+    public var location :Vector;
     var velocity :Vector;
     var desired  :Vector;
     var predicted:Vector;
@@ -25,7 +25,8 @@ class Boids extends Entity{
     
     var index:Int;
     var autonomy:Bool = true;
-    var influenceOnFluid:Bool = false;
+    public var influenceOnFluid:Bool = false;
+    public var pathPriority:Bool = false;
     
     var isChasing(get,never):Bool;inline function get_isChasing() { if(target != null && !pathPriority) return true; else return false;};
     var isOnPath(get,never):Bool;inline function get_isOnPath() { if(path.length != 0) return true; else return false;};
@@ -33,14 +34,15 @@ class Boids extends Entity{
     public var isOnSurface(get,never):Bool; inline function get_isOnSurface()return influenceOnFluid;
     
     public var path:Array<LPoint>;
-    public var pathPriority:Bool = false;
 
     var currentStart:LPoint;
     var currentEnd:LPoint;
     var endIndex:Int;
     var startIndex:Int;
 
-    public function new(x:Int,y:Int) {
+    var parentEntity:Entity;
+
+    public function new(x:Int,y:Int,?entity:Entity) {
         super(x,y);
         ALL.push(this);
         path = [];
@@ -55,6 +57,11 @@ class Boids extends Entity{
         spr.set(D.tiles.fxCircle15);
         spr.colorize(0x0ea0ff,0.5);
         
+        if(entity != null){
+            parentEntity = entity;
+            spr.set(D.tiles.fxCircle7);
+            spr.colorize(0x0ea0ff,1);
+        }
     }
 
     
