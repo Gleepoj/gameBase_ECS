@@ -1,7 +1,7 @@
 package en;
 
 import solv.Modifier;
-import solv.Boids;
+import comp.Boids;
 
 class Ship extends Entity {
     

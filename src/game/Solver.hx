@@ -1,9 +1,9 @@
 
 
-import solv.Boids;
+import comp.Boids;
+
 import solv.DebugSolver;
 import solv.FluidSolver;
-
 import solv.Modifier;
 
 import h3d.Vector;

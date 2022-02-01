@@ -1,4 +1,4 @@
-package solv;
+package comp;
 
 import ldtk.Point;
 import h3d.Vector;

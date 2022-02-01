@@ -1,7 +1,7 @@
 package aleiiioa;
 
 import solv.Modifier;
-import solv.Boids;
+import comp.Boids;
 /**
 	This small class just creates a SamplePlayer instance in current level
 **/
