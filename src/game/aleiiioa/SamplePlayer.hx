@@ -1,5 +1,6 @@
 package aleiiioa;
 
+import solv.ModifierCommand.InstancedCommands;
 import solv.Modifier;
 
 
@@ -16,7 +17,7 @@ class SamplePlayer extends Entity {
 	var xSpeed = 0.;
 	var ySpeed = 0.;
 
-	
+	var cmd:InstancedCommands;
 	
 	// This is TRUE if the player is not falling
 	var onGround(get,never) : Bool;
@@ -27,6 +28,7 @@ class SamplePlayer extends Entity {
 	public function new() {
 		super(5,5);
 		modifier = new Modifier(5,5,this);
+		cmd = modifier.commands;
 		var start = level.data.l_Entities.all_PlayerStart[0];
 		
 		if( start!=null )
@@ -117,28 +119,28 @@ class SamplePlayer extends Entity {
 			ca.rumble(0.05, 0.06);
 		}
 		if (!ca.isDown(Blow)){
-			modifier.order(modifier.turnOff);
+			modifier.order(cmd.turnOff);
 			
 		}
 		if (!ca.isDown(ShapeWind)){
-			modifier.order(modifier.turnOff);
+			modifier.order(cmd.turnOff);
 		}
 		if (!ca.isDown(Jump)){
-			modifier.order(modifier.turnOff);
+			modifier.order(cmd.turnOff);
 		}
 
 		if (ca.isDown(Blow)){	
-			modifier.order(modifier.diverge);
+			modifier.order(cmd.diverge);
 			new en.Bullet(centerX,centerY);	
  
 		}
 
 		if (ca.isDown(ShapeWind)){
-			modifier.order(modifier.curl);
+			modifier.order(cmd.curl);
 		}
 
 		if (ca.isDown(Jump)){
-			modifier.order(modifier.repel);
+			modifier.order(cmd.repel);
 		}
 		// Walk
 		// As mentioned above, we don't touch physics values (eg. `dx`) here. 

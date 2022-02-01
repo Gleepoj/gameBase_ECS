@@ -27,23 +27,13 @@ class Modifier extends Entity {
 	var color:UInt = 0xff00af;
 
 	var informedCells:Array<CellStruct> = [];
-
-	public var curl:Curl;
-    public var diverge:Diverge;
-    public var converge:Converge;
-	public var repel:Repel;
-	public var turnOff:TurnOff;
+	public var commands:InstancedCommands;
 
 	public function new(x:Int, y:Int, ?entity:Entity) {
 		super(x, y);
 		ALL.push(this);
 
-		curl     = new Curl();
-        diverge  = new Diverge();
-        converge = new Converge();
-		repel = new Repel();
-		turnOff  = new TurnOff();
-
+		commands = new InstancedCommands();
 		equation = new Equation(areaEquation);
 
 		actualizeAndStoreAreaCells();

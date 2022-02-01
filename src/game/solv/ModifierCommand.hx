@@ -63,3 +63,21 @@ class TurnOff implements  ModifierCommand {
         m.deactivateModifier();
     }
 }
+
+class InstancedCommands {
+    
+    public var curl:Curl;
+    public var diverge:Diverge;
+    public var converge:Converge;
+	public var repel:Repel;
+	public var turnOff:TurnOff;
+
+    public function new() {
+        curl     = new Curl();
+        diverge  = new Diverge();
+        converge = new Converge();
+        repel    = new Repel();
+        turnOff  = new TurnOff();
+    }
+    
+}
