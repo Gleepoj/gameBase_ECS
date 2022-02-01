@@ -27,7 +27,6 @@ class Aleiiioa extends Game {
 		for (i in 0...20){
 			for( j in 0...30){
 			new Boids(5+i*2,5+ j*2);
-			 //b.trackEntity(player);
 			}
 		}
 

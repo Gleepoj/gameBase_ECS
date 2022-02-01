@@ -1,13 +1,14 @@
 
 package solv;
 
+import h3d.Vector;
 import hxd.Math;
 import h2d.SpriteBatch;
 
 class DebugSolver {
     private var game(get,never) : Game; inline function get_game() return Game.ME;
 	
-    
+    // a resoudre solver manager pour les fonction de test de grille //
     var solver: FluidSolver;
     var selectedCells:Array<Int>;
 
@@ -41,8 +42,9 @@ class DebugSolver {
             sb.visible = true;
             
             for(index in 0...sbCells.length){
-                colorizeCellElement(index);
-                rotateVectorElement(index);
+                var uvl = new Vector(solver.u[index],solver.v[index]).lengthSq();
+                colorizePressure(index,uvl);
+                rotateVectorElement(index,uvl);
             }
             
             lightSelectedCells();
@@ -101,16 +103,15 @@ class DebugSolver {
         return vec;
     }
 
-    private function rotateVectorElement(index:Int) {
-        var a = Math.atan2(solver.v[index],solver.u[index]);
-        sbDirections[index].rotation = a;
-        sbDirections[index].a =1*Math.sqrt((solver.u[index]*solver.u[index]+solver.v[index]*solver.v[index]));     
+    private function rotateVectorElement(index:Int,lenghtUV:Float) {
+        sbDirections[index].rotation = Math.atan2(solver.v[index],solver.u[index]);
+        sbDirections[index].a = lenghtUV;     
     }
-
-    private function colorizeCellElement(index:Int){
-        sbCells[index].r = Math.lerp(0,255,solver.v[index]);
-        sbCells[index].g = 0 ;
-        sbCells[index].b = Math.lerp(0,255,-solver.v[index]);
+    
+    private function colorizePressure(index:Int,lenghtUV:Float){
+        sbCells[index].r = lenghtUV;
+        sbCells[index].g = 0;
+        sbCells[index].b = 1-lenghtUV;
     }
 
     private function turnOffCellVisibility(index:Int) {
@@ -118,10 +119,13 @@ class DebugSolver {
     }
 
     private function lightSelectedCells() {
+        
         for (index in selectedCells){
-            sbCells[index].r = 1;
-            sbCells[index].g = 1;
-            sbCells[index].b = 1;
+            if(solver.checkIfIndexIsInArray(index)){
+                sbCells[index].r = 1;
+                sbCells[index].g = 1;
+                sbCells[index].b = 1;
+            }
         }
     }
 

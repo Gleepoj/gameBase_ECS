@@ -490,8 +490,13 @@ class FluidSolver
    { 
        return i + _NX2 * j;
    }
-   
-    // nx => nx2 le debug draw repose sur cette fonction      
+   //redondant avec test if is in array 
+   inline public function checkIfIndexIsInArray(index:Int) {
+        if (index >= 0 && index < numCells)
+            return true;
+        return false;
+   }
+    // nx == nx2 le debug draw repose sur cette fonction      
    inline public function getIndexForCellPosition(i:Int, j:Int):Int 
    {
        if(i <= 0) i=0; else if(i > _NX2) i = _NX2;
