@@ -46,8 +46,8 @@ class Modifier extends Entity {
 			setPosCase(parentEntity.cx,parentEntity.cy);
 		}
 
-        spr.set(D.tiles.fxCircle15);
-        spr.colorize(color);
+        rendering.spr.set(D.tiles.fxCircle15);
+        rendering.spr.colorize(color);
 	}
 	
 	override function update() {
@@ -59,7 +59,7 @@ class Modifier extends Entity {
 	}
 	override function postUpdate() {
 		super.postUpdate();
-		spr.colorize(color);
+		rendering.spr.colorize(color);
 	}
 	
 	override function dispose() {

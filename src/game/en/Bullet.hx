@@ -6,8 +6,8 @@ class Bullet extends Entity {
         super(0,0);
         setPosPixel(px,py);
 
-        spr.set(D.tiles.fxCircle7);
-        spr.colorize(0xff000ff);
+        rendering.spr.set(D.tiles.fxCircle7);
+        rendering.spr.colorize(0xff000ff);
     }
     
     override public function fixedUpdate() {

@@ -54,13 +54,13 @@ class Boids extends Entity{
         steer        = new Vector(0,0);
         targetLocation  = new Vector(0,0);
         
-        spr.set(D.tiles.fxCircle15);
-        spr.colorize(0x0ea0ff,0.5);
+        rendering.spr.set(D.tiles.fxCircle15);
+        rendering.spr.colorize(0x0ea0ff,0.5);
         
         if(entity != null){
             parentEntity = entity;
-            spr.set(D.tiles.fxCircle7);
-            spr.colorize(0x0ea0ff,1);
+            rendering.spr.set(D.tiles.fxCircle7);
+            rendering.spr.colorize(0x0ea0ff,1);
         }
     }
 

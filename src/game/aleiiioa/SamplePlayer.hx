@@ -47,7 +47,7 @@ class SamplePlayer extends Entity {
 		ca.lockCondition = Game.isGameControllerLocked;
 
 		// Placeholder display
-		var g = new h2d.Graphics(spr);
+		var g = new h2d.Graphics(rendering.spr);
 		g.beginFill(0x00ff00);
 		g.drawCircle(0,-hei*0.5,9);
 	}
@@ -79,7 +79,7 @@ class SamplePlayer extends Entity {
 
 		// Land on ground
 		if( yr>1 && level.hasCollision(cx,cy+1) ) {
-			setSquashY(0.5);
+			rendering.setSquashY(0.5);
 			dy = 0;
 			yr = 1;
 			ca.rumble(0.2, 0.06);
@@ -113,7 +113,7 @@ class SamplePlayer extends Entity {
 		// Jump
 		if( cd.has("recentlyOnGround") && ca.isPressed(Jump) ) {
 			dy = -0.85;
-			setSquashX(0.6);
+			rendering.setSquashX(0.6);
 			cd.unset("recentlyOnGround");
 			fx.dotsExplosionExample(centerX, centerY, 0xffcc00);
 			ca.rumble(0.05, 0.06);

@@ -1,3 +1,5 @@
+import comp.EntityRenderer;
+
 class Entity {
     public static var ALL : Array<Entity> = [];
     public static var GC : Array<Entity> = [];
@@ -22,63 +24,53 @@ class Entity {
 	public var ucd : dn.Cooldown;
 
 	/** Temporary gameplay affects **/
-	var affects : Map<Affect,Float> = new Map();
+	public var affects : Map<Affect,Float> = new Map();
 
 	/** Unique identifier **/
 	public var uid(default,null) : Int;
 
-	/** Grid X coordinate **/
+	/** Grid X/Y coordinate **/
     public var cx = 0;
-	/** Grid Y coordinate **/
     public var cy = 0;
-	/** Sub-grid X coordinate (from 0.0 to 1.0) **/
+	/** Sub-grid X/Y ratio coordinate (from 0.0 to 1.0) **/
     public var xr = 0.5;
-	/** Sub-grid Y coordinate (from 0.0 to 1.0) **/
     public var yr = 1.0;
 
-	/** X velocity, in grid fractions **/
+	/** X/Y velocity, in grid fractions **/
     public var dx = 0.;
-	/** Y velocity, in grid fractions **/
 	public var dy = 0.;
 
-	/** Uncontrollable bump X velocity, usually applied by external factors (eg. a bumper in Sonic) **/
+	/** Uncontrollable bump X/Y velocity, usually applied by external factors (eg. a bumper in Sonic) **/
     public var bdx = 0.;
-	/** Uncontrollable bump Y velocity, usually applied by external factors (eg. a bumper in Sonic) **/
 	public var bdy = 0.;
 
-	/** Last known X position of the attach point (in pixels), at the beginning of the latest fixedUpdate **/
-	var lastFixedUpdateX = 0.;
-	/** Last known Y position of the attach point (in pixels), at the beginning of the latest fixedUpdate **/
-	var lastFixedUpdateY = 0.;
-
-	/** If TRUE, the sprite display coordinates will be an interpolation between the last known position and the current one. This is useful if the gameplay happens in the `fixedUpdate()` (so at 30 FPS), but you still want the sprite position to move smoothly at 60 FPS or more. **/
-	var interpolateSprPos = true;
+	/** Last known X/Y position of the attach point (in pixels), at the beginning of the latest fixedUpdate **/
+	public var lastFixedUpdateX = 0.;
+	public var lastFixedUpdateY = 0.;
 
 	// Velocities + bump velocities
 	public var dxTotal(get,never) : Float; inline function get_dxTotal() return dx+bdx;
 	public var dyTotal(get,never) : Float; inline function get_dyTotal() return dy+bdy;
 
-	/** Multiplier applied on each frame to normal X velocity **/
+	/** Multiplier applied on each frame to normal X/Y velocity **/
 	public var frictX = 0.82;
-	/** Multiplier applied on each frame to normal Y velocity **/
 	public var frictY = 0.82;
 
 	/** Sets both frictX/Y at the same time **/
 	public var frict(never,set) : Float;
 		inline function set_frict(v) return frictX = frictY = v;
 
-	/** Multiplier applied on each frame to bump X velocity **/
+	/** Multiplier applied on each frame to bump X/Y velocity **/
 	public var bumpFrictX = 0.93;
-	/** Multiplier applied on each frame to bump Y velocity **/
 	public var bumpFrictY = 0.93;
 
 	/** Pixel width of entity **/
 	public var wid(default,set) : Float = Const.GRID;
-		inline function set_wid(v) { invalidateDebugBounds=true;  return wid=v; }
+		inline function set_wid(v) { rendering.invalidateDebugBounds=true;  return wid=v; }
 
 	/** Pixel height of entity **/
 	public var hei(default,set) : Float = Const.GRID;
-		inline function set_hei(v) { invalidateDebugBounds=true;  return hei=v; }
+		inline function set_hei(v) { rendering.invalidateDebugBounds=true;  return hei=v; }
 
 	/** Inner radius in pixels (ie. smallest value between width/height, then divided by 2) **/
 	public var innerRadius(get,never) : Float;
@@ -90,31 +82,6 @@ class Entity {
 
 	/** Horizontal direction, can only be -1 or 1 **/
 	public var dir(default,set) = 1;
-
-	/** Current sprite X **/
-	public var sprX(get,never) : Float;
-		inline function get_sprX() {
-			return interpolateSprPos
-				? M.lerp( lastFixedUpdateX, (cx+xr)*Const.GRID, game.getFixedUpdateAccuRatio() )
-				: (cx+xr)*Const.GRID;
-		}
-
-	/** Current sprite Y **/
-	public var sprY(get,never) : Float;
-		inline function get_sprY() {
-			return interpolateSprPos
-				? M.lerp( lastFixedUpdateY, (cy+yr)*Const.GRID, game.getFixedUpdateAccuRatio() )
-				: (cy+yr)*Const.GRID;
-		}
-
-	public var sprScaleX = 1.0;
-	public var sprScaleY = 1.0;
-
-	
-	var sprSquashX = 1.0;
-	var sprSquashY = 1.0;
-
-	public var entityVisible = true;
 
 	public var life(default,null)    : Int;
 	public var maxLife(default,null) : Int;
@@ -130,23 +97,6 @@ class Entity {
 		inline function get_lastHitDirToSource() return lastDmgSource==null ? dir : dirTo(lastDmgSource);
 
 	
-    public var spr : HSprite;
-
-	
-	public var baseColor : h3d.Vector;
-	var blinkColor : h3d.Vector;
-
-	/** Color matrix transformation applied to sprite **/
-	public var colorMatrix : h3d.Matrix;
-
-	var shakePowX = 0.;
-	var shakePowY = 0.;
-
-	// Debug stuff
-	var debugLabel : Null<h2d.Text>;
-	var debugBounds : Null<h2d.Graphics>;
-	var invalidateDebugBounds = false;
-
 	public var pivotX(default,set) : Float = 0.5;
 	public var pivotY(default,set) : Float = 1;
 
@@ -168,16 +118,9 @@ class Entity {
 	public var centerX(get,never) : Float; inline function get_centerX() return attachX + (0.5-pivotX) * wid;
 	public var centerY(get,never) : Float; inline function get_centerY() return attachY + (0.5-pivotY) * hei;
 
-	//Position on screen (ie. absolute)//
-	public var screenAttachX(get,never) : Float;
-		inline function get_screenAttachX() return game!=null && !game.destroyed ? sprX*Const.SCALE + game.scroller.x : sprX*Const.SCALE;
-
-	public var screenAttachY(get,never) : Float;
-		inline function get_screenAttachY() return game!=null && !game.destroyed ? sprY*Const.SCALE + game.scroller.y : sprY*Const.SCALE;
-
-
 	var actions : Array<{ id:String, cb:Void->Void, t:Float }> = [];
 
+	var rendering:comp.EntityRenderer;
 
     public function new(x:Int, y:Int) {
         uid = Const.makeUniqueId();
@@ -188,29 +131,21 @@ class Entity {
         setPosCase(x,y);
 		initLife(1);
 
-        spr = new HSprite(Assets.tiles);
-		Game.ME.scroller.add(spr, Const.DP_MAIN);
-		spr.colorAdd = new h3d.Vector();
-		baseColor = new h3d.Vector();
-		blinkColor = new h3d.Vector();
-		spr.colorMatrix = colorMatrix = h3d.Matrix.I();
-		spr.setCenterRatio(pivotX, pivotY);
+		rendering = new EntityRenderer(this);
 
-		if( ui.Console.ME.hasFlag("bounds") )
-			enableDebugBounds();
     }
 
 	function set_pivotX(v) {
 		pivotX = M.fclamp(v,0,1);
-		if( spr!=null )
-			spr.setCenterRatio(pivotX, pivotY);
+		if( rendering.spr!=null )
+			rendering.spr.setCenterRatio(pivotX, pivotY);
 		return pivotX;
 	}
 
 	function set_pivotY(v) {
 		pivotY = M.fclamp(v,0,1);
-		if( spr!=null )
-			spr.setCenterRatio(pivotX, pivotY);
+		if( rendering.spr!=null )
+			rendering.spr.setCenterRatio(pivotX, pivotY);
 		return pivotY;
 	}
 
@@ -365,90 +300,11 @@ class Entity {
 
     public function dispose() {
         ALL.remove(this);
-
-		baseColor = null;
-		blinkColor = null;
-		colorMatrix = null;
-
-		spr.remove();
-		spr = null;
-
-		if( debugLabel!=null ) {
-			debugLabel.remove();
-			debugLabel = null;
-		}
-
-		if( debugBounds!=null ) {
-			debugBounds.remove();
-			debugBounds = null;
-		}
-
+		rendering.dispose();
 		cd.destroy();
 		cd = null;
     }
-
-
-	/** Print some numeric value below entity **/
-	public inline function debugFloat(v:Float, ?c=0xffffff) {
-		debug( pretty(v), c );
-	}
-
-
-	/** Print some value below entity **/
-	public inline function debug(?v:Dynamic, ?c=0xffffff) {
-		#if debug
-		if( v==null && debugLabel!=null ) {
-			debugLabel.remove();
-			debugLabel = null;
-		}
-		if( v!=null ) {
-			if( debugLabel==null ) {
-				debugLabel = new h2d.Text(Assets.fontPixel, Game.ME.scroller);
-				debugLabel.filter = new dn.heaps.filter.PixelOutline();
-			}
-			debugLabel.text = Std.string(v);
-			debugLabel.textColor = c;
-		}
-		#end
-	}
-
-	/** Hide entity debug bounds **/
-	public function disableDebugBounds() {
-		if( debugBounds!=null ) {
-			debugBounds.remove();
-			debugBounds = null;
-		}
-	}
-
-
-	/** Show entity debug bounds (position and width/height). Use the `/bounds` command in Console to enable them. **/
-	public function enableDebugBounds() {
-		if( debugBounds==null ) {
-			debugBounds = new h2d.Graphics();
-			game.scroller.add(debugBounds, Const.DP_TOP);
-		}
-		invalidateDebugBounds = true;
-	}
-
-	function renderDebugBounds() {
-		var c = Color.makeColorHsl((uid%20)/20, 1, 1);
-		debugBounds.clear();
-
-		// Bounds rect
-		debugBounds.lineStyle(1, c, 0.5);
-		debugBounds.drawRect(left-attachX, top-attachY, wid, hei);
-
-		// Attach point
-		debugBounds.lineStyle(0);
-		debugBounds.beginFill(c,0.8);
-		debugBounds.drawRect(-1, -1, 3, 3);
-		debugBounds.endFill();
-
-		// Center
-		debugBounds.lineStyle(1, c, 0.3);
-		debugBounds.drawCircle(centerX-attachX, centerY-attachY, 3);
-	}
-
+	
 	/** Wait for `sec` seconds, then runs provided callback. **/
 	function chargeAction(id:String, sec:Float, cb:Void->Void) {
 		if( !isAlive() )
@@ -572,32 +428,6 @@ class Entity {
 	public function isConscious() {
 		return !hasAffect(Stun) && isAlive();
 	}
-
-	/** Blink `spr` briefly (eg. when damaged by something) **/
-	public function blink(c:UInt) {
-		blinkColor.setColor(c);
-		cd.setS("keepBlink",0.06);
-	}
-
-	public function shakeS(xPow:Float, yPow:Float, t:Float) {
-		cd.setS("shaking", t, true);
-		shakePowX = xPow;
-		shakePowY = yPow;
-	}
-
-	/** Briefly squash sprite on X (Y changes accordingly). "1.0" means no distorsion. **/
-	public function setSquashX(scaleX:Float) {
-		sprSquashX = scaleX;
-		sprSquashY = 2-scaleX;
-	}
-
-	/** Briefly squash sprite on Y (X changes accordingly). "1.0" means no distorsion. **/
-	public function setSquashY(scaleY:Float) {
-		sprSquashX = 2-scaleY;
-		sprSquashY = scaleY;
-	}
-
-
 	/**
 		"Beginning of the frame" loop, called before any other Entity update loop
 	**/
@@ -606,74 +436,16 @@ class Entity {
 		cd.update(tmod);
 		updateAffects();
 		updateActions();
-
-
 		#if debug
-		// Display the list of active "affects" (with `/set affect` in console)
-		if( ui.Console.ME.hasFlag("affect") ) {
-			var all = [];
-			for(k in affects.keys())
-				all.push( k+"=>"+M.pretty( getAffectDurationS(k) , 1) );
-			debug(all);
-		}
-
-		// Show bounds (with `/bounds` in console)
-		if( ui.Console.ME.hasFlag("bounds") && debugBounds==null )
-			enableDebugBounds();
-
-		// Hide bounds
-		if( !ui.Console.ME.hasFlag("bounds") && debugBounds!=null )
-			disableDebugBounds();
+			rendering.debugRequest();
 		#end
-
     }
 
 	/**
 		Post-update loop, which is guaranteed to happen AFTER any preUpdate/update. This is usually where render and display is updated
 	**/
     public function postUpdate() {
-		spr.x = sprX;
-		spr.y = sprY;
-        spr.scaleX = dir*sprScaleX * sprSquashX;
-        spr.scaleY = sprScaleY * sprSquashY;
-		spr.visible = entityVisible;
-
-		sprSquashX += (1-sprSquashX) * M.fmin(1, 0.2*tmod);
-		sprSquashY += (1-sprSquashY) * M.fmin(1, 0.2*tmod);
-
-		if( cd.has("shaking") ) {
-			spr.x += Math.cos(ftime*1.1)*shakePowX * cd.getRatio("shaking");
-			spr.y += Math.sin(0.3+ftime*1.7)*shakePowY * cd.getRatio("shaking");
-		}
-
-		// Blink
-		if( !cd.has("keepBlink") ) {
-			blinkColor.r*=Math.pow(0.60, tmod);
-			blinkColor.g*=Math.pow(0.55, tmod);
-			blinkColor.b*=Math.pow(0.50, tmod);
-		}
-
-		// Color adds
-		spr.colorAdd.load(baseColor);
-		spr.colorAdd.r += blinkColor.r;
-		spr.colorAdd.g += blinkColor.g;
-		spr.colorAdd.b += blinkColor.b;
-
-		// Debug label
-		if( debugLabel!=null ) {
-			debugLabel.x = Std.int(attachX - debugLabel.textWidth*0.5);
-			debugLabel.y = Std.int(attachY+1);
-		}
-
-		// Debug bounds
-		if( debugBounds!=null ) {
-			if( invalidateDebugBounds ) {
-				invalidateDebugBounds = false;
-				renderDebugBounds();
-			}
-			debugBounds.x = Std.int(attachX);
-			debugBounds.y = Std.int(attachY);
-		}
+		rendering.renderSprite(tmod);
 	}
 
 	/**

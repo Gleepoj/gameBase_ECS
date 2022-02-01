@@ -15,8 +15,8 @@ class Ship extends Entity {
 
         target = _target;
 
-        spr.set(D.tiles.Square);
-        spr.colorize(0xffd872);
+        rendering.spr.set(D.tiles.Square);
+        rendering.spr.colorize(0xffd872);
 
         boid = new Boids(cx,cy,this);
     }

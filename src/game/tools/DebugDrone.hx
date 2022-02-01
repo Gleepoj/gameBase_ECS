@@ -42,7 +42,7 @@ class DebugDrone extends Entity {
 		camera.trackEntity(this,false);
 
 		// Placeholder render
-		g = new h2d.Graphics(spr);
+		g = new h2d.Graphics(rendering.spr);
 		g.beginFill(0xffffff);
 		g.drawCircle(0,0,6, 16);
 		setPivots(0.5);
@@ -136,7 +136,7 @@ class DebugDrone extends Entity {
 			prevCamTarget = camera.target;
 
 		// Display FPS
-		debug( M.round(hxd.Timer.fps()) + " FPS" );
+		rendering.debug( M.round(hxd.Timer.fps()) + " FPS" );
 
 		// Collisions
 		if( level.hasCollision(cx,cy) )
