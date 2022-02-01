@@ -15,5 +15,6 @@ class Bullet extends Entity {
         dx = 0;
         dy = -0.5;
  
-    }  
+    }
+    
 }
