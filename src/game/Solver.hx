@@ -113,8 +113,10 @@ class Solver extends dn.Process {
     private function highlightModifierCell() {
         graphicsDebug.clearSelectedCell();
         for (e in Modifier.ALL){
-            var index = computeSolverIndexFromCxCy(e.cx,e.cy);
-            graphicsDebug.pushSelectedCell(index);
+            var cells = e.getInformedCellsIndex();
+            for(index in cells)
+                graphicsDebug.pushSelectedCell(index);
+            
         }
     }
 

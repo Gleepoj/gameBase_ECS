@@ -25,11 +25,11 @@ class Aleiiioa extends Game {
 			boide.pathPriority = true;
 		}
  
-/* 		for (i in 0...20){
+		for (i in 0...20){
 			for( j in 0...30){
 			new Boids(5+i*2,5+ j*2);
 			}
-		} */
+		} 
  
 	}
 }

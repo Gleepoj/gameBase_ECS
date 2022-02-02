@@ -14,7 +14,7 @@ class Modifier extends Entity {
 	var areaInfluence:AreaInfluence = AiSmall;
 	var areaEquation:AreaEquation = EqCurl;
 
-	var areaRadius:Int = 5;
+	var areaRadius:Int = 20;
 
 	public var isBlowing(get,never):Bool;inline function get_isBlowing()return blowingIsActive;
 	
@@ -116,7 +116,25 @@ class Modifier extends Entity {
 	private function actualizeAndStoreAreaCells(){
 		var list = Bresenham.getDisc(cx,cy, areaRadius);
 		informedCells = [];
-		pushAreaCells_toInformedCells(list);
+		
+		for(c in list){
+			if(solver.testIfCellIsInGrid(c.x,c.y)){
+				var i = solver.computeSolverIndexFromCxCy(c.x,c.y);
+				informedCells.push({index: i,x:c.x,y:c.y,abx: 0,aby: 0,u: 0,v: 0});
+			}
+		}
+		//_test_ifContiguous(informedCells);
+		//pushAreaCells_toInformedCells(list);
+	}
+	private function _test_ifContiguous(circle:Array<CellStruct>) {
+		var prev_y = 0 ;
+		var y_contiguous = "y not contiguous" ;
+		
+		for(c in circle){
+			if(c.y-prev_y < -1)
+				throw y_contiguous;
+			prev_y = c.y;
+		}
 	}
 
 	private function pushAreaCells_toInformedCells(list:Array<{x:Int,y:Int}>) {
