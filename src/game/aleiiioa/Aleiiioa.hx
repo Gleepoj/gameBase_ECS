@@ -1,6 +1,7 @@
 package aleiiioa;
 
 
+import echoes.System;
 import aleiiioa.components.CPos;
 import aleiiioa.components.CSprite;
 import echoes.SystemList;
@@ -14,26 +15,27 @@ class Aleiiioa extends Game {
 
 	public function new() {
 		super();
-		Workflow.addSystem(new ERender(Game.ME.scroller));
-		//jack.add(new CSprite(D.tiles.Square));
-		var i = 20;
-		var j = 20;
+		Workflow.add60FpsSystem(new ERender(Game.ME.scroller));
 		
 		for (i in 0...100){
-			for(j in 0...100){
+			for(j in 0...20){
 				var spr = new CSprite();
 				var pos = new CPos(i,j);
 				new Entity().add(spr,pos);
 			}
 		}
-		Workflow.update(tmod);
+
+		//Workflow.update(tmod);
 		trace(Workflow.entities.length);
 	}
+
 	override function fixedUpdate() {
 		super.fixedUpdate();
-		Workflow.update(tmod);
+		//Workflow.update(tmod);
 	}
-
+	override function postUpdate() {
+		Workflow.postUpdate(tmod);
+	}
 }
 	
 
@@ -46,7 +48,7 @@ class ERender extends echoes.System {
 
 	@u inline function updateSpritePosition(spr:CSprite,pos:CPos) {
 		spr.x = spr.x + pos.x/100 + 0.01;// pos.x;
-		spr.y = pos.y;//pos.y;
+		spr.y = spr.y + pos.y/100 + 0.01;//pos.y;
 	  }
 	// There are @a, @u and @r shortcuts for @added, @update and @removed metas;
 	// @added/@removed-functions are callbacks that are called when an entity is added/removed from the view;
