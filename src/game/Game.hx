@@ -22,7 +22,7 @@ class Game extends Process {
 
 	/** UI **/
 	public var hud : ui.Hud;
-	public var solver : Solver;
+	//public var solver : Solver;
 	/** Slow mo internal values**/
 	var curGameSpeed = 1.0;
 	var slowMos : Map<String, { id:String, t:Float, f:Float }> = new Map();
@@ -63,7 +63,7 @@ class Game extends Process {
 	function startLevel(l:World.World_Level) {
 		if( level!=null ){
 			level.destroy();
-			solver.onDispose();
+			//solver.onDispose();
 		}
 		fx.clear();
 		for(e in Entity.ALL) // <---- Replace this with more adapted entity destruction (eg. keep the player alive)
@@ -71,7 +71,7 @@ class Game extends Process {
 		garbageCollectEntities();
 
 		level = new Level(l);
-		solver = new Solver();
+		//solver = new Solver();
 		// <---- Here: instanciate your level entities
 		camera.centerOnTarget();
 		hud.onLevelStart();
@@ -103,22 +103,22 @@ class Game extends Process {
 
 	/** Garbage collect any Entity marked for destruction. This is normally done at the end of the frame, but you can call it manually if you want to make sure marked entities are disposed right away, and removed from lists. **/
 	public function garbageCollectEntities() {
-		if( Entity.GC==null || Entity.GC.length==0 )
+/* 		if( Entity.GC==null || Entity.GC.length==0 )
 			return;
 
 		for(e in Entity.GC)
 			e.dispose();
-		Entity.GC = [];
+		Entity.GC = []; */
 	}
 
 	/** Called if game is destroyed, but only at the end of the frame **/
 	override function onDispose() {
 		super.onDispose();
 
-		fx.destroy();
+		/* fx.destroy();
 		for(e in Entity.ALL)
 			e.destroy();
-		garbageCollectEntities();
+		garbageCollectEntities(); */
 	}
 
 
@@ -173,7 +173,7 @@ class Game extends Process {
 	override function preUpdate() {
 		super.preUpdate();
 
-		for(e in Entity.ALL) if( !e.destroyed ) e.preUpdate();
+		//for(e in Entity.ALL) if( !e.destroyed ) e.preUpdate();
 	}
 
 	/** Loop that happens at the end of the frame **/
@@ -186,13 +186,13 @@ class Game extends Process {
 		Assets.tiles.tmod = tmod;
 
 		// Entities post-updates
-		for(e in Entity.ALL) if( !e.destroyed ) e.postUpdate();
+		//for(e in Entity.ALL) if( !e.destroyed ) e.postUpdate();
 
 		// Entities final updates
-		for(e in Entity.ALL) if( !e.destroyed ) e.finalUpdate();
+		//for(e in Entity.ALL) if( !e.destroyed ) e.finalUpdate();
 
 		// Dispose entities marked as "destroyed"
-		garbageCollectEntities();
+		//garbageCollectEntities();
 	}
 
 
@@ -201,7 +201,7 @@ class Game extends Process {
 		super.fixedUpdate();
 
 		// Entities "30 fps" loop
-		for(e in Entity.ALL) if( !e.destroyed ) e.fixedUpdate();
+		//for(e in Entity.ALL) if( !e.destroyed ) e.fixedUpdate();
 	}
 
 
@@ -210,7 +210,7 @@ class Game extends Process {
 		super.update();
 
 		// Entities main loop
-		for(e in Entity.ALL) if( !e.destroyed ) e.update();
+		//for(e in Entity.ALL) if( !e.destroyed ) e.update();
 
 
 		// Global key shortcuts

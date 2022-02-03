@@ -1,36 +1,83 @@
 package aleiiioa;
 
-import solv.Modifier;
-import comp.Boids;
+
+import aleiiioa.components.CPos;
+import aleiiioa.components.CSprite;
+import echoes.SystemList;
+import echoes.Workflow;
+import echoes.Entity;
 /**
 	This small class just creates a SamplePlayer instance in current level
 **/
 
 class Aleiiioa extends Game {
 
-
-	var player:SamplePlayer;
 	public function new() {
 		super();
-	}
-	
-	override function startLevel(l:World_Level) {
-		super.startLevel(l);
-		player = new SamplePlayer();
-		new Ship(20,30,player);
+		Workflow.addSystem(new ERender(Game.ME.scroller));
+		//jack.add(new CSprite(D.tiles.Square));
+		var i = 20;
+		var j = 20;
 		
-		 for (b in level.data.l_Entities.all_Boides){
-			var boide = new Boids(b.cx,b.cy);
-			boide.track(player,b.f_Path);
-			boide.pathPriority = true;
-		}
- 
-		for (i in 0...20){
-			for( j in 0...30){
-			new Boids(5+i*2,5+ j*2);
+		for (i in 0...100){
+			for(j in 0...100){
+				var spr = new CSprite();
+				var pos = new CPos(i,j);
+				new Entity().add(spr,pos);
 			}
-		} 
- 
+		}
+		Workflow.update(tmod);
+		trace(Workflow.entities.length);
+	}
+	override function fixedUpdate() {
+		super.fixedUpdate();
+		Workflow.update(tmod);
+	}
+
+}
+	
+
+class ERender extends echoes.System {
+	var gameScroller:h2d.Layers;
+
+	public function new(gs:h2d.Layers) {
+		this.gameScroller = gs;
+	}
+
+	@u inline function updateSpritePosition(spr:CSprite,pos:CPos) {
+		spr.x = spr.x + pos.x/100 + 0.01;// pos.x;
+		spr.y = pos.y;//pos.y;
+	  }
+	// There are @a, @u and @r shortcuts for @added, @update and @removed metas;
+	// @added/@removed-functions are callbacks that are called when an entity is added/removed from the view;
+	@a function onEntityAdded(spr:CSprite) {
+		this.gameScroller.add(spr);
 	}
 }
 
+
+		
+		
+		/* class Render extends echoes.System {
+		  
+		  // There are @a, @u and @r shortcuts for @added, @update and @removed metas;
+		  // @added/@removed-functions are callbacks that are called when an entity is added/removed from the view;
+		  @a function onEntityAdded(spr:Sprite) {
+			
+			super.addChild(spr);
+		  }
+		  // Even if callback was triggered by destroying the entity, 
+		  // @removed-function will be called before this happens, 
+		  // so access to the component will be still exists;
+		  @r function onEntityWithSpriteAndPositionRemoved(spr:Sprite){//}, pos:Position, e:Entity) {
+			//scene.removeChild(spr); // spr is still not a null
+			//trace('Oh My God! They removed ${ e.exists(Name) ? e.get(Name) : "Unknown Sprite" }!');
+		  }
+		  @u inline function updateSpritePosition(spr:CSprite) {
+			spr.x = +1;// pos.x;
+			spr.y = +1;//pos.y;
+		  }
+		  @u inline function afterSpritePositionsUpdated() {
+	
+		  }
+		}*/

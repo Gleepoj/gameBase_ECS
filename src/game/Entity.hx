@@ -1,4 +1,4 @@
-import comp.EntityRenderer;
+import garbage.comp.EntityRenderer;
 
 class Entity {
     public static var ALL : Array<Entity> = [];
@@ -120,7 +120,7 @@ class Entity {
 
 	var actions : Array<{ id:String, cb:Void->Void, t:Float }> = [];
 
-	var rendering:comp.EntityRenderer;
+	var rendering:EntityRenderer;
 
     public function new(x:Int, y:Int) {
         uid = Const.makeUniqueId();

@@ -1,4 +1,4 @@
-package comp;
+package garbage.comp;
 
 class EntityRenderer {
     

@@ -1,10 +1,12 @@
+package garbage;
 
 
-import comp.Boids;
+import garbage.*
+//import comp.Boids;
 
-import solv.DebugSolver;
-import solv.FluidSolver;
-import solv.Modifier;
+//import garbage.solv.DebugSolver;
+//import garbage.solv.FluidSolver;
+//import garbage.solv.Modifier;
 
 import h3d.Vector;
 
