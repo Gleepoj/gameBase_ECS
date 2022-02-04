@@ -10,8 +10,8 @@ class Physics extends echoes.System {
 	
 	}
 
-	@u inline function updatePosition(pos:PixelPosition) {
-		pos.x = pos.x-10;
-		pos.y = pos.y-10;//(2*Math.random());
+	@u inline function updatePosition() {
+		//gp.x = pos.x-10;
+		//pos.y = pos.y-10;//(2*Math.random());
 	  }
 }
