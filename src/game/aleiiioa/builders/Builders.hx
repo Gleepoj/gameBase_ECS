@@ -7,6 +7,8 @@ class Builders {
     public static function basicObject(cx,cy) {
         var spr = new SpriteComponent();
         var pos = new GridPosition(cx,cy);
-        new echoes.Entity().add(spr,pos);
+        var bb  = new BoundingBox(pos.attachX,pos.attachY);
+        var vc  = new VelocityComponent();
+        new echoes.Entity().add(spr,pos,bb,vc);
     }
 }

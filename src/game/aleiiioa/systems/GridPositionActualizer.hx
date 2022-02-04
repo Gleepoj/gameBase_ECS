@@ -11,8 +11,8 @@ class GridPositionActualizer extends echoes.System {
        setPosCase(gp,gp.cx,gp.cy); 
     }
     
-    @u inline function ActualizeGridComponent(gridPosition:GridPosition){
-
+    @u inline function ActualizeGridComponent(gp:GridPosition){
+		updateLastFixedUpdatePos(gp);
     }
 
     

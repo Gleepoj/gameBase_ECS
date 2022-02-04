@@ -9,9 +9,9 @@ class SpriteRenderer extends echoes.System {
 		this.gameScroller = scroller;
 	}
 
-	@u inline function updateSpritePosition(spr:SpriteComponent,pos:GridPosition) {
-		spr.x = pos.attachX;//0;//spr.x + pos.x/100 + 0.5;
-		spr.y = pos.attachY;
+	@u inline function updateSpritePosition(spr:SpriteComponent,gp:GridPosition) {
+		spr.x = gp.attachX;//0;//spr.x + pos.x/100 + 0.5;
+		spr.y = gp.attachY;
 	  }
 	// There are @a, @u and @r shortcuts for @added, @update and @removed metas;
 	// @added/@removed-functions are callbacks that are called when an entity is added/removed from the view;
