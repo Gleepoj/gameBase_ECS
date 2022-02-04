@@ -4,8 +4,7 @@ import h3d.Vector;
 
 
 @:forward
-abstract CPos(h3d.Vector) from h3d.Vector to h3d.Vector {
-
+abstract PixelPosition(h3d.Vector) from h3d.Vector to h3d.Vector {
 
     public inline function new(x, y) {
         this = new Vector(x,y);
