@@ -4,8 +4,16 @@ class BoundingBox {
 	public var invalidateDebugBounds:Bool = false;
 	public var debugBounds : Null<h2d.Graphics> ;
 
-	public var wid : Float = Const.GRID; // a init avec spr
-	public var hei : Float = Const.GRID;
+	/** Pixel width of entity **/
+	public var wid(default,set) : Float = Const.GRID;
+		inline function set_wid(v) { invalidateDebugBounds=true;  return wid=v; }
+
+	/** Pixel height of entity **/
+	public var hei(default,set) : Float = Const.GRID;
+		inline function set_hei(v) { invalidateDebugBounds=true;  return hei=v; }
+
+	//public var wid : Float = Const.GRID; // a init avec spr
+	//public var hei : Float = Const.GRID;
 
 	public var attachX :Float = 0 ;
 	public var attachY :Float = 0 ;

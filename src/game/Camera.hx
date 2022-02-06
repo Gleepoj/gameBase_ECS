@@ -170,8 +170,8 @@ class Camera extends dn.Process {
 
 	public function centerOnTarget() {
 		if( target!=null ) {
-			rawFocus.levelX = target.centerX + targetOffX;
-			rawFocus.levelY = target.centerY + targetOffY;
+			//rawFocus.levelX = target.centerX + targetOffX;
+			//rawFocus.levelY = target.centerY + targetOffY;
 		}
 	}
 
@@ -326,10 +326,10 @@ class Camera extends dn.Process {
 
 		// Follow target entity
 		if( target!=null ) {
-			var spdX = 0.015*trackingSpeed*zoom;
+			/* var spdX = 0.015*trackingSpeed*zoom;
 			var spdY = 0.023*trackingSpeed*zoom;
-			var tx = target.centerX + targetOffX;
-			var ty = target.centerY + targetOffY;
+			//var tx = target.centerX + targetOffX;
+			//var ty = target.centerY + targetOffY;
 
 			var a = rawFocus.angTo(tx,ty);
 			var distX = M.fabs( tx - rawFocus.levelX );
@@ -339,7 +339,7 @@ class Camera extends dn.Process {
 			var distY = M.fabs( ty - rawFocus.levelY );
 			if( distY>=deadZonePctY*pxHei)
 				dy += Math.sin(a) * (0.8*distY-deadZonePctY*pxHei) * spdY * tmod;
-		}
+ */		}
 
 		// Compute frictions
 		var frictX = baseFrict - trackingSpeed*zoom*0.027*baseFrict;

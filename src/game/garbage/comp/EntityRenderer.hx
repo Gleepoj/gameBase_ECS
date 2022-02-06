@@ -9,21 +9,7 @@ class EntityRenderer {
     /** If TRUE, the sprite display coordinlates will be an interpolation between the last known position and the current one. This is useful if the gameplay happens in the `fixedUpdate()` (so at 30 FPS), but you still want the sprite position to move smoothly at 60 FPS or more. **/
 	var interpolateSprPos = true;
 
-    var sprX(get,never) : Float;
-		inline function get_sprX() {
-			return interpolateSprPos
-				? M.lerp( en.lastFixedUpdateX, (en.cx+en.xr)*Const.GRID, game.getFixedUpdateAccuRatio() )
-				: (en.cx+en.xr)*Const.GRID;
-		}
-
-	/** Current sprite Y **/
-	var sprY(get,never) : Float;
-		inline function get_sprY() {
-			return interpolateSprPos
-				? M.lerp( en.lastFixedUpdateY, (en.cy+en.yr)*Const.GRID, game.getFixedUpdateAccuRatio() )
-				: (en.cy+en.yr)*Const.GRID;
-		}
-
+    
 	var sprScaleX = 1.0;
 	var sprScaleY = 1.0;
 
@@ -45,11 +31,11 @@ class EntityRenderer {
 	
 
     //Position on screen (ie. absolute)//
-	var screenAttachX(get,never) : Float;
-    inline function get_screenAttachX() return game!=null && !game.destroyed ? sprX*Const.SCALE + game.scroller.x : sprX*Const.SCALE;
+	//var screenAttachX(get,never) : Float;
+    //inline function get_screenAttachX() return game!=null && !game.destroyed ? sprX*Const.SCALE + game.scroller.x : sprX*Const.SCALE;
 
-    var screenAttachY(get,never) : Float;
-    inline function get_screenAttachY() return game!=null && !game.destroyed ? sprY*Const.SCALE + game.scroller.y : sprY*Const.SCALE;
+    //var screenAttachY(get,never) : Float;
+    //inline function get_screenAttachY() return game!=null && !game.destroyed ? sprY*Const.SCALE + game.scroller.y : sprY*Const.SCALE;
     
 
     public var invalidateDebugBounds = false;
@@ -70,7 +56,7 @@ class EntityRenderer {
 		if( ui.Console.ME.hasFlag("bounds") )
 			enableDebugBounds();
     }
-	
+
 	public function blink(c:UInt) {
 		blinkColor.setColor(c);
 		en.cd.setS("keepBlink", 0.06);
@@ -88,8 +74,8 @@ class EntityRenderer {
 	}
 
 	public function renderSprite(tmod:Float) {
-		spr.x = sprX;
-		spr.y = sprY;
+		//spr.x = sprX;
+		//spr.y = sprY;
 		spr.scaleX = en.dir * sprScaleX * sprSquashX;
 		spr.scaleY = sprScaleY * sprSquashY;
 		spr.visible = entityVisible;
@@ -163,19 +149,11 @@ class EntityRenderer {
 	private function renderAllDebugs() {
 		// Debug label
 		if (debugLabel != null) {
-			debugLabel.x = Std.int(en.attachX - debugLabel.textWidth * 0.5);
-			debugLabel.y = Std.int(en.attachY + 1);
+			//debugLabel.x = Std.int(en.attachX - debugLabel.textWidth * 0.5);
+			//debugLabel.y = Std.int(en.attachY + 1);
 		}
 
-		// Debug bounds
-		if (debugBounds != null) {
-			if (invalidateDebugBounds) {
-				invalidateDebugBounds = false;
-				renderDebugBounds();
-			}
-			debugBounds.x = Std.int(en.attachX);
-			debugBounds.y = Std.int(en.attachY);
-		}
+		
 	}
 
 	public function debugRequest() {
@@ -183,9 +161,9 @@ class EntityRenderer {
 		// Display the list of active "affects" (with `/set affect` in console)
 		if (ui.Console.ME.hasFlag("affect")) {
 			var all = [];
-			for (k in en.affects.keys())
-				all.push(k + "=>" + M.pretty(en.getAffectDurationS(k), 1));
-			debug(all);
+			//for (k in en.affects.keys())
+			//	all.push(k + "=>" + M.pretty(en.getAffectDurationS(k), 1));
+			//debug(all);
 		}
 
 		// Show bounds (with `/bounds` in console)
@@ -198,24 +176,6 @@ class EntityRenderer {
 		#end
 	}
 
-	private function renderDebugBounds() {
-		var c = Color.makeColorHsl((en.uid % 20) / 20, 1, 1);
-		debugBounds.clear();
-
-		// Bounds rect
-		debugBounds.lineStyle(1, c, 0.5);
-		debugBounds.drawRect(en.left - en.attachX, en.top - en.attachY, en.wid, en.hei);
-
-		// Attach point
-		debugBounds.lineStyle(0);
-		debugBounds.beginFill(c, 0.8);
-		debugBounds.drawRect(-1, -1, 3, 3);
-		debugBounds.endFill();
-
-		// Center
-		debugBounds.lineStyle(1, c, 0.3);
-		debugBounds.drawCircle(en.centerX - en.attachX, en.centerY - en.attachY, 3);
-	}
 
 	private function disableDebugBounds() {
 		if (debugBounds != null) {

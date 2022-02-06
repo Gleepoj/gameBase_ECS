@@ -17,11 +17,11 @@ class Aleiiioa extends Game {
 
 		Game.ME.camera.clampToLevelBounds = true;
 
-		
-		Workflow.addSystem(new Physics());
 		Workflow.addSystem(new GridPositionActualizer());
+		Workflow.addSystem(new Physics());
 		
-		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller));
+		
+		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
 
 		for (i in 0...20){

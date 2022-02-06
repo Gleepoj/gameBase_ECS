@@ -12,7 +12,8 @@ class Physics extends echoes.System {
 	}
 
 	@u inline function updatePosition(gp:GridPosition,vc:VelocityComponent) {
-		vc.dx = 0.1;
+		vc.dx += 0.05;
+		vc.dy += 0.05;
 		fixedUpdate(gp,vc);
 	}
 	/** Apply a bump/kick force to entity **/
@@ -35,7 +36,8 @@ class Physics extends echoes.System {
 
 	function fixedUpdate(gp:GridPosition, vc:VelocityComponent) {
 		// updateLastFixedUpdatePos();
-
+		//gp.lastFixedUpdateX = gp.attachX;
+		//gp.lastFixedUpdateY = gp.attachY;
 		/*
 			Stepping: any movement greater than 33% of grid size (ie. 0.33) will increase the number of `steps` here. These steps will break down the full movement into smaller iterations to avoid jumping over grid collisions.
 		 */

@@ -66,9 +66,9 @@ class Game extends Process {
 			//solver.onDispose();
 		}
 		fx.clear();
-		for(e in Entity.ALL) // <---- Replace this with more adapted entity destruction (eg. keep the player alive)
-			e.destroy();
-		garbageCollectEntities();
+		//for(e in Entity.ALL) // <---- Replace this with more adapted entity destruction (eg. keep the player alive)
+		//	e.destroy();
+		//garbageCollectEntities();
 
 		level = new Level(l);
 		//solver = new Solver();
@@ -228,7 +228,7 @@ class Game extends Process {
 			// Attach debug drone (CTRL-SHIFT-D)
 			#if debug
 			if( ca.isKeyboardPressed(K.D) && ca.isKeyboardDown(K.CTRL) && ca.isKeyboardDown(K.SHIFT) )
-				new DebugDrone(); // <-- HERE: provide an Entity as argument to attach Drone near it
+				//new DebugDrone(); // <-- HERE: provide an Entity as argument to attach Drone near it
 			#end
 
 			// Restart whole game

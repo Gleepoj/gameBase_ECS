@@ -82,7 +82,7 @@ class Fx extends dn.Process {
 		if( e==null )
 			return;
 
-		markerCase(e.cx, e.cy, short?0.03:3, c);
+		//markerCase(e.cx, e.cy, short?0.03:3, c);
 		#end
 	}
 

@@ -9,7 +9,6 @@ class GridPosition {
     public var xr = 0.5;
     public var yr = 1.0;
 
-    /** Last known X/Y position of the attach point (in pixels), at the beginning of the latest fixedUpdate **/
 	public var lastFixedUpdateX = 0.;
 	public var lastFixedUpdateY = 0.;
     
