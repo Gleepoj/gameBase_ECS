@@ -1,4 +1,4 @@
-package aleiiioa.components;
+package aleiiioa.components.core;
 
 class BoundingBox {
 	public var invalidateDebugBounds:Bool = false;

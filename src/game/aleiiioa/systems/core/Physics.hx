@@ -1,7 +1,7 @@
-package aleiiioa.systems;
+package aleiiioa.systems.core;
 
-import aleiiioa.components.GridPosition;
-import aleiiioa.components.VelocityComponent;
+import aleiiioa.components.core.*;
+//import aleiiioa.components.VelocityComponent;
 
 
 class Physics extends echoes.System {
@@ -35,12 +35,7 @@ class Physics extends echoes.System {
 	function onPreStepY() {}
 
 	function fixedUpdate(gp:GridPosition, vc:VelocityComponent) {
-		// updateLastFixedUpdatePos();
-		//gp.lastFixedUpdateX = gp.attachX;
-		//gp.lastFixedUpdateY = gp.attachY;
-		/*
-			Stepping: any movement greater than 33% of grid size (ie. 0.33) will increase the number of `steps` here. These steps will break down the full movement into smaller iterations to avoid jumping over grid collisions.
-		 */
+
 		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
 		if (steps > 0) {
 			var n = 0;

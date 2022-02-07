@@ -1,7 +1,8 @@
-package aleiiioa.systems;
+package aleiiioa.systems.core;
+
 import h3d.Vector;
 import echoes.System;
-import aleiiioa.components.*;
+import aleiiioa.components.core.*;
 
 class SpriteRenderer extends echoes.System {
 	var gameScroller:h2d.Layers;

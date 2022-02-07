@@ -1,5 +1,5 @@
-package aleiiioa.systems;
-import aleiiioa.components.GridPosition;
+package aleiiioa.systems.core;
+import aleiiioa.components.core.*;
 
 class GridPositionActualizer extends echoes.System {
     
@@ -15,7 +15,10 @@ class GridPositionActualizer extends echoes.System {
 		updateLastFixedUpdatePos(gp);
     }
 
-    
+    @r function clearGPos(gp:GridPosition) {
+		
+	}
+
 	function setPosCase(gp:GridPosition,_cx:Int,_cy:Int) {
 		gp.cx = _cx;
 		gp.cy = _cy;

@@ -1,8 +1,8 @@
-package aleiiioa.systems;
+package aleiiioa.systems.core;
 
-import aleiiioa.components.GridPosition;
-import aleiiioa.components.BoundingBox;
-import aleiiioa.components.SpriteComponent;
+import aleiiioa.components.core.*;
+//import aleiiioa.components.BoundingBox;
+//import aleiiioa.components.SpriteComponent;
 
 class BoundingBoxSystem extends echoes.System{
     var gameScroller:h2d.Layers;

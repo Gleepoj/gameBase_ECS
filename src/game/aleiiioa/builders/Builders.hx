@@ -1,6 +1,7 @@
 package aleiiioa.builders;
 
-import aleiiioa.components.*;
+
+import aleiiioa.components.core.*;
 
 class Builders {
     

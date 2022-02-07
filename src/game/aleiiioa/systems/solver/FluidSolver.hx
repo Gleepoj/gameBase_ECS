@@ -1,22 +1,14 @@
-package solv;
+package aleiiioa.systems.solver;
 
 //* @author Eugene Zatepyakin
 //* @link http://blog.inspirit.ru/?p=248
 //* @link http://code.google.com/p/in-spirit/source/browse/#svn/trunk/projects/FluidSolver
 
-/*
-   haXe port
-   Andy Li
 
-   public static var FLUID_DEFAULT_NX:Float						= 50;
-   public static var FLUID_DEFAULT_NY:Float						= 50;
-   public static var FLUID_DEFAULT_DT:Float						= 1.0;
-   public static var FLUID_DEFAULT_VISC:Float					= 0.0001;
-   public static var FLUID_DEFAULT_COLOR_DIFFUSION:Float 		= 0.0;
-   public static var FLUID_DEFAULT_FADESPEED:Float				= 0.3;
-   public static var FLUID_DEFAULT_SOLVER_ITERATIONS:Int		= 10;
-   public static var FLUID_DEFAULT_VORTICITY_CONFINEMENT:Bool 	= false;
-*/
+//   haXe port
+//   Andy Li
+
+// For the sake of simplicity fluid solver is not a system its just a class Solver.hx is the system
 
 class FluidSolver 
 {
