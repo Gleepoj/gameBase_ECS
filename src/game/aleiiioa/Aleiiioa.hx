@@ -1,5 +1,8 @@
 package aleiiioa;
 
+import h3d.Vector;
+import h2d.Bitmap;
+import h2d.Graphics;
 import aleiiioa.systems.core.*;
 import aleiiioa.systems.solver.*;
 
@@ -14,14 +17,16 @@ class Aleiiioa extends Game {
     var height(get,never): Int; inline function get_height()return Std.int(level.pxHei);
     
 
-    var FLUID_WIDTH(get,never) : Int; inline function get_FLUID_WIDTH() return level.cWid;
+    var FLUID_WIDTH(get,never) : Int; inline function get_FLUID_WIDTH()  return level.cWid;
     var FLUID_HEIGHT(get,never): Int; inline function get_FLUID_HEIGHT() return Std.int( FLUID_WIDTH * height / width );
-    
+    var test:SolverDebugRendering;
 	var solver:FluidSolver;
+
+	var g:h2d.Graphics;
+
 	public function new() {
 		super();
 		solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
-
 		Workflow.reset();
 		Game.ME.camera.clampToLevelBounds = true;
 
@@ -32,7 +37,6 @@ class Aleiiioa extends Game {
 		
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
-
 		for (i in 0...20){
 			for(j in 0...100){
 				Builders.basicObject(i,j);
@@ -42,13 +46,16 @@ class Aleiiioa extends Game {
 		
 	}
 
+
 	override function fixedUpdate() {
 		super.fixedUpdate();
 		Workflow.update(tmod);
+				//test.drawGridGraphics();
 	}
 
 	override function postUpdate() {
 		super.postUpdate();
+		
 		Workflow.postUpdate(tmod);
 	}
 }
