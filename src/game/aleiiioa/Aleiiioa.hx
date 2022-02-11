@@ -23,18 +23,19 @@ class Aleiiioa extends Game {
 	var solver:FluidSolver;
 
 	var g:h2d.Graphics;
+	var testShader:aleiiioa.systems.shaders.TestShaders;
 
 	public function new() {
 		super();
-		solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
+		//solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
 		Workflow.reset();
 		Game.ME.camera.clampToLevelBounds = true;
 
 		Workflow.addSystem(new GridPositionActualizer());
 		Workflow.addSystem(new Physics());
-		Workflow.addSystem(new SolverDebugRendering(Game.ME.scroller,solver));
+		//Workflow.addSystem(new SolverDebugRendering(Game.ME.scroller,solver));
 		
-		
+		//testShader = new aleiiioa.systems.shaders.TestShaders(Game.ME.scroller);
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
 		for (i in 0...20){
@@ -50,7 +51,9 @@ class Aleiiioa extends Game {
 	override function fixedUpdate() {
 		super.fixedUpdate();
 		Workflow.update(tmod);
+		//testShader.update();
 				//test.drawGridGraphics();
+	    trace(engine.drawCalls);
 	}
 
 	override function postUpdate() {
