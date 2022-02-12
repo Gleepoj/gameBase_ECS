@@ -1,9 +1,11 @@
 package aleiiioa.builders;
 
 
+import aleiiioa.systems.shaders.PressureShader.BitmapShader;
 import hxd.BitmapData;
 import aleiiioa.components.core.*;
 import aleiiioa.components.solver.*;
+import aleiiioa.systems.shaders.*;
 
 class Builders {
     
@@ -16,8 +18,8 @@ class Builders {
         new echoes.Entity().add(spr,se,pos,bb,vc);
     }
 
-    public static function bitmapComponent(bmpData:BitmapData,width:Int,height:Int) {
-        var bmpComponent = new BitmapComponent(bmpData,width,height);
-        new echoes.Entity().add(bmpComponent);
+    public static function layerComponent(shader:BitmapShader) {
+        var layer = new LayerComponent(shader);
+        new echoes.Entity().add(layer);
     }
 }

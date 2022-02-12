@@ -1,7 +1,7 @@
 package garbage;
 
 
-import garbage.*
+import garbage.*;
 //import comp.Boids;
 
 //import garbage.solv.DebugSolver;

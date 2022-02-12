@@ -35,14 +35,18 @@ class SinShader extends hxsl.Shader {
 	
 }
 
-class PressShader extends hxsl.Shader {
+class BitmapShader extends hxsl.Shader {
 	static var SRC = {
 		@:import h3d.shader.Base2d;
 		@param var texture:Sampler2D;
 
 		
 		function fragment() {
-			
+			var color:Vec4 = texture.get(input.uv);
+			//color.r = color.r/2;
+			color.g = 0;
+			//color.b = color.b/2;
+			pixelColor = vec4(color);
 		}
 	}
 	
