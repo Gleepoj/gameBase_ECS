@@ -14,9 +14,10 @@ class CellComponent {
     var isSelected(get,never):Bool;inline function get_isSelected() return selected; 
     var selected:Bool = false;
 
-    public function new(_i:Int,_j:Int) {
+    public function new(_i:Int,_j:Int,_index:Int) {
         i = _i;
         j = _j;
+        index = _index;
         uv = new Vector(0,0);
     }
 }

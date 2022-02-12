@@ -29,7 +29,7 @@ class Aleiiioa extends Game {
 	var solver:FluidSolver;
 
 	var g:h2d.Graphics;
-	//var testShader:aleiiioa.systems.shaders.TestShaders;
+	var testShader:aleiiioa.systems.shaders.TestShaders;
 
 	public function new() {
 		super();
@@ -44,7 +44,7 @@ class Aleiiioa extends Game {
 		//testShader = new aleiiioa.systems.shaders.TestShaders(Game.ME.scroller);
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
-		for (i in 0...10){
+		for (i in 0...20){
 			for(j in 0...100){
 				Builders.basicObject(i,j);
 			}

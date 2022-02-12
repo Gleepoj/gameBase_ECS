@@ -23,24 +23,33 @@ class SolverDebugRendering extends echoes.System {
 	
     // a resoudre solver manager pour les fonction de test de grille //
     public var solver: FluidSolver;
+    public var sbDirections : Array<h2d.SpriteBatch.BatchElement>;
     var gameScroller:h2d.Layers;
     var sb : h2d.SpriteBatch;
-    var sbDirections : Array<h2d.SpriteBatch.BatchElement>;
     var gr : h2d.Graphics;
     var bitmap:Bitmap;
     var shader:BitmapShader;
+    
 
-    public function new(_gameScroller:h2d.Layers,_fluidSolver:FluidSolver) {
+    public function new(_gameScroller:h2d.Layers,fluidSolver:FluidSolver) {
         this.gameScroller = _gameScroller;
-        this.solver = _fluidSolver;
+        this.solver = fluidSolver;
         
         
         this.sbDirections = [];
         this.sb = new h2d.SpriteBatch(h2d.Tile.fromColor(Color.makeColorRgb(1,1,1),Const.GRID,Const.GRID));
+        this.sb.hasRotationScale = true;
         this.gameScroller.add(sb,Const.DP_FRONT);
-        //this.createCellsComponents();
+        this.createCellsComponents();
         Builders.layerComponent(new BitmapShader());
         
+    }
+
+    
+    @a private function onCellComponentAdded(cc:CellComponent) {
+        var vectorBatchElement = makeSpriteBatchVectorElement(cc.i,cc.j);
+        sb.add(vectorBatchElement);
+        sbDirections.push(vectorBatchElement);
     }
 
     @a function onLayerAdded(lc:LayerComponent){
@@ -61,14 +70,14 @@ class SolverDebugRendering extends echoes.System {
         lc.shader.texture = lc.bitmap.tile.getTexture();
     }
     @u function systemUpdate(){
-       // renderDebugGrid();
+        renderDebugGrid();
     }
 
-    //@u function cellUpdate(cc:CellComponent){
-        //cc.u = this.solver[cc.index].u;
-        //cc.v = this.solver[cc.index].v;
-        //this.rotateVectorElement(cc.index);
-    //}
+    @u function cellUpdate(cc:CellComponent){
+        cc.u = solver.u[cc.index];
+        cc.v = solver.v[cc.index];
+        ccRotateVectorElement(cc);
+    } 
 
     function makePressureBitmap(){
         var bitmapPressure = new hxd.BitmapData(level.cWid, level.cHei);
@@ -111,17 +120,13 @@ class SolverDebugRendering extends echoes.System {
     private function createCellsComponents() {
         for(j in 0...solver.height) {
 			for(i in 0...solver.width) {
-                var cc = new CellComponent(i,j);
+                var index = solver.getIndexForCellPosition(i,j);
+                var cc = new CellComponent(i,j,index);
                 new echoes.Entity().add(cc);
             }
         }
     }
 
-    @a private function onCellComponentAdded(cc:CellComponent) {
-        var vectorBatchElement = makeSpriteBatchVectorElement(cc.i,cc.j);
-        sb.add(vectorBatchElement);
-        sbDirections.push(vectorBatchElement);
-    }
     
     private function makeSpriteBatchVectorElement(i:Int,j:Int){
         var vec = new BatchElement(Assets.tiles.getTile(D.tiles.vector12));
@@ -131,8 +136,12 @@ class SolverDebugRendering extends echoes.System {
         return vec;
     }
 
-    private function rotateVectorElement(index){//,lenghtUV:Float) {
-        //sbDirections[index].rotation = Math.atan2(solver[index].v,solver[index].u);
-        //sbDirections[index].a = lenghtUV;     
+    function rotateVectorElement(index){
+      sbDirections[index].rotation = Math.atan2(solver.v[index],solver.u[index]);   
+    }
+
+    
+    function ccRotateVectorElement(cc:CellComponent){
+        sbDirections[cc.index].rotation = Math.atan2(cc.v,cc.u);   
     }
 }

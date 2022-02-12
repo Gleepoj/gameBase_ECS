@@ -15,21 +15,21 @@ class TestShaders {
     var height(get,never): Int; inline function get_height()return Std.int(level.pxHei);
     var bitmap:Bitmap;
     var gameScroller:h2d.Layers;
-    var shader:BitmapShader;
+    var shader:LineShader;
     public function new(_gameScroller:h2d.Layers) {
 
         this.gameScroller = _gameScroller;
 
         //var b = gradientBitmap();
-        var b = uniBitmap();
-        bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(b));
-        shader = new BitmapShader();
-        shader.texture = bitmap.tile.getTexture();
+        //var b = uniBitmap();
+        //bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(b));
+        //shader = new LineShader();
+        //shader.texture = bitmap.tile.getTexture();
         
-        bitmap.addShader(shader);
-        gameScroller.add(bitmap,Const.DP_FRONT);
-        bitmap.height = height;
-        bitmap.width = width;
+       // bitmap.addShader(shader);
+        //gameScroller.add(,Const.DP_FRONT);
+       // bitmap.height = height;
+       // bitmap.width = width;
     }
     
     public function gradientBitmap() {
@@ -55,6 +55,6 @@ class TestShaders {
     public function update() {
         var gradient = gradientBitmap();
         bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(gradient));
-        shader.texture = bitmap.tile.getTexture();
+       // shader.texture = bitmap.tile.getTexture();
     }
 }
