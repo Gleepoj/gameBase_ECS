@@ -1,5 +1,6 @@
 package aleiiioa;
 
+
 import h3d.Vector;
 import h2d.Bitmap;
 import h2d.Graphics;
@@ -25,25 +26,27 @@ class Aleiiioa extends Game {
 
     var FLUID_WIDTH(get,never) : Int; inline function get_FLUID_WIDTH()  return level.cWid;
     var FLUID_HEIGHT(get,never): Int; inline function get_FLUID_HEIGHT() return Std.int( FLUID_WIDTH * height / width );
-    var test:SolverDebugRendering;
-	var solver:FluidSolver;
+    //var test:SolverDebugRendering;
+	//var solver:FluidSolver;
 
 	var g:h2d.Graphics;
-	var testShader:aleiiioa.systems.shaders.TestShaders;
+	//var testShader:aleiiioa.systems.shaders.TestShaders;
 
 	public function new() {
 		super();
-		solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
+		//solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
 		Workflow.reset();
 		Game.ME.camera.clampToLevelBounds = true;
 
 		Workflow.addSystem(new GridPositionActualizer());
 		Workflow.addSystem(new Physics());
-		Workflow.addSystem(new SolverDebugRendering(Game.ME.scroller,solver));
+		Workflow.addSystem(new Solvered());
+		
 		
 		//testShader = new aleiiioa.systems.shaders.TestShaders(Game.ME.scroller);
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
+		
 		for (i in 0...20){
 			for(j in 0...100){
 				Builders.basicObject(i,j);
@@ -57,10 +60,7 @@ class Aleiiioa extends Game {
 	override function fixedUpdate() {
 		super.fixedUpdate();
 		Workflow.update(tmod);
-		addForce(20,20,0,10);
-		solver.update();
-		//testShader.update();
-				//test.drawGridGraphics();
+		//trace(engine.drawCalls);
 	    
 	}
 
@@ -70,16 +70,6 @@ class Aleiiioa extends Game {
 		Workflow.postUpdate(tmod);
 	}
 
-	private function addForce(cx:Int, cy:Int, dx:Float, dy:Float):Void {
-		var speed:Float = dx * dx  + dy * dy * aspectRatio2;
-		if(speed > 0) {
-			var velocityMult:Float = 20.0;
-			var index:Int = solver.getIndexForCellPosition(cx,cy);
-
-			solver.uOld[index] += dx * velocityMult;
-			solver.vOld[index] += dy * velocityMult;
-		}
-	}
 }
 	
 

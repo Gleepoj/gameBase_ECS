@@ -1,5 +1,7 @@
 package aleiiioa.systems.solver;
 
+import h3d.Vector;
+
 //* @author Eugene Zatepyakin
 //* @link http://blog.inspirit.ru/?p=248
 //* @link http://code.google.com/p/in-spirit/source/browse/#svn/trunk/projects/FluidSolver
@@ -499,6 +501,18 @@ class FluidSolver
    inline public function getIndexForNormalizedPosition(x:Float, y:Float):Int 
    {
        return getIndexForCellPosition(Std.int(x * _NX2), Std.int(y * _NY2));
+   }
+   public function getUVVectorForCellPosition(i:Int,j:Int) {
+    var index = getIndexForCellPosition(i,j);
+    return new Vector(u[index],v[index]);
+   }
+
+   public function getUatIndex(index) {
+    return u[index];
+   }
+
+   public function getVatIndex(index) {
+    return v[index];
    }
    
    public function setWrap(x:Bool = false, y:Bool = false):Void
