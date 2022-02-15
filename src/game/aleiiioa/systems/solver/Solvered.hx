@@ -1,6 +1,8 @@
 package aleiiioa.systems.solver;
 
+import aleiiioa.components.core.GridPosition;
 import aleiiioa.components.solver.CellComponent;
+import aleiiioa.components.vehicule.SteeringWheel;
 import echoes.System;
 
 class Solvered extends echoes.System {
@@ -32,10 +34,16 @@ class Solvered extends echoes.System {
         cc.u = solver.getUatIndex(cc.index);
         cc.v = solver.getVatIndex(cc.index);
     } 
+    @u function boidsUpdate(sw:SteeringWheel,gp:GridPosition){
+        var index = solver.getIndexForCellPosition(gp.cx,gp.cy);
+        if(solver.checkIfIndexIsInArray(index)){
+            sw.solverUVatCoord = solver.getUVVectorForIndexPosition(index);
+        }
+    }
 
     @u function globalSolverUpdate(){
         solver.update();
-        addForce(10,10,0,10);
+        addForce(10,10,0,30);
     }
 
     private function createCellsComponents() {
@@ -52,7 +60,7 @@ class Solvered extends echoes.System {
     private function addForce(cx:Int, cy:Int, dx:Float, dy:Float):Void {
 		var speed:Float = dx * dx  + dy * dy * aspectRatio2;
 		if(speed > 0) {
-			var velocityMult:Float = 20.0;
+			var velocityMult:Float = 1;
 			var index:Int = solver.getIndexForCellPosition(cx,cy);
 
 			solver.uOld[index] += dx * velocityMult;

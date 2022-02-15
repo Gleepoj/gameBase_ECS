@@ -1,6 +1,7 @@
 package aleiiioa.builders;
 
 
+import aleiiioa.components.vehicule.SteeringWheel;
 import aleiiioa.systems.shaders.PressureShader.BitmapShader;
 import hxd.BitmapData;
 import aleiiioa.components.core.*;
@@ -15,7 +16,8 @@ class Builders {
         var pos = new GridPosition(cx,cy);
         var bb  = new BoundingBox(pos.attachX,pos.attachY);
         var vc  = new VelocityComponent();
-        new echoes.Entity().add(spr,se,pos,bb,vc);
+        var sw  = new SteeringWheel();
+        new echoes.Entity().add(spr,se,pos,bb,vc,sw);
     }
 
     public static function layerComponent(shader:BitmapShader) {

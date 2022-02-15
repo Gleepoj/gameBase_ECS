@@ -1,6 +1,7 @@
 package aleiiioa.systems.core;
 
 import aleiiioa.components.core.*;
+import aleiiioa.components.vehicule.SteeringWheel;
 //import aleiiioa.components.VelocityComponent;
 
 
@@ -11,11 +12,16 @@ class Physics extends echoes.System {
 	
 	}
 
-	@u inline function updatePosition(gp:GridPosition,vc:VelocityComponent) {
+/* 	@u inline function updatePosition(gp:GridPosition,vc:VelocityComponent) {
 		vc.dx += 0.05;
 		vc.dy += 0.05;
 		fixedUpdate(gp,vc);
-	}
+	} */
+	@u function updateBoids(gp:GridPosition,sw:SteeringWheel,vc:VelocityComponent,bb:BoundingBox) {
+		vc.dx = sw.eulerSteering.x;
+		vc.dy = sw.eulerSteering.y;
+		fixedUpdate(gp,vc);
+	} 
 	/** Apply a bump/kick force to entity **/
 	public function bump(x:Float, y:Float, vc:VelocityComponent) {
 		vc.bdx += x;
@@ -73,7 +79,7 @@ class Physics extends echoes.System {
 				n++;
 			}
 		}
-		applyFriction(vc);
+		//applyFriction(vc);
 	}
 
 	function applyFriction(vc:VelocityComponent) {

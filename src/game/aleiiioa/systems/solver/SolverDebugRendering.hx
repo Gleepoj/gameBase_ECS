@@ -84,7 +84,8 @@ class SolverDebugRendering extends echoes.System {
         var bitmapPressure = new hxd.BitmapData(level.cWid, level.cHei);
         for( j in 0...level.cWid ){
         	for( i in 0...level.cHei){
-                var vec = solver.getUVVectorForCellPosition(i,j);
+                var index = solver.getIndexForCellPosition(i,j);
+                var vec = solver.getUVVectorForIndexPosition(index);
                 var uvl = vec.length();
                 var color = new Vector(uvl,0,1-uvl,1);
                 bitmapPressure.setPixel(i, j,color.toColor());

@@ -1,6 +1,7 @@
 package aleiiioa;
 
 
+import aleiiioa.systems.vehicule.SteeringBehaviors;
 import hxd.BitmapData;
 import h3d.Vector;
 import h2d.Bitmap;
@@ -39,16 +40,18 @@ class Aleiiioa extends Game {
 		Workflow.reset();
 		Game.ME.camera.clampToLevelBounds = true;
 
+	    //Workflow.addSystem(new SteeringBehaviors());
 		Workflow.addSystem(new GridPositionActualizer());
 		Workflow.addSystem(new Physics());
 		Workflow.addSystem(new Solvered());
+		Workflow.addSystem(new SteeringBehaviors());
 		
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
 		
-		for (i in 0...20){
+		for (i in 0...10){
 			for(j in 0...100){
-				Builders.basicObject(i,j);
+				Builders.basicObject(10+i,10+j);
 			}
 		}
 		trace(Workflow.entities.length);

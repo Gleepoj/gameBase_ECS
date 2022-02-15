@@ -16,7 +16,7 @@ class FluidSolver
 {
    public static var FLUID_DEFAULT_NX:Float						= 50;
    public static var FLUID_DEFAULT_NY:Float						= 50;
-   public static var FLUID_DEFAULT_DT:Float						= 0.5/Const.FIXED_UPDATE_FPS;//1.0;
+   public static var FLUID_DEFAULT_DT:Float						= 0.7/Const.FIXED_UPDATE_FPS;//1.0;
    public static var FLUID_DEFAULT_VISC:Float					= 0.0000003;
    public static var FLUID_DEFAULT_COLOR_DIFFUSION:Float 		= 0.0;
    public static var FLUID_DEFAULT_FADESPEED:Float				= 0.05;
@@ -502,9 +502,8 @@ class FluidSolver
    {
        return getIndexForCellPosition(Std.int(x * _NX2), Std.int(y * _NY2));
    }
-   public function getUVVectorForCellPosition(i:Int,j:Int) {
-    var index = getIndexForCellPosition(i,j);
-    return new Vector(u[index],v[index]);
+   public function getUVVectorForIndexPosition(index:Int) {
+        return new Vector(u[index],v[index]);
    }
 
    public function getUatIndex(index) {
