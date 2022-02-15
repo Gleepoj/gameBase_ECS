@@ -1,19 +1,20 @@
 package aleiiioa.systems.solver;
 
-import aleiiioa.components.solver.LayerComponent;
 import h2d.Bitmap;
-import aleiiioa.builders.Builders;
-import h2d.Graphics;
-import aleiiioa.components.solver.CellComponent;
-import aleiiioa.systems.shaders.PressureShader;
 import h3d.Vector;
 import h2d.SpriteBatch.BatchElement;
 
+import aleiiioa.builders.Builders;
+import aleiiioa.components.solver.CellComponent;
+import aleiiioa.components.solver.LayerComponent;
+
+import aleiiioa.systems.shaders.PressureShader;
+
+
 
 class SolverDebugRendering extends echoes.System {
-    //var game(get,never) : Game; inline function get_game() return Game.ME;
+    
     var level(get,never) : Level; inline function get_level() return Game.ME.level;
-
     var width(get,never) : Int; inline function get_width() return Std.int(level.pxWid);
     var height(get,never): Int; inline function get_height()return Std.int(level.pxHei);
     
@@ -73,6 +74,11 @@ class SolverDebugRendering extends echoes.System {
         if(sb.visible)
             sbDirections[cc.index].rotation = Math.atan2(cc.v,cc.u);   
     }
+
+    @r function onLayerRemoved(lc:LayerComponent){
+        lc.bitmap.remove();
+    }
+
 
     private function makePressureBitmap(){
         var bitmapPressure = new hxd.BitmapData(level.cWid, level.cHei);

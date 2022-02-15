@@ -12,7 +12,7 @@ class Solvered extends echoes.System {
     var height(get,never): Int; inline function get_height()return Std.int(level.pxHei);
 
     var isw(get,never): Float; inline function get_isw() return 1 / width;
-    var ish(get,never): Float; inline function get_ish() return 1 / width;
+    var ish(get,never): Float; inline function get_ish() return 1 / height;
 
 	var aspectRatio(get,never):Float ;inline function get_aspectRatio() return width * ish;
 	var aspectRatio2(get,never):Float;inline function get_aspectRatio2() return aspectRatio * aspectRatio;

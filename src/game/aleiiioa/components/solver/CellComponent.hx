@@ -8,8 +8,10 @@ class CellComponent {
     //Solver grid coordinates
     public var i:Int;
     public var j:Int;
+    //Solver UV values
     public var u:Float;
     public var v:Float;
+    
     var uv:Vector;
     var isSelected(get,never):Bool;inline function get_isSelected() return selected; 
     var selected:Bool = false;

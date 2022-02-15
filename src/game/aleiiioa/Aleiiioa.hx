@@ -1,6 +1,7 @@
 package aleiiioa;
 
 
+import hxd.BitmapData;
 import h3d.Vector;
 import h2d.Bitmap;
 import h2d.Graphics;
@@ -42,8 +43,6 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new Physics());
 		Workflow.addSystem(new Solvered());
 		
-		
-		//testShader = new aleiiioa.systems.shaders.TestShaders(Game.ME.scroller);
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
 		
@@ -53,20 +52,16 @@ class Aleiiioa extends Game {
 			}
 		}
 		trace(Workflow.entities.length);
-		
 	}
 
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
 		Workflow.update(tmod);
-		//trace(engine.drawCalls);
-	    
 	}
 
 	override function postUpdate() {
 		super.postUpdate();
-		
 		Workflow.postUpdate(tmod);
 	}
 
