@@ -490,6 +490,13 @@ class FluidSolver
             return true;
         return false;
    }
+
+   public function checkIfCellIsInGrid(cx:Int,cy:Int){
+    if (cx >= 0 && cx < _NX2 && cy >=0 && cy < _NY2 )
+        return true;
+ 
+    return false;   
+    }
     // nx == nx2 le debug draw repose sur cette fonction      
    inline public function getIndexForCellPosition(i:Int, j:Int):Int 
    {
@@ -502,6 +509,7 @@ class FluidSolver
    {
        return getIndexForCellPosition(Std.int(x * _NX2), Std.int(y * _NY2));
    }
+
    public function getUVVectorForIndexPosition(index:Int) {
         return new Vector(u[index],v[index]);
    }
@@ -514,6 +522,7 @@ class FluidSolver
     return v[index];
    }
    
+
    public function setWrap(x:Bool = false, y:Bool = false):Void
    {
        wrapX = x;

@@ -1,5 +1,6 @@
 package aleiiioa.systems.core;
 
+import aleiiioa.components.solver.ModifierComponent;
 import aleiiioa.components.core.*;
 import aleiiioa.components.vehicule.SteeringWheel;
 //import aleiiioa.components.VelocityComponent;
@@ -22,6 +23,13 @@ class Physics extends echoes.System {
 		vc.dy = sw.eulerSteering.y;
 		fixedUpdate(gp,vc);
 	} 
+
+	@u function updateModifier(gp:GridPosition,vc:VelocityComponent,mod:ModifierComponent) {
+		vc.dx = 0.5;
+		vc.dy = 0.5;
+		fixedUpdate(gp,vc);
+	}
+
 	/** Apply a bump/kick force to entity **/
 	public function bump(x:Float, y:Float, vc:VelocityComponent) {
 		vc.bdx += x;

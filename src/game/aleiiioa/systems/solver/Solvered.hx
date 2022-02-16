@@ -1,12 +1,20 @@
 package aleiiioa.systems.solver;
 
+// Solvered class handle the communication between all the components who are affected 
+// or affect the fluid solver
+// he is there to provide data to component and made side effects only on the fluid solver
+
+import aleiiioa.systems.solver.modifier.ModifierSystem;
+import echoes.Workflow;
 import aleiiioa.components.core.GridPosition;
 import aleiiioa.components.solver.CellComponent;
 import aleiiioa.components.vehicule.SteeringWheel;
+import aleiiioa.components.solver.ModifierComponent;
+
 import echoes.System;
 
 class Solvered extends echoes.System {
-    
+    // move all maximum to const // 
     var game(get,never) : Game; inline function get_game() return Game.ME;
     var level(get,never) : Level; inline function get_level() return Game.ME.level;
 
@@ -27,23 +35,34 @@ class Solvered extends echoes.System {
     public function new() {
         solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
         createCellsComponents();
+        Workflow.addSystem(new ModifierSystem(solver));
         echoes.Workflow.addSystem(new SolverDebugRendering(game.scroller,solver));
+
     }
 
     @u function cellUpdate(cc:CellComponent){
         cc.u = solver.getUatIndex(cc.index);
         cc.v = solver.getVatIndex(cc.index);
     } 
-    @u function boidsUpdate(sw:SteeringWheel,gp:GridPosition){
+
+    @u function boidsPushUVatPos(sw:SteeringWheel,gp:GridPosition){
         var index = solver.getIndexForCellPosition(gp.cx,gp.cy);
         if(solver.checkIfIndexIsInArray(index)){
             sw.solverUVatCoord = solver.getUVVectorForIndexPosition(index);
         }
     }
 
+    @u function pullModifierInput(mod:ModifierComponent){
+        if(mod.isBlowing){
+            for( c in mod.informedCells){
+               setUVatIndex(c.u,c.v,c.index);
+            }
+        } 
+    }
+
     @u function globalSolverUpdate(){
         solver.update();
-        addForce(10,10,0,30);
+        //addForce(10,10,0,30);
     }
 
     private function createCellsComponents() {
@@ -67,5 +86,12 @@ class Solvered extends echoes.System {
 			solver.vOld[index] += dy * velocityMult;
 		}
 	}
+
+    private function setUVatIndex(u:Float,v:Float,index:Int){
+        solver.u[index] = u;
+        solver.v[index] = v;
+        solver.uOld[index] = u;
+        solver.vOld[index] = v;
+    }
 
 }

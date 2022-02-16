@@ -1,6 +1,5 @@
-package solv;
+/* package aleiiioa.systems.solver.modifier;
 
-import solv.Modifier;
 
 interface ModifierCommand {
     public  function execute(m:Modifier):Void;
@@ -80,4 +79,4 @@ class InstancedCommands {
         turnOff  = new TurnOff();
     }
     
-}
+} */
