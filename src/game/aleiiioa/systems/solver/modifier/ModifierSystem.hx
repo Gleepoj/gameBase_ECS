@@ -13,7 +13,7 @@ class ModifierSystem extends echoes.System {
     }
 
     @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
-	    mod.equation = new Equation(EqDiverge);
+	    mod.equation = new Equation(mod.areaEquation);
 		modifierStoreCells(mod,gp);
 		computeCellDistanceToModifierPosition(mod,gp);
 		computeLocalUVFields(mod);

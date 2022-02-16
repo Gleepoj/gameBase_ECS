@@ -55,7 +55,7 @@ class Aleiiioa extends Game {
 			}
 		}
 
-		Builders.basicModifier(10,10);
+		Builders.basicModifier(20,20);
 
 		trace(Workflow.entities.length);
 	}

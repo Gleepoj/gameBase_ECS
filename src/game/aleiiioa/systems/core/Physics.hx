@@ -19,16 +19,16 @@ class Physics extends echoes.System {
 		fixedUpdate(gp,vc);
 	} */
 	@u function updateBoids(gp:GridPosition,sw:SteeringWheel,vc:VelocityComponent,bb:BoundingBox) {
-		vc.dx = sw.eulerSteering.x;
-		vc.dy = sw.eulerSteering.y;
+		vc.dx = sw.eulerSteering.x * 2;
+		vc.dy = sw.eulerSteering.y * 2;
 		fixedUpdate(gp,vc);
 	} 
-
+/* 
 	@u function updateModifier(gp:GridPosition,vc:VelocityComponent,mod:ModifierComponent) {
-		vc.dx = 0.5;
-		vc.dy = 0.5;
+		//vc.dx = 0.5;
+		//vc.dy = 0.5;
 		fixedUpdate(gp,vc);
-	}
+	} */
 
 	/** Apply a bump/kick force to entity **/
 	public function bump(x:Float, y:Float, vc:VelocityComponent) {
@@ -87,7 +87,7 @@ class Physics extends echoes.System {
 				n++;
 			}
 		}
-		//applyFriction(vc);
+		applyFriction(vc);
 	}
 
 	function applyFriction(vc:VelocityComponent) {
