@@ -1,7 +1,5 @@
 package aleiiioa.components.solver;
 
-import aleiiioa.systems.solver.modifier.ModifierCommand;
-import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
 import aleiiioa.systems.solver.modifier.Equation;
 
 
@@ -17,8 +15,6 @@ class ModifierComponent {
 	
 	
 	public var informedCells:Array<CellStruct> = [];
-	
-    //public var commands:InstancedCommands;
     public var equation:Equation;
 
 

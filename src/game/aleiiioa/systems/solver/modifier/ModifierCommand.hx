@@ -67,11 +67,11 @@ class TurnOff implements  ModifierCommand {
 
 class InstancedCommands {
     
-    public var curl:Curl;
-    public var diverge:Diverge;
+    public var curl    :Curl;
+    public var diverge :Diverge;
     public var converge:Converge;
-	public var repel:Repel;
-	public var turnOff:TurnOff;
+	public var repel   :Repel;
+	public var turnOff :TurnOff;
 
     public function new() {
         curl     = new Curl();
