@@ -12,11 +12,22 @@ import h3d.Vector;
 
 // For the sake of simplicity fluid solver is not a system its just a class Solver.hx is the system
 
+/* 
+public static var FLUID_DEFAULT_NX:Float						= 50;
+public static var FLUID_DEFAULT_NY:Float						= 50;
+public static var FLUID_DEFAULT_DT:Float						= 0.5/Const.FIXED_UPDATE_FPS;//1.0;
+public static var FLUID_DEFAULT_VISC:Float					= 0.0000003;
+public static var FLUID_DEFAULT_COLOR_DIFFUSION:Float 		= 0.0;
+public static var FLUID_DEFAULT_FADESPEED:Float				= 0.05;
+public static var FLUID_DEFAULT_SOLVER_ITERATIONS:Int		= 1;
+public static var FLUID_DEFAULT_VORTICITY_CONFINEMENT:Bool 	= true;
+public static var FLUID_DEFAULT_BOUNDARY_OFFSET              = 2;
+ */
 class FluidSolver 
 {
    public static var FLUID_DEFAULT_NX:Float						= 50;
    public static var FLUID_DEFAULT_NY:Float						= 50;
-   public static var FLUID_DEFAULT_DT:Float						= 0.7/Const.FIXED_UPDATE_FPS;//1.0;
+   public static var FLUID_DEFAULT_DT:Float						= 0.5/Const.FIXED_UPDATE_FPS;//1.0;
    public static var FLUID_DEFAULT_VISC:Float					= 0.0000003;
    public static var FLUID_DEFAULT_COLOR_DIFFUSION:Float 		= 0.0;
    public static var FLUID_DEFAULT_FADESPEED:Float				= 0.05;
