@@ -1,4 +1,4 @@
-package aleiiioa.systems.shaders;
+package aleiiioa.shaders;
 
 import h3d.mat.Texture;
 

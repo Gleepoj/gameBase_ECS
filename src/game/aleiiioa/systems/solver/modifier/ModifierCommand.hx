@@ -1,8 +1,10 @@
-/* package aleiiioa.systems.solver.modifier;
+package aleiiioa.systems.solver.modifier;
+
+import aleiiioa.components.solver.ModifierComponent;
 
 
 interface ModifierCommand {
-    public  function execute(m:Modifier):Void;
+    public  function execute(mod:ModifierComponent):Void;
 }
 
 
@@ -10,9 +12,9 @@ class Curl implements  ModifierCommand {
     public function new() {
     }
 
-    public function execute(m:Modifier) {
-        m.changeEquationType(EqCurl);
-        m.activateModifier();
+    public function execute(mod:ModifierComponent) {
+        mod.changeEquationType(EqCurl);
+        mod.activateModifier();
         
     }
 }
@@ -21,9 +23,9 @@ class Converge implements  ModifierCommand {
     public function new() {
         
     }
-    public function execute(m:Modifier) {
-        m.changeEquationType(EqCurl);
-        m.activateModifier();
+    public function execute(mod:ModifierComponent) {
+        mod.changeEquationType(EqCurl);
+        mod.activateModifier();
     }
 }
 
@@ -33,9 +35,9 @@ class Diverge implements  ModifierCommand {
         
     }
 
-    public function execute(m:Modifier) {
-        m.changeEquationType(EqDiverge);
-        m.activateModifier();
+    public function execute(mod:ModifierComponent) {
+        mod.changeEquationType(EqDiverge);
+        mod.activateModifier();
     }
 }
 
@@ -46,9 +48,9 @@ class Repel implements  ModifierCommand {
         
     }
 
-    public function execute(m:Modifier) {
-        m.changeEquationType(EqRepel);
-        m.activateModifier();
+    public function execute(mod:ModifierComponent) {
+        mod.changeEquationType(EqRepel);
+        mod.activateModifier();
     }
 }
 
@@ -58,8 +60,8 @@ class TurnOff implements  ModifierCommand {
         
     }
     
-    public function execute(m:Modifier) {
-        m.deactivateModifier();
+    public function execute(mod:ModifierComponent) {
+        mod.deactivateModifier();
     }
 }
 
@@ -79,4 +81,4 @@ class InstancedCommands {
         turnOff  = new TurnOff();
     }
     
-} */
+}

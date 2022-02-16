@@ -8,7 +8,7 @@ import aleiiioa.builders.Builders;
 import aleiiioa.components.solver.CellComponent;
 import aleiiioa.components.solver.LayerComponent;
 
-import aleiiioa.systems.shaders.PressureShader;
+import aleiiioa.shaders.PressureShader;
 
 
 

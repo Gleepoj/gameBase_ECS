@@ -1,5 +1,7 @@
 package aleiiioa.components.solver;
 
+import aleiiioa.systems.solver.modifier.ModifierCommand;
+import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
 import aleiiioa.systems.solver.modifier.Equation;
 
 
@@ -23,4 +25,21 @@ class ModifierComponent {
     public function new() {
         
     }
+
+    
+	public function activateModifier(){
+		if (blowingIsActive == false)
+			blowingIsActive = true;
+	}
+
+    public function deactivateModifier(){
+		if (blowingIsActive == true)
+			blowingIsActive = false;
+	}
+
+    public function changeEquationType(eqType:AreaEquation) {
+		equation = new Equation(eqType);
+	}
+
+
 }

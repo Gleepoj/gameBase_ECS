@@ -2,7 +2,7 @@ package aleiiioa.builders;
 
 
 import aleiiioa.components.vehicule.SteeringWheel;
-import aleiiioa.systems.shaders.PressureShader.BitmapShader;
+import aleiiioa.shaders.PressureShader.BitmapShader;
 import aleiiioa.components.core.*;
 import aleiiioa.components.solver.*;
 
@@ -29,5 +29,10 @@ class Builders {
     public static function layerComponent(shader:BitmapShader) {
         var layer = new LayerComponent(shader);
         new echoes.Entity().add(layer);
+    }
+
+    public static function solverCell(i:Int,j:Int,index:Int) {
+        var cc = new CellComponent(i,j,index);
+        new echoes.Entity().add(cc);
     }
 }

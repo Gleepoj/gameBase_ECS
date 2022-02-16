@@ -1,6 +1,6 @@
 package aleiiioa.components.solver;
 
-import aleiiioa.systems.shaders.PressureShader.BitmapShader;
+import aleiiioa.shaders.PressureShader.BitmapShader;
 import h2d.Tile;
 import h2d.filter.Shader;
 import h2d.Bitmap;

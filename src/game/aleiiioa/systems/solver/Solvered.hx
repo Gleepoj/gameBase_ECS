@@ -4,6 +4,7 @@ package aleiiioa.systems.solver;
 // or affect the fluid solver
 // he is there to provide data to component and made side effects only on the fluid solver
 
+import aleiiioa.builders.Builders;
 import aleiiioa.systems.solver.modifier.ModifierSystem;
 import echoes.Workflow;
 import aleiiioa.components.core.GridPosition;
@@ -69,8 +70,7 @@ class Solvered extends echoes.System {
         for(j in 0...solver.height) {
 			for(i in 0...solver.width) {
                 var index = solver.getIndexForCellPosition(i,j);
-                var cc = new CellComponent(i,j,index);
-                new echoes.Entity().add(cc);
+                Builders.solverCell(i,j,index);
             }
         }
     }

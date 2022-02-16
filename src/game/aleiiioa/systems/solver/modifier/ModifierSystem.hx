@@ -1,5 +1,6 @@
 package aleiiioa.systems.solver.modifier;
 
+import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
 import h3d.Vector;
 import dn.Bresenham;
 import aleiiioa.components.core.GridPosition;
@@ -8,8 +9,14 @@ import aleiiioa.components.solver.ModifierComponent;
 class ModifierSystem extends echoes.System {
     // Solver is here only to provide check and grid conversion Not to produce side effects on it !!!// 
 	var solver:FluidSolver;
+	var t:Float;
+	var t_Max:Float = 50;
+	var command:InstancedCommands;
+
     public function new(_solver:FluidSolver) {
         solver = _solver;
+		t = 0;
+		command = new InstancedCommands();
     }
 
     @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
@@ -20,11 +27,21 @@ class ModifierSystem extends echoes.System {
  
     }
 	
-	@u function modifiersUpdate(mod:ModifierComponent,gp:GridPosition) {
+	@u function modifiersUpdate(dt:Float,mod:ModifierComponent,gp:GridPosition) {
 		modifierStoreCells(mod,gp);
 		computeCellDistanceToModifierPosition(mod,gp);
 		computeLocalUVFields(mod);
+
+		t += dt;
+		if (t > t_Max){
+			t = 0 ;
+			order(mod,command.curl);
+		}
 	}
+
+	public function order(mod:ModifierComponent,com:ModifierCommand) {
+        com.execute(mod);
+    }
 
 	private function modifierStoreCells(mod:ModifierComponent,gp:GridPosition) {
         var list = Bresenham.getDisc(gp.cx,gp.cy, mod.areaRadius);

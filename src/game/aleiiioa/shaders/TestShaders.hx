@@ -4,7 +4,7 @@ import h2d.Bitmap;
 import hxsl.*;
 import h3d.shader.*;
 import h3d.shader.Base2d;
-import aleiiioa.systems.shaders.PressureShader;
+import aleiiioa.shaders.PressureShader;
 
 
 class TestShaders {
