@@ -14,8 +14,8 @@ class Physics extends echoes.System {
 	}
 
 	@u function updateBoids(gp:GridPosition,sw:SteeringWheel,vc:VelocityComponent,bb:BoundingBox) {
-		vc.dx = sw.eulerSteering.x *2;
-		vc.dy = sw.eulerSteering.y *2;
+		vc.dx += sw.eulerSteering.x ;
+		vc.dy += sw.eulerSteering.y ;
 		fixedUpdate(gp,vc);
 	} 
 	@u function updateAnalogSpeed(gp:GridPosition,vc:VelocityComponent,vas:VelocityAnalogSpeed) {
