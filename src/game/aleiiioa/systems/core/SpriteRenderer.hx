@@ -1,5 +1,6 @@
 package aleiiioa.systems.core;
 
+import aleiiioa.components.solver.ModifierComponent;
 import h3d.Vector;
 import echoes.System;
 import aleiiioa.components.core.*;
@@ -14,19 +15,22 @@ class SpriteRenderer extends echoes.System {
 		this.game = _game;
 	}
 
-	@u inline function updateSpritePosition(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
-		this.renderSprite(dt,spr,gp,se);
-	  }
+
 	// There are @a, @u and @r shortcuts for @added, @update and @removed metas;
 	// @added/@removed-functions are callbacks that are called when an entity is added/removed from the view;
 	@a function onEntityAdded(spr:SpriteComponent) {
 		this.gameScroller.add(spr,Const.DP_FRONT);
 		spr.set(D.tiles.fxCircle15);
 		spr.setCenterRatio(0.5,1);
-		spr.alpha = 0.5;
+		spr.alpha = 1;
 		spr.x = 0;
 		spr.y = 20;
 	}
+
+
+	@u inline function updateSpritePosition(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
+		this.renderSprite(dt,spr,gp,se);
+	  }
 
 	@r function onEntityRemoved(spr:SpriteComponent) {
 		spr.remove();

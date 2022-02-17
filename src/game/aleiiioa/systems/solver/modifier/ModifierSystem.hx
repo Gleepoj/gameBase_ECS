@@ -1,5 +1,6 @@
 package aleiiioa.systems.solver.modifier;
 
+import aleiiioa.components.core.SpriteComponent;
 import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
 import h3d.Vector;
 import dn.Bresenham;
@@ -19,24 +20,31 @@ class ModifierSystem extends echoes.System {
 		command = new InstancedCommands();
     }
 
-    @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
+    @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition,spr:SpriteComponent) {
 	    mod.equation = new Equation(mod.areaEquation);
 		modifierStoreCells(mod,gp);
 		computeCellDistanceToModifierPosition(mod,gp);
 		computeLocalUVFields(mod);
- 
+		
+		
     }
 	
-	@u function modifiersUpdate(dt:Float,mod:ModifierComponent,gp:GridPosition) {
+	@u function modifiersUpdate(dt:Float,mod:ModifierComponent,gp:GridPosition,spr:SpriteComponent) {
 		modifierStoreCells(mod,gp);
 		computeCellDistanceToModifierPosition(mod,gp);
 		computeLocalUVFields(mod);
 
+		if (mod.isBlowing)
+			spr.colorize(mod.activeColor);
+		if (!mod.isBlowing)
+			spr.colorize(mod.idleColor);
+
 		t += dt;
 		if (t > t_Max){
 			t = 0 ;
-			order(mod,command.curl);
+			order(mod,command.turnOff);
 		}
+		mod.prevState = mod.isBlowing;
 	}
 
 	public function order(mod:ModifierComponent,com:ModifierCommand) {

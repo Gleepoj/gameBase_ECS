@@ -17,6 +17,9 @@ class ModifierComponent {
 	public var informedCells:Array<CellStruct> = [];
     public var equation:Equation;
 
+	public var prevState:Bool;
+	public var activeColor:UInt = 0xff0000;
+	public var idleColor:UInt = 0x00eeff;
 
     public function new() {
         

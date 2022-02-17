@@ -23,7 +23,9 @@ class Builders {
         var pos = new GridPosition(cx,cy);
         var mod = new ModifierComponent();
         var vc = new VelocityComponent();
-        new echoes.Entity().add(pos,mod,vc);
+        var spr = new SpriteComponent();
+        var se = new SpriteExtension();
+        new echoes.Entity().add(pos,mod,vc,spr,se);
     }
 
     public static function layerComponent(shader:BitmapShader) {
