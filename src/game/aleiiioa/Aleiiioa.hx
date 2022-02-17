@@ -2,14 +2,11 @@ package aleiiioa;
 
 
 import aleiiioa.systems.vehicule.SteeringBehaviors;
-import hxd.BitmapData;
-import h3d.Vector;
-import h2d.Bitmap;
 import h2d.Graphics;
 import aleiiioa.systems.core.*;
 import aleiiioa.systems.solver.*;
-
 import aleiiioa.builders.*;
+
 import echoes.Workflow;
 
 class Aleiiioa extends Game {
@@ -46,6 +43,7 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new Solvered());
 		Workflow.addSystem(new SteeringBehaviors());
 		
+		Workflow.add60FpsSystem(new InputSystem());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
 		

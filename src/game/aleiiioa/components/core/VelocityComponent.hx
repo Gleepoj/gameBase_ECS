@@ -14,9 +14,9 @@ class VelocityComponent {
 	public var dxTotal(get,never) : Float; inline function get_dxTotal() return dx+bdx;
 	public var dyTotal(get,never) : Float; inline function get_dyTotal() return dy+bdy;
 
-	/** Multiplier applied on each frame to normal X/Y velocity **/
-	public var frictX = 0.82;
-	public var frictY = 0.82;
+	/** Multiplier applied on each frame to normal X/Y velocity 0.82**/
+	public var frictX = 0.4;
+	public var frictY = 0.4;
 
 	/** Sets both frictX/Y at the same time **/
 	public var frict(never,set) : Float;

@@ -13,23 +13,16 @@ class Physics extends echoes.System {
 	
 	}
 
-/* 	@u inline function updatePosition(gp:GridPosition,vc:VelocityComponent) {
-		vc.dx += 0.05;
-		vc.dy += 0.05;
-		fixedUpdate(gp,vc);
-	} */
 	@u function updateBoids(gp:GridPosition,sw:SteeringWheel,vc:VelocityComponent,bb:BoundingBox) {
-		vc.dx = sw.eulerSteering.x * 2;
-		vc.dy = sw.eulerSteering.y * 2;
+		vc.dx = sw.eulerSteering.x *2;
+		vc.dy = sw.eulerSteering.y *2;
 		fixedUpdate(gp,vc);
 	} 
-/* 
-	@u function updateModifier(gp:GridPosition,vc:VelocityComponent,mod:ModifierComponent) {
-		//vc.dx = 0.5;
-		//vc.dy = 0.5;
+	@u function updateAnalogSpeed(gp:GridPosition,vc:VelocityComponent,vas:VelocityAnalogSpeed) {
+		vc.dx = vas.xSpeed;
+		vc.dy = vas.ySpeed;
 		fixedUpdate(gp,vc);
-	} */
-
+	}
 	/** Apply a bump/kick force to entity **/
 	public function bump(x:Float, y:Float, vc:VelocityComponent) {
 		vc.bdx += x;

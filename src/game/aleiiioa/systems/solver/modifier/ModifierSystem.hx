@@ -38,17 +38,18 @@ class ModifierSystem extends echoes.System {
 			spr.colorize(mod.activeColor);
 		if (!mod.isBlowing)
 			spr.colorize(mod.idleColor);
-
+		order(mod);
+/* 	
 		t += dt;
 		if (t > t_Max){
 			t = 0 ;
 			order(mod,command.turnOff);
 		}
-		mod.prevState = mod.isBlowing;
+		mod.prevState = mod.isBlowing; */
 	}
 
-	public function order(mod:ModifierComponent,com:ModifierCommand) {
-        com.execute(mod);
+	public function order(mod:ModifierComponent) {
+        mod.currentOrder.execute(mod);
     }
 
 	private function modifierStoreCells(mod:ModifierComponent,gp:GridPosition) {

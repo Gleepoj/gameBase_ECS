@@ -1,5 +1,6 @@
 package aleiiioa.components.solver;
 
+import aleiiioa.systems.solver.modifier.ModifierCommand;
 import aleiiioa.systems.solver.modifier.Equation;
 
 
@@ -10,7 +11,7 @@ class ModifierComponent {
     public var areaEquation:AreaEquation = EqDiverge;
 	public var areaRadius:Int = 50;
 
-    var blowingIsActive:Bool = true;
+    var blowingIsActive:Bool = false;
 	public var isBlowing(get,never):Bool;inline function get_isBlowing()return blowingIsActive;
 	
 	
@@ -21,6 +22,8 @@ class ModifierComponent {
 	public var activeColor:UInt = 0xff0000;
 	public var idleColor:UInt = 0x00eeff;
 
+	public var currentOrder:ModifierCommand;
+	
     public function new() {
         
     }
