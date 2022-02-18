@@ -40,6 +40,7 @@ class Aleiiioa extends Game {
 	    //Workflow.addSystem(new SteeringBehaviors());
 		Workflow.addSystem(new GridPositionActualizer());
 		Workflow.addSystem(new Physics());
+		Workflow.addSystem(new LevelCollisionsSystem());
 		Workflow.addSystem(new Solvered());
 		Workflow.addSystem(new SteeringBehaviors());
 		
