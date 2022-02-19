@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.vehicule.PathComponent;
 import aleiiioa.components.vehicule.SteeringWheel;
 import aleiiioa.shaders.PressureShader.BitmapShader;
 import aleiiioa.components.*;
@@ -19,7 +20,18 @@ class Builders {
         new echoes.Entity().add(spr,se,pos,bb,vc,sw);
     }
 
-    public static function basicModifier(cx:Int,cy:Int) {
+    public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>) {
+        var spr = new SpriteComponent();
+        var se  = new SpriteExtension();
+        var pos = new GridPosition(cx,cy);
+        var bb  = new BoundingBox(pos.attachX,pos.attachY);
+        var vc  = new VelocityComponent();
+        var sw  = new SteeringWheel();
+        var path = new PathComponent(path);
+        new echoes.Entity().add(spr,se,pos,bb,vc,sw,path);
+    }
+
+    public static function basicPlayer(cx:Int,cy:Int) {
         var pos  = new GridPosition(cx,cy);
         var mod  = new ModifierComponent();
         var vc   = new VelocityComponent();
@@ -29,6 +41,18 @@ class Builders {
         var inp  = new InputComponent();
         
         new echoes.Entity().add(pos,mod,vc,spr,se,inp,vas);
+    }
+
+    public static function pointDebugger(cx:Int,cy:Int,endPoint:Bool) {
+        var spr = new SpriteComponent();
+        var se  = new SpriteExtension();
+        var pos = new GridPosition(cx,cy);
+        spr.colorize(0xefef00);
+        if(endPoint)
+            spr.colorize(0x00efef);
+        se.sprScaleX = 0.5;
+        se.sprScaleY = 0.5;
+        return new echoes.Entity().add(spr,pos,se);
     }
 
     public static function layerComponent(shader:BitmapShader) {

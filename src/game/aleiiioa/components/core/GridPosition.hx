@@ -1,5 +1,7 @@
 package aleiiioa.components.core;
 
+import h3d.Vector;
+
 class GridPosition {
     
 	/** Grid X/Y coordinate **/
@@ -22,5 +24,9 @@ class GridPosition {
     public function new(_cx:Int,_cy:Int) {
         cx = _cx;
         cy = _cy;
+    }
+
+    public function gpToVector() {
+        return new Vector(attachX,attachY);
     }
 }

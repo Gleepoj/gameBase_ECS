@@ -1,5 +1,6 @@
 package aleiiioa.systems.core;
 
+import echoes.Workflow;
 import aleiiioa.components.core.VelocityAnalogSpeed;
 import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
 import aleiiioa.components.*;
@@ -37,6 +38,7 @@ class InputSystem extends echoes.System {
 
 		if (ca.isDown(Jump)){
 			mod.currentOrder = command.repel;
+			trace(Workflow.entities.length);
 		}
     }
 
@@ -47,5 +49,6 @@ class InputSystem extends echoes.System {
 		if( ca.getAnalogDist(MoveX)>0 ) {
 			vas.xSpeed = ca.getAnalogValue(MoveX); // -1 to 1
 		}
+
     }
 }

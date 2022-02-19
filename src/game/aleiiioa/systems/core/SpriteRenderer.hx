@@ -27,7 +27,7 @@ class SpriteRenderer extends echoes.System {
 		spr.y = 20;
 	}
 
-
+	
 	@u inline function updateSpritePosition(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
 		this.renderSprite(dt,spr,gp,se);
 	  }

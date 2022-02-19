@@ -1,6 +1,7 @@
 package aleiiioa.systems.core;
 
 import aleiiioa.components.core.BoundingBox;
+import aleiiioa.components.vehicule.PathComponent;
 import aleiiioa.components.core.*;
 import echoes.Entity;
 
@@ -22,8 +23,10 @@ class LevelCollisionsSystem extends echoes.System {
 	}
 
     @u public function destroyObjectOnWallCollision(entity:Entity,gp:GridPosition) {
-        if(level.hasCollision(gp.cx,gp.cy))
-            entity.destroy();
+        if(entity.isValid())
+            if(level.hasCollision(gp.cx,gp.cy))
+                entity.destroy();
+        
     }
 
 }

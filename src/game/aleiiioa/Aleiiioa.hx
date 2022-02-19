@@ -1,6 +1,7 @@
 package aleiiioa;
 
 
+import aleiiioa.systems.vehicule.PathFollowing;
 import aleiiioa.systems.vehicule.SteeringBehaviors;
 import h2d.Graphics;
 import aleiiioa.systems.core.*;
@@ -37,24 +38,28 @@ class Aleiiioa extends Game {
 		Workflow.reset();
 		Game.ME.camera.clampToLevelBounds = true;
 
-	    //Workflow.addSystem(new SteeringBehaviors());
+
 		Workflow.addSystem(new GridPositionActualizer());
 		Workflow.addSystem(new Physics());
-		Workflow.addSystem(new LevelCollisionsSystem());
 		Workflow.addSystem(new Solvered());
 		Workflow.addSystem(new SteeringBehaviors());
+		Workflow.addSystem(new PathFollowing());
+		Workflow.addSystem(new LevelCollisionsSystem());
 		
 		Workflow.add60FpsSystem(new InputSystem());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
-		
-		for (i in 0...10){
-			for(j in 0...100){
-				Builders.basicObject(10+i,10+j);
+		/* 
+		for (i in 0...level.cWid){
+			for(j in 0...level.cHei){
+				Builders.basicObject(i,j);
 			}
-		}
+		} */
 
-		Builders.basicModifier(20,20);
+		for (b in level.data.l_Entities.all_Boides){
+			Builders.basicHunter(b.cx,b.cy,b.f_Path);
+		}
+		Builders.basicPlayer(20,20);
 
 		trace(Workflow.entities.length);
 	}
