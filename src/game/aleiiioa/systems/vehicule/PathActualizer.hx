@@ -3,10 +3,10 @@ package aleiiioa.systems.vehicule;
 import aleiiioa.components.vehicule.SteeringWheel;
 import aleiiioa.components.vehicule.PathComponent;
 import aleiiioa.components.core.GridPosition;
-import aleiiioa.components.core.*;
+
 import echoes.System;
 
-class PathFollowing extends System {
+class PathActualizer extends System {
     public function new() {
         
     }
@@ -19,20 +19,18 @@ class PathFollowing extends System {
         if(pc.path.length>1){
             pc.startIndex = 0;
             pc.endIndex = 1;
-        }
-        
+        }        
         pc.currentStart = pc.path[pc.startIndex];
         pc.currentEnd   = pc.path[pc.endIndex];
         swapPathDebugPoint(pc);
-
     }
+
     @u private function updatePathStatus(sw:SteeringWheel,pc:PathComponent) {
         if(checkIfBoidHadReachEnd(pc,sw))
             setNextSegmentOnPath(pc);
     }
 
     @r private function onRemovePathComponent(pc:PathComponent) {
-        //pc.startDebug.remove(SpriteComponent);
         pc.startDebug.destroy();
         pc.endDebug.destroy();
     }
@@ -47,7 +45,6 @@ class PathFollowing extends System {
     }
 
     private function setNextSegmentOnPath(pc:PathComponent) {
-
         if (pc.endIndex < pc.path.length-1){
             pc.startIndex += 1;
             pc.endIndex += 1;
@@ -55,7 +52,6 @@ class PathFollowing extends System {
             pc.currentEnd = pc.path[pc.endIndex];
         }
         swapPathDebugPoint(pc);
-    
     }
     
     private function checkIfBoidHadReachEnd(pc:PathComponent,sw:SteeringWheel){

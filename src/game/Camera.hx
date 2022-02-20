@@ -9,7 +9,7 @@ class Camera extends dn.Process {
 	/** This is equal to rawFocus if `clampToLevelBounds` is disabled **/
 	var clampedFocus : LPoint;
 
-	var target : Null<Entity>;
+	//var target : Null<>;
 	public var targetOffX = 0.;
 	public var targetOffY = 0.;
 
@@ -153,26 +153,26 @@ class Camera extends dn.Process {
 	/**
 		Enable auto tracking on given Entity. If `immediate` is true, the camera is immediately positioned over the Entity, otherwise it just moves to it.
 	**/
-	public function trackEntity(e:Entity, immediate:Bool, speed=1.0) {
+/* 	public function trackEntity(e:Entity, immediate:Bool, speed=1.0) {
 		target = e;
 		setTrackingSpeed(speed);
 		if( immediate || rawFocus.levelX==0 && rawFocus.levelY==0 )
 			centerOnTarget();
-	}
+	} */
 
 	public inline function setTrackingSpeed(spd:Float) {
 		trackingSpeed = M.fclamp(spd, 0.01, 10);
 	}
 
 	public inline function stopTracking() {
-		target = null;
+		//target = null;
 	}
 
 	public function centerOnTarget() {
-		if( target!=null ) {
+		//if( target!=null ) {
 			//rawFocus.levelX = target.centerX + targetOffX;
 			//rawFocus.levelY = target.centerY + targetOffY;
-		}
+		//}
 	}
 
 	public inline function levelToGlobalX(v:Float) return v*Const.SCALE + Game.ME.scroller.x;
@@ -325,7 +325,7 @@ class Camera extends dn.Process {
 
 
 		// Follow target entity
-		if( target!=null ) {
+		//if( target!=null ) {
 			/* var spdX = 0.015*trackingSpeed*zoom;
 			var spdY = 0.023*trackingSpeed*zoom;
 			//var tx = target.centerX + targetOffX;
@@ -339,7 +339,7 @@ class Camera extends dn.Process {
 			var distY = M.fabs( ty - rawFocus.levelY );
 			if( distY>=deadZonePctY*pxHei)
 				dy += Math.sin(a) * (0.8*distY-deadZonePctY*pxHei) * spdY * tmod;
- */		}
+ */		//}
 
 		// Compute frictions
 		var frictX = baseFrict - trackingSpeed*zoom*0.027*baseFrict;

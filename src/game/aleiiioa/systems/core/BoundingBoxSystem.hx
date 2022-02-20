@@ -1,8 +1,6 @@
 package aleiiioa.systems.core;
 
 import aleiiioa.components.core.*;
-//import aleiiioa.components.BoundingBox;
-//import aleiiioa.components.SpriteComponent;
 
 class BoundingBoxSystem extends echoes.System{
     var gameScroller:h2d.Layers;
@@ -11,7 +9,7 @@ class BoundingBoxSystem extends echoes.System{
         this.gameScroller = scroller;
     }
 
-    @a function onEntityAdd(spr:SpriteComponent,bb:BoundingBox,gp:GridPosition){
+    @a function onEntityAdd(bb:BoundingBox,gp:GridPosition){
         bb.attachX = gp.attachX;
         bb.attachY = gp.attachY;
     }

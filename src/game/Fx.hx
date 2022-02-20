@@ -77,14 +77,6 @@ class Fx extends dn.Process {
 		return Assets.tiles.getTileRandom(id);
 	}
 
-	public function markerEntity(e:Entity, ?c=0xFF00FF, ?short=false) {
-		#if debug
-		if( e==null )
-			return;
-
-		//markerCase(e.cx, e.cy, short?0.03:3, c);
-		#end
-	}
 
 	public function markerCase(cx:Int, cy:Int, ?sec=3.0, ?c=0xFF00FF) {
 		#if debug

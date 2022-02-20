@@ -10,13 +10,10 @@ import aleiiioa.components.solver.ModifierComponent;
 class ModifierSystem extends echoes.System {
     // Solver is here only to provide check and grid conversion Not to produce side effects on it !!!// 
 	var solver:FluidSolver;
-	var t:Float;
-	var t_Max:Float = 50;
 	var command:InstancedCommands;
 
     public function new(_solver:FluidSolver) {
         solver = _solver;
-		t = 0;
 		command = new InstancedCommands();
     }
 
@@ -24,9 +21,7 @@ class ModifierSystem extends echoes.System {
 	    mod.equation = new Equation(mod.areaEquation);
 		modifierStoreCells(mod,gp);
 		computeCellDistanceToModifierPosition(mod,gp);
-		computeLocalUVFields(mod);
-		
-		
+		computeLocalUVFields(mod);	
     }
 	
 	@u function modifiersUpdate(dt:Float,mod:ModifierComponent,gp:GridPosition,spr:SpriteComponent) {
@@ -39,13 +34,6 @@ class ModifierSystem extends echoes.System {
 		if (!mod.isBlowing)
 			spr.colorize(mod.idleColor);
 		order(mod);
-/* 	
-		t += dt;
-		if (t > t_Max){
-			t = 0 ;
-			order(mod,command.turnOff);
-		}
-		mod.prevState = mod.isBlowing; */
 	}
 
 	public function order(mod:ModifierComponent) {

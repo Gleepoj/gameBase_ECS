@@ -1,7 +1,6 @@
 package aleiiioa.systems.core;
 
 import aleiiioa.components.core.BoundingBox;
-import aleiiioa.components.vehicule.PathComponent;
 import aleiiioa.components.core.*;
 import echoes.Entity;
 

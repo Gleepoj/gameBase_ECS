@@ -1,10 +1,7 @@
 package aleiiioa.systems.core;
 
-import aleiiioa.components.solver.ModifierComponent;
 import aleiiioa.components.core.*;
 import aleiiioa.components.vehicule.SteeringWheel;
-//import aleiiioa.components.VelocityComponent;
-
 
 class Physics extends echoes.System {
 	
@@ -13,7 +10,7 @@ class Physics extends echoes.System {
 	
 	}
 
-	@u function updateBoids(gp:GridPosition,sw:SteeringWheel,vc:VelocityComponent,bb:BoundingBox) {
+	@u function updateBoids(gp:GridPosition,vc:VelocityComponent,sw:SteeringWheel) {
 		vc.dx += sw.eulerSteering.x ;
 		vc.dy += sw.eulerSteering.y ;
 		fixedUpdate(gp,vc);

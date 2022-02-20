@@ -15,10 +15,6 @@ class GridPositionActualizer extends echoes.System {
 		updateLastFixedUpdatePos(gp);
     }
 
-    @r function clearGPos(gp:GridPosition) {
-		
-	}
-
 	function setPosCase(gp:GridPosition,_cx:Int,_cy:Int) {
 		gp.cx = _cx;
 		gp.cy = _cy;
