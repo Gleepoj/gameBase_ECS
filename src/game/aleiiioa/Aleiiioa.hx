@@ -1,10 +1,13 @@
 package aleiiioa;
 
-import aleiiioa.systems.collisions.BulletCollisionSystem;
-import aleiiioa.systems.vehicule.*;
-import aleiiioa.systems.core.*;
-import aleiiioa.systems.solver.*;
 import aleiiioa.builders.*;
+
+import aleiiioa.systems.core.*;
+import aleiiioa.systems.core.renderer.*;
+import aleiiioa.systems.solver.*;
+import aleiiioa.systems.collisions.*;
+import aleiiioa.systems.vehicule.*;
+
 
 import echoes.Workflow;
 
@@ -17,20 +20,25 @@ class Aleiiioa extends Game {
 		Workflow.reset();
 		Game.ME.camera.clampToLevelBounds = true;
 
-		Workflow.addSystem(new GridPositionActualizer());
+		//Collision
+		Workflow.addSystem(new LevelCollisionsSystem());
+		Workflow.addSystem(new EntityCollisionsSystem());
+
+		//Logic
 		Workflow.addSystem(new PathActualizer());
 		Workflow.addSystem(new SteeringBehaviors());
 		Workflow.addSystem(new GunSystem());
-		Workflow.addSystem(new BulletCollisionSystem());
 		
-		Workflow.addSystem(new Solvered());
+		//Physics
+		Workflow.addSystem(new Solvered());// is Hiding Modifier system // 
 		Workflow.addSystem(new Physics());
-		Workflow.addSystem(new LevelCollisionsSystem());
+		Workflow.addSystem(new GridPositionActualizer());
+		
 		 
 
 		Workflow.add60FpsSystem(new InputSystem());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
-		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
+		Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
 		 
 /* 		for (i in 0...level.cWid){
 			for(j in 0...level.cHei){

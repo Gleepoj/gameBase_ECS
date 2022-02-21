@@ -1,8 +1,8 @@
-package aleiiioa.systems.core;
+package aleiiioa.systems.core.renderer;
 
 import aleiiioa.components.core.*;
 
-class BoundingBoxSystem extends echoes.System{
+class BoundingBoxRenderer extends echoes.System{
     var gameScroller:h2d.Layers;
     
     public function new(scroller:h2d.Layers){

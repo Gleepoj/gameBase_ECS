@@ -38,7 +38,7 @@ class InputSystem extends echoes.System {
 
 		if (ca.isDown(Jump)){
 			mod.currentOrder = command.repel;
-			trace(Workflow.entities.length);
+			//trace(Workflow.entities.length);
 		}
     }
 

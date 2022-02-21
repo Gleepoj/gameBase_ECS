@@ -1,6 +1,5 @@
-package aleiiioa.systems.core;
+package aleiiioa.systems.collisions;
 
-import aleiiioa.components.core.BoundingBox;
 import aleiiioa.components.core.*;
 import echoes.Entity;
 

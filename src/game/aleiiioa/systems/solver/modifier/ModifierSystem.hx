@@ -33,10 +33,12 @@ class ModifierSystem extends echoes.System {
 			spr.colorize(mod.activeColor);
 		if (!mod.isBlowing)
 			spr.colorize(mod.idleColor);
+		order(mod);
 	}
 
 	public function order(mod:ModifierComponent) {
-        mod.currentOrder.execute(mod);
+		if(mod.currentOrder != null)
+        	mod.currentOrder.execute(mod);
     }
 
 	private function modifierStoreCells(mod:ModifierComponent,gp:GridPosition) {

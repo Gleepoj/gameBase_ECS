@@ -7,7 +7,7 @@ import aleiiioa.components.BulletComponent;
 import aleiiioa.components.core.GridPosition;
 
 
-class BulletCollisionSystem extends echoes.System {
+class EntityCollisionsSystem extends echoes.System {
     var ALL_ENNEMY_BULLETS:View<GridPosition,BulletComponent,EnnemyFlag>;
     var ALL_PLAYER_BULLETS:View<GridPosition,BulletComponent,FriendlyFlag>;
     var ALL_VESSELS:View<GridPosition,VesselFlag>;
@@ -22,9 +22,9 @@ class BulletCollisionSystem extends echoes.System {
         while (head != null){
             var bullet = head.value;
             var vecBullet = bullet.get(GridPosition).gpToVector();
-            if(vecPos.distance(vecBullet)<20)
-                    trace("P collide w enmy bullet");
-
+            if(vecPos.distance(vecBullet)<20){
+                   // trace("P collide w enmy bullet");
+            }
             head = head.next;
         }
     }
@@ -35,9 +35,9 @@ class BulletCollisionSystem extends echoes.System {
         while (head != null){
             var bullet = head.value;
             var vecBullet = bullet.get(GridPosition).gpToVector();
-            if(vecPos.distance(vecBullet)<20)
-                    trace("V collide w Pl bullet");
-            
+            if(vecPos.distance(vecBullet)<20){
+                    //trace("V collide w Pl bullet");
+            }
             head = head.next;
         }
     }
@@ -48,9 +48,9 @@ class BulletCollisionSystem extends echoes.System {
         while (head != null){
             var vessel = head.value;
             var vecVessel = vessel.get(GridPosition).gpToVector();
-            if(vecPos.distance(vecVessel)<40)
-                    trace("Pl collide w Vessel");
-            
+            if(vecPos.distance(vecVessel)<40){
+                    //trace("Pl collide w Vessel");
+            }
             head = head.next;
         }
     }
