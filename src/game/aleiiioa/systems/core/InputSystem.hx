@@ -45,10 +45,10 @@ class InputSystem extends echoes.System {
 	
     @u function inputPlayerControlledShip(vas:VelocityAnalogSpeed,inp:InputComponent){
         if ( ca.getAnalogDist(MoveY)>0){
-			vas.ySpeed = ca.getAnalogValue(MoveY); 
+			vas.ySpeed = ca.getAnalogValue(MoveY)*0.7; 
 		}
 		if( ca.getAnalogDist(MoveX)>0 ) {
-			vas.xSpeed = ca.getAnalogValue(MoveX); // -1 to 1
+			vas.xSpeed = ca.getAnalogValue(MoveX)*0.7; // -1 to 1
 		}
 
     }

@@ -8,7 +8,7 @@ class GridPositionActualizer extends echoes.System {
     }
 
     @a function onGridPositionAdded(gp:GridPosition) {
-       setPosCase(gp,gp.cx,gp.cy); 
+	   onPosManuallyChanged(gp);
     }
     
     @u inline function ActualizeGridComponent(gp:GridPosition){

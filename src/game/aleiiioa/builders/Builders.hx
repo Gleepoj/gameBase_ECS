@@ -15,31 +15,32 @@ class Builders {
         var spr = new SpriteComponent();
         var se  = new SpriteExtension();
         var pos = new GridPosition(cx,cy);
-        var bb  = new BoundingBox(pos.attachX,pos.attachY);
+        var bb  = new BoundingBox();
         var vc  = new VelocityComponent();
         var sw  = new SteeringWheel();
         new echoes.Entity().add(spr,se,pos,bb,vc,sw);
     }
 
-    public static function bullet(cx:Int,cy:Int,xr:Float,yr:Float) {
+    public static function bullet(gGp:GridPosition,angle:Float,speed:Float) {
         var spr = new SpriteComponent();
         var se  = new SpriteExtension();
-        var pos = new GridPosition(cx,cy,xr,yr);
-        var bb  = new BoundingBox(pos.attachX,pos.attachY);
+        var pos = new GridPosition(gGp.cx,gGp.cy,gGp.xr,gGp.yr);
+        var bb  = new BoundingBox();
         var vc  = new VelocityComponent();
         var vas = new VelocityAnalogSpeed();
-        var bul = new BulletComponent();
+        var bul = new BulletComponent(angle,speed);
         new echoes.Entity().add(spr,se,pos,bb,vc,vas,bul);
     }
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>) {
         var spr = new SpriteComponent();
         var se  = new SpriteExtension();
         var pos = new GridPosition(cx,cy);
-        var bb  = new BoundingBox(pos.attachX,pos.attachY);
+        var bb  = new BoundingBox();
         var vc  = new VelocityComponent();
         var sw  = new SteeringWheel();
         var path = new PathComponent(path);
-        new echoes.Entity().add(spr,se,pos,bb,vc,sw,path);
+        var gun = new GunComponent(false);
+        new echoes.Entity().add(spr,se,pos,bb,vc,sw,path,gun);
     }
 
     public static function basicPlayer(cx:Int,cy:Int) {
@@ -50,7 +51,7 @@ class Builders {
         var spr  = new SpriteComponent();
         var se   = new SpriteExtension();
         var inp  = new InputComponent();
-        var gun  = new GunComponent();
+        var gun  = new GunComponent(true);
     
         new echoes.Entity().add(pos,mod,vc,spr,se,inp,vas,gun);
     }

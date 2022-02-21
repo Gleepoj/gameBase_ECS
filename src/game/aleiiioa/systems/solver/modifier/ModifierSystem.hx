@@ -33,7 +33,6 @@ class ModifierSystem extends echoes.System {
 			spr.colorize(mod.activeColor);
 		if (!mod.isBlowing)
 			spr.colorize(mod.idleColor);
-		order(mod);
 	}
 
 	public function order(mod:ModifierComponent) {

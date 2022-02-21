@@ -22,7 +22,7 @@ class PathActualizer extends System {
         }        
         pc.currentStart = pc.path[pc.startIndex];
         pc.currentEnd   = pc.path[pc.endIndex];
-        swapPathDebugPoint(pc);
+        //swapPathDebugPoint(pc);
     }
 
     @u private function updatePathStatus(sw:SteeringWheel,pc:PathComponent) {
@@ -31,8 +31,8 @@ class PathActualizer extends System {
     }
 
     @r private function onRemovePathComponent(pc:PathComponent) {
-        pc.startDebug.destroy();
-        pc.endDebug.destroy();
+        //pc.startDebug.destroy();
+        //pc.endDebug.destroy();
     }
 
     private function swapPathDebugPoint(pc:PathComponent) {
@@ -51,7 +51,7 @@ class PathActualizer extends System {
             pc.currentStart = pc.path[pc.startIndex];
             pc.currentEnd = pc.path[pc.endIndex];
         }
-        swapPathDebugPoint(pc);
+        //swapPathDebugPoint(pc);
     }
     
     private function checkIfBoidHadReachEnd(pc:PathComponent,sw:SteeringWheel){

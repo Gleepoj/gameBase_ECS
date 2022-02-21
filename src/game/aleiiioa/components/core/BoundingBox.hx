@@ -39,9 +39,7 @@ class BoundingBox {
 		inline function get_largeRadius() return M.fmax(wid,hei)*0.5;
 
 
-	public function new(ax:Float,ay:Float) {
-		attachX = ax;
-		attachY = ay;
+	public function new() {
 	}
 
 	

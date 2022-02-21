@@ -22,7 +22,7 @@ class ModifierComponent {
 	public var activeColor:UInt = 0xff0000;
 	public var idleColor:UInt = 0x00eeff;
 
-	public var currentOrder:ModifierCommand;
+	public var currentOrder:ModifierCommand ;
 	
     public function new() {
         

@@ -12,6 +12,7 @@ class PathComponent {
     public var endIndex:Int;
     public var startIndex:Int;
 
+    //for temporary debug purpose ONLY cause major entity removal issue 
     public var startDebug:echoes.Entity;
     public var endDebug:echoes.Entity;
 
@@ -24,7 +25,7 @@ class PathComponent {
             var newPathPoint = new GridPosition(pt.cx,pt.cy);
             path.push(newPathPoint);
         }
-        startDebug = Builders.pointDebugger(0,0,false);
-        endDebug = Builders.pointDebugger(0,0,true);
+        //startDebug = Builders.pointDebugger(0,0,false);
+        //endDebug = Builders.pointDebugger(0,0,true);
     }
 }
