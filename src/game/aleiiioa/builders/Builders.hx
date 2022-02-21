@@ -1,5 +1,8 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.flags.FriendlyFlag;
+import aleiiioa.components.flags.EnnemyFlag;
+import aleiiioa.components.flags.PlayerFlag;
 import aleiiioa.components.vehicule.GunComponent;
 import aleiiioa.components.vehicule.PathComponent;
 import aleiiioa.components.vehicule.SteeringWheel;
@@ -21,7 +24,7 @@ class Builders {
         new echoes.Entity().add(spr,se,pos,bb,vc,sw);
     }
 
-    public static function bullet(gGp:GridPosition,gun:GunComponent) {
+    public static function ennemyBullet(gGp:GridPosition,gun:GunComponent) {
         var spr = new SpriteComponent(D.tiles.fxCircle7);
         var se  = new SpriteExtension();
         var pos = new GridPosition(gGp.cx,gGp.cy,gGp.xr,gGp.yr);
@@ -29,8 +32,22 @@ class Builders {
         var vc  = new VelocityComponent();
         var vas = new VelocityAnalogSpeed();
         var bul = new BulletComponent(gun);
-        new echoes.Entity().add(spr,se,pos,bb,vc,vas,bul);
+        var flag = new EnnemyFlag();
+        new echoes.Entity().add(spr,se,pos,bb,vc,vas,bul,flag);
     }
+
+    public static function friendlyBullet(gGp:GridPosition,gun:GunComponent) {
+        var spr = new SpriteComponent(D.tiles.fxCircle7);
+        var se  = new SpriteExtension();
+        var pos = new GridPosition(gGp.cx,gGp.cy,gGp.xr,gGp.yr);
+        var bb  = new BoundingBox();
+        var vc  = new VelocityComponent();
+        var vas = new VelocityAnalogSpeed();
+        var bul = new BulletComponent(gun);
+        var flag = new FriendlyFlag();
+        new echoes.Entity().add(spr,se,pos,bb,vc,vas,bul,flag);
+    }
+
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>) {
         var spr = new SpriteComponent(D.tiles.fxCircle15);
         var se  = new SpriteExtension();
@@ -52,8 +69,9 @@ class Builders {
         var se   = new SpriteExtension();
         var inp  = new InputComponent();
         var gun  = new GunComponent(true);
+        var flag = new PlayerFlag();
     
-        new echoes.Entity().add(pos,mod,vc,spr,se,inp,vas,gun);
+        new echoes.Entity().add(pos,mod,vc,spr,se,inp,vas,gun,flag);
     }
 
     public static function pointDebugger(cx:Int,cy:Int,endPoint:Bool) {

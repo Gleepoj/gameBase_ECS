@@ -24,6 +24,9 @@ class GunSystem extends echoes.System {
 
     function fireBullet(gun:GunComponent,gp:GridPosition) {
         gun.cd.setS("fire",gun.fireRate);
-        Builders.bullet(gp,gun);
+        if(!gun.friendly)
+            Builders.ennemyBullet(gp,gun);
+        if(gun.friendly)
+            Builders.friendlyBullet(gp,gun);
     }
 }
