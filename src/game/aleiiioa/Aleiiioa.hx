@@ -10,7 +10,7 @@ import echoes.Workflow;
 class Aleiiioa extends Game {
 	var game(get,never) : Game; inline function get_game() return Game.ME;
 
-	
+
 	public function new() {
 		super();
 		Workflow.reset();
@@ -19,6 +19,7 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GridPositionActualizer());
 		Workflow.addSystem(new PathActualizer());
 		Workflow.addSystem(new SteeringBehaviors());
+		Workflow.addSystem(new GunSystem());
 		
 		Workflow.addSystem(new Solvered());
 		Workflow.addSystem(new Physics());
@@ -29,11 +30,11 @@ class Aleiiioa extends Game {
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxSystem(Game.ME.scroller));
 		 
-		for (i in 0...level.cWid){
+/* 		for (i in 0...level.cWid){
 			for(j in 0...level.cHei){
 				Builders.basicObject(i,j);
 			}
-		} 
+		}  */
 
 		for (b in level.data.l_Entities.all_Boides){
 			Builders.basicHunter(b.cx,b.cy,b.f_Path);

@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.vehicule.GunComponent;
 import aleiiioa.components.vehicule.PathComponent;
 import aleiiioa.components.vehicule.SteeringWheel;
 import aleiiioa.shaders.PressureShader.BitmapShader;
@@ -20,6 +21,16 @@ class Builders {
         new echoes.Entity().add(spr,se,pos,bb,vc,sw);
     }
 
+    public static function bullet(cx:Int,cy:Int,xr:Float,yr:Float) {
+        var spr = new SpriteComponent();
+        var se  = new SpriteExtension();
+        var pos = new GridPosition(cx,cy,xr,yr);
+        var bb  = new BoundingBox(pos.attachX,pos.attachY);
+        var vc  = new VelocityComponent();
+        var vas = new VelocityAnalogSpeed();
+        var bul = new BulletComponent();
+        new echoes.Entity().add(spr,se,pos,bb,vc,vas,bul);
+    }
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>) {
         var spr = new SpriteComponent();
         var se  = new SpriteExtension();
@@ -39,8 +50,9 @@ class Builders {
         var spr  = new SpriteComponent();
         var se   = new SpriteExtension();
         var inp  = new InputComponent();
-        
-        new echoes.Entity().add(pos,mod,vc,spr,se,inp,vas);
+        var gun  = new GunComponent();
+    
+        new echoes.Entity().add(pos,mod,vc,spr,se,inp,vas,gun);
     }
 
     public static function pointDebugger(cx:Int,cy:Int,endPoint:Bool) {

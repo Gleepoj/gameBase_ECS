@@ -38,10 +38,11 @@ class InputSystem extends echoes.System {
 
 		if (ca.isDown(Jump)){
 			mod.currentOrder = command.repel;
-			//trace(Workflow.entities.length);
+			trace(Workflow.entities.length);
 		}
     }
 
+	
     @u function inputPlayerControlledShip(vas:VelocityAnalogSpeed,inp:InputComponent){
         if ( ca.getAnalogDist(MoveY)>0){
 			vas.ySpeed = ca.getAnalogValue(MoveY); 

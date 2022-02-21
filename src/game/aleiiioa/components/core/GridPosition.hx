@@ -20,10 +20,12 @@ class GridPosition {
 	public var prevFrameattachX : Float = -Const.INFINITE;
 	public var prevFrameattachY : Float = -Const.INFINITE;
 
-
-    public function new(_cx:Int,_cy:Int) {
+    //y!=null ? y : x;
+    public function new(_cx:Int,_cy:Int,?_xr:Float,?_yr:Float) {
         cx = _cx;
         cy = _cy;
+        xr = _xr!=null ? _xr : 0.5;
+        yr = _yr!=null ? _yr : 1;
     }
 
     public function gpToVector() {
