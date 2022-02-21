@@ -12,7 +12,7 @@ import aleiiioa.components.solver.*;
 class Builders {
     
     public static function basicObject(cx,cy) {
-        var spr = new SpriteComponent();
+        var spr = new SpriteComponent(D.tiles.fxCircle15);
         var se  = new SpriteExtension();
         var pos = new GridPosition(cx,cy);
         var bb  = new BoundingBox();
@@ -21,18 +21,18 @@ class Builders {
         new echoes.Entity().add(spr,se,pos,bb,vc,sw);
     }
 
-    public static function bullet(gGp:GridPosition,angle:Float,speed:Float) {
-        var spr = new SpriteComponent();
+    public static function bullet(gGp:GridPosition,gun:GunComponent) {
+        var spr = new SpriteComponent(D.tiles.fxCircle7);
         var se  = new SpriteExtension();
         var pos = new GridPosition(gGp.cx,gGp.cy,gGp.xr,gGp.yr);
         var bb  = new BoundingBox();
         var vc  = new VelocityComponent();
         var vas = new VelocityAnalogSpeed();
-        var bul = new BulletComponent(angle,speed);
+        var bul = new BulletComponent(gun);
         new echoes.Entity().add(spr,se,pos,bb,vc,vas,bul);
     }
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>) {
-        var spr = new SpriteComponent();
+        var spr = new SpriteComponent(D.tiles.fxCircle15);
         var se  = new SpriteExtension();
         var pos = new GridPosition(cx,cy);
         var bb  = new BoundingBox();
@@ -48,7 +48,7 @@ class Builders {
         var mod  = new ModifierComponent();
         var vc   = new VelocityComponent();
         var vas  = new VelocityAnalogSpeed();
-        var spr  = new SpriteComponent();
+        var spr  = new SpriteComponent(D.tiles.Square);
         var se   = new SpriteExtension();
         var inp  = new InputComponent();
         var gun  = new GunComponent(true);
@@ -57,7 +57,7 @@ class Builders {
     }
 
     public static function pointDebugger(cx:Int,cy:Int,endPoint:Bool) {
-        var spr = new SpriteComponent();
+        var spr = new SpriteComponent(D.tiles.fxDot);
         var se  = new SpriteExtension();
         var pos = new GridPosition(cx,cy);
         spr.colorize(0xefef00);

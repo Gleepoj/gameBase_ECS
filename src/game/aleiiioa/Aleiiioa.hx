@@ -1,5 +1,6 @@
 package aleiiioa;
 
+import aleiiioa.systems.collisions.BulletCollisionSystem;
 import aleiiioa.systems.vehicule.*;
 import aleiiioa.systems.core.*;
 import aleiiioa.systems.solver.*;
@@ -20,6 +21,7 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new PathActualizer());
 		Workflow.addSystem(new SteeringBehaviors());
 		Workflow.addSystem(new GunSystem());
+		Workflow.addSystem(new BulletCollisionSystem());
 		
 		Workflow.addSystem(new Solvered());
 		Workflow.addSystem(new Physics());

@@ -13,8 +13,8 @@ class GunComponent {
     public function new(?_friendly:Bool) {
         friendly = _friendly!=null ? _friendly:false;
         cd = new Cooldown(Const.FIXED_UPDATE_FPS);
-        fireRate = 0.1;
-        fireSpeed = 1.2;
+        fireRate = 0.3;
+        fireSpeed = 0.5;
 
         if(friendly)
             ang = -Math.PI/2;

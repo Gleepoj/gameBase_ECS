@@ -16,12 +16,10 @@ class SpriteRenderer extends echoes.System {
 
 	@a function onEntityAdded(spr:SpriteComponent) {
 		this.gameScroller.add(spr,Const.DP_FRONT);
-		spr.set(D.tiles.fxCircle15);
 		spr.setCenterRatio(0.5,1);
 		spr.alpha = 1;
-		spr.x = 0;
-		spr.y = 20;
 	}
+	
 	@u inline function updateSpritePosition(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
 		this.renderSprite(dt,spr,gp,se);
 	}
@@ -69,10 +67,3 @@ class SpriteRenderer extends echoes.System {
 		se.squashY += (1 - se.squashY) * M.fmin(1, 0.2 * dt);		
 	}
 }
-
-    /* var screenAttachX(get,never) : Float;
-        inline function get_screenAttachX() return game!=null && !game.destroyed ? sprX*Const.SCALE + game.scroller.x : sprX*Const.SCALE;
-
-    var screenAttachY(get,never) : Float;
-        inline function get_screenAttachY() return game!=null && !game.destroyed ? sprY*Const.SCALE + game.scroller.y : sprY*Const.SCALE;
-     */

@@ -11,10 +11,7 @@ class GunSystem extends echoes.System {
     public function new() {
         
     }
-    @a function onBulletAdded(vas:VelocityAnalogSpeed,bul:BulletComponent) {
-        vas.xSpeed = Math.cos(bul.ang)*bul.speed;
-        vas.ySpeed = Math.sin(bul.ang)*bul.speed;
-    }
+
     @a function onGunAdded(gun:GunComponent) {
         gun.cd.setS("fire",gun.fireRate);
     }
@@ -27,6 +24,6 @@ class GunSystem extends echoes.System {
 
     function fireBullet(gun:GunComponent,gp:GridPosition) {
         gun.cd.setS("fire",gun.fireRate);
-        Builders.bullet(gp,gun.ang,gun.fireSpeed);
+        Builders.bullet(gp,gun);
     }
 }
