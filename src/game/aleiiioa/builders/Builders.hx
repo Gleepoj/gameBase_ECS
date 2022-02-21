@@ -1,11 +1,7 @@
 package aleiiioa.builders;
 
-import aleiiioa.components.flags.FriendlyFlag;
-import aleiiioa.components.flags.EnnemyFlag;
-import aleiiioa.components.flags.PlayerFlag;
-import aleiiioa.components.vehicule.GunComponent;
-import aleiiioa.components.vehicule.PathComponent;
-import aleiiioa.components.vehicule.SteeringWheel;
+import aleiiioa.components.flags.*;
+import aleiiioa.components.vehicule.*;
 import aleiiioa.shaders.PressureShader.BitmapShader;
 import aleiiioa.components.*;
 import aleiiioa.components.core.*;
@@ -57,7 +53,8 @@ class Builders {
         var sw  = new SteeringWheel();
         var path = new PathComponent(path);
         var gun = new GunComponent(false);
-        new echoes.Entity().add(spr,se,pos,bb,vc,sw,path,gun);
+        var flag = new VesselFlag();
+        new echoes.Entity().add(spr,se,pos,bb,vc,sw,path,gun,flag);
     }
 
     public static function basicPlayer(cx:Int,cy:Int) {

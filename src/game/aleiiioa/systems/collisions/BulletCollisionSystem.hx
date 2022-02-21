@@ -1,23 +1,21 @@
 package aleiiioa.systems.collisions;
 
-import aleiiioa.components.flags.EnnemyFlag;
-import aleiiioa.components.flags.PlayerFlag;
-import aleiiioa.components.InputComponent;
-import aleiiioa.components.core.GridPosition;
+
 import echoes.View;
+import aleiiioa.components.flags.*;
 import aleiiioa.components.BulletComponent;
-import aleiiioa.components.core.VelocityAnalogSpeed;
+import aleiiioa.components.core.GridPosition;
 
 
 class BulletCollisionSystem extends echoes.System {
     var ALL_ENNEMY_BULLETS:View<GridPosition,BulletComponent,EnnemyFlag>;
+    var ALL_PLAYER_BULLETS:View<GridPosition,BulletComponent,FriendlyFlag>;
+    var ALL_VESSELS:View<GridPosition,VesselFlag>;
+
     public function new() {
         
     }
-    @a function onBulletAdded(vas:VelocityAnalogSpeed,bul:BulletComponent) {
-        vas.xSpeed = Math.cos(bul.ang)*bul.speed;
-        vas.ySpeed = Math.sin(bul.ang)*bul.speed;
-    }
+
     @u function bulletCollideWithPlayer(gp:GridPosition,flag:PlayerFlag) {
         var head = ALL_ENNEMY_BULLETS.entities.head;
         var vecPos = gp.gpToVector();
@@ -25,7 +23,33 @@ class BulletCollisionSystem extends echoes.System {
             var bullet = head.value;
             var vecBullet = bullet.get(GridPosition).gpToVector();
             if(vecPos.distance(vecBullet)<20)
-                    trace("player collide with ennemy bullet");
+                    trace("P collide w enmy bullet");
+
+            head = head.next;
+        }
+    }
+
+    @u function bulletCollideWithVessels(gp:GridPosition,flag:VesselFlag) {
+        var head = ALL_PLAYER_BULLETS.entities.head;
+        var vecPos = gp.gpToVector();
+        while (head != null){
+            var bullet = head.value;
+            var vecBullet = bullet.get(GridPosition).gpToVector();
+            if(vecPos.distance(vecBullet)<20)
+                    trace("V collide w Pl bullet");
+            
+            head = head.next;
+        }
+    }
+
+    @u function playerCollideWithVessels(gp:GridPosition,flag:PlayerFlag) {
+        var head = ALL_VESSELS.entities.head;
+        var vecPos = gp.gpToVector();
+        while (head != null){
+            var vessel = head.value;
+            var vecVessel = vessel.get(GridPosition).gpToVector();
+            if(vecPos.distance(vecVessel)<40)
+                    trace("Pl collide w Vessel");
             
             head = head.next;
         }
