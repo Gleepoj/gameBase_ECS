@@ -41,7 +41,7 @@ class Builders {
         var vc  = new VelocityComponent();
         var vas = new VelocityAnalogSpeed();
         var bul = new BulletComponent(gun);
-        var flag = new FriendlyFlag();
+        var flag = new FriendlyFlag();  
         new echoes.Entity().add(spr,se,pos,bb,vc,vas,bul,flag);
     }
 
@@ -55,7 +55,8 @@ class Builders {
         var path = new PathComponent(path);
         var gun = new GunComponent(false);
         var flag = new VesselFlag();
-        new echoes.Entity().add(spr,se,pos,bb,vc,sw,path,gun,flag);
+        var cl   = new CollisionsListener();
+        new echoes.Entity().add(spr,se,pos,bb,vc,sw,path,gun,flag,cl);
     }
 
     public static function basicPlayer(cx:Int,cy:Int) {
@@ -68,8 +69,8 @@ class Builders {
         var inp  = new InputComponent();
         var gun  = new GunComponent(true);
         var flag = new PlayerFlag();
-    
-        new echoes.Entity().add(pos,mod,vc,spr,se,inp,vas,gun,flag);
+        var cl   = new CollisionsListener();
+        new echoes.Entity().add(pos,mod,vc,spr,se,inp,vas,gun,flag,cl);
     }
 
     public static function pointDebugger(cx:Int,cy:Int,endPoint:Bool) {

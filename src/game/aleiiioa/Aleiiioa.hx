@@ -23,6 +23,7 @@ class Aleiiioa extends Game {
 		//Collision
 		Workflow.addSystem(new LevelCollisionsSystem());
 		Workflow.addSystem(new EntityCollisionsSystem());
+		Workflow.addSystem(new CollisionsListenerActualizer());
 
 		//Logic
 		Workflow.addSystem(new PathActualizer());

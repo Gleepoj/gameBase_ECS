@@ -23,6 +23,7 @@ class SpriteRenderer extends echoes.System {
 	@u inline function updateSpritePosition(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
 		this.renderSprite(dt,spr,gp,se);
 	}
+	
 	@r function onEntityRemoved(spr:SpriteComponent) {
 		spr.remove();
 	}
