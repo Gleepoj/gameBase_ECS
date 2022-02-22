@@ -12,9 +12,5 @@ class CollisionsListenerActualizer extends System {
 
     @u function cooldownUpdate(dt:Float,cl:CollisionsListener) {
         cl.cd.update(dt);
-        if(cl.onBulletHit)
-            trace("bullethit");
-        if(cl.onVesselHit)
-            trace("vesselhit");
     }
 }

@@ -34,8 +34,9 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new Solvered());// is Hiding Modifier system // 
 		Workflow.addSystem(new Physics());
 		Workflow.addSystem(new GridPositionActualizer());
-		
-		 
+
+		//Graphics
+		Workflow.addSystem(new SpriteExtensionFx());
 
 		Workflow.add60FpsSystem(new InputSystem());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
