@@ -9,7 +9,7 @@
 		"url": "https://ldtk.io"
 	},
 	"jsonVersion": "0.9.3",
-	"nextUid": 30,
+	"nextUid": 31,
 	"worldLayout": "LinearHorizontal",
 	"worldGridWidth": 256,
 	"worldGridHeight": 256,
@@ -209,7 +209,7 @@
 			"fieldDefs": []
 		},
 		{
-			"identifier": "Boides",
+			"identifier": "Vessel",
 			"uid": 27,
 			"tags": [],
 			"width": 16,
@@ -250,6 +250,26 @@
 					"regex": null,
 					"acceptFileTypes": null,
 					"defaultOverride": null,
+					"textLanguageMode": null
+				},
+				{
+					"identifier": "spawn_sec",
+					"__type": "Int",
+					"uid": 30,
+					"type": "F_Int",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "NameAndValue",
+					"editorDisplayPos": "Above",
+					"editorAlwaysShow": false,
+					"editorCutLongValues": true,
+					"min": 1,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": { "id": "V_Int", "params": [1] },
 					"textLanguageMode": null
 				}
 			]
@@ -356,177 +376,248 @@
 							"fieldInstances": []
 						},
 						{
-							"__identifier": "Boides",
-							"__grid": [8,4],
+							"__identifier": "Vessel",
+							"__grid": [19,4],
 							"__pivot": [0.5,0.5],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 27,
-							"px": [140,73],
-							"fieldInstances": [{
-								"__identifier": "Path",
-								"__value": [ { "cx": 5, "cy": 12 }, { "cx": 5, "cy": 43 } ],
-								"__type": "Array<Point>",
-								"defUid": 29,
-								"realEditorValues": [ {
-									"id": "V_String",
-									"params": ["5,12"]
-								}, {
-									"id": "V_String",
-									"params": ["5,43"]
-								} ]
-							}]
+							"px": [319,69],
+							"fieldInstances": [
+								{
+									"__identifier": "Path",
+									"__value": [ { "cx": 10, "cy": 11 }, { "cx": 10, "cy": 52 } ],
+									"__type": "Array<Point>",
+									"defUid": 29,
+									"realEditorValues": [ {
+										"id": "V_String",
+										"params": ["10,11"]
+									}, {
+										"id": "V_String",
+										"params": ["10,52"]
+									} ]
+								},
+								{
+									"__identifier": "spawn_sec",
+									"__value": 4,
+									"__type": "Int",
+									"defUid": 30,
+									"realEditorValues": [{ "id": "V_Int", "params": [4] }]
+								}
+							]
 						},
 						{
-							"__identifier": "Boides",
-							"__grid": [17,4],
+							"__identifier": "Vessel",
+							"__grid": [19,7],
 							"__pivot": [0.5,0.5],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 27,
-							"px": [286,69],
-							"fieldInstances": [{
-								"__identifier": "Path",
-								"__value": [ { "cx": 14, "cy": 12 }, { "cx": 14, "cy": 44 } ],
-								"__type": "Array<Point>",
-								"defUid": 29,
-								"realEditorValues": [ {
-									"id": "V_String",
-									"params": ["14,12"]
-								}, {
-									"id": "V_String",
-									"params": ["14,44"]
-								} ]
-							}]
+							"px": [318,117],
+							"fieldInstances": [
+								{
+									"__identifier": "Path",
+									"__value": [ { "cx": 13, "cy": 12 }, { "cx": 13, "cy": 52 } ],
+									"__type": "Array<Point>",
+									"defUid": 29,
+									"realEditorValues": [ {
+										"id": "V_String",
+										"params": ["13,12"]
+									}, {
+										"id": "V_String",
+										"params": ["13,52"]
+									} ]
+								},
+								{
+									"__identifier": "spawn_sec",
+									"__value": 3,
+									"__type": "Int",
+									"defUid": 30,
+									"realEditorValues": [{ "id": "V_Int", "params": [3] }]
+								}
+							]
 						},
 						{
-							"__identifier": "Boides",
-							"__grid": [23,9],
+							"__identifier": "Vessel",
+							"__grid": [19,10],
 							"__pivot": [0.5,0.5],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 27,
-							"px": [370,144],
-							"fieldInstances": [{
-								"__identifier": "Path",
-								"__value": [ { "cx": 32, "cy": 16 }, { "cx": 32, "cy": 44 } ],
-								"__type": "Array<Point>",
-								"defUid": 29,
-								"realEditorValues": [ {
-									"id": "V_String",
-									"params": ["32,16"]
-								}, {
-									"id": "V_String",
-									"params": ["32,44"]
-								} ]
-							}]
+							"px": [318,163],
+							"fieldInstances": [
+								{
+									"__identifier": "Path",
+									"__value": [ { "cx": 27, "cy": 18 }, { "cx": 27, "cy": 52 } ],
+									"__type": "Array<Point>",
+									"defUid": 29,
+									"realEditorValues": [ {
+										"id": "V_String",
+										"params": ["27,18"]
+									}, {
+										"id": "V_String",
+										"params": ["27,52"]
+									} ]
+								},
+								{
+									"__identifier": "spawn_sec",
+									"__value": 2,
+									"__type": "Int",
+									"defUid": 30,
+									"realEditorValues": [{ "id": "V_Int", "params": [2] }]
+								}
+							]
 						},
 						{
-							"__identifier": "Boides",
-							"__grid": [34,9],
+							"__identifier": "Vessel",
+							"__grid": [19,13],
 							"__pivot": [0.5,0.5],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 27,
-							"px": [549,156],
-							"fieldInstances": [{
-								"__identifier": "Path",
-								"__value": [{ "cx": 9, "cy": 45 }],
-								"__type": "Array<Point>",
-								"defUid": 29,
-								"realEditorValues": [{
-									"id": "V_String",
-									"params": ["9,45"]
-								}]
-							}]
+							"px": [318,211],
+							"fieldInstances": [
+								{
+									"__identifier": "Path",
+									"__value": [ { "cx": 25, "cy": 19 }, { "cx": 25, "cy": 52 } ],
+									"__type": "Array<Point>",
+									"defUid": 29,
+									"realEditorValues": [ {
+										"id": "V_String",
+										"params": ["25,19"]
+									}, {
+										"id": "V_String",
+										"params": ["25,52"]
+									} ]
+								},
+								{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 30, "realEditorValues": [] }
+							]
 						},
 						{
-							"__identifier": "Boides",
-							"__grid": [9,17],
+							"__identifier": "Vessel",
+							"__grid": [22,5],
 							"__pivot": [0.5,0.5],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 27,
-							"px": [149,279],
-							"fieldInstances": [{
-								"__identifier": "Path",
-								"__value": [{ "cx": 39, "cy": 45 }],
-								"__type": "Array<Point>",
-								"defUid": 29,
-								"realEditorValues": [{
-									"id": "V_String",
-									"params": ["39,45"]
-								}]
-							}]
+							"px": [357,90],
+							"fieldInstances": [
+								{
+									"__identifier": "Path",
+									"__value": [ { "cx": 31, "cy": 12 }, { "cx": 31, "cy": 52 } ],
+									"__type": "Array<Point>",
+									"defUid": 29,
+									"realEditorValues": [ {
+										"id": "V_String",
+										"params": ["31,12"]
+									}, {
+										"id": "V_String",
+										"params": ["31,52"]
+									} ]
+								},
+								{
+									"__identifier": "spawn_sec",
+									"__value": 4,
+									"__type": "Int",
+									"defUid": 30,
+									"realEditorValues": [{ "id": "V_Int", "params": [4] }]
+								}
+							]
 						},
 						{
-							"__identifier": "Boides",
-							"__grid": [19,15],
+							"__identifier": "Vessel",
+							"__grid": [22,8],
 							"__pivot": [0.5,0.5],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 27,
-							"px": [304,247],
-							"fieldInstances": [{
-								"__identifier": "Path",
-								"__value": [
-									{ "cx": 24, "cy": 16 },
-									{ "cx": 19, "cy": 24 },
-									{ "cx": 29, "cy": 29 },
-									{ "cx": 30, "cy": 23 },
-									{ "cx": 36, "cy": 19 },
-									{ "cx": 28, "cy": 35 },
-									{ "cx": 17, "cy": 32 },
-									{ "cx": 11, "cy": 26 },
-									{ "cx": 12, "cy": 2 }
-								],
-								"__type": "Array<Point>",
-								"defUid": 29,
-								"realEditorValues": [
-									{
+							"px": [357,137],
+							"fieldInstances": [
+								{
+									"__identifier": "Path",
+									"__value": [ { "cx": 29, "cy": 14 }, { "cx": 29, "cy": 52 } ],
+									"__type": "Array<Point>",
+									"defUid": 29,
+									"realEditorValues": [ {
 										"id": "V_String",
-										"params": ["24,16"]
-									},
-									{
+										"params": ["29,14"]
+									}, {
 										"id": "V_String",
-										"params": ["19,24"]
-									},
-									{
+										"params": ["29,52"]
+									} ]
+								},
+								{
+									"__identifier": "spawn_sec",
+									"__value": 3,
+									"__type": "Int",
+									"defUid": 30,
+									"realEditorValues": [{ "id": "V_Int", "params": [3] }]
+								}
+							]
+						},
+						{
+							"__identifier": "Vessel",
+							"__grid": [22,11],
+							"__pivot": [0.5,0.5],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 27,
+							"px": [356,186],
+							"fieldInstances": [
+								{
+									"__identifier": "Path",
+									"__value": [ { "cx": 16, "cy": 15 }, { "cx": 16, "cy": 52 } ],
+									"__type": "Array<Point>",
+									"defUid": 29,
+									"realEditorValues": [ {
 										"id": "V_String",
-										"params": ["29,29"]
-									},
-									{
+										"params": ["16,15"]
+									}, {
 										"id": "V_String",
-										"params": ["30,23"]
-									},
-									{
+										"params": ["16,52"]
+									} ]
+								},
+								{
+									"__identifier": "spawn_sec",
+									"__value": 2,
+									"__type": "Int",
+									"defUid": 30,
+									"realEditorValues": [{ "id": "V_Int", "params": [2] }]
+								}
+							]
+						},
+						{
+							"__identifier": "Vessel",
+							"__grid": [22,15],
+							"__pivot": [0.5,0.5],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 27,
+							"px": [357,240],
+							"fieldInstances": [
+								{
+									"__identifier": "Path",
+									"__value": [ { "cx": 18, "cy": 18 }, { "cx": 18, "cy": 52 } ],
+									"__type": "Array<Point>",
+									"defUid": 29,
+									"realEditorValues": [ {
 										"id": "V_String",
-										"params": ["36,19"]
-									},
-									{
+										"params": ["18,18"]
+									}, {
 										"id": "V_String",
-										"params": ["28,35"]
-									},
-									{
-										"id": "V_String",
-										"params": ["17,32"]
-									},
-									{
-										"id": "V_String",
-										"params": ["11,26"]
-									},
-									{
-										"id": "V_String",
-										"params": ["12,2"]
-									}
-								]
-							}]
+										"params": ["18,52"]
+									} ]
+								},
+								{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 30, "realEditorValues": [] }
+							]
 						}
 					]
 				},

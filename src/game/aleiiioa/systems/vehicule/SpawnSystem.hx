@@ -8,7 +8,7 @@ import aleiiioa.components.flags.*;
 class SpawnSystem extends System{
     
     var ALL_VESSELS:View<VesselFlag>;
-    var TIME:Float;
+    var TIME:Int;
     var INACTIVE_VESSELS:Array<Entity>;
 
     public function new() {
@@ -22,10 +22,10 @@ class SpawnSystem extends System{
     }
 
     @u function spawnUpdate(dt:Float) {
-       TIME = Game.ME.stime;
+       TIME = Math.floor(Game.ME.stime);
 
         for(en in INACTIVE_VESSELS){
-                if(TIME > en.get(TimeFlag).SPAWN_SEC)
+                if(TIME >= en.get(TimeFlag).SPAWN_SEC)
                     reactivateEntity(en);
             
         }

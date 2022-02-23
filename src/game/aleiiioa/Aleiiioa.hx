@@ -20,8 +20,8 @@ class Aleiiioa extends Game {
 		Workflow.reset();
 		Game.ME.camera.clampToLevelBounds = true;
 
-		for (b in level.data.l_Entities.all_Boides){
-			Builders.basicHunter(b.cx,b.cy,b.f_Path);
+		for (b in level.data.l_Entities.all_Vessel){
+			Builders.basicHunter(b.cx,b.cy,b.f_Path,b.f_spawn_sec);
 		}
 		var player = level.data.l_Entities.all_PlayerStart[0];
 

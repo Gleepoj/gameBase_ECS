@@ -30,7 +30,7 @@ class Builders {
         new echoes.Entity().add(pos,spr,se,vc,bb,mod,inp,vas,gun,flag,cl);
     }
 
-    public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>) {
+    public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {
         var pos = new GridPosition(cx,cy);
         var spr = new SpriteComponent(D.tiles.fxCircle15);
         var se  = new SpriteExtension();
@@ -42,7 +42,7 @@ class Builders {
         var gun  = new GunComponent(false);
         var cl   = new CollisionsListener();
        
-        var tflag = new TimeFlag();
+        var tflag = new TimeFlag(sec);
         var flag  = new VesselFlag();
         
         new echoes.Entity().add(pos,spr,se,vc,bb,sw,path,gun,cl,flag,tflag);
