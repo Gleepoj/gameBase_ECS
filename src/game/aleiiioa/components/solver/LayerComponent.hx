@@ -2,12 +2,7 @@ package aleiiioa.components.solver;
 
 import aleiiioa.shaders.PressureShader.BitmapShader;
 import h2d.Tile;
-import h2d.filter.Shader;
 import h2d.Bitmap;
-import format.abc.Data.IName;
-import hxd.BitmapData;
-import aleiiioa.systems.shaders.*;
-import aleiiioa.systems.shaders.*;
 
 class LayerComponent {
     public var bitmap:Bitmap;

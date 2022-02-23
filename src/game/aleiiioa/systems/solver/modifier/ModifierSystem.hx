@@ -28,11 +28,7 @@ class ModifierSystem extends echoes.System {
 		modifierStoreCells(mod,gp);
 		computeCellDistanceToModifierPosition(mod,gp);
 		computeLocalUVFields(mod);
-
-		if (mod.isBlowing)
-			spr.colorize(mod.activeColor);
-		if (!mod.isBlowing)
-			spr.colorize(mod.idleColor);
+		
 		order(mod);
 	}
 

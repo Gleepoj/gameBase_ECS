@@ -19,7 +19,7 @@ class ModifierComponent {
     public var equation:Equation;
 
 	public var prevState:Bool;
-	public var activeColor:UInt = 0xff0000;
+	public var activeColor:UInt = 0xffff00;
 	public var idleColor:UInt = 0x00eeff;
 
 	public var currentOrder:ModifierCommand ;

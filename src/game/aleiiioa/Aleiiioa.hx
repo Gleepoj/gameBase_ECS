@@ -20,6 +20,15 @@ class Aleiiioa extends Game {
 		Workflow.reset();
 		Game.ME.camera.clampToLevelBounds = true;
 
+		for (b in level.data.l_Entities.all_Boides){
+			Builders.basicHunter(b.cx,b.cy,b.f_Path);
+		}
+		var player = level.data.l_Entities.all_PlayerStart[0];
+
+		Builders.basicPlayer(player.cx,player.cy);
+
+
+		Workflow.addSystem(new SpawnSystem());
 		//Collision
 		Workflow.addSystem(new LevelCollisionsSystem());
 		Workflow.addSystem(new EntityCollisionsSystem());
@@ -41,17 +50,7 @@ class Aleiiioa extends Game {
 		Workflow.add60FpsSystem(new InputSystem());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
-		 
-/* 		for (i in 0...level.cWid){
-			for(j in 0...level.cHei){
-				Builders.basicObject(i,j);
-			}
-		}  */
 
-		for (b in level.data.l_Entities.all_Boides){
-			Builders.basicHunter(b.cx,b.cy,b.f_Path);
-		}
-		Builders.basicPlayer(20,20);
 
 		trace(Workflow.entities.length);
 	}

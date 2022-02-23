@@ -43,7 +43,6 @@ class Game extends Process {
 		fx = new Fx();
 		hud = new ui.Hud();
 		camera = new Camera();
-		//solver = new Solver();
 
 		startLevel(Assets.worldData.all_levels.FirstLevel);
 	}
