@@ -24,6 +24,8 @@ class Camera extends dn.Process {
 
 	/** Verticakl camera dead-zone in percentage of viewport height **/
 	public var deadZonePctY = 0.10;
+	
+	var target :LPoint;
 
 	var baseFrict = 0.89;
 	var dx = 0.;
@@ -153,26 +155,26 @@ class Camera extends dn.Process {
 	/**
 		Enable auto tracking on given Entity. If `immediate` is true, the camera is immediately positioned over the Entity, otherwise it just moves to it.
 	**/
-/* 	public function trackEntity(e:Entity, immediate:Bool, speed=1.0) {
-		target = e;
+	public function trackEntity(p:LPoint, immediate:Bool, speed=1.0) {
+		target = p;
 		setTrackingSpeed(speed);
 		if( immediate || rawFocus.levelX==0 && rawFocus.levelY==0 )
 			centerOnTarget();
-	} */
+	}
 
 	public inline function setTrackingSpeed(spd:Float) {
 		trackingSpeed = M.fclamp(spd, 0.01, 10);
 	}
 
 	public inline function stopTracking() {
-		//target = null;
+		target = null;
 	}
 
 	public function centerOnTarget() {
-		//if( target!=null ) {
-			//rawFocus.levelX = target.centerX + targetOffX;
-			//rawFocus.levelY = target.centerY + targetOffY;
-		//}
+		if( target!=null ) {
+			rawFocus.levelX = target.levelX + targetOffX;
+			rawFocus.levelY = target.levelY + targetOffY;
+		}
 	}
 
 	public inline function levelToGlobalX(v:Float) return v*Const.SCALE + Game.ME.scroller.x;
@@ -325,11 +327,11 @@ class Camera extends dn.Process {
 
 
 		// Follow target entity
-		//if( target!=null ) {
-			/* var spdX = 0.015*trackingSpeed*zoom;
+		if( target!=null ) {
+			var spdX = 0.015*trackingSpeed*zoom;
 			var spdY = 0.023*trackingSpeed*zoom;
-			//var tx = target.centerX + targetOffX;
-			//var ty = target.centerY + targetOffY;
+			var tx = target.levelX + targetOffX;
+			var ty = target.levelY + targetOffY;
 
 			var a = rawFocus.angTo(tx,ty);
 			var distX = M.fabs( tx - rawFocus.levelX );
@@ -339,7 +341,7 @@ class Camera extends dn.Process {
 			var distY = M.fabs( ty - rawFocus.levelY );
 			if( distY>=deadZonePctY*pxHei)
 				dy += Math.sin(a) * (0.8*distY-deadZonePctY*pxHei) * spdY * tmod;
- */		//}
+ 		} 
 
 		// Compute frictions
 		var frictX = baseFrict - trackingSpeed*zoom*0.027*baseFrict;

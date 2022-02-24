@@ -1,24 +1,32 @@
 package aleiiioa.systems.core;
 
-import echoes.Workflow;
-import aleiiioa.components.core.VelocityAnalogSpeed;
-import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
 import aleiiioa.components.*;
+import aleiiioa.components.core.VelocityAnalogSpeed;
+
 import aleiiioa.components.solver.ModifierComponent;
+import aleiiioa.components.vehicule.GunComponent;
+
+import aleiiioa.systems.vehicule.GunCommand.InstancedGunCommands;
+import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
+
 
 class InputSystem extends echoes.System {
     var ca : ControllerAccess<GameAction>;
     var command:InstancedCommands;
+	var gunCommand:InstancedGunCommands;
 
     public function new() {
 		ca = App.ME.controller.createAccess();
 		ca.lockCondition = Game.isGameControllerLocked;
         command = new InstancedCommands();
+		gunCommand = new InstancedGunCommands();
     }
 
-    @u function inputPlayerControlledModifier(inp:InputComponent,mod:ModifierComponent) {
+    @u function inputPlayerControlledModifier(inp:InputComponent,mod:ModifierComponent,gun:GunComponent) {
         if (!ca.isDown(Blow)){
-			mod.currentOrder = command.turnOff;	
+			mod.currentOrder = command.turnOff;
+			gun.currentCommand = gunCommand.turnOff;
+			gun.currentCommand.execute(gun);	
 		}
 
 		if (!ca.isDown(ShapeWind)){
@@ -29,7 +37,9 @@ class InputSystem extends echoes.System {
 		}
 
 		if (ca.isDown(Blow)){	
-			mod.currentOrder = command.diverge;
+			//mod.currentOrder = command.diverge;
+			gun.currentCommand = gunCommand.primary;
+			gun.currentCommand.execute(gun);
 		}
 
 		if (ca.isDown(ShapeWind)){

@@ -1,5 +1,6 @@
 package aleiiioa;
 
+import ldtk.Point;
 import aleiiioa.builders.*;
 
 import aleiiioa.systems.core.*;
@@ -18,13 +19,17 @@ class Aleiiioa extends Game {
 	public function new() {
 		super();
 		Workflow.reset();
-		Game.ME.camera.clampToLevelBounds = true;
+		
 
 		for (b in level.data.l_Entities.all_Vessel){
 			Builders.basicHunter(b.cx,b.cy,b.f_Path,b.f_spawn_sec);
 		}
 		var player = level.data.l_Entities.all_PlayerStart[0];
+		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
+		var cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);
 
+		Game.ME.camera.trackEntity(cameraFocus,false);
+		Game.ME.camera.clampToLevelBounds = true;
 		Builders.basicPlayer(player.cx,player.cy);
 
 
