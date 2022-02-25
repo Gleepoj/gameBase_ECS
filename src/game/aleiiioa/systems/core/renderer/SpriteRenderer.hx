@@ -20,10 +20,14 @@ class SpriteRenderer extends echoes.System {
 		spr.alpha = 1;
 	}
 	
-	@u inline function updateSpritePosition(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
+/* 	@u inline function updateSpritePosition(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
 		this.renderSprite(dt,spr,gp,se);
-	}
-	
+	} */
+/* 	@u function offsetChild(spr:SpriteComponent,gp:GridPosition,ogp:GridPositionOffset) {
+		spr.x = gp.attachX + ogp.ox;
+		spr.y = gp.attachY + ogp.oy;
+	} */
+
 	@r function onEntityRemoved(spr:SpriteComponent) {
 		spr.remove();
 	}
@@ -50,7 +54,7 @@ class SpriteRenderer extends echoes.System {
 		se.squashY = spr.scaleY;
 	}
 
-	private function renderSprite(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
+	@u private function renderSprite(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
 		if (se.interpolateSprPos){
 			var interpolatePos = this.interpolateSpritePosition(gp);
 			spr.x = interpolatePos.x;
@@ -59,6 +63,24 @@ class SpriteRenderer extends echoes.System {
 		if (!se.interpolateSprPos){
 			spr.x = gp.attachX;
 			spr.y = gp.attachY;
+		}
+
+		spr.scaleX = se.dir * se.sprScaleX * se.squashX;
+		spr.scaleY = se.sprScaleY * se.squashY;
+
+		se.squashX += (1 - se.squashX) * M.fmin(1, 0.2 * dt);
+		se.squashY += (1 - se.squashY) * M.fmin(1, 0.2 * dt);		
+	}
+
+	@u private function renderChildSprite(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension,ogp:GridPositionOffset) {
+		if (se.interpolateSprPos){
+			var interpolatePos = this.interpolateSpritePosition(gp);
+			spr.x = interpolatePos.x + ogp.ox;
+			spr.y = interpolatePos.y + ogp.oy;
+		}
+		if (!se.interpolateSprPos){
+			spr.x = gp.attachX + ogp.ox;
+			spr.y = gp.attachY + ogp.oy;
 		}
 
 		spr.scaleX = se.dir * se.sprScaleX * se.squashX;

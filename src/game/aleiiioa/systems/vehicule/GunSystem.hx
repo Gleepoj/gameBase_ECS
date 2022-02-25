@@ -17,6 +17,7 @@ class GunSystem extends echoes.System {
         vas.xSpeed = Math.cos(bul.ang)*bul.speed;
         vas.ySpeed = Math.sin(bul.ang)*bul.speed;
     }
+    
     @a function onGunAdded(gun:GunComponent) {
         gun.currentCommand = commands.primary;
         gun.currentCommand.execute(gun);        

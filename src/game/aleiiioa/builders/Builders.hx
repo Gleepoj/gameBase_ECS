@@ -28,6 +28,15 @@ class Builders {
         var cl   = new CollisionsListener();
        
         new echoes.Entity().add(pos,spr,se,vc,bb,mod,inp,vas,gun,flag,cl);
+
+       /*  var spr2  = new SpriteComponent(D.tiles.fxCircle15);
+        var se2   = new SpriteExtension();
+        var off   = new GridPositionOffset(15,15);
+        var cl2   = new CollisionsListener();
+        var flag2 = new PlayerFlag();
+        var gun2  = new GunComponent(true);
+        
+        new echoes.Entity().add(pos,spr2,se2,vc,off,cl2,flag2,gun2,inp); */
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {

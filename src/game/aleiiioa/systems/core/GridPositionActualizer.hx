@@ -10,10 +10,12 @@ class GridPositionActualizer extends echoes.System {
     @a function onGridPositionAdded(gp:GridPosition) {
 	   onPosManuallyChanged(gp);
     }
-    
+
+
     @u inline function ActualizeGridComponent(gp:GridPosition){
 		updateLastFixedUpdatePos(gp);
     }
+
 
 	function setPosCase(gp:GridPosition,_cx:Int,_cy:Int) {
 		gp.cx = _cx;

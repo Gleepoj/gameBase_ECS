@@ -21,12 +21,24 @@ class InputSystem extends echoes.System {
         command = new InstancedCommands();
 		gunCommand = new InstancedGunCommands();
     }
+	
+	@u function inputPlayerGun(inp:InputComponent,gun:GunComponent) {
+		if (!ca.isDown(Blow)){
+			
+			gun.currentCommand = gunCommand.turnOff;
+			gun.currentCommand.execute(gun);	
+		}
+
+		if (ca.isDown(Blow)){	
+			gun.currentCommand = gunCommand.primary;
+			gun.currentCommand.execute(gun);
+		}
+
+	}
 
     @u function inputPlayerControlledModifier(inp:InputComponent,mod:ModifierComponent,gun:GunComponent) {
         if (!ca.isDown(Blow)){
-			mod.currentOrder = command.turnOff;
-			gun.currentCommand = gunCommand.turnOff;
-			gun.currentCommand.execute(gun);	
+			mod.currentOrder = command.turnOff;	
 		}
 
 		if (!ca.isDown(ShapeWind)){
@@ -38,8 +50,7 @@ class InputSystem extends echoes.System {
 
 		if (ca.isDown(Blow)){	
 			//mod.currentOrder = command.diverge;
-			gun.currentCommand = gunCommand.primary;
-			gun.currentCommand.execute(gun);
+			
 		}
 
 		if (ca.isDown(ShapeWind)){
