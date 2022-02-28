@@ -21,6 +21,12 @@ class Physics extends echoes.System {
 		vc.dy = vas.ySpeed;
 		fixedUpdate(gp,vc);
 	}
+	
+/* 	@u function updateChildPos(mgp:MasterGridPosition,gp:GridPosition,gpo:GridPositionOffset) {
+		
+		
+	} */
+
 	/** Apply a bump/kick force to entity **/
 	public function bump(x:Float, y:Float, vc:VelocityComponent) {
 		vc.bdx += x;

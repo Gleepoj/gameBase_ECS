@@ -1,5 +1,7 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.flags.hierarchy.ChildFlag;
+import aleiiioa.components.flags.hierarchy.MasterFlag;
 import aleiiioa.shaders.PressureShader.BitmapShader;
 
 import aleiiioa.components.*;
@@ -14,7 +16,9 @@ class Builders {
 ////////ACTORS////////////////
 
     public static function basicPlayer(cx:Int,cy:Int) {
-        var pos  = new GridPosition(cx,cy);
+        var mpos  = new MasterGridPosition(cx,cy);
+        var mflag = new MasterFlag();
+        var pos  = new GridPosition(mpos.cx,mpos.cy);
         var spr  = new SpriteComponent(D.tiles.Square);
         var se   = new SpriteExtension();
         var vc   = new VelocityComponent();
@@ -25,18 +29,34 @@ class Builders {
         var vas  = new VelocityAnalogSpeed();
         var gun  = new GunComponent(true);
         var flag = new PlayerFlag();
+        var bflag = new BodyFlag();
         var cl   = new CollisionsListener();
        
-        new echoes.Entity().add(pos,spr,se,vc,bb,mod,inp,vas,gun,flag,cl);
+        new echoes.Entity().add(mpos,pos,spr,se,vc,bb,mod,inp,vas,gun,flag,mflag,cl,bflag);
 
-       /*  var spr2  = new SpriteComponent(D.tiles.fxCircle15);
+        var spr2  = new SpriteComponent(D.tiles.fxCircle15);
+        var pos2  = new GridPosition(mpos.cx,mpos.cy);
         var se2   = new SpriteExtension();
-        var off   = new GridPositionOffset(15,15);
+        var off   = new GridPositionOffset(1,1);
         var cl2   = new CollisionsListener();
         var flag2 = new PlayerFlag();
+        var bflag2 = new BodyFlag();
+        var cflag = new ChildFlag();
         var gun2  = new GunComponent(true);
         
-        new echoes.Entity().add(pos,spr2,se2,vc,off,cl2,flag2,gun2,inp); */
+        new echoes.Entity().add(mpos,pos2,spr2,se2,vc,off,cl2,flag2,gun2,inp,bflag2,cflag);
+        
+        var spr3  = new SpriteComponent(D.tiles.fxCircle15);
+        var pos3  = new GridPosition(mpos.cx,mpos.cy);
+        var se3   = new SpriteExtension();
+        var off   = new GridPositionOffset(-1,1);
+        var cl3   = new CollisionsListener();
+        var flag3 = new PlayerFlag();
+        var bflag3 = new BodyFlag();
+        var cflag2 = new ChildFlag();
+        var gun3  = new GunComponent(true);
+        
+        new echoes.Entity().add(mpos,pos3,spr3,se3,vc,off,cl3,flag3,gun3,inp,bflag3,cflag2);
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {
@@ -53,8 +73,9 @@ class Builders {
        
         var tflag = new TimeFlag(sec);
         var flag  = new VesselFlag();
+        var bflag = new BodyFlag();
         
-        new echoes.Entity().add(pos,spr,se,vc,bb,sw,path,gun,cl,flag,tflag);
+        new echoes.Entity().add(pos,spr,se,vc,bb,sw,path,gun,cl,flag,tflag,bflag);
     }
 
     public static function basicObject(cx,cy) {

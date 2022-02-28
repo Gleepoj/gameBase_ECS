@@ -72,7 +72,7 @@ class SpriteRenderer extends echoes.System {
 		se.squashY += (1 - se.squashY) * M.fmin(1, 0.2 * dt);		
 	}
 
-	@u private function renderChildSprite(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension,ogp:GridPositionOffset) {
+	/* @u private function renderChildSprite(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension,ogp:GridPositionOffset) {
 		if (se.interpolateSprPos){
 			var interpolatePos = this.interpolateSpritePosition(gp);
 			spr.x = interpolatePos.x + ogp.ox;
@@ -88,5 +88,5 @@ class SpriteRenderer extends echoes.System {
 
 		se.squashX += (1 - se.squashX) * M.fmin(1, 0.2 * dt);
 		se.squashY += (1 - se.squashY) * M.fmin(1, 0.2 * dt);		
-	}
+	} */
 }

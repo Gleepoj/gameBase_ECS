@@ -2,6 +2,8 @@ package aleiiioa.systems.collisions;
 
 import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
 import aleiiioa.components.core.*;
+import aleiiioa.components.*;
+import aleiiioa.components.flags.*;
 import echoes.Entity;
 
 class LevelCollisionsSystem extends echoes.System {
@@ -22,10 +24,18 @@ class LevelCollisionsSystem extends echoes.System {
 	}
 
     @u public function destroyObjectOnWallCollision(entity:Entity,gp:GridPosition) {
-        if(entity.isValid())
-            if(level.hasCollision(gp.cx,gp.cy))
-                entity.destroy();
-        
+        if(entity.isValid()){
+            if(level.hasCollision(gp.cx,gp.cy)){
+                if(entity.exists(BodyFlag)){
+                    if(!entity.exists(IsDiedFlag)){
+                        entity.add(new IsDiedFlag());
+                    }
+                }
+                if(entity.exists(BulletComponent)){
+                    entity.destroy();
+                } 
+            }
+        }
     }
 
 }
