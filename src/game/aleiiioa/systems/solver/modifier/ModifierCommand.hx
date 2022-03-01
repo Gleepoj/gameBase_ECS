@@ -53,6 +53,17 @@ class Repel implements  ModifierCommand {
         mod.activateModifier();
     }
 }
+class TurnOn implements  ModifierCommand {
+    
+    public function new() {
+        
+    }
+
+    public function execute(mod:ModifierComponent) {
+        mod.changeEquationType(mod.areaEquation);
+        mod.activateModifier();
+    }
+}
 
 class TurnOff implements  ModifierCommand {
     
@@ -72,6 +83,7 @@ class InstancedCommands {
     public var converge:Converge;
 	public var repel   :Repel;
 	public var turnOff :TurnOff;
+    public var turnOn  :TurnOn;
 
     public function new() {
         curl     = new Curl();
@@ -79,6 +91,7 @@ class InstancedCommands {
         converge = new Converge();
         repel    = new Repel();
         turnOff  = new TurnOff();
+        turnOn   = new TurnOn();
     }
     
 }

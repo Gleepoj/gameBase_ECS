@@ -9,7 +9,7 @@
 		"url": "https://ldtk.io"
 	},
 	"jsonVersion": "0.9.3",
-	"nextUid": 32,
+	"nextUid": 34,
 	"worldLayout": "LinearHorizontal",
 	"worldGridWidth": 256,
 	"worldGridHeight": 256,
@@ -298,6 +298,52 @@
 			"pivotX": 0.5,
 			"pivotY": 1,
 			"fieldDefs": []
+		},
+		{
+			"identifier": "Modifier",
+			"uid": 32,
+			"tags": [],
+			"width": 16,
+			"height": 16,
+			"resizableX": false,
+			"resizableY": false,
+			"keepAspectRatio": false,
+			"fillOpacity": 1,
+			"lineOpacity": 1,
+			"hollow": false,
+			"color": "#313DC5",
+			"renderMode": "Rectangle",
+			"showName": true,
+			"tilesetId": null,
+			"tileId": null,
+			"tileRenderMode": "FitInside",
+			"maxCount": 0,
+			"limitScope": "PerLevel",
+			"limitBehavior": "MoveLastOne",
+			"pivotX": 0.5,
+			"pivotY": 1,
+			"fieldDefs": [
+				{
+					"identifier": "AreaEquation",
+					"__type": "ExternEnum.AreaEquation",
+					"uid": 33,
+					"type": { "id": "F_Enum", "params": [25] },
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayPos": "Above",
+					"editorAlwaysShow": false,
+					"editorCutLongValues": true,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null
+				}
+			]
 		}
 	], "tilesets": [
 		{
@@ -654,6 +700,26 @@
 							"defUid": 31,
 							"px": [347,524],
 							"fieldInstances": []
+						},
+						{
+							"__identifier": "Modifier",
+							"__grid": [22,48],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 32,
+							"px": [354,779],
+							"fieldInstances": [{
+								"__identifier": "AreaEquation",
+								"__value": "EqRepel",
+								"__type": "ExternEnum.AreaEquation",
+								"defUid": 33,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["EqRepel"]
+								}]
+							}]
 						}
 					]
 				},

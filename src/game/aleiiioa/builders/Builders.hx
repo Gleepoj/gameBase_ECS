@@ -14,6 +14,15 @@ import aleiiioa.components.vehicule.*;
 class Builders {
     
 ////////ACTORS////////////////
+    public static function basicModifier(cx:Int,cy:Int,areaEq:AreaEquation) {
+        var pos  = new GridPosition(cx,cy);
+        var spr  = new SpriteComponent(D.tiles.Square);
+        var se   = new SpriteExtension();
+        var mod  = new ModifierComponent();
+        mod.areaEquation = areaEq;
+        
+        new echoes.Entity().add(pos,spr,se,mod);
+    }
 
     public static function basicPlayer(cx:Int,cy:Int) {
         var mpos  = new MasterGridPosition(cx,cy);
@@ -41,10 +50,12 @@ class Builders {
         var cl2   = new CollisionsListener();
         var flag2 = new PlayerFlag();
         var bflag2 = new BodyFlag();
-        var cflag = new ChildFlag();
+        var veflag = new VeilFlag();
         var gun2  = new GunComponent(true);
+        var sw2 = new SteeringWheel();
+        var vc2 = new VelocityComponent();
         
-        new echoes.Entity().add(mpos,pos2,spr2,se2,vc,off,cl2,flag2,gun2,inp,bflag2,cflag);
+        new echoes.Entity().add(mpos,pos2,spr2,se2,vc,off,cl2,flag2,gun2,inp,sw2,vc2,bflag2,veflag);
         
         var spr3  = new SpriteComponent(D.tiles.fxCircle15);
         var pos3  = new GridPosition(mpos.cx,mpos.cy);

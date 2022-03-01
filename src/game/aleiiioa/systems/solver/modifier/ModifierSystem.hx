@@ -22,6 +22,7 @@ class ModifierSystem extends echoes.System {
 		modifierStoreCells(mod,gp);
 		computeCellDistanceToModifierPosition(mod,gp);
 		computeLocalUVFields(mod);	
+		mod.currentOrder = command.turnOn;
     }
 	
 	@u function modifiersUpdate(dt:Float,mod:ModifierComponent,gp:GridPosition,spr:SpriteComponent) {
