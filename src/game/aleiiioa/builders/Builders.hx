@@ -28,6 +28,8 @@ class Builders {
         //Shared Component
         var mpos  = new MasterGridPosition(cx,cy);
         var tpos  = new TargetGridPosition(cx,cy);
+        
+        //Individual Component
         var pos   = new GridPosition(mpos.cx,mpos.cy);
         var suv   = new SUVatCoordComponent();
 
@@ -39,31 +41,34 @@ class Builders {
         var gun  = new GunComponent(true);
         var cl   = new CollisionsListener();
 
-        var flag  = new PlayerFlag();
-        var mflag = new MasterFlag();
-        //var tflag = new TargetedFlag();
-        var bflag = new BodyFlag();
+        var fl_pl  = new PlayerFlag();
+        var fl_mst = new MasterFlag();
+        var fl_bo  = new BodyFlag();
        
-        new echoes.Entity().add(mpos,tpos,pos,suv,spr,se,vc,sw,gun,flag,mflag,cl,bflag);
-        //input sat
-        var inp  = new InputComponent();
-        var spr3  = new SpriteComponent(D.tiles.fxCircle15);
-        var se3   = new SpriteExtension();
-        var pos3  = new GridPosition(mpos.cx,mpos.cy);
-        var off   = new GridPositionOffset(0,0);
-
-        var cl3   = new CollisionsListener();
-        var gun3  = new GunComponent(true);
+        new echoes.Entity().add(mpos,tpos,pos,suv,spr,se,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
+        //input satelitte child entity
+        
         var veil  = new VeilComponent();
-        var dbl = new DebugLabel();
+        var inp   = new InputComponent();
+        
+        var spr_v  = new SpriteComponent(D.tiles.fxCircle15);
+        var se_v   = new SpriteExtension();
+        
+        var pos_v   = new GridPosition(mpos.cx,mpos.cy);
+        var off_v   = new GridPositionOffset(0,0);
 
-        var flag3  = new PlayerFlag();
-        var bflag3 = new BodyFlag();
-        var cflag2 = new ChildFlag();
-        var veflag = new VeilFlag();
-        var tflag = new TargetedFlag();
 
-        new echoes.Entity().add(mpos,tpos,pos3,suv,spr3,se3,vc,off,cl3,gun3,veil,inp,flag3,bflag3,cflag2,veflag,dbl,tflag);
+        var cl_v   = new CollisionsListener();
+        var dbl_v   = new DebugLabel();
+
+
+        var fl_pl_v   = new PlayerFlag();
+        var fl_bo_v   = new BodyFlag();
+        var fl_ch_v   = new ChildFlag();
+        var fl_veil   = new VeilFlag();
+        var fl_tar    = new TargetedFlag();
+
+        new echoes.Entity().add(mpos,tpos,suv,pos_v,spr_v,se_v,off_v,cl_v,dbl_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil,fl_tar);
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {
@@ -83,16 +88,6 @@ class Builders {
         var bflag = new BodyFlag();
         
         new echoes.Entity().add(pos,spr,se,vc,bb,sw,path,gun,cl,flag,tflag,bflag);
-    }
-
-    public static function basicObject(cx,cy) {
-        var spr = new SpriteComponent(D.tiles.fxCircle15);
-        var se  = new SpriteExtension();
-        var pos = new GridPosition(cx,cy);
-        var bb  = new BoundingBox();
-        var vc  = new VelocityComponent();
-        var sw  = new SteeringWheel();
-        new echoes.Entity().add(spr,se,pos,bb,vc,sw);
     }
 
 //////BULLET//////////////////////
