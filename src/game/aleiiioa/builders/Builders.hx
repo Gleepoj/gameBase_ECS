@@ -29,44 +29,24 @@ class Builders {
         var mpos  = new MasterGridPosition(cx,cy);
         var tpos  = new TargetGridPosition(cx,cy);
         var pos   = new GridPosition(mpos.cx,mpos.cy);
+        var suv   = new SUVatCoordComponent();
 
         var se   = new SpriteExtension();
         var spr  = new SpriteComponent(D.tiles.Square);
         
         var vc   = new VelocityComponent();
-        var vas  = new VelocityAnalogSpeed();
-        var bb   = new BoundingBox();
-       
-        var mod  = new ModifierComponent();
-        var inp  = new InputComponent();
-        
+        var sw   = new SteeringWheel(); 
         var gun  = new GunComponent(true);
         var cl   = new CollisionsListener();
 
         var flag  = new PlayerFlag();
         var mflag = new MasterFlag();
-        var tflag = new TargetedFlag();
+        //var tflag = new TargetedFlag();
         var bflag = new BodyFlag();
        
-        new echoes.Entity().add(mpos,tpos,pos,spr,se,vc,bb,mod,inp,vas,gun,flag,mflag,cl,bflag,tflag);
-
-        var spr2  = new SpriteComponent(D.tiles.fxCircle15);
-        var se2   = new SpriteExtension();
-        
-        var pos2  = new GridPosition(mpos.cx,mpos.cy);        
-        var off   = new GridPositionOffset(1,1);
-        var cl2   = new CollisionsListener();
-
-        var gun2  = new GunComponent(true);
-        var sw2   = new SteeringWheel();
-        var vc2   = new VelocityComponent();
-
-        var flag2  = new PlayerFlag();
-        var bflag2 = new BodyFlag();
-        var veflag = new VeilFlag();
-        
-        new echoes.Entity().add(mpos,tpos,pos2,spr2,se2,vc,off,cl2,flag2,gun2,inp,sw2,vc2,bflag2,veflag);
-        
+        new echoes.Entity().add(mpos,tpos,pos,suv,spr,se,vc,sw,gun,flag,mflag,cl,bflag);
+        //input sat
+        var inp  = new InputComponent();
         var spr3  = new SpriteComponent(D.tiles.fxCircle15);
         var se3   = new SpriteExtension();
         var pos3  = new GridPosition(mpos.cx,mpos.cy);
@@ -74,12 +54,16 @@ class Builders {
 
         var cl3   = new CollisionsListener();
         var gun3  = new GunComponent(true);
+        var veil  = new VeilComponent();
+        var dbl = new DebugLabel();
 
         var flag3  = new PlayerFlag();
         var bflag3 = new BodyFlag();
         var cflag2 = new ChildFlag();
-        
-        new echoes.Entity().add(mpos,pos3,spr3,se3,vc,off,cl3,gun3,inp,flag3,bflag3,cflag2);
+        var veflag = new VeilFlag();
+        var tflag = new TargetedFlag();
+
+        new echoes.Entity().add(mpos,tpos,pos3,suv,spr3,se3,vc,off,cl3,gun3,veil,inp,flag3,bflag3,cflag2,veflag,dbl,tflag);
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {
@@ -161,3 +145,21 @@ class Builders {
         new echoes.Entity().add(cc);
     }
 }
+
+/* // steer sat
+var spr2  = new SpriteComponent(D.tiles.fxCircle15);
+var se2   = new SpriteExtension();
+
+var pos2  = new GridPosition(mpos.cx,mpos.cy);        
+var off   = new GridPositionOffset(1,1);
+var cl2   = new CollisionsListener();
+
+var gun2  = new GunComponent(true);
+var sw2   = new SteeringWheel();
+var vc2   = new VelocityComponent();
+
+var flag2  = new PlayerFlag();
+var bflag2 = new BodyFlag();
+var chflag = new ChildFlag();
+ */
+//new echoes.Entity().add(mpos,tpos,pos2,spr2,se2,vc,off,cl2,flag2,gun2,inp,sw2,vc2,bflag2,chflag);

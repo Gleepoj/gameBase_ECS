@@ -703,21 +703,21 @@
 						},
 						{
 							"__identifier": "Modifier",
-							"__grid": [22,47],
+							"__grid": [22,27],
 							"__pivot": [0.5,1],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 32,
-							"px": [353,762],
+							"px": [353,442],
 							"fieldInstances": [{
 								"__identifier": "AreaEquation",
-								"__value": "EqConverge",
+								"__value": "EqRepel",
 								"__type": "ExternEnum.AreaEquation",
 								"defUid": 33,
 								"realEditorValues": [{
 									"id": "V_String",
-									"params": ["EqConverge"]
+									"params": ["EqRepel"]
 								}]
 							}]
 						}

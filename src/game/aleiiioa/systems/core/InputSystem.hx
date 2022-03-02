@@ -1,5 +1,7 @@
 package aleiiioa.systems.core;
 
+import aleiiioa.components.vehicule.VeilComponent;
+import aleiiioa.components.flags.VeilFlag;
 import aleiiioa.components.*;
 import aleiiioa.components.core.VelocityAnalogSpeed;
 
@@ -64,17 +66,16 @@ class InputSystem extends echoes.System {
 		}
     }
 	//View to satellite to securize// 
-	@u function inputPlayerSatelliteGridPosition(inp:InputComponent,gop:GridPositionOffset) {
+	@u function inputPlayerSatelliteGridPosition(inp:InputComponent,gop:GridPositionOffset,veil:VeilComponent) {
 		gop.setXYratio(ca.getAnalogValue(MoveX)*2,ca.getAnalogValue(MoveY)*2);
-	
 	}
 	
     @u function inputPlayerControlledShip(vas:VelocityAnalogSpeed,inp:InputComponent){
         if ( ca.getAnalogDist(MoveY)>0){
-			vas.ySpeed = ca.getAnalogValue(MoveY)*0.2; 
+			//vas.ySpeed = ca.getAnalogValue(MoveY)*0.2; 
 		}
 		if( ca.getAnalogDist(MoveX)>0 ) {
-			vas.xSpeed = ca.getAnalogValue(MoveX)*0.2; // -1 to 1
+			//vas.xSpeed = ca.getAnalogValue(MoveX)*0.2; // -1 to 1
 		}
 
     }

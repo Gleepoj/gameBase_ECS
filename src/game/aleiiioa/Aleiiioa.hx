@@ -38,6 +38,7 @@ class Aleiiioa extends Game {
 
 
 		Workflow.addSystem(new SpawnSystem());
+		Workflow.addSystem(new GridPositionActualizer());
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());
 		Workflow.addSystem(new LevelCollisionsSystem());
@@ -47,20 +48,21 @@ class Aleiiioa extends Game {
 		//Logic
 		Workflow.addSystem(new PathActualizer());
 		Workflow.addSystem(new SteeringBehaviors());
+		Workflow.addSystem(new VeilBehaviors());
 		Workflow.addSystem(new GunSystem());
 		
 		//Physics
 		Workflow.addSystem(new Solvered());// is Hiding Modifier system // 
 		Workflow.addSystem(new Physics());
-		Workflow.addSystem(new GridPositionActualizer());
+		//Workflow.addSystem(new GridPositionActualizer());
 
 		//Graphics
 		Workflow.addSystem(new SpriteExtensionFx());
-
 		Workflow.add60FpsSystem(new InputSystem());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
+		//Debugger
 		Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
-
+		Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
 
 		trace(Workflow.entities.length);
 	}

@@ -4,6 +4,8 @@ package aleiiioa.systems.solver;
 // or affect the fluid solver
 // he is there to provide data to component and made side effects only on the fluid solver
 
+import aleiiioa.components.flags.hierarchy.MasterFlag;
+import aleiiioa.components.solver.SUVatCoordComponent;
 import aleiiioa.builders.Builders;
 import aleiiioa.systems.solver.modifier.ModifierSystem;
 import echoes.Workflow;
@@ -50,6 +52,13 @@ class Solvered extends echoes.System {
         var index = solver.getIndexForCellPosition(gp.cx,gp.cy);
         if(solver.checkIfIndexIsInArray(index)){
             sw.solverUVatCoord = solver.getUVVectorForIndexPosition(index);
+        }
+    }
+
+    @u function updateSUVComponent(suv:SUVatCoordComponent,gp:GridPosition,mf:MasterFlag){
+        var index = solver.getIndexForCellPosition(gp.cx,gp.cy);
+        if(solver.checkIfIndexIsInArray(index)){
+            suv.uv = solver.getUVVectorForIndexPosition(index);
         }
     }
 
