@@ -1,4 +1,4 @@
-package aleiiioa.systems.core.renderer;
+package aleiiioa.systems.renderer;
 
 import h3d.Vector;
 import echoes.System;

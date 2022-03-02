@@ -16,7 +16,7 @@ import aleiiioa.components.solver.ModifierComponent;
 
 import echoes.System;
 
-class Solvered extends echoes.System {
+class SolverSystem extends echoes.System {
     // move all maximum to const // 
     var game(get,never) : Game; inline function get_game() return Game.ME;
     var level(get,never) : Level; inline function get_level() return Game.ME.level;

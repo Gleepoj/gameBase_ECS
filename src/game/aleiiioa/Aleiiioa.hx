@@ -1,14 +1,12 @@
 package aleiiioa;
 
-import ldtk.Point;
 import aleiiioa.builders.*;
 
 import aleiiioa.systems.core.*;
-import aleiiioa.systems.core.renderer.*;
+import aleiiioa.systems.renderer.*;
 import aleiiioa.systems.solver.*;
 import aleiiioa.systems.collisions.*;
 import aleiiioa.systems.vehicule.*;
-
 
 import echoes.Workflow;
 
@@ -28,14 +26,15 @@ class Aleiiioa extends Game {
 		for (m in level.data.l_Entities.all_Modifier){
 			Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
 		}
+
 		var player = level.data.l_Entities.all_PlayerStart[0];
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
 		var cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);
 
 		Game.ME.camera.trackEntity(cameraFocus,false);
 		Game.ME.camera.clampToLevelBounds = true;
+		
 		Builders.basicPlayer(player.cx,player.cy);
-
 
 		Workflow.addSystem(new SpawnSystem());
 		Workflow.addSystem(new GridPositionActualizer());
@@ -52,12 +51,12 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GunSystem());
 		
 		//Physics
-		Workflow.addSystem(new Solvered());// is Hiding Modifier system // 
-		Workflow.addSystem(new Physics());
+		Workflow.addSystem(new SolverSystem());// is Hiding Modifier system // 
+		Workflow.addSystem(new VelocitySystem());
 		//Workflow.addSystem(new GridPositionActualizer());
 
 		//Graphics
-		Workflow.addSystem(new SpriteExtensionFx());
+		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new InputSystem());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		//Debugger

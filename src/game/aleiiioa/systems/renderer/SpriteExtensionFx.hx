@@ -1,4 +1,4 @@
-package aleiiioa.systems.core.renderer;
+package aleiiioa.systems.renderer;
 
 import aleiiioa.components.solver.ModifierComponent;
 import aleiiioa.components.CollisionsListener;
