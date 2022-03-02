@@ -32,13 +32,14 @@ class GridPositionActualizer extends echoes.System {
 	@u function updateChildPos(mgp:MasterGridPosition,gp:GridPosition,gpo:GridPositionOffset,cflag:ChildFlag) {
 		gp.cx = mgp.cx + gpo.ocx;
 		gp.cy = mgp.cy + gpo.ocy;
-		gp.xr = mgp.xr;
-		gp.yr = mgp.yr;
+		gp.xr = mgp.xr + gpo.oxr;
+		gp.yr = mgp.yr + gpo.oyr;
 
 	}
 
     @u inline function ActualizeGridComponent(gp:GridPosition){
-		updateLastFixedUpdatePos(gp);
+		//updateLastFixedUpdatePos(gp);
+		onPosManuallyChanged(gp);
     }
 
 

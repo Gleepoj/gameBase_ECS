@@ -14,4 +14,9 @@ class GridPositionOffset {
         oxr = 0;
         oyr = 0; 
     }
+
+    public function setXYratio(_xr:Float,_yr:Float) {
+        oxr = _xr;
+        oyr = _yr;
+    }
 }

@@ -5,6 +5,7 @@ import aleiiioa.components.core.VelocityAnalogSpeed;
 
 import aleiiioa.components.solver.ModifierComponent;
 import aleiiioa.components.vehicule.GunComponent;
+import aleiiioa.components.core.GridPositionOffset;
 
 import aleiiioa.systems.vehicule.GunCommand.InstancedGunCommands;
 import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
@@ -62,7 +63,11 @@ class InputSystem extends echoes.System {
 			//trace(Workflow.entities.length);
 		}
     }
-
+	//View to satellite to securize// 
+	@u function inputPlayerSatelliteGridPosition(inp:InputComponent,gop:GridPositionOffset) {
+		gop.setXYratio(ca.getAnalogValue(MoveX)*2,ca.getAnalogValue(MoveY)*2);
+	
+	}
 	
     @u function inputPlayerControlledShip(vas:VelocityAnalogSpeed,inp:InputComponent){
         if ( ca.getAnalogDist(MoveY)>0){

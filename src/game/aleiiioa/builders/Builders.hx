@@ -70,7 +70,7 @@ class Builders {
         var spr3  = new SpriteComponent(D.tiles.fxCircle15);
         var se3   = new SpriteExtension();
         var pos3  = new GridPosition(mpos.cx,mpos.cy);
-        var off   = new GridPositionOffset(-1,1);
+        var off   = new GridPositionOffset(0,0);
 
         var cl3   = new CollisionsListener();
         var gun3  = new GunComponent(true);
@@ -79,7 +79,7 @@ class Builders {
         var bflag3 = new BodyFlag();
         var cflag2 = new ChildFlag();
         
-        new echoes.Entity().add(mpos,pos3,spr3,se3,vc,off,cl3,gun3,inp,bflag3,cflag2);
+        new echoes.Entity().add(mpos,pos3,spr3,se3,vc,off,cl3,gun3,inp,flag3,bflag3,cflag2);
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {
