@@ -1,5 +1,7 @@
 package aleiiioa.systems.vehicule;
 
+import aleiiioa.components.core.GridPosition;
+import aleiiioa.components.vehicule.TargetGridPosition;
 import aleiiioa.components.vehicule.PathComponent;
 import h3d.Vector;
 import echoes.System;
@@ -23,22 +25,37 @@ class  SteeringBehaviors extends System {
         
         sw.predicted = VectorUtils.predict(sw.location,sw.velocity);
     }
+
     @u function updateTargetFromPath(sw:SteeringWheel,pc:PathComponent) {
         sw.target = getTargetFromPath(sw,pc);
     }
 
+    @u function updateTargetFromTargetGridPosition(sw:SteeringWheel,tgp:TargetGridPosition,gp:GridPosition) {
+        sw.target = new Vector(tgp.attachX-gp.attachX,tgp.attachY-gp.attachY);
+    }
+
     @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {
-        if(en.exists(PathComponent) == false){
+        if(!en.exists(PathComponent) && !en.exists(TargetGridPosition)){
             var d:Vector = sw.solverUVatCoord;
             sw.steering = d.sub(sw.velocity);
-        }
+        } 
+        applySensitivity(sw);
         if(en.exists(PathComponent))
+            sw.steering = seek(sw);
+        
+        if(en.exists(TargetGridPosition))
             sw.steering = seek(sw);
 
         sw.eulerSteering = eulerIntegration(sw);
     }
 
-    
+    private function applySensitivity(sw:SteeringWheel) {
+        var tar = sw.target.clone();
+        var nx = tar.x +(sw.solverUVatCoord.x * sw.windSensitivity);
+        var ny = tar.y +(sw.solverUVatCoord.y * sw.windSensitivity);
+        sw.target = new Vector(nx,ny);
+    }
+
     private function seek(sw:SteeringWheel){
         sw.desired = sw.target.sub(sw.location);
         sw.desired.normalize();

@@ -25,49 +25,61 @@ class Builders {
     }
 
     public static function basicPlayer(cx:Int,cy:Int) {
+        //Shared Component
         var mpos  = new MasterGridPosition(cx,cy);
-        var mflag = new MasterFlag();
-        var pos  = new GridPosition(mpos.cx,mpos.cy);
-        var spr  = new SpriteComponent(D.tiles.Square);
+        var tpos  = new TargetGridPosition(cx,cy);
+        var pos   = new GridPosition(mpos.cx,mpos.cy);
+
         var se   = new SpriteExtension();
+        var spr  = new SpriteComponent(D.tiles.Square);
+        
         var vc   = new VelocityComponent();
+        var vas  = new VelocityAnalogSpeed();
         var bb   = new BoundingBox();
        
         var mod  = new ModifierComponent();
         var inp  = new InputComponent();
-        var vas  = new VelocityAnalogSpeed();
+        
         var gun  = new GunComponent(true);
-        var flag = new PlayerFlag();
-        var bflag = new BodyFlag();
         var cl   = new CollisionsListener();
+
+        var flag  = new PlayerFlag();
+        var mflag = new MasterFlag();
+        var tflag = new TargetedFlag();
+        var bflag = new BodyFlag();
        
-        new echoes.Entity().add(mpos,pos,spr,se,vc,bb,mod,inp,vas,gun,flag,mflag,cl,bflag);
+        new echoes.Entity().add(mpos,tpos,pos,spr,se,vc,bb,mod,inp,vas,gun,flag,mflag,cl,bflag,tflag);
 
         var spr2  = new SpriteComponent(D.tiles.fxCircle15);
-        var pos2  = new GridPosition(mpos.cx,mpos.cy);
         var se2   = new SpriteExtension();
+        
+        var pos2  = new GridPosition(mpos.cx,mpos.cy);        
         var off   = new GridPositionOffset(1,1);
         var cl2   = new CollisionsListener();
-        var flag2 = new PlayerFlag();
+
+        var gun2  = new GunComponent(true);
+        var sw2   = new SteeringWheel();
+        var vc2   = new VelocityComponent();
+
+        var flag2  = new PlayerFlag();
         var bflag2 = new BodyFlag();
         var veflag = new VeilFlag();
-        var gun2  = new GunComponent(true);
-        var sw2 = new SteeringWheel();
-        var vc2 = new VelocityComponent();
         
-        new echoes.Entity().add(mpos,pos2,spr2,se2,vc,off,cl2,flag2,gun2,inp,sw2,vc2,bflag2,veflag);
+        new echoes.Entity().add(mpos,tpos,pos2,spr2,se2,vc,off,cl2,flag2,gun2,inp,sw2,vc2,bflag2,veflag);
         
         var spr3  = new SpriteComponent(D.tiles.fxCircle15);
-        var pos3  = new GridPosition(mpos.cx,mpos.cy);
         var se3   = new SpriteExtension();
+        var pos3  = new GridPosition(mpos.cx,mpos.cy);
         var off   = new GridPositionOffset(-1,1);
+
         var cl3   = new CollisionsListener();
-        var flag3 = new PlayerFlag();
+        var gun3  = new GunComponent(true);
+
+        var flag3  = new PlayerFlag();
         var bflag3 = new BodyFlag();
         var cflag2 = new ChildFlag();
-        var gun3  = new GunComponent(true);
         
-        new echoes.Entity().add(mpos,pos3,spr3,se3,vc,off,cl3,flag3,gun3,inp,bflag3,cflag2);
+        new echoes.Entity().add(mpos,pos3,spr3,se3,vc,off,cl3,gun3,inp,bflag3,cflag2);
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {

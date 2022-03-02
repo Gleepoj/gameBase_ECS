@@ -1,7 +1,9 @@
 package aleiiioa.systems.core;
 import aleiiioa.components.flags.hierarchy.ChildFlag;
 import aleiiioa.components.flags.hierarchy.MasterFlag;
+import aleiiioa.components.flags.TargetedFlag;
 import aleiiioa.components.core.*;
+import aleiiioa.components.vehicule.TargetGridPosition;
 
 class GridPositionActualizer extends echoes.System {
     
@@ -12,6 +14,14 @@ class GridPositionActualizer extends echoes.System {
     @a function onGridPositionAdded(gp:GridPosition) {
 	   onPosManuallyChanged(gp);
     }
+
+	@u function updateTargetGridPosition(tgp:TargetGridPosition,gp:GridPosition,tf:TargetedFlag) {
+		tgp.cx = gp.cx;
+		tgp.cy = gp.cy;
+		tgp.xr = gp.xr;
+		tgp.yr = gp.yr;
+	}
+
 	@u function updateMasterGridPosition(mgp:MasterGridPosition,gp:GridPosition,mflag:MasterFlag) {
 	  	mgp.cx = gp.cx;
 		mgp.cy = gp.cy;
