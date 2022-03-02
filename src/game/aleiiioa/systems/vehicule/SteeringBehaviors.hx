@@ -1,29 +1,55 @@
 package aleiiioa.systems.vehicule;
 
-import aleiiioa.components.core.GridPosition;
-import aleiiioa.components.vehicule.TargetGridPosition;
+import echoes.View;
+import echoes.Entity;
+import aleiiioa.components.core.position.*;
 import aleiiioa.components.vehicule.PathComponent;
+import aleiiioa.components.flags.PlayerFlag;
 import h3d.Vector;
 import echoes.System;
 
-import aleiiioa.components.core.BoundingBox;
 import aleiiioa.components.core.VelocityComponent;
 import aleiiioa.components.vehicule.SteeringWheel;
 
 
 class  SteeringBehaviors extends System {
+    var PLAYER_VIEW:View<PlayerFlag,SteeringWheel>;
+    var player:Entity;
     public function new() {
         
     }
+   /*  @a function onVesselAdded(en:Entity,sw:SteeringWheel){
+        if (PLAYER_VIEW.entities.length >0)
+            player = PLAYER_VIEW.entities.head.value;
 
-    @u function updateVectors(sw:SteeringWheel,vc:VelocityComponent,bb:BoundingBox){
-        sw.location.x = bb.centerX;
-        sw.location.y = bb.centerY;
+        if(!en.exists(PlayerFlag)){
+            en.add(player.get(TargetGridPosition));
+        }
+    }
+ */
+    @u function updateVectors(en:Entity,sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition){
+        //sw.location.x = bb.centerX;
+        //sw.location.y = bb.centerY;
+        // why player shall not be updated in order to work ? le probleme viens surement de target position
+        // et grid position 
+        if(en.exists(PlayerFlag)){
+            sw.location.x = 0;//300;
+            sw.location.y = 0;//300;
 
-        sw.velocity.x = vc.dx;
-        sw.velocity.y = vc.dy;
-        
-        sw.predicted = VectorUtils.predict(sw.location,sw.velocity);
+            sw.velocity.x = vc.dx;
+            sw.velocity.y = vc.dy;
+            
+            sw.predicted = VectorUtils.predict(sw.location,sw.velocity);
+        }
+        if(!en.exists(PlayerFlag)){
+            sw.location.x = gp.attachX;
+            sw.location.y = gp.attachY;
+
+            sw.velocity.x = vc.dx;
+            sw.velocity.y = vc.dy;
+            
+            sw.predicted = VectorUtils.predict(sw.location,sw.velocity);
+        }
     }
 
     @u function updateTargetFromPath(sw:SteeringWheel,pc:PathComponent) {

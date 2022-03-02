@@ -1,6 +1,7 @@
 package aleiiioa.systems.renderer;
 
 import aleiiioa.components.core.*;
+import aleiiioa.components.core.position.GridPosition;
 
 class BoundingBoxRenderer extends echoes.System{
     var gameScroller:h2d.Layers;

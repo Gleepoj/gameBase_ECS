@@ -18,6 +18,9 @@ class Aleiiioa extends Game {
 		super();
 		Workflow.reset();
 		
+		
+		var player = level.data.l_Entities.all_PlayerStart[0];
+		Builders.basicPlayer(player.cx,player.cy);
 
 		for (b in level.data.l_Entities.all_Vessel){
 			Builders.basicHunter(b.cx,b.cy,b.f_Path,b.f_spawn_sec);
@@ -27,17 +30,15 @@ class Aleiiioa extends Game {
 			Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
 		}
 
-		var player = level.data.l_Entities.all_PlayerStart[0];
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
 		var cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);
 
 		Game.ME.camera.trackEntity(cameraFocus,false);
 		Game.ME.camera.clampToLevelBounds = true;
 		
-		Builders.basicPlayer(player.cx,player.cy);
 
 		Workflow.addSystem(new SpawnSystem());
-		Workflow.addSystem(new GridPositionActualizer());
+		
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());
 		Workflow.addSystem(new LevelCollisionsSystem());
@@ -47,13 +48,13 @@ class Aleiiioa extends Game {
 		//Logic
 		Workflow.addSystem(new PathActualizer());
 		Workflow.addSystem(new SteeringBehaviors());
-		Workflow.addSystem(new VeilBehaviors());
+		//Workflow.addSystem(new VeilBehaviors());
 		Workflow.addSystem(new GunSystem());
 		
 		//Physics
 		Workflow.addSystem(new SolverSystem());// is Hiding Modifier system // 
 		Workflow.addSystem(new VelocitySystem());
-		//Workflow.addSystem(new GridPositionActualizer());
+		Workflow.addSystem(new GridPositionActualizer());
 
 		//Graphics
 		Workflow.add60FpsSystem(new SpriteExtensionFx());

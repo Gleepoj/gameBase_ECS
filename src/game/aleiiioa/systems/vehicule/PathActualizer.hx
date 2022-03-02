@@ -2,7 +2,7 @@ package aleiiioa.systems.vehicule;
 
 import aleiiioa.components.vehicule.SteeringWheel;
 import aleiiioa.components.vehicule.PathComponent;
-import aleiiioa.components.core.GridPosition;
+import aleiiioa.components.core.position.GridPosition;
 
 import echoes.System;
 

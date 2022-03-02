@@ -1,10 +1,12 @@
 package aleiiioa.systems.core;
+
 import aleiiioa.components.flags.VeilFlag;
 import aleiiioa.components.flags.hierarchy.ChildFlag;
 import aleiiioa.components.flags.hierarchy.MasterFlag;
 import aleiiioa.components.flags.TargetedFlag;
 import aleiiioa.components.core.*;
-import aleiiioa.components.vehicule.TargetGridPosition;
+import aleiiioa.components.core.position.*;
+
 
 class GridPositionActualizer extends echoes.System {
     

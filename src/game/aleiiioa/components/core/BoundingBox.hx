@@ -40,8 +40,5 @@ class BoundingBox {
 
 
 	public function new() {
-	}
-
-	
-	
+	}	
 }

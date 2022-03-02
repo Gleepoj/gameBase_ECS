@@ -2,6 +2,7 @@ package aleiiioa.systems.collisions;
 
 import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
 import aleiiioa.components.core.*;
+import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.*;
 import aleiiioa.components.flags.*;
 import echoes.Entity;

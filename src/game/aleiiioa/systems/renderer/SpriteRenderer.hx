@@ -3,6 +3,7 @@ package aleiiioa.systems.renderer;
 import h3d.Vector;
 import echoes.System;
 import aleiiioa.components.core.*;
+import aleiiioa.components.core.position.GridPosition;
 
 class SpriteRenderer extends echoes.System {
 	var gameScroller:h2d.Layers;

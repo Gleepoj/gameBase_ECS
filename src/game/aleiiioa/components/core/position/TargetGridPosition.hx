@@ -1,6 +1,5 @@
-package aleiiioa.components.vehicule;
-
-import aleiiioa.components.core.GridPosition;
+package aleiiioa.components.core.position;
+//import aleiiioa.components.core.position.GridPosition;
 
 class TargetGridPosition extends GridPosition {
     public function new(_cx:Int,_cy:Int,?_xr:Float,?_yr:Float) {

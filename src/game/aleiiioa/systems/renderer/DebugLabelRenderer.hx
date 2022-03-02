@@ -1,7 +1,7 @@
 package aleiiioa.systems.renderer;
 
 import aleiiioa.components.vehicule.VeilComponent;
-import aleiiioa.components.core.GridPosition;
+import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.DebugLabel;
 import echoes.System;
 

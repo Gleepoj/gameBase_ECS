@@ -6,6 +6,7 @@ import aleiiioa.shaders.PressureShader.BitmapShader;
 
 import aleiiioa.components.*;
 import aleiiioa.components.core.*;
+import aleiiioa.components.core.position.*;
 import aleiiioa.components.solver.*;
 import aleiiioa.components.flags.*;
 import aleiiioa.components.vehicule.*;
@@ -32,6 +33,7 @@ class Builders {
         //Individual Component
         var pos   = new GridPosition(mpos.cx,mpos.cy);
         var suv   = new SUVatCoordComponent();
+        var bb    = new BoundingBox();
 
         var se   = new SpriteExtension();
         var spr  = new SpriteComponent(D.tiles.Square);
@@ -45,11 +47,12 @@ class Builders {
         var fl_mst = new MasterFlag();
         var fl_bo  = new BodyFlag();
        
-        new echoes.Entity().add(mpos,tpos,pos,suv,spr,se,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
+        new echoes.Entity().add(mpos,tpos,pos,suv,spr,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
         //input satelitte child entity
         
         var veil  = new VeilComponent();
         var inp   = new InputComponent();
+        var bb_v  = new BoundingBox();
         
         var spr_v  = new SpriteComponent(D.tiles.fxCircle15);
         var se_v   = new SpriteExtension();
@@ -68,7 +71,7 @@ class Builders {
         var fl_veil   = new VeilFlag();
         var fl_tar    = new TargetedFlag();
 
-        new echoes.Entity().add(mpos,tpos,suv,pos_v,spr_v,se_v,off_v,cl_v,dbl_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil,fl_tar);
+        new echoes.Entity().add(mpos,tpos,suv,pos_v,spr_v,se_v,off_v,bb_v,cl_v,dbl_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil,fl_tar);
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {

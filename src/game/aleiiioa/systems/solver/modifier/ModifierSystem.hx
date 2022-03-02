@@ -4,7 +4,7 @@ import aleiiioa.components.core.SpriteComponent;
 import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
 import h3d.Vector;
 import dn.Bresenham;
-import aleiiioa.components.core.GridPosition;
+import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.solver.ModifierComponent;
 
 class ModifierSystem extends echoes.System {

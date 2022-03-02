@@ -1,7 +1,7 @@
 package aleiiioa.systems.vehicule;
 
 import aleiiioa.components.solver.SUVatCoordComponent;
-import aleiiioa.components.core.GridPosition;
+import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.MasterGridPosition;
 import aleiiioa.components.vehicule.VeilComponent;
 import aleiiioa.components.core.VelocityComponent;

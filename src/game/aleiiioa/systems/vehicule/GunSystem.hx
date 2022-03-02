@@ -1,7 +1,7 @@
 package aleiiioa.systems.vehicule;
 
 import aleiiioa.builders.Builders;
-import aleiiioa.components.core.GridPosition;
+import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.VelocityAnalogSpeed;
 import aleiiioa.components.BulletComponent;
 import aleiiioa.components.vehicule.GunComponent;

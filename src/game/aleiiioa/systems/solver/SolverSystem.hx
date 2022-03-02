@@ -9,7 +9,7 @@ import aleiiioa.components.solver.SUVatCoordComponent;
 import aleiiioa.builders.Builders;
 import aleiiioa.systems.solver.modifier.ModifierSystem;
 import echoes.Workflow;
-import aleiiioa.components.core.GridPosition;
+import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.solver.CellComponent;
 import aleiiioa.components.vehicule.SteeringWheel;
 import aleiiioa.components.solver.ModifierComponent;

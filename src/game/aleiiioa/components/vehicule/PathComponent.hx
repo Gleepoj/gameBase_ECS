@@ -2,7 +2,7 @@ package aleiiioa.components.vehicule;
 
 import aleiiioa.builders.Builders;
 import aleiiioa.components.core.SpriteComponent;
-import aleiiioa.components.core.GridPosition;
+import aleiiioa.components.core.position.GridPosition;
 
 class PathComponent {
     public var path:Array<GridPosition>;

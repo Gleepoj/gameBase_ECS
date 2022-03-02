@@ -7,7 +7,7 @@ import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
 import aleiiioa.components.flags.*;
 import aleiiioa.components.BulletComponent;
 import aleiiioa.components.CollisionsListener;
-import aleiiioa.components.core.GridPosition;
+import aleiiioa.components.core.position.GridPosition;
 
 
 class EntityCollisionsSystem extends echoes.System {
