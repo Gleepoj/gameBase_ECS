@@ -36,7 +36,7 @@ class Builders {
         var bb    = new BoundingBox();
 
         var se   = new SpriteExtension();
-        var spr  = new SpriteComponent(D.tiles.Square);
+        var spr  = new SpriteComponent(D.tiles.fxCircle15);
         
         var vc   = new VelocityComponent();
         var sw   = new SteeringWheel(); 
@@ -54,7 +54,7 @@ class Builders {
         var inp   = new InputComponent();
         var bb_v  = new BoundingBox();
         
-        var spr_v  = new SpriteComponent(D.tiles.fxCircle15);
+        var spr_v  = new SpriteComponent(D.tiles.fxCircle7);
         var se_v   = new SpriteExtension();
         
         var pos_v   = new GridPosition(mpos.cx,mpos.cy);
@@ -72,6 +72,31 @@ class Builders {
         var fl_tar    = new TargetedFlag();
 
         new echoes.Entity().add(mpos,tpos,suv,pos_v,spr_v,se_v,off_v,bb_v,cl_v,dbl_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil,fl_tar);
+        
+        //Wing Left
+
+        var pos_wl    = new GridPosition(mpos.cx,mpos.cy);
+        var offpos_wl = new GridPositionOffset(0,0);
+        offpos_wl.setXYratio(-0.5,0.3);
+        
+        var spr_wl  = new SpriteComponent(D.tiles.wing);
+        var se_wl   = new SpriteExtension();
+        
+        var fl_ch_wl = new ChildFlag();
+        new echoes.Entity().add(mpos,pos_wl,offpos_wl,spr_wl,se_wl,fl_ch_wl);
+
+        //Wing right
+
+        var pos_wr    = new GridPosition(mpos.cx,mpos.cy);
+        var offpos_wr = new GridPositionOffset(0,0);
+        offpos_wr.setXYratio(0.5,0.3);
+        
+        var spr_wr  = new SpriteComponent(D.tiles.wing);
+        var se_wr   = new SpriteExtension();
+        se_wr.sprScaleX = -1;
+        
+        var fl_ch_wr = new ChildFlag();
+        new echoes.Entity().add(mpos,pos_wr,offpos_wr,spr_wr,se_wr,fl_ch_wr);
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {

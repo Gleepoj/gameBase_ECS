@@ -48,7 +48,7 @@ class Aleiiioa extends Game {
 		//Logic
 		Workflow.addSystem(new PathActualizer());
 		Workflow.addSystem(new SteeringBehaviors());
-		//Workflow.addSystem(new VeilBehaviors());
+		Workflow.addSystem(new VeilBehaviors());
 		Workflow.addSystem(new GunSystem());
 		
 		//Physics

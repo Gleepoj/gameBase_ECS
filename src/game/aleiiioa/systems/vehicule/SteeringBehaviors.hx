@@ -18,30 +18,22 @@ class  SteeringBehaviors extends System {
     public function new() {
         
     }
-   /*  @a function onVesselAdded(en:Entity,sw:SteeringWheel){
-        if (PLAYER_VIEW.entities.length >0)
-            player = PLAYER_VIEW.entities.head.value;
-
-        if(!en.exists(PlayerFlag)){
-            en.add(player.get(TargetGridPosition));
-        }
+    @a function onVesselAdded(en:Entity,sw:SteeringWheel){
+        //targetPlayer(en);
     }
- */
-    @u function updateVectors(en:Entity,sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition){
-        //sw.location.x = bb.centerX;
-        //sw.location.y = bb.centerY;
-        // why player shall not be updated in order to work ? le probleme viens surement de target position
-        // et grid position 
-        if(en.exists(PlayerFlag)){
-            sw.location.x = 0;//300;
-            sw.location.y = 0;//300;
+
+    @u function updateVectorsTarget(sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition,tgp:TargetGridPosition){
+            sw.location.x = 0;
+            sw.location.y = 0;
 
             sw.velocity.x = vc.dx;
             sw.velocity.y = vc.dy;
             
             sw.predicted = VectorUtils.predict(sw.location,sw.velocity);
-        }
-        if(!en.exists(PlayerFlag)){
+
+    }
+    @u function updateVectors(en:Entity,sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition){
+        if(!en.exists(TargetGridPosition)){
             sw.location.x = gp.attachX;
             sw.location.y = gp.attachY;
 
@@ -110,6 +102,16 @@ class  SteeringBehaviors extends System {
         var _limitTemp = VectorUtils.limitVector(_temp,sw.maxForce);
         var accel = VectorUtils.divideVector(_limitTemp,sw.mass);
         return accel;
+    }
+
+    private function targetPlayer(en:Entity){
+        if(!en.exists(PlayerFlag)){
+            if (PLAYER_VIEW.entities.length > 0 ){
+                player = PLAYER_VIEW.entities.head.value;
+                var tar = player.get(TargetGridPosition);
+                en.add(tar);
+            }
+        }
     }
    
 }
