@@ -703,13 +703,13 @@
 						},
 						{
 							"__identifier": "Modifier",
-							"__grid": [22,27],
+							"__grid": [21,17],
 							"__pivot": [0.5,1],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 32,
-							"px": [353,442],
+							"px": [337,282],
 							"fieldInstances": [{
 								"__identifier": "AreaEquation",
 								"__value": "EqRepel",

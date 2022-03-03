@@ -1,5 +1,7 @@
 package aleiiioa.systems.core;
 
+import aleiiioa.components.flags.WingsMasterFlag;
+import aleiiioa.components.vehicule.WingsComponent;
 import aleiiioa.components.vehicule.VeilComponent;
 import aleiiioa.components.flags.VeilFlag;
 import aleiiioa.components.*;
@@ -79,4 +81,10 @@ class InputSystem extends echoes.System {
 		}
 
     }
+
+	@u function inputPlayerWings(inp:InputComponent,win:WingsComponent,wms:WingsMasterFlag){
+		win.normalizeY = ca.getAnalogValue(MoveY);
+		
+		win.normalizeX = ca.getAnalogValue(MoveX);
+	}
 }

@@ -1,5 +1,9 @@
 package aleiiioa.systems.renderer;
 
+import aleiiioa.components.flags.WingRightFlag;
+import aleiiioa.components.flags.WingLeftFlag;
+import aleiiioa.components.vehicule.WingsComponent;
+import echoes.Entity;
 import aleiiioa.components.vehicule.VeilComponent;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.DebugLabel;
@@ -23,7 +27,17 @@ class DebugLabelRenderer extends System{
         debugFloat(dl,veil.dotProduct);
         renderAllDebugs(dl,gp);
     }
-	
+ 
+	@u function updateDebugWingR(dl:DebugLabel,gp:GridPosition,win:WingsComponent,wr:WingRightFlag) {
+		debugFloat(dl,win.angleR);
+        renderAllDebugs(dl,gp);
+    }
+
+	@u function updateDebugWingL(dl:DebugLabel,gp:GridPosition,win:WingsComponent,wl:WingLeftFlag) {
+		debugFloat(dl,win.angleL);
+        renderAllDebugs(dl,gp);
+    }
+	 
 	function renderAllDebugs(dl:DebugLabel,gp:GridPosition) {
 
         		// Debug label

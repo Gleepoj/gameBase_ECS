@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import echoes.Entity;
 import aleiiioa.components.flags.hierarchy.ChildFlag;
 import aleiiioa.components.flags.hierarchy.MasterFlag;
 import aleiiioa.shaders.PressureShader.BitmapShader;
@@ -29,6 +30,7 @@ class Builders {
         //Shared Component
         var mpos  = new MasterGridPosition(cx,cy);
         var tpos  = new TargetGridPosition(cx,cy);
+        var wsens = new WindSensitivitySharedComponent();
         
         //Individual Component
         var pos   = new GridPosition(mpos.cx,mpos.cy);
@@ -47,7 +49,7 @@ class Builders {
         var fl_mst = new MasterFlag();
         var fl_bo  = new BodyFlag();
        
-        new echoes.Entity().add(mpos,tpos,pos,suv,spr,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
+        new echoes.Entity().add(mpos,tpos,wsens,pos,suv,spr,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
         //input satelitte child entity
         
         var veil  = new VeilComponent();
@@ -71,8 +73,14 @@ class Builders {
         var fl_veil   = new VeilFlag();
         var fl_tar    = new TargetedFlag();
 
-        new echoes.Entity().add(mpos,tpos,suv,pos_v,spr_v,se_v,off_v,bb_v,cl_v,dbl_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil,fl_tar);
+        new echoes.Entity().add(mpos,tpos,wsens,suv,pos_v,spr_v,se_v,off_v,bb_v,cl_v,dbl_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil,fl_tar);
         
+        //Wing Master 
+        var wi = new WingsComponent();
+        var fl_wi_ms = new WingsMasterFlag();
+        var fl_wi_ch = new ChildFlag();// for garbage collection
+        
+        new echoes.Entity().add(inp,wi,mpos,fl_wi_ms,fl_wi_ch);
         //Wing Left
 
         var pos_wl    = new GridPosition(mpos.cx,mpos.cy);
@@ -83,7 +91,10 @@ class Builders {
         var se_wl   = new SpriteExtension();
         
         var fl_ch_wl = new ChildFlag();
-        new echoes.Entity().add(mpos,pos_wl,offpos_wl,spr_wl,se_wl,fl_ch_wl);
+        var fl_wi_wl = new WingLeftFlag();
+        var dbl_angL = new DebugLabel();
+
+        new echoes.Entity().add(mpos,wi,pos_wl,offpos_wl,spr_wl,se_wl,fl_ch_wl,fl_wi_wl,dbl_angL);
 
         //Wing right
 
@@ -96,7 +107,9 @@ class Builders {
         se_wr.sprScaleX = -1;
         
         var fl_ch_wr = new ChildFlag();
-        new echoes.Entity().add(mpos,pos_wr,offpos_wr,spr_wr,se_wr,fl_ch_wr);
+        var fl_wi_wr = new WingRightFlag();
+        var dbl_angR = new DebugLabel();
+        new echoes.Entity().add(mpos,wi,pos_wr,offpos_wr,spr_wr,se_wr,fl_ch_wr,fl_wi_wr,dbl_angR);
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {

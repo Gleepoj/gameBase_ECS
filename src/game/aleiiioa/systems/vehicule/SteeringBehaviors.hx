@@ -1,5 +1,8 @@
 package aleiiioa.systems.vehicule;
 
+import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
+import aleiiioa.components.vehicule.VeilComponent;
+import echoes.Entity;
 import echoes.View;
 import echoes.Entity;
 import aleiiioa.components.core.position.*;
@@ -42,6 +45,9 @@ class  SteeringBehaviors extends System {
             
             sw.predicted = VectorUtils.predict(sw.location,sw.velocity);
         }
+    }
+    @u function updatePlayerWindSensitivityShared(sw:SteeringWheel,ws:WindSensitivitySharedComponent){
+        sw.windSensitivity = ws.windSensitivity;
     }
 
     @u function updateTargetFromPath(sw:SteeringWheel,pc:PathComponent) {
