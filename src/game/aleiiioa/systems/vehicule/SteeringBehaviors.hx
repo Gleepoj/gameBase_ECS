@@ -1,5 +1,6 @@
 package aleiiioa.systems.vehicule;
 
+import hxd.Math;
 import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
 import aleiiioa.components.vehicule.VeilComponent;
 import echoes.Entity;
@@ -61,7 +62,12 @@ class  SteeringBehaviors extends System {
     @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {
         if(!en.exists(PathComponent) && !en.exists(TargetGridPosition)){
             var d:Vector = sw.solverUVatCoord;
-            sw.steering = d.sub(sw.velocity);
+            var cla = Math.clamp(sw.windSensitivity,-0.2,30);
+            var dc = d.clone();
+            d.scale(cla);
+            dc.scale(0.1);
+            var e = d.add(dc);
+            sw.steering = e.sub(sw.velocity);
         } 
         applySensitivity(sw);
         if(en.exists(PathComponent))
