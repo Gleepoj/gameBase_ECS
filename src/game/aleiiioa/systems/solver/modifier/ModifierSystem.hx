@@ -17,7 +17,7 @@ class ModifierSystem extends echoes.System {
 		command = new InstancedCommands();
     }
 
-    @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition,spr:SpriteComponent) {
+    @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
 	    mod.equation = new Equation(mod.areaEquation);
 		modifierStoreCells(mod,gp);
 		computeCellDistanceToModifierPosition(mod,gp);

@@ -87,7 +87,7 @@ class SolverDebugRendering extends echoes.System {
                 var index = solver.getIndexForCellPosition(i,j);
                 var vec = solver.getUVVectorForIndexPosition(index);
                 var uvl = vec.length();
-                var color = new Vector(uvl*0.1,0,1-uvl*0.1,0.2);
+                var color = new Vector(uvl*0.5,0,1-uvl*0.5,0.5);
                 bitmapPressure.setPixel(i, j,color.toColor());
             }
         }

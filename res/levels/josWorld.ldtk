@@ -703,13 +703,13 @@
 						},
 						{
 							"__identifier": "Modifier",
-							"__grid": [29,18],
+							"__grid": [21,44],
 							"__pivot": [0.5,1],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 32,
-							"px": [464,290],
+							"px": [350,713],
 							"fieldInstances": [{
 								"__identifier": "AreaEquation",
 								"__value": "EqDiverge",

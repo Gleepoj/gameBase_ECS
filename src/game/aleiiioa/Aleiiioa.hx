@@ -22,13 +22,15 @@ class Aleiiioa extends Game {
 		var player = level.data.l_Entities.all_PlayerStart[0];
 		Builders.basicPlayer(player.cx,player.cy);
 
+		for (m in level.data.l_Entities.all_Modifier){
+			Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
+		}
+
 		for (b in level.data.l_Entities.all_Vessel){
 			Builders.basicHunter(b.cx,b.cy,b.f_Path,b.f_spawn_sec);
 		}
 
-		for (m in level.data.l_Entities.all_Modifier){
-			Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
-		}
+
 
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
 		var cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);

@@ -123,12 +123,14 @@ class Builders {
         var path = new PathComponent(path);
         var gun  = new GunComponent(false);
         var cl   = new CollisionsListener();
+        var mod  = new ModifierComponent();
+        mod.areaEquation = EqConverge;
        
         var tflag = new TimeFlag(sec);
         var flag  = new VesselFlag();
         var bflag = new BodyFlag();
         
-        new echoes.Entity().add(pos,spr,se,vc,bb,sw,path,gun,cl,flag,tflag,bflag);
+        new echoes.Entity().add(pos,spr,se,vc,bb,sw,path,gun,cl,mod,flag,tflag,bflag);
     }
 
 //////BULLET//////////////////////
