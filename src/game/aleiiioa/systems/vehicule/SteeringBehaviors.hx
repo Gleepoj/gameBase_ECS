@@ -49,6 +49,7 @@ class  SteeringBehaviors extends System {
     }
     @u function updatePlayerWindSensitivityShared(sw:SteeringWheel,ws:WindSensitivitySharedComponent){
         sw.windSensitivity = ws.windSensitivity;
+        sw.yAperture = ws.wingYaperture;
     }
 
     @u function updateTargetFromPath(sw:SteeringWheel,pc:PathComponent) {
@@ -62,13 +63,17 @@ class  SteeringBehaviors extends System {
     @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {
         if(!en.exists(PathComponent) && !en.exists(TargetGridPosition)){
             var d:Vector = sw.solverUVatCoord;
-            var cla = Math.clamp(sw.windSensitivity,-0.2,30);
+            var wsens = Math.clamp(sw.windSensitivity,-0.2,30);
+            var ySens = sw.yAperture*10;
             var dc = d.clone();
-            d.scale(cla);
-            dc.scale(0.1);
-            var e = d.add(dc);
+            var pcross = new Vector(d.x,d.y * ySens);
+            //trace(pcross.toString());
+            //d.scale(wsens);
+            dc.scale(0);
+            var e = pcross.add(dc);
             sw.steering = e.sub(sw.velocity);
         } 
+
         applySensitivity(sw);
         if(en.exists(PathComponent))
             sw.steering = seek(sw);

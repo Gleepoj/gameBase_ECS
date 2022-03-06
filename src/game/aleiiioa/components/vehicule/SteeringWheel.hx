@@ -8,6 +8,7 @@ class SteeringWheel {
     public var maxForce = 0.2;//0.05
     public var mass = 1.2;// * Math.random(2);//Math.random(3);
     public var windSensitivity:Float = 12;
+    public var yAperture:Float = 1;
 
     public var location :Vector;
     public var velocity :Vector;

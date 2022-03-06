@@ -80,7 +80,7 @@ class Builders {
         var fl_wi_ms = new WingsMasterFlag();
         var fl_wi_ch = new ChildFlag();// for garbage collection
         
-        new echoes.Entity().add(inp,wi,mpos,fl_wi_ms,fl_wi_ch);
+        new echoes.Entity().add(inp,wi,wsens,mpos,fl_wi_ms,fl_wi_ch);
         //Wing Left
 
         var pos_wl    = new GridPosition(mpos.cx,mpos.cy);

@@ -1,10 +1,12 @@
 package aleiiioa.systems.vehicule;
 
+import aleiiioa.components.vehicule.WingsComponent;
 import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
 import aleiiioa.components.solver.SUVatCoordComponent;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.MasterGridPosition;
 import aleiiioa.components.vehicule.VeilComponent;
+import hxd.Math;
 import aleiiioa.components.core.VelocityComponent;
 
 class VeilBehaviors extends echoes.System {
@@ -24,6 +26,7 @@ class VeilBehaviors extends echoes.System {
 
     @u function shareWindSensitivity(veil:VeilComponent,ws:WindSensitivitySharedComponent) {
         ws.windSensitivity = veil.dotProduct;
+ 
     }
     
 }

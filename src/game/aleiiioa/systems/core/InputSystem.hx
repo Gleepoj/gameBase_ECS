@@ -68,7 +68,7 @@ class InputSystem extends echoes.System {
 		}
     }
 	//View to satellite to securize// 
-	@u function inputPlayerSatelliteGridPosition(inp:InputComponent,gop:GridPositionOffset,veil:VeilComponent) {
+	@u function inputVeilGridPosition(inp:InputComponent,gop:GridPositionOffset,veil:VeilComponent) {
 		gop.setXYratio(ca.getAnalogValue(MoveX)*2,ca.getAnalogValue(MoveY)*2);
 	}
 	
@@ -83,8 +83,7 @@ class InputSystem extends echoes.System {
     }
 
 	@u function inputPlayerWings(inp:InputComponent,win:WingsComponent,wms:WingsMasterFlag){
-		win.normalizeY = ca.getAnalogValue(MoveY);
-		
-		win.normalizeX = ca.getAnalogValue(MoveX);
+		win.inputY = ca.getAnalogValue(MoveY);
+		win.inputX = ca.getAnalogValue(MoveX);
 	}
 }

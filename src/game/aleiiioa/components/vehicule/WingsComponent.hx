@@ -2,8 +2,8 @@ package aleiiioa.components.vehicule;
 
 class WingsComponent {
     
-    public var normalizeX:Float = 0;
-    public var normalizeY:Float = 0;
+    public var inputX:Float = 0;
+    public var inputY:Float = 0;
 
     public var angleLeftCos:Float = 0;
     public var angleLeftSin:Float = 0;

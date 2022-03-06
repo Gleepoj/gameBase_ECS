@@ -3,6 +3,7 @@ package aleiiioa.systems.renderer;
 import aleiiioa.components.flags.WingRightFlag;
 import aleiiioa.components.flags.WingLeftFlag;
 import aleiiioa.components.vehicule.WingsComponent;
+import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
 import echoes.Entity;
 import aleiiioa.components.vehicule.VeilComponent;
 import aleiiioa.components.core.position.GridPosition;
@@ -23,8 +24,8 @@ class DebugLabelRenderer extends System{
         dl.debugLabel.remove();
     }
 
-    @u function updateDebugBounds(dl:DebugLabel,gp:GridPosition,veil:VeilComponent) {
-        debugFloat(dl,veil.dotProduct);
+    @u function updateDebugBounds(dl:DebugLabel,gp:GridPosition,veil:VeilComponent,ws:WindSensitivitySharedComponent) {
+        debugFloat(dl,ws.wingYaperture);
         renderAllDebugs(dl,gp);
     }
  
