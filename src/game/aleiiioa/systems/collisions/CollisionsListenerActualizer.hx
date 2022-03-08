@@ -1,8 +1,9 @@
 package aleiiioa.systems.collisions;
 
-import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
-import aleiiioa.components.core.collision.CollisionsListener;
 import echoes.System;
+
+import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
 
 class CollisionsListenerActualizer extends System {
     var events:InstancedCollisionEvent;

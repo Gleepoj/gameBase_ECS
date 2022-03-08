@@ -3,7 +3,7 @@ package aleiiioa.systems.collisions;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.gun.BulletComponent;
 import aleiiioa.components.flags.collision.*;
-import aleiiioa.components.flags.*;
+
 import echoes.Entity;
 
 class LevelCollisionsSystem extends echoes.System {
@@ -14,29 +14,23 @@ class LevelCollisionsSystem extends echoes.System {
         
     }
 
-    /** Return TRUE if the Entity *center point* is in screen bounds (default padding is +32px) **/
-    // a remplacer par grid pos 
-/* 	public inline function isOnScreenCenter(padding=32,bb:BoundingBox) {
-		return camera.isOnScreen( bb.centerX, bb.centerY, padding + M.fmax(bb.wid*0.5, bb.hei*0.5) );
+	public inline function isOnScreen(gp:GridPosition) {
+		return camera.isOnScreen(gp.attachX, gp.attachY, 0);
 	}
 
-	public inline function isOnScreenBounds(padding=32,bb:BoundingBox) {
-		return camera.isOnScreenRect( bb.left,bb.top, bb.wid, bb.hei, padding );
-	} */
-
-    @u public function destroyObjectOnWallCollision(entity:Entity,gp:GridPosition) {
+    @u public function destroyObjectOnWallCollision(entity:Entity,gp:GridPosition,bf:BodyFlag) {
         if(entity.isValid()){
             if(level.hasCollision(gp.cx,gp.cy)){
-                if(entity.exists(BodyFlag)){
-                    if(!entity.exists(IsDiedFlag)){
-                        entity.add(new IsDiedFlag());
-                    }
+                if(!entity.exists(IsDiedFlag)){
+                    entity.add(new IsDiedFlag());
                 }
-                if(entity.exists(BulletComponent)){
-                    entity.destroy();
-                } 
             }
         }
+    }
+
+    @u public function destroyOffscreenBullet(entity:Entity,gp:GridPosition,bul:BulletComponent){
+        if(!isOnScreen(gp))
+            entity.add(new IsDiedFlag());
     }
 
 }

@@ -12,6 +12,7 @@ class GunComponent {
     
     public var friendly:Bool = false;
     public var ang:Float;
+    public var bulletRadius:Int = 5;
 
     var fireOpen:Bool;
     public var onFire(get,never) : Bool; inline function get_onFire() return fireOpen;

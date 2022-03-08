@@ -1,22 +1,24 @@
 package aleiiioa.builders;
 
-import aleiiioa.components.InputComponent;
 import echoes.Entity;
+
+import aleiiioa.components.InputComponent;
 import aleiiioa.components.flags.hierarchy.ChildFlag;
-import aleiiioa.components.flags.hierarchy.MasterFlag;
 import aleiiioa.shaders.PressureShader.BitmapShader;
 
-import aleiiioa.components.gun.*;
-import aleiiioa.components.core.*;
 import aleiiioa.components.core.collision.*;
 import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.*;
+
 import aleiiioa.components.solver.*;
-import aleiiioa.components.flags.*;
+import aleiiioa.components.gun.*;
+import aleiiioa.components.vehicule.*;
+
+import aleiiioa.components.flags.hierarchy.*;
 import aleiiioa.components.flags.collision.*;
 import aleiiioa.components.flags.vessel.*;
-import aleiiioa.components.vehicule.*;
+
 
 
 class Builders {
@@ -165,9 +167,10 @@ class Builders {
 
         var vas = new VelocityAnalogSpeed();
         var bul = new BulletComponent(gun);
+        var flBody = new BodyFlag();
         var flag = new EnnemyFlag();
         
-        new echoes.Entity().add(pos,spr,se,vc,vas,bul,flag);
+        new echoes.Entity().add(pos,spr,se,vc,vas,bul,flag,flBody);
     }
 
     public static function friendlyBullet(gGp:GridPosition,gun:GunComponent) {
@@ -179,8 +182,9 @@ class Builders {
         var vas = new VelocityAnalogSpeed();
         var bul = new BulletComponent(gun);
         var flag = new FriendlyFlag();  
+        var flBody = new BodyFlag();
         
-        new echoes.Entity().add(pos,spr,se,vc,vas,bul,flag);
+        new echoes.Entity().add(pos,spr,se,vc,vas,bul,flag,flBody);
     }
 
     ////// Others //
@@ -207,20 +211,3 @@ class Builders {
     }
 }
 
-/* // steer sat
-var spr2  = new SpriteComponent(D.tiles.fxCircle15);
-var se2   = new SpriteExtension();
-
-var pos2  = new GridPosition(mpos.cx,mpos.cy);        
-var off   = new GridPositionOffset(1,1);
-var cl2   = new CollisionsListener();
-
-var gun2  = new GunComponent(true);
-var sw2   = new SteeringWheel();
-var vc2   = new VelocityComponent();
-
-var flag2  = new PlayerFlag();
-var bflag2 = new BodyFlag();
-var chflag = new ChildFlag();
- */
-//new echoes.Entity().add(mpos,tpos,pos2,spr2,se2,vc,off,cl2,flag2,gun2,inp,sw2,vc2,bflag2,chflag);

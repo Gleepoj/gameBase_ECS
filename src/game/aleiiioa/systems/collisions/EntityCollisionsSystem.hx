@@ -3,19 +3,20 @@ package aleiiioa.systems.collisions;
 import echoes.View;
 
 import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
+import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.components.core.position.GridPosition;
 
-import aleiiioa.components.flags.*;
 import aleiiioa.components.flags.collision.*;
 import aleiiioa.components.flags.vessel.*;
 import aleiiioa.components.gun.BulletComponent;
-import aleiiioa.components.core.collision.CollisionsListener;
-import aleiiioa.components.core.position.GridPosition;
 
 
 class EntityCollisionsSystem extends echoes.System {
     var ALL_ENNEMY_BULLETS:View<GridPosition,BulletComponent,EnnemyFlag>;
     var ALL_PLAYER_BULLETS:View<GridPosition,BulletComponent,FriendlyFlag>;
     var ALL_VESSELS:View<GridPosition,VesselFlag>;
+
+    
 
     var events:InstancedCollisionEvent;
 
@@ -29,10 +30,10 @@ class EntityCollisionsSystem extends echoes.System {
         while (head != null){
             var bullet = head.value;
             var vecBullet = bullet.get(GridPosition).gpToVector();
-            if(vecPos.distance(vecBullet)<20){
+            if(vecPos.distance(vecBullet)<bullet.get(BulletComponent).radius){
                 cl.lastEvent = events.bulletInpact;
                 orderListener(cl);
-                bullet.destroy();
+                bullet.add(new IsDiedFlag());
             }
             head = head.next;
         }
@@ -44,10 +45,10 @@ class EntityCollisionsSystem extends echoes.System {
         while (head != null){
             var bullet = head.value;
             var vecBullet = bullet.get(GridPosition).gpToVector();
-            if(vecPos.distance(vecBullet)<20){
+            if(vecPos.distance(vecBullet)< bullet.get(BulletComponent).radius){
                 cl.lastEvent = events.bulletInpact;
                 orderListener(cl);
-                bullet.destroy();
+                bullet.add(new IsDiedFlag());
             }
             head = head.next;
         }
