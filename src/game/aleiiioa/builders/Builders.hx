@@ -123,14 +123,30 @@ class Builders {
         var path = new PathComponent(path);
         var gun  = new GunComponent(false);
         var cl   = new CollisionsListener();
-        var mod  = new ModifierComponent();
-        mod.areaEquation = EqConverge;
+        //var mod  = new ModifierComponent();
+        //mod.areaEquation = EqConverge;
        
         var tflag = new TimeFlag(sec);
         var flag  = new VesselFlag();
         var bflag = new BodyFlag();
         
-        new echoes.Entity().add(pos,spr,se,vc,bb,sw,path,gun,cl,mod,flag,tflag,bflag);
+        new echoes.Entity().add(pos,spr,se,vc,bb,sw,path,gun,cl,flag,tflag,bflag);
+    }
+
+    public static function basicElement(cx:Int,cy:Int,sec:Int) {
+        var pos = new GridPosition(cx,cy);
+        var spr = new SpriteComponent(D.tiles.fxCircle15);
+        var se  = new SpriteExtension();
+        var vc  = new VelocityComponent();
+       
+        var sw   = new SteeringWheel();
+        var cl   = new CollisionsListener();
+        
+        var tflag = new TimeFlag(sec);
+        var flag  = new VesselFlag();
+        var bflag = new BodyFlag();
+        
+        new echoes.Entity().add(pos,spr,se,vc,sw,cl,flag,tflag,bflag);
     }
 
 //////BULLET//////////////////////

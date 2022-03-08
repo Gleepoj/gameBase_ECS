@@ -59,22 +59,28 @@ class  SteeringBehaviors extends System {
     @u function updateTargetFromTargetGridPosition(sw:SteeringWheel,tgp:TargetGridPosition,gp:GridPosition) {
         sw.target = new Vector(tgp.attachX-gp.attachX,tgp.attachY-gp.attachY);
     }
+    @u function updatePlayerSteeringForce(sw:SteeringWheel,ws:WindSensitivitySharedComponent,pl:PlayerFlag){
+        var d:Vector = sw.solverUVatCoord;
+        var e:Vector = new Vector(0,0);
+        var ySens = sw.yAperture*15;
+        if(ySens > 0 )
+            e = new Vector(d.x,d.y * ySens);
+          
+        if (ySens == 0 )
+            e = d.multiply(0.5);
+
+        var s = e.sub(sw.velocity);
+        var xin = s.add(new Vector(ws.xInput,ws.yInput));
+        sw.steering = xin;// e.sub(sw.velocity);
+    }
 
     @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {
-        if(!en.exists(PathComponent) && !en.exists(TargetGridPosition)){
+        if(!en.exists(PathComponent) && !en.exists(TargetGridPosition) && !en.exists(PlayerFlag)){
             var d:Vector = sw.solverUVatCoord;
-            var wsens = Math.clamp(sw.windSensitivity,-0.2,30);
-            var ySens = sw.yAperture*10;
-            var dc = d.clone();
-            var pcross = new Vector(d.x,d.y * ySens);
-            //trace(pcross.toString());
-            //d.scale(wsens);
-            dc.scale(0);
-            var e = pcross.add(dc);
-            sw.steering = e.sub(sw.velocity);
+            sw.steering = d.sub(sw.velocity);
         } 
 
-        applySensitivity(sw);
+        //applySensitivity(sw);
         if(en.exists(PathComponent))
             sw.steering = seek(sw);
         

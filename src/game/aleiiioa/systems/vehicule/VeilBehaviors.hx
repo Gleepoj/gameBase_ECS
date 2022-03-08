@@ -26,7 +26,7 @@ class VeilBehaviors extends echoes.System {
 
     @u function shareWindSensitivity(veil:VeilComponent,ws:WindSensitivitySharedComponent) {
         ws.windSensitivity = veil.dotProduct;
- 
+        
     }
     
 }

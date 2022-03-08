@@ -30,7 +30,9 @@ class Aleiiioa extends Game {
 			Builders.basicHunter(b.cx,b.cy,b.f_Path,b.f_spawn_sec);
 		}
 
-
+		for (e in level.data.l_Entities.all_Elements){
+			Builders.basicElement(e.cx,e.cy,e.f_spawn_sec);
+		}
 
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
 		var cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);
