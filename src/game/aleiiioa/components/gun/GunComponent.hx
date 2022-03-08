@@ -1,4 +1,4 @@
-package aleiiioa.components.vehicule;
+package aleiiioa.components.gun;
 
 
 import aleiiioa.systems.vehicule.GunCommand;

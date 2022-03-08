@@ -1,6 +1,6 @@
 package aleiiioa.systems.solver.modifier;
 
-import aleiiioa.components.core.SpriteComponent;
+import aleiiioa.components.core.rendering.SpriteComponent;
 import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
 import h3d.Vector;
 import dn.Bresenham;

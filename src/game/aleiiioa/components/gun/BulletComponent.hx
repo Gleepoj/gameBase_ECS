@@ -1,6 +1,6 @@
-package aleiiioa.components;
+package aleiiioa.components.gun;
 
-import aleiiioa.components.vehicule.GunComponent;
+import aleiiioa.components.gun.GunComponent;
 
 class BulletComponent {
     public var ang:Float;

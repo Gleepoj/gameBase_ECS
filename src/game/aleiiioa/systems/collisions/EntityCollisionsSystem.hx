@@ -5,8 +5,8 @@ import echoes.View;
 import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
 
 import aleiiioa.components.flags.*;
-import aleiiioa.components.BulletComponent;
-import aleiiioa.components.CollisionsListener;
+import aleiiioa.components.gun.BulletComponent;
+import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.position.GridPosition;
 
 

@@ -7,7 +7,8 @@ import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
 import echoes.Entity;
 import aleiiioa.components.vehicule.VeilComponent;
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.DebugLabel;
+import aleiiioa.components.core.rendering.DebugLabel;
+
 import echoes.System;
 
 class DebugLabelRenderer extends System{

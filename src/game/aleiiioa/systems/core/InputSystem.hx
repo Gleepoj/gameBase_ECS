@@ -5,11 +5,11 @@ import aleiiioa.components.vehicule.WingsComponent;
 import aleiiioa.components.vehicule.VeilComponent;
 import aleiiioa.components.flags.VeilFlag;
 import aleiiioa.components.*;
-import aleiiioa.components.core.VelocityAnalogSpeed;
+import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 
 import aleiiioa.components.solver.ModifierComponent;
-import aleiiioa.components.vehicule.GunComponent;
-import aleiiioa.components.core.GridPositionOffset;
+import aleiiioa.components.gun.GunComponent;
+import aleiiioa.components.core.position.GridPositionOffset;
 
 import aleiiioa.systems.vehicule.GunCommand.InstancedGunCommands;
 import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;

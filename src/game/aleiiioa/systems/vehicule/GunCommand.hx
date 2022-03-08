@@ -1,6 +1,6 @@
 package aleiiioa.systems.vehicule;
 
-import aleiiioa.components.vehicule.GunComponent;
+import aleiiioa.components.gun.GunComponent;
 
 
 interface GunCommand {

@@ -1,7 +1,7 @@
 package aleiiioa.systems.collisions;
 
 import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
-import aleiiioa.components.CollisionsListener;
+import aleiiioa.components.core.collision.CollisionsListener;
 import echoes.System;
 
 class CollisionsListenerActualizer extends System {

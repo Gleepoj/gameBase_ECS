@@ -2,9 +2,9 @@ package aleiiioa.systems.vehicule;
 
 import aleiiioa.builders.Builders;
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.core.VelocityAnalogSpeed;
-import aleiiioa.components.BulletComponent;
-import aleiiioa.components.vehicule.GunComponent;
+import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
+import aleiiioa.components.gun.BulletComponent;
+import aleiiioa.components.gun.GunComponent;
 import aleiiioa.systems.vehicule.GunCommand;
 
 class GunSystem extends echoes.System {

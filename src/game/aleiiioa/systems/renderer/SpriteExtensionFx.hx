@@ -1,9 +1,9 @@
 package aleiiioa.systems.renderer;
 
 import aleiiioa.components.solver.ModifierComponent;
-import aleiiioa.components.CollisionsListener;
-import aleiiioa.components.core.SpriteExtension;
-import aleiiioa.components.core.SpriteComponent;
+import aleiiioa.components.core.collision.CollisionsListener;
+//import aleiiioa.components.core.SpriteExtension;
+import aleiiioa.components.core.rendering.*;
 import echoes.System;
 
 class SpriteExtensionFx extends System {

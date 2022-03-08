@@ -1,12 +1,16 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.InputComponent;
 import echoes.Entity;
 import aleiiioa.components.flags.hierarchy.ChildFlag;
 import aleiiioa.components.flags.hierarchy.MasterFlag;
 import aleiiioa.shaders.PressureShader.BitmapShader;
 
-import aleiiioa.components.*;
+import aleiiioa.components.gun.*;
 import aleiiioa.components.core.*;
+import aleiiioa.components.core.collision.*;
+import aleiiioa.components.core.rendering.*;
+import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.solver.*;
 import aleiiioa.components.flags.*;

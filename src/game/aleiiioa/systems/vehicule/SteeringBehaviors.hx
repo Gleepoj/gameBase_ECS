@@ -12,7 +12,7 @@ import aleiiioa.components.flags.PlayerFlag;
 import h3d.Vector;
 import echoes.System;
 
-import aleiiioa.components.core.VelocityComponent;
+import aleiiioa.components.core.velocity.VelocityComponent;
 import aleiiioa.components.vehicule.SteeringWheel;
 
 

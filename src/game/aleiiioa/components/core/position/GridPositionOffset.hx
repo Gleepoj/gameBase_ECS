@@ -1,4 +1,4 @@
-package aleiiioa.components.core;
+package aleiiioa.components.core.position;
 
 // Is used with MasterGridPosition here is the data for offsetting an "subentity" from a master position
 class GridPositionOffset {

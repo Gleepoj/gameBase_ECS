@@ -1,7 +1,7 @@
 package aleiiioa.systems.collisions;
 
 import h3d.Vector;
-import aleiiioa.components.CollisionsListener;
+import aleiiioa.components.core.collision.CollisionsListener;
 
 interface CollisionEvent {
     public function send(cl:CollisionsListener):Void;    

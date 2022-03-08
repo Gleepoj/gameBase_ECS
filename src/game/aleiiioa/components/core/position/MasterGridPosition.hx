@@ -1,4 +1,4 @@
-package aleiiioa.components.core;
+package aleiiioa.components.core.position;
 import aleiiioa.components.core.position.GridPosition;
 
 class MasterGridPosition extends GridPosition{

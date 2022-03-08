@@ -1,7 +1,8 @@
 package aleiiioa.systems.core;
 
-import aleiiioa.components.core.*;
+import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.GridPosition;
+
 import aleiiioa.components.vehicule.SteeringWheel;
 
 class VelocitySystem extends echoes.System {

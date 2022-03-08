@@ -1,4 +1,4 @@
-package aleiiioa.components.core;
+package aleiiioa.components.core.rendering;
 
 class SpriteExtension{
     public var interpolateSprPos = true;    

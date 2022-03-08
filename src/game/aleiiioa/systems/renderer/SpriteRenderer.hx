@@ -2,7 +2,8 @@ package aleiiioa.systems.renderer;
 
 import h3d.Vector;
 import echoes.System;
-import aleiiioa.components.core.*;
+import aleiiioa.components.core.rendering.*;
+//import aleiiioa.components.core.SpriteExtension;
 import aleiiioa.components.core.position.GridPosition;
 
 class SpriteRenderer extends echoes.System {
@@ -73,21 +74,5 @@ class SpriteRenderer extends echoes.System {
 		se.squashY += (1 - se.squashY) * M.fmin(1, 0.2 * dt);		
 	}
 
-	/* @u private function renderChildSprite(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension,ogp:GridPositionOffset) {
-		if (se.interpolateSprPos){
-			var interpolatePos = this.interpolateSpritePosition(gp);
-			spr.x = interpolatePos.x + ogp.ox;
-			spr.y = interpolatePos.y + ogp.oy;
-		}
-		if (!se.interpolateSprPos){
-			spr.x = gp.attachX + ogp.ox;
-			spr.y = gp.attachY + ogp.oy;
-		}
 
-		spr.scaleX = se.dir * se.sprScaleX * se.squashX;
-		spr.scaleY = se.sprScaleY * se.squashY;
-
-		se.squashX += (1 - se.squashX) * M.fmin(1, 0.2 * dt);
-		se.squashY += (1 - se.squashY) * M.fmin(1, 0.2 * dt);		
-	} */
 }

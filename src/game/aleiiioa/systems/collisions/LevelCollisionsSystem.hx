@@ -1,9 +1,7 @@
 package aleiiioa.systems.collisions;
 
-import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
-import aleiiioa.components.core.*;
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.*;
+import aleiiioa.components.gun.BulletComponent;
 import aleiiioa.components.flags.*;
 import echoes.Entity;
 
@@ -16,13 +14,14 @@ class LevelCollisionsSystem extends echoes.System {
     }
 
     /** Return TRUE if the Entity *center point* is in screen bounds (default padding is +32px) **/
-	public inline function isOnScreenCenter(padding=32,bb:BoundingBox) {
+    // a remplacer par grid pos 
+/* 	public inline function isOnScreenCenter(padding=32,bb:BoundingBox) {
 		return camera.isOnScreen( bb.centerX, bb.centerY, padding + M.fmax(bb.wid*0.5, bb.hei*0.5) );
 	}
 
 	public inline function isOnScreenBounds(padding=32,bb:BoundingBox) {
 		return camera.isOnScreenRect( bb.left,bb.top, bb.wid, bb.hei, padding );
-	}
+	} */
 
     @u public function destroyObjectOnWallCollision(entity:Entity,gp:GridPosition) {
         if(entity.isValid()){
