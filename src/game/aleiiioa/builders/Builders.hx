@@ -61,30 +61,6 @@ class Builders {
         var fl_bo  = new BodyFlag();
        
         new echoes.Entity().add(mpos,wi,pos,suv,spr,inp,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
-        //input satelitte child entity
-        
-        var veil  = new VeilComponent();
-        var bb_v  = new BoundingBox();
-        
-        //var spr_v  = new SpriteComponent(D.tiles.fxCircle7);
-        //var se_v   = new SpriteExtension();
-        
-        var pos_v   = new GridPosition(mpos.cx,mpos.cy);
-        var off_v   = new GridPositionOffset(0,0);
-
-
-        //var cl_v   = new CollisionsListener();
-        //var dbl_v   = new DebugLabel();
-
-
-        var fl_pl_v   = new PlayerFlag();
-        var fl_bo_v   = new BodyFlag();
-        var fl_ch_v   = new ChildFlag();
-        var fl_veil   = new VeilFlag();
-        var fl_tar    = new TargetedFlag();
-
-        new echoes.Entity().add(mpos,suv,pos_v,off_v,bb_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil);
-        
         //Wing Master 
         
         var fl_wi_ms = new WingsMasterFlag();
@@ -188,19 +164,6 @@ class Builders {
         new echoes.Entity().add(pos,spr,se,vc,vas,bul,flag,flBody);
     }
 
-    ////// Others //
-    public static function pointDebugger(cx:Int,cy:Int,endPoint:Bool) {
-        var spr = new SpriteComponent(D.tiles.fxDot);
-        var se  = new SpriteExtension();
-        var pos = new GridPosition(cx,cy);
-        spr.colorize(0xefef00);
-        if(endPoint)
-            spr.colorize(0x00efef);
-        se.sprScaleX = 0.5;
-        se.sprScaleY = 0.5;
-        return new echoes.Entity().add(spr,pos,se);
-    }
-
     public static function layerComponent(shader:BitmapShader) {
         var layer = new LayerComponent(shader);
         new echoes.Entity().add(layer);
@@ -210,5 +173,6 @@ class Builders {
         var cc = new CellComponent(i,j,index);
         new echoes.Entity().add(cc);
     }
+    
 }
 
