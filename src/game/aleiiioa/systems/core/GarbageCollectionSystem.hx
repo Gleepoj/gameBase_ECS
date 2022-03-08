@@ -6,10 +6,10 @@ import echoes.Entity;
 import echoes.View;
 
 import aleiiioa.components.core.position.MasterGridPosition;
-import aleiiioa.components.flags.*;
+
 import aleiiioa.components.flags.hierarchy.*;
-import aleiiioa.components.vehicule.*;
-import aleiiioa.components.solver.*;
+import aleiiioa.components.flags.collision.*;
+
 
 
 class GarbageCollectionSystem extends System {

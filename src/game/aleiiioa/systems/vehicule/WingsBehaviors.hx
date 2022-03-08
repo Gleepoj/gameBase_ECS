@@ -2,10 +2,10 @@ package aleiiioa.systems.vehicule;
 
 import aleiiioa.components.core.position.GridPositionOffset;
 import hxd.Math;
-import aleiiioa.components.flags.WingRightFlag;
+
 import aleiiioa.components.core.rendering.*;
-import aleiiioa.components.flags.WingLeftFlag;
-import aleiiioa.components.flags.WingsMasterFlag;
+import aleiiioa.components.flags.vessel.*;
+
 import aleiiioa.components.vehicule.WingsComponent;
 import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
 

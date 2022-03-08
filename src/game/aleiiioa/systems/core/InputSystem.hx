@@ -1,9 +1,9 @@
 package aleiiioa.systems.core;
 
-import aleiiioa.components.flags.WingsMasterFlag;
+
 import aleiiioa.components.vehicule.WingsComponent;
 import aleiiioa.components.vehicule.VeilComponent;
-import aleiiioa.components.flags.VeilFlag;
+import aleiiioa.components.flags.vessel.*;
 import aleiiioa.components.*;
 import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 

@@ -1,4 +1,4 @@
-package aleiiioa.components.flags;
+package aleiiioa.components.flags.vessel;
 
 class PlayerFlag {
     public function new() {

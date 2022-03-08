@@ -14,6 +14,8 @@ import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.solver.*;
 import aleiiioa.components.flags.*;
+import aleiiioa.components.flags.collision.*;
+import aleiiioa.components.flags.vessel.*;
 import aleiiioa.components.vehicule.*;
 
 
@@ -131,7 +133,7 @@ class Builders {
         //var mod  = new ModifierComponent();
         //mod.areaEquation = EqConverge;
        
-        var tflag = new TimeFlag(sec);
+        var tflag = new SpawnTimeComponent(sec);
         var flag  = new VesselFlag();
         var bflag = new BodyFlag();
         
@@ -147,7 +149,7 @@ class Builders {
         var sw   = new SteeringWheel();
         var cl   = new CollisionsListener();
         
-        var tflag = new TimeFlag(sec);
+        var tflag = new SpawnTimeComponent(sec);
         var flag  = new VesselFlag();
         var bflag = new BodyFlag();
         

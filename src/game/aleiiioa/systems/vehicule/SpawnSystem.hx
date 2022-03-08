@@ -3,7 +3,9 @@ package aleiiioa.systems.vehicule;
 import echoes.Entity;
 import echoes.View;
 import echoes.System;
-import aleiiioa.components.flags.*;
+import aleiiioa.components.core.position.SpawnTimeComponent;
+import aleiiioa.components.flags.vessel.*;
+
 
 class SpawnSystem extends System{
     
@@ -16,7 +18,7 @@ class SpawnSystem extends System{
         INACTIVE_VESSELS = [];
     }
 
-    @a function onVesselAdded(en:Entity,vf:VesselFlag,tf:TimeFlag) {
+    @a function onVesselAdded(en:Entity,vf:VesselFlag,stc:SpawnTimeComponent) {
         INACTIVE_VESSELS.push(en);
         en.deactivate();
     }
@@ -25,14 +27,14 @@ class SpawnSystem extends System{
        TIME = Math.floor(Game.ME.stime);
 
         for(en in INACTIVE_VESSELS){
-                if(TIME >= en.get(TimeFlag).SPAWN_SEC)
+                if(TIME >= en.get(SpawnTimeComponent).SPAWN_SEC)
                     reactivateEntity(en);
             
         }
     } 
 
     function reactivateEntity(en:Entity){
-        en.remove(TimeFlag);
+        en.remove(SpawnTimeComponent);
         en.activate();
         INACTIVE_VESSELS.remove(en);
     }

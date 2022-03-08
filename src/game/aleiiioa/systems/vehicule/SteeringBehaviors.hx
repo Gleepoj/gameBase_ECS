@@ -8,7 +8,7 @@ import echoes.View;
 import echoes.Entity;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.vehicule.PathComponent;
-import aleiiioa.components.flags.PlayerFlag;
+import aleiiioa.components.flags.vessel.*;
 import h3d.Vector;
 import echoes.System;
 

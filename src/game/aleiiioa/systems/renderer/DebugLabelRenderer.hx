@@ -1,7 +1,7 @@
 package aleiiioa.systems.renderer;
 
-import aleiiioa.components.flags.WingRightFlag;
-import aleiiioa.components.flags.WingLeftFlag;
+
+import aleiiioa.components.flags.vessel.*;
 import aleiiioa.components.vehicule.WingsComponent;
 import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
 import echoes.Entity;

@@ -1,6 +1,6 @@
-package aleiiioa.components.flags;
+package aleiiioa.components.core.position;
 
-class TimeFlag {
+class SpawnTimeComponent {
     public var SPAWN_SEC:Int;
     public function new(sec:Int) {
         SPAWN_SEC = sec;

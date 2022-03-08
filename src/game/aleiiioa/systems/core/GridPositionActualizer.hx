@@ -1,10 +1,9 @@
 package aleiiioa.systems.core;
 
-import aleiiioa.components.flags.VeilFlag;
+
 import aleiiioa.components.flags.hierarchy.ChildFlag;
 import aleiiioa.components.flags.hierarchy.MasterFlag;
-import aleiiioa.components.flags.TargetedFlag;
-import aleiiioa.components.core.*;
+import aleiiioa.components.flags.vessel.TargetedFlag;
 import aleiiioa.components.core.position.*;
 
 

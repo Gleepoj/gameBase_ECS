@@ -2,6 +2,7 @@ package aleiiioa.systems.collisions;
 
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.gun.BulletComponent;
+import aleiiioa.components.flags.collision.*;
 import aleiiioa.components.flags.*;
 import echoes.Entity;
 
