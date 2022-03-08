@@ -1222,43 +1222,417 @@
 						},
 						{
 							"__identifier": "Modifier",
-							"__grid": [23,36],
+							"__grid": [8,23],
 							"__pivot": [0.5,1],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 32,
-							"px": [372,580],
+							"px": [140,381],
 							"fieldInstances": [{
 								"__identifier": "AreaEquation",
-								"__value": "EqRepel",
+								"__value": "EqDiverge",
 								"__type": "ExternEnum.AreaEquation",
 								"defUid": 33,
 								"realEditorValues": [{
 									"id": "V_String",
-									"params": ["EqRepel"]
+									"params": ["EqDiverge"]
 								}]
 							}]
 						},
 						{
 							"__identifier": "Modifier",
-							"__grid": [6,16],
+							"__grid": [24,28],
 							"__pivot": [0.5,1],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 32,
-							"px": [97,263],
+							"px": [397,462],
 							"fieldInstances": [{
 								"__identifier": "AreaEquation",
-								"__value": "EqCurl",
+								"__value": "EqConverge",
 								"__type": "ExternEnum.AreaEquation",
 								"defUid": 33,
 								"realEditorValues": [{
 									"id": "V_String",
-									"params": ["EqCurl"]
+									"params": ["EqConverge"]
 								}]
 							}]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [6,23],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [105,378],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [7,24],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [122,398],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [10,25],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [163,403],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [11,22],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [177,353],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [9,19],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [147,307],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [5,21],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [88,337],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [3,25],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [52,414],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [4,28],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [75,459],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [10,28],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [165,459],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [12,26],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [194,430],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [13,22],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [223,364],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [11,16],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [177,263],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [7,15],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [125,246],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [4,18],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [64,292],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [1,26],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [24,425],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [2,31],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [36,497],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [12,31],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [194,511],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [13,26],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [221,428],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [12,23],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [196,384],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [6,26],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [111,428],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [5,28],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [86,453],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [8,28],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [143,459],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [3,23],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [63,370],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [2,20],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [34,334],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [3,20],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [49,336],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [11,19],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [191,318],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [5,18],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [85,292],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [8,21],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [135,346],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [7,22],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [122,361],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [10,23],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [160,373],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [9,25],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [146,403],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [6,21],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [108,337],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [9,21],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [158,343],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Elements",
+							"__grid": [5,23],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 34,
+							"px": [89,376],
+							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
 						}
 					]
 				},

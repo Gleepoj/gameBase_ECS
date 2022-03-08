@@ -41,7 +41,8 @@ class Builders {
         var spr  = new SpriteComponent(D.tiles.fxCircle15);
         
         var vc   = new VelocityComponent();
-        var sw   = new SteeringWheel(); 
+        var sw   = new SteeringWheel();
+        sw.windSensitivity = 0 ; 
         var gun  = new GunComponent(true);
         var cl   = new CollisionsListener();
 
@@ -56,15 +57,15 @@ class Builders {
         var inp   = new InputComponent();
         var bb_v  = new BoundingBox();
         
-        var spr_v  = new SpriteComponent(D.tiles.fxCircle7);
-        var se_v   = new SpriteExtension();
+        //var spr_v  = new SpriteComponent(D.tiles.fxCircle7);
+        //var se_v   = new SpriteExtension();
         
         var pos_v   = new GridPosition(mpos.cx,mpos.cy);
         var off_v   = new GridPositionOffset(0,0);
 
 
-        var cl_v   = new CollisionsListener();
-        var dbl_v   = new DebugLabel();
+        //var cl_v   = new CollisionsListener();
+        //var dbl_v   = new DebugLabel();
 
 
         var fl_pl_v   = new PlayerFlag();
@@ -73,7 +74,7 @@ class Builders {
         var fl_veil   = new VeilFlag();
         var fl_tar    = new TargetedFlag();
 
-        new echoes.Entity().add(mpos,wsens,suv,pos_v,spr_v,se_v,off_v,bb_v,cl_v,dbl_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil);
+        new echoes.Entity().add(mpos,wsens,suv,pos_v,off_v,bb_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil);
         
         //Wing Master 
         var wi = new WingsComponent();

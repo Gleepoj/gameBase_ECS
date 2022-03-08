@@ -62,16 +62,28 @@ class  SteeringBehaviors extends System {
     @u function updatePlayerSteeringForce(sw:SteeringWheel,ws:WindSensitivitySharedComponent,pl:PlayerFlag){
         var d:Vector = sw.solverUVatCoord;
         var e:Vector = new Vector(0,0);
-        var ySens = sw.yAperture*15;
-        if(ySens > 0 )
-            e = new Vector(d.x,d.y * ySens);
-          
-        if (ySens == 0 )
-            e = d.multiply(0.5);
+        var finalV:Vector = new Vector(0,0);
 
-        var s = e.sub(sw.velocity);
-        var xin = s.add(new Vector(ws.xInput,ws.yInput));
-        sw.steering = xin;// e.sub(sw.velocity);
+        var ySens = sw.yAperture*15;
+        
+        if (!ws.attackPosition){
+            if(ySens > 0 )
+                e = new Vector(d.x,d.y * ySens);
+            
+            if (ySens == 0 )
+                e = d.multiply(0.5);
+
+            var s = e.sub(sw.velocity);
+            finalV = s.add(new Vector(ws.xInput,ws.yInput));
+            sw.maxForce = 0.2;
+        }
+
+        if (ws.attackPosition){
+            finalV = new Vector(ws.xInput*10,ws.yInput*10);
+            sw.maxForce = 0.4;
+        }
+
+        sw.steering = finalV;// e.sub(sw.velocity);
     }
 
     @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {
@@ -80,7 +92,7 @@ class  SteeringBehaviors extends System {
             sw.steering = d.sub(sw.velocity);
         } 
 
-        //applySensitivity(sw);
+        applySensitivity(sw);
         if(en.exists(PathComponent))
             sw.steering = seek(sw);
         

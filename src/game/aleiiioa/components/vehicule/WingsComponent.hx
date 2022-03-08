@@ -5,6 +5,11 @@ class WingsComponent {
     public var inputX:Float = 0;
     public var inputY:Float = 0;
 
+    public var inputLock:Bool = false;
+
+    public var isLocked(get,never):Bool; inline function get_isLocked() return inputLock;
+  
+
     public var angleLeftCos:Float = 0;
     public var angleLeftSin:Float = 0;
 

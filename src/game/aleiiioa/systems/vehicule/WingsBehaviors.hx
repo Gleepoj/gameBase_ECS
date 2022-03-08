@@ -29,16 +29,42 @@ class WingsBehaviors extends echoes.System {
         ws.wingYaperture = Math.clamp(win.inputY,0,1);
         ws.xInput = win.inputX;
         ws.yInput = win.inputY;
+
+        ws.attackPosition = win.inputLock;
     
     }
 
     @u function updateLeftWing(win:WingsComponent,wl:WingLeftFlag,spr:SpriteComponent,gop:GridPositionOffset){
-        spr.rotation = win.angleL;
+       
         gop.oyr = win.xLratio*0.2;
+        
+        if(!win.isLocked){
+            gop.oxr = -0.5;
+            spr.rotation = win.angleL;
+        }
+
+        if(win.isLocked){
+            gop.oxr = -0.3;
+            spr.rotation = 0;
+        }
+
+ 
+
     }
 
     @u function updateRightWing(win:WingsComponent,wr:WingRightFlag,spr:SpriteComponent,gop:GridPositionOffset){
-        spr.rotation = win.angleR;
+       
         gop.oyr = win.xRratio*0.2;
+        
+        if(!win.isLocked){
+            gop.oxr = 0.5;
+            spr.rotation = win.angleR;
+        }
+
+        if(win.isLocked){
+            gop.oxr = 0.3;
+            spr.rotation = 0;
+        }
+
     }
 }

@@ -85,5 +85,13 @@ class InputSystem extends echoes.System {
 	@u function inputPlayerWings(inp:InputComponent,win:WingsComponent,wms:WingsMasterFlag){
 		win.inputY = ca.getAnalogValue(MoveY);
 		win.inputX = ca.getAnalogValue(MoveX);
+
+		if (!ca.isDown(Jump)){
+			win.inputLock = false;
+		}
+
+		if (ca.isDown(Jump)){
+			win.inputLock = true;
+		}
 	}
 }

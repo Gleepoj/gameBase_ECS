@@ -8,6 +8,8 @@ class WindSensitivitySharedComponent {
     public var wingYaperture:Float = 0 ; 
     public var xInput:Float = 0;
     public var yInput:Float = 0;
+    public var attackPosition:Bool = false;
+     
     public function new() {
         
     }
