@@ -38,7 +38,9 @@ class Builders {
         //Shared Component
         var mpos  = new MasterGridPosition(cx,cy);
         var tpos  = new TargetGridPosition(cx,cy);
-        var wsens = new WindSensitivitySharedComponent();
+        var wi = new WingsSharedComponent();
+        
+        var inp   = new InputComponent();
         
         //Individual Component
         var pos   = new GridPosition(mpos.cx,mpos.cy);
@@ -58,11 +60,10 @@ class Builders {
         var fl_mst = new MasterFlag();
         var fl_bo  = new BodyFlag();
        
-        new echoes.Entity().add(mpos,wsens,pos,suv,spr,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
+        new echoes.Entity().add(mpos,wi,pos,suv,spr,inp,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
         //input satelitte child entity
         
         var veil  = new VeilComponent();
-        var inp   = new InputComponent();
         var bb_v  = new BoundingBox();
         
         //var spr_v  = new SpriteComponent(D.tiles.fxCircle7);
@@ -82,14 +83,14 @@ class Builders {
         var fl_veil   = new VeilFlag();
         var fl_tar    = new TargetedFlag();
 
-        new echoes.Entity().add(mpos,wsens,suv,pos_v,off_v,bb_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil);
+        new echoes.Entity().add(mpos,suv,pos_v,off_v,bb_v,veil,inp,fl_pl_v,fl_bo_v,fl_ch_v,fl_veil);
         
         //Wing Master 
-        var wi = new WingsComponent();
+        
         var fl_wi_ms = new WingsMasterFlag();
         var fl_wi_ch = new ChildFlag();// for garbage collection
         
-        new echoes.Entity().add(inp,wi,wsens,mpos,fl_wi_ms,fl_wi_ch);
+        new echoes.Entity().add(inp,wi,mpos,fl_wi_ms,fl_wi_ch);
         //Wing Left
 
         var pos_wl    = new GridPosition(mpos.cx,mpos.cy);

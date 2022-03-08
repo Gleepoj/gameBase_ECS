@@ -1,41 +1,20 @@
 package aleiiioa.systems.vehicule;
 
-import aleiiioa.components.core.position.GridPositionOffset;
-import hxd.Math;
 
-import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.flags.vessel.*;
 
-import aleiiioa.components.vehicule.WingsComponent;
-import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
+import aleiiioa.components.vehicule.WingsSharedComponent;
+import aleiiioa.components.core.position.GridPositionOffset;
+import aleiiioa.components.core.rendering.*;
 
 class WingsBehaviors extends echoes.System {
     public function new() {
         
     }
 
-    @u function updateWingsAngleY(win:WingsComponent,wms:WingsMasterFlag,ws:WindSensitivitySharedComponent) {
-        
-        var lerpY = Math.clamp(win.inputY,-0.2,1);
-        win.angleL = -lerpY;
-        win.angleR = lerpY;
-
-        var lerpX = Math.clamp(win.inputX,-0.5,0.5);
-        win.xLratio = lerpX;
-        win.xRratio = -lerpX;
-
-        
-        ws.wingYaperture = Math.clamp(win.inputY,0,1);
-        ws.xInput = win.inputX;
-        ws.yInput = win.inputY;
-
-        ws.attackPosition = win.inputLock;
-    
-    }
-
-    @u function updateLeftWing(win:WingsComponent,wl:WingLeftFlag,spr:SpriteComponent,gop:GridPositionOffset){
+    @u function updateLeftWing(win:WingsSharedComponent,wl:WingLeftFlag,spr:SpriteComponent,gop:GridPositionOffset){
        
-        gop.oyr = win.xLratio*0.2;
+        gop.oyr = win.offsetDirL*0.2;
         
         if(!win.isLocked){
             gop.oxr = -0.5;
@@ -46,15 +25,12 @@ class WingsBehaviors extends echoes.System {
             gop.oxr = -0.3;
             spr.rotation = 0;
         }
-
- 
-
     }
 
-    @u function updateRightWing(win:WingsComponent,wr:WingRightFlag,spr:SpriteComponent,gop:GridPositionOffset){
+    @u function updateRightWing(win:WingsSharedComponent,wr:WingRightFlag,spr:SpriteComponent,gop:GridPositionOffset){
        
-        gop.oyr = win.xRratio*0.2;
-        
+        gop.oyr = win.offsetDirR*0.2;
+    
         if(!win.isLocked){
             gop.oxr = 0.5;
             spr.rotation = win.angleR;

@@ -1,20 +1,25 @@
 package aleiiioa.systems.vehicule;
 
-import hxd.Math;
-import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
-import aleiiioa.components.vehicule.VeilComponent;
-import echoes.Entity;
+import aleiiioa.components.vehicule.WingsSharedComponent;
+import h3d.Vector;
+
 import echoes.View;
 import echoes.Entity;
-import aleiiioa.components.core.position.*;
-import aleiiioa.components.vehicule.PathComponent;
-import aleiiioa.components.flags.vessel.*;
-import h3d.Vector;
 import echoes.System;
 
-import aleiiioa.components.core.velocity.VelocityComponent;
-import aleiiioa.components.vehicule.SteeringWheel;
 
+
+import aleiiioa.components.core.position.*;
+import aleiiioa.components.core.velocity.VelocityComponent;
+import aleiiioa.components.vehicule.PathComponent;
+import aleiiioa.components.vehicule.SteeringWheel;
+import aleiiioa.components.flags.vessel.*;
+
+
+
+
+// TODO : 1 - Clean target system 
+//        2 - Refactor wing veil etc but after more gamplay test // 
 
 class  SteeringBehaviors extends System {
     var PLAYER_VIEW:View<PlayerFlag,SteeringWheel>;
@@ -47,10 +52,6 @@ class  SteeringBehaviors extends System {
             sw.predicted = VectorUtils.predict(sw.location,sw.velocity);
         }
     }
-    @u function updatePlayerWindSensitivityShared(sw:SteeringWheel,ws:WindSensitivitySharedComponent){
-        sw.windSensitivity = ws.windSensitivity;
-        sw.yAperture = ws.wingYaperture;
-    }
 
     @u function updateTargetFromPath(sw:SteeringWheel,pc:PathComponent) {
         sw.target = getTargetFromPath(sw,pc);
@@ -59,14 +60,14 @@ class  SteeringBehaviors extends System {
     @u function updateTargetFromTargetGridPosition(sw:SteeringWheel,tgp:TargetGridPosition,gp:GridPosition) {
         sw.target = new Vector(tgp.attachX-gp.attachX,tgp.attachY-gp.attachY);
     }
-    @u function updatePlayerSteeringForce(sw:SteeringWheel,ws:WindSensitivitySharedComponent,pl:PlayerFlag){
+
+    @u function updatePlayerSteeringForce(sw:SteeringWheel,wsc:WingsSharedComponent,pl:PlayerFlag){
         var d:Vector = sw.solverUVatCoord;
         var e:Vector = new Vector(0,0);
         var finalV:Vector = new Vector(0,0);
-
-        var ySens = sw.yAperture*15;
+        var ySens = wsc.aperture*15;
         
-        if (!ws.attackPosition){
+        if (!wsc.isLocked){
             if(ySens > 0 )
                 e = new Vector(d.x,d.y * ySens);
             
@@ -74,16 +75,16 @@ class  SteeringBehaviors extends System {
                 e = d.multiply(0.5);
 
             var s = e.sub(sw.velocity);
-            finalV = s.add(new Vector(ws.xInput,ws.yInput));
+            finalV = s.add(new Vector(wsc.inputX,wsc.inputY));
             sw.maxForce = 0.2;
         }
 
-        if (ws.attackPosition){
-            finalV = new Vector(ws.xInput*10,ws.yInput*10);
+        if (wsc.isLocked){
+            finalV = new Vector(wsc.inputX*10,wsc.inputY*10);
             sw.maxForce = 0.4;
         }
 
-        sw.steering = finalV;// e.sub(sw.velocity);
+        sw.steering = finalV;
     }
 
     @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {

@@ -1,13 +1,11 @@
 package aleiiioa.systems.core;
 
 
-import aleiiioa.components.vehicule.WingsComponent;
+import aleiiioa.components.vehicule.WingsSharedComponent;
 import aleiiioa.components.vehicule.VeilComponent;
 import aleiiioa.components.flags.vessel.*;
 import aleiiioa.components.*;
-import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 
-import aleiiioa.components.solver.ModifierComponent;
 import aleiiioa.components.gun.GunComponent;
 import aleiiioa.components.core.position.GridPositionOffset;
 
@@ -29,7 +27,6 @@ class InputSystem extends echoes.System {
 	
 	@u function inputPlayerGun(inp:InputComponent,gun:GunComponent) {
 		if (!ca.isDown(Blow)){
-			
 			gun.currentCommand = gunCommand.turnOff;
 			gun.currentCommand.execute(gun);	
 		}
@@ -40,52 +37,15 @@ class InputSystem extends echoes.System {
 		}
 
 	}
-
-    @u function inputPlayerControlledModifier(inp:InputComponent,mod:ModifierComponent,gun:GunComponent) {
-        if (!ca.isDown(Blow)){
-			mod.currentOrder = command.turnOff;	
-		}
-
-		if (!ca.isDown(ShapeWind)){
-			mod.currentOrder = command.turnOff;
-		}
-		if (!ca.isDown(Jump)){
-			mod.currentOrder = command.turnOff;
-		}
-
-		if (ca.isDown(Blow)){	
-			//mod.currentOrder = command.diverge;
-			
-		}
-
-		if (ca.isDown(ShapeWind)){
-			mod.currentOrder = command.curl;
-		}
-
-		if (ca.isDown(Jump)){
-			mod.currentOrder = command.repel;
-			//trace(Workflow.entities.length);
-		}
-    }
 	//View to satellite to securize// 
 	@u function inputVeilGridPosition(inp:InputComponent,gop:GridPositionOffset,veil:VeilComponent) {
 		gop.setXYratio(ca.getAnalogValue(MoveX)*2,ca.getAnalogValue(MoveY)*2);
 	}
 	
-    @u function inputPlayerControlledShip(vas:VelocityAnalogSpeed,inp:InputComponent){
-        if ( ca.getAnalogDist(MoveY)>0){
-			//vas.ySpeed = ca.getAnalogValue(MoveY)*0.2; 
-		}
-		if( ca.getAnalogDist(MoveX)>0 ) {
-			//vas.xSpeed = ca.getAnalogValue(MoveX)*0.2; // -1 to 1
-		}
-
-    }
-
-	@u function inputPlayerWings(inp:InputComponent,win:WingsComponent,wms:WingsMasterFlag){
-		win.inputY = ca.getAnalogValue(MoveY);
-		win.inputX = ca.getAnalogValue(MoveX);
-
+	@u function inputPlayerWings(inp:InputComponent,win:WingsSharedComponent,wms:WingsMasterFlag){
+		win.ix = ca.getAnalogValue(MoveX);
+		win.iy = ca.getAnalogValue(MoveY);
+	
 		if (!ca.isDown(Jump)){
 			win.inputLock = false;
 		}

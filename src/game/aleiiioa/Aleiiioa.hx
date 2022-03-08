@@ -51,9 +51,9 @@ class Aleiiioa extends Game {
 
 		//Logic
 		Workflow.addSystem(new PathActualizer());
-		Workflow.addSystem(new SteeringBehaviors());
 		Workflow.addSystem(new VeilBehaviors());
 		Workflow.addSystem(new WingsBehaviors());
+		Workflow.addSystem(new SteeringBehaviors());
 		Workflow.addSystem(new GunSystem());
 		
 		//Physics
@@ -63,11 +63,12 @@ class Aleiiioa extends Game {
 
 		//Graphics
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
-		Workflow.add60FpsSystem(new InputSystem());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		//Debugger
 		Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
 		Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
+		//Input
+		Workflow.add60FpsSystem(new InputSystem());
 
 		trace(Workflow.entities.length);
 	}

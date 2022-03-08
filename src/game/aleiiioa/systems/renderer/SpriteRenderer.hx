@@ -22,14 +22,6 @@ class SpriteRenderer extends echoes.System {
 		spr.alpha = 1;
 	}
 	
-/* 	@u inline function updateSpritePosition(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
-		this.renderSprite(dt,spr,gp,se);
-	} */
-/* 	@u function offsetChild(spr:SpriteComponent,gp:GridPosition,ogp:GridPositionOffset) {
-		spr.x = gp.attachX + ogp.ox;
-		spr.y = gp.attachY + ogp.oy;
-	} */
-
 	@r function onEntityRemoved(spr:SpriteComponent) {
 		spr.remove();
 	}

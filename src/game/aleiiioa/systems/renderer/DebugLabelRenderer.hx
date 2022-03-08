@@ -2,8 +2,8 @@ package aleiiioa.systems.renderer;
 
 
 import aleiiioa.components.flags.vessel.*;
-import aleiiioa.components.vehicule.WingsComponent;
-import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
+import aleiiioa.components.vehicule.WingsSharedComponent;
+
 import echoes.Entity;
 import aleiiioa.components.vehicule.VeilComponent;
 import aleiiioa.components.core.position.GridPosition;
@@ -24,18 +24,18 @@ class DebugLabelRenderer extends System{
     @r function onEntityRemove(dl:DebugLabel) {
         dl.debugLabel.remove();
     }
-
-    @u function updateDebugBounds(dl:DebugLabel,gp:GridPosition,veil:VeilComponent,ws:WindSensitivitySharedComponent) {
-        debugFloat(dl,ws.wingYaperture);
+/* 
+    @u function updateDebugBounds(dl:DebugLabel,gp:GridPosition,veil:VeilComponent) {
+        debugFloat(dl,);
         renderAllDebugs(dl,gp);
-    }
+    } */
  
-	@u function updateDebugWingR(dl:DebugLabel,gp:GridPosition,win:WingsComponent,wr:WingRightFlag) {
+	@u function updateDebugWingR(dl:DebugLabel,gp:GridPosition,win:WingsSharedComponent,wr:WingRightFlag) {
 		debugFloat(dl,win.angleR);
         renderAllDebugs(dl,gp);
     }
 
-	@u function updateDebugWingL(dl:DebugLabel,gp:GridPosition,win:WingsComponent,wl:WingLeftFlag) {
+	@u function updateDebugWingL(dl:DebugLabel,gp:GridPosition,win:WingsSharedComponent,wl:WingLeftFlag) {
 		debugFloat(dl,win.angleL);
         renderAllDebugs(dl,gp);
     }

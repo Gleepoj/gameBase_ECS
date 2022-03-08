@@ -1,7 +1,5 @@
 package aleiiioa.systems.vehicule;
 
-import aleiiioa.components.vehicule.WingsComponent;
-import aleiiioa.components.vehicule.WindSensitivitySharedComponent;
 import aleiiioa.components.solver.SUVatCoordComponent;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.position.MasterGridPosition;
@@ -20,10 +18,6 @@ class VeilBehaviors extends echoes.System {
         veil.normalizeUV = suv.uv.normalized();
 
         veil.dotProduct = veil.normalizeUV.dot(veil.normalizeOrientation);
-    }
-
-    @u function shareWindSensitivity(veil:VeilComponent,ws:WindSensitivitySharedComponent) {
-        ws.windSensitivity = veil.dotProduct;
     }
     
 }
