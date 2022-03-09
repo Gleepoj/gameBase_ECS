@@ -10,7 +10,7 @@ import aleiiioa.components.gun.GunComponent;
 import aleiiioa.components.core.position.GridPositionOffset;
 
 import aleiiioa.systems.vehicule.GunCommand.InstancedGunCommands;
-import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
+import aleiiioa.systems.modifier.ModifierCommand.InstancedCommands;
 
 
 class InputSystem extends echoes.System {

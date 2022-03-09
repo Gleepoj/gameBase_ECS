@@ -10,6 +10,7 @@ import echoes.System;
 
 
 import aleiiioa.components.core.position.*;
+import aleiiioa.components.solver.SolverUVComponent;
 import aleiiioa.components.core.velocity.VelocityComponent;
 import aleiiioa.components.vehicule.PathComponent;
 import aleiiioa.components.vehicule.SteeringWheel;
@@ -41,8 +42,10 @@ class  SteeringBehaviors extends System {
             sw.predicted = VectorUtils.predict(sw.location,sw.velocity);
 
     }
-    @u function updateVectors(en:Entity,sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition){
+    @u function updateVectors(en:Entity,sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition,suv:SolverUVComponent){
         if(!en.exists(TargetGridPosition)){
+            sw.solverUVatCoord = suv.uv;
+            
             sw.location.x = gp.attachX;
             sw.location.y = gp.attachY;
 

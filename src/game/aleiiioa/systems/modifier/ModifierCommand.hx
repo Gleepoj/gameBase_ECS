@@ -1,4 +1,4 @@
-package aleiiioa.systems.solver.modifier;
+package aleiiioa.systems.modifier;
 
 import aleiiioa.components.solver.ModifierComponent;
 

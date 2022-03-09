@@ -5,6 +5,7 @@ import aleiiioa.builders.*;
 import aleiiioa.systems.core.*;
 import aleiiioa.systems.renderer.*;
 import aleiiioa.systems.solver.*;
+import aleiiioa.systems.modifier.*;
 import aleiiioa.systems.collisions.*;
 import aleiiioa.systems.vehicule.*;
 
@@ -22,9 +23,9 @@ class Aleiiioa extends Game {
 		var player = level.data.l_Entities.all_PlayerStart[0];
 		Builders.basicPlayer(player.cx,player.cy);
 
-		for (m in level.data.l_Entities.all_Modifier){
+ 		for (m in level.data.l_Entities.all_Modifier){
 			Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
-		}
+		} 
 
 		for (b in level.data.l_Entities.all_Vessel){
 			Builders.basicHunter(b.cx,b.cy,b.f_Path,b.f_spawn_sec);
@@ -51,10 +52,10 @@ class Aleiiioa extends Game {
 
 		//Logic
 		Workflow.addSystem(new PathActualizer());
-		Workflow.addSystem(new VeilBehaviors());
 		Workflow.addSystem(new WingsBehaviors());
 		Workflow.addSystem(new SteeringBehaviors());
 		Workflow.addSystem(new GunSystem());
+		Workflow.addSystem(new ModifierSystem());
 		
 		//Physics
 		Workflow.addSystem(new SolverSystem());// is Hiding Modifier system // 
@@ -69,6 +70,8 @@ class Aleiiioa extends Game {
 		Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
 		//Input
 		Workflow.add60FpsSystem(new InputSystem());
+
+	
 
 		trace(Workflow.entities.length);
 	}

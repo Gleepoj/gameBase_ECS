@@ -1,7 +1,7 @@
 package aleiiioa.components.solver;
 
-import aleiiioa.systems.solver.modifier.ModifierCommand;
-import aleiiioa.systems.solver.modifier.Equation;
+import aleiiioa.systems.modifier.ModifierCommand;
+import aleiiioa.systems.modifier.Equation;
 
 
 typedef CellStruct = {index:Int,x:Int,y:Int,abx:Int,aby:Int,u:Float,v:Float}
@@ -19,7 +19,7 @@ class ModifierComponent {
     public var equation:Equation;
 
 	public var prevState:Bool;
-	public var activeColor:UInt = 0xffff00;
+	public var activeColor:UInt = 0xff0000;
 	public var idleColor:UInt = 0x00eeff;
 
 	public var currentOrder:ModifierCommand ;

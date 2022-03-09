@@ -1,5 +1,5 @@
-package aleiiioa.systems.solver.modifier;
-//tan(arccos(x)+arcsin(y)) = 1;
+package aleiiioa.systems.modifier;
+//tan(arccos(x)+arcsin(y)) = 1;//bulbe
 import h3d.Vector;
 
 

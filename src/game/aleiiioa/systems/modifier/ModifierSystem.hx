@@ -1,32 +1,33 @@
-package aleiiioa.systems.solver.modifier;
+package aleiiioa.systems.modifier;
+
+import h3d.Vector;
 
 import aleiiioa.components.core.rendering.SpriteComponent;
-import aleiiioa.systems.solver.modifier.ModifierCommand.InstancedCommands;
-import h3d.Vector;
-import dn.Bresenham;
+import aleiiioa.systems.modifier.ModifierCommand.InstancedCommands;
+
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.solver.ModifierComponent;
 
 class ModifierSystem extends echoes.System {
     // Solver is here only to provide check and grid conversion Not to produce side effects on it !!!// 
-	var solver:FluidSolver;
+	
 	var command:InstancedCommands;
 
-    public function new(_solver:FluidSolver) {
-        solver = _solver;
+    public function new() {
 		command = new InstancedCommands();
     }
 
     @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
 	    mod.equation = new Equation(mod.areaEquation);
-		modifierStoreCells(mod,gp);
+		mod.currentOrder = command.turnOn;
+
 		computeCellDistanceToModifierPosition(mod,gp);
 		computeLocalUVFields(mod);	
-		mod.currentOrder = command.turnOn;
+		
     }
 	
 	@u function modifiersUpdate(dt:Float,mod:ModifierComponent,gp:GridPosition,spr:SpriteComponent) {
-		modifierStoreCells(mod,gp);
+		
 		computeCellDistanceToModifierPosition(mod,gp);
 		computeLocalUVFields(mod);
 		
@@ -38,19 +39,9 @@ class ModifierSystem extends echoes.System {
         	mod.currentOrder.execute(mod);
     }
 
-	private function modifierStoreCells(mod:ModifierComponent,gp:GridPosition) {
-        var list = Bresenham.getDisc(gp.cx,gp.cy, mod.areaRadius);
-    	mod.informedCells = [];
-		for(c in list){
-			if(solver.checkIfCellIsInGrid(c.x,c.y)){
-				var i = solver.getIndexForCellPosition(c.x,c.y);
-				mod.informedCells.push({index: i,x:c.x,y:c.y,abx: 0,aby: 0,u: 0,v: 0});
-			}
-		}
-    }
-	    
 	private function computeCellDistanceToModifierPosition(mod:ModifierComponent,gp:GridPosition) {
-        for (cell in mod.informedCells) {
+        
+		for (cell in mod.informedCells) {
 		    cell.abx = cell.x - gp.cx;
 			cell.aby = cell.y - gp.cy;
         }

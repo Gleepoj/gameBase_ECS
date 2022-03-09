@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.solver.SolverUVComponent;
 import echoes.Entity;
 
 import aleiiioa.components.InputComponent;
@@ -14,6 +15,7 @@ import aleiiioa.components.core.position.*;
 import aleiiioa.components.solver.*;
 import aleiiioa.components.gun.*;
 import aleiiioa.components.vehicule.*;
+import aleiiioa.components.modifier.*;
 
 import aleiiioa.components.flags.hierarchy.*;
 import aleiiioa.components.flags.collision.*;
@@ -44,7 +46,7 @@ class Builders {
         
         //Individual Component
         var pos   = new GridPosition(mpos.cx,mpos.cy);
-        var suv   = new SUVatCoordComponent();
+        var suv   = new SolverUVComponent();
         var bb    = new BoundingBox();
 
         var se   = new SpriteExtension();
@@ -106,7 +108,9 @@ class Builders {
         var bb  = new BoundingBox();
        
         var sw   = new SteeringWheel();
+        var suv   = new SolverUVComponent();
         var path = new PathComponent(path);
+
         var gun  = new GunComponent(false);
         var cl   = new CollisionsListener();
         //var mod  = new ModifierComponent();
@@ -116,7 +120,7 @@ class Builders {
         var flag  = new VesselFlag();
         var bflag = new BodyFlag();
         
-        new echoes.Entity().add(pos,spr,se,vc,bb,sw,path,gun,cl,flag,tflag,bflag);
+        new echoes.Entity().add(pos,spr,se,vc,bb,sw,suv,path,gun,cl,flag,tflag,bflag);
     }
 
     public static function basicElement(cx:Int,cy:Int,sec:Int) {
@@ -126,13 +130,14 @@ class Builders {
         var vc  = new VelocityComponent();
        
         var sw   = new SteeringWheel();
+        var suv   = new SolverUVComponent();
         var cl   = new CollisionsListener();
         
         var tflag = new SpawnTimeComponent(sec);
         var flag  = new VesselFlag();
         var bflag = new BodyFlag();
         
-        new echoes.Entity().add(pos,spr,se,vc,sw,cl,flag,tflag,bflag);
+        new echoes.Entity().add(pos,spr,se,vc,sw,suv,cl,flag,tflag,bflag);
     }
 
 //////BULLET//////////////////////
@@ -173,6 +178,6 @@ class Builders {
         var cc = new CellComponent(i,j,index);
         new echoes.Entity().add(cc);
     }
-    
+
 }
 

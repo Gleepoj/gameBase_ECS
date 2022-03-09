@@ -1,11 +1,8 @@
 package aleiiioa.systems.solver;
 
-// Solvered class handle the communication between all the components who are affected 
-// or affect the fluid solver
-// he is there to provide data to component and made side effects only on the fluid solver
 
-import aleiiioa.systems.solver.modifier.ModifierSystem;
-import echoes.Workflow;
+import dn.Bresenham;
+import echoes.System;
 
 import aleiiioa.builders.Builders;
 
@@ -14,7 +11,7 @@ import aleiiioa.components.solver.SolverUVComponent;
 import aleiiioa.components.solver.CellComponent;
 import aleiiioa.components.solver.ModifierComponent;
 
-import echoes.System;
+
 
 class SolverSystem extends echoes.System {
     // move all maximum to const // 
@@ -38,9 +35,11 @@ class SolverSystem extends echoes.System {
     public function new() {
         solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
         createCellsComponents();
-        Workflow.addSystem(new ModifierSystem(solver));
         echoes.Workflow.addSystem(new SolverDebugRendering(game.scroller,solver));
 
+    }
+    @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
+        reinitModifiedCellsList(mod,gp);
     }
 
     @u function cellUpdate(cc:CellComponent){
@@ -48,25 +47,40 @@ class SolverSystem extends echoes.System {
         cc.v = solver.getVatIndex(cc.index);
     } 
 
-    @u function updateSUVComponent(suv:SolverUVComponent,gp:GridPosition){
+    @u function updateSolverUVComponent(suv:SolverUVComponent,gp:GridPosition){
         var index = solver.getIndexForCellPosition(gp.cx,gp.cy);
         if(solver.checkIfIndexIsInArray(index)){
             suv.uv = solver.getUVVectorForIndexPosition(index);
         }
     }
 
-    @u function pullModifierInput(mod:ModifierComponent){
+    @u function pullModifierInput(mod:ModifierComponent,gp:GridPosition){
         if(mod.isBlowing){
             for( c in mod.informedCells){
                setUVatIndex(c.u,c.v,c.index);
             }
-        } 
+        }
+    
+        reinitModifiedCellsList(mod,gp);
     }
 
     @u function globalSolverUpdate(){
         solver.update();
         //addForce(10,10,0,30);
     }
+
+    private function reinitModifiedCellsList(mod:ModifierComponent,gp:GridPosition) {
+        
+        var list = Bresenham.getDisc(gp.cx,gp.cy, mod.areaRadius);
+    	mod.informedCells = [];
+		for(c in list){
+			if(solver.checkIfCellIsInGrid(c.x,c.y)){
+				var i = solver.getIndexForCellPosition(c.x,c.y);
+				mod.informedCells.push({index: i,x:c.x,y:c.y,abx: 0,aby: 0,u: 0,v: 0});
+			}
+		}
+    }
+    
 
     private function createCellsComponents() {
         for(j in 0...solver.height) {
