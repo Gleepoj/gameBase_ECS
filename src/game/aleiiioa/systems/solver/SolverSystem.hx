@@ -4,14 +4,14 @@ package aleiiioa.systems.solver;
 // or affect the fluid solver
 // he is there to provide data to component and made side effects only on the fluid solver
 
-import aleiiioa.components.flags.hierarchy.MasterFlag;
-import aleiiioa.components.solver.SUVatCoordComponent;
-import aleiiioa.builders.Builders;
 import aleiiioa.systems.solver.modifier.ModifierSystem;
 import echoes.Workflow;
+
+import aleiiioa.builders.Builders;
+
 import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.solver.SolverUVComponent;
 import aleiiioa.components.solver.CellComponent;
-import aleiiioa.components.vehicule.SteeringWheel;
 import aleiiioa.components.solver.ModifierComponent;
 
 import echoes.System;
@@ -48,14 +48,7 @@ class SolverSystem extends echoes.System {
         cc.v = solver.getVatIndex(cc.index);
     } 
 
-    @u function boidsPushUVatPos(sw:SteeringWheel,gp:GridPosition){
-        var index = solver.getIndexForCellPosition(gp.cx,gp.cy);
-        if(solver.checkIfIndexIsInArray(index)){
-            sw.solverUVatCoord = solver.getUVVectorForIndexPosition(index);
-        }
-    }
-
-    @u function updateSUVComponent(suv:SUVatCoordComponent,gp:GridPosition,mf:MasterFlag){
+    @u function updateSUVComponent(suv:SolverUVComponent,gp:GridPosition){
         var index = solver.getIndexForCellPosition(gp.cx,gp.cy);
         if(solver.checkIfIndexIsInArray(index)){
             suv.uv = solver.getUVVectorForIndexPosition(index);
