@@ -55,10 +55,11 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new WingsBehaviors());
 		Workflow.addSystem(new SteeringBehaviors());
 		Workflow.addSystem(new GunSystem());
-		Workflow.addSystem(new ModifierSystem());
+		
 		
 		//Physics
-		Workflow.addSystem(new SolverSystem());// is Hiding Modifier system // 
+		Workflow.addSystem(new SolverSystem());
+		Workflow.addSystem(new ModifierSystem());
 		Workflow.addSystem(new VelocitySystem());
 		Workflow.addSystem(new GridPositionActualizer());
 

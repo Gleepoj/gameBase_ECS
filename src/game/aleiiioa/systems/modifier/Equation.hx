@@ -23,13 +23,13 @@ class Equation {
 
 		compute = switch(type) {
 			case EqConverge  : function(v:Vector){ 
-                                    var lx = -v.x*0.5 ; var ly = -v.y *0.5; return new Vector(lx,ly);}
+                                    var lx = -v.x*0.5 ; var ly = -v.y *0.5; return new Vector(lx/v.z,ly/v.z);}
 			case EqDiverge	 : function(v:Vector){ 
-                                    var lx = v.x*0.5 ; var ly = v.y *0.5; return new Vector(lx,ly);}
+                                    var lx = v.x*0.5 ; var ly = v.y *0.5; return new Vector(lx/v.z,ly/v.z);}
 			case EqRepel	 : function(v:Vector){ 
-                                    var lx = -v.x * 0.5; var ly = v.y * 0.5; return new Vector(lx,ly);}
+                                    var lx = -v.x * 0.5; var ly = v.y * 0.5; return new Vector(lx/v.z,ly/v.z);}
 			case EqCurl	     : function(v:Vector){ 
-                                    var lx = v.y * 0.2 - v.x*0.1; var ly = -v.x *0.2 - v.y*0.1; return new Vector(lx,ly);}
+                                    var lx = v.y * 0.2 - v.x*0.1; var ly = -v.x *0.2 - v.y*0.1; return new Vector(lx/v.z,ly/v.z);}
 		}
 		return type;
 	}

@@ -15,7 +15,7 @@ import aleiiioa.components.core.position.*;
 import aleiiioa.components.solver.*;
 import aleiiioa.components.gun.*;
 import aleiiioa.components.vehicule.*;
-import aleiiioa.components.modifier.*;
+
 
 import aleiiioa.components.flags.hierarchy.*;
 import aleiiioa.components.flags.collision.*;
@@ -113,14 +113,14 @@ class Builders {
 
         var gun  = new GunComponent(false);
         var cl   = new CollisionsListener();
-        //var mod  = new ModifierComponent();
-        //mod.areaEquation = EqConverge;
+        var mod  = new ModifierComponent();
+        mod.areaEquation = EqConverge;
        
         var tflag = new SpawnTimeComponent(sec);
         var flag  = new VesselFlag();
         var bflag = new BodyFlag();
         
-        new echoes.Entity().add(pos,spr,se,vc,bb,sw,suv,path,gun,cl,flag,tflag,bflag);
+        new echoes.Entity().add(pos,spr,se,vc,bb,sw,suv,path,gun,mod,cl,flag,tflag,bflag);
     }
 
     public static function basicElement(cx:Int,cy:Int,sec:Int) {

@@ -60,8 +60,10 @@ class SolverSystem extends echoes.System {
                setUVatIndex(c.u,c.v,c.index);
             }
         }
-    
-        reinitModifiedCellsList(mod,gp);
+        if(gp.isMoving)
+            reinitModifiedCellsList(mod,gp);
+
+       
     }
 
     @u function globalSolverUpdate(){
@@ -76,7 +78,7 @@ class SolverSystem extends echoes.System {
 		for(c in list){
 			if(solver.checkIfCellIsInGrid(c.x,c.y)){
 				var i = solver.getIndexForCellPosition(c.x,c.y);
-				mod.informedCells.push({index: i,x:c.x,y:c.y,abx: 0,aby: 0,u: 0,v: 0});
+				mod.informedCells.push({index: i,x:c.x,y:c.y,abx: 0,aby: 0,u: 0,v: 0,dist:0});
 			}
 		}
     }

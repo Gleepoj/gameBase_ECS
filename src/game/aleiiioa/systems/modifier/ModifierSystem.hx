@@ -1,6 +1,7 @@
 package aleiiioa.systems.modifier;
 
 import h3d.Vector;
+import dn.M;
 
 import aleiiioa.components.core.rendering.SpriteComponent;
 import aleiiioa.systems.modifier.ModifierCommand.InstancedCommands;
@@ -9,7 +10,6 @@ import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.solver.ModifierComponent;
 
 class ModifierSystem extends echoes.System {
-    // Solver is here only to provide check and grid conversion Not to produce side effects on it !!!// 
 	
 	var command:InstancedCommands;
 
@@ -20,6 +20,7 @@ class ModifierSystem extends echoes.System {
     @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
 	    mod.equation = new Equation(mod.areaEquation);
 		mod.currentOrder = command.turnOn;
+		order(mod);
 
 		computeCellDistanceToModifierPosition(mod,gp);
 		computeLocalUVFields(mod);	
@@ -27,30 +28,35 @@ class ModifierSystem extends echoes.System {
     }
 	
 	@u function modifiersUpdate(dt:Float,mod:ModifierComponent,gp:GridPosition,spr:SpriteComponent) {
+		if(gp.isMoving)
+			computeCellDistanceToModifierPosition(mod,gp);
 		
-		computeCellDistanceToModifierPosition(mod,gp);
 		computeLocalUVFields(mod);
 		
-		order(mod);
+		if(mod.onChangeOrder)
+			order(mod);
 	}
 
 	public function order(mod:ModifierComponent) {
-		if(mod.currentOrder != null)
+		if(mod.currentOrder != null){
         	mod.currentOrder.execute(mod);
+			mod.prevOrder = mod.currentOrder;
+		}
     }
 
-	private function computeCellDistanceToModifierPosition(mod:ModifierComponent,gp:GridPosition) {
-        
+	private function computeCellDistanceToModifierPosition(mod:ModifierComponent,gp:GridPosition) {	
 		for (cell in mod.informedCells) {
 		    cell.abx = cell.x - gp.cx;
 			cell.aby = cell.y - gp.cy;
+			cell.dist = M.floor(M.dist(gp.cx,gp.cy,cell.abx,cell.aby));
         }
     }
 
 	private function computeLocalUVFields(mod:ModifierComponent) {
 		if (mod.isBlowing){
 			for (cell in mod.informedCells){
-				var eqVector = mod.equation.compute(new Vector(cell.abx,cell.aby));
+				var pow = cell.dist*mod.power;
+				var eqVector = mod.equation.compute(new Vector(cell.abx,cell.aby,pow));
 				cell.u = eqVector.x;
 				cell.v = eqVector.y;
 			}

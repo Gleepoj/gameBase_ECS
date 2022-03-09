@@ -20,6 +20,8 @@ class GridPosition {
 	public var prevFrameattachX : Float = -Const.INFINITE;
 	public var prevFrameattachY : Float = -Const.INFINITE;
 
+    public var isMoving(get,never):Bool;inline function get_isMoving() return prevFrameattachY != attachY && prevFrameattachX != attachX; 
+
     //y!=null ? y : x;
     public function new(_cx:Int,_cy:Int,?_xr:Float,?_yr:Float) {
         cx = _cx;

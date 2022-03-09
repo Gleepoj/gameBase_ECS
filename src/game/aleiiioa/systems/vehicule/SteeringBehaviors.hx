@@ -66,28 +66,33 @@ class  SteeringBehaviors extends System {
 
     @u function updatePlayerSteeringForce(sw:SteeringWheel,wsc:WingsSharedComponent,pl:PlayerFlag){
         var d:Vector = sw.solverUVatCoord;
-        var e:Vector = new Vector(0,0);
-        var finalV:Vector = new Vector(0,0);
-        var ySens = wsc.aperture*15;
+        var wind:Vector = new Vector(0,0);
+        var speed:Vector = new Vector(0,0);
+        var forces:Vector = new Vector(0,0);
+
+        var yAperture = wsc.aperture*5;
         
         if (!wsc.isLocked){
-            if(ySens > 0 )
-                e = new Vector(d.x,d.y * ySens);
+            if(yAperture > 0 ){
+                wind = new Vector(d.x,d.y * yAperture);
+                speed = wind.sub(sw.velocity);
+                forces = speed.add(new Vector(wsc.inputX,0));
+            }
             
-            if (ySens == 0 )
-                e = d.multiply(0.5);
-
-            var s = e.sub(sw.velocity);
-            finalV = s.add(new Vector(wsc.inputX,wsc.inputY));
+            if (yAperture == 0 ){
+                wind = d.multiply(0.5);
+                speed = wind.sub(sw.velocity);
+                forces = speed.add(new Vector(wsc.inputX,wsc.inputY));
+            }
             sw.maxForce = 0.2;
         }
 
         if (wsc.isLocked){
-            finalV = new Vector(wsc.inputX*10,wsc.inputY*10);
+            forces = new Vector(wsc.inputX*10,wsc.inputY*10);
             sw.maxForce = 0.4;
         }
 
-        sw.steering = finalV;
+        sw.steering = forces;
     }
 
     @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {

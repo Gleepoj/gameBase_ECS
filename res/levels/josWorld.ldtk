@@ -1221,46 +1221,6 @@
 							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
 						},
 						{
-							"__identifier": "Modifier",
-							"__grid": [8,23],
-							"__pivot": [0.5,1],
-							"__tile": null,
-							"width": 16,
-							"height": 16,
-							"defUid": 32,
-							"px": [140,381],
-							"fieldInstances": [{
-								"__identifier": "AreaEquation",
-								"__value": "EqDiverge",
-								"__type": "ExternEnum.AreaEquation",
-								"defUid": 33,
-								"realEditorValues": [{
-									"id": "V_String",
-									"params": ["EqDiverge"]
-								}]
-							}]
-						},
-						{
-							"__identifier": "Modifier",
-							"__grid": [24,28],
-							"__pivot": [0.5,1],
-							"__tile": null,
-							"width": 16,
-							"height": 16,
-							"defUid": 32,
-							"px": [397,462],
-							"fieldInstances": [{
-								"__identifier": "AreaEquation",
-								"__value": "EqConverge",
-								"__type": "ExternEnum.AreaEquation",
-								"defUid": 33,
-								"realEditorValues": [{
-									"id": "V_String",
-									"params": ["EqConverge"]
-								}]
-							}]
-						},
-						{
 							"__identifier": "Elements",
 							"__grid": [6,23],
 							"__pivot": [0.5,1],
