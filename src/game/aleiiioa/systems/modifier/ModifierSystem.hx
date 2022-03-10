@@ -2,11 +2,13 @@ package aleiiioa.systems.modifier;
 
 import h3d.Vector;
 import dn.M;
+import hxd.Math;
 
 import aleiiioa.components.core.rendering.SpriteComponent;
 import aleiiioa.systems.modifier.ModifierCommand.InstancedCommands;
 
 import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.tool.PerlinNoiseComponent;
 import aleiiioa.components.solver.ModifierComponent;
 
 class ModifierSystem extends echoes.System {
@@ -26,6 +28,10 @@ class ModifierSystem extends echoes.System {
 		computeLocalUVFields(mod);	
 		
     }
+	@a function onPerlinComponentAdded(mod:ModifierComponent,pnc:PerlinNoiseComponent) {
+		pnc.px = pnc.initX;
+		pnc.py = pnc.initY;
+	}
 	
 	@u function modifiersUpdate(dt:Float,mod:ModifierComponent,gp:GridPosition,spr:SpriteComponent) {
 		if(gp.isMoving)
@@ -35,6 +41,14 @@ class ModifierSystem extends echoes.System {
 		
 		if(mod.onChangeOrder)
 			order(mod);
+	}
+
+	@u function perlinModifierUpdate(pnc:PerlinNoiseComponent, mod:ModifierComponent) {
+		pnc.px += pnc.incX;
+		
+		var p = pnc.perlin.perlin(pnc.seed,pnc.px,pnc.py,pnc.octaves);
+
+		mod.power = M.fwrap(p,0.05,0.03);
 	}
 
 	public function order(mod:ModifierComponent) {

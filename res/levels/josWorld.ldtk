@@ -1593,6 +1593,26 @@
 							"defUid": 34,
 							"px": [89,376],
 							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
+						},
+						{
+							"__identifier": "Modifier",
+							"__grid": [21,28],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 32,
+							"px": [345,462],
+							"fieldInstances": [{
+								"__identifier": "AreaEquation",
+								"__value": "EqRepel",
+								"__type": "ExternEnum.AreaEquation",
+								"defUid": 33,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["EqRepel"]
+								}]
+							}]
 						}
 					]
 				},

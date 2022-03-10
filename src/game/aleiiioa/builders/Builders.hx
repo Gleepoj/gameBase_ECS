@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.tool.PerlinNoiseComponent;
 import aleiiioa.components.solver.SolverUVComponent;
 import echoes.Entity;
 
@@ -31,9 +32,10 @@ class Builders {
         var spr  = new SpriteComponent(D.tiles.Square);
         var se   = new SpriteExtension();
         var mod  = new ModifierComponent();
+        var per  = new PerlinNoiseComponent();
         mod.areaEquation = areaEq;
         
-        new echoes.Entity().add(pos,spr,se,mod);
+        new echoes.Entity().add(pos,spr,se,mod,per);
     }
 
     public static function basicPlayer(cx:Int,cy:Int) {
@@ -113,14 +115,14 @@ class Builders {
 
         var gun  = new GunComponent(false);
         var cl   = new CollisionsListener();
-        var mod  = new ModifierComponent();
-        mod.areaEquation = EqConverge;
+      /*   var mod  = new ModifierComponent();
+        mod.areaEquation = EqConverge; */
        
         var tflag = new SpawnTimeComponent(sec);
         var flag  = new VesselFlag();
         var bflag = new BodyFlag();
         
-        new echoes.Entity().add(pos,spr,se,vc,bb,sw,suv,path,gun,mod,cl,flag,tflag,bflag);
+        new echoes.Entity().add(pos,spr,se,vc,bb,sw,suv,path,gun,cl,flag,tflag,bflag);
     }
 
     public static function basicElement(cx:Int,cy:Int,sec:Int) {
