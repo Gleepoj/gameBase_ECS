@@ -1,4 +1,4 @@
-package aleiiioa.systems.shaders;
+package aleiiioa.shaders;
 
 import h2d.Bitmap;
 import hxsl.*;
@@ -15,21 +15,23 @@ class TestShaders {
     var height(get,never): Int; inline function get_height()return Std.int(level.pxHei);
     var bitmap:Bitmap;
     var gameScroller:h2d.Layers;
-    var shader:LineShader;
+    var shader:BeetleShader;
+
     public function new(_gameScroller:h2d.Layers) {
 
         this.gameScroller = _gameScroller;
 
-        //var b = gradientBitmap();
+        var b = gradientBitmap();
         //var b = uniBitmap();
-        //bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(b));
-        //shader = new LineShader();
+        bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(b));
+        var tex =  bitmap.tile.getTexture();
+        shader = new BeetleShader(tex);
         //shader.texture = bitmap.tile.getTexture();
         
-       // bitmap.addShader(shader);
-        //gameScroller.add(,Const.DP_FRONT);
-       // bitmap.height = height;
-       // bitmap.width = width;
+        bitmap.addShader(shader);
+        gameScroller.add(bitmap,Const.DP_FRONT);
+        bitmap.height = height;
+        bitmap.width = width;
     }
     
     public function gradientBitmap() {

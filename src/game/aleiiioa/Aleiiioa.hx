@@ -8,6 +8,7 @@ import aleiiioa.systems.solver.*;
 import aleiiioa.systems.modifier.*;
 import aleiiioa.systems.collisions.*;
 import aleiiioa.systems.vehicule.*;
+import aleiiioa.shaders.TestShaders;
 
 import echoes.Workflow;
 
@@ -64,13 +65,14 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GridPositionActualizer());
 
 		//Graphics
-		Workflow.add60FpsSystem(new SpriteExtensionFx());
-		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
+		new TestShaders(Game.ME.scroller);
+		//Workflow.add60FpsSystem(new SpriteExtensionFx());
+		//Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		//Debugger
-		Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
-		Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
+		//Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
+		//Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
 		//Input
-		Workflow.add60FpsSystem(new InputSystem());
+		//Workflow.add60FpsSystem(new InputSystem());
 
 	
 

@@ -15,6 +15,7 @@ class SinShader extends hxsl.Shader {
 		}
 		
 		function fragment() {
+			var grad_color = texture.get(input.uv);
 
 			var s = sin(atan(calculatedUV.y, calculatedUV.x));
 			var scale = calculatedUV.xy ;
@@ -23,8 +24,12 @@ class SinShader extends hxsl.Shader {
 			var line_color = vec3(1, 1, 0);
 
 			var line_value:Float = plot(scale, y);
-			var line:Vec3 = line_color.rgb * line_value;
-			var canvas = line;
+			var line:Vec3 = (line_color.rgb * line_value) + grad_color.rgb;
+			
+			
+
+			
+			var canvas = line ;
 			pixelColor = vec4(canvas, 1);
 		}
 	};
@@ -34,63 +39,75 @@ class SinShader extends hxsl.Shader {
 	}
 	
 }
-
-class LineShader extends hxsl.Shader {
-
+class RectangleShader extends hxsl.Shader {
 	static var SRC = {
+		@:import h3d.shader.Base2d;
+		//@param var time : Float;
+		@param var texture:Sampler2D;
+		@param var speed:Float;
+		@param var frequency:Float;
+		@param var amplitude:Float;
 
-		@global var camera : {
-			var view : Mat4;
-			var proj : Mat4;
-			var viewProj : Mat4;
-		};
 
-		@global var global : {
-			var pixelSize : Vec2;
-			@perObject var modelView : Mat4;
-		};
+		function fragment() {
+			var grad_color = texture.get(input.uv);
 
-		@input var input : {
-			var position : Vec3;
-			var normal : Vec3;
-			var uv : Vec2;
+			var dti = time*0.5;
+			var sinus = sin(dti);
+			
+			var bl1 = step(0.5-sinus,calculatedUV.x);
+			var bl2 = step(calculatedUV.x,0.3-sinus);
+			var blx = bl1+bl2;
+			var bly = step(0,calculatedUV.y);
+			var pct = blx*bly;
+			
+			var line_color = vec3(1, 1, 0);
+			
+
+			var line = vec4(line_color+pct,1);
+			var canvas = vec4(line);
+			pixelColor = vec4(canvas);
 		}
-
-		var output : {
-			var position : Vec4;
-		};
-
-		var transformedNormal : Vec3;
-		var transformedPosition : Vec3;
-		var projectedPosition : Vec4;
-
-		@param var lengthScale : Float;
-		@param var width : Float;
-
-		var pdir : Vec4;
-
-		function __init__() {
-			{
-				var dir = input.normal * global.modelView.mat3(); // keep scale
-				pdir = vec4(dir * mat3(camera.view), 1) * camera.proj;
-				pdir.xy *= 1 / sqrt(pdir.x * pdir.x + pdir.y * pdir.y);
-				transformedPosition += dir * input.uv.x * lengthScale;
-				transformedNormal = dir.normalize();
-			}
-		}
-
-		function vertex() {
-			projectedPosition.xy += (pdir.yx * vec2(1,-1)) * (input.uv.y - 0.5) * projectedPosition.z * global.pixelSize * width;
-		}
-
 	};
-
-	public function new( width = 1.5, lengthScale = 1. ) {
+	public function new(tex:Texture) {
 		super();
-		this.width = width;
-		this.lengthScale = lengthScale;
+		texture = tex;
 	}
+	
+}
 
+class BeetleShader extends hxsl.Shader {
+	static var SRC = {
+		@:import h3d.shader.Base2d;
+		//@param var time : Float;
+		@param var texture:Sampler2D;
+		@param var speed:Float;
+		@param var frequency:Float;
+		@param var amplitude:Float;
+
+		function circle(_uv:Vec2,_radius:Float):Float{
+			var dist:Vec2 = _uv-vec2(0.5);
+			return 1.0-smoothstep(_radius-(_radius*0.001),_radius+(_radius*0.001),dot(dist,dist)*4.0);
+		}
+
+		function fragment() {
+			
+
+			var dti = time*0.5;
+			
+			var line_color = vec3(1, 1, 0);
+			
+
+			
+			var canvas = vec3(circle(calculatedUV.xy,0.9));
+			pixelColor = vec4(canvas,1);
+		}
+	};
+	public function new(tex:Texture) {
+		super();
+		texture = tex;
+	}
+	
 }
 
 class BitmapShader extends hxsl.Shader {
