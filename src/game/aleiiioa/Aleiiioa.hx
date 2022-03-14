@@ -14,7 +14,7 @@ import echoes.Workflow;
 
 class Aleiiioa extends Game {
 	var game(get,never) : Game; inline function get_game() return Game.ME;
-
+	var test:TestShaders ;
 
 	public function new() {
 		super();
@@ -65,7 +65,7 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GridPositionActualizer());
 
 		//Graphics
-		new TestShaders(Game.ME.scroller);
+		test = new TestShaders(Game.ME.scroller);
 		//Workflow.add60FpsSystem(new SpriteExtensionFx());
 		//Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		//Debugger
@@ -82,11 +82,13 @@ class Aleiiioa extends Game {
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
+		test.update();
 		Workflow.update(tmod);
 	}
 
 	override function postUpdate() {
 		super.postUpdate();
+		
 		Workflow.postUpdate(tmod);
 	}
 

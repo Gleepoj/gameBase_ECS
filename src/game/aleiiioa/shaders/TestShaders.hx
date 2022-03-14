@@ -1,5 +1,6 @@
 package aleiiioa.shaders;
 
+import h3d.Vector;
 import h2d.Bitmap;
 import hxsl.*;
 import h3d.shader.*;
@@ -25,7 +26,12 @@ class TestShaders {
         //var b = uniBitmap();
         bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(b));
         var tex =  bitmap.tile.getTexture();
-        shader = new BeetleShader(tex);
+        shader = new BeetleShader(tex,5);
+        
+		for(i in 0...5){
+			shader.positions.push(new Vector(Math.random(),Math.random()));
+		}
+        //shader.PosLenght = 5;
         //shader.texture = bitmap.tile.getTexture();
         
         bitmap.addShader(shader);
@@ -55,8 +61,12 @@ class TestShaders {
     }
 
     public function update() {
-        var gradient = gradientBitmap();
-        bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(gradient));
+        //var gradient = gradientBitmap();
+       // bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(gradient));
        // shader.texture = bitmap.tile.getTexture();
+       shader.positions = [];
+		for(i in 0...5){
+			shader.positions.push(new Vector(Math.random(),Math.random()));
+		}
     }
 }
