@@ -65,14 +65,15 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GridPositionActualizer());
 
 		//Graphics
-		test = new TestShaders(Game.ME.scroller);
-		//Workflow.add60FpsSystem(new SpriteExtensionFx());
-		//Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
+		//test = new TestShaders(Game.ME.scroller);
+		Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new SpriteExtensionFx());
+		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		//Debugger
-		//Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
-		//Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
 		//Input
-		//Workflow.add60FpsSystem(new InputSystem());
+		Workflow.add60FpsSystem(new InputSystem());
 
 	
 
@@ -82,7 +83,7 @@ class Aleiiioa extends Game {
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
-		test.update();
+		//test.update();
 		Workflow.update(tmod);
 	}
 

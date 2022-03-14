@@ -726,17 +726,6 @@
 							]
 						},
 						{
-							"__identifier": "CameraPoint",
-							"__grid": [21,32],
-							"__pivot": [0.5,1],
-							"__tile": null,
-							"width": 16,
-							"height": 16,
-							"defUid": 31,
-							"px": [347,524],
-							"fieldInstances": []
-						},
-						{
 							"__identifier": "PlayerStart",
 							"__grid": [35,44],
 							"__pivot": [0.5,1],
@@ -1595,22 +1584,33 @@
 							"fieldInstances": [{ "__identifier": "spawn_sec", "__value": 1, "__type": "Int", "defUid": 35, "realEditorValues": [] }]
 						},
 						{
+							"__identifier": "CameraPoint",
+							"__grid": [21,32],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 31,
+							"px": [350,519],
+							"fieldInstances": []
+						},
+						{
 							"__identifier": "Modifier",
-							"__grid": [21,28],
+							"__grid": [21,27],
 							"__pivot": [0.5,1],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 32,
-							"px": [345,462],
+							"px": [345,437],
 							"fieldInstances": [{
 								"__identifier": "AreaEquation",
-								"__value": "EqRepel",
+								"__value": "EqCurl",
 								"__type": "ExternEnum.AreaEquation",
 								"defUid": 33,
 								"realEditorValues": [{
 									"id": "V_String",
-									"params": ["EqRepel"]
+									"params": ["EqCurl"]
 								}]
 							}]
 						}

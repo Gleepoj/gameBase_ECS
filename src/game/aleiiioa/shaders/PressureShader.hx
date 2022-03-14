@@ -112,7 +112,7 @@ class BeetleShader extends hxsl.Shader {
 			var circles:Float = 0.;
 			
 			@unroll for( i in 0...PosLenght ){
-				circles += circle(uv,positions[i],0.0002);
+				circles += circle(uv,positions[i],0.00002);
 			}
 			
 			var stcircle:Vec3 = color_outer * (1.-smoothstep(circles, circles/0.01, 10));
