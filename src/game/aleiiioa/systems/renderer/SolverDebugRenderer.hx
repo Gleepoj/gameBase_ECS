@@ -1,4 +1,4 @@
-package aleiiioa.systems.solver;
+package aleiiioa.systems.renderer;
 
 import hxd.BitmapData;
 import h2d.Bitmap;
@@ -13,15 +13,12 @@ import aleiiioa.shaders.PressureShader;
 
 
 
-class SolverDebugRendering extends echoes.System {
+class SolverDebugRenderer extends echoes.System {
     
     var level(get,never) : Level; inline function get_level() return Game.ME.level;
     var width(get,never) : Int; inline function get_width() return Std.int(level.pxWid);
     var height(get,never): Int; inline function get_height()return Std.int(level.pxHei);
     
-	
-    // a resoudre solver manager pour les fonction de test de grille //
-    var solver: FluidSolver;
     var sbDirections : Array<h2d.SpriteBatch.BatchElement>;
     var gameScroller:h2d.Layers;
     var sb : h2d.SpriteBatch;
@@ -30,9 +27,8 @@ class SolverDebugRendering extends echoes.System {
     var shader:BitmapShader;
     
 
-    public function new(_gameScroller:h2d.Layers,fluidSolver:FluidSolver) {
-        this.gameScroller = _gameScroller;
-        this.solver = fluidSolver;    
+    public function new(_gameScroller:h2d.Layers) {
+        this.gameScroller = _gameScroller;    
         this.sbDirections = [];
         this.sb = new h2d.SpriteBatch(h2d.Tile.fromColor(Color.makeColorRgb(1,1,1),Const.GRID,Const.GRID));
         this.sb.hasRotationScale = true;
@@ -65,22 +61,20 @@ class SolverDebugRendering extends echoes.System {
         if(!ui.Console.ME.hasFlag("grid"))
             sb.visible = false;
     }
-    
-    @u function updatePressureBitmapwCells(cc:CellComponent) {
+
+    @u function updatePressureBitmap(cc:CellComponent) {
         var uv  = new Vector(cc.u,cc.v);
         var uvl = uv.length();
         var col = new Vector(uvl*0.5,0,1-uvl*0.5,0.5);
         pressureBitmap.setPixel(cc.i, cc.j,col.toColor());
+
+        if(sb.visible)
+            sbDirections[cc.index].rotation = Math.atan2(cc.v,cc.u);   
     }
 
     @u function refreshLayer(lc:LayerComponent){
         lc.bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(pressureBitmap));
         lc.shader.texture = lc.bitmap.tile.getTexture();
-    }
-
-    @u function rotateVectorElement(cc:CellComponent){
-        if(sb.visible)
-            sbDirections[cc.index].rotation = Math.atan2(cc.v,cc.u);   
     }
 
     @r function onLayerRemoved(lc:LayerComponent){

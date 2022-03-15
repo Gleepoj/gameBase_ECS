@@ -35,9 +35,9 @@ class SolverSystem extends echoes.System {
     public function new() {
         solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
         createCellsComponents();
-        echoes.Workflow.addSystem(new SolverDebugRendering(game.scroller,solver));
-
+        //echoes.Workflow.addSystem(new SolverDebugRendering(game.scroller));
     }
+
     @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
         reinitModifiedCellsList(mod,gp);
     }
