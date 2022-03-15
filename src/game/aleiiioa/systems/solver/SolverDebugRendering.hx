@@ -1,5 +1,6 @@
 package aleiiioa.systems.solver;
 
+import hxd.BitmapData;
 import h2d.Bitmap;
 import h3d.Vector;
 import h2d.SpriteBatch.BatchElement;
@@ -24,6 +25,7 @@ class SolverDebugRendering extends echoes.System {
     var sbDirections : Array<h2d.SpriteBatch.BatchElement>;
     var gameScroller:h2d.Layers;
     var sb : h2d.SpriteBatch;
+    var pressureBitmap:BitmapData;
     var bitmap:Bitmap;
     var shader:BitmapShader;
     
@@ -46,15 +48,13 @@ class SolverDebugRendering extends echoes.System {
     }
 
     @a function onLayerAdded(lc:LayerComponent){
-        var b = makePressureBitmap();
-        lc.bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(b));
+        pressureBitmap = new hxd.BitmapData(level.cWid, level.cHei);
+        lc.bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(pressureBitmap));
         lc.shader = new BitmapShader();
 		lc.shader.texture = lc.bitmap.tile.getTexture();
 		lc.bitmap.addShader(lc.shader);
         lc.bitmap.scaleX = width/level.cWid;
         lc.bitmap.scaleY = height/level.cHei;
-       // lc.bitmap.height = height;
-        //lc.bitmap.width  = width;
         this.gameScroller.add(lc.bitmap,Const.DP_BG);
     }
 
@@ -65,10 +65,16 @@ class SolverDebugRendering extends echoes.System {
         if(!ui.Console.ME.hasFlag("grid"))
             sb.visible = false;
     }
+    
+    @u function updatePressureBitmapwCells(cc:CellComponent) {
+        var uv  = new Vector(cc.u,cc.v);
+        var uvl = uv.length();
+        var col = new Vector(uvl*0.5,0,1-uvl*0.5,0.5);
+        pressureBitmap.setPixel(cc.i, cc.j,col.toColor());
+    }
 
     @u function refreshLayer(lc:LayerComponent){
-        var pressure = makePressureBitmap();
-        lc.bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(pressure));
+        lc.bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(pressureBitmap));
         lc.shader.texture = lc.bitmap.tile.getTexture();
     }
 
@@ -82,19 +88,6 @@ class SolverDebugRendering extends echoes.System {
     }
 
 
-    private function makePressureBitmap(){
-        var bitmapPressure = new hxd.BitmapData(level.cWid, level.cHei);
-        for( j in 0...bitmapPressure.height ){
-        	for( i in 0...bitmapPressure.width){
-                var index = solver.getIndexForCellPosition(i,j);
-                var vec = solver.getUVVectorForIndexPosition(index);
-                var uvl = vec.length();
-                var color = new Vector(uvl*0.5,0,1-uvl*0.5,0.5);
-                bitmapPressure.setPixel(i, j,color.toColor());
-            }
-        }
-        return bitmapPressure;
-    }
     
     private function makeSpriteBatchVectorElement(i:Int,j:Int){
         var vec = new BatchElement(Assets.tiles.getTile(D.tiles.vector12));
