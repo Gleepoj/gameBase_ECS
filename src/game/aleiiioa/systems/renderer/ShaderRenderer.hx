@@ -34,11 +34,8 @@ class ShaderRenderer extends echoes.System {
         var b = uniBitmap();
         bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(b));
         var tex =  bitmap.tile.getTexture();
-        shader = new BeetleShader(tex,50);
+        shader = new BeetleShader(tex,250);
         
-		for(i in 0...5){
-			shader.positions.push(new Vector(Math.random(),Math.random()));
-		}
         
         bitmap.addShader(shader);
         bitmap.height = height;
@@ -60,7 +57,7 @@ class ShaderRenderer extends echoes.System {
             N_POSITIONS.push(nvec);
             head = head.next;
         }
-        shader.positions = [];
+        shader.PosLenght = N_POSITIONS.length;
         shader.positions = N_POSITIONS;
     }
     /* 

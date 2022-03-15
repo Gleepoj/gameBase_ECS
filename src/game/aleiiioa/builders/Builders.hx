@@ -64,7 +64,7 @@ class Builders {
         var fl_mst = new MasterFlag();
         var fl_bo  = new BodyFlag();
        
-        new echoes.Entity().add(mpos,wi,pos,suv,spr,inp,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
+        var player = new echoes.Entity().add(mpos,wi,pos,suv,spr,inp,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
         //Wing Master 
         
         var fl_wi_ms = new WingsMasterFlag();
@@ -100,6 +100,7 @@ class Builders {
         var fl_wi_wr = new WingRightFlag();
         var dbl_angR = new DebugLabel();
         new echoes.Entity().add(mpos,wi,pos_wr,offpos_wr,spr_wr,se_wr,fl_ch_wr,fl_wi_wr,dbl_angR);
+        return player;
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {

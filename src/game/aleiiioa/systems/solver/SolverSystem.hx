@@ -28,7 +28,7 @@ class SolverSystem extends echoes.System {
 	var aspectRatio2(get,never):Float;inline function get_aspectRatio2() return aspectRatio * aspectRatio;
 
     var FLUID_WIDTH(get,never) : Int; inline function get_FLUID_WIDTH()  return level.cWid;
-    var FLUID_HEIGHT(get,never): Int; inline function get_FLUID_HEIGHT() return Std.int( FLUID_WIDTH * height / width );
+    var FLUID_HEIGHT(get,never): Int; inline function get_FLUID_HEIGHT() return level.cHei;
 
     var solver: FluidSolver;
 

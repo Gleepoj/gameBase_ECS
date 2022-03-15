@@ -1,6 +1,7 @@
 package aleiiioa;
 
 import aleiiioa.builders.*;
+import aleiiioa.components.core.position.GridPosition;
 
 import aleiiioa.systems.core.*;
 import aleiiioa.systems.renderer.*;
@@ -8,21 +9,20 @@ import aleiiioa.systems.solver.*;
 import aleiiioa.systems.modifier.*;
 import aleiiioa.systems.collisions.*;
 import aleiiioa.systems.vehicule.*;
-import aleiiioa.shaders.TestShaders;
 
 import echoes.Workflow;
 
 class Aleiiioa extends Game {
 	var game(get,never) : Game; inline function get_game() return Game.ME;
-	var test:TestShaders ;
-
+	var cameraFocus:LPoint;
+	var pE:echoes.Entity;
 	public function new() {
 		super();
 		Workflow.reset();
 		
 		
 		var player = level.data.l_Entities.all_PlayerStart[0];
-		Builders.basicPlayer(player.cx,player.cy);
+		pE = Builders.basicPlayer(player.cx,player.cy);
 
  		for (m in level.data.l_Entities.all_Modifier){
 			Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
@@ -37,7 +37,7 @@ class Aleiiioa extends Game {
 		}
 
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
-		var cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);
+		cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);
 
 		Game.ME.camera.trackEntity(cameraFocus,false);
 		Game.ME.camera.clampToLevelBounds = true;
@@ -65,7 +65,6 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GridPositionActualizer());
 
 		//Graphics
-		//test = new TestShaders(Game.ME.scroller);
 		Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
@@ -90,7 +89,14 @@ class Aleiiioa extends Game {
 	override function postUpdate() {
 		super.postUpdate();
 		
+
 		Workflow.postUpdate(tmod);
+		
+		if(pE.isValid()){
+			var pos = pE.get(GridPosition);
+			cameraFocus.updatePoint(pos.attachX,pos.attachY);
+		}
+
 	}
 
 }

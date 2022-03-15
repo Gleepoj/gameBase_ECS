@@ -51,8 +51,10 @@ class SolverDebugRendering extends echoes.System {
         lc.shader = new BitmapShader();
 		lc.shader.texture = lc.bitmap.tile.getTexture();
 		lc.bitmap.addShader(lc.shader);
-        lc.bitmap.height = height;
-        lc.bitmap.width  = width;
+        lc.bitmap.scaleX = width/level.cWid;
+        lc.bitmap.scaleY = height/level.cHei;
+       // lc.bitmap.height = height;
+        //lc.bitmap.width  = width;
         this.gameScroller.add(lc.bitmap,Const.DP_BG);
     }
 
@@ -82,8 +84,8 @@ class SolverDebugRendering extends echoes.System {
 
     private function makePressureBitmap(){
         var bitmapPressure = new hxd.BitmapData(level.cWid, level.cHei);
-        for( j in 0...level.cWid ){
-        	for( i in 0...level.cHei){
+        for( j in 0...bitmapPressure.height ){
+        	for( i in 0...bitmapPressure.width){
                 var index = solver.getIndexForCellPosition(i,j);
                 var vec = solver.getUVVectorForIndexPosition(index);
                 var uvl = vec.length();
