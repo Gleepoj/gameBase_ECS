@@ -34,7 +34,7 @@ class ShaderRenderer extends echoes.System {
         var b = uniBitmap();
         bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(b));
         var tex =  bitmap.tile.getTexture();
-        shader = new BeetleShader(tex,250);
+        shader = new BeetleShader(tex);
         
         
         bitmap.addShader(shader);
@@ -45,9 +45,9 @@ class ShaderRenderer extends echoes.System {
 
     }
 
-    @u function updateVesselShade() {
+    function updateVesselShade() {
         
-        var head = ALL_VESSELS.entities.head;
+       /*  var head = ALL_VESSELS.entities.head;
         N_POSITIONS = [];
         shader.positions = [];
         while (head != null){
@@ -59,7 +59,7 @@ class ShaderRenderer extends echoes.System {
         }
         shader.PosLenght = N_POSITIONS.length;
         shader.positions = N_POSITIONS;
-    }
+ */ }
     /* 
     @r function clear(){
         shader.positions = [];

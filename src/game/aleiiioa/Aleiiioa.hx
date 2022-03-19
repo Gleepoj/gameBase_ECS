@@ -66,7 +66,7 @@ class Aleiiioa extends Game {
 
 		//Graphics
 		Workflow.add60FpsSystem(new SolverDebugRenderer(Game.ME.scroller));
-		//Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		//Debugger
@@ -83,14 +83,11 @@ class Aleiiioa extends Game {
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
-		//test.update();
 		Workflow.update(tmod);
 	}
 
 	override function postUpdate() {
 		super.postUpdate();
-		
-
 		Workflow.postUpdate(tmod);
 		
 		if(pE.isValid()){
