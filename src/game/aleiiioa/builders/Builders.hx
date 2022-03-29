@@ -75,11 +75,12 @@ class Builders {
 
         var pos_wl    = new GridPosition(mpos.cx,mpos.cy);
         var offpos_wl = new GridPositionOffset(0,0);
-        offpos_wl.setXYratio(-0.5,0.3);
+        //offpos_wl.setXYratio(0,0);
         
         var spr_wl  = new SpriteComponent(D.tiles.wing);
         var se_wl   = new SpriteExtension();
-        
+        se_wl.sprScaleY = -1;
+
         var fl_ch_wl = new ChildFlag();
         var fl_wi_wl = new WingLeftFlag();
         var dbl_angL = new DebugLabel();
@@ -90,12 +91,13 @@ class Builders {
 
         var pos_wr    = new GridPosition(mpos.cx,mpos.cy);
         var offpos_wr = new GridPositionOffset(0,0);
-        offpos_wr.setXYratio(0.5,0.3);
+        //offpos_wr.setXYratio(0.5,-0.3);
         
         var spr_wr  = new SpriteComponent(D.tiles.wing);
         var se_wr   = new SpriteExtension();
         se_wr.sprScaleX = -1;
-        
+        se_wr.sprScaleY = -1;
+
         var fl_ch_wr = new ChildFlag();
         var fl_wi_wr = new WingRightFlag();
         var dbl_angR = new DebugLabel();

@@ -1,5 +1,6 @@
 package aleiiioa.systems.renderer;
 
+import hxd.Math;
 import hxd.BitmapData;
 import h2d.Bitmap;
 import h3d.Vector;
@@ -65,7 +66,7 @@ class SolverDebugRenderer extends echoes.System {
     @u function updatePressureBitmap(cc:CellComponent) {
         var uv  = new Vector(cc.u,cc.v);
         var uvl = uv.length();
-        var col = new Vector(uvl*0.5,0,1-uvl*0.5,0.5);
+        var col = new Vector(uvl + uv.y,uvl,uvl-uv.y,1);
         pressureBitmap.setPixel(cc.i, cc.j,col.toColor());
 
         if(sb.visible)

@@ -1596,21 +1596,81 @@
 						},
 						{
 							"__identifier": "Modifier",
-							"__grid": [21,27],
+							"__grid": [21,49],
 							"__pivot": [0.5,1],
 							"__tile": null,
 							"width": 16,
 							"height": 16,
 							"defUid": 32,
-							"px": [345,437],
+							"px": [345,789],
 							"fieldInstances": [{
 								"__identifier": "AreaEquation",
-								"__value": "EqCurl",
+								"__value": "EqRepel",
 								"__type": "ExternEnum.AreaEquation",
 								"defUid": 33,
 								"realEditorValues": [{
 									"id": "V_String",
-									"params": ["EqCurl"]
+									"params": ["EqRepel"]
+								}]
+							}]
+						},
+						{
+							"__identifier": "Modifier",
+							"__grid": [30,57],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 32,
+							"px": [490,917],
+							"fieldInstances": [{
+								"__identifier": "AreaEquation",
+								"__value": "EqRepel",
+								"__type": "ExternEnum.AreaEquation",
+								"defUid": 33,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["EqRepel"]
+								}]
+							}]
+						},
+						{
+							"__identifier": "Modifier",
+							"__grid": [11,57],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 32,
+							"px": [187,917],
+							"fieldInstances": [{
+								"__identifier": "AreaEquation",
+								"__value": "EqRepel",
+								"__type": "ExternEnum.AreaEquation",
+								"defUid": 33,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["EqRepel"]
+								}]
+							}]
+						},
+						{
+							"__identifier": "Modifier",
+							"__grid": [22,2],
+							"__pivot": [0.5,1],
+							"__tile": null,
+							"width": 16,
+							"height": 16,
+							"defUid": 32,
+							"px": [359,41],
+							"fieldInstances": [{
+								"__identifier": "AreaEquation",
+								"__value": "EqRepel",
+								"__type": "ExternEnum.AreaEquation",
+								"defUid": 33,
+								"realEditorValues": [{
+									"id": "V_String",
+									"params": ["EqRepel"]
 								}]
 							}]
 						}

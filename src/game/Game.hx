@@ -205,7 +205,7 @@ class Game extends Process {
 
 			// Restart whole game
 			if( ca.isPressed(Restart) ){
-				trace("restart");
+				//trace("restart");
 				App.ME.startGame();
 			}
 

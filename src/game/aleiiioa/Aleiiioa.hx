@@ -66,18 +66,20 @@ class Aleiiioa extends Game {
 
 		//Graphics
 		Workflow.add60FpsSystem(new SolverDebugRenderer(Game.ME.scroller));
-		Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
+		//Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
+		
 		//Debugger
-		Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
-		Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
+		//Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
+		//Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
+		
 		//Input
 		Workflow.add60FpsSystem(new InputSystem());
 
 	
 
-		trace(Workflow.entities.length);
+		//trace(Workflow.entities.length);
 	}
 
 
@@ -88,13 +90,14 @@ class Aleiiioa extends Game {
 
 	override function postUpdate() {
 		super.postUpdate();
-		Workflow.postUpdate(tmod);
 		
 		if(pE.isValid()){
 			var pos = pE.get(GridPosition);
 			cameraFocus.updatePoint(pos.attachX,pos.attachY);
 		}
-
+		
+		Workflow.postUpdate(tmod);
+		
 	}
 
 }

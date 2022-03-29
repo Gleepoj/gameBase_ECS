@@ -135,14 +135,14 @@ class BeetleShader extends hxsl.Shader {
 			var color = vec3(0.0);
 			
 			var q = vec2(0.);
-			q.x = fbm( st + 0.00*time);
-			q.y = fbm( st + vec2(1.0));
+			q.x = fbm( st);// + 0.00*time);
+			q.y = fbm( st);// + vec2(1.0));
 			
 			var r = vec2(0.);
 			r.x = fbm( st + 1.0*q + vec2(1.7,9.2)+ 0.15*time );
 			r.y = fbm( st + 1.0*q + vec2(8.3,2.8)+ 0.126*time);
 
-			var f = fbm(st+r);
+			var f = fbm(st-r);
 
 			color = mix(vec3(0.101961,0.619608,0.666667),
 					vec3(0.666667,0.666667,0.498039),
@@ -231,7 +231,6 @@ class BitmapShader extends hxsl.Shader {
 		
 		function fragment() {
 			var color:Vec4 = texture.get(input.uv);
-			color.g = 0;
 			pixelColor = vec4(color);
 		}
 	}

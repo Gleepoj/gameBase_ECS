@@ -14,11 +14,11 @@ class WingsBehaviors extends echoes.System {
 
     @u function updateLeftWing(win:WingsSharedComponent,wl:WingLeftFlag,spr:SpriteComponent,gop:GridPositionOffset){
        
-        gop.oyr = win.offsetDirL*0.2;
+        gop.oyr = -0.8 + win.offsetDirL*0.2;
         
         if(!win.isLocked){
             gop.oxr = -0.5;
-            spr.rotation = win.angleL;
+            spr.rotation = -win.angleL;
         }
 
         if(win.isLocked){
@@ -27,13 +27,14 @@ class WingsBehaviors extends echoes.System {
         }
     }
 
+    
     @u function updateRightWing(win:WingsSharedComponent,wr:WingRightFlag,spr:SpriteComponent,gop:GridPositionOffset){
        
-        gop.oyr = win.offsetDirR*0.2;
+        gop.oyr =  -0.8 + win.offsetDirR*0.2;
     
         if(!win.isLocked){
             gop.oxr = 0.5;
-            spr.rotation = win.angleR;
+            spr.rotation = -win.angleR;
         }
 
         if(win.isLocked){
