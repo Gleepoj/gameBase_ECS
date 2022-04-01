@@ -1,6 +1,8 @@
 package aleiiioa.systems.solver;
 
 
+import aleiiioa.components.core.position.FluidPosition;
+import aleiiioa.components.ScrollerComponent;
 import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 import dn.Bresenham;
 import echoes.System;
@@ -35,15 +37,17 @@ class SolverSystem extends echoes.System {
     var FLUID_CY_TO_LEVEL = level.cHei - FLUID_HEIGHT;
 
     var solver: FluidSolver;
+    var scroll: echoes.Entity;
     var isScrolling:Bool = true;
 
     public function new() {
         solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
         createCellsComponents();
+        scroll = Builders.scroller(0,0);
     }
 
-    @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
-        reinitModifiedCellsList(mod,gp);
+    @a function onModifierAdded(mod:ModifierComponent,fpos:FluidPosition) {
+        reinitModifiedCellsList(mod,fpos);
     }
 
     @u function cellUpdate(cc:CellComponent,vas:VelocityAnalogSpeed){
@@ -52,7 +56,7 @@ class SolverSystem extends echoes.System {
 
         
         if(isScrolling){
-            vas.ySpeed = 0.1;
+            vas.ySpeed = scroll.get(ScrollerComponent).scrollSpeed;
         }
     } 
 
@@ -63,23 +67,36 @@ class SolverSystem extends echoes.System {
         }
     }
 
-    @u function pullModifierInput(mod:ModifierComponent,gp:GridPosition){
+    @u function pullModifierInput(mod:ModifierComponent,fpos:FluidPosition){
         if(mod.isBlowing){
             for( c in mod.informedCells){
                setUVatIndex(c.u,c.v,c.index);
             }
         }
-        if(gp.isMoving)
-            reinitModifiedCellsList(mod,gp);
+
+        reinitModifiedCellsList(mod,fpos);
+    }
+    
+    @u function updateScroll(scr:ScrollerComponent,vas:VelocityAnalogSpeed,gp:GridPosition){
+        vas.ySpeed = scr.scrollSpeed;
+        scr.yGridOffset = gp.attachY;
+    }
+
+    @u function updateFluidPos(fpos:FluidPosition, pos:GridPosition){
+        var p = scroll.get(GridPosition);
+        fpos.xr = pos.xr - p.xr;
+        fpos.yr = pos.yr - p.yr;
+        fpos.cx = pos.cx - p.cx;
+        fpos.cy = pos.cy - p.cy;
     }
 
     @u function globalSolverUpdate(){
         solver.update();
     }
 
-    private function reinitModifiedCellsList(mod:ModifierComponent,gp:GridPosition) {
+    private function reinitModifiedCellsList(mod:ModifierComponent,fpos:FluidPosition) {
         
-        var list = Bresenham.getDisc(gp.cx,gp.cy, mod.areaRadius);
+        var list = Bresenham.getDisc(fpos.cx,fpos.cy, mod.areaRadius);
     	mod.informedCells = [];
 		for(c in list){
 			if(solver.checkIfCellIsInGrid(c.x,c.y)){

@@ -1,5 +1,6 @@
 package aleiiioa.systems.modifier;
 
+import aleiiioa.components.core.position.FluidPosition;
 import h3d.Vector;
 import dn.M;
 import hxd.Math;
@@ -19,12 +20,12 @@ class ModifierSystem extends echoes.System {
 		command = new InstancedCommands();
     }
 
-    @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
+    @a function onModifierAdded(mod:ModifierComponent,fpos:FluidPosition) {
 	    mod.equation = new Equation(mod.areaEquation);
 		mod.currentOrder = command.turnOn;
 		order(mod);
 
-		computeCellDistanceToModifierPosition(mod,gp);
+		computeCellDistanceToModifierPosition(mod,fpos);
 		computeLocalUVFields(mod);	
 		
     }
@@ -33,10 +34,9 @@ class ModifierSystem extends echoes.System {
 		pnc.py = pnc.initY;
 	}
 	
-	@u function modifiersUpdate(dt:Float,mod:ModifierComponent,gp:GridPosition,spr:SpriteComponent) {
-		if(gp.isMoving)
-			computeCellDistanceToModifierPosition(mod,gp);
+	@u function modifiersUpdate(dt:Float,mod:ModifierComponent,fpos:FluidPosition,spr:SpriteComponent) {
 		
+		computeCellDistanceToModifierPosition(mod,fpos);
 		computeLocalUVFields(mod);
 		
 		if(mod.onChangeOrder)
@@ -58,11 +58,11 @@ class ModifierSystem extends echoes.System {
 		}
     }
 
-	private function computeCellDistanceToModifierPosition(mod:ModifierComponent,gp:GridPosition) {	
+	private function computeCellDistanceToModifierPosition(mod:ModifierComponent,fpos:FluidPosition) {	
 		for (cell in mod.informedCells) {
-		    cell.abx = cell.x - gp.cx;
-			cell.aby = cell.y - gp.cy;
-			cell.dist = M.floor(M.dist(gp.cx,gp.cy,cell.abx,cell.aby));
+		    cell.abx = cell.x - fpos.cx;
+			cell.aby = cell.y - fpos.cy;
+			cell.dist = M.floor(M.dist(fpos.cx,fpos.cy,cell.abx,cell.aby));
         }
     }
 

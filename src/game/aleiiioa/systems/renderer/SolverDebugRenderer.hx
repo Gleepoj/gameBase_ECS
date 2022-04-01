@@ -1,5 +1,6 @@
 package aleiiioa.systems.renderer;
 
+import aleiiioa.components.ScrollerComponent;
 import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 import aleiiioa.components.core.position.GridPosition;
 import hxd.Math;
@@ -31,7 +32,7 @@ class SolverDebugRenderer extends echoes.System {
     var shader:BitmapShader;
     
    
-    var yOffsetPx:Int =1 ;
+    var yOffsetPx:Float =1 ;
     var scroll:Int = 0 ;
 
     public function new(_gameScroller:h2d.Layers) {
@@ -59,7 +60,7 @@ class SolverDebugRenderer extends echoes.System {
         lc.bitmap.scaleX = width/level.cWid;
         lc.bitmap.scaleY = height/level.cHei;
         //lc.bitmap.move(0,-100);
-        //yOffsetPx = 1;//(level.cHei-Const.FLUID_MAX_HEIGHT)*Const.GRID;
+        //yOffsetPx = (level.cHei-Const.FLUID_MAX_HEIGHT)*Const.GRID;
         //lc.bitmap.setPosition(0,yOffsetPx);
         this.gameScroller.add(lc.bitmap,Const.DP_BG);
     }
@@ -70,7 +71,10 @@ class SolverDebugRenderer extends echoes.System {
         } 
         if(!ui.Console.ME.hasFlag("grid"))
             sb.visible = false;
-        //scroll += yOffsetPx;
+    }
+
+    @u function scrollerUpdate(scr:ScrollerComponent) {
+       yOffsetPx = scr.yGridOffset+10;
     }
 
     @u function updatePressureBitmap(cc:CellComponent,gp:GridPosition,vas:VelocityAnalogSpeed) {
@@ -87,7 +91,9 @@ class SolverDebugRenderer extends echoes.System {
     }
 
     @u function refreshLayer(lc:LayerComponent){
+        lc.bitmap.setPosition(0,200);
         lc.bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(pressureBitmap));
+        
         lc.shader.texture = lc.bitmap.tile.getTexture();
     }
 

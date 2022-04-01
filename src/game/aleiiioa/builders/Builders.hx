@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.ScrollerComponent;
 import aleiiioa.components.tool.PerlinNoiseComponent;
 import aleiiioa.components.solver.SolverUVComponent;
 import echoes.Entity;
@@ -29,13 +30,14 @@ class Builders {
 ////////ACTORS////////////////
     public static function basicModifier(cx:Int,cy:Int,areaEq:AreaEquation) {
         var pos  = new GridPosition(cx,cy);
+        var fpos = new FluidPosition(cx,cy);
         var spr  = new SpriteComponent(D.tiles.Square);
         var se   = new SpriteExtension();
         var mod  = new ModifierComponent();
         var per  = new PerlinNoiseComponent();
         mod.areaEquation = areaEq;
         
-        new echoes.Entity().add(pos,spr,se,mod,per);
+        new echoes.Entity().add(pos,fpos,spr,se,mod,per);
     }
 
     public static function basicPlayer(cx:Int,cy:Int) {
@@ -185,6 +187,15 @@ class Builders {
         var vc = new VelocityComponent();
         var vas = new VelocityAnalogSpeed();
         new echoes.Entity().add(cc,gp,vc,vas);
+    }
+
+    public static function scroller(cx:Int,cy:Int) {
+        var scr = new ScrollerComponent();
+        var gp  = new GridPosition(cx,cy);
+        var vas = new VelocityAnalogSpeed();
+        var vc  = new VelocityComponent();
+        var scroll = new echoes.Entity().add(scr,gp,vas,vc);
+        return scroll;
     }
 
 }
