@@ -9,7 +9,7 @@ typedef CellStruct = {index:Int,x:Int,y:Int,abx:Int,aby:Int,u:Float,v:Float,dist
 class ModifierComponent {
 	
     public var areaEquation:AreaEquation = EqDiverge;
-	public var areaRadius:Int = 8;
+	public var areaRadius:Int = 5;
 	public var power:Float = 0.03; //between 0.05(max) and 0.1(min)
 
     var blowingIsActive:Bool = false;

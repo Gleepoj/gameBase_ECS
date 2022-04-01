@@ -3,6 +3,9 @@ enum GameAction {
 	MoveX;
 	MoveY;
 
+	WingLeft;
+	WingRight;
+	
 	Jump;
 	Restart;
 	Blow;

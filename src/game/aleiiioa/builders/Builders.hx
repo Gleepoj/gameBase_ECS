@@ -181,7 +181,10 @@ class Builders {
 
     public static function solverCell(i:Int,j:Int,index:Int) {
         var cc = new CellComponent(i,j,index);
-        new echoes.Entity().add(cc);
+        var gp = new GridPosition(i,j,0.5,0.5);
+        var vc = new VelocityComponent();
+        var vas = new VelocityAnalogSpeed();
+        new echoes.Entity().add(cc,gp,vc,vas);
     }
 
 }

@@ -1,6 +1,7 @@
 package aleiiioa.systems.solver;
 
 
+import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 import dn.Bresenham;
 import echoes.System;
 
@@ -27,24 +28,32 @@ class SolverSystem extends echoes.System {
 	var aspectRatio(get,never):Float ;inline function get_aspectRatio() return width * ish;
 	var aspectRatio2(get,never):Float;inline function get_aspectRatio2() return aspectRatio * aspectRatio;
 
+    
     var FLUID_WIDTH(get,never) : Int; inline function get_FLUID_WIDTH()  return level.cWid;
-    var FLUID_HEIGHT(get,never): Int; inline function get_FLUID_HEIGHT() return level.cHei;
+    var FLUID_HEIGHT(get,never): Int; inline function get_FLUID_HEIGHT() return Const.FLUID_MAX_HEIGHT;
+    
+    var FLUID_CY_TO_LEVEL = level.cHei - FLUID_HEIGHT;
 
     var solver: FluidSolver;
+    var isScrolling:Bool = true;
 
     public function new() {
         solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
         createCellsComponents();
-        //echoes.Workflow.addSystem(new SolverDebugRendering(game.scroller));
     }
 
     @a function onModifierAdded(mod:ModifierComponent,gp:GridPosition) {
         reinitModifiedCellsList(mod,gp);
     }
 
-    @u function cellUpdate(cc:CellComponent){
+    @u function cellUpdate(cc:CellComponent,vas:VelocityAnalogSpeed){
         cc.u = solver.getUatIndex(cc.index);
         cc.v = solver.getVatIndex(cc.index);
+
+        
+        if(isScrolling){
+            vas.ySpeed = 0.1;
+        }
     } 
 
     @u function updateSolverUVComponent(suv:SolverUVComponent,gp:GridPosition){
@@ -62,13 +71,10 @@ class SolverSystem extends echoes.System {
         }
         if(gp.isMoving)
             reinitModifiedCellsList(mod,gp);
-
-       
     }
 
     @u function globalSolverUpdate(){
         solver.update();
-        //addForce(10,10,0,30);
     }
 
     private function reinitModifiedCellsList(mod:ModifierComponent,gp:GridPosition) {
@@ -90,7 +96,7 @@ class SolverSystem extends echoes.System {
                 var index = solver.getIndexForCellPosition(i,j);
                 Builders.solverCell(i,j,index);
             }
-        }
+        } 
     }
 
 
@@ -104,7 +110,6 @@ class SolverSystem extends echoes.System {
 			solver.vOld[index] += dy * velocityMult;
 		}
 	}
-
     private function setUVatIndex(u:Float,v:Float,index:Int){
         solver.u[index] = u;
         solver.v[index] = v;

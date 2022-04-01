@@ -32,6 +32,8 @@ class Const {
 	**/
 	public static final FIXED_UPDATE_FPS = 30;
 
+	public static final FLUID_MAX_HEIGHT = 150;
+
 	/** Grid size in pixels **/
 	public static final GRID = 16;
 

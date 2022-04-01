@@ -1,5 +1,7 @@
 package aleiiioa.systems.renderer;
 
+import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
+import aleiiioa.components.core.position.GridPosition;
 import hxd.Math;
 import hxd.BitmapData;
 import h2d.Bitmap;
@@ -18,6 +20,7 @@ class SolverDebugRenderer extends echoes.System {
     
     var level(get,never) : Level; inline function get_level() return Game.ME.level;
     var width(get,never) : Int; inline function get_width() return Std.int(level.pxWid);
+    //var height(get,never): Int; inline function get_height() return 150;
     var height(get,never): Int; inline function get_height()return Std.int(level.pxHei);
     
     var sbDirections : Array<h2d.SpriteBatch.BatchElement>;
@@ -27,6 +30,9 @@ class SolverDebugRenderer extends echoes.System {
     var bitmap:Bitmap;
     var shader:BitmapShader;
     
+   
+    var yOffsetPx:Int =1 ;
+    var scroll:Int = 0 ;
 
     public function new(_gameScroller:h2d.Layers) {
         this.gameScroller = _gameScroller;    
@@ -52,6 +58,9 @@ class SolverDebugRenderer extends echoes.System {
 		lc.bitmap.addShader(lc.shader);
         lc.bitmap.scaleX = width/level.cWid;
         lc.bitmap.scaleY = height/level.cHei;
+        //lc.bitmap.move(0,-100);
+        //yOffsetPx = 1;//(level.cHei-Const.FLUID_MAX_HEIGHT)*Const.GRID;
+        //lc.bitmap.setPosition(0,yOffsetPx);
         this.gameScroller.add(lc.bitmap,Const.DP_BG);
     }
 
@@ -61,16 +70,20 @@ class SolverDebugRenderer extends echoes.System {
         } 
         if(!ui.Console.ME.hasFlag("grid"))
             sb.visible = false;
+        //scroll += yOffsetPx;
     }
 
-    @u function updatePressureBitmap(cc:CellComponent) {
+    @u function updatePressureBitmap(cc:CellComponent,gp:GridPosition,vas:VelocityAnalogSpeed) {
         var uv  = new Vector(cc.u,cc.v);
         var uvl = uv.length();
-        var col = new Vector(uvl + uv.y,uvl,uvl-uv.y,1);
+        var col = new Vector(uvl + uv.y,uvl,uvl-uv.y,0.5);
         pressureBitmap.setPixel(cc.i, cc.j,col.toColor());
 
-        if(sb.visible)
-            sbDirections[cc.index].rotation = Math.atan2(cc.v,cc.u);   
+        if(sb.visible && cc.index < sbDirections.length){
+            sbDirections[cc.index].rotation = Math.atan2(cc.v,cc.u);
+            sbDirections[cc.index].y = gp.attachY;
+        }
+
     }
 
     @u function refreshLayer(lc:LayerComponent){
