@@ -1,5 +1,6 @@
 package aleiiioa;
 
+import h3d.Vector;
 import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
 
@@ -63,8 +64,8 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new ModifierSystem());
 		Workflow.addSystem(new FluidScrollingSystem());
 
-		Workflow.addSystem(new VelocitySystem());
-		Workflow.addSystem(new GridPositionActualizer());
+		Workflow.add60FpsSystem(new VelocitySystem());
+		Workflow.add60FpsSystem(new GridPositionActualizer());
 
 		//Graphics
 		Workflow.addSystem(new SolverDebugRenderer(Game.ME.scroller));
@@ -73,7 +74,7 @@ class Aleiiioa extends Game {
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		
 		//Debugger
-		//Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
 		//Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
 		
 		//Input
@@ -93,13 +94,21 @@ class Aleiiioa extends Game {
 	override function postUpdate() {
 		super.postUpdate();
 		
+		Workflow.postUpdate(tmod);
+
 		if(pE.isValid()){
 			var pos = pE.get(GridPosition);
-			cameraFocus.updatePoint(pos.attachX,pos.attachY);
+			var ipos = cameraTargetInterpolatePosition(pos);
+			cameraFocus.updatePoint(ipos.x,ipos.y);
 		}
 		
-		Workflow.postUpdate(tmod);
 		
+	}
+
+	private function cameraTargetInterpolatePosition(gp:GridPosition){
+		var _x = M.lerp(gp.lastFixedUpdateX, (gp.cx+gp.xr)*Const.GRID, game.getFixedUpdateAccuRatio());
+		var _y = M.lerp(gp.lastFixedUpdateY, (gp.cy+gp.yr)*Const.GRID, game.getFixedUpdateAccuRatio()); 
+		return new Vector(_x,_y);
 	}
 
 }

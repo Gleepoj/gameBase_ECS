@@ -9,10 +9,9 @@ class Camera extends dn.Process {
 	/** This is equal to rawFocus if `clampToLevelBounds` is disabled **/
 	var clampedFocus : LPoint;
 
-	//var target : Null<>;
+	//var target : Null<>; target offset in pixel 
 	public var targetOffX = 0.;
-	public var targetOffY = 0.;
-
+	public var targetOffY = -400.;
 	/** Width of viewport in level pixels **/
 	public var pxWid(get,never) : Int;
 
@@ -22,8 +21,8 @@ class Camera extends dn.Process {
 	/** Horizontal camera dead-zone in percentage of viewport width **/
 	public var deadZonePctX = 0.04;
 
-	/** Verticakl camera dead-zone in percentage of viewport height **/
-	public var deadZonePctY = 0.10;
+	/** Verticakl camera dead-zone in percentage of viewport height :: init value 0.10**/ 
+	public var deadZonePctY = 0.1;
 	
 	var target :LPoint;
 

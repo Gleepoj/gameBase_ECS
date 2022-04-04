@@ -82,7 +82,7 @@ class  SteeringBehaviors extends System {
             if (yAperture == 0 ){
                 wind = d.multiply(0.5);
                 speed = wind.sub(sw.velocity);
-                forces = speed.add(new Vector(wsc.inputX,wsc.inputY));
+                forces = speed.add(new Vector(wsc.inputX,Const.SCROLLING_MIN_SPEED));
             }
             sw.maxForce = 0.2;
         }

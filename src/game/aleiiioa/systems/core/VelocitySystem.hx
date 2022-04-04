@@ -8,14 +8,15 @@ class VelocitySystem extends echoes.System {
 	public function new() {}
 
 	@u function updateSteeringWheelVessel(gp:GridPosition, vc:VelocityComponent, sw:SteeringWheel) {
-		vc.dx += sw.eulerSteering.x;
-		vc.dy += sw.eulerSteering.y;
+		vc.dx += sw.eulerSteering.x*0.5;
+		vc.dy += sw.eulerSteering.y*0.5;
+		
 		fixedUpdate(gp, vc);
 	}
 
 	@u function updateAnalogSpeed(gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed) {
-		vc.dx = vas.xSpeed;
-		vc.dy = vas.ySpeed;
+		vc.dx = vas.xSpeed*0.5;
+		vc.dy = vas.ySpeed*0.5;
 		fixedUpdate(gp, vc);
 	}
 
