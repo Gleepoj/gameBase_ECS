@@ -34,10 +34,7 @@ class SolverSystem extends echoes.System {
     var FLUID_WIDTH(get,never) : Int; inline function get_FLUID_WIDTH()  return level.cWid;
     var FLUID_HEIGHT(get,never): Int; inline function get_FLUID_HEIGHT() return Const.FLUID_MAX_HEIGHT;
     
-    var FLUID_CY_TO_LEVEL = level.cHei - FLUID_HEIGHT;
-
     var solver: FluidSolver;
-    var isScrolling:Bool = true;
 
     public function new() {
         solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
