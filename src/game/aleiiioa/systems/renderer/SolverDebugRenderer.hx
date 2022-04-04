@@ -21,7 +21,6 @@ class SolverDebugRenderer extends echoes.System {
     
     var level(get,never) : Level; inline function get_level() return Game.ME.level;
     var width(get,never) : Int; inline function get_width() return Std.int(level.pxWid);
-    //var height(get,never): Int; inline function get_height() return 150;
     var height(get,never): Int; inline function get_height()return Std.int(level.pxHei);
     
     var sbDirections : Array<h2d.SpriteBatch.BatchElement>;
@@ -30,10 +29,7 @@ class SolverDebugRenderer extends echoes.System {
     var pressureBitmap:BitmapData;
     var bitmap:Bitmap;
     var shader:BitmapShader;
-    
-   
-    var yOffsetPx:Float =1 ;
-    var scroll:Int = 0 ;
+    var scrollGridPosition:GridPosition;
 
     public function new(_gameScroller:h2d.Layers) {
         this.gameScroller = _gameScroller;    
@@ -59,9 +55,6 @@ class SolverDebugRenderer extends echoes.System {
 		lc.bitmap.addShader(lc.shader);
         lc.bitmap.scaleX = width/level.cWid;
         lc.bitmap.scaleY = height/level.cHei;
-        //lc.bitmap.move(0,-100);
-        //yOffsetPx = (level.cHei-Const.FLUID_MAX_HEIGHT)*Const.GRID;
-        //lc.bitmap.setPosition(0,yOffsetPx);
         this.gameScroller.add(lc.bitmap,Const.DP_BG);
     }
 
@@ -73,8 +66,8 @@ class SolverDebugRenderer extends echoes.System {
             sb.visible = false;
     }
 
-    @u function scrollerUpdate(scr:ScrollerComponent) {
-       yOffsetPx = scr.yGridOffset+10;
+    @a function getScrollerPosition(en:echoes.Entity,scr:ScrollerComponent) {
+        scrollGridPosition = en.get(GridPosition);
     }
 
     @u function updatePressureBitmap(cc:CellComponent,gp:GridPosition,vas:VelocityAnalogSpeed) {
@@ -91,10 +84,17 @@ class SolverDebugRenderer extends echoes.System {
     }
 
     @u function refreshLayer(lc:LayerComponent){
-        lc.bitmap.setPosition(0,200);
+        gameScroller.removeChild(lc.bitmap);
         lc.bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(pressureBitmap));
-        
+        lc.bitmap.addShader(lc.shader);
         lc.shader.texture = lc.bitmap.tile.getTexture();
+        lc.bitmap.scaleX = width/level.cWid;
+        lc.bitmap.scaleY = height/level.cHei;
+        
+        var sy = scrollGridPosition.attachY;
+        lc.bitmap.setPosition(0,sy);
+        
+        gameScroller.add(lc.bitmap,Const.DP_BG);
     }
 
     @r function onLayerRemoved(lc:LayerComponent){

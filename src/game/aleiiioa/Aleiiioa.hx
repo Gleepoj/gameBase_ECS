@@ -61,11 +61,13 @@ class Aleiiioa extends Game {
 		//Physics
 		Workflow.addSystem(new SolverSystem());
 		Workflow.addSystem(new ModifierSystem());
+		Workflow.addSystem(new FluidScrollingSystem());
+
 		Workflow.addSystem(new VelocitySystem());
 		Workflow.addSystem(new GridPositionActualizer());
 
 		//Graphics
-		Workflow.add60FpsSystem(new SolverDebugRenderer(Game.ME.scroller));
+		Workflow.addSystem(new SolverDebugRenderer(Game.ME.scroller));
 		//Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));

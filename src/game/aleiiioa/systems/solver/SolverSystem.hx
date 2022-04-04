@@ -37,13 +37,11 @@ class SolverSystem extends echoes.System {
     var FLUID_CY_TO_LEVEL = level.cHei - FLUID_HEIGHT;
 
     var solver: FluidSolver;
-    var scroll: echoes.Entity;
     var isScrolling:Bool = true;
 
     public function new() {
         solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
         createCellsComponents();
-        scroll = Builders.scroller(0,0);
     }
 
     @a function onModifierAdded(mod:ModifierComponent,fpos:FluidPosition) {
@@ -53,11 +51,6 @@ class SolverSystem extends echoes.System {
     @u function cellUpdate(cc:CellComponent,vas:VelocityAnalogSpeed){
         cc.u = solver.getUatIndex(cc.index);
         cc.v = solver.getVatIndex(cc.index);
-
-        
-        if(isScrolling){
-            vas.ySpeed = scroll.get(ScrollerComponent).scrollSpeed;
-        }
     } 
 
     @u function updateSolverUVComponent(suv:SolverUVComponent,gp:GridPosition){
@@ -77,19 +70,6 @@ class SolverSystem extends echoes.System {
         reinitModifiedCellsList(mod,fpos);
     }
     
-    @u function updateScroll(scr:ScrollerComponent,vas:VelocityAnalogSpeed,gp:GridPosition){
-        vas.ySpeed = scr.scrollSpeed;
-        scr.yGridOffset = gp.attachY;
-    }
-
-    @u function updateFluidPos(fpos:FluidPosition, pos:GridPosition){
-        var p = scroll.get(GridPosition);
-        fpos.xr = pos.xr - p.xr;
-        fpos.yr = pos.yr - p.yr;
-        fpos.cx = pos.cx - p.cx;
-        fpos.cy = pos.cy - p.cy;
-    }
-
     @u function globalSolverUpdate(){
         solver.update();
     }
