@@ -1,5 +1,8 @@
 package aleiiioa.systems.solver;
 
+import aleiiioa.components.vehicule.SteeringWheel;
+import aleiiioa.components.core.velocity.VelocityComponent;
+import aleiiioa.components.flags.vessel.PlayerFlag;
 import aleiiioa.components.core.position.FluidPosition;
 import aleiiioa.components.solver.CellComponent;
 import aleiiioa.components.core.position.GridPosition;
@@ -9,36 +12,43 @@ import aleiiioa.builders.Builders;
 
 class FluidScrollingSystem extends echoes.System {
     var level(get,never) : Level; inline function get_level() return Game.ME.level;
+    
 
     var scrollPoint: echoes.Entity;
     var scrollGridPosition : GridPosition;
     var FLUID_CY_TO_LEVEL = level.cHei - Const.FLUID_MAX_HEIGHT;
-    var currentSpeed:Float = 0;
+    var playerYSpeed:Float = 0;
+    var playerGridPosition:GridPosition;
 
     public function new() {
         scrollPoint = Builders.scroller(0,FLUID_CY_TO_LEVEL);
-    }
-    @u function updateSystem() {
         scrollGridPosition = scrollPoint.get(GridPosition);
     }
 
-    @u function updateScroll(scr:ScrollerComponent,vas:VelocityAnalogSpeed,gp:GridPosition){
-        vas.ySpeed = scr.scrollSpeed;
-        currentSpeed = vas.ySpeed;
+    @u function getPlayerSpeed(pl:PlayerFlag,gp:GridPosition,vc:VelocityComponent) {
+        playerGridPosition = gp; 
+        playerYSpeed = vc.dy;
+    }
+    @u function sharePlayerSpeed(scr:ScrollerComponent) {
+        scr.scrollSpeed = playerYSpeed;
+    }
+    @u function updateSystem() {
+        scrollGridPosition.cy = playerGridPosition.cy-30;
+        scrollGridPosition.yr = playerGridPosition.yr;
     }
     
-    @u function cellUpdate(cc:CellComponent,vas:VelocityAnalogSpeed,gpos:GridPosition){
+    @u function cellPositionOffset(cc:CellComponent,gpos:GridPosition){
         gpos.cy = cc.j + scrollGridPosition.cy;
-        gpos.yr = 0.5 + scrollGridPosition.yr;
+        gpos.yr = 0.5  + scrollGridPosition.yr;
     } 
 
-    @u function updateFluidPos(fpos:FluidPosition, pos:GridPosition){
-        var speedOffset = (4*Math.ceil(currentSpeed));
-        //trace(offset);
+    @u function updateFluidPosition(fpos:FluidPosition, pos:GridPosition){
+        var speedOffset = 1;//(Math.ceil(playerYSpeed));
         var p = scrollGridPosition;
         fpos.xr = pos.xr - p.xr;
         fpos.yr = pos.yr - p.yr;
         fpos.cx = pos.cx - p.cx;
-        fpos.cy = pos.cy - p.cy -1- speedOffset; // find magic offset 
+        fpos.cy = pos.cy - p.cy + speedOffset; // find magic offset 
     }
+
 }

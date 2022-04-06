@@ -1,6 +1,7 @@
 package aleiiioa.systems.renderer;
 
 
+import aleiiioa.components.ScrollerComponent;
 import aleiiioa.components.flags.vessel.*;
 import aleiiioa.components.vehicule.WingsSharedComponent;
 
@@ -13,6 +14,7 @@ import echoes.System;
 
 class DebugLabelRenderer extends System{
     var gameScroller:h2d.Layers;
+	var val:Float =0 ;
     
     public function new(scroller:h2d.Layers){
         this.gameScroller = scroller;
@@ -29,9 +31,11 @@ class DebugLabelRenderer extends System{
         debugFloat(dl,);
         renderAllDebugs(dl,gp);
     } */
- 
+	@u function uval(scr:ScrollerComponent) {
+		val = scr.scrollSpeed;
+	}
 	@u function updateDebugWingR(dl:DebugLabel,gp:GridPosition,win:WingsSharedComponent,wr:WingRightFlag) {
-		debugFloat(dl,win.angleR);
+		debugFloat(dl,val);
         renderAllDebugs(dl,gp);
     }
 

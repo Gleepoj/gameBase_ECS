@@ -1,5 +1,6 @@
 package aleiiioa.systems.renderer;
 
+import echoes.Entity;
 import aleiiioa.components.ScrollerComponent;
 import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 import aleiiioa.components.core.position.GridPosition;
@@ -20,6 +21,8 @@ import aleiiioa.shaders.PressureShader;
 class SolverDebugRenderer extends echoes.System {
     
     var level(get,never) : Level; inline function get_level() return Game.ME.level;
+    var game(get,never) : Game; inline function get_game() return Game.ME;
+
     var width(get,never) : Int; inline function get_width() return Std.int(level.pxWid);
     var height(get,never): Int; inline function get_height()return Std.int(level.pxHei);
     
@@ -30,6 +33,8 @@ class SolverDebugRenderer extends echoes.System {
     var bitmap:Bitmap;
     var shader:BitmapShader;
     var scrollGridPosition:GridPosition;
+    var prevSgpCy:Int;
+    var scrSpeed:ScrollerComponent;
 
     public function new(_gameScroller:h2d.Layers) {
         this.gameScroller = _gameScroller;    
@@ -48,17 +53,19 @@ class SolverDebugRenderer extends echoes.System {
     }
 
     @a function onLayerAdded(lc:LayerComponent){
-        pressureBitmap = new hxd.BitmapData(level.cWid, level.cHei);
+        pressureBitmap = new hxd.BitmapData(level.cWid, Const.FLUID_MAX_HEIGHT);
         lc.bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(pressureBitmap));
-        lc.shader = new BitmapShader();
-		lc.shader.texture = lc.bitmap.tile.getTexture();
-		lc.bitmap.addShader(lc.shader);
         lc.bitmap.scaleX = width/level.cWid;
         lc.bitmap.scaleY = height/level.cHei;
         this.gameScroller.add(lc.bitmap,Const.DP_BG);
+
+        scrollGridPosition = null;
     }
 
     @u function systemUpdate(){
+        pressureBitmap.dispose();
+        pressureBitmap = new hxd.BitmapData(level.cWid, Const.FLUID_MAX_HEIGHT);
+        
         if( ui.Console.ME.hasFlag("grid")){
             sb.visible = true;
         } 
@@ -68,32 +75,48 @@ class SolverDebugRenderer extends echoes.System {
 
     @a function getScrollerPosition(en:echoes.Entity,scr:ScrollerComponent) {
         scrollGridPosition = en.get(GridPosition);
+        scrSpeed = en.get(ScrollerComponent);
+        
     }
 
-    @u function updatePressureBitmap(cc:CellComponent,gp:GridPosition,vas:VelocityAnalogSpeed) {
+    @u function updatePressureBitmapFromCell(cc:CellComponent,gp:GridPosition) {
         var uv  = new Vector(cc.u,cc.v);
         var uvl = uv.length();
         var col = new Vector(uvl + uv.y,uvl,uvl-uv.y,0.5);
         pressureBitmap.setPixel(cc.i, cc.j,col.toColor());
 
-        if(sb.visible && cc.index < sbDirections.length){
-            sbDirections[cc.index].rotation = Math.atan2(cc.v,cc.u);
-            sbDirections[cc.index].y = gp.attachY;
-        }
+    }
 
+
+    @u function updateSpriteBatchDebug(cc:CellComponent,gp:GridPosition) {
+        
+        if( ui.Console.ME.hasFlag("grid")){
+            if(sb.visible && cc.index < sbDirections.length){
+                sbDirections[cc.index].rotation = Math.atan2(cc.v,cc.u);
+                sbDirections[cc.index].y = gp.attachY;
+            }
+        }    
     }
 
     @u function refreshLayer(lc:LayerComponent){
-        gameScroller.removeChild(lc.bitmap);
+        //gameScroller.removeChild(lc.bitmap);
+        lc.bitmap.remove();
         lc.bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(pressureBitmap));
-        lc.bitmap.addShader(lc.shader);
-        lc.shader.texture = lc.bitmap.tile.getTexture();
         lc.bitmap.scaleX = width/level.cWid;
         lc.bitmap.scaleY = height/level.cHei;
-        
-        var sy = scrollGridPosition.attachY;
-        lc.bitmap.setPosition(0,sy);
-        
+        //trace(scrSpeed.scrollSpeed);
+        if(scrollGridPosition != null){
+            
+            var sgp = scrollGridPosition;
+            if(prevSgpCy - sgp.cy >= 6 ){
+               // trace(scrSpeed.scrollSpeed);
+                sgp.cy -= 2;
+            }
+            var _y = M.lerp(sgp.lastFixedUpdateY,(sgp.cy+sgp.yr)*Const.GRID, game.getFixedUpdateAccuRatio());
+            lc.bitmap.setPosition(0,_y);
+            prevSgpCy = sgp.cy;
+        }
+
         gameScroller.add(lc.bitmap,Const.DP_BG);
     }
 

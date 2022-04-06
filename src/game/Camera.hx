@@ -1,3 +1,5 @@
+import aleiiioa.components.core.position.GridPosition;
+
 class Camera extends dn.Process {
 	public static var MIN_ZOOM : Float = 1.0;
 	public static var MAX_ZOOM : Float = 10;
@@ -11,7 +13,7 @@ class Camera extends dn.Process {
 
 	//var target : Null<>; target offset in pixel 
 	public var targetOffX = 0.;
-	public var targetOffY = -400.;
+	public var targetOffY = -500.;
 	/** Width of viewport in level pixels **/
 	public var pxWid(get,never) : Int;
 
@@ -25,8 +27,9 @@ class Camera extends dn.Process {
 	public var deadZonePctY = 0.1;
 	
 	var target :LPoint;
+	var gtarget:GridPosition;
 
-	var baseFrict = 0.89;
+	var baseFrict = 0.5;//0.89
 	var dx = 0.;
 	var dy = 0.;
 	var dz = 0.;
@@ -161,6 +164,13 @@ class Camera extends dn.Process {
 			centerOnTarget();
 	}
 
+	public function trackEntityGridPosition(p:GridPosition, immediate:Bool, speed=1.0) {
+		gtarget = p;
+		setTrackingSpeed(speed);
+		if( immediate || rawFocus.levelX==0 && rawFocus.levelY==0 )
+			centerOnGridTarget();
+	}
+
 	public inline function setTrackingSpeed(spd:Float) {
 		trackingSpeed = M.fclamp(spd, 0.01, 10);
 	}
@@ -173,6 +183,13 @@ class Camera extends dn.Process {
 		if( target!=null ) {
 			rawFocus.levelX = target.levelX + targetOffX;
 			rawFocus.levelY = target.levelY + targetOffY;
+		}
+	}
+
+	public function centerOnGridTarget() {
+		if( gtarget!=null ) {
+			rawFocus.levelX = gtarget.attachX + targetOffX;
+			rawFocus.levelY = gtarget.attachY + targetOffY;
 		}
 	}
 
@@ -324,9 +341,9 @@ class Camera extends dn.Process {
 			dz = 0;
 		}
 
-
+		followEntity();
 		// Follow target entity
-		if( target!=null ) {
+		/* if( target!=null ) {
 			var spdX = 0.015*trackingSpeed*zoom;
 			var spdY = 0.023*trackingSpeed*zoom;
 			var tx = target.levelX + targetOffX;
@@ -341,7 +358,7 @@ class Camera extends dn.Process {
 			if( distY>=deadZonePctY*pxHei)
 				dy += Math.sin(a) * (0.8*distY-deadZonePctY*pxHei) * spdY * tmod;
  		} 
-
+ */
 		// Compute frictions
 		var frictX = baseFrict - trackingSpeed*zoom*0.027*baseFrict;
 		var frictY = frictX;
@@ -394,6 +411,54 @@ class Camera extends dn.Process {
 			clampedFocus.levelX = rawFocus.levelX;
 			clampedFocus.levelY = rawFocus.levelY;
 		}
+	}
+
+	private function followEntity(){
+		if(target != null)
+			trackLPoint();
+
+		if(gtarget != null)
+			trackGridPosition();
+	}
+
+	private function trackLPoint() {
+		// Follow target entity
+		if( target!=null ) {
+			var spdX = 0.015*trackingSpeed*zoom;
+			var spdY = 0.023*trackingSpeed*zoom;
+			var tx = target.levelX + targetOffX;
+			var ty = target.levelY + targetOffY;
+
+			var a = rawFocus.angTo(tx,ty);
+			var distX = M.fabs( tx - rawFocus.levelX );
+			if( distX>=deadZonePctX*pxWid )
+				dx += Math.cos(a) * (0.8*distX-deadZonePctX*pxWid) * spdX * tmod;
+
+			var distY = M.fabs( ty - rawFocus.levelY );
+			if( distY>=deadZonePctY*pxHei)
+				dy += Math.sin(a) * (0.8*distY-deadZonePctY*pxHei) * spdY * tmod;
+ 		} 
+
+	}
+	
+	private function trackGridPosition(){
+		// Follow target entity
+		if( gtarget!=null ) {
+			var spdX = 0.015*trackingSpeed*zoom;
+			var spdY = 0.023*trackingSpeed*zoom;
+			var tx = gtarget.attachX + targetOffX;
+			var ty = gtarget.attachY + targetOffY;
+
+			var a = rawFocus.angTo(tx,ty);
+			var distX = M.fabs( tx - rawFocus.levelX );
+			if( distX>=deadZonePctX*pxWid )
+				dx += Math.cos(a) * (0.8*distX-deadZonePctX*pxWid) * spdX * tmod;
+
+			var distY = M.fabs( ty - rawFocus.levelY );
+			if( distY>=deadZonePctY*pxHei)
+				dy += Math.sin(a) * (0.8*distY-deadZonePctY*pxHei) * spdY * tmod;
+ 		} 
+
 	}
 
 }

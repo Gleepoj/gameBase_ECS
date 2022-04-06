@@ -17,6 +17,8 @@ class Aleiiioa extends Game {
 	var game(get,never) : Game; inline function get_game() return Game.ME;
 	var cameraFocus:LPoint;
 	var pE:echoes.Entity;
+	var camEntityGp:GridPosition;
+
 	public function new() {
 		super();
 		Workflow.reset();
@@ -24,6 +26,7 @@ class Aleiiioa extends Game {
 		
 		var player = level.data.l_Entities.all_PlayerStart[0];
 		pE = Builders.basicPlayer(player.cx,player.cy);
+		camEntityGp = pE.get(GridPosition);
 
  		for (m in level.data.l_Entities.all_Modifier){
 			Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
@@ -40,8 +43,9 @@ class Aleiiioa extends Game {
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
 		cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);
 
-		Game.ME.camera.trackEntity(cameraFocus,false);
-		Game.ME.camera.clampToLevelBounds = true;
+		Game.ME.camera.trackEntityGridPosition(camEntityGp,false,1);
+		Game.ME.camera.clampToLevelBounds = false;
+		
 		
 
 		Workflow.addSystem(new SpawnSystem());
@@ -54,28 +58,27 @@ class Aleiiioa extends Game {
 
 		//Logic
 		Workflow.addSystem(new PathActualizer());
-		Workflow.addSystem(new WingsBehaviors());
 		Workflow.addSystem(new SteeringBehaviors());
 		Workflow.addSystem(new GunSystem());
 		
 		
-		//Physics
+		//Fluid
 		Workflow.addSystem(new SolverSystem());
 		Workflow.addSystem(new ModifierSystem());
-		Workflow.addSystem(new FluidScrollingSystem());
-
+		//Workflow.addSystem(new SolverDebugRenderer(Game.ME.scroller));
+		
 		Workflow.add60FpsSystem(new VelocitySystem());
 		Workflow.add60FpsSystem(new GridPositionActualizer());
-
+		//Workflow.addSystem(new FluidScrollingSystem());
+		Workflow.add60FpsSystem(new WingsBehaviors());
 		//Graphics
-		Workflow.addSystem(new SolverDebugRenderer(Game.ME.scroller));
-		//Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		
 		//Debugger
-		Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
-		//Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
+		//Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
 		
 		//Input
 		Workflow.add60FpsSystem(new InputSystem());
@@ -92,17 +95,9 @@ class Aleiiioa extends Game {
 	}
 
 	override function postUpdate() {
-		super.postUpdate();
-		
 		Workflow.postUpdate(tmod);
 
-		if(pE.isValid()){
-			var pos = pE.get(GridPosition);
-			var ipos = cameraTargetInterpolatePosition(pos);
-			cameraFocus.updatePoint(ipos.x,ipos.y);
-		}
-		
-		
+		super.postUpdate();
 	}
 
 	private function cameraTargetInterpolatePosition(gp:GridPosition){

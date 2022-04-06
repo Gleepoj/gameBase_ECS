@@ -19,9 +19,7 @@ import aleiiioa.components.flags.vessel.*;
 
 
 
-// TODO : 1 - Clean target system 
-//        2 - Refactor wing veil etc but after more gamplay test // 
-
+ 
 class  SteeringBehaviors extends System {
     var PLAYER_VIEW:View<PlayerFlag,SteeringWheel>;
     var player:Entity;
@@ -44,7 +42,7 @@ class  SteeringBehaviors extends System {
     }
     @u function updateVectors(en:Entity,sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition,suv:SolverUVComponent){
         if(!en.exists(TargetGridPosition)){
-            sw.solverUVatCoord = suv.uv;
+            sw.solverUVatCoord = suv.uv;           
             
             sw.location.x = gp.attachX;
             sw.location.y = gp.attachY;
@@ -80,11 +78,12 @@ class  SteeringBehaviors extends System {
             }
             
             if (yAperture == 0 ){
-                wind = d.multiply(0.5);
+                //wind = d.multiply(0.5);
+                wind = new Vector(0,0);
                 speed = wind.sub(sw.velocity);
                 forces = speed.add(new Vector(wsc.inputX,Const.SCROLLING_MIN_SPEED));
             }
-            sw.maxForce = 0.2;
+            sw.maxForce = 0.4;
         }
 
         if (wsc.isLocked){
