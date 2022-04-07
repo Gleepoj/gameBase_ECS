@@ -108,12 +108,8 @@ class SolverDebugRenderer extends echoes.System {
         if(scrollGridPosition != null){
             
             var sgp = scrollGridPosition;
-            if(prevSgpCy - sgp.cy >= 6 ){
-               // trace(scrSpeed.scrollSpeed);
-                sgp.cy -= 2;
-            }
             var _y = M.lerp(sgp.lastFixedUpdateY,(sgp.cy+sgp.yr)*Const.GRID, game.getFixedUpdateAccuRatio());
-            lc.bitmap.setPosition(0,_y);
+            lc.bitmap.setPosition(0,sgp.attachY);
             prevSgpCy = sgp.cy;
         }
 
