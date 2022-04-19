@@ -47,7 +47,7 @@ class Aleiiioa extends Game {
 		cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);
 		//Game.ME.camera.centerOnTarget();
 		Game.ME.camera.trackEntityGridPosition(camEntityGp,true,1);
-		Game.ME.camera.setAutoScroll(camEntityVc);
+		//Game.ME.camera.setAutoScroll(camEntityVc);
 		Game.ME.camera.clampToLevelBounds = false;
 		
 		
@@ -100,7 +100,6 @@ class Aleiiioa extends Game {
 
 	override function postUpdate() {
 		Workflow.postUpdate(tmod);
-
 		super.postUpdate();
 	}
 

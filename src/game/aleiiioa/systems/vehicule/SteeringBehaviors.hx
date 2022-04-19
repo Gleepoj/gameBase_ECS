@@ -81,7 +81,7 @@ class  SteeringBehaviors extends System {
                 //wind = d.multiply(0.5);
                 wind = new Vector(0,0);
                 speed = wind.sub(sw.velocity);
-                forces = speed.add(new Vector(wsc.inputX,Const.SCROLLING_MIN_SPEED));
+                forces = speed.add(new Vector(wsc.inputX,0));//y = Const.SCROLLING_MIN_SPEED
             }
             sw.maxForce = 0.4;
         }
