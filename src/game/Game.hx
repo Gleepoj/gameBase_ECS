@@ -17,6 +17,8 @@ class Game extends Process {
 
 	/** Container of all visual game objects. Ths wrapper is moved around by Camera. **/
 	public var scroller : h2d.Layers;
+	/** Container of all fixed visual game objects. The offset is done by Camera **/
+	public var unscrollingObjects : h2d.Object;
 
 	/** Level data **/
 	public var level : Level;
@@ -38,7 +40,12 @@ class Game extends Process {
 		createRootInLayers(App.ME.root, Const.DP_BG);
 
 		scroller = new h2d.Layers();
+		unscrollingObjects = new h2d.Object();
+
 		root.add(scroller, Const.DP_BG);
+		scroller.add(unscrollingObjects,Const.DP_FRONT);
+
+
 		//scroller.filter = new h2d.filter.Nothing(); // force rendering for pixel perfect
 
 		fx = new Fx();
