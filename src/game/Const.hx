@@ -34,7 +34,7 @@ class Const {
 
 	public static final FLUID_MAX_HEIGHT = 80;
 
-	public static final SCROLLING_MIN_SPEED:Float = -10;
+	public static final SCROLLING_MIN_SPEED:Float = -2;
 	/** Grid size in pixels **/
 	public static final GRID = 16;
 

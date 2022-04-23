@@ -14,7 +14,7 @@ class Camera extends dn.Process {
 
 	//var target : Null<>; target offset in pixel 
 	public var targetOffX = 0.;
-	public var targetOffY = 0.;//-500.;
+	public var targetOffY = -400.;
 	/** Width of viewport in level pixels **/
 	public var pxWid(get,never) : Int;
 
@@ -409,7 +409,7 @@ class Camera extends dn.Process {
 	}
 	private function autoScrolling(){
 		//trace(autoVelocity.dyTotal);
-		//dy += autoVelocity.dyTotal;
+		dy += autoVelocity.dyTotal;
 	}
 
 	private function followEntity(){
