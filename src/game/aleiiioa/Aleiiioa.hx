@@ -1,7 +1,6 @@
 package aleiiioa;
 
-import aleiiioa.components.core.velocity.VelocityComponent;
-import h3d.Vector;
+
 import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
 
@@ -16,10 +15,6 @@ import echoes.Workflow;
 
 class Aleiiioa extends Game {
 	var game(get,never) : Game; inline function get_game() return Game.ME;
-	var cameraFocus:LPoint;
-	var pE:echoes.Entity;
-	var camEntityVc:VelocityComponent;
-	var camEntityGp:GridPosition;
 
 	public function new() {
 		super();
@@ -27,10 +22,9 @@ class Aleiiioa extends Game {
 		
 		
 		var player = level.data.l_Entities.all_PlayerStart[0];
-		pE = Builders.basicPlayer(player.cx,player.cy);
-		camEntityVc = pE.get(VelocityComponent);
-		camEntityGp = pE.get(GridPosition);
-
+		
+		Builders.basicPlayer(player.cx,player.cy);
+		
  		for (m in level.data.l_Entities.all_Modifier){
 			Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
 		} 
@@ -44,18 +38,17 @@ class Aleiiioa extends Game {
 		}
 
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
-		
-		var cf = Builders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
+		var cameraFocus = Builders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
+		var cameraFocusPosition = cameraFocus.get(GridPosition);
 
-		cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);
-		//Game.ME.camera.centerOnTarget();
-		Game.ME.camera.trackEntityGridPosition(camEntityGp,true,1);
-		Game.ME.camera.setAutoScroll(camEntityVc);
+		Game.ME.camera.trackEntityGridPosition(cameraFocusPosition,true,1);
+		Game.ME.camera.centerOnGridTarget();		
 		Game.ME.camera.clampToLevelBounds = false;
 		
 		
-
+		// ECS //
 		Workflow.addSystem(new SpawnSystem());
+		
 		
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());
@@ -70,16 +63,19 @@ class Aleiiioa extends Game {
 		
 		
 		//Fluid
-		//Workflow.addSystem(new SolverSystem());
-		//Workflow.addSystem(new ModifierSystem());
-		//Workflow.add60FpsSystem(new SolverDebugRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new SolverSystem());
+		Workflow.add60FpsSystem(new ModifierSystem());
+		Workflow.add60FpsSystem(new FluidScrollingSystem());
 		
+		
+		//Object
 		Workflow.add60FpsSystem(new VelocitySystem());
 		Workflow.add60FpsSystem(new GridPositionActualizer());
-		//Workflow.add60FpsSystem(new FluidScrollingSystem());
 		Workflow.add60FpsSystem(new WingsBehaviors());
+		
 		//Graphics
 		//Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new SolverDebugRenderer(Game.ME.scroller));
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		
@@ -98,12 +94,11 @@ class Aleiiioa extends Game {
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
-		//Workflow.update(tmod);
+		Workflow.update(tmod);
 	}
 
 	override function postUpdate() {
 		super.postUpdate();
-		Workflow.update(tmod);
 		Workflow.postUpdate(tmod);
 	}
 

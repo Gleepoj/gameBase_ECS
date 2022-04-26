@@ -1,7 +1,7 @@
 package aleiiioa.builders;
 
 import h3d.Vector;
-import aleiiioa.components.ScrollerComponent;
+import aleiiioa.components.core.camera.FluidScrollerComponent;
 import aleiiioa.components.tool.PerlinNoiseComponent;
 import aleiiioa.components.solver.SolverUVComponent;
 import echoes.Entity;
@@ -191,13 +191,11 @@ class Builders {
         new echoes.Entity().add(cc,gp,vc,vas);
     }
 
-    public static function scroller(cx:Int,cy:Int) {
-        var scr = new ScrollerComponent();
+    public static function fluidScroller(cx:Int,cy:Int) {
+        var scr = new FluidScrollerComponent();
         var gp  = new GridPosition(cx,cy);
-        var vas = new VelocityAnalogSpeed();
-        var vc  = new VelocityComponent();
-        var focus = new echoes.Entity().add(scr,gp,vas,vc);
-        return focus;
+        var fluidScroller = new echoes.Entity().add(scr,gp);
+        return fluidScroller;
     }
 
     public static function cameraFocus(cx:Int,cy:Int) {
@@ -209,6 +207,8 @@ class Builders {
         se.baseColor = new Vector(0,0.3,1,1);
         var vas = new VelocityAnalogSpeed();
         var vc  = new VelocityComponent();
+
+        vas.ySpeed = foc.cameraScrollingSpeed;
         var focus = new echoes.Entity().add(foc,gp,vas,vc,spr,se);
         return focus;
     }

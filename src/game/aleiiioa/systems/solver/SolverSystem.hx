@@ -1,18 +1,18 @@
 package aleiiioa.systems.solver;
 
 
-import aleiiioa.components.core.position.FluidPosition;
-import aleiiioa.components.ScrollerComponent;
-import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 import dn.Bresenham;
 import echoes.System;
-
 import aleiiioa.builders.Builders;
 
 import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.core.position.FluidPosition;
+import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
+
 import aleiiioa.components.solver.SolverUVComponent;
 import aleiiioa.components.solver.CellComponent;
 import aleiiioa.components.solver.ModifierComponent;
+
 
 
 

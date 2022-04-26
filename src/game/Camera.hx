@@ -14,7 +14,7 @@ class Camera extends dn.Process {
 
 	//var target : Null<>; target offset in pixel 
 	public var targetOffX = 0.;
-	public var targetOffY = -400.;
+	public var targetOffY = 0.;
 	/** Width of viewport in level pixels **/
 	public var pxWid(get,never) : Int;
 
@@ -31,7 +31,7 @@ class Camera extends dn.Process {
 	var gtarget:GridPosition;
 	var autoVelocity : VelocityComponent; 
 
-	var baseFrict = 0.975;//0.89;//0.89
+	var baseFrict = 0.89;//0.89;//0.89
 	var dx = 0.;
 	var dy = 0.;
 	var dz = 0.;
@@ -250,41 +250,14 @@ class Camera extends dn.Process {
 
 		// Rounding
 		scroller.x = M.round(scroller.x);
-		scroller.y = M.round(scroller.y);
+		scroller.y = -gtarget.attachY;//M.round(scroller.y);
 
 		// Zoom
 		scroller.setScale(Const.SCALE * zoom);
 	}
 
 
-	/** Hide camera debug bounds **/
-	public function disableDebugBounds() {
-		if( debugBounds!=null ) {
-			debugBounds.remove();
-			debugBounds = null;
-		}
-	}
-
-	/** Show camera debug bounds **/
-	public function enableDebugBounds() {
-		disableDebugBounds();
-		debugBounds = new h2d.Graphics();
-		Game.ME.scroller.add(debugBounds, Const.DP_TOP);
-		invalidateDebugBounds = true;
-	}
-
-	function renderDebugBounds() {
-		debugBounds.clear();
-
-		debugBounds.lineStyle(2,0xff00ff);
-		debugBounds.drawRect(0,0,pxWid,pxHei);
-
-		debugBounds.moveTo(pxWid*0.5, 0);
-		debugBounds.lineTo(pxWid*0.5, pxHei);
-
-		debugBounds.moveTo(0, pxHei*0.5);
-		debugBounds.lineTo(pxWid, pxHei*0.5);
-	}
+	
 
 
 	override function onResize() {
@@ -295,9 +268,9 @@ class Camera extends dn.Process {
 	override function update() {
 		super.update();
 		final level = Game.ME.level;
+		//autoScrolling();
 		computeZoom();
-		//followEntity();
-		autoScrolling();
+		followEntity();
 		computeFriction(level);
 		computeBounds(level);
 	}
@@ -355,7 +328,7 @@ class Camera extends dn.Process {
 	private function computeFriction(level:Level) {
 		// Compute frictions
 		var frictX = baseFrict - trackingSpeed * zoom * 0.027 * baseFrict;
-		var frictY = frictX;
+		var frictY = 0.;//frictX;
 		if (clampToLevelBounds) {
 			// "Brake" when approaching bounds
 			final brakeDist = brakeDistNearBounds * pxWid;
@@ -404,40 +377,17 @@ class Camera extends dn.Process {
 			clampedFocus.levelY = rawFocus.levelY;
 		}
 	}
-	
+
 	private function autoScrolling(){
 		//trace(autoVelocity.dyTotal);
-		//dy += autoVelocity.dyTotal;
+		dy += autoVelocity.dyTotal;
 	}
 
 	private function followEntity(){
-		if(target != null)
-			trackLPoint();
-
 		if(gtarget != null)
 			trackGridPosition();
 	}
 
-	private function trackLPoint() {
-		// Follow target entity
-		if( target!=null ) {
-			var spdX = 0.015*trackingSpeed*zoom;
-			var spdY = 0.023*trackingSpeed*zoom;
-			var tx = target.levelX + targetOffX;
-			var ty = target.levelY + targetOffY;
-
-			var a = rawFocus.angTo(tx,ty);
-			var distX = M.fabs( tx - rawFocus.levelX );
-			if( distX>=deadZonePctX*pxWid )
-				dx += Math.cos(a) * (0.8*distX-deadZonePctX*pxWid) * spdX * tmod;
-
-			var distY = M.fabs( ty - rawFocus.levelY );
-			if( distY>=deadZonePctY*pxHei)
-				dy += Math.sin(a) * (0.8*distY-deadZonePctY*pxHei) * spdY * tmod;
- 		} 
-
-	}
-	
 	private function trackGridPosition(){
 		// Follow target entity
 		if( gtarget!=null ) {
@@ -456,6 +406,34 @@ class Camera extends dn.Process {
 				dy += Math.sin(a) * (0.8*distY-deadZonePctY*pxHei) * spdY * tmod;
  		} 
 
+	}
+	/** Hide camera debug bounds **/
+	public function disableDebugBounds() {
+		if( debugBounds!=null ) {
+			debugBounds.remove();
+			debugBounds = null;
+		}
+	}
+
+	/** Show camera debug bounds **/
+	public function enableDebugBounds() {
+		disableDebugBounds();
+		debugBounds = new h2d.Graphics();
+		Game.ME.scroller.add(debugBounds, Const.DP_TOP);
+		invalidateDebugBounds = true;
+	}
+
+	function renderDebugBounds() {
+		debugBounds.clear(); 
+
+		debugBounds.lineStyle(2,0xff00ff);
+		debugBounds.drawRect(0,0,pxWid,pxHei);
+
+		debugBounds.moveTo(pxWid*0.5, 0);
+		debugBounds.lineTo(pxWid*0.5, pxHei);
+
+		debugBounds.moveTo(0, pxHei*0.5);
+		debugBounds.lineTo(pxWid, pxHei*0.5);
 	}
 
 }

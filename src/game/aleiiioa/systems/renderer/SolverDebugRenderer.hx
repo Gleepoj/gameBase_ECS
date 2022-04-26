@@ -1,16 +1,18 @@
 package aleiiioa.systems.renderer;
 
-import echoes.Entity;
-import aleiiioa.components.ScrollerComponent;
-import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
-import aleiiioa.components.core.position.GridPosition;
 import hxd.Math;
 import hxd.BitmapData;
 import h2d.Bitmap;
 import h3d.Vector;
 import h2d.SpriteBatch.BatchElement;
 
+
+import echoes.Entity;
 import aleiiioa.builders.Builders;
+
+import aleiiioa.components.core.camera.FluidScrollerComponent;
+import aleiiioa.components.core.position.GridPosition;
+
 import aleiiioa.components.solver.CellComponent;
 import aleiiioa.components.solver.LayerComponent;
 
@@ -33,8 +35,6 @@ class SolverDebugRenderer extends echoes.System {
     var bitmap:Bitmap;
     var shader:BitmapShader;
     var scrollGridPosition:GridPosition;
-    var prevSgpCy:Int;
-    var scrSpeed:ScrollerComponent;
 
     public function new(_gameScroller:h2d.Layers) {
         this.gameScroller = _gameScroller;    
@@ -73,10 +73,8 @@ class SolverDebugRenderer extends echoes.System {
             sb.visible = false;
     }
 
-    @a function getScrollerPosition(en:echoes.Entity,scr:ScrollerComponent) {
+    @a function getScrollerPosition(en:echoes.Entity,scr:FluidScrollerComponent) {
         scrollGridPosition = en.get(GridPosition);
-        scrSpeed = en.get(ScrollerComponent);
-        
     }
 
     @u function updatePressureBitmapFromCell(cc:CellComponent,gp:GridPosition) {
@@ -99,19 +97,15 @@ class SolverDebugRenderer extends echoes.System {
     }
 
     @u function refreshLayer(lc:LayerComponent){
-        //gameScroller.removeChild(lc.bitmap);
+        
         lc.bitmap.remove();
         lc.bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(pressureBitmap));
         lc.bitmap.scaleX = width/level.cWid;
         lc.bitmap.scaleY = height/level.cHei;
-        //trace(scrSpeed.scrollSpeed);
-        if(scrollGridPosition != null){
-            
-            var sgp = scrollGridPosition;
-            var _y = M.lerp(sgp.lastFixedUpdateY,(sgp.cy+sgp.yr)*Const.GRID, game.getFixedUpdateAccuRatio());
-            lc.bitmap.setPosition(0,sgp.attachY);
-            prevSgpCy = sgp.cy;
-        }
+       
+        if(scrollGridPosition != null)
+            lc.bitmap.setPosition(0,scrollGridPosition.attachY);
+     
 
         gameScroller.add(lc.bitmap,Const.DP_BG);
     }

@@ -1,4 +1,4 @@
-import h2d.filter.Blur;
+
 import dn.Process;
 
 class Game extends Process {
@@ -17,15 +17,12 @@ class Game extends Process {
 
 	/** Container of all visual game objects. Ths wrapper is moved around by Camera. **/
 	public var scroller : h2d.Layers;
-	/** Container of all fixed visual game objects. The offset is done by Camera **/
-	public var unscrollingObjects : h2d.Object;
-
+	
 	/** Level data **/
 	public var level : Level;
 
 	/** UI **/
 	public var hud : ui.Hud;
-	//public var solver : Solver;
 	/** Slow mo internal values**/
 	var curGameSpeed = 1.0;
 	var slowMos : Map<String, { id:String, t:Float, f:Float }> = new Map();
@@ -40,13 +37,8 @@ class Game extends Process {
 		createRootInLayers(App.ME.root, Const.DP_BG);
 
 		scroller = new h2d.Layers();
-		unscrollingObjects = new h2d.Object();
-
 		root.add(scroller, Const.DP_BG);
-		scroller.add(unscrollingObjects,Const.DP_FRONT);
-
-
-		//scroller.filter = new h2d.filter.Nothing(); // force rendering for pixel perfect
+		scroller.filter = new h2d.filter.Nothing(); // force rendering for pixel perfect
 
 		fx = new Fx();
 		hud = new ui.Hud();
