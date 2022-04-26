@@ -33,7 +33,7 @@ class FluidScrollingSystem extends echoes.System {
         scr.scrollSpeed = playerYSpeed;
     }
     @u function updateSystem() {
-        scrollGridPosition.cy = playerGridPosition.cy-30;
+        scrollGridPosition.cy = playerGridPosition.cy-50;
         scrollGridPosition.yr = playerGridPosition.yr;
     }
     

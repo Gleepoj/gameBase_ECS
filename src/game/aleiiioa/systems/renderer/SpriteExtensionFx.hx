@@ -10,6 +10,11 @@ class SpriteExtensionFx extends System {
     public function new() {
         
     }
+    @a function onAdded(spr:SpriteComponent,se:SpriteExtension) {
+        if(se.baseColor != null)
+            spr.colorize(se.baseColor.toColor());
+    }
+
     @u function colorizeModifier(spr:SpriteComponent,mod:ModifierComponent) {
 		if (mod.isBlowing)
 			spr.colorize(mod.activeColor);

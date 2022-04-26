@@ -77,6 +77,7 @@ class VelocitySystem extends echoes.System {
 			vc.dy = 0;
 		if (M.fabs(vc.bdy) <= 0.0005)
 			vc.bdy = 0;
+	
 	}
 
 	/** Apply a bump/kick force to entity **/

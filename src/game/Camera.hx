@@ -292,16 +292,20 @@ class Camera extends dn.Process {
 		invalidateDebugBounds = true;
 	}
 
-
-	override function postUpdate() {
-		super.postUpdate();
+	override function update() {
+		super.update();
 		final level = Game.ME.level;
-
 		computeZoom();
 		//followEntity();
 		autoScrolling();
 		computeFriction(level);
 		computeBounds(level);
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
+		
+		
 		
 		apply();
 		// Debug bounds
@@ -318,13 +322,6 @@ class Camera extends dn.Process {
 			debugBounds.setPosition(left,top);
 		}
 	}
-
-
-	override function update() {
-		super.update();
-	}
-
-
 
 	private function computeZoom() {
 		final level = Game.ME.level;
@@ -407,9 +404,10 @@ class Camera extends dn.Process {
 			clampedFocus.levelY = rawFocus.levelY;
 		}
 	}
+	
 	private function autoScrolling(){
 		//trace(autoVelocity.dyTotal);
-		dy += autoVelocity.dyTotal;
+		//dy += autoVelocity.dyTotal;
 	}
 
 	private function followEntity(){

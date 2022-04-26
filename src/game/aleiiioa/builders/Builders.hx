@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import h3d.Vector;
 import aleiiioa.components.ScrollerComponent;
 import aleiiioa.components.tool.PerlinNoiseComponent;
 import aleiiioa.components.solver.SolverUVComponent;
@@ -10,6 +11,7 @@ import aleiiioa.components.flags.hierarchy.ChildFlag;
 import aleiiioa.shaders.PressureShader.BitmapShader;
 
 import aleiiioa.components.core.collision.*;
+import aleiiioa.components.core.camera.*;
 import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.*;
@@ -194,8 +196,21 @@ class Builders {
         var gp  = new GridPosition(cx,cy);
         var vas = new VelocityAnalogSpeed();
         var vc  = new VelocityComponent();
-        var scroll = new echoes.Entity().add(scr,gp,vas,vc);
-        return scroll;
+        var focus = new echoes.Entity().add(scr,gp,vas,vc);
+        return focus;
+    }
+
+    public static function cameraFocus(cx:Int,cy:Int) {
+        
+        var foc = new CameraFocusComponent();
+        var gp  = new GridPosition(cx,cy);
+        var spr = new SpriteComponent(D.tiles.Square);
+        var se  = new SpriteExtension();
+        se.baseColor = new Vector(0,0.3,1,1);
+        var vas = new VelocityAnalogSpeed();
+        var vc  = new VelocityComponent();
+        var focus = new echoes.Entity().add(foc,gp,vas,vc,spr,se);
+        return focus;
     }
 
 }

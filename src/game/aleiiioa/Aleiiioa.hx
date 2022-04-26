@@ -44,6 +44,9 @@ class Aleiiioa extends Game {
 		}
 
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
+		
+		var cf = Builders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
+
 		cameraFocus = LPoint.fromCase(cameraPoint.cx,cameraPoint.cy);
 		//Game.ME.camera.centerOnTarget();
 		Game.ME.camera.trackEntityGridPosition(camEntityGp,true,1);
@@ -67,13 +70,13 @@ class Aleiiioa extends Game {
 		
 		
 		//Fluid
-		Workflow.addSystem(new SolverSystem());
-		Workflow.addSystem(new ModifierSystem());
-		Workflow.add60FpsSystem(new SolverDebugRenderer(Game.ME.scroller));
+		//Workflow.addSystem(new SolverSystem());
+		//Workflow.addSystem(new ModifierSystem());
+		//Workflow.add60FpsSystem(new SolverDebugRenderer(Game.ME.scroller));
 		
 		Workflow.add60FpsSystem(new VelocitySystem());
 		Workflow.add60FpsSystem(new GridPositionActualizer());
-		Workflow.add60FpsSystem(new FluidScrollingSystem());
+		//Workflow.add60FpsSystem(new FluidScrollingSystem());
 		Workflow.add60FpsSystem(new WingsBehaviors());
 		//Graphics
 		//Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
@@ -95,12 +98,13 @@ class Aleiiioa extends Game {
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
-		Workflow.update(tmod);
+		//Workflow.update(tmod);
 	}
 
 	override function postUpdate() {
-		Workflow.postUpdate(tmod);
 		super.postUpdate();
+		Workflow.update(tmod);
+		Workflow.postUpdate(tmod);
 	}
 
 
