@@ -50,8 +50,8 @@ class SolverSystem extends echoes.System {
         cc.v = solver.getVatIndex(cc.index);
     } 
 
-    @u function updateSolverUVComponent(suv:SolverUVComponent,gp:GridPosition){
-        var index = solver.getIndexForCellPosition(gp.cx,gp.cy);
+    @u function updateSolverUVComponent(suv:SolverUVComponent,fpos:FluidPosition){
+        var index = solver.getIndexForCellPosition(fpos.cx,fpos.cy);
         if(solver.checkIfIndexIsInArray(index)){
             suv.uv = solver.getUVVectorForIndexPosition(index);
         }

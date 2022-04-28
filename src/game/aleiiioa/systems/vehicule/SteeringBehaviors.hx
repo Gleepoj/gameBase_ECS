@@ -40,6 +40,7 @@ class  SteeringBehaviors extends System {
             sw.predicted = VectorUtils.predict(sw.location,sw.velocity);
 
     }
+
     @u function updateVectors(en:Entity,sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition,suv:SolverUVComponent){
         if(!en.exists(TargetGridPosition)){
             sw.solverUVatCoord = suv.uv;           
@@ -72,23 +73,23 @@ class  SteeringBehaviors extends System {
         
         if (!wsc.isLocked){
             if(yAperture > 0 ){
-                wind = new Vector(d.x,d.y * yAperture);
+                wind = new Vector(d.x,d.y*yAperture);
                 speed = wind.sub(sw.velocity);
                 forces = speed.add(new Vector(wsc.inputX,Const.SCROLLING_MIN_SPEED));
-                sw.maxForce = 0.6;
+                sw.maxForce = 0.46;
             }
             
             if (yAperture == 0 ){
-                wind = d.multiply(1.2);
+                wind = d.multiply(0.8);
                 speed = wind.sub(sw.velocity);
                 forces = speed.add(new Vector(wsc.inputX,Const.SCROLLING_MIN_SPEED));
-                sw.maxForce = 0.4;//y = Const.SCROLLING_MIN_SPEED
+                sw.maxForce = 0.425;//y = Const.SCROLLING_MIN_SPEED
             }
         }
 
         if (wsc.isLocked){
             forces = new Vector(wsc.inputX*10,wsc.inputY*10);
-            sw.maxForce = 0.4;
+            sw.maxForce = 0.47;
         }
 
         sw.steering = forces;

@@ -52,6 +52,7 @@ class Builders {
         
         //Individual Component
         var pos   = new GridPosition(mpos.cx,mpos.cy);
+        var fpos  = new FluidPosition(mpos.cx,mpos.cy);
         var suv   = new SolverUVComponent();
         var bb    = new BoundingBox();
 
@@ -68,7 +69,7 @@ class Builders {
         var fl_mst = new MasterFlag();
         var fl_bo  = new BodyFlag();
        
-        var player = new echoes.Entity().add(mpos,wi,pos,suv,spr,inp,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
+        var player = new echoes.Entity().add(mpos,fpos,wi,pos,suv,spr,inp,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
         //Wing Master 
         
         var fl_wi_ms = new WingsMasterFlag();
