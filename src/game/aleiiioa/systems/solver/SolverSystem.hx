@@ -1,11 +1,12 @@
 package aleiiioa.systems.solver;
 
 
+import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.core.camera.FluidScrollerComponent;
 import dn.Bresenham;
 import echoes.System;
 import aleiiioa.builders.Builders;
 
-import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.position.FluidPosition;
 import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 
@@ -35,6 +36,7 @@ class SolverSystem extends echoes.System {
     var FLUID_HEIGHT(get,never): Int; inline function get_FLUID_HEIGHT() return Const.FLUID_MAX_HEIGHT;
     
     var solver: FluidSolver;
+    var topFluidScroll : Int;
 
     public function new() {
         solver = new FluidSolver(FLUID_WIDTH,FLUID_HEIGHT);
@@ -43,6 +45,9 @@ class SolverSystem extends echoes.System {
 
     @a function onModifierAdded(mod:ModifierComponent,fpos:FluidPosition) {
         reinitModifiedCellsList(mod,fpos);
+    }
+    @u function getFluidScrollerPosition(scr:FluidScrollerComponent,gpos:GridPosition){
+        topFluidScroll = gpos.cy;
     }
 
     @u function cellUpdate(cc:CellComponent,vas:VelocityAnalogSpeed){
@@ -57,6 +62,7 @@ class SolverSystem extends echoes.System {
         }
     }
 
+
     @u function pullModifierInput(mod:ModifierComponent,fpos:FluidPosition){
         if(mod.isBlowing){
             for( c in mod.informedCells){
@@ -69,6 +75,29 @@ class SolverSystem extends echoes.System {
     
     @u function globalSolverUpdate(){
         solver.update();
+        setLevelCollisionObstacles();
+    }
+
+    private function setLevelCollisionObstacles(){
+
+
+        var bottomFluidScroll = topFluidScroll + Const.FLUID_MAX_HEIGHT;
+        var walls:Array<{x:Int,y:Int}> = [];
+
+        for (cx in 0...level.cWid){
+            for (cy in topFluidScroll...bottomFluidScroll){
+                if(level.hasCollision(cx,cy)){
+                    var cyFluid = cy-topFluidScroll;
+                    walls.push({x:cx,y:cyFluid});
+                }
+            }
+        }
+
+        for (w in walls){
+            var index = solver.getIndexForCellPosition(w.x,w.y);
+            setUVatIndex(0,0,index);
+        }
+        
     }
 
     private function reinitModifiedCellsList(mod:ModifierComponent,fpos:FluidPosition) {
@@ -91,6 +120,7 @@ class SolverSystem extends echoes.System {
                 Builders.solverCell(i,j,index);
             }
         } 
+        trace(solver.width);
     }
 
 

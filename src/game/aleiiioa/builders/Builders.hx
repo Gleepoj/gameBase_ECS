@@ -57,7 +57,7 @@ class Builders {
         var bb    = new BoundingBox();
 
         var se   = new SpriteExtension();
-        var spr  = new SpriteComponent(D.tiles.fxCircle15);
+        var spr  = new SpriteComponent(D.tiles.kayak);
         
         var vc   = new VelocityComponent();
         var sw   = new SteeringWheel();
