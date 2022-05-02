@@ -193,6 +193,10 @@ class App extends dn.Process {
 
 		// Gamepad bindings
 		controller.bindPadLStick(MoveX,MoveY);
+		
+		controller.bindPad(WingLeft ,LT);
+		controller.bindPad(WingRight,RT);
+		
 		controller.bindPad(Blow, X);
 		controller.bindPad(ShapeWind,B);
 		controller.bindPad(Jump, A);
@@ -214,8 +218,8 @@ class App extends dn.Process {
 
 		// Debug controls
 		#if debug
-		controller.bindPad(DebugTurbo, LT);
-		controller.bindPad(DebugSlowMo, LB);
+		controller.bindPad(DebugTurbo, DPAD_UP);
+		controller.bindPad(DebugSlowMo, DPAD_DOWN);
 		controller.bindKeyboard(DebugTurbo, [K.END, K.NUMPAD_ADD]);
 		controller.bindKeyboard(DebugSlowMo, [K.HOME, K.NUMPAD_SUB]);
 		#end

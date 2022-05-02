@@ -36,4 +36,12 @@ class VectorUtils {
 		}
         return _temp;
 	}
+
+    public static function predict(_location:Vector,_velocity:Vector) {
+        var p = _velocity.clone();
+        p.normalize();
+        p.scale(10);
+        var predict = _location.add(p);
+        return predict;
+    }
 }

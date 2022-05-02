@@ -1,3 +1,4 @@
+
 import dn.Process;
 
 class Game extends Process {
@@ -16,13 +17,12 @@ class Game extends Process {
 
 	/** Container of all visual game objects. Ths wrapper is moved around by Camera. **/
 	public var scroller : h2d.Layers;
-
+	
 	/** Level data **/
 	public var level : Level;
 
 	/** UI **/
 	public var hud : ui.Hud;
-	public var solver : Solver;
 	/** Slow mo internal values**/
 	var curGameSpeed = 1.0;
 	var slowMos : Map<String, { id:String, t:Float, f:Float }> = new Map();
@@ -43,7 +43,6 @@ class Game extends Process {
 		fx = new Fx();
 		hud = new ui.Hud();
 		camera = new Camera();
-		//solver = new Solver();
 
 		startLevel(Assets.worldData.all_levels.FirstLevel);
 	}
@@ -63,16 +62,12 @@ class Game extends Process {
 	function startLevel(l:World.World_Level) {
 		if( level!=null ){
 			level.destroy();
-			solver.onDispose();
+			//solver.onDispose();
 		}
 		fx.clear();
-		for(e in Entity.ALL) // <---- Replace this with more adapted entity destruction (eg. keep the player alive)
-			e.destroy();
-		garbageCollectEntities();
 
 		level = new Level(l);
-		solver = new Solver();
-		// <---- Here: instanciate your level entities
+		//solver = new Solver();
 		camera.centerOnTarget();
 		hud.onLevelStart();
 		Process.resizeAll();
@@ -103,22 +98,14 @@ class Game extends Process {
 
 	/** Garbage collect any Entity marked for destruction. This is normally done at the end of the frame, but you can call it manually if you want to make sure marked entities are disposed right away, and removed from lists. **/
 	public function garbageCollectEntities() {
-		if( Entity.GC==null || Entity.GC.length==0 )
-			return;
 
-		for(e in Entity.GC)
-			e.dispose();
-		Entity.GC = [];
 	}
 
 	/** Called if game is destroyed, but only at the end of the frame **/
 	override function onDispose() {
 		super.onDispose();
 
-		fx.destroy();
-		for(e in Entity.ALL)
-			e.destroy();
-		garbageCollectEntities();
+		// fx.destroy();
 	}
 
 
@@ -173,7 +160,7 @@ class Game extends Process {
 	override function preUpdate() {
 		super.preUpdate();
 
-		for(e in Entity.ALL) if( !e.destroyed ) e.preUpdate();
+		//for(e in Entity.ALL) if( !e.destroyed ) e.preUpdate();
 	}
 
 	/** Loop that happens at the end of the frame **/
@@ -185,33 +172,18 @@ class Game extends Process {
 		baseTimeMul = ( 0.2 + 0.8*curGameSpeed ) * ( ucd.has("stopFrame") ? 0.3 : 1 );
 		Assets.tiles.tmod = tmod;
 
-		// Entities post-updates
-		for(e in Entity.ALL) if( !e.destroyed ) e.postUpdate();
-
-		// Entities final updates
-		for(e in Entity.ALL) if( !e.destroyed ) e.finalUpdate();
-
-		// Dispose entities marked as "destroyed"
-		garbageCollectEntities();
 	}
 
 
 	/** Main loop but limited to 30 fps (so it might not be called during some frames) **/
 	override function fixedUpdate() {
 		super.fixedUpdate();
-
-		// Entities "30 fps" loop
-		for(e in Entity.ALL) if( !e.destroyed ) e.fixedUpdate();
 	}
 
 
 	/** Main loop **/
 	override function update() {
 		super.update();
-
-		// Entities main loop
-		for(e in Entity.ALL) if( !e.destroyed ) e.update();
-
 
 		// Global key shortcuts
 		if( !App.ME.anyInputHasFocus() && !ui.Modal.hasAny() && !Console.ME.isActive() ) {
@@ -226,14 +198,16 @@ class Game extends Process {
 			#end
 
 			// Attach debug drone (CTRL-SHIFT-D)
-			#if debug
-			if( ca.isKeyboardPressed(K.D) && ca.isKeyboardDown(K.CTRL) && ca.isKeyboardDown(K.SHIFT) )
-				new DebugDrone(); // <-- HERE: provide an Entity as argument to attach Drone near it
-			#end
+			//#if debug
+			//if( ca.isKeyboardPressed(K.D) && ca.isKeyboardDown(K.CTRL) && ca.isKeyboardDown(K.SHIFT) )
+				//new DebugDrone(); // <-- HERE: provide an Entity as argument to attach Drone near it
+			//#end
 
 			// Restart whole game
-			if( ca.isPressed(Restart) )
+			if( ca.isPressed(Restart) ){
+				//trace("restart");
 				App.ME.startGame();
+			}
 
 		}
 	}

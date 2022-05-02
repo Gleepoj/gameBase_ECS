@@ -126,10 +126,8 @@ class LPoint {
 	}
 
 	/** Return distance to something else, in grid unit **/
-	public inline function distCase(?e:Entity, ?pt:LPoint, ?tcx=0, ?tcy=0, ?txr=0.5, ?tyr=0.5) {
-		if( e!=null )
-			return M.dist(this.cx+this.xr, this.cy+this.yr, e.cx+e.xr, e.cy+e.yr);
-		else if( pt!=null )
+	public inline function distCase(?pt:LPoint, ?tcx=0, ?tcy=0, ?txr=0.5, ?tyr=0.5) {
+		if( pt!=null )
 			return M.dist(this.cx+this.xr, this.cy+this.yr, pt.cx+pt.xr, pt.cy+pt.yr);
 		else
 			return M.dist(this.cx+this.xr, this.cy+this.yr, tcx+txr, tcy+tyr);
@@ -151,20 +149,16 @@ class LPoint {
 		setLevelPixel(x,y);
 	}
 	/** Distance to something else, in level pixels **/
-	public inline function distPx(?e:Entity, ?pt:LPoint, ?lvlX=0., ?lvlY=0.) {
-		if( e!=null )
-			return M.dist(levelX, levelY, e.attachX, e.attachY);
-		else if( pt!=null )
+	public inline function distPx(?pt:LPoint, ?lvlX=0., ?lvlY=0.) {
+		if( pt!=null )
 			return M.dist(levelX, levelY, pt.levelX, pt.levelY);
 		else
 			return M.dist(levelX, levelY, lvlX, lvlY);
 	}
 
 	/** Angle in radians to something else, in level pixels **/
-	public inline function angTo(?e:Entity, ?pt:LPoint, ?lvlX=0., ?lvlY=0.) {
-		if( e!=null )
-			return Math.atan2((e.cy+e.yr)-cyf, (e.cx+e.xr)-cxf );
-		else if( pt!=null )
+	public inline function angTo(?pt:LPoint, ?lvlX=0., ?lvlY=0.) {
+		if( pt!=null )
 			return Math.atan2(pt.cyf-cyf, pt.cxf-cxf);
 		else
 			return Math.atan2(lvlY-levelY, lvlX-levelX);

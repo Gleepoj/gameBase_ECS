@@ -63,12 +63,6 @@ class Console extends h2d.Console {
 		// Show build info
 		this.addCommand("build", [], ()->log( Const.BUILD_INFO ) );
 
-		// Create a debug drone
-		#if debug
-		this.addCommand("drone", [], ()->{
-			new tools.DebugDrone();
-		});
-		#end
 		this.addCommand("grid", [], ()->{
 		});
 		// Create a stats box

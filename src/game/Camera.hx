@@ -1,3 +1,6 @@
+import aleiiioa.components.core.velocity.VelocityComponent;
+import aleiiioa.components.core.position.GridPosition;
+
 class Camera extends dn.Process {
 	public static var MIN_ZOOM : Float = 1.0;
 	public static var MAX_ZOOM : Float = 10;
@@ -9,10 +12,9 @@ class Camera extends dn.Process {
 	/** This is equal to rawFocus if `clampToLevelBounds` is disabled **/
 	var clampedFocus : LPoint;
 
-	var target : Null<Entity>;
+	//var target : Null<>; target offset in pixel 
 	public var targetOffX = 0.;
 	public var targetOffY = 0.;
-
 	/** Width of viewport in level pixels **/
 	public var pxWid(get,never) : Int;
 
@@ -22,10 +24,14 @@ class Camera extends dn.Process {
 	/** Horizontal camera dead-zone in percentage of viewport width **/
 	public var deadZonePctX = 0.04;
 
-	/** Verticakl camera dead-zone in percentage of viewport height **/
-	public var deadZonePctY = 0.10;
+	/** Verticakl camera dead-zone in percentage of viewport height :: init value 0.10**/ 
+	public var deadZonePctY = 0.05;
+	
+	var target :LPoint;
+	var gtarget:GridPosition;
+	var autoVelocity : VelocityComponent; 
 
-	var baseFrict = 0.89;
+	var baseFrict = 0.89;//0.89;//0.89
 	var dx = 0.;
 	var dy = 0.;
 	var dz = 0.;
@@ -45,12 +51,12 @@ class Camera extends dn.Process {
 	/** Target base zoom value **/
 	public var targetZoom(default,set) = 1.0;
 
-	/** Speed multiplier when camera is tracking a target **/
+	/** Speed multiplier when camera is tracking a target 1.0**/
 	var trackingSpeed = 1.0;
 
 	/** If TRUE (default), the camera will try to stay inside level bounds. It cannot be done if level is smaller than actual viewport. In such case, the camera will be centered. **/
 	public var clampToLevelBounds = false;
-	var brakeDistNearBounds = 0.1;
+	var brakeDistNearBounds = 0.1; //init value 0.1
 
 	/** Left camera bound in level pixels **/
 	public var left(get,never) : Int;
@@ -153,11 +159,21 @@ class Camera extends dn.Process {
 	/**
 		Enable auto tracking on given Entity. If `immediate` is true, the camera is immediately positioned over the Entity, otherwise it just moves to it.
 	**/
-	public function trackEntity(e:Entity, immediate:Bool, speed=1.0) {
-		target = e;
+	public function setAutoScroll(vc:VelocityComponent) {
+		autoVelocity = vc;
+	}
+	public function trackEntity(p:LPoint, immediate:Bool, speed=1.0) {
+		target = p;
 		setTrackingSpeed(speed);
 		if( immediate || rawFocus.levelX==0 && rawFocus.levelY==0 )
 			centerOnTarget();
+	}
+
+	public function trackEntityGridPosition(p:GridPosition, immediate:Bool, speed=1.0) {
+		gtarget = p;
+		setTrackingSpeed(speed);
+		if( immediate || rawFocus.levelX==0 && rawFocus.levelY==0 )
+			centerOnGridTarget();
 	}
 
 	public inline function setTrackingSpeed(spd:Float) {
@@ -170,8 +186,15 @@ class Camera extends dn.Process {
 
 	public function centerOnTarget() {
 		if( target!=null ) {
-			rawFocus.levelX = target.centerX + targetOffX;
-			rawFocus.levelY = target.centerY + targetOffY;
+			rawFocus.levelX = target.levelX + targetOffX;
+			rawFocus.levelY = target.levelY + targetOffY;
+		}
+	}
+
+	public function centerOnGridTarget() {
+		if( gtarget!=null ) {
+			rawFocus.levelX = gtarget.attachX + targetOffX;
+			rawFocus.levelY = gtarget.attachY + targetOffY;
 		}
 	}
 
@@ -227,13 +250,163 @@ class Camera extends dn.Process {
 
 		// Rounding
 		scroller.x = M.round(scroller.x);
-		scroller.y = M.round(scroller.y);
+		scroller.y = -gtarget.attachY;//M.round(scroller.y);
 
 		// Zoom
 		scroller.setScale(Const.SCALE * zoom);
 	}
 
 
+	
+
+
+	override function onResize() {
+		super.onResize();
+		invalidateDebugBounds = true;
+	}
+
+	override function update() {
+		super.update();
+		final level = Game.ME.level;
+		//autoScrolling();
+		computeZoom();
+		followEntity();
+		computeFriction(level);
+		computeBounds(level);
+	}
+
+	override function postUpdate() {
+		super.postUpdate();
+		
+		
+		
+		apply();
+		// Debug bounds
+		if( ui.Console.ME.hasFlag("cam") && debugBounds==null )
+			enableDebugBounds();
+		else if( !ui.Console.ME.hasFlag("cam") && debugBounds!=null )
+			disableDebugBounds();
+
+		if( debugBounds!=null ) {
+			if( invalidateDebugBounds ) {
+				renderDebugBounds();
+				invalidateDebugBounds = false;
+			}
+			debugBounds.setPosition(left,top);
+		}
+	}
+
+	private function computeZoom() {
+		final level = Game.ME.level;
+
+		// Zoom movement
+		var tz = targetZoom;
+
+		if (tz != baseZoom) {
+			if (tz > baseZoom)
+				dz += zoomSpeed;
+			else
+				dz -= zoomSpeed;
+		} else
+			dz = 0;
+
+		var prevZoom = baseZoom;
+		baseZoom += dz * tmod;
+
+		bumpZoomFactor *= Math.pow(0.9, tmod);
+		dz *= Math.pow(zoomFrict, tmod);
+		if (M.fabs(tz - baseZoom) <= 0.05 * tmod)
+			dz *= Math.pow(0.8, tmod);
+
+		// Reached target zoom
+		if (prevZoom < tz && baseZoom >= tz || prevZoom > tz && baseZoom <= tz) {
+			baseZoom = tz;
+			dz = 0;
+		}
+	}
+
+	private function computeFriction(level:Level) {
+		// Compute frictions
+		var frictX = baseFrict - trackingSpeed * zoom * 0.027 * baseFrict;
+		var frictY = 0.;//frictX;
+		if (clampToLevelBounds) {
+			// "Brake" when approaching bounds
+			final brakeDist = brakeDistNearBounds * pxWid;
+			if (dx <= 0) {
+				final brakeRatio = 1 - M.fclamp((rawFocus.levelX - pxWid * 0.5) / brakeDist, 0, 1);
+				frictX *= 1 - 1 * brakeRatio;
+			} else if (dx > 0) {
+				final brakeRatio = 1 - M.fclamp(((level.pxWid - pxWid * 0.5) - rawFocus.levelX) / brakeDist, 0, 1);
+				frictX *= 1 - 0.9 * brakeRatio;
+			}
+
+			final brakeDist = brakeDistNearBounds * pxHei;
+			if (dy < 0) {
+				final brakeRatio = 1 - M.fclamp((rawFocus.levelY - pxHei * 0.5) / brakeDist, 0, 1);
+				frictY *= 1 - 0.9 * brakeRatio;
+			} else if (dy > 0) {
+				final brakeRatio = 1 - M.fclamp(((level.pxHei - pxHei * 0.5) - rawFocus.levelY) / brakeDist, 0, 1);
+				frictY *= 1 - 0.9 * brakeRatio;
+			}
+		}
+
+		// Apply velocities
+		rawFocus.levelX += dx * tmod;
+		dx *= Math.pow(frictX, tmod);
+		rawFocus.levelY += dy * tmod;
+		dy *= Math.pow(frictY, tmod);
+	}
+
+	private function computeBounds(level:Level) {
+		// Bounds clamping
+		if (clampToLevelBounds) {
+			// X
+			if (level.pxWid < pxWid)
+				clampedFocus.levelX = level.pxWid * 0.5; // centered small level
+			else
+				clampedFocus.levelX = M.fclamp(rawFocus.levelX, pxWid * 0.5, level.pxWid - pxWid * 0.5);
+
+			// Y
+			if (level.pxHei < pxHei)
+				clampedFocus.levelY = level.pxHei * 0.5; // centered small level
+			else
+				clampedFocus.levelY = M.fclamp(rawFocus.levelY, pxHei * 0.5, level.pxHei - pxHei * 0.5);
+		} else {
+			// No clamping
+			clampedFocus.levelX = rawFocus.levelX;
+			clampedFocus.levelY = rawFocus.levelY;
+		}
+	}
+
+	private function autoScrolling(){
+		//trace(autoVelocity.dyTotal);
+		dy += autoVelocity.dyTotal;
+	}
+
+	private function followEntity(){
+		if(gtarget != null)
+			trackGridPosition();
+	}
+
+	private function trackGridPosition(){
+		// Follow target entity
+		if( gtarget!=null ) {
+			var spdX = 0.015*trackingSpeed*zoom;
+			var spdY = 0.023*trackingSpeed*zoom;
+			var tx = gtarget.attachX + targetOffX;
+			var ty = gtarget.attachY + targetOffY;
+
+			var a = rawFocus.angTo(tx,ty);
+			var distX = M.fabs( tx - rawFocus.levelX );
+			if( distX>=deadZonePctX*pxWid )
+				dx += Math.cos(a) * (0.8*distX-deadZonePctX*pxWid) * spdX * tmod;
+
+			var distY = M.fabs( ty - rawFocus.levelY );
+			if( distY>=deadZonePctY*pxHei)
+				dy += Math.sin(a) * (0.8*distY-deadZonePctY*pxHei) * spdY * tmod;
+ 		} 
+
+	}
 	/** Hide camera debug bounds **/
 	public function disableDebugBounds() {
 		if( debugBounds!=null ) {
@@ -251,7 +424,7 @@ class Camera extends dn.Process {
 	}
 
 	function renderDebugBounds() {
-		debugBounds.clear();
+		debugBounds.clear(); 
 
 		debugBounds.lineStyle(2,0xff00ff);
 		debugBounds.drawRect(0,0,pxWid,pxHei);
@@ -261,138 +434,6 @@ class Camera extends dn.Process {
 
 		debugBounds.moveTo(0, pxHei*0.5);
 		debugBounds.lineTo(pxWid, pxHei*0.5);
-	}
-
-
-	override function onResize() {
-		super.onResize();
-		invalidateDebugBounds = true;
-	}
-
-
-	override function postUpdate() {
-		super.postUpdate();
-
-		apply();
-
-		// Debug bounds
-		if( ui.Console.ME.hasFlag("cam") && debugBounds==null )
-			enableDebugBounds();
-		else if( !ui.Console.ME.hasFlag("cam") && debugBounds!=null )
-			disableDebugBounds();
-
-		if( debugBounds!=null ) {
-			if( invalidateDebugBounds ) {
-				renderDebugBounds();
-				invalidateDebugBounds = false;
-			}
-			debugBounds.setPosition(left,top);
-		}
-	}
-
-
-	override function update() {
-		super.update();
-
-		final level = Game.ME.level;
-
-
-		// Zoom movement
-		var tz = targetZoom;
-
-		if( tz!=baseZoom ) {
-			if( tz>baseZoom)
-				dz+=zoomSpeed;
-			else
-				dz-=zoomSpeed;
-		}
-		else
-			dz = 0;
-
-		var prevZoom = baseZoom;
-		baseZoom+=dz*tmod;
-
-		bumpZoomFactor *= Math.pow(0.9, tmod);
-		dz*=Math.pow(zoomFrict, tmod);
-		if( M.fabs(tz-baseZoom)<=0.05*tmod )
-			dz*=Math.pow(0.8,tmod);
-
-		// Reached target zoom
-		if( prevZoom<tz && baseZoom>=tz || prevZoom>tz && baseZoom<=tz ) {
-			baseZoom = tz;
-			dz = 0;
-		}
-
-
-		// Follow target entity
-		if( target!=null ) {
-			var spdX = 0.015*trackingSpeed*zoom;
-			var spdY = 0.023*trackingSpeed*zoom;
-			var tx = target.centerX + targetOffX;
-			var ty = target.centerY + targetOffY;
-
-			var a = rawFocus.angTo(tx,ty);
-			var distX = M.fabs( tx - rawFocus.levelX );
-			if( distX>=deadZonePctX*pxWid )
-				dx += Math.cos(a) * (0.8*distX-deadZonePctX*pxWid) * spdX * tmod;
-
-			var distY = M.fabs( ty - rawFocus.levelY );
-			if( distY>=deadZonePctY*pxHei)
-				dy += Math.sin(a) * (0.8*distY-deadZonePctY*pxHei) * spdY * tmod;
-		}
-
-		// Compute frictions
-		var frictX = baseFrict - trackingSpeed*zoom*0.027*baseFrict;
-		var frictY = frictX;
-		if( clampToLevelBounds ) {
-			// "Brake" when approaching bounds
-			final brakeDist = brakeDistNearBounds * pxWid;
-			if( dx<=0 ) {
-				final brakeRatio = 1-M.fclamp( ( rawFocus.levelX - pxWid*0.5 ) / brakeDist, 0, 1 );
-				frictX *= 1 - 1*brakeRatio;
-			}
-			else if( dx>0 ) {
-				final brakeRatio = 1-M.fclamp( ( (level.pxWid-pxWid*0.5) - rawFocus.levelX ) / brakeDist, 0, 1 );
-				frictX *= 1 - 0.9*brakeRatio;
-			}
-
-			final brakeDist = brakeDistNearBounds * pxHei;
-			if( dy<0 ) {
-				final brakeRatio = 1-M.fclamp( ( rawFocus.levelY - pxHei*0.5 ) / brakeDist, 0, 1 );
-				frictY *= 1 - 0.9*brakeRatio;
-			}
-			else if( dy>0 ) {
-				final brakeRatio = 1-M.fclamp( ( (level.pxHei-pxHei*0.5) - rawFocus.levelY ) / brakeDist, 0, 1 );
-				frictY *= 1 - 0.9*brakeRatio;
-			}
-		}
-
-		// Apply velocities
-		rawFocus.levelX += dx*tmod;
-		dx *= Math.pow(frictX,tmod);
-		rawFocus.levelY += dy*tmod;
-		dy *= Math.pow(frictY,tmod);
-
-
-		// Bounds clamping
-		if( clampToLevelBounds ) {
-			// X
-			if( level.pxWid < pxWid)
-				clampedFocus.levelX = level.pxWid*0.5; // centered small level
-			else
-				clampedFocus.levelX = M.fclamp( rawFocus.levelX, pxWid*0.5, level.pxWid-pxWid*0.5 );
-
-			// Y
-			if( level.pxHei < pxHei)
-				clampedFocus.levelY = level.pxHei*0.5; // centered small level
-			else
-				clampedFocus.levelY = M.fclamp( rawFocus.levelY, pxHei*0.5, level.pxHei-pxHei*0.5 );
-		}
-		else {
-			// No clamping
-			clampedFocus.levelX = rawFocus.levelX;
-			clampedFocus.levelY = rawFocus.levelY;
-		}
 	}
 
 }
