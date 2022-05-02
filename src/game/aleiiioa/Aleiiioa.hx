@@ -71,7 +71,7 @@ class Aleiiioa extends Game {
 		//Object
 		Workflow.add60FpsSystem(new VelocitySystem());
 		Workflow.add60FpsSystem(new GridPositionActualizer());
-		Workflow.add60FpsSystem(new WingsBehaviors());
+		Workflow.add60FpsSystem(new PaddleSystem());
 		
 		//Graphics
 		//Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));

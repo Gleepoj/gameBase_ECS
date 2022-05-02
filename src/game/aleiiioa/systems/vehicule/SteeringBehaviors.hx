@@ -1,6 +1,6 @@
 package aleiiioa.systems.vehicule;
 
-import aleiiioa.components.vehicule.WingsSharedComponent;
+import aleiiioa.components.vehicule.PaddleSharedComponent;
 import h3d.Vector;
 
 import echoes.View;
@@ -63,7 +63,7 @@ class  SteeringBehaviors extends System {
         sw.target = new Vector(tgp.attachX-gp.attachX,tgp.attachY-gp.attachY);
     }
 
-    @u function updatePlayerSteeringForce(sw:SteeringWheel,wsc:WingsSharedComponent,pl:PlayerFlag){
+    @u function updatePlayerSteeringForce(sw:SteeringWheel,wsc:PaddleSharedComponent,pl:PlayerFlag){
         var d:Vector = sw.solverUVatCoord;
         var wind:Vector = new Vector(0,0);
         var speed:Vector = new Vector(0,0);
@@ -75,20 +75,20 @@ class  SteeringBehaviors extends System {
             if(yAperture > 0 ){
                 wind = new Vector(d.x,d.y*yAperture);
                 speed = wind.sub(sw.velocity);
-                forces = speed.add(new Vector(wsc.inputX,Const.SCROLLING_MIN_SPEED));
+                forces = speed.add(new Vector(wsc.inputX*1,0));
                 sw.maxForce = 0.46;
             }
             
             if (yAperture == 0 ){
                 wind = d.multiply(0.8);
                 speed = wind.sub(sw.velocity);
-                forces = speed.add(new Vector(wsc.inputX,Const.SCROLLING_MIN_SPEED));
+                forces = speed.add(new Vector(wsc.inputX*1,0));
                 sw.maxForce = 0.425;//y = Const.SCROLLING_MIN_SPEED
             }
         }
 
         if (wsc.isLocked){
-            forces = new Vector(wsc.inputX*10,wsc.inputY*10);
+            forces = new Vector(wsc.inputX,wsc.inputY);
             sw.maxForce = 0.47;
         }
 

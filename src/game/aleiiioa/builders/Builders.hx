@@ -42,7 +42,7 @@ class Builders {
         new echoes.Entity().add(pos,fpos,spr,se,mod,per);
     }
 
-    public static function basicPlayer(cx:Int,cy:Int) {
+    public static function basicPlayer_01(cx:Int,cy:Int) {
         //Shared Component
         var mpos  = new MasterGridPosition(cx,cy);
         var tpos  = new TargetGridPosition(cx,cy);
@@ -107,6 +107,50 @@ class Builders {
         var fl_wi_wr = new WingRightFlag();
         var dbl_angR = new DebugLabel();
         new echoes.Entity().add(mpos,wi,pos_wr,offpos_wr,spr_wr,se_wr,fl_ch_wr,fl_wi_wr,dbl_angR);
+        return player;
+    }
+
+    public static function basicPlayer(cx:Int,cy:Int) {
+        //Shared Component
+        var mpos  = new MasterGridPosition(cx,cy);
+        var tpos  = new TargetGridPosition(cx,cy);
+        var paddle_sh = new PaddleSharedComponent();
+        var inp   = new InputComponent();
+        
+        //Individual Component
+        var pos   = new GridPosition(mpos.cx,mpos.cy);
+        var fpos  = new FluidPosition(mpos.cx,mpos.cy);
+        var suv   = new SolverUVComponent();
+        var bb    = new BoundingBox();
+
+        var se   = new SpriteExtension();
+        var spr  = new SpriteComponent(D.tiles.kayak);
+        
+        var vc   = new VelocityComponent();
+        var sw   = new SteeringWheel();
+        sw.windSensitivity = 0 ; 
+        var cl   = new CollisionsListener();
+
+        var fl_pl  = new PlayerFlag();
+        var fl_mst = new MasterFlag();
+        var fl_bo  = new BodyFlag();
+       
+        var player = new echoes.Entity().add(mpos,fpos,pos,suv,paddle_sh,spr,inp,se,bb,vc,sw,cl,fl_pl,fl_mst,fl_bo);
+       
+        //Paddle
+        
+        var pos_pad   = new GridPosition(mpos.cx,mpos.cy);
+        var offpos_pad = new GridPositionOffset(0,0);
+        offpos_pad.setXYratio(0,-1.5);
+        
+        var spr_pad  = new SpriteComponent(D.tiles.pagaye);
+        var se_pad   = new SpriteExtension();
+        
+
+        var fl_ch_pad = new ChildFlag();
+       
+        new echoes.Entity().add(mpos,paddle_sh,pos_pad,offpos_pad,spr_pad,se_pad,fl_ch_pad);
+
         return player;
     }
 

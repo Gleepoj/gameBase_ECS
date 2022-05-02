@@ -4,7 +4,7 @@ class CameraFocusComponent {
     public var cameraScrollingSpeed:Float;
     
     public function new() {
-        cameraScrollingSpeed = -2;
+        cameraScrollingSpeed = 0;
     }
 
 }

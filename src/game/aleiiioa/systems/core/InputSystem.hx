@@ -1,6 +1,7 @@
 package aleiiioa.systems.core;
 
 
+import aleiiioa.components.vehicule.PaddleSharedComponent;
 import hxd.Pad.PadConfig;
 import aleiiioa.components.vehicule.WingsSharedComponent;
 import aleiiioa.components.vehicule.VeilComponent;
@@ -58,6 +59,22 @@ class InputSystem extends echoes.System {
 
 		if (ca.isDown(Jump)){
 			win.inputLock = true;
+		}
+	}
+
+	@u function inputPlayerPaddle(inp:InputComponent,pad:PaddleSharedComponent){
+		pad.ix = ca.getAnalogValue(MoveX);
+		pad.iy = ca.getAnalogValue(MoveY);
+
+		pad.tl = ca.input.pad.values[conf.LT];
+	 	pad.tr = ca.input.pad.values[conf.RT];
+		
+		if (!ca.isDown(Jump)){
+			pad.inputLock = false;
+		}
+
+		if (ca.isDown(Jump)){
+			pad.inputLock = true;
 		}
 	}
 }
