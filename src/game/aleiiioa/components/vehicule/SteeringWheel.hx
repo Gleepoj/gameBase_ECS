@@ -4,7 +4,7 @@ import h3d.Vector;
 
 class SteeringWheel {
     
-    public var maxSpeed = 6;//0.8
+    public var maxSpeed = 0.5;//0.8
     public var maxForce = 0.2;//0.05
     public var mass = 1.2;// * Math.random(2);//Math.random(3);
     public var windSensitivity:Float = 12;
@@ -19,6 +19,7 @@ class SteeringWheel {
     public var eulerSteering:Vector;
 
     public var target:Vector;
+    public var targetDistance:Float;
     public var solverUVatCoord:Vector;
     
     

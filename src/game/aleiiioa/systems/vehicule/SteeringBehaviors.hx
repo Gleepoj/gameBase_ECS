@@ -63,7 +63,7 @@ class  SteeringBehaviors extends System {
         sw.target = new Vector(tgp.attachX-gp.attachX,tgp.attachY-gp.attachY);
     }
 
-    @u function updatePlayerSteeringForce(sw:SteeringWheel,wsc:PaddleSharedComponent,pl:PlayerFlag){
+    function updatePlayerSteeringForce(sw:SteeringWheel,wsc:PaddleSharedComponent,pl:PlayerFlag){
         var d:Vector = sw.solverUVatCoord;
         var wind:Vector = new Vector(0,0);
         var speed:Vector = new Vector(0,0);
@@ -119,9 +119,16 @@ class  SteeringBehaviors extends System {
     }
 
     private function seek(sw:SteeringWheel){
+        sw.targetDistance = sw.location.distance(sw.target);
+        var slowRadius:Float = 100;
+        var slow:Float = 1;
+
+        if(sw.targetDistance < slowRadius){
+            slow = sw.targetDistance*0.5 / slowRadius;
+        }
         sw.desired = sw.target.sub(sw.location);
         sw.desired.normalize();
-        sw.desired.scale(sw.maxSpeed);
+        sw.desired.scale(sw.maxSpeed*slow);
         var v = sw.velocity.clone();
         var steer = sw.desired.sub(v);
         return steer;

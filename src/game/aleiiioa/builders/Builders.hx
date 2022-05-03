@@ -42,78 +42,12 @@ class Builders {
         new echoes.Entity().add(pos,fpos,spr,se,mod,per);
     }
 
-    public static function basicPlayer_01(cx:Int,cy:Int) {
-        //Shared Component
-        var mpos  = new MasterGridPosition(cx,cy);
-        var tpos  = new TargetGridPosition(cx,cy);
-        var wi = new WingsSharedComponent();
-        
-        var inp   = new InputComponent();
-        
-        //Individual Component
-        var pos   = new GridPosition(mpos.cx,mpos.cy);
-        var fpos  = new FluidPosition(mpos.cx,mpos.cy);
-        var suv   = new SolverUVComponent();
-        var bb    = new BoundingBox();
-
-        var se   = new SpriteExtension();
-        var spr  = new SpriteComponent(D.tiles.kayak);
-        
-        var vc   = new VelocityComponent();
-        var sw   = new SteeringWheel();
-        sw.windSensitivity = 0 ; 
-        var gun  = new GunComponent(true);
-        var cl   = new CollisionsListener();
-
-        var fl_pl  = new PlayerFlag();
-        var fl_mst = new MasterFlag();
-        var fl_bo  = new BodyFlag();
-       
-        var player = new echoes.Entity().add(mpos,fpos,wi,pos,suv,spr,inp,se,bb,vc,sw,gun,cl,fl_pl,fl_mst,fl_bo);
-        //Wing Master 
-        
-        var fl_wi_ms = new WingsMasterFlag();
-        var fl_wi_ch = new ChildFlag();// for garbage collection
-        
-        new echoes.Entity().add(inp,wi,mpos,fl_wi_ms,fl_wi_ch);
-        //Wing Left
-
-        var pos_wl    = new GridPosition(mpos.cx,mpos.cy);
-        var offpos_wl = new GridPositionOffset(0,0);
-        //offpos_wl.setXYratio(0,0);
-        
-        var spr_wl  = new SpriteComponent(D.tiles.wing);
-        var se_wl   = new SpriteExtension();
-        se_wl.sprScaleY = -1;
-
-        var fl_ch_wl = new ChildFlag();
-        var fl_wi_wl = new WingLeftFlag();
-        var dbl_angL = new DebugLabel();
-
-        new echoes.Entity().add(mpos,wi,pos_wl,offpos_wl,spr_wl,se_wl,fl_ch_wl,fl_wi_wl,dbl_angL);
-
-        //Wing right
-
-        var pos_wr    = new GridPosition(mpos.cx,mpos.cy);
-        var offpos_wr = new GridPositionOffset(0,0);
-        //offpos_wr.setXYratio(0.5,-0.3);
-        
-        var spr_wr  = new SpriteComponent(D.tiles.wing);
-        var se_wr   = new SpriteExtension();
-        se_wr.sprScaleX = -1;
-        se_wr.sprScaleY = -1;
-
-        var fl_ch_wr = new ChildFlag();
-        var fl_wi_wr = new WingRightFlag();
-        var dbl_angR = new DebugLabel();
-        new echoes.Entity().add(mpos,wi,pos_wr,offpos_wr,spr_wr,se_wr,fl_ch_wr,fl_wi_wr,dbl_angR);
-        return player;
-    }
+    
 
     public static function basicPlayer(cx:Int,cy:Int) {
         //Shared Component
         var mpos  = new MasterGridPosition(cx,cy);
-        var tpos  = new TargetGridPosition(cx,cy);
+        var tpos  = new TargetGridPosition(cx,cy-15);
         var paddle_sh = new PaddleSharedComponent();
         var inp   = new InputComponent();
         
@@ -135,7 +69,7 @@ class Builders {
         var fl_mst = new MasterFlag();
         var fl_bo  = new BodyFlag();
        
-        var player = new echoes.Entity().add(mpos,fpos,pos,suv,paddle_sh,spr,inp,se,bb,vc,sw,cl,fl_pl,fl_mst,fl_bo);
+        var player = new echoes.Entity().add(mpos,fpos,tpos,pos,suv,paddle_sh,spr,inp,se,bb,vc,sw,cl,fl_pl,fl_mst,fl_bo);
        
         //Paddle
         
@@ -151,6 +85,17 @@ class Builders {
        
         new echoes.Entity().add(mpos,paddle_sh,pos_pad,offpos_pad,spr_pad,se_pad,fl_ch_pad);
 
+        // target 
+        var tar_gp =  new GridPosition(tpos.cx,tpos.cy);
+        var tar_spr = new SpriteComponent(D.tiles.fxCircle15);
+        var tar_se = new SpriteExtension();
+        var tar_vc = new VelocityComponent();
+        var tar_vas = new VelocityAnalogSpeed();
+        tar_vas.xSpeed = -0.2;
+        tar_vas.ySpeed = -0.1;
+        var tar_flag = new TargetedFlag();
+
+        new echoes.Entity().add(tpos,tar_gp,tar_vc,tar_vas,tar_spr,tar_se,tar_flag);
         return player;
     }
 

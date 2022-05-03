@@ -120,7 +120,6 @@ class SolverSystem extends echoes.System {
                 Builders.solverCell(i,j,index);
             }
         } 
-        trace(solver.width);
     }
 
 
