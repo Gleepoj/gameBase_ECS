@@ -196,6 +196,9 @@ class App extends dn.Process {
 		
 		controller.bindPad(WingLeft ,LT);
 		controller.bindPad(WingRight,RT);
+
+		controller.bindPad(Rb,RB);
+		controller.bindPad(Lb,LB);
 		
 		controller.bindPad(Blow, X);
 		controller.bindPad(ShapeWind,B);

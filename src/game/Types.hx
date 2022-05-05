@@ -6,6 +6,9 @@ enum GameAction {
 	WingLeft;
 	WingRight;
 	
+	Rb;
+	Lb;
+	
 	Jump;
 	Restart;
 	Blow;

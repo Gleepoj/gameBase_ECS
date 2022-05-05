@@ -119,13 +119,16 @@ class  SteeringBehaviors extends System {
     }
 
     private function seek(sw:SteeringWheel){
+        sw.maxForce = 0.02;
+        sw.maxSpeed = 0.1;
         sw.targetDistance = sw.location.distance(sw.target);
-        var slowRadius:Float = 100;
+        var slowRadius:Float = 50;
         var slow:Float = 1;
 
         if(sw.targetDistance < slowRadius){
             slow = sw.targetDistance*0.5 / slowRadius;
         }
+
         sw.desired = sw.target.sub(sw.location);
         sw.desired.normalize();
         sw.desired.scale(sw.maxSpeed*slow);

@@ -10,6 +10,9 @@ class PaddleSharedComponent {
     public var tr:Float = 0;
     public var tl:Float = 0;
     
+    public var rb:Bool = false;
+    public var lb:Bool = false;
+    
     public var inputX(get,never):Float; inline function get_inputX() return ix;
     public var inputY(get,never):Float; inline function get_inputY() return iy;
 

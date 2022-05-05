@@ -47,7 +47,7 @@ class Builders {
     public static function basicPlayer(cx:Int,cy:Int) {
         //Shared Component
         var mpos  = new MasterGridPosition(cx,cy);
-        var tpos  = new TargetGridPosition(cx,cy-15);
+        var tpos  = new TargetGridPosition(cx,cy);
         var paddle_sh = new PaddleSharedComponent();
         var inp   = new InputComponent();
         
@@ -86,16 +86,17 @@ class Builders {
         new echoes.Entity().add(mpos,paddle_sh,pos_pad,offpos_pad,spr_pad,se_pad,fl_ch_pad);
 
         // target 
-        var tar_gp =  new GridPosition(tpos.cx,tpos.cy);
-        var tar_spr = new SpriteComponent(D.tiles.fxCircle15);
-        var tar_se = new SpriteExtension();
-        var tar_vc = new VelocityComponent();
-        var tar_vas = new VelocityAnalogSpeed();
-        tar_vas.xSpeed = -0.2;
-        tar_vas.ySpeed = -0.1;
-        var tar_flag = new TargetedFlag();
+        var tar_gp    = new GridPosition(tpos.cx,tpos.cy);
+        var tar_spr   = new SpriteComponent(D.tiles.fxCircle15);
+        var tar_se    = new SpriteExtension();
+        var tar_vc    = new VelocityComponent();
+        var tar_vas   = new VelocityAnalogSpeed();
+        var tar_flag  = new TargetedFlag();
+        var tar_sflag = new SteeringPointFlag();
 
-        new echoes.Entity().add(tpos,tar_gp,tar_vc,tar_vas,tar_spr,tar_se,tar_flag);
+        
+        //new echoes.Entity().add(tpos,paddle_sh,tar_gp,tar_vc,tar_vas,tar_spr,tar_se,tar_flag);
+        new echoes.Entity().add(tpos,paddle_sh,tar_spr,tar_gp,tar_vas,tar_vc,tar_se,tar_flag,tar_sflag);
         return player;
     }
 
