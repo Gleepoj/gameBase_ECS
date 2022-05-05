@@ -16,7 +16,6 @@ class VeilBehaviors extends echoes.System {
         var orDifference = veil.extremity.sub(veil.anchor);
         veil.normalizeOrientation = orDifference.normalized();
         veil.normalizeUV = suv.uv.normalized();
-
         veil.dotProduct = veil.normalizeUV.dot(veil.normalizeOrientation);
     }
     

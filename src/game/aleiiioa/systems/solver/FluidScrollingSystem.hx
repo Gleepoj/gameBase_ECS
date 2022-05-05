@@ -1,5 +1,6 @@
 package aleiiioa.systems.solver;
 
+import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 import aleiiioa.builders.Builders;
 
 import aleiiioa.components.core.camera.CameraFocusComponent;
@@ -19,7 +20,6 @@ class FluidScrollingSystem extends echoes.System {
         scrollPoint = Builders.fluidScroller(0,FLUID_CY_TO_LEVEL);
         scrollGridPosition = scrollPoint.get(GridPosition);
     }
-
     @u function updateSystem(foc:CameraFocusComponent,focus:GridPosition) {
         scrollGridPosition.cy = focus.cy-50;
         scrollGridPosition.yr = focus.yr;

@@ -47,7 +47,7 @@ class Builders {
     public static function basicPlayer(cx:Int,cy:Int) {
         //Shared Component
         var mpos  = new MasterGridPosition(cx,cy);
-        var tpos  = new TargetGridPosition(cx,cy);
+        var tpos  = new TargetGridPosition(cx,cy-2);
         var paddle_sh = new PaddleSharedComponent();
         var inp   = new InputComponent();
         
@@ -59,6 +59,7 @@ class Builders {
 
         var se   = new SpriteExtension();
         var spr  = new SpriteComponent(D.tiles.kayak);
+        spr.pivot.setCenterRatio(0.5,0.5);
         
         var vc   = new VelocityComponent();
         var sw   = new SteeringWheel();
