@@ -64,9 +64,9 @@ class  SteeringBehaviors extends System {
     }
 
     function updatePlayerSteeringForce(sw:SteeringWheel,wsc:PaddleSharedComponent,pl:PlayerFlag){
-        var d:Vector = sw.solverUVatCoord;
-        var wind:Vector = new Vector(0,0);
-        var speed:Vector = new Vector(0,0);
+        var d:Vector   = sw.solverUVatCoord;
+        var wind:Vector   = new Vector(0,0);
+        var speed:Vector  = new Vector(0,0);
         var forces:Vector = new Vector(0,0);
 
         var yAperture = wsc.aperture*5;
@@ -75,20 +75,20 @@ class  SteeringBehaviors extends System {
             if(yAperture > 0 ){
                 wind = new Vector(d.x,d.y*yAperture);
                 speed = wind.sub(sw.velocity);
-                forces = speed.add(new Vector(wsc.inputX*1,0));
+                forces = speed.add(new Vector(wsc.leftSX*1,0));
                 sw.maxForce = 0.46;
             }
             
             if (yAperture == 0 ){
                 wind = d.multiply(0.8);
                 speed = wind.sub(sw.velocity);
-                forces = speed.add(new Vector(wsc.inputX*1,0));
+                forces = speed.add(new Vector(wsc.leftSX*1,0));
                 sw.maxForce = 0.425;//y = Const.SCROLLING_MIN_SPEED
             }
         }
 
         if (wsc.isLocked){
-            forces = new Vector(wsc.inputX,wsc.inputY);
+            forces = new Vector(wsc.leftSX,wsc.leftSY);
             sw.maxForce = 0.47;
         }
 
@@ -102,11 +102,13 @@ class  SteeringBehaviors extends System {
         } 
 
         applySensitivity(sw);
+        addStream(sw);
         if(en.exists(PathComponent))
             sw.steering = seek(sw);
         
         if(en.exists(TargetGridPosition))
             sw.steering = seek(sw);
+
 
         sw.eulerSteering = eulerIntegration(sw);
     }
@@ -116,6 +118,14 @@ class  SteeringBehaviors extends System {
         var nx = tar.x +(sw.solverUVatCoord.x * sw.windSensitivity);
         var ny = tar.y +(sw.solverUVatCoord.y * sw.windSensitivity);
         sw.target = new Vector(nx,ny);
+    }
+    
+    private function addStream(sw:SteeringWheel){
+        var nx = (sw.solverUVatCoord.x * sw.windSensitivity);
+        var ny = (sw.solverUVatCoord.y * sw.windSensitivity);
+        var n = new Vector(nx,ny);
+        var s = sw.steering.clone();
+        sw.steering = s.sub(n);
     }
 
     private function seek(sw:SteeringWheel){
@@ -160,6 +170,7 @@ class  SteeringBehaviors extends System {
         var _limitTemp = VectorUtils.limitVector(_temp,sw.maxForce);
         var accel = VectorUtils.divideVector(_limitTemp,sw.mass);
         return accel;
+
     }
 
     private function targetPlayer(en:Entity){

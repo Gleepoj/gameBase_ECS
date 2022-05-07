@@ -86,7 +86,7 @@ class Builders {
        
         new echoes.Entity().add(mpos,paddle_sh,pos_pad,offpos_pad,spr_pad,se_pad,fl_ch_pad);
 
-        // target 
+        // steering target 
         var tar_gp    = new GridPosition(tpos.cx,tpos.cy);
         var tar_spr   = new SpriteComponent(D.tiles.fxCircle15);
         var tar_se    = new SpriteExtension();
@@ -96,8 +96,10 @@ class Builders {
         var tar_sflag = new SteeringPointFlag();
 
         
-        //new echoes.Entity().add(tpos,paddle_sh,tar_gp,tar_vc,tar_vas,tar_spr,tar_se,tar_flag);
+        
+        
         new echoes.Entity().add(tpos,paddle_sh,tar_spr,tar_gp,tar_vas,tar_vc,tar_se,tar_flag,tar_sflag);
+        //new echoes.Entity().add(tpos,paddle_sh,tar_gp,tar_vas,tar_vc,tar_se,tar_flag,tar_sflag);
         return player;
     }
 
