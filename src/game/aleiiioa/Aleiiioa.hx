@@ -57,10 +57,7 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new CollisionsListenerActualizer());
 
 		//Logic
-		Workflow.addSystem(new PathActualizer());
 		Workflow.addSystem(new SteeringBehaviors());
-		Workflow.addSystem(new GunSystem());
-		
 		
 		//Fluid
 		Workflow.add60FpsSystem(new SolverSystem());

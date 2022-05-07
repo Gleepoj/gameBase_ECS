@@ -12,7 +12,6 @@ import echoes.System;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.solver.SolverUVComponent;
 import aleiiioa.components.core.velocity.VelocityComponent;
-import aleiiioa.components.vehicule.PathComponent;
 import aleiiioa.components.vehicule.SteeringWheel;
 import aleiiioa.components.flags.vessel.*;
 
@@ -25,9 +24,6 @@ class  SteeringBehaviors extends System {
     var player:Entity;
     public function new() {
         
-    }
-    @a function onVesselAdded(en:Entity,sw:SteeringWheel){
-        //targetPlayer(en);
     }
 
     @u function updateVectorsTarget(sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition,tgp:TargetGridPosition){
@@ -55,77 +51,21 @@ class  SteeringBehaviors extends System {
         }
     }
 
-    @u function updateTargetFromPath(sw:SteeringWheel,pc:PathComponent) {
-        sw.target = getTargetFromPath(sw,pc);
-    }
-
     @u function updateTargetFromTargetGridPosition(sw:SteeringWheel,tgp:TargetGridPosition,gp:GridPosition) {
         sw.target = new Vector(tgp.attachX-gp.attachX,tgp.attachY-gp.attachY);
     }
 
-    function updatePlayerSteeringForce(sw:SteeringWheel,wsc:PaddleSharedComponent,pl:PlayerFlag){
-        var d:Vector   = sw.solverUVatCoord;
-        var wind:Vector   = new Vector(0,0);
-        var speed:Vector  = new Vector(0,0);
-        var forces:Vector = new Vector(0,0);
-
-        var yAperture = wsc.aperture*5;
-        
-        if (!wsc.isLocked){
-            if(yAperture > 0 ){
-                wind = new Vector(d.x,d.y*yAperture);
-                speed = wind.sub(sw.velocity);
-                forces = speed.add(new Vector(wsc.leftSX*1,0));
-                sw.maxForce = 0.46;
-            }
-            
-            if (yAperture == 0 ){
-                wind = d.multiply(0.8);
-                speed = wind.sub(sw.velocity);
-                forces = speed.add(new Vector(wsc.leftSX*1,0));
-                sw.maxForce = 0.425;//y = Const.SCROLLING_MIN_SPEED
-            }
-        }
-
-        if (wsc.isLocked){
-            forces = new Vector(wsc.leftSX,wsc.leftSY);
-            sw.maxForce = 0.47;
-        }
-
-        sw.steering = forces;
-    }
-
     @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {
-        if(!en.exists(PathComponent) && !en.exists(TargetGridPosition) && !en.exists(PlayerFlag)){
+        if(!en.exists(TargetGridPosition) && !en.exists(PlayerFlag)){
             var d:Vector = sw.solverUVatCoord;
             sw.steering = d.sub(sw.velocity);
         } 
 
-        applySensitivity(sw);
-        addStream(sw);
-        if(en.exists(PathComponent))
-            sw.steering = seek(sw);
-        
         if(en.exists(TargetGridPosition))
             sw.steering = seek(sw);
 
 
         sw.eulerSteering = eulerIntegration(sw);
-    }
-
-    private function applySensitivity(sw:SteeringWheel) {
-        var tar = sw.target.clone();
-        var nx = tar.x +(sw.solverUVatCoord.x * sw.windSensitivity);
-        var ny = tar.y +(sw.solverUVatCoord.y * sw.windSensitivity);
-        sw.target = new Vector(nx,ny);
-    }
-    
-    private function addStream(sw:SteeringWheel){
-        var nx = (sw.solverUVatCoord.x * sw.windSensitivity);
-        var ny = (sw.solverUVatCoord.y * sw.windSensitivity);
-        var n = new Vector(nx,ny);
-        var s = sw.steering.clone();
-        sw.steering = s.sub(n);
     }
 
     private function seek(sw:SteeringWheel){
@@ -152,18 +92,6 @@ class  SteeringBehaviors extends System {
     }
 
     
-    private function getTargetFromPath(sw:SteeringWheel,pc:PathComponent) {
-        var targetClosestOnPath = VectorUtils.vectorProjection(pc.currentStart.gpToVector(),sw.predicted,pc.currentEnd.gpToVector());
-        var d = sw.predicted.distance(targetClosestOnPath);
-        
-        if (d<3){
-            var targetCurrentEnd = pc.currentEnd.gpToVector();
-            return targetCurrentEnd;
-        }
-
-        return targetClosestOnPath;
-    } 
-
     private function eulerIntegration(sw:SteeringWheel){
         // not the exact Reynols integration
         var _temp = sw.steering.clone();
@@ -172,15 +100,5 @@ class  SteeringBehaviors extends System {
         return accel;
 
     }
-
-    private function targetPlayer(en:Entity){
-        if(!en.exists(PlayerFlag)){
-            if (PLAYER_VIEW.entities.length > 0 ){
-                player = PLAYER_VIEW.entities.head.value;
-                var tar = player.get(TargetGridPosition);
-                en.add(tar);
-            }
-        }
-    }
-   
+  
 }

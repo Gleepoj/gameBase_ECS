@@ -1,7 +1,6 @@
 package aleiiioa.systems.collisions;
 
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.gun.BulletComponent;
 import aleiiioa.components.flags.collision.*;
 
 import echoes.Entity;
@@ -26,11 +25,6 @@ class LevelCollisionsSystem extends echoes.System {
                 }
             }
         }
-    }
-
-    @u public function destroyOffscreenBullet(entity:Entity,gp:GridPosition,bul:BulletComponent){
-        if(!isOnScreen(gp))
-            entity.add(new IsDiedFlag());
     }
 
 }

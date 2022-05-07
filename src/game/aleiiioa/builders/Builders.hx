@@ -112,9 +112,7 @@ class Builders {
        
         var sw   = new SteeringWheel();
         var suv   = new SolverUVComponent();
-        var path = new PathComponent(path);
-
-        var gun  = new GunComponent(false);
+        
         var cl   = new CollisionsListener();
       /*   var mod  = new ModifierComponent();
         mod.areaEquation = EqConverge; */
@@ -123,7 +121,7 @@ class Builders {
         var flag  = new VesselFlag();
         var bflag = new BodyFlag();
         
-        new echoes.Entity().add(pos,spr,se,vc,bb,sw,suv,path,gun,cl,flag,tflag,bflag);
+        new echoes.Entity().add(pos,spr,se,vc,bb,sw,suv,cl,flag,tflag,bflag);
     }
 
     public static function basicElement(cx:Int,cy:Int,sec:Int) {
@@ -143,34 +141,6 @@ class Builders {
         new echoes.Entity().add(pos,spr,se,vc,sw,suv,cl,flag,tflag,bflag);
     }
 
-//////BULLET//////////////////////
-    public static function ennemyBullet(gGp:GridPosition,gun:GunComponent) {
-        var pos = new GridPosition(gGp.cx,gGp.cy,gGp.xr,gGp.yr);
-        var spr = new SpriteComponent(D.tiles.fxCircle7);
-        var se  = new SpriteExtension();
-        var vc  = new VelocityComponent();
-
-        var vas = new VelocityAnalogSpeed();
-        var bul = new BulletComponent(gun);
-        var flBody = new BodyFlag();
-        var flag = new EnnemyFlag();
-        
-        new echoes.Entity().add(pos,spr,se,vc,vas,bul,flag,flBody);
-    }
-
-    public static function friendlyBullet(gGp:GridPosition,gun:GunComponent) {
-        var pos = new GridPosition(gGp.cx,gGp.cy,gGp.xr,gGp.yr);
-        var spr = new SpriteComponent(D.tiles.fxCircle7);
-        var se  = new SpriteExtension();
-        var vc  = new VelocityComponent();
-        
-        var vas = new VelocityAnalogSpeed();
-        var bul = new BulletComponent(gun);
-        var flag = new FriendlyFlag();  
-        var flBody = new BodyFlag();
-        
-        new echoes.Entity().add(pos,spr,se,vc,vas,bul,flag,flBody);
-    }
 
     public static function layerComponent(shader:BitmapShader) {
         var layer = new LayerComponent(shader);
