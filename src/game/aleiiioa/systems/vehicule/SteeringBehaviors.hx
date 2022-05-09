@@ -38,9 +38,10 @@ class  SteeringBehaviors extends System {
     }
 
     @u function updateVectors(en:Entity,sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition,suv:SolverUVComponent){
+        sw.solverUVatCoord = suv.uv;
+        
         if(!en.exists(TargetGridPosition)){
-            sw.solverUVatCoord = suv.uv;           
-            
+                      
             sw.location.x = gp.attachX;
             sw.location.y = gp.attachY;
 
@@ -64,8 +65,26 @@ class  SteeringBehaviors extends System {
         if(en.exists(TargetGridPosition))
             sw.steering = seek(sw);
 
+        applyStream(sw);
 
         sw.eulerSteering = eulerIntegration(sw);
+    }
+    
+    private function applyStream(sw:SteeringWheel){
+        var ystream = sw.solverUVatCoord.y;
+        if(sw.solverUVatCoord.y > 0 )
+            ystream *= 0.1;
+        
+        if(sw.solverUVatCoord.y < 0 ){
+            ystream *= 15;
+            sw.maxSpeed = 0.7; 
+            sw.maxForce = 0.16;
+            //trace(ystream);
+        }
+        var stream:Vector = new Vector(sw.solverUVatCoord.x*0.7,ystream);
+        var steer = sw.steering.clone();
+        sw.steering = steer.add(stream);
+        
     }
 
     private function seek(sw:SteeringWheel){
