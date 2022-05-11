@@ -21,7 +21,8 @@ class SteeringWheel {
     public var target:Vector;
     public var targetDistance:Float;
     public var solverUVatCoord:Vector;
-    
+    public var previousStream:Vector;
+    public var previousVelocity:Vector;
     
     public function new() {
         
@@ -34,6 +35,8 @@ class SteeringWheel {
         eulerSteering = new Vector(0,0);
 
         solverUVatCoord = new Vector(0,0);
+        previousStream  = new Vector(0,0);
+        previousVelocity= new Vector(0,0);
         target  = new Vector(0,0);
     }
 }

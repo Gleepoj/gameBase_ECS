@@ -3,7 +3,7 @@ package aleiiioa.systems.core;
 //Bullets are destroy in various collisions systems 
 import echoes.System;
 import echoes.Entity;
-import echoes.View;
+
 
 import aleiiioa.components.core.position.MasterGridPosition;
 

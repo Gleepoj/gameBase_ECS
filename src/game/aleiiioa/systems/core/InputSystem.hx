@@ -33,18 +33,11 @@ class InputSystem extends echoes.System {
 		pad.ix = ca.getAnalogValue(MoveX);
 		pad.iy = ca.getAnalogValue(MoveY);
 
-		pad.tl = ca.input.pad.values[conf.LT];
-	 	pad.tr = ca.input.pad.values[conf.RT];
+		pad.ltAnalog = ca.input.pad.values[conf.LT];
+	 	pad.rtAnalog = ca.input.pad.values[conf.RT];
 		
 		pad.rb = ca.isPressed(WingRight);
 		pad.lb = ca.isPressed(WingLeft);
 
-		if (!ca.isDown(Jump)){
-			pad.inputLock = false;
-		}
-
-		if (ca.isDown(Jump)){
-			pad.inputLock = true;
-		}
 	}
 }

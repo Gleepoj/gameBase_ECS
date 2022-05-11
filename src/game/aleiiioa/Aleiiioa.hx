@@ -58,6 +58,7 @@ class Aleiiioa extends Game {
 
 		//Logic
 		Workflow.addSystem(new SteeringBehaviors());
+		Workflow.addSystem(new PaddleSystem());
 		
 		//Fluid
 		Workflow.add60FpsSystem(new SolverSystem());
@@ -68,7 +69,7 @@ class Aleiiioa extends Game {
 		//Object
 		Workflow.add60FpsSystem(new VelocitySystem());
 		Workflow.add60FpsSystem(new GridPositionActualizer());
-		Workflow.add60FpsSystem(new PaddleSystem());
+		
 		
 		//Graphics
 		//Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));

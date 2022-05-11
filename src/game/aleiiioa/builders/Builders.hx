@@ -46,10 +46,10 @@ class Builders {
 
     public static function basicPlayer(cx:Int,cy:Int) {
         //Shared Component
-        var mpos  = new MasterGridPosition(cx,cy);
-        var tpos  = new TargetGridPosition(cx,cy-2);
+        var mpos      = new MasterGridPosition(cx,cy);
+        var tpos      = new TargetGridPosition(cx,cy-2);
         var paddle_sh = new PaddleSharedComponent();
-        var inp   = new InputComponent();
+        var inp       = new InputComponent();
         
         //Individual Component
         var pos   = new GridPosition(mpos.cx,mpos.cy);
@@ -74,20 +74,19 @@ class Builders {
        
         //Paddle
         
-        var pos_pad   = new GridPosition(mpos.cx,mpos.cy);
+        var pos_pad    = new GridPosition(mpos.cx,mpos.cy);
         var offpos_pad = new GridPositionOffset(0,0);
         offpos_pad.setXYratio(0,-1.5);
         
         var spr_pad  = new SpriteComponent(D.tiles.pagaye);
         var se_pad   = new SpriteExtension();
         
-
         var fl_ch_pad = new ChildFlag();
        
         new echoes.Entity().add(mpos,paddle_sh,pos_pad,offpos_pad,spr_pad,se_pad,fl_ch_pad);
 
         // steering target 
-        var tar_gp    = new GridPosition(tpos.cx,tpos.cy);
+/*      var tar_gp    = new GridPosition(tpos.cx,tpos.cy);
         var tar_spr   = new SpriteComponent(D.tiles.fxCircle15);
         var tar_se    = new SpriteExtension();
         var tar_vc    = new VelocityComponent();
@@ -95,15 +94,16 @@ class Builders {
         var tar_flag  = new TargetedFlag();
         var tar_sflag = new SteeringPointFlag();
 
+         */
         
         
-        
-        new echoes.Entity().add(tpos,paddle_sh,tar_spr,tar_gp,tar_vas,tar_vc,tar_se,tar_flag,tar_sflag);
+        //new echoes.Entity().add(tpos,paddle_sh,tar_spr,tar_gp,tar_vas,tar_vc,tar_se,tar_flag,tar_sflag);
         //new echoes.Entity().add(tpos,paddle_sh,tar_gp,tar_vas,tar_vc,tar_se,tar_flag,tar_sflag);
         return player;
     }
 
     public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {
+        
         var pos = new GridPosition(cx,cy);
         var spr = new SpriteComponent(D.tiles.fxCircle15);
         var se  = new SpriteExtension();
@@ -111,9 +111,9 @@ class Builders {
         var bb  = new BoundingBox();
        
         var sw   = new SteeringWheel();
-        var suv   = new SolverUVComponent();
-        
+        var suv  = new SolverUVComponent();
         var cl   = new CollisionsListener();
+
       /*   var mod  = new ModifierComponent();
         mod.areaEquation = EqConverge; */
        
@@ -130,9 +130,9 @@ class Builders {
         var se  = new SpriteExtension();
         var vc  = new VelocityComponent();
        
-        var sw   = new SteeringWheel();
-        var suv   = new SolverUVComponent();
-        var cl   = new CollisionsListener();
+        var sw   =  new SteeringWheel();
+        var suv  =  new SolverUVComponent();
+        var cl   =  new CollisionsListener();
         
         var tflag = new SpawnTimeComponent(sec);
         var flag  = new VesselFlag();
