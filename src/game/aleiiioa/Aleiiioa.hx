@@ -57,8 +57,8 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new CollisionsListenerActualizer());
 
 		//Logic
-		Workflow.addSystem(new SteeringBehaviors());
-		Workflow.addSystem(new PaddleSystem());
+		Workflow.add60FpsSystem(new SteeringBehaviors());
+		Workflow.add60FpsSystem(new PaddleSystem());
 		
 		//Fluid
 		Workflow.add60FpsSystem(new SolverSystem());

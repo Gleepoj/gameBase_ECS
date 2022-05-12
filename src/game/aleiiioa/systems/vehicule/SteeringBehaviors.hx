@@ -36,75 +36,51 @@ class  SteeringBehaviors extends System {
             sw.location.x = gp.attachX;
             sw.location.y = gp.attachY;
 
-            sw.velocity.x = vc.dx;
-            sw.velocity.y = vc.dy;
+            //sw.velocity.x = vc.dx;
+            //sw.velocity.y = vc.dy;
             
             sw.predicted = VectorUtils.predict(sw.location,sw.velocity);
         }
     }
 
 
-    @u function seek(sw:SteeringWheel,psc:PaddleSharedComponent,pl:PlayerFlag){
+    @u function computeVelocity(sw:SteeringWheel,psc:PaddleSharedComponent,pl:PlayerFlag){
         //Velocity prend en compte l'inertie, l'acceleration, le freinage et la vitesse maximale
-        //Contraindre la rotation en fonction de la vitesse
+        //Ainsi que le courant 
 
-/*         var stream:Vector = sw.solverUVatCoord;
-        sw.target = new Vector(sw.location.x - (psc.leftSX*2), sw.location.y - (psc.leftSY*2));
-        sw.speed = 0.5;
-        sw.desired = sw.location.sub(sw.target);
-        sw.desired.normalize();
-        sw.desired.scale(sw.speed); */
-        if(psc.triggerLB){
-            sw.acceleration = new Vector(0,-10);
-            //trace("oklb");
+        /* if(psc.rb){
+            sw.velocity.add(new Vector(0.2,10));
         }
 
-        sw.velocity = sw.acceleration;
-    }
-
-    @u function arrival(sw:SteeringWheel,psc:PaddleSharedComponent,pl:PlayerFlag){
-       /*  sw.targetDistance = sw.location.distance(sw.target);
-        sw.maxForce = M.pretty(sw.targetDistance/1000,3);
-        var slowRadius:Float = 2;
-        var slow:Float = 1;
-
-        if(sw.targetDistance < slowRadius){
-            slow = sw.targetDistance*0.5 / slowRadius;
+        if(psc.lb){
+            sw.velocity.add(new Vector(-0.2,10));
         }
-        sw.desired.scale(slow);
- */
+        sw.velocity() */
+
     }
+
+
     
     @u function computeSteering(sw:SteeringWheel,psc:PaddleSharedComponent,pl:PlayerFlag){
-        //Steer est la force du gouvernaille elle ne represente que la direction 
-        //La direction est le resultat de la force interne de la barque(continue), du courant(continue), et du coup de pagaie(ponctuelle)
-        
+        //Steer est la force angulaire appliqué au gouvernaille elle ne represente que la direction 
+        // le *1 peut etre remplacer par la masse
 
-        //trace(sw.desired.toString());
+        sw.maxForce = 0.05;
+        sw.desired = new Vector(psc.leftSX,psc.leftSY);
+
+        var lastAngle = sw.vehiculeOrientation;
+
+        var d =(sw.desired.dot(sw.orientation))*sw.maxForce;
+        sw.orientation.x = Math.cos(lastAngle+d)*1;
+        sw.orientation.y = Math.sin(lastAngle+d)*1;
         
-        //sw.steering = sw.desired.sub(sw.velocity);
+        sw.steering = sw.orientation.normalized();
     }
 
-    @u function applyFriction(sw:SteeringWheel,psc:PaddleSharedComponent,pl:PlayerFlag) {
-        var a = sw.acceleration; 
-        a.x *= 0.2;
-         
-         if (M.fabs(a.x) <= 0.5)
-			a.x = 0; 
-
-         a.y *= 0.2; 
-         
-         if (M.fabs(a.y) <= 0.5){
-			a.y = 0; 
-         }
-        
-        sw.acceleration = new Vector(a.x,a.y);
-        
-    }
 
     @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {
         sw.maxForce  =0.1285;
-        sw.maxSpeed  =0.08;
+        sw.maxSpeed  =0.004;
 
         if(!en.exists(PlayerFlag)){
             var d:Vector = sw.solverUVatCoord;
@@ -118,7 +94,7 @@ class  SteeringBehaviors extends System {
     
     
 
-    private function eulerIntegration(sw:SteeringWheel){
+    private function eulerIntegration2(sw:SteeringWheel){
         // not the exact Reynols integration
         var _s = sw.steering.clone();
         var _v = sw.velocity.clone();
@@ -127,6 +103,22 @@ class  SteeringBehaviors extends System {
         var _speed = _v.add(_acceleration);
         var _velocity = VectorUtils.limitVector(_speed,sw.maxSpeed);
 
+        return  _velocity;
+        
+    }
+
+    private function eulerIntegration(sw:SteeringWheel){
+        // not the exact Reynols integration
+        // get polar_vehicule // get polar_desired steering // add desired to vPolar f(x) max torque (max force)
+        // ok steering = normalize vec orientation
+        // get desired velocity // desired -velocity = steering velocity 
+        // steering velocity x.cos(steeringAngle)*steering velocity, y.sin(steeringAngle)*steering velocity
+        // cap maxSpeed() return 
+        var velocity = VectorUtils.limitVector(sw.velocity,sw.maxSpeed);
+        var x = Math.cos(sw.steeringOrientation)*velocity.x;
+        var y = Math.sin(sw.steeringOrientation)*velocity.y;
+
+        var _velocity = new Vector(x,y);
         return  _velocity;
         
     }

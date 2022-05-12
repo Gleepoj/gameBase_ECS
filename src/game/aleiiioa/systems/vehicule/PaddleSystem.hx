@@ -27,16 +27,19 @@ class PaddleSystem extends echoes.System {
         kayakPos = sw.location;
         kayakToTarget = sw.targetDistance;
         kayakTargetAngle = Math.atan2(kayakPos.y-sw.eulerSteering.y,kayakPos.x-sw.eulerSteering.x);
-        spr.rotation = -Math.PI/2 + kayakTargetAngle;
-        kayakAngle = spr.rotation;
-        //spr.rotate(0.1);
+        //spr.rotation = -Math.PI/2 + kayakTargetAngle;
+        kayakAngle =  sw.vehiculeOrientation;
+        //kayakAngle = Math.PI/2 + sw.desiredOrientation;
+        spr.rotation =  sw.vehiculeOrientation ;
+        
+      
         
     }
 
     @u function updatePaddle(pad:PaddleSharedComponent,spr:SpriteComponent,gop:GridPositionOffset){
         //gop.oxr = 0;
         gop.oyr = 0.1 ;
-        var ang = -Math.PI/2 + kayakTargetAngle;
+        var ang = -Math.PI + kayakAngle;
 
         if(!pad.isLocked){
             spr.rotation = ang + pad.angleL+pad.angleR;

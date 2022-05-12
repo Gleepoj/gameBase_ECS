@@ -12,11 +12,12 @@ class SteeringWheel {
     public var yAperture:Float = 1;
 
     public var location :Vector;
-    public var acceleration :Vector;
+
     public var velocity :Vector;
     public var desired  :Vector;
     public var predicted:Vector;
-    
+    public var orientation:Vector;
+
     public var steering :Vector;
     public var eulerSteering:Vector;
 
@@ -25,14 +26,20 @@ class SteeringWheel {
     public var solverUVatCoord:Vector;
     public var previousStream:Vector;
     public var previousVelocity:Vector;
-    
+
+    public var velocityOrientation(get,never):Float; inline function get_velocityOrientation() return velocity.getPolar();
+    public var desiredOrientation (get,never):Float; inline function get_desiredOrientation() return desired.getPolar();
+    public var steeringOrientation (get,never):Float; inline function get_steeringOrientation() return steering.getPolar();
+    public var vehiculeOrientation(get,never):Float; inline function get_vehiculeOrientation() return orientation.getPolar();
+
     public function new() {
         
         location     = new Vector(0,0);
-        velocity     = new Vector(0,0);
-        acceleration = new Vector(0,0);
+        velocity     = new Vector(0,1);
+       
         desired      = new Vector(0,0);
         predicted    = new Vector(0,0);
+        orientation  = new Vector(0,0);
 
         steering      = new Vector(0,0);
         eulerSteering = new Vector(0,0);
