@@ -8,6 +8,7 @@ class VelocitySystem extends echoes.System {
 	public function new() {}
 
 	@u function updateSteeringWheelVessel(gp:GridPosition, vc:VelocityComponent, sw:SteeringWheel) {
+		cancelVelocities(vc);
 		vc.dx += sw.eulerSteering.x;
 		vc.dy += sw.eulerSteering.y;
 		

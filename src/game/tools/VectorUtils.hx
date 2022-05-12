@@ -23,20 +23,30 @@ class VectorUtils {
             return v.dot(u);
     }
 
-    public static function divideVector(v:Vector,f:Float) {
+    public static function divideVector(vec:Vector,f:Float) {
+        var v = vec.clone();
         return new Vector(v.x / f, v.y / f, v.z / f, v.w);
     }
-
+//chiasse molle
     public static function limitVector(vector:Vector,max:Float){
-		var _temp:Vector = new Vector(0,0,0);
+/* 		var _v:Vector = new Vector();
+        var _temp:Vector = vector.clone();
         var lSq = vector.lengthSq();
 		if(lSq > max*max){
 			_temp = divideVector(vector,Math.sqrt(lSq));
-			_temp.scale(max);
+			_v = _temp.scale(max);
 		}
-        return _temp;
+        return _temp; */
 	}
 
+    public static function clampVector(vector:Vector,max:Float){
+        
+        var v = vector.clone();
+        var x = M.fclamp(v.x,-max,max);
+        var y = M.fclamp(v.y,-max,max);
+
+        return new Vector(x,y,0,0);
+    }
 
 
     public static function predict(_location:Vector,_velocity:Vector) {
