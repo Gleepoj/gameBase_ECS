@@ -8,8 +8,8 @@ class VelocitySystem extends echoes.System {
 	public function new() {}
 
 	@u function updateSteeringWheelVessel(gp:GridPosition, vc:VelocityComponent, sw:SteeringWheel) {
-		vc.dx += sw.eulerSteering.x*0.5;
-		vc.dy += sw.eulerSteering.y*0.5;
+		vc.dx += sw.eulerSteering.x;
+		vc.dy += sw.eulerSteering.y;
 		
 		fixedUpdate(gp, vc);
 	}
@@ -58,7 +58,7 @@ class VelocitySystem extends echoes.System {
 				n++;
 			}
 		}
-		applyFriction(vc);
+		//applyFriction(vc);
 	}
 
 	function applyFriction(vc:VelocityComponent) {
