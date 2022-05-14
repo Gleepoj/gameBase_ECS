@@ -48,11 +48,11 @@ class  SteeringBehaviors extends System {
         //Ainsi que le courant 
 
         if(psc.rb){
-            addForce(sw,new Vector(0.05,-1));
+            addForce(sw,new Vector(0.0,-1));
         }
 
         if(psc.lb){
-            addForce(sw,new Vector(-0.05,-1));
+            addForce(sw,new Vector(0.0,-1));
         }
         
     }
@@ -63,24 +63,38 @@ class  SteeringBehaviors extends System {
         //Steer est la force angulaire appliqué au gouvernaille elle ne represente que la direction 
         // le *1 peut etre remplacer par la masse
 
-        sw.maxForce = 0.06 * sw.speed;
-        sw.desired = new Vector(psc.leftSX,psc.leftSY);
+        sw.maxForce = 0.8;// * sw.speed;
 
+        var input = new Vector(psc.leftSX,psc.leftSY,0,0);
+        sw.desired = input;
+
+        if(input.x == 0 && input.y == 0){
+            sw.desired = sw.origin;
+        }
+
+        
         var lastAngle = sw.vehiculeOrientation;
+        var dx = sw.desired.clone();
+        var s = M.sign(dx.x)*1;
         
-        var d =(sw.desired.dot(sw.orientation))*sw.maxForce;
+        var d =(sw.orientation.dot(sw.desired))*sw.maxForce*s;//*sw.maxForce*s;
         
+        //trace(sw.orientation.toString());
+        //trace(sw.desired.toString());
         sw.steering.x = Math.cos(lastAngle+d)*1;
         sw.steering.y = Math.sin(lastAngle+d)*1;
         
         /* sw.steering.normalize();
         sw.steering.scale(sw.speed);
         addForce(sw,sw.steering); */
-        sw.orientation = sw.steering.clone();
-       
+
+        //addForce(sw,orientationPush);
+        sw.orientation = sw.origin;// sw.steering.add(sw.origin);
+        sw.desired.normalize();
+        sw.orientation.normalize();
     }
 
-    @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {
+    @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel,pl:PlayerFlag) {
         //sw.maxForce  =0.002;
         sw.maxSpeed  =0.16;
 

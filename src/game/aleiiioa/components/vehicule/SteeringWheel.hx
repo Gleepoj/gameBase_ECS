@@ -11,8 +11,8 @@ class SteeringWheel {
     public var windSensitivity:Float = 12;
     public var yAperture:Float = 1;
 
+    public var origin   :Vector;
     public var location :Vector;
-
     public var velocity :Vector;
     public var desired  :Vector;
     public var acceleration:Vector;
@@ -29,13 +29,15 @@ class SteeringWheel {
     public var previousVelocity:Vector;
 
     public var speed (get,never):Float; inline function get_speed() return velocity.length();
+    public var originOrientation(get,never):Float; inline function get_originOrientation() return origin.getPolar();
     public var velocityOrientation(get,never):Float; inline function get_velocityOrientation() return velocity.getPolar();
-    public var desiredOrientation (get,never):Float; inline function get_desiredOrientation() return desired.getPolar();
-    public var steeringOrientation (get,never):Float; inline function get_steeringOrientation() return steering.getPolar();
+    public var desiredOrientation (get,never):Float; inline function get_desiredOrientation()  return desired.getPolar();
+    public var steeringOrientation(get,never):Float; inline function get_steeringOrientation() return steering.getPolar();
     public var vehiculeOrientation(get,never):Float; inline function get_vehiculeOrientation() return orientation.getPolar();
 
     public function new() {
         
+        origin       = new Vector(0,-1,0,0);
         location     = new Vector(0,0,0,0);
         velocity     = new Vector(0,0,0,0);
         acceleration = new Vector(0,0,0,0);

@@ -1,5 +1,7 @@
 package aleiiioa.builders;
 
+
+//import aleiiioa.components.flags.vessel.VvehiculeFlag;
 import h3d.Vector;
 import aleiiioa.components.core.camera.FluidScrollerComponent;
 import aleiiioa.components.tool.PerlinNoiseComponent;
@@ -85,6 +87,49 @@ class Builders {
        
         new echoes.Entity().add(mpos,paddle_sh,pos_pad,offpos_pad,spr_pad,se_pad,fl_ch_pad);
 
+        //debug vector 
+        //DESIRED//
+        var v_pos = new GridPosition(mpos.cx,mpos.cy);
+        var v_opod = new GridPositionOffset(0,0);
+
+        var v_spr  = new SpriteComponent(D.tiles.fxTail0);
+        v_spr.setCenterRatio(0,0.5);
+        var v_se   = new SpriteExtension();
+        v_se.baseColor = new Vector(1,0,0);
+        var v_ch = new ChildFlag();
+        var debug_fl = new DebugVectorFlag();
+        var desired_fl = new VdesiredFlag();
+
+        new echoes.Entity().add(mpos,v_pos,v_opod,v_spr,v_se,v_ch,sw,debug_fl,desired_fl);
+
+        //DESIRED//
+        var v2_pos = new GridPosition(mpos.cx,mpos.cy);
+        var v2_opod = new GridPositionOffset(0,0);
+
+        var v2_spr  = new SpriteComponent(D.tiles.fxTail0);
+        v2_spr.setCenterRatio(0,0.5);
+        var v2_se   = new SpriteExtension();
+        v2_se.baseColor = new Vector(1,1,0);
+        var v2_ch = new ChildFlag();
+        var v2_debug_fl = new DebugVectorFlag();
+        var v2_steering_fl = new VsteeringFlag();
+
+        new echoes.Entity().add(mpos,v2_pos,v2_opod,v2_spr,v2_se,v2_ch,sw,v2_debug_fl,v2_steering_fl);
+
+        //Other//
+        var v1_pos = new GridPosition(mpos.cx,mpos.cy);
+        var v1_opod = new GridPositionOffset(0,0);
+
+        var v1_spr  = new SpriteComponent(D.tiles.fxTail0);
+        v1_spr.setCenterRatio(0,0.5);
+        var v1_se   = new SpriteExtension();
+        v1_se.baseColor = new Vector(1,0,1);
+        var v1_ch = new ChildFlag();
+        var v1_debug_fl = new DebugVectorFlag();
+        var v1_steering_fl = new VvehiculeFlag();
+
+        new echoes.Entity().add(mpos,v1_pos,v1_opod,v1_spr,v1_se,v1_ch,sw,v1_debug_fl,v1_steering_fl);
+        
         // steering target 
 /*      var tar_gp    = new GridPosition(tpos.cx,tpos.cy);
         var tar_spr   = new SpriteComponent(D.tiles.fxCircle15);
