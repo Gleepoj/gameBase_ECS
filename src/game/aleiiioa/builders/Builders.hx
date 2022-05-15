@@ -65,7 +65,7 @@ class Builders {
         
         var vc   = new VelocityComponent();
         var sw   = new SteeringWheel();
-        sw.windSensitivity = 0 ; 
+        
         var cl   = new CollisionsListener();
 
         var fl_pl  = new PlayerFlag();
@@ -128,7 +128,7 @@ class Builders {
         var v1_debug_fl = new DebugVectorFlag();
         var v1_steering_fl = new VvehiculeFlag();
 
-        //new echoes.Entity().add(mpos,v1_pos,v1_opod,v1_spr,v1_se,v1_ch,sw,v1_debug_fl,v1_steering_fl);
+        new echoes.Entity().add(mpos,v1_pos,v1_opod,v1_spr,v1_se,v1_ch,sw,v1_debug_fl,v1_steering_fl);
         
         // steering target 
 /*      var tar_gp    = new GridPosition(tpos.cx,tpos.cy);

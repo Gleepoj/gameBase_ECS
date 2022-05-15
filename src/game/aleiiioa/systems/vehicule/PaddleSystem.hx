@@ -36,7 +36,7 @@ class PaddleSystem extends echoes.System {
 
     @u function updateKayakVector(sw:SteeringWheel,spr:SpriteComponent,p:PlayerFlag,m:MasterFlag){
         kayakPos = sw.location;
-        kayakToTarget = sw.targetDistance;
+        
         kayakTargetAngle = Math.atan2(kayakPos.y-sw.eulerSteering.y,kayakPos.x-sw.eulerSteering.x);
         //spr.rotation = -Math.PI/2 + kayakTargetAngle;
         kayakAngle =  sw.vehiculeOrientation;
@@ -83,7 +83,7 @@ class PaddleSystem extends echoes.System {
         
         if(en.exists(VvehiculeFlag)){
             spr.setCenterRatio(0,0.5);
-            spr.rotation = sw.vehiculeOrientation;
+            spr.rotation = sw.board.getPolar();
         }
         
     }

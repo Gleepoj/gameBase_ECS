@@ -53,13 +53,13 @@ class  SteeringBehaviors extends System {
         sw.desired = input;
         
         if(psc.rb){
-            addTorque(sw,0.05); 
-            addForce(sw,new Vector(0,-0.5));   
+            addTorque(sw,0.5); 
+            addForce(sw,new Vector(0,-0.1));   
         }
 
         if(psc.lb){
-            addTorque(sw,-0.05); 
-            addForce(sw,new Vector(0,-0.5));   
+            addTorque(sw,-0.5); 
+            addForce(sw,new Vector(0,-0.1));   
         }
         
     }
