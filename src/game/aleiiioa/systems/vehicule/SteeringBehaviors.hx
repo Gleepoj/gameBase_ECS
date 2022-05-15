@@ -48,11 +48,15 @@ class  SteeringBehaviors extends System {
         //Ainsi que le courant 
 
         if(psc.rb){
-            addForce(sw,new Vector(0.0,-1));
+            var f = new Vector(0.3,-0.1);
+            addForce(sw,f);
+            addTorque(sw,f);
         }
 
         if(psc.lb){
-            addForce(sw,new Vector(0.0,-1));
+            var f = new Vector(-0.3,-0.1);
+            addForce(sw,f);
+            addTorque(sw,f);
         }
         
     }
@@ -63,7 +67,7 @@ class  SteeringBehaviors extends System {
         //Steer est la force angulaire appliqué au gouvernaille elle ne represente que la direction 
         // le *1 peut etre remplacer par la masse
 
-        sw.maxForce = 0.8;// * sw.speed;
+        //sw.maxForce = 0.8;// * sw.speed;
 
         var input = new Vector(psc.leftSX,psc.leftSY,0,0);
         sw.desired = input;
@@ -77,32 +81,26 @@ class  SteeringBehaviors extends System {
         var dx = sw.desired.clone();
         var s = M.sign(dx.x)*1;
         
-        var d =(sw.orientation.dot(sw.desired))*sw.maxForce*s;//*sw.maxForce*s;
+        //var d =(sw.orientation.dot(sw.desired))*sw.maxForce*s;//*sw.maxForce*s;
         
-        //trace(sw.orientation.toString());
-        //trace(sw.desired.toString());
-        sw.steering.x = Math.cos(lastAngle+d)*1;
-        sw.steering.y = Math.sin(lastAngle+d)*1;
+        //sw.steering.x = Math.cos(lastAngle+d)*1;
+        //sw.steering.y = Math.sin(lastAngle+d)*1;
         
-        /* sw.steering.normalize();
-        sw.steering.scale(sw.speed);
-        addForce(sw,sw.steering); */
 
-        //addForce(sw,orientationPush);
-        sw.orientation = sw.origin;// sw.steering.add(sw.origin);
+        sw.orientation = sw.origin;
         sw.desired.normalize();
         sw.orientation.normalize();
     }
 
     @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel,pl:PlayerFlag) {
-        //sw.maxForce  =0.002;
+        sw.maxForce  =0.002;
         sw.maxSpeed  =0.16;
 
         if(!en.exists(PlayerFlag)){
             var d:Vector = sw.solverUVatCoord;
             sw.steering  = d.sub(sw.velocity);
         } 
-        //applyStream(sw);
+        
 
         sw.eulerSteering = eulerIntegration(sw);
     }
@@ -121,6 +119,17 @@ class  SteeringBehaviors extends System {
         var v1 = sw.velocity.clone();
         var v2 = v1.add(sw.acceleration);
         var v = VectorUtils.clampVector(v2,sw.maxSpeed);
+        var v3 = v.normalized();
+        
+        var vo = sw.vehiculeOrientation;
+
+        var vel = v.length();
+
+        var vec = new Vector(Math.cos(sw.angle)*vel,Math.sin(sw.angle)*vel);
+
+        sw.steering = vec.normalized();
+        var o = sw.orientation.add(sw.steering);
+        sw.orientation = o;
         sw.velocity = v.clone();
 
         applyFriction(sw);
@@ -132,7 +141,15 @@ class  SteeringBehaviors extends System {
     private function addForce(sw:SteeringWheel,f:Vector){
         var acc = sw.acceleration.clone();
         sw.acceleration = acc.add(f);
-        //trace("add force");
+    }
+
+    private function addTorque(sw:SteeringWheel,f:Vector){
+        var e = f.normalized();
+        var p = e.getPolar();
+        var p1 = M.fclamp(p,sw.vehiculeOrientation-sw.maxForce,sw.vehiculeOrientation+sw.maxForce);
+        sw.angle += p1 ;
+        //trace(p1);
+        //trace(sw.angle);
     }
 
     function applyFriction(sw:SteeringWheel){
