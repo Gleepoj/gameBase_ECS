@@ -1,13 +1,9 @@
 package aleiiioa.systems.vehicule;
 
-
-import aleiiioa.components.vehicule.PaddleSharedComponent;
 import h3d.Vector;
 
 import echoes.Entity;
 import echoes.System;
-
-
 
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.solver.SolverUVComponent;
