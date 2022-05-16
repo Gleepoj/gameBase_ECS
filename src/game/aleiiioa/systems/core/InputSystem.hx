@@ -30,6 +30,7 @@ class InputSystem extends echoes.System {
 	}
 	
 	@u function inputPlayerPaddle(inp:InputComponent,pad:PaddleSharedComponent){
+		
 		pad.ix = ca.getAnalogValue(MoveX);
 		pad.iy = ca.getAnalogValue(MoveY);
 
@@ -38,6 +39,9 @@ class InputSystem extends echoes.System {
 		
 		pad.rb = ca.isPressed(WingRight);
 		pad.lb = ca.isPressed(WingLeft);
+
+		pad.xb = ca.isDown(Jump);
+		pad.bb = ca.isDown(Blow);
 
 	}
 }

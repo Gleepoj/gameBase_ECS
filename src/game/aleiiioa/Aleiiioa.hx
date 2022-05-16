@@ -61,8 +61,8 @@ class Aleiiioa extends Game {
 		Workflow.add60FpsSystem(new PaddleSystem());
 		
 		//Fluid
-		Workflow.add60FpsSystem(new SolverSystem());
-		Workflow.add60FpsSystem(new ModifierSystem());
+		Workflow.addSystem(new SolverSystem());
+		Workflow.addSystem(new ModifierSystem());
 		Workflow.add60FpsSystem(new FluidScrollingSystem());
 		
 		
@@ -73,7 +73,7 @@ class Aleiiioa extends Game {
 		
 		//Graphics
 		//Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
-		Workflow.add60FpsSystem(new SolverDebugRenderer(Game.ME.scroller));
+		//Workflow.add60FpsSystem(new SolverDebugRenderer(Game.ME.scroller));
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		

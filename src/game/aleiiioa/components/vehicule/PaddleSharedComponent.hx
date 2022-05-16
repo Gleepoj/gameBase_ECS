@@ -16,6 +16,12 @@ class PaddleSharedComponent {
     public var lx:Float = 0;
     public var ly:Float = 0;
 
+    public var xb:Bool = false;
+    public var bb:Bool = false;
+
+    public var B(get,never):Bool; inline function get_B() return bb ;
+    public var X(get,never):Bool; inline function get_X() return xb ;
+
     public var leftSX(get,never):Float; inline function get_leftSX() return ix;
     public var leftSY(get,never):Float; inline function get_leftSY() return iy;
 

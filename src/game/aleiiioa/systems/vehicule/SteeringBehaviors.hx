@@ -1,6 +1,6 @@
 package aleiiioa.systems.vehicule;
 
-import hxd.poly2tri.Orientation;
+
 import aleiiioa.components.vehicule.PaddleSharedComponent;
 import h3d.Vector;
 
@@ -53,13 +53,22 @@ class  SteeringBehaviors extends System {
         sw.desired = input;
         
         if(psc.rb){
-            addTorque(sw,0.5); 
-            addForce(sw,new Vector(0,-0.1));   
+            addTorque(sw,0.1); 
+            addForce(sw,new Vector(0,-0.2));   
         }
 
         if(psc.lb){
-            addTorque(sw,-0.5); 
-            addForce(sw,new Vector(0,-0.1));   
+            addTorque(sw,-0.1); 
+            addForce(sw,new Vector(0,-0.2));   
+            //trace(sw.acceleration);
+        }
+
+        if (psc.xb){
+            addTorque(sw,0.01);
+        }
+
+        if (psc.bb){
+            addTorque(sw,-0.01);
         }
         
     }
@@ -88,7 +97,9 @@ class  SteeringBehaviors extends System {
 
         sw.eulerSteering = eulerIntegration(sw);
 
+        accelerationFriction(sw);
         applyFriction(sw);
+
     }
 
     
@@ -115,6 +126,14 @@ class  SteeringBehaviors extends System {
         var a = new Vector(Math.cos(or+a)*1,Math.sin(or+a)*1);
 
         sw.steering = a.normalized();
+    }
+
+    private function accelerationFriction(sw:SteeringWheel){
+        var zero = new Vector();
+        var friction = new Vector();
+        var a = sw.acceleration.clone();
+        friction.lerp(zero,a,0.99);
+        sw.acceleration = friction;
     }
 
     function applyFriction(sw:SteeringWheel){
