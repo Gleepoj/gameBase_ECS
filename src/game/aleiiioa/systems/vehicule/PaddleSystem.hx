@@ -1,12 +1,10 @@
 package aleiiioa.systems.vehicule;
 
+import aleiiioa.components.vehicule.VehiculeComponent;
 import echoes.Entity;
 import hxd.Math;
 import h3d.Vector;
 import aleiiioa.components.flags.hierarchy.MasterFlag;
-import aleiiioa.components.vehicule.SteeringWheel;
-import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
-import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.flags.vessel.*;
 
 import aleiiioa.components.vehicule.PaddleSharedComponent;
@@ -34,17 +32,11 @@ class PaddleSystem extends echoes.System {
         
     }
 
-    @u function updateKayakVector(sw:SteeringWheel,spr:SpriteComponent,p:PlayerFlag,m:MasterFlag){
+    @u function updateKayakVector(sw:VehiculeComponent,spr:SpriteComponent,p:PlayerFlag,m:MasterFlag){
         kayakPos = sw.location;
-        
-        kayakTargetAngle = Math.atan2(kayakPos.y-sw.eulerSteering.y,kayakPos.x-sw.eulerSteering.x);
-        //spr.rotation = -Math.PI/2 + kayakTargetAngle;
-        kayakAngle =  sw.vehiculeOrientation;
+        kayakAngle =  sw.orientation.getPolar();
         kayakOrientation = sw.orientation;
-        //kayakAngle = Math.PI/2 + sw.desiredOrientation;
-        spr.rotation =  sw.vehiculeOrientation ;
-        
-      
+        spr.rotation =  kayakAngle;
         
     }
 
@@ -68,16 +60,50 @@ class PaddleSystem extends echoes.System {
         
     }
 
-    @u function updateDebugVector(en:Entity,sw:SteeringWheel,spr:SpriteComponent,gop:GridPositionOffset,d:DebugVectorFlag) {
+    @u function getInput(vhc:VehiculeComponent,psc:PaddleSharedComponent,pl:PlayerFlag){
+ 
+        var stream = vhc.stream;
+        vhc.desired = new Vector(psc.leftSX,psc.leftSY,0,0);
+       
+        
+        if(psc.rb){
+            vhc.addTorque(0.15); 
+            vhc.addForce(new Vector(0,-0.6));   
+        }
+
+        if(psc.lb){
+            vhc.addTorque(-0.15); 
+            vhc.addForce(new Vector(0,-0.6));   
+            //trace(vhc.acceleration);
+        }
+
+        if (psc.xb){
+            vhc.addTorque(0.02);
+            vhc.addForce(new Vector(0,0.01));
+        }
+
+        if (psc.bb){
+            vhc.addTorque(-0.02);
+            vhc.addForce(new Vector(0,0.01));
+        }
+
+        stream.scale(0.13);
+        var streamDir = M.sign(stream.x);
+        vhc.addTorque((streamDir*stream.length())*0.1);
+        vhc.addForce(stream);
+    }
+
+
+    @u function updateDebugVector(en:Entity,sw:VehiculeComponent,spr:SpriteComponent,gop:GridPositionOffset,d:DebugVectorFlag) {
         if(en.exists(VdesiredFlag)){
             spr.setCenterRatio(0,0.5);
-            spr.rotation = sw.desiredOrientation;
+            spr.rotation = sw.desired.getPolar();
         }
 
 
         if(en.exists(VsteeringFlag)){
             spr.setCenterRatio(0,0.5);
-            spr.rotation = sw.steeringOrientation;
+            spr.rotation = sw.steering.getPolar();
         }
 
         
@@ -88,62 +114,5 @@ class PaddleSystem extends echoes.System {
         
     }
 
-    function updatePaddledd(pad:PaddleSharedComponent,spr:SpriteComponent,gop:GridPositionOffset){
-        
-        //gop.oxr = 0;
-        gop.oyr = 0.1 ;
-        var ang = -Math.PI/2 + kayakAngle;
-        var inputLeftStick = new Vector(pad.leftSX,pad.leftSY,0,0);
-        if(Math.abs(inputLeftStick.x) <0.1)
-            inputLeftStick.x = 0;
-        
-        if(Math.abs(inputLeftStick.y) <0.1)
-            inputLeftStick.y = 0;
-
-        if(!pad.isLocked){
-            //spr.rotation = ang + pad.angleL+pad.angleR;
-        }
-
-        inputLeftStick.normalize();
-        var i = inputLeftStick.add(kayakOrientation);
-        var dot =inputLeftStick.dot(kayakOrientation);
-        
-        if(dot==-1){
-            spr.colorize(0xff0000);
-            spr.rotation = ang;
-            gop.oxr = 0;
-            gop.oyr = 0;
-        }
-
-        if(dot>-1){
-            spr.colorize(0x00ff00);
-            //gop.oyr = inputLeftStick.y;
-            //gop.oxr = inputLeftStick.x/2;
-            //spr.rotation = ang + i.getPolar();
-        }
-        if(dot>-0.5){
-            spr.colorize(0xff00ff);
-            //gop.oxr = inputLeftStick.x/1.2;
-            //gop.oyr = inputLeftStick.y/2;
-            //spr.rotation = ang + i.getPolar();
-        }
-        if(dot>0.7){
-            spr.colorize(0xff0000);
-            spr.rotation = ang;
-            gop.oxr = 0;
-            gop.oyr = 0;
-        }
-         
-        //trace(dot);
-        
-        //spr.rotation = ang + inputLeftStick.getPolar();
-        if(pad.isLocked){
-            spr.rotation = 0;
-        }
-    }
-/*     @u function updateKayak(pad:PaddleSharedComponent,spr:SpriteComponent,p:PlayerFlag,m:MasterFlag){
-        var ang = -Math.PI/2 + kayakTargetAngle;
-        spr.rotation = ang;
-    } */
-   
+    
 }

@@ -19,7 +19,6 @@ import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.*;
 
 import aleiiioa.components.solver.*;
-import aleiiioa.components.gun.*;
 import aleiiioa.components.vehicule.*;
 
 
@@ -64,7 +63,7 @@ class Builders {
         spr.pivot.setCenterRatio(0.5,0.5);
         
         var vc   = new VelocityComponent();
-        var sw   = new SteeringWheel();
+        var sw   = new VehiculeComponent();
         
         var cl   = new CollisionsListener();
 
@@ -100,7 +99,7 @@ class Builders {
         var debug_fl = new DebugVectorFlag();
         var desired_fl = new VdesiredFlag();
 
-        new echoes.Entity().add(mpos,v_pos,v_opod,v_spr,v_se,v_ch,sw,debug_fl,desired_fl);
+        //new echoes.Entity().add(mpos,v_pos,v_opod,v_spr,v_se,v_ch,sw,debug_fl,desired_fl);
 
         //DESIRED//
         var v2_pos = new GridPosition(mpos.cx,mpos.cy);
@@ -114,7 +113,7 @@ class Builders {
         var v2_debug_fl = new DebugVectorFlag();
         var v2_steering_fl = new VsteeringFlag();
 
-        new echoes.Entity().add(mpos,v2_pos,v2_opod,v2_spr,v2_se,v2_ch,sw,v2_debug_fl,v2_steering_fl);
+        //new echoes.Entity().add(mpos,v2_pos,v2_opod,v2_spr,v2_se,v2_ch,sw,v2_debug_fl,v2_steering_fl);
 
         //Other//
         var v1_pos = new GridPosition(mpos.cx,mpos.cy);
@@ -128,7 +127,7 @@ class Builders {
         var v1_debug_fl = new DebugVectorFlag();
         var v1_steering_fl = new VvehiculeFlag();
 
-        new echoes.Entity().add(mpos,v1_pos,v1_opod,v1_spr,v1_se,v1_ch,sw,v1_debug_fl,v1_steering_fl);
+        //new echoes.Entity().add(mpos,v1_pos,v1_opod,v1_spr,v1_se,v1_ch,sw,v1_debug_fl,v1_steering_fl);
         
         // steering target 
 /*      var tar_gp    = new GridPosition(tpos.cx,tpos.cy);
@@ -155,7 +154,7 @@ class Builders {
         var vc  = new VelocityComponent();
         var bb  = new BoundingBox();
        
-        var sw   = new SteeringWheel();
+        var sw   = new VehiculeComponent();
         var suv  = new SolverUVComponent();
         var cl   = new CollisionsListener();
 
@@ -175,7 +174,7 @@ class Builders {
         var se  = new SpriteExtension();
         var vc  = new VelocityComponent();
        
-        var sw   =  new SteeringWheel();
+        var sw   =  new VehiculeComponent();
         var suv  =  new SolverUVComponent();
         var cl   =  new CollisionsListener();
         

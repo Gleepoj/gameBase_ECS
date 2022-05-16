@@ -5,6 +5,7 @@ import h3d.Vector;
 class VehiculeComponent {
     public var maxSpeed = 0.8;//0.8
     public var maxForce = 0.5;//0.05
+    public var friction = 0.993;
     
     public var mass = 1.6;// * Math.random(2);//Math.random(3);
 
@@ -44,4 +45,23 @@ class VehiculeComponent {
         euler = new Vector(0,0,0,0);
 
     }
+
+    public function addForce(f:Vector){
+        var a = acceleration.clone();
+        acceleration = a.add(f);
+    }
+
+    public function addTorque(a:Float){
+        var or = steeringAngle;
+        var a = new Vector(Math.cos(or+a)*1,Math.sin(or+a)*1);
+        steering = a.normalized();
+    }
+
+    public function accelerationFriction(){
+        var zero = new Vector();
+        var frict = new Vector();
+        var a = acceleration.clone();
+        frict.lerp(zero,a,friction);
+        acceleration = frict;
+    }    
 }

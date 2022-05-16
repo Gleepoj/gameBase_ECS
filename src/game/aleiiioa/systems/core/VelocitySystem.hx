@@ -1,24 +1,25 @@
 package aleiiioa.systems.core;
 
+import aleiiioa.components.vehicule.VehiculeComponent;
 import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.vehicule.SteeringWheel;
 
 class VelocitySystem extends echoes.System {
 	public function new() {}
 
-	@u function updateSteeringWheelVessel(gp:GridPosition, vc:VelocityComponent, sw:SteeringWheel) {
+	@u function updateVehiculeDrivenEntity(gp:GridPosition, vc:VelocityComponent, sw:VehiculeComponent) {
 		cancelVelocities(vc);
-		vc.dx += sw.eulerSteering.x;
-		vc.dy += sw.eulerSteering.y;
+		vc.dx += sw.euler.x;
+		vc.dy += sw.euler.y;
 		
 		fixedUpdate(gp, vc);
 	}
 
-	@u function updateAnalogSpeed(gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed) {
+	@u function updateAnalogDrivenEntity(gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed) {
 		vc.dx = vas.xSpeed*0.5;
 		vc.dy = vas.ySpeed*0.5;
 		fixedUpdate(gp, vc);
+		//applyFriction(vc);
 	}
 
 	function fixedUpdate(gp:GridPosition, vc:VelocityComponent) {
@@ -59,7 +60,6 @@ class VelocitySystem extends echoes.System {
 				n++;
 			}
 		}
-		//applyFriction(vc);
 	}
 
 	function applyFriction(vc:VelocityComponent) {
