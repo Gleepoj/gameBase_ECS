@@ -26,7 +26,7 @@ class Aleiiioa extends Game {
 		Builders.basicPlayer(player.cx,player.cy);
 		
  		for (m in level.data.l_Entities.all_Modifier){
-			Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
+			//Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
 		} 
 
 	/* 	for (b in level.data.l_Entities.all_Vessel){

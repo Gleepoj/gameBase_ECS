@@ -18,6 +18,8 @@
 		If the JSON changes on runtime, the `myValue` field is kept up-to-date, allowing testing without recompiling. IMPORTANT: this hot-reloading only works if the project was built using the `-debug` flag. In release builds, all values become constants and are fully embedded.
 **/
 
+import h3d.Vector;
+
 @:build( assets.ConstDbBuilder.build("data.cdb", "const.json") )
 class Const {
 #if !macro
@@ -78,6 +80,15 @@ class Const {
 	public static var DP_TOP      = _inc++;
 	public static var DP_UI 	  = _inc++;
 
-
+	//Floor norm 
+	public static var NORTH = new Vector(0,-1).normalized();
+	public static var NORTH_EAST = new Vector(1,-1).normalized();
+	public static var EAST = new Vector(1,0).normalized();
+	public static var SOUTH_EAST = new Vector(1,1).normalized();
+	public static var SOUTH = new Vector(0,1).normalized();
+	public static var SOUTH_WEST = new Vector(-1,1).normalized();
+	public static var WEST = new Vector(-1,0).normalized();
+	public static var NORTH_WEST = new Vector(-1,-1).normalized();
+ 
 #end
 }

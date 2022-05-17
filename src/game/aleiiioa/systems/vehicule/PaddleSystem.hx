@@ -1,12 +1,14 @@
 package aleiiioa.systems.vehicule;
 
-import aleiiioa.components.vehicule.VehiculeComponent;
+
 import echoes.Entity;
 import hxd.Math;
 import h3d.Vector;
+
 import aleiiioa.components.flags.hierarchy.MasterFlag;
 import aleiiioa.components.flags.vessel.*;
 
+import aleiiioa.components.vehicule.VehiculeComponent;
 import aleiiioa.components.vehicule.PaddleSharedComponent;
 import aleiiioa.components.core.position.GridPositionOffset;
 import aleiiioa.components.core.rendering.*;
@@ -22,10 +24,10 @@ class PaddleSystem extends echoes.System {
     public var input:Vector = new Vector(0,0);
 
     public var dot(get,never):Float;inline function get_dot() return input.dot(kayakOrientation) ;
-
-    public var isIdle(get,never):Bool; inline function get_isIdle () return dot>0.7;
-    public var isSided(get,never):Bool; inline function get_isSided () return dot>-0.5 && dot<=0.7 ;
-    public var isBackward(get,never):Bool; inline function get_isBackward () return dot >=-1 && dot<=-0.5 ;
+ 
+    public var isIdle(get,never):Bool;    inline function get_isIdle () return dot>0.7;
+    public var isSided(get,never):Bool;   inline function get_isSided () return dot>-0.5 && dot<=0.7 ;
+    public var isBackward(get,never):Bool;inline function get_isBackward () return dot >=-1 && dot<=-0.5 ;
     
     
     public function new() {
@@ -37,6 +39,7 @@ class PaddleSystem extends echoes.System {
         kayakAngle =  sw.orientation.getPolar();
         kayakOrientation = sw.orientation;
         spr.rotation =  kayakAngle;
+
         
     }
 
@@ -87,9 +90,9 @@ class PaddleSystem extends echoes.System {
             vhc.addForce(new Vector(0,0.01));
         }
 
-        stream.scale(0.13);
+        stream.scale(0.09);
         var streamDir = M.sign(stream.x);
-        vhc.addTorque((streamDir*stream.length())*0.1);
+        vhc.addTorque((streamDir*stream.length())*0.2);
         vhc.addForce(stream);
     }
 

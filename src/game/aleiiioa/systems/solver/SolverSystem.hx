@@ -1,6 +1,7 @@
 package aleiiioa.systems.solver;
 
 
+import h3d.Vector;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.camera.FluidScrollerComponent;
 import dn.Bresenham;
@@ -74,6 +75,7 @@ class SolverSystem extends echoes.System {
     }
     
     @u function globalSolverUpdate(){
+       
         solver.update();
         setLevelCollisionObstacles();
     }
@@ -82,20 +84,21 @@ class SolverSystem extends echoes.System {
 
 
         var bottomFluidScroll = topFluidScroll + Const.FLUID_MAX_HEIGHT;
-        var walls:Array<{x:Int,y:Int}> = [];
+        var walls:Array<{x:Int,y:Int,n:Vector}> = [];
 
         for (cx in 0...level.cWid){
             for (cy in topFluidScroll...bottomFluidScroll){
                 if(level.hasCollision(cx,cy)){
                     var cyFluid = cy-topFluidScroll;
-                    walls.push({x:cx,y:cyFluid});
+                    var norm = getWallNormal(cx,cy);
+                    walls.push({x:cx,y:cyFluid,n:norm});
                 }
             }
         }
 
         for (w in walls){
             var index = solver.getIndexForCellPosition(w.x,w.y);
-            setUVatIndex(0,0,index);
+            setUVatIndex(w.n.x,w.n.y,index);
         }
         
     }
@@ -138,6 +141,27 @@ class SolverSystem extends echoes.System {
         solver.v[index] = v;
         solver.uOld[index] = u;
         solver.vOld[index] = v;
+    }
+
+
+    private function getWallNormal(cx:Int,cy:Int){
+        var dir = new Vector();
+
+        if(!level.hasCollision(cx,cy-1))
+            dir.y -= 1;// reduce counter stream instead of 1
+        
+        if(!level.hasCollision(cx,cy+1))
+            dir.y += 0.4;
+
+        if(!level.hasCollision(cx-1,cy))
+            dir.x -= 1;
+
+        if(!level.hasCollision(cx+1,cy))
+            dir.x += 1;
+        
+        //dir.normalize();
+        
+        return dir.multiply(1);
     }
 
 }
