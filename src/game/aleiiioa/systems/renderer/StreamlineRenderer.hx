@@ -88,7 +88,7 @@ class StreamlineRenderer extends echoes.System {
             lc.bitmap.setPosition(0,scrollGridPosition.attachY);
         
         var tex =  lc.bitmap.tile.getTexture();
-        streamlineShader.texture = tex;
+        streamlineShader.wind = tex;
         lc.bitmap.addShader(streamlineShader);
         
         gameScroller.add(lc.bitmap,Const.DP_BG);
