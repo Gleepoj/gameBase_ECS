@@ -73,8 +73,9 @@ class Aleiiioa extends Game {
 		
 		
 		//Graphics
-		//Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
+		
 		Workflow.add60FpsSystem(new SolverDebugRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new StreamlineRenderer(Game.ME.scroller));
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		
