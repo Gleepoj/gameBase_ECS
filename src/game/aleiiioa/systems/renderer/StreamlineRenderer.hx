@@ -34,7 +34,7 @@ class StreamlineRenderer extends echoes.System {
     var pressureBitmap:BitmapData;
     var bitmap:Bitmap;
     var shader:BitmapShader;
-    var blur:Blur;
+   
     var streamlineShader:StreamlineShader;
     
     var scrollGridPosition:GridPosition;
@@ -43,6 +43,7 @@ class StreamlineRenderer extends echoes.System {
         this.gameScroller = _scroller;    
         //streamlineShader = new StreamlineShader();
         Builders.layerComponent(new BitmapShader()); 
+   
     }
     
     @a function onLayerAdded(lc:LayerComponent){
@@ -57,9 +58,7 @@ class StreamlineRenderer extends echoes.System {
 
         lc.bitmap.addShader(streamlineShader);
         this.gameScroller.add(lc.bitmap,Const.DP_BG);
-        blur = new Blur();
-        //blur.radius = 300;
-        //blur.linear = 0;
+       
         scrollGridPosition = null;
     }
 
@@ -77,10 +76,10 @@ class StreamlineRenderer extends echoes.System {
         var uv  = new Vector(cc.u,cc.v);
         var uvl = uv.length();
         var uvn = uv.normalized();
-        var b = new Vector(0.5,0.5,1);
+        var b = new Vector(0.5,0.5,1,1);
         var n = uvn.multiply(0.5);
-        var color = b.sub(n);
-        //var col = new Vector(uvl,0,1-uvl,0.5);
+        var color = b.add(n);
+       
         pressureBitmap.setPixel(cc.i, cc.j,color.toColor());
 
     }
@@ -94,18 +93,13 @@ class StreamlineRenderer extends echoes.System {
        
         if(scrollGridPosition != null)
             lc.bitmap.setPosition(0,scrollGridPosition.attachY);
-        
+       
         var tex =  lc.bitmap.tile.getTexture();
         streamlineShader.wind = tex;
-        
         lc.bitmap.addShader(streamlineShader);
-        blur.bind(lc.bitmap);
-        
-        blur.radius = 300;
-        blur.linear = 10;
-        
+       
+
         gameScroller.add(lc.bitmap,Const.DP_BG);
-        //blur.unbind(lc.bitmap);
     }
 
     @r function onLayerRemoved(lc:LayerComponent){

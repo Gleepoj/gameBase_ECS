@@ -11,6 +11,35 @@ class StreamlineShader extends hxsl.Shader {
         @:import h3d.shader.Base2d;
 		@param var wind:Sampler2D;
         @param var rand_seed:Float;
+
+        @param var rand_constants:Vec3;
+        
+        
+		function fragment() {
+            var uv = vec2(calculatedUV.xy);
+            var color:Vec4 = wind.get(input.uv);
+            //var pos:Vec2 = vec2(color.r / 255.0 + color.g,color.b / 255.0 + color.a);
+            
+            pixelColor = vec4(color);
+        }
+	}
+
+
+    public function new(tex:Texture) {
+		super();
+		wind = tex;
+        rand_seed = 0.223422;
+      
+        rand_constants = new Vector(12.9898, 78.233, 4375.85453,0);
+	}
+}
+
+class StreamlineShader23 extends hxsl.Shader {
+    static var SRC = {
+		
+        @:import h3d.shader.Base2d;
+		@param var wind:Sampler2D;
+        @param var rand_seed:Float;
         @param var speed:Float;
 		@param var frequency:Float;
 		@param var amplitude:Float;
