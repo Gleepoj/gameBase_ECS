@@ -31,14 +31,6 @@ class Aleiiioa extends Game {
 			Builders.basicModifier(m.cx,m.cy,m.f_AreaEquation);
 		} 
 
-	/* 	for (b in level.data.l_Entities.all_Vessel){
-			Builders.basicHunter(b.cx,b.cy,b.f_Path,b.f_spawn_sec);
-		} */
-
-/* 		for (e in level.data.l_Entities.all_Elements){
-			Builders.basicElement(e.cx,e.cy,e.f_spawn_sec);
-		} */
-
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
 		var cameraFocus = Builders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
 		var cameraFocusPosition = cameraFocus.get(GridPosition);

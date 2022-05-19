@@ -1,7 +1,6 @@
 package aleiiioa.builders;
 
 
-//import aleiiioa.components.flags.vessel.VvehiculeFlag;
 import h3d.Vector;
 import aleiiioa.components.core.camera.FluidScrollerComponent;
 import aleiiioa.components.tool.PerlinNoiseComponent;
@@ -145,46 +144,6 @@ class Builders {
         //new echoes.Entity().add(tpos,paddle_sh,tar_gp,tar_vas,tar_vc,tar_se,tar_flag,tar_sflag);
         return player;
     }
-
-    public static function basicHunter(cx:Int,cy:Int,path:Array<ldtk.Point>,sec:Int) {
-        
-        var pos = new GridPosition(cx,cy);
-        var spr = new SpriteComponent(D.tiles.fxCircle15);
-        var se  = new SpriteExtension();
-        var vc  = new VelocityComponent();
-        var bb  = new BoundingBox();
-       
-        var sw   = new VehiculeComponent();
-        var suv  = new SolverUVComponent();
-        var cl   = new CollisionsListener();
-
-      /*   var mod  = new ModifierComponent();
-        mod.areaEquation = EqConverge; */
-       
-        var tflag = new SpawnTimeComponent(sec);
-        var flag  = new VesselFlag();
-        var bflag = new BodyFlag();
-        
-        new echoes.Entity().add(pos,spr,se,vc,bb,sw,suv,cl,flag,tflag,bflag);
-    }
-
-    public static function basicElement(cx:Int,cy:Int,sec:Int) {
-        var pos = new GridPosition(cx,cy);
-        var spr = new SpriteComponent(D.tiles.fxCircle15);
-        var se  = new SpriteExtension();
-        var vc  = new VelocityComponent();
-       
-        var sw   =  new VehiculeComponent();
-        var suv  =  new SolverUVComponent();
-        var cl   =  new CollisionsListener();
-        
-        var tflag = new SpawnTimeComponent(sec);
-        var flag  = new VesselFlag();
-        var bflag = new BodyFlag();
-        
-        new echoes.Entity().add(pos,spr,se,vc,sw,suv,cl,flag,tflag,bflag);
-    }
-
 
     public static function layerComponent(shader:BitmapShader) {
         var layer = new LayerComponent(shader);
