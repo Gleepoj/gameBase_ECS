@@ -49,6 +49,7 @@ class Hud extends dn.Process {
 		debugText.x = Std.int( w()/Const.UI_SCALE - 4 - debugText.textWidth );
 	}
 
+	
 
 	/** Pop a quick s in the corner **/
 	public function notify(str:String, color=0xA56DE7) {
