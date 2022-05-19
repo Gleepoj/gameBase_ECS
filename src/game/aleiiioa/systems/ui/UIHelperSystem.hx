@@ -1,14 +1,12 @@
 package aleiiioa.systems.ui;
+
 import aleiiioa.components.ui.UICheckComponent;
-import aleiiioa.builders.UIBuild;
 import aleiiioa.components.ui.UISliderComponent;
 
-class HelperSystem extends echoes.System {
+class UIHelperSystem extends echoes.System {
     
     var fui : h2d.Flow;
-    var tv:Bool;
-    var tf:Float;
-
+    
     public function new() {
         
         var helper = new h2d.Layers();
@@ -21,10 +19,10 @@ class HelperSystem extends echoes.System {
         fui.verticalSpacing = 5;
         fui.padding = 10;
         
-        tv = false;
-        tf = 0.3;
-        UIBuild.slider("Speed", function() return tf, function(v) tf = v, 0, 10);
-        UIBuild.check("Loop", function() return tv, function(v)  tv = v );
+        //SAMPLE USAGE //
+        
+        //UIBuild.slider("Speed", function() return tf, function(v) tf = v, 0, 10);
+        //UIBuild.check("Loop", function() return tv, function(v)  tv = v );
     }
 
     private function getFont() {
@@ -93,39 +91,8 @@ class HelperSystem extends echoes.System {
                 redraw();
             };
             redraw();
-            return i;
         }
     
 }
 
-   /*  @a function onButtonAdded(ubc:UIButtonComponent) {
-        //label /on click
-		var f = new h2d.Flow(fui);
-		f.padding = 5;
-		f.paddingBottom = 7;
-		f.backgroundTile = h2d.Tile.fromColor(0x404040);
-		var tf = new h2d.Text(getFont(), f);
-		tf.text = ubc.label;
-		f.enableInteractive = true;
-		f.interactive.cursor = Button;
-		f.interactive.onClick = ubc.onClick(); //function(_) onClick();
-		f.interactive.onOver = function(_) f.backgroundTile = h2d.Tile.fromColor(0x606060);
-		f.interactive.onOut = function(_) f.backgroundTile = h2d.Tile.fromColor(0x404040);
-		return f;
-	} */
-
-
-
-
-
-
-
-
-//addSlider("Amount", function() return parts.amount, function(v) parts.amount = v);
-//addSlider("Speed", function() return g.speed, function(v) g.speed = v, 0, 10);
-//ddSlider("Gravity", function() return g.gravity, function(v) g.gravity = v, 0, 5);
-//addCheck("Sort", function() return g.sortMode == Dynamic, function(v) g.sortMode = v ? Dynamic : None);
-//addCheck("Loop", function() return g.emitLoop, function(v) { g.emitLoop = v; if( !v ) parts.currentTime = 0; });
-//addCheck("Move", function() return moving, function(v) moving = v);
-//addCheck("Relative", function() return g.isRelative, function(v) g.isRelative = v);
-
+ 

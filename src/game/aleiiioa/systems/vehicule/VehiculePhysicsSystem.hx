@@ -1,5 +1,6 @@
 package aleiiioa.systems.vehicule;
 
+import aleiiioa.builders.UIBuild;
 import h3d.Vector;
 
 import echoes.Entity;
@@ -21,6 +22,9 @@ class  VehiculePhysicsSystem extends System {
         vhc.orientation = vhc.origin;
         vhc.maxForce  = 0.93;
         vhc.maxSpeed  = 0.16;
+        
+        UIBuild.slider("MaxForce", function() return vhc.maxForce, function(v) vhc.maxForce = v, 0, 2);
+        UIBuild.slider("Speed", function() return vhc.maxSpeed, function(v) vhc.maxSpeed = v, 0, 1);
     }
 
     @u function updateVehicule(vhc:VehiculeComponent,gp:GridPosition,suv:SolverUVComponent){
