@@ -26,13 +26,13 @@ class InputSystem extends echoes.System {
 
 	//View to satellite to 
 	@u function inputVeilGridPosition(inp:InputComponent,gop:GridPositionOffset,veil:VeilComponent) {
-		gop.setXYratio(ca.getAnalogValue(MoveX)*2,ca.getAnalogValue(MoveY)*2);
+		//gop.setXYratio(ca.getAnalogValue(MoveX)*2,ca.getAnalogValue(MoveY)*2);
 	}
 	
 	@u function inputPlayerPaddle(inp:InputComponent,pad:PaddleSharedComponent){
 		
-		pad.ix = ca.getAnalogValue(MoveX);
-		pad.iy = ca.getAnalogValue(MoveY);
+		pad.ix = ca.input.pad.values[conf.analogX];
+		pad.iy = ca.input.pad.values[conf.analogX];
 
 		pad.ltAnalog = ca.input.pad.values[conf.LT];
 	 	pad.rtAnalog = ca.input.pad.values[conf.RT];

@@ -1,25 +1,28 @@
 /**	This enum is used by the Controller class to bind general game actions to actual keyboard keys or gamepad buttons. **/
-enum GameAction {
-	MoveX;
-	MoveY;
+enum abstract GameAction(Int) to Int {
+	var MoveLeft;
+	var MoveRight;
+	var MoveUp;
+	var MoveDown;
 
-	WingLeft;
-	WingRight;
-	
-	Rb;
-	Lb;
-	
-	Jump;
-	Restart;
-	Blow;
-	ShapeWind;
-	
-	MenuCancel;
-	Pause;
 
-	DebugTurbo;
-	DebugSlowMo;
-	ScreenshotMode;
+	var WingLeft;
+	var WingRight;
+	
+	var Rb;
+	var Lb;
+	
+	var Jump;
+	var Restart;
+	var Blow;
+	var ShapeWind;
+	
+	var MenuCancel;
+	var Pause;
+
+	var DebugTurbo;
+	var DebugSlowMo;
+	var ScreenshotMode;
 }
 
 enum Affect {
