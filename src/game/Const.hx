@@ -19,6 +19,7 @@
 **/
 
 import h3d.Vector;
+import hxd.Window;
 
 @:build( assets.ConstDbBuilder.build("data.cdb", "const.json") )
 class Const {
@@ -34,17 +35,20 @@ class Const {
 	**/
 	public static final FIXED_UPDATE_FPS = 30;
 
+	/** Grid size in pixels **/
+	public static final GRID:Int = 16;
+	public static var WINDOW_HEIGHT:Int = 860; // resolution ecran a cleaner
 	public static final FLUID_MAX_HEIGHT:Int = 80;
 	public static final FLUID_OFFSCREEN_TOP:Int = 30;// nb case OfS
 	public static final FLUID_OFFSCREEN_BOTTOM:Int = FLUID_MAX_HEIGHT -(FLUID_OFFSCREEN_TOP+FLUID_ONSCREEN_HEIGHT);
 
-	public static final FLUID_ONSCREEN_HEIGHT:Int = 45;
+	public static final FLUID_ONSCREEN_HEIGHT:Int = Math.floor(WINDOW_HEIGHT / Const.GRID) +2;
 	public static final FLUID_ONSCREEN_TOP_IND:Int   = FLUID_MAX_HEIGHT - FLUID_OFFSCREEN_TOP ;
 	public static final FLUID_ONSCREEN_BOTTOM_IND:Int = FLUID_OFFSCREEN_TOP + FLUID_ONSCREEN_HEIGHT ;
 
 	public static final SCROLLING_MIN_SPEED:Float = -2.3;
-	/** Grid size in pixels **/
-	public static final GRID = 16;
+	
+	
 
 	/** "Infinite", sort-of. More like a "big number" **/
 	public static final INFINITE : Int = 0xfffFfff;

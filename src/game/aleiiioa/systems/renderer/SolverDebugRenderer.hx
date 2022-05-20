@@ -1,5 +1,6 @@
 package aleiiioa.systems.renderer;
 
+import aleiiioa.components.flags.cell.OnScreenFlag;
 import hxd.Math;
 import h2d.SpriteBatch.BatchElement;
 
@@ -20,27 +21,36 @@ class SolverDebugRenderer extends echoes.System {
     var height(get,never): Int; inline function get_height()return Std.int(level.pxHei);
     
     var sbDirections : Array<h2d.SpriteBatch.BatchElement>;
-    var gameScroller:h2d.Layers;
+    var vectorLayer :h2d.Layers;
     var sb : h2d.SpriteBatch;
-   
+    var inOff = Const.FLUID_OFFSCREEN_TOP * Game.ME.level.cWid; // index offset for onscreen vector batch update
 
-    public function new(_gameScroller:h2d.Layers) {
-        this.gameScroller = _gameScroller;    
+    public function new() {
+          
+        
+        vectorLayer = new h2d.Layers();
+        Game.ME.root.add(vectorLayer,Const.DP_FRONT);
+		vectorLayer.name = "Vector Solver Debug";
+        
         this.sbDirections = [];
         this.sb = new h2d.SpriteBatch(h2d.Tile.fromColor(Color.makeColorRgb(1,1,1),Const.GRID,Const.GRID));
         this.sb.hasRotationScale = true;
-        this.gameScroller.add(sb,Const.DP_FRONT);
-    }
+       
+        vectorLayer.add(sb,Const.DP_FRONT);
+        vectorLayer.setPosition(Game.ME.scroller.x,0);   
+     }
 
     
-    @a private function onCellComponentAdded(cc:CellComponent) {
-        var vectorBatchElement = makeSpriteBatchVectorElement(cc.i,cc.j);
+    @a private function onCellComponentAdded(cc:CellComponent,onScreen:OnScreenFlag) {
+        var vectorBatchElement = makeSpriteBatchVectorElement(cc.i,cc.j-Const.FLUID_OFFSCREEN_TOP);
         sb.add(vectorBatchElement);
         sbDirections.push(vectorBatchElement);
     }
+
+
     
     @u function systemUpdate(){
-        
+        vectorLayer.setPosition(Game.ME.scroller.x,0);  
         if( ui.Console.ME.hasFlag("grid")){
             sb.visible = true;
         } 
@@ -48,12 +58,10 @@ class SolverDebugRenderer extends echoes.System {
             sb.visible = false;
     }
 
-    @u function updateSpriteBatchDebug(cc:CellComponent,gp:GridPosition) {
-        
+    @u function updateSpriteBatchDebug(cc:CellComponent,onScreen:OnScreenFlag) {
         if( ui.Console.ME.hasFlag("grid")){
-            if(sb.visible && cc.index < sbDirections.length){
-                sbDirections[cc.index].rotation = Math.atan2(cc.v,cc.u);
-                sbDirections[cc.index].y = gp.attachY;
+            if(sb.visible && cc.index-inOff < sbDirections.length){
+                sbDirections[cc.index-inOff].rotation = Math.atan2(cc.v,cc.u);
             }
         }    
     }
