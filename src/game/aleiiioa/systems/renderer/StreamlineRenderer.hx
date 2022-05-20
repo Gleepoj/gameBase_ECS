@@ -1,5 +1,7 @@
 package aleiiioa.systems.renderer;
 
+import aleiiioa.components.flags.cell.OnScreenFlag;
+import aleiiioa.components.core.camera.CameraFocusComponent;
 import h2d.filter.Blur;
 import aleiiioa.shaders.StreamlineShader;
 import hxd.BitmapData;
@@ -37,7 +39,8 @@ class StreamlineRenderer extends echoes.System {
    
     var streamlineShader:StreamlineShader;
     
-    var scrollGridPosition:GridPosition;
+    var onScreenFluidGridPosition:GridPosition;
+    
 
     public function new(_scroller:h2d.Layers) {
         this.gameScroller = _scroller;    
@@ -59,20 +62,22 @@ class StreamlineRenderer extends echoes.System {
         lc.bitmap.addShader(streamlineShader);
         this.gameScroller.add(lc.bitmap,Const.DP_BG);
        
-        scrollGridPosition = null;
+        onScreenFluidGridPosition  = null;
     }
 
-    @a function getScrollerPosition(en:echoes.Entity,scr:FluidScrollerComponent) {
-        scrollGridPosition = en.get(GridPosition);
+    @a function getScrollerPosition(en:echoes.Entity,foc:CameraFocusComponent) {
+        onScreenFluidGridPosition = en.get(GridPosition);
     }
+
 
     @u function systemUpdate(){
         pressureBitmap.dispose();
-        pressureBitmap = new hxd.BitmapData(level.cWid, Const.FLUID_MAX_HEIGHT);
+        pressureBitmap = new hxd.BitmapData(level.cWid, Const.FLUID_ONSCREEN_HEIGHT);  
         
     }
    
-    @u function updatePressureBitmapFromCell(cc:CellComponent) {
+    @u function updatePressureBitmapFromCell(cc:CellComponent,onScreen:OnScreenFlag) {
+        
         var uv  = new Vector(cc.u,cc.v);
         var uvl = uv.length();
         var uvn = uv.normalized();
@@ -80,7 +85,7 @@ class StreamlineRenderer extends echoes.System {
         var n = uvn.multiply(0.5);
         var color = b.add(n);
        
-        pressureBitmap.setPixel(cc.i, cc.j,color.toColor());
+        pressureBitmap.setPixel(cc.i, cc.j-Const.FLUID_OFFSCREEN_TOP,color.toColor());
 
     }
 
@@ -91,8 +96,8 @@ class StreamlineRenderer extends echoes.System {
         lc.bitmap.scaleX = width/level.cWid;
         lc.bitmap.scaleY = height/level.cHei;
        
-        if(scrollGridPosition != null)
-            lc.bitmap.setPosition(0,scrollGridPosition.attachY);
+        if(onScreenFluidGridPosition != null)
+            lc.bitmap.setPosition(0,onScreenFluidGridPosition.attachY);
        
         var tex =  lc.bitmap.tile.getTexture();
         streamlineShader.wind = tex;

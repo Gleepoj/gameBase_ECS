@@ -120,7 +120,11 @@ class SolverSystem extends echoes.System {
         for(j in 0...solver.height) {
 			for(i in 0...solver.width) {
                 var index = solver.getIndexForCellPosition(i,j);
-                Builders.solverCell(i,j,index);
+                var onScreen:Bool = false;
+                if(j > Const.FLUID_OFFSCREEN_TOP-1 && j < Const.FLUID_ONSCREEN_BOTTOM_IND){
+                    onScreen = true;
+                }
+                Builders.solverCell(i,j,index,onScreen);
             }
         } 
     }

@@ -1,6 +1,8 @@
 package aleiiioa.builders;
 
 
+import aleiiioa.components.flags.cell.OffScreenFlag;
+import aleiiioa.components.flags.cell.OnScreenFlag;
 import h3d.Vector;
 import aleiiioa.components.core.camera.FluidScrollerComponent;
 import aleiiioa.components.tool.PerlinNoiseComponent;
@@ -150,12 +152,20 @@ class Builders {
         new echoes.Entity().add(layer);
     }
 
-    public static function solverCell(i:Int,j:Int,index:Int) {
+    public static function solverCell(i:Int,j:Int,index:Int,onScreen:Bool) {
         var cc = new CellComponent(i,j,index);
         var gp = new GridPosition(i,j,0.5,0.5);
         var vc = new VelocityComponent();
         var vas = new VelocityAnalogSpeed();
-        new echoes.Entity().add(cc,gp,vc,vas);
+        var off = new OffScreenFlag();
+        var on = new OnScreenFlag();
+        
+        if(onScreen)
+            new echoes.Entity().add(cc,gp,vc,vas,on);
+
+        if(!onScreen)
+            new echoes.Entity().add(cc,gp,vc,vas,off);
+
     }
 
     public static function fluidScroller(cx:Int,cy:Int) {

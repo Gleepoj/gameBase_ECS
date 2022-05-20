@@ -20,8 +20,9 @@ class FluidScrollingSystem extends echoes.System {
         scrollPoint = Builders.fluidScroller(0,FLUID_CY_TO_LEVEL);
         scrollGridPosition = scrollPoint.get(GridPosition);
     }
+    
     @u function updateSystem(foc:CameraFocusComponent,focus:GridPosition) {
-        scrollGridPosition.cy = focus.cy-50;
+        scrollGridPosition.cy = focus.cy - Const.FLUID_OFFSCREEN_TOP;
         scrollGridPosition.yr = focus.yr;
     }
     
@@ -30,13 +31,12 @@ class FluidScrollingSystem extends echoes.System {
         gpos.yr = 0.5  + scrollGridPosition.yr;
     } 
 
-    @u function updateEntityFluidPosition(fpos:FluidPosition, pos:GridPosition){
-        var speedOffset = 3;
+    @u function updateEntityFluidPosition(fpos:FluidPosition, pos:GridPosition){     
         var p = scrollGridPosition;
         fpos.xr = pos.xr - p.xr;
         fpos.yr = pos.yr - p.yr;
         fpos.cx = pos.cx - p.cx;
-        fpos.cy = pos.cy - p.cy + speedOffset;
+        fpos.cy = pos.cy - p.cy;
     }
 
 }

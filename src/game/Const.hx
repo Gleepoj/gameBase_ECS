@@ -34,7 +34,13 @@ class Const {
 	**/
 	public static final FIXED_UPDATE_FPS = 30;
 
-	public static final FLUID_MAX_HEIGHT = 100;
+	public static final FLUID_MAX_HEIGHT:Int = 80;
+	public static final FLUID_OFFSCREEN_TOP:Int = 30;// nb case OfS
+	public static final FLUID_OFFSCREEN_BOTTOM:Int = FLUID_MAX_HEIGHT -(FLUID_OFFSCREEN_TOP+FLUID_ONSCREEN_HEIGHT);
+
+	public static final FLUID_ONSCREEN_HEIGHT:Int = 45;
+	public static final FLUID_ONSCREEN_TOP_IND:Int   = FLUID_MAX_HEIGHT - FLUID_OFFSCREEN_TOP ;
+	public static final FLUID_ONSCREEN_BOTTOM_IND:Int = FLUID_OFFSCREEN_TOP + FLUID_ONSCREEN_HEIGHT ;
 
 	public static final SCROLLING_MIN_SPEED:Float = -2.3;
 	/** Grid size in pixels **/
