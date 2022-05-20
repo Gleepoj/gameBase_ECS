@@ -33,6 +33,8 @@ class StreamlineRenderer extends echoes.System {
     
     var gameScroller:h2d.Layers;
     
+    var bitmapLayer:h2d.Layers;
+
     var pressureBitmap:BitmapData;
     var bitmap:Bitmap;
     var shader:BitmapShader;
@@ -43,10 +45,13 @@ class StreamlineRenderer extends echoes.System {
     
 
     public function new(_scroller:h2d.Layers) {
-        this.gameScroller = _scroller;    
-        //streamlineShader = new StreamlineShader();
+       // this.gameScroller = _scroller;    
+        bitmapLayer = new h2d.Layers();
+        
+        Game.ME.root.add(bitmapLayer,Const.DP_BG);
+		bitmapLayer.name = "Color Solver Bitmap";
+
         Builders.layerComponent(new BitmapShader()); 
-   
     }
     
     @a function onLayerAdded(lc:LayerComponent){
@@ -60,7 +65,8 @@ class StreamlineRenderer extends echoes.System {
         streamlineShader = new StreamlineShader(tex);
 
         lc.bitmap.addShader(streamlineShader);
-        this.gameScroller.add(lc.bitmap,Const.DP_BG);
+        bitmapLayer.add(lc.bitmap,Const.DP_BG);
+        //this.gameScroller.add(lc.bitmap,Const.DP_BG);
        
         onScreenFluidGridPosition  = null;
     }
@@ -96,15 +102,13 @@ class StreamlineRenderer extends echoes.System {
         lc.bitmap.scaleX = width/level.cWid;
         lc.bitmap.scaleY = height/level.cHei;
        
-        if(onScreenFluidGridPosition != null)
-            lc.bitmap.setPosition(0,onScreenFluidGridPosition.attachY);
+        lc.bitmap.setPosition(Game.ME.scroller.x,0);
        
         var tex =  lc.bitmap.tile.getTexture();
         streamlineShader.wind = tex;
         lc.bitmap.addShader(streamlineShader);
        
-
-        gameScroller.add(lc.bitmap,Const.DP_BG);
+        bitmapLayer.add(lc.bitmap,Const.DP_BG);
     }
 
     @r function onLayerRemoved(lc:LayerComponent){
