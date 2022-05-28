@@ -1,20 +1,12 @@
 package aleiiioa.systems.core;
 
-import aleiiioa.components.vehicule.VehiculeComponent;
 import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.GridPosition;
 
 class VelocitySystem extends echoes.System {
 	public function new() {}
 
-	@u function updateVehiculeDrivenEntity(gp:GridPosition, vc:VelocityComponent, sw:VehiculeComponent) {
-		cancelVelocities(vc);
-		vc.dx += sw.euler.x;
-		vc.dy += sw.euler.y;
-		
-		fixedUpdate(gp, vc);
-	}
-
+	
 	@u function updateAnalogDrivenEntity(gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed) {
 		vc.dx = vas.xSpeed*0.5;
 		vc.dy = vas.ySpeed*0.5;
