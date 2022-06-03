@@ -1,14 +1,19 @@
 package aleiiioa.systems.ui;
 
+import echoes.View;
+
 import h2d.Flow.FlowLayout;
 import h2d.Flow.FlowAlign;
+
 import aleiiioa.components.ui.UIOptionComponent;
-import echoes.View;
 import aleiiioa.components.ui.UIDialogComponent;
 
 class UIDialogSystem extends echoes.System {
     
-    var fui : h2d.Flow;
+    var fbubble : h2d.Flow;
+ 
+ 
+    var foption : h2d.Flow;
 
     var ALL_DIALOG:View<UIDialogComponent>;
     var ALL_OPTION:View<UIOptionComponent>;
@@ -19,14 +24,26 @@ class UIDialogSystem extends echoes.System {
         Game.ME.root.add(dialog,Const.DP_UI);
 		dialog.name = "Dialog system";
 		
-        fui = new h2d.Flow(dialog);
+        fbubble = new h2d.Flow(dialog);
         
-        fui.layout = Vertical;
-        fui.multiline = true;
-        fui.reverse = true;
-        fui.verticalSpacing = 5;
-        fui.padding = 10;
+        fbubble.layout = Vertical;
+        fbubble.multiline = true;
+        fbubble.reverse = true;
+        fbubble.verticalSpacing = 5;
+        fbubble.padding = 10;
         
+
+        var options = new h2d.Layers();
+        Game.ME.root.add(options,Const.DP_UI);
+		options.name = "Dialog system";
+		
+        foption = new h2d.Flow(dialog);
+        
+        foption.layout = Horizontal;
+        foption.multiline = true;
+        //foption.reverse = true;
+        foption.verticalSpacing = 5;
+        foption.padding = 10;
         //SAMPLE USAGE //
         
         //UIBuild.slider("Speed", function() return tf, function(v) tf = v, 0, 10);
@@ -43,7 +60,7 @@ class UIDialogSystem extends echoes.System {
             clearDialogComponent();
 
         var tile = Assets.tiles.getTile( D.tiles.uiBar );
-		var f = new dn.heaps.FlowBg(tile, 2,fui);
+		var f = new dn.heaps.FlowBg(tile, 2,fbubble);
 		
         //new dn.heaps.FlowBg(t, 2, root);
         f.horizontalSpacing = 5;
@@ -51,14 +68,14 @@ class UIDialogSystem extends echoes.System {
         f.paddingHorizontal = 20;
         f.paddingVertical = 20;
         
-        fui.debug = true;
+        //fbubble.debug = true;
         if(udc.character == 1){
-            fui.setPosition(300,300);
+            fbubble.setPosition(300,300);
             f.colorizeBg(0xA56DE7);
         }
 
         if(udc.character == 2){
-            fui.setPosition(500,300);
+            fbubble.setPosition(500,300);
             f.colorizeBg(0x006DE7);
         }
         
@@ -71,7 +88,7 @@ class UIDialogSystem extends echoes.System {
     }
 
     @r function onRemove(udc:UIDialogComponent){
-        fui.removeChildren();
+        fbubble.removeChildren();
     }
 
     private function clearDialogComponent(){
@@ -81,23 +98,21 @@ class UIDialogSystem extends echoes.System {
 
     @a public function onOptionAdded(uoc:UIOptionComponent){
         
-        if(ALL_DIALOG.entities.head != ALL_DIALOG.entities.tail)
-            clearDialogComponent();
-        
-        var tile = Assets.tiles.getTile( D.tiles.uiBar );
-		var f = new dn.heaps.FlowBg(tile, 2,fui);
+        var tile = Assets.tiles.getTile(D.tiles.uiBar);
+		var f = new dn.heaps.FlowBg(tile,2,foption);
 		
         f.horizontalSpacing = 5;
         f.paddingHorizontal = 20;
         f.paddingVertical = 20;
         
-        fui.debug = true;
         
-        //fui.setPosition(300,300);
+        foption.setPosition(fbubble.x,fbubble.y + fbubble.outerHeight);
+        
         f.colorizeBg(0xA56FF7);
+        
+    
         f.reverse = true;
-        //f.multiline = true;
-        f.horizontalAlign = FlowAlign.Left;
+        f.horizontalAlign = FlowAlign.Right;
         f.layout = FlowLayout.Horizontal; 
     
 
@@ -105,11 +120,22 @@ class UIDialogSystem extends echoes.System {
         tf.text = uoc.text;
         tf.maxWidth = 300;
         tf.textAlign = Left;
+
+        uoc.flowObject = f;
           
     }
 
+    @u function onUpdate(uoc:UIOptionComponent){
+       
+        uoc.flowObject.colorizeBg(0xA56FF7);
+
+        if(uoc.isSelected)
+            uoc.flowObject.colorizeBg(0xFF6F44);
+
+    }
+
     @r function onRemoveOption(uoc:UIOptionComponent){
-        fui.removeChildren();
+        foption.removeChildren();
     }
 
 }

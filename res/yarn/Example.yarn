@@ -3,17 +3,20 @@ tags:
 colorID: 0
 position: 592,181
 ---
-A: Hey, I'm a character in a script!
-B: And I am too! You are talking to me!
--> What's going on
-    A: Why this is a demo of the script system!
-    B: And you're in it!
--> Um ok
-A: How delightful!
-B: What would you prefer to do next?
--> Leave
+Arflantil: Bonjour Citrouille !
+Arflantil: Tu es rentré, tu avais peur de l'orage ? Comment va tu ?
+-> Bien
+    Arflantil: Ah bon et bah super pourvu que ca continue !
+    Citrouille: Oui Merci!
+    Arflantil: Que penses tu de tes amis ? 
+-> Mal
+    Arflantil: Ahaha Ca ne m'etonne pas je pense que le probleme viens de tes amis !
+-> Moyen
+    Arflantil: Ahaha Ca ne m'etonne pas je pense que le probleme viens de tes amis !
+Arflantil: Je pense que ton copain est mieux qu'eux, tu ne crois pas ? 
+-> Oui c'est sur ...
     <<jump Leave>>
--> Learn more
+-> Tu as surement raison 
     <<jump LearnMore>>
 ===
 title: Leave
@@ -21,13 +24,15 @@ tags:
 colorID: 0
 position: 387,487
 ---
-A: Oh, goodbye!
-B: You'll be back soon!
+Arflantil: Pourquoi cette hesitation moi je suis coincé seul dans cet ordinateur.
+Arflantil: J'aimerai bien avoir un copain comme cela, il t'aime ca se voit !
+Citrouille: Oui tu as raison j'ai de la chance !
 ===
 title: LearnMore
 tags: rawText
 colorID: 0
 position: 763,472
 ---
-A: HAHAHA
+Arflantil: Ouiiii !
+Citrouille: Oui tu as raison j'ai de la chance !
 ===

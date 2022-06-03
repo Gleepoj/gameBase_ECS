@@ -23,8 +23,8 @@ class UIBuild {
             new echoes.Entity().add(udc);
         }
 
-        public static function option(text : String) {
-            var uoc = new UIOptionComponent(text);
+        public static function option(text : String,id:Int) {
+            var uoc = new UIOptionComponent(text,id);
             new echoes.Entity().add(uoc);
         }
     }
