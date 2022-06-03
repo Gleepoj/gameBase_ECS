@@ -15,6 +15,7 @@ class Assets {
 	/** LDtk world data **/
 	public static var worldData : World;
 
+	
 
 	static var _initDone = false;
 	public static function init() {

@@ -1,6 +1,7 @@
 package aleiiioa;
 
 
+import aleiiioa.components.ui.UIDialogComponent;
 import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
 
@@ -53,12 +54,16 @@ class Aleiiioa extends Game {
 		
 		//Helpers
 		Workflow.add60FpsSystem(new UIHelperSystem());
+		Workflow.add60FpsSystem(new UIDialogSystem());
+		Workflow.add60FpsSystem(new DialogSystem());
 	
 		//Input
 		Workflow.add60FpsSystem(new InputSystem());
 
 	
-
+		//UIBuild.dialog("this is my funny textfpjfspejfpsjofsepfofjspoefspojfpsjpodsjsofkskpoeskfposkfposekfposkfpokespofkseofkposekfposkfpokspofkposekfposkpofksepofkposkfpoksepofksepokfposkfposkfposkefpoksepofkosekfposkefposkepofkspofekspoefkposekfposkfpokspofkspoekfposkfposkfposkfposekfpsoek");
+		//UIBuild.dialog("this is my second funny tex;xjjspofthjjhjhhjhhhjhjhjhjhjhjhjijijijijijijijyuyuyuyuyuyuy uyuyuyuuyyugugyyugyugyugyugygyg ijijijijij ijiijijij ijijijiji oijjoijioji iojoij ioj  oijoii oijoi jjijoi joijoijoijoi oi joij oij oijoi joij oij oij oijoijoijoi joi o o jiojoijoi joij oij uyuyuyuuyyugugyyugyugyugyugygyg ijijijijij ijiijijij ijijijiji oijjoijioji iojoij ioj  oijoii oijoi jjijoi joijoijoijoi oi joij oij oijoi joij oij oij oijoijoijoi joi o o jiojoijoi joij oijuyuyuyuuyyugugyyugyugyugyugygyg ijijijijij ijiijijij ijijijiji oijjoijioji iojoij ioj  oijoii oijoi jjijoi joijoijoijoi oi joij oij oijoi joij oij oij oijoijoijoi joi o o jiojoijoi joij oij");
+		//UIBuild.dialog("this is my second funny text");
 		//trace(Workflow.entities.length);
 	}
 

@@ -1,5 +1,7 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.ui.UIOptionComponent;
+import aleiiioa.components.ui.UIDialogComponent;
 import aleiiioa.components.ui.UICheckComponent;
 import aleiiioa.components.ui.UISliderComponent;
 
@@ -14,5 +16,15 @@ class UIBuild {
         public static function check(label : String, get : Void -> Bool, set : Bool -> Void) {
             var ucc = new UICheckComponent(label,get,set);
             new echoes.Entity().add(ucc);
+        }
+
+        public static function dialog(text : String,character:Int) {
+            var udc = new UIDialogComponent(text,character);
+            new echoes.Entity().add(udc);
+        }
+
+        public static function option(text : String) {
+            var uoc = new UIOptionComponent(text);
+            new echoes.Entity().add(uoc);
         }
     }

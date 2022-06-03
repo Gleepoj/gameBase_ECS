@@ -59,8 +59,8 @@ class Hud extends dn.Process {
 		f.colorizeBg(color);
 		f.paddingHorizontal = 6;
 		f.paddingBottom = 4;
-		f.paddingTop = 2;
-		f.paddingLeft = 9;
+		f.paddingTop = 20;
+		f.paddingLeft = 90;
 		f.y = 4;
 
 		// Text

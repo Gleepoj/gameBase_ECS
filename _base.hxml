@@ -6,4 +6,5 @@
 -lib deepnightLibs
 -lib ldtk-haxe-api
 -lib heaps-aseprite
+-lib hxyarn
 -main Boot
