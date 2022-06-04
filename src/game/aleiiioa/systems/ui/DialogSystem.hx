@@ -2,70 +2,88 @@
 package aleiiioa.systems.ui;
 
 
-import echoes.Entity;
+import echoes.View;
+
+import aleiiioa.builders.UIBuild;
+import aleiiioa.components.ui.UIDialogComponent;
+import aleiiioa.components.ui.DialogComponent;
 import aleiiioa.components.flags.collision.IsDiedFlag;
 import aleiiioa.components.ui.UIOptionComponent;
+
+import echoes.Entity;
 import hxyarn.program.VirtualMachine.ExecutionState;
-import haxe.Exception;
-import aleiiioa.builders.UIBuild;
 
-import aleiiioa.systems.ui.Navigator;
-import haxe.exceptions.*;
 
-import hxyarn.dialogue.Dialogue;
-import hxyarn.dialogue.VariableStorage.MemoryVariableStore;
-import hxyarn.dialogue.StringInfo;
-import hxyarn.dialogue.Line;
-import hxyarn.dialogue.Command;
-import hxyarn.dialogue.Option;
-import hxyarn.dialogue.OptionSet;
-import hxyarn.compiler.Compiler;
-import hxyarn.compiler.CompilationJob;
 
 
 class DialogSystem extends echoes.System {
-    var dial:DialogText;
+	var ALL_DIALOG_TEXT:View<DialogComponent>;
+
     var ca : ControllerAccess<GameAction>;
 	var previousState :ExecutionState;
 	var state : ExecutionState; // getters to add
 	var optionSelect:Int;
 	var selector:Int = 1;
+	var dialogIsStreaming:Bool = false;
 
     public function new() {
         ca = App.ME.controller.createAccess();
 		ca.lockCondition = Game.isGameControllerLocked;
-        dial = new DialogText('res/yarn/Example.yarn');
-        dial.start();
-		state = dial.dialogue.get_executionState();
-		previousState = state;
-		optionSelect = 0;
-		//conf = ca.input.pad.config;
+
     }
 
-    @u function updateDialog(){
-        
-    	state = dial.dialogue.get_executionState();
-		previousState = state;
+	function clearDialog(){
+		var head = ALL_DIALOG_TEXT.entities.head;
+        head.value.destroy();
+	}
+
+	@u function updateSystem(){
+		if(ca.isPressed(Jump)){
+			UIBuild.textDialog('res/yarn/Test2.yarn');
+		}
+		if(ca.isPressed(ShapeWind)){
+			UIBuild.textDialog('res/yarn/Example.yarn');
+		}
+	}
+
+	@a function onDialogAdded(dc:DialogComponent){
 		
+		if(ALL_DIALOG_TEXT.entities.head != ALL_DIALOG_TEXT.entities.tail)
+			clearDialog();
+
+		dc.start();
+		state = dc.dialogue.get_executionState();
+		previousState = state;
+		optionSelect = 0;
+		dialogIsStreaming = true;
+	}
+
+
+    @u function updateDialog(entity:echoes.Entity,dc:DialogComponent){
+        
+    	state = dc.dialogue.get_executionState();
+		previousState = state;
+		var maxSelector = dc.optionCount;
+
 		optionSelect = selector-1;
 
         if(ca.isPressed(Blow)){
-            if(dial.dialogue.isActive()){
+            if(dc.dialogue.isActive()){
 				
 				if(state == ExecutionState.WaitingForContinue)
-					dial.dialogue.resume();
+					dc.dialogue.resume();
 
 				if(state == ExecutionState.WaitingOnOptionSelection){
-					dial.dialogue.setSelectedOption(optionSelect);
-					state = dial.dialogue.get_executionState();
-					dial.dialogue.resume();
+					dc.dialogue.setSelectedOption(optionSelect);
+					state = dc.dialogue.get_executionState();
+					dc.dialogue.resume();
 					selector = 1; 
 				}
 				
                
 			}
         }
-		var maxSelector = dial.optionCount;
+		
 		if(ca.isDown(MoveLeft)){
 			selector -=1;
 
@@ -85,9 +103,24 @@ class DialogSystem extends echoes.System {
 			
 		}
 
+		if(dc.isComplete == true)
+			entity.add(new IsDiedFlag());
+		
+		//handle selector skip bug 
+		if(selector < 1 || selector > maxSelector )
+			selector = 1;
     }
 
-	@u function optionWindowDeleter(entity:Entity,uoc:UIOptionComponent){
+	@r function onDialogRemove(dc:DialogComponent){
+		dialogIsStreaming = false;
+	}
+	
+	@u function bubbleWindowUpdate(entity:Entity,udc:UIDialogComponent){
+		if(!dialogIsStreaming)
+			entity.add(new IsDiedFlag());
+	}
+
+	@u function optionWindowUpdate(entity:Entity,uoc:UIOptionComponent){
 
 		if(uoc.id == optionSelect){
 			uoc.isSelected = true;
@@ -104,107 +137,8 @@ class DialogSystem extends echoes.System {
 
 	}
 
+	
+
     
 }
 
-
-class DialogText {
-	
-	var storage = new MemoryVariableStore();
-	public var dialogue:Dialogue;
-	var stringTable:Map<String, StringInfo>;
-	var testPlan:Navigator;
-	public var optionCount:Int = 0 ;
-	
-	public function new(yarnFile:String, ?testPlanFile:String = null) {
-		
-		dialogue = new Dialogue(new MemoryVariableStore());
-		dialogue.logDebugMessage = this.logDebugMessage;
-		dialogue.logErrorMessage = this.logErrorMessage;
-		dialogue.lineHandler = this.lineHandler;
-		dialogue.optionsHandler = this.optionsHandler;
-		dialogue.commandHandler = this.commandHandler;
-		dialogue.nodeCompleteHandler = this.nodeCompleteHandler;
-		dialogue.nodeStartHandler = this.nodeStartHandler;
-		dialogue.dialogueCompleteHandler = this.dialogueCompleteHandler;
-
-		var job = CompilationJob.createFromFiles([yarnFile], dialogue.library);
-		var compilerResults = Compiler.compile(job);
-		stringTable = compilerResults.stringTable;
-
-		dialogue.addProgram(compilerResults.program);
-	}
-
-	public function start() {
-		dialogue.setNode("Start");
-        dialogue.resume();
-	}
-
-	function setUp(fileName:String) {}
-
-	public function logDebugMessage(message:String):Void {
-		//trace('DEBUG: $message');
-	}
-
-	public function logErrorMessage(message:String):Void {
-		//trace('Error: $message');
-	}
-    // ovverride? 
-	public function lineHandler(line:Line):HandlerExecutionType {
-		var text = getComposedTextForLine(line);
-        
-		UIBuild.dialog('$text',2);
-        
-		return HandlerExecutionType.ContinueExecution;
-	}
-
-	public function optionsHandler(options:OptionSet) {
-		optionCount = options.options.length;
-		var optionText = new Array<String>();
-		var count:Int = -1;
-
-		//trace("Options:");
-		for (option in options.options) {
-			var text = getComposedTextForLine(option.line);
-			optionText.push(text);
-			count += 1;
-            UIBuild.option('$text', count);
-		}
-
-	}
-
-	public function getComposedTextForLine(line:Line):String {
-		var substitutedText = Dialogue.expandSubstitutions(stringTable[line.id].text, line.substitutions);
-
-		var markup = dialogue.parseMarkup(substitutedText);
-
-		return markup.text;
-	}
-
-	public function commandHandler(command:Command) {
-		trace('Command: ${command.text}');
-	}
-
-	public function nodeCompleteHandler(nodeName:String) {}
-
-	public function nodeStartHandler(nodeName:String) {}
-
-	public function dialogueCompleteHandler() {
-		trace("current dialogue end");
-	}
-
-	function assertString(expected:String, actual:String) {
-		if (expected != actual)
-			throw new Exception('Expected: "$expected", but got "$actual"');
-	}
-
-	function assertBool(expected:Bool, actual:Bool) {
-		if (expected != actual)
-			throw new Exception('Expected: "$expected", but got "$actual"');
-	}
-
-	function assertInt(expected:Int, actual:Int) {
-		if (expected != actual)
-			throw new Exception('Expected: "$expected", but got "$actual"');
-	}
-}

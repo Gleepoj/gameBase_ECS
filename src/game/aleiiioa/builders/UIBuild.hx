@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.ui.DialogComponent;
 import aleiiioa.components.ui.UIOptionComponent;
 import aleiiioa.components.ui.UIDialogComponent;
 import aleiiioa.components.ui.UICheckComponent;
@@ -26,5 +27,10 @@ class UIBuild {
         public static function option(text : String,id:Int) {
             var uoc = new UIOptionComponent(text,id);
             new echoes.Entity().add(uoc);
+        }
+
+        public static function textDialog(_yarnFile:String){
+            var dc = new DialogComponent(_yarnFile);
+            new echoes.Entity().add(dc);
         }
     }

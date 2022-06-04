@@ -1,5 +1,6 @@
 package aleiiioa.systems.ui;
 
+import aleiiioa.components.ui.DialogComponent;
 import echoes.View;
 
 import h2d.Flow.FlowLayout;
@@ -11,8 +12,6 @@ import aleiiioa.components.ui.UIDialogComponent;
 class UIDialogSystem extends echoes.System {
     
     var fbubble : h2d.Flow;
- 
- 
     var foption : h2d.Flow;
 
     var ALL_DIALOG:View<UIDialogComponent>;
@@ -41,11 +40,10 @@ class UIDialogSystem extends echoes.System {
         
         foption.layout = Horizontal;
         foption.multiline = true;
-        //foption.reverse = true;
         foption.verticalSpacing = 5;
         foption.padding = 10;
-        //SAMPLE USAGE //
         
+        //SAMPLE USAGE //       
         //UIBuild.slider("Speed", function() return tf, function(v) tf = v, 0, 10);
         //UIBuild.check("Loop", function() return tv, function(v)  tv = v );
     }
@@ -61,14 +59,10 @@ class UIDialogSystem extends echoes.System {
 
         var tile = Assets.tiles.getTile( D.tiles.uiBar );
 		var f = new dn.heaps.FlowBg(tile, 2,fbubble);
-		
-        //new dn.heaps.FlowBg(t, 2, root);
         f.horizontalSpacing = 5;
-        
         f.paddingHorizontal = 20;
         f.paddingVertical = 20;
-        
-        //fbubble.debug = true;
+
         if(udc.character == 1){
             fbubble.setPosition(300,300);
             f.colorizeBg(0xA56DE7);
@@ -87,26 +81,16 @@ class UIDialogSystem extends echoes.System {
           
     }
 
-    @r function onRemove(udc:UIDialogComponent){
-        fbubble.removeChildren();
-    }
-
-    private function clearDialogComponent(){
-        var head = ALL_DIALOG.entities.head;
-        head.value.destroy();
-    }
-
     @a public function onOptionAdded(uoc:UIOptionComponent){
         
         var tile = Assets.tiles.getTile(D.tiles.uiBar);
 		var f = new dn.heaps.FlowBg(tile,2,foption);
 		
+        foption.setPosition(fbubble.x,fbubble.y + fbubble.outerHeight);
+
         f.horizontalSpacing = 5;
         f.paddingHorizontal = 20;
         f.paddingVertical = 20;
-        
-        
-        foption.setPosition(fbubble.x,fbubble.y + fbubble.outerHeight);
         
         f.colorizeBg(0xA56FF7);
         
@@ -125,7 +109,7 @@ class UIDialogSystem extends echoes.System {
           
     }
 
-    @u function onUpdate(uoc:UIOptionComponent){
+    @u function onUpdateOption(uoc:UIOptionComponent){
        
         uoc.flowObject.colorizeBg(0xA56FF7);
 
@@ -134,10 +118,30 @@ class UIDialogSystem extends echoes.System {
 
     }
 
+    
+    @r function onRemoveBubble(udc:UIDialogComponent){
+        fbubble.removeChildren();
+    }
+
     @r function onRemoveOption(uoc:UIOptionComponent){
         foption.removeChildren();
     }
 
+    @r function onRemoveYarnDialogue(yd:DialogComponent){
+        clearOptionComponent();
+    }
+
+    private function clearDialogComponent(){
+        var head = ALL_DIALOG.entities.head;
+        head.value.destroy();
+    }
+
+    private function clearOptionComponent(){
+        while (ALL_OPTION.size() > 0) {
+         var head = ALL_OPTION.entities.head;
+         head.value.destroy();
+        }
+    }
 }
 
  
