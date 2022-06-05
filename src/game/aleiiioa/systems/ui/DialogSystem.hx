@@ -2,6 +2,7 @@
 package aleiiioa.systems.ui;
 
 
+import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.InputComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.dialog.DialogReferenceComponent;
@@ -50,7 +51,7 @@ class DialogSystem extends echoes.System {
 
 	}
 
-	@u function updateSystem(p:PlayerFlag,cl:CollisionsListener,gameInput:InputComponent){
+	@u function updateSystem(p:PlayerFlag,cl:CollisionsListener,gameInput:InputComponent,gp:GridPosition){
 		if(cl.onArea){
 			if(gameInput.ca.isPressed(Blow)){
 				UIBuild.textDialog('$currentDialog');

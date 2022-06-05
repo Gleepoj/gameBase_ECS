@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.ui.DialogComponent;
 import aleiiioa.components.ui.UIOptionComponent;
 import aleiiioa.components.ui.UIDialogComponent;
@@ -31,6 +32,9 @@ class UIBuild {
 
         public static function textDialog(_yarnFile:String){
             var dc = new DialogComponent(_yarnFile);
+            //var gp = new GridPosition(_cx,_cy);
+            //var udc = new UIDialogComponent(text,character);
+
             new echoes.Entity().add(dc);
         }
     }

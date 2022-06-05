@@ -1,5 +1,6 @@
 package aleiiioa.systems.ui;
 
+import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.ui.DialogComponent;
 import echoes.View;
 
@@ -54,6 +55,9 @@ class UIDialogSystem extends echoes.System {
 
     @a public function onDialogAdded(udc:UIDialogComponent){
         
+        fbubble.setPosition(600,100);
+
+        
         if(ALL_DIALOG.entities.head != ALL_DIALOG.entities.tail)
             clearDialogComponent();
 
@@ -62,8 +66,9 @@ class UIDialogSystem extends echoes.System {
         f.horizontalSpacing = 5;
         f.paddingHorizontal = 20;
         f.paddingVertical = 20;
+        f.colorizeBg(0xA26AE3);
 
-        if(udc.character == 1){
+        /* if(udc.character == 1){
             fbubble.setPosition(300,300);
             f.colorizeBg(0xA56DE7);
         }
@@ -71,7 +76,7 @@ class UIDialogSystem extends echoes.System {
         if(udc.character == 2){
             fbubble.setPosition(500,300);
             f.colorizeBg(0x006DE7);
-        }
+        } */
         
 
         var tf = new h2d.Text(getFont(), f);
