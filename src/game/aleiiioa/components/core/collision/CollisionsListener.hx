@@ -3,21 +3,16 @@ package aleiiioa.components.core.collision;
 
 import dn.Cooldown;
 import aleiiioa.systems.collisions.CollisionEvent;
-import h3d.Vector;
+
 
 class CollisionsListener {
-    public var bulletHit:Bool = false;
-    public var vesselHit:Bool = false;
-    public var inpact:Vector  = new Vector(0,0);
+    //public var onPnjArea:Bool = false;
     public var cd:Cooldown;
     
     public var lastEvent:CollisionEvent;
 
-    public var onBulletHit(get,never):Bool;
-        inline function get_onBulletHit() return cd.has("bullet_inpact") && !cd.has("vessel_inpact");
-
-    public var onVesselHit(get,never):Bool;
-        inline function get_onVesselHit() return cd.has("vessel_inpact");
+    public var onArea(get,never):Bool;
+        inline function get_onArea() return cd.has("pnj ready");
 
     public function new() {
         lastEvent = new Event_Reset();

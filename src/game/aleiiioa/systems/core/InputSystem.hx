@@ -1,6 +1,8 @@
 package aleiiioa.systems.core;
 
 
+import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
+import aleiiioa.components.core.velocity.VelocityComponent;
 import hxd.Pad.PadConfig;
 import aleiiioa.components.*;
 
@@ -9,27 +11,24 @@ import aleiiioa.components.core.position.GridPositionOffset;
 
 
 class InputSystem extends echoes.System {
-    var ca : ControllerAccess<GameAction>;
-    //var command:InstancedCommands;
-	var conf:PadConfig;
-
+ 
     public function new() {
-		ca = App.ME.controller.createAccess();
-		ca.lockCondition = Game.isGameControllerLocked;
-		conf = ca.input.pad.config;
-       // command = new InstancedCommands();
-    
-		/* pad.ix = ca.input.pad.values[conf.analogX];
-		pad.iy = ca.input.pad.values[conf.analogX];
+	}
 
-		pad.ltAnalog = ca.input.pad.values[conf.LT];
-	 	pad.rtAnalog = ca.input.pad.values[conf.RT];
-		
-		pad.rb = ca.isPressed(WingRight);
-		pad.lb = ca.isPressed(WingLeft);
-
-		pad.xb = ca.isDown(Jump);
-		pad.bb = ca.isDown(Blow);
- */
+	@u function updatePlayer(inp:InputComponent,vas:VelocityAnalogSpeed){
+		vas.xSpeed = 0;
+		vas.ySpeed = 0;
+		if(inp.ca.isDown(MoveRight)){
+			vas.xSpeed = 0.3;
+		}
+		if(inp.ca.isDown(MoveLeft)){
+			vas.xSpeed = -0.3;
+		}
+		if(inp.ca.isDown(MoveDown)){
+			vas.ySpeed = 0.3;
+		}
+		if(inp.ca.isDown(MoveUp)){
+			vas.ySpeed = -0.3;
+		}
 	}
 }

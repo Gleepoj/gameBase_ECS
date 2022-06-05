@@ -35,15 +35,23 @@ class Aleiiioa extends Game {
 		
 		
 		// ECS //
+		var player = level.data.l_Entities.all_PlayerStart[0];
 		
+		Builders.player(player.cx,player.cy);
+
+		for (e in level.data.l_Entities.all_PNJ){
+			Builders.pnj(e.cx,e.cy,e.f_String);
+		}
 		
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());
 		Workflow.addSystem(new CollisionsListenerActualizer());
+		Workflow.addSystem(new EntityCollisionsSystem());
 		
 		//Object
 		Workflow.add60FpsSystem(new VelocitySystem());
 		Workflow.add60FpsSystem(new GridPositionActualizer());
+		
 		
 		
 		//Graphics

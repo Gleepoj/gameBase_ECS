@@ -2,6 +2,11 @@
 package aleiiioa.systems.ui;
 
 
+import aleiiioa.components.InputComponent;
+import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.components.core.dialog.DialogReferenceComponent;
+import aleiiioa.components.flags.PNJFlag;
+import aleiiioa.components.flags.PlayerFlag;
 import echoes.View;
 
 import aleiiioa.builders.UIBuild;
@@ -13,18 +18,19 @@ import aleiiioa.components.ui.UIOptionComponent;
 import echoes.Entity;
 import hxyarn.program.VirtualMachine.ExecutionState;
 
-
-
-
 class DialogSystem extends echoes.System {
+	
 	var ALL_DIALOG_TEXT:View<DialogComponent>;
 
     var ca : ControllerAccess<GameAction>;
 	var previousState :ExecutionState;
 	var state : ExecutionState; // getters to add
+	
 	var optionSelect:Int;
 	var selector:Int = 1;
 	var dialogIsStreaming:Bool = false;
+
+	var currentDialog:String = null;
 
     public function new() {
         ca = App.ME.controller.createAccess();
@@ -37,13 +43,27 @@ class DialogSystem extends echoes.System {
         head.value.destroy();
 	}
 
-	@u function updateSystem(){
-		if(ca.isPressed(Jump)){
-			UIBuild.textDialog('res/yarn/Test2.yarn');
+	@u function getCurrentDialog(pnj:PNJFlag,yarn:DialogReferenceComponent,cl:CollisionsListener) {
+		if(yarn.reference != currentDialog)
+			if(cl.onArea)
+				currentDialog = yarn.reference;
+
+	}
+
+	@u function updateSystem(p:PlayerFlag,cl:CollisionsListener,gameInput:InputComponent){
+		if(cl.onArea){
+			if(gameInput.ca.isPressed(Blow)){
+				UIBuild.textDialog('$currentDialog');
+				gameInput.ca.lock();
+			}
 		}
-		if(ca.isPressed(ShapeWind)){
-			UIBuild.textDialog('res/yarn/Example.yarn');
+
+		if(!dialogIsStreaming){
+			gameInput.ca.unlock();
+			currentDialog = null;
 		}
+			
+		
 	}
 
 	@a function onDialogAdded(dc:DialogComponent){

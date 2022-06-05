@@ -11,7 +11,7 @@ class VelocitySystem extends echoes.System {
 		vc.dx = vas.xSpeed*0.5;
 		vc.dy = vas.ySpeed*0.5;
 		fixedUpdate(gp, vc);
-		//applyFriction(vc);
+		applyFriction(vc);
 	}
 
 	function fixedUpdate(gp:GridPosition, vc:VelocityComponent) {

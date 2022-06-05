@@ -17,36 +17,23 @@ class Event_Reset implements  CollisionEvent {
     }
 }
 
-class Event_BulletInpact implements  CollisionEvent {
+class Event_OnDialogArea implements  CollisionEvent {
     public function new() {
     }
 
     public function send(cl:CollisionsListener) {
-        cl.cd.setS("bullet_inpact",0.2);
-        cl.inpact = new Vector(10,10);     
-    }
-}
-
-class Event_VesselInpact implements  CollisionEvent {
-    public function new() {
-    }
-
-    public function send(cl:CollisionsListener) {
-        cl.cd.setS("vessel_inpact",0.2);
-        cl.inpact = new Vector(10,10);     
+        cl.cd.setS("pnj ready",0.2);  
     }
 }
 
 
 class InstancedCollisionEvent {
     
-    public var bulletInpact :Event_BulletInpact;
-    public var vesselInpact :Event_VesselInpact;
+    public var allowDialog :Event_OnDialogArea;
     public var reset :Event_Reset;
 
     public function new() {
-        bulletInpact    = new Event_BulletInpact();
-        vesselInpact    = new Event_VesselInpact();
+        allowDialog = new Event_OnDialogArea();
         reset  = new Event_Reset();
     }
     
