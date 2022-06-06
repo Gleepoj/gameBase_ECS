@@ -6,7 +6,7 @@ import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
 
 class CollisionsListenerActualizer extends System {
-    var events:InstancedCollisionEvent;
+    var events:InstancedCollisionEvent;// pas neccessaire ?
     public function new() {
         events = new InstancedCollisionEvent();
     }

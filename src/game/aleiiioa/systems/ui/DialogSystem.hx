@@ -142,7 +142,7 @@ class DialogSystem extends echoes.System {
 	}
 
 	@u function optionWindowUpdate(entity:Entity,uoc:UIOptionComponent){
-
+		// replace par set selected // modifie en interne la couleur 
 		if(uoc.id == optionSelect){
 			uoc.isSelected = true;
 		}

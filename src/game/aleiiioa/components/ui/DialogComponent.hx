@@ -18,7 +18,7 @@ import hxyarn.compiler.Compiler;
 import hxyarn.compiler.CompilationJob;
 
 class DialogComponent {
-	
+	//ajouter command pattern pour ordonner a Dialogue UI les modification (event listener)
     public var dialogue:Dialogue;
 	public var optionCount:Int = 0;
     public var isComplete:Bool = false;
@@ -56,7 +56,7 @@ class DialogComponent {
 	public function lineHandler(line:Line):HandlerExecutionType {
 		var text = getComposedTextForLine(line);
         
-		UIBuild.dialog('$text',2);
+		UIBuild.dialog('$text',2);// command send text and player/pnj position
         
 		return HandlerExecutionType.ContinueExecution;
 	}
@@ -71,7 +71,7 @@ class DialogComponent {
 			var text = getComposedTextForLine(option.line);
 			optionText.push(text);
 			count += 1;
-            UIBuild.option('$text', count);
+            UIBuild.option('$text', count);// command pattern send option 
 		}
 
 	}
@@ -103,7 +103,7 @@ class DialogComponent {
 
 	public function dialogueCompleteHandler() {
 		//trace("current dialogue end");
-        isComplete = true;
+        isComplete = true;// command 
 	}
 
 	function assertString(expected:String, actual:String) {
