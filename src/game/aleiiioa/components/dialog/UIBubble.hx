@@ -1,9 +1,14 @@
 package aleiiioa.components.dialog;
 
-class UIBubble {
-    public var bubble:h2d.Flow;
-    public var text:String;
-    public function new (){
+import h2d.Text;
+import dn.heaps.FlowBg;
 
+class UIBubble {
+    public var flow:h2d.Flow;
+    public var bubble:FlowBg;
+    public var text:Text;
+    
+    public function new (){
+        
     }
 }

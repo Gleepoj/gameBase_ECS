@@ -2,6 +2,7 @@
 package aleiiioa.systems.ui;
 
 
+import aleiiioa.components.dialog.YarnDialogListener;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.InputComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
@@ -15,6 +16,7 @@ import aleiiioa.components.ui.UIDialogComponent;
 import aleiiioa.components.ui.DialogComponent;
 import aleiiioa.components.flags.collision.IsDiedFlag;
 import aleiiioa.components.ui.UIOptionComponent;
+import aleiiioa.components.dialog.YarnDialogConponent;
 
 import echoes.Entity;
 import hxyarn.program.VirtualMachine.ExecutionState;
@@ -54,7 +56,8 @@ class DialogSystem extends echoes.System {
 	@u function updateSystem(p:PlayerFlag,cl:CollisionsListener,gameInput:InputComponent,gp:GridPosition){
 		if(cl.onArea){
 			if(gameInput.ca.isPressed(Blow)){
-				UIBuild.textDialog('$currentDialog');
+				//UIBuild.textDialog();
+				UIBuild.dialogEntity('$currentDialog');
 				gameInput.ca.lock();
 			}
 		}
@@ -63,16 +66,15 @@ class DialogSystem extends echoes.System {
 			gameInput.ca.unlock();
 			currentDialog = null;
 		}
-			
-		
+				
 	}
 
-	@a function onDialogAdded(dc:DialogComponent){
+	@a function onDialogAdded(dc:YarnDialogConponent){
 		
 		if(ALL_DIALOG_TEXT.entities.head != ALL_DIALOG_TEXT.entities.tail)
 			clearDialog();
 
-		dc.start();
+		//dc.start();
 		state = dc.dialogue.get_executionState();
 		previousState = state;
 		optionSelect = 0;
@@ -80,7 +82,7 @@ class DialogSystem extends echoes.System {
 	}
 
 
-    @u function updateDialog(entity:echoes.Entity,dc:DialogComponent){
+    @u function updateDialog(entity:echoes.Entity,dc:YarnDialogConponent,yl:YarnDialogListener){
         
     	state = dc.dialogue.get_executionState();
 		previousState = state;
@@ -99,6 +101,7 @@ class DialogSystem extends echoes.System {
 					state = dc.dialogue.get_executionState();
 					dc.dialogue.resume();
 					selector = 1; 
+					//yl.option = null;
 				}
 				
                
@@ -119,9 +122,7 @@ class DialogSystem extends echoes.System {
 			
 			if(selector > maxSelector)
 				selector = 1;
-
-			ca.lock(0.2);
-			
+			ca.lock(0.2);	
 		}
 
 		if(dc.isComplete == true)
@@ -132,11 +133,11 @@ class DialogSystem extends echoes.System {
 			selector = 1;
     }
 
-	@r function onDialogRemove(dc:DialogComponent){
+	@r function onDialogRemove(dc:YarnDialogConponent){
 		dialogIsStreaming = false;
 	}
 	
-	@u function bubbleWindowUpdate(entity:Entity,udc:UIDialogComponent){
+	/* @u function bubbleWindowUpdate(entity:Entity,udc:UIDialogComponent){
 		if(!dialogIsStreaming)
 			entity.add(new IsDiedFlag());
 	}
@@ -156,7 +157,7 @@ class DialogSystem extends echoes.System {
 			entity.add(isDied);
 		}
 
-	}
+	} */
 
 	
 

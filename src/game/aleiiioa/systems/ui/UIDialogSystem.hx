@@ -65,7 +65,7 @@ class UIDialogSystem extends echoes.System {
         if(ALL_DIALOG.entities.head != ALL_DIALOG.entities.tail)
             clearDialogComponent();
 
-        var tile = Assets.tiles.getTile( D.tiles.uiBar );
+        var tile = Assets.tiles.getTile(D.tiles.uiBar);
 		var f = new dn.heaps.FlowBg(tile, 2,fbubble);
         f.horizontalSpacing = 5;
         f.paddingHorizontal = 20;

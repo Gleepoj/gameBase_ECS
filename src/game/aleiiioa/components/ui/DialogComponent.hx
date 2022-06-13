@@ -31,11 +31,11 @@ class DialogComponent {
 		dialogue = new Dialogue(new MemoryVariableStore());
 		dialogue.logDebugMessage = this.logDebugMessage;
 		dialogue.logErrorMessage = this.logErrorMessage;
-		dialogue.lineHandler = this.lineHandler;
-		dialogue.optionsHandler = this.optionsHandler;
-		dialogue.commandHandler = this.commandHandler;
+		dialogue.lineHandler	 = this.lineHandler;
+		dialogue.optionsHandler  = this.optionsHandler;
+		dialogue.commandHandler  = this.commandHandler;
 		dialogue.nodeCompleteHandler = this.nodeCompleteHandler;
-		dialogue.nodeStartHandler = this.nodeStartHandler;
+		dialogue.nodeStartHandler 	 = this.nodeStartHandler;
 		dialogue.dialogueCompleteHandler = this.dialogueCompleteHandler;
 
 		var job = CompilationJob.createFromFiles([yarnFile], dialogue.library);

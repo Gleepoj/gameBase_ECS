@@ -1,6 +1,9 @@
 package aleiiioa;
 
 
+import aleiiioa.systems.dialog.YarnDialogSystem;
+import aleiiioa.systems.dialog.DialogUISystem;
+
 import aleiiioa.components.ui.UIDialogComponent;
 import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
@@ -60,9 +63,11 @@ class Aleiiioa extends Game {
 		
 		//Helpers
 		Workflow.add60FpsSystem(new UIHelperSystem());
-		Workflow.add60FpsSystem(new UIDialogSystem());
+		//Workflow.add60FpsSystem(new UIDialogSystem());
+		Workflow.add60FpsSystem(new YarnDialogSystem());
 		Workflow.add60FpsSystem(new DialogSystem());
-	
+		Workflow.add60FpsSystem(new DialogUISystem());
+		
 		//Input
 		Workflow.add60FpsSystem(new InputSystem());
 

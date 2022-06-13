@@ -1,5 +1,10 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.dialog.UIBubble;
+import aleiiioa.components.dialog.UIOption;
+import aleiiioa.components.dialog.YarnDialogListener;
+import aleiiioa.components.dialog.UIDialog;
+import aleiiioa.components.dialog.YarnDialogConponent;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.ui.DialogComponent;
 import aleiiioa.components.ui.UIOptionComponent;
@@ -36,5 +41,19 @@ class UIBuild {
             //var udc = new UIDialogComponent(text,character);
 
             new echoes.Entity().add(dc);
+        }
+
+        public static function dialogEntity(_yarnFile:String){
+            
+            var ydc = new YarnDialogConponent(_yarnFile);
+            var ydl = new YarnDialogListener();
+
+            
+           // new echoes.Entity().add(ydc,ydl);
+            var ui    = new UIDialog();
+            var uiBub = new UIBubble();
+            var uiOpt = new UIOption();
+
+            new echoes.Entity().add(ydc,ydl,ui,uiBub,uiOpt);
         }
     }

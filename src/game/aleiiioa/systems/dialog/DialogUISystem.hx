@@ -5,10 +5,13 @@ package aleiiioa.systems.dialog;
 // Faire deux composant bubble (avec un update texte )/ option qui creer leur propre flow a la creation et s'update par la suite 
 
 
+import aleiiioa.components.dialog.YarnDialogListener;
+import h2d.Flow;
 import aleiiioa.components.dialog.UIOption;
 import aleiiioa.components.dialog.UIDialog;
 import aleiiioa.components.dialog.UIBubble;
 import aleiiioa.components.core.position.GridPosition;
+
 import aleiiioa.components.ui.DialogComponent;
 import echoes.View;
 
@@ -59,14 +62,29 @@ class DialogUISystem extends echoes.System {
 
     @a public function onBubbleAdded(udc:UIDialog,b:UIBubble){
         //bubble is added one and then update//
-        b.bubble = new h2d.Flow(udc.dialogLayer);
         
-        b.bubble.layout = Vertical;
-        b.bubble.multiline = true;
-        b.bubble.reverse = true;
-        b.bubble.verticalSpacing = 5;
-        b.bubble.padding = 10;
+        b.flow = new h2d.Flow(udc.dialogLayer);
+        b.flow.setPosition(600,50);
 
+        b.flow.layout = Vertical;
+        b.flow.multiline = true;
+        b.flow.reverse = true;
+        b.flow.verticalSpacing = 5;
+        b.flow.padding = 10;
+    
+        
+        var tile = Assets.tiles.getTile(D.tiles.uiBar);
+		b.bubble = new dn.heaps.FlowBg(tile, 2,b.flow);
+        
+        b.bubble.horizontalSpacing = 5;
+        b.bubble.paddingHorizontal = 20;
+        b.bubble.paddingVertical = 20;
+        b.bubble.colorizeBg(0xA26AE3);
+
+        b.text = new h2d.Text(getFont(),b.bubble);
+        b.text.text = "new text";//dial list text
+        b.text.maxWidth = 300;
+        b.text.textAlign = Left; 
 
     }
 
@@ -74,50 +92,38 @@ class DialogUISystem extends echoes.System {
     @a public function onOptionAdded(udc:UIDialog,o:UIOption){
         // option is added every option call ? 
         // attention op ne fait pas partie du meme flow
-        o.option = new h2d.Flow(udc.dialogLayer);
-        
-        o.option.layout = Horizontal;
-        o.option.multiline = true;
-        o.option.verticalSpacing = 5;
-        o.option.padding = 10;
+        o.flow = new h2d.Flow(udc.dialogLayer);
+
+        o.flow.layout = Horizontal;
+        o.flow.multiline = true;
+        o.flow.verticalSpacing = 5;
+        o.flow.padding = 10;
 
 
+    }
+
+    @u public function updateDialogText(ydl:YarnDialogListener,b:UIBubble) {
+        if(ydl.onSpeak && !ydl.onPause){
+            b.bubble.removeChild(b.text);
+            b.text = new h2d.Text(getFont(),b.bubble);
+            b.text.text = ydl.text;
+            b.text.maxWidth = 300;
+            b.text.textAlign = Left; 
+            b.bubble.reflow();    
+            ydl.cd.setS("pause",0.3);
+        }
     }
 
     private function getFont() {
         return hxd.res.DefaultFont.get();
     }
 
-    @u public function onNewSpeak(udc:UIDialogComponent){
-        
-       /*  fbubble.setPosition(600,100);
-
-        
-        if(ALL_DIALOG.entities.head != ALL_DIALOG.entities.tail)
-            clearDialogComponent();
-
-        var tile = Assets.tiles.getTile( D.tiles.uiBar );
-		var f = new dn.heaps.FlowBg(tile, 2,fbubble);
-        f.horizontalSpacing = 5;
-        f.paddingHorizontal = 20;
-        f.paddingVertical = 20;
-        f.colorizeBg(0xA26AE3);
- */
-        /* if(udc.character == 1){
-            fbubble.setPosition(300,300);
-            f.colorizeBg(0xA56DE7);
-        }
-
-        if(udc.character == 2){
-            fbubble.setPosition(500,300);
-            f.colorizeBg(0x006DE7);
-        } */
-        
-/* 
-        var tf = new h2d.Text(getFont(), f);
-        tf.text = udc.text;
-        tf.maxWidth = 300;
-        tf.textAlign = Left; */
+    @u public function onNewSpeak(b:UIBubble){
+      
+    /*     b.text = new h2d.Text(getFont(),b.bubble);
+        b.text.text = "new text";//dial list text
+        b.text.maxWidth = 300;
+        b.text.textAlign = Left;  */
           
     }
 
@@ -160,11 +166,11 @@ class DialogUISystem extends echoes.System {
 
     
     @r function onRemoveBubble(b:UIBubble){
-        b.bubble.removeChildren();
+        b.flow.removeChildren();
     }
 
     @r function onRemoveOption(o:UIOption){
-        o.option.removeChildren();
+        o.flow.removeChildren();
     }
 
     @r function onRemoveYarnDialogue(yd:DialogComponent){
