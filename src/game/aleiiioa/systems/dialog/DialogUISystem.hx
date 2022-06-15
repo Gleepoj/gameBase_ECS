@@ -5,6 +5,7 @@ package aleiiioa.systems.dialog;
 // Faire deux composant bubble (avec un update texte )/ option qui creer leur propre flow a la creation et s'update par la suite 
 
 
+import dn.heaps.FlowBg;
 import aleiiioa.components.dialog.YarnDialogListener;
 import h2d.Flow;
 import aleiiioa.components.dialog.UIOption;
@@ -23,37 +24,10 @@ import aleiiioa.components.ui.UIDialogComponent;
 
 class DialogUISystem extends echoes.System {
     
-    //var fbubble : h2d.Flow;
-    //var foption : h2d.Flow;
-
     var ALL_DIALOG:View<UIDialogComponent>;
     var ALL_OPTION:View<UIOptionComponent>;
     
     public function new() {
-        
-      //  var dialog = new h2d.Layers();
-        //Game.ME.root.add(dialog,Const.DP_UI);
-		//dialog.name = "Dialog system";
-		/* 
-        fbubble = new h2d.Flow(dialog);
-        
-        fbubble.layout = Vertical;
-        fbubble.multiline = true;
-        fbubble.reverse = true;
-        fbubble.verticalSpacing = 5;
-        fbubble.padding = 10;
-        
-
-        var options = new h2d.Layers();
-        Game.ME.root.add(options,Const.DP_UI);
-		options.name = "Dialog system";
-		
-        foption = new h2d.Flow(dialog);
-        
-        foption.layout = Horizontal;
-        foption.multiline = true;
-        foption.verticalSpacing = 5;
-        foption.padding = 10; */
         
         //SAMPLE USAGE //       
         //UIBuild.slider("Speed", function() return tf, function(v) tf = v, 0, 10);
@@ -89,11 +63,14 @@ class DialogUISystem extends echoes.System {
     }
 
     
-    @a public function onOptionAdded(udc:UIDialog,o:UIOption){
+    @a public function onOptionFlowAdded(udc:UIDialog,o:UIOption){
         // option is added every option call ? 
         // attention op ne fait pas partie du meme flow
         o.flow = new h2d.Flow(udc.dialogLayer);
 
+        //var tile = Assets.tiles.getTile(D.tiles.uiBar);
+		//o.bubble = new dn.heaps.FlowBg(tile,2,o.flow);
+		
         o.flow.layout = Horizontal;
         o.flow.multiline = true;
         o.flow.verticalSpacing = 5;
@@ -102,14 +79,28 @@ class DialogUISystem extends echoes.System {
 
     }
 
-    @u public function updateDialogText(ydl:YarnDialogListener,b:UIBubble) {
-        if(ydl.onSpeak && !ydl.onPause){
+    @u public function updateDialogText(ydl:YarnDialogListener,b:UIBubble,o:UIOption) {
+        if(ydl.onSpeak && b.text.text != ydl.text){
             b.bubble.removeChild(b.text);
             b.text = new h2d.Text(getFont(),b.bubble);
             b.text.text = ydl.text;
             b.text.maxWidth = 300;
             b.text.textAlign = Left; 
             b.bubble.reflow();    
+        }
+
+        if(ydl.onAsk && !ydl.onPause){
+           o.flow.setPosition(b.flow.x,b.flow.y +b.flow.outerHeight);
+
+           for (choice in ydl.option){
+                newOptionBubble(choice,o,b);
+           }        
+           ydl.cd.setS("pause",0.3);
+        }
+        
+        if(ydl.onAnswer && !ydl.onPause){
+            o.flow.removeChildren();
+            o.bubbles = new Array<FlowBg>();
             ydl.cd.setS("pause",0.3);
         }
     }
@@ -118,41 +109,29 @@ class DialogUISystem extends echoes.System {
         return hxd.res.DefaultFont.get();
     }
 
-    @u public function onNewSpeak(b:UIBubble){
-      
-    /*     b.text = new h2d.Text(getFont(),b.bubble);
-        b.text.text = "new text";//dial list text
-        b.text.maxWidth = 300;
-        b.text.textAlign = Left;  */
-          
-    }
-
-    @u public function onAskOption(uoc:UIOptionComponent){
-       /*  
+    public function newOptionBubble(text:String,o:UIOption,b:UIBubble){
+       
         var tile = Assets.tiles.getTile(D.tiles.uiBar);
-		var f = new dn.heaps.FlowBg(tile,2,foption);
+		var f = new dn.heaps.FlowBg(tile,2,o.flow);
 		
-        foption.setPosition(fbubble.x,fbubble.y + fbubble.outerHeight);
-
         f.horizontalSpacing = 5;
         f.paddingHorizontal = 20;
         f.paddingVertical = 20;
         
         f.colorizeBg(0xA56FF7);
         
-    
         f.reverse = true;
         f.horizontalAlign = FlowAlign.Right;
         f.layout = FlowLayout.Horizontal; 
     
 
         var tf = new h2d.Text(getFont(), f);
-        tf.text = uoc.text;
+        tf.text = text;
         tf.maxWidth = 300;
         tf.textAlign = Left;
 
-        uoc.flowObject = f;
-        */   
+        o.bubbles.push(f);
+
     }
 
     @u function colorizeOption(uoc:UIOptionComponent){

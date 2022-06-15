@@ -101,6 +101,7 @@ class DialogSystem extends echoes.System {
 					state = dc.dialogue.get_executionState();
 					dc.dialogue.resume();
 					selector = 1; 
+					yl.cd.setS("answer",0.2);
 					//yl.option = null;
 				}
 				
