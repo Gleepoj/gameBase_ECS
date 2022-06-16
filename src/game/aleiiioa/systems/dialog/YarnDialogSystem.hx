@@ -14,21 +14,24 @@ class YarnDialogSystem extends echoes.System {
 
     @u function updateDialogListener(dt:Float,ydial:YarnDialogConponent,yl:YarnDialogListener) {
         yl.cd.update(dt);
+        
         yl.lastEvent = yl.newEvent;
+        yl.lastText = yl.text;
+       
         yl.newEvent = ydial.currentEvent;
         yl.option = ydial.currentOptions;
         yl.text = ydial.currentText;
-       
-        if (yl.newEvent!=null && yl.lastEvent != yl.newEvent){
+
+        if(yl.onStep || yl.onEvent){
             orderListener(yl);
         }
     }
     
     function orderListener(yl:YarnDialogListener){
         yl.newEvent.send(yl);
-        trace(yl.text);
+        //trace(yl.text);
         if(yl.option != null){
-            trace(yl.option);
+            //trace(yl.option);
         }
     }
 }

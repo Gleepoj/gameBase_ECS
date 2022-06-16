@@ -91,7 +91,6 @@ class YarnDialogConponent {
 			var text = getComposedTextForLine(option.line);
 			currentOptions.push(text);
 			count += 1;
-            //UIBuild.option('$text', count);// command pattern send option 
 			currentEvent = events.ask;
 		}
 

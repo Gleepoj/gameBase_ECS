@@ -11,9 +11,17 @@ class YarnDialogListener {
     public var lastEvent:DialogEvent;
     public var newEvent:DialogEvent;
 
+    public var lastText:String;
     public var text:String;
     public var option:Array<String>;
+    public var selector:Int;
     
+    public var onStep(get,never):Bool;
+        inline function get_onStep() return lastText != text; 
+        
+    public var onEvent(get,never):Bool;
+        inline function get_onEvent() return lastEvent != newEvent;
+
     public var onAsk(get,never):Bool;
         inline function get_onAsk() return cd.has("ask") ;
 

@@ -1,7 +1,6 @@
 package aleiiioa.systems.dialog;
 
 import aleiiioa.components.dialog.YarnDialogListener;
-// enum instead of string ? 
 
 interface DialogEvent {
     public function send(dl:YarnDialogListener):Void;    
@@ -12,7 +11,7 @@ class Event_End implements  DialogEvent {
     }
 
     public function send(dl:YarnDialogListener) {
-        dl.cd.setS("end",0.2);
+        dl.cd.setS("end",0.1);
     }
 }
 
@@ -21,7 +20,7 @@ class Event_Speak implements  DialogEvent {
     }
 
     public function send(dl:YarnDialogListener) {
-        dl.cd.setS("speak",0.2);
+        dl.cd.setS("speak",0.1);
     }
 }
 
@@ -30,7 +29,7 @@ class Event_Ask implements  DialogEvent {
     }
     
     public function send(dl:YarnDialogListener) { 
-        dl.cd.setS("ask",0.2); 
+        dl.cd.setS("ask",0.1); 
     }
 }
 

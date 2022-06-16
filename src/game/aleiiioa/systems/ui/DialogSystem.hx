@@ -9,13 +9,10 @@ import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.dialog.DialogReferenceComponent;
 import aleiiioa.components.flags.PNJFlag;
 import aleiiioa.components.flags.PlayerFlag;
-import echoes.View;
+
 
 import aleiiioa.builders.UIBuild;
-import aleiiioa.components.ui.UIDialogComponent;
-import aleiiioa.components.ui.DialogComponent;
 import aleiiioa.components.flags.collision.IsDiedFlag;
-import aleiiioa.components.ui.UIOptionComponent;
 import aleiiioa.components.dialog.YarnDialogConponent;
 
 import echoes.Entity;
@@ -23,12 +20,10 @@ import hxyarn.program.VirtualMachine.ExecutionState;
 
 class DialogSystem extends echoes.System {
 	
-	var ALL_DIALOG_TEXT:View<DialogComponent>;
-
     var ca : ControllerAccess<GameAction>;
 	var previousState :ExecutionState;
-	var state : ExecutionState; // getters to add
-	
+	var state : ExecutionState; 
+
 	var optionSelect:Int;
 	var selector:Int = 1;
 	var dialogIsStreaming:Bool = false;
@@ -41,11 +36,6 @@ class DialogSystem extends echoes.System {
 
     }
 
-	function clearDialog(){
-		var head = ALL_DIALOG_TEXT.entities.head;
-        head.value.destroy();
-	}
-
 	@u function getCurrentDialog(pnj:PNJFlag,yarn:DialogReferenceComponent,cl:CollisionsListener) {
 		if(yarn.reference != currentDialog)
 			if(cl.onArea)
@@ -56,25 +46,22 @@ class DialogSystem extends echoes.System {
 	@u function updateSystem(p:PlayerFlag,cl:CollisionsListener,gameInput:InputComponent,gp:GridPosition){
 		if(cl.onArea){
 			if(gameInput.ca.isPressed(Blow)){
-				//UIBuild.textDialog();
 				UIBuild.dialogEntity('$currentDialog');
 				gameInput.ca.lock();
+				ca.unlock();
 			}
 		}
 
 		if(!dialogIsStreaming){
 			gameInput.ca.unlock();
+			ca.lock();
 			currentDialog = null;
 		}
 				
 	}
 
 	@a function onDialogAdded(dc:YarnDialogConponent){
-		
-		if(ALL_DIALOG_TEXT.entities.head != ALL_DIALOG_TEXT.entities.tail)
-			clearDialog();
 
-		//dc.start();
 		state = dc.dialogue.get_executionState();
 		previousState = state;
 		optionSelect = 0;
@@ -86,10 +73,11 @@ class DialogSystem extends echoes.System {
         
     	state = dc.dialogue.get_executionState();
 		previousState = state;
+		
 		var maxSelector = dc.optionCount;
-
 		optionSelect = selector-1;
-
+		yl.selector = optionSelect;
+		
         if(ca.isPressed(Blow)){
             if(dc.dialogue.isActive()){
 				
@@ -101,8 +89,7 @@ class DialogSystem extends echoes.System {
 					state = dc.dialogue.get_executionState();
 					dc.dialogue.resume();
 					selector = 1; 
-					yl.cd.setS("answer",0.2);
-					//yl.option = null;
+					yl.cd.setS("answer",0.1);
 				}
 				
                
@@ -113,17 +100,19 @@ class DialogSystem extends echoes.System {
 			selector -=1;
 
 			if(selector < 1)
-				selector = maxSelector;
-
-			ca.lock(0.2);
+				selector = 0;
+			ca.unlock();
+			ca.lock(0.12);
 		}
 
 		if(ca.isDown(MoveRight)){
 			selector +=1;
 			
 			if(selector > maxSelector)
-				selector = 1;
-			ca.lock(0.2);	
+				selector = maxSelector;
+			
+			ca.unlock();
+			ca.lock(0.12);	
 		}
 
 		if(dc.isComplete == true)
@@ -138,30 +127,5 @@ class DialogSystem extends echoes.System {
 		dialogIsStreaming = false;
 	}
 	
-	/* @u function bubbleWindowUpdate(entity:Entity,udc:UIDialogComponent){
-		if(!dialogIsStreaming)
-			entity.add(new IsDiedFlag());
-	}
-
-	@u function optionWindowUpdate(entity:Entity,uoc:UIOptionComponent){
-		// replace par set selected // modifie en interne la couleur 
-		if(uoc.id == optionSelect){
-			uoc.isSelected = true;
-		}
-		
-		if(uoc.id != optionSelect){
-			uoc.isSelected = false;
-		}
-
-		if(state == ExecutionState.WaitingForContinue && previousState ==  ExecutionState.WaitingOnOptionSelection){
-			var isDied = new IsDiedFlag();
-			entity.add(isDied);
-		}
-
-	} */
-
-	
-
-    
 }
 
