@@ -29,9 +29,5 @@ class YarnDialogSystem extends echoes.System {
     
     function orderListener(yl:YarnDialogListener){
         yl.newEvent.send(yl);
-        //trace(yl.text);
-        if(yl.option != null){
-            //trace(yl.option);
-        }
     }
 }

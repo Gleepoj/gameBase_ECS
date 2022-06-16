@@ -1,7 +1,5 @@
 package aleiiioa.systems.dialog;
 
-import echoes.View;
-
 import h2d.Flow;
 import dn.heaps.FlowBg;
 import h2d.Flow.FlowLayout;
@@ -12,14 +10,9 @@ import aleiiioa.components.dialog.UIOption;
 import aleiiioa.components.dialog.UIDialog;
 import aleiiioa.components.dialog.UIBubble;
 
-//import aleiiioa.components.ui.DialogComponent;
-//import aleiiioa.components.ui.UIOptionComponent;
-//import aleiiioa.components.ui.UIDialogComponent;
 
 class DialogUISystem extends echoes.System {
     
-    //var ALL_DIALOG:View<UIDialogComponent>;
-    //var ALL_OPTION:View<UIOptionComponent>;
     
     public function new() {
         
@@ -137,22 +130,7 @@ class DialogUISystem extends echoes.System {
     @r function onRemoveOption(o:UIOption){
         o.flow.removeChildren();
     }
-/* 
-    @r function onRemoveYarnDialogue(yd:DialogComponent){
-        clearOptionComponent();
-    } */
 
-    /* private function clearDialogComponent(){
-        var head = ALL_DIALOG.entities.head;
-        head.value.destroy();
-    }
-
-    private function clearOptionComponent(){
-        while (ALL_OPTION.size() > 0) {
-         var head = ALL_OPTION.entities.head;
-         head.value.destroy();
-        }
-    } */
 }
 
  

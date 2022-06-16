@@ -12,6 +12,7 @@ class YarnDialogListener {
     public var newEvent:DialogEvent;
 
     public var lastText:String;
+    
     public var text:String;
     public var option:Array<String>;
     public var selector:Int;

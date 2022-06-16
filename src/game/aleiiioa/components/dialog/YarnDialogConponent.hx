@@ -2,7 +2,6 @@ package aleiiioa.components.dialog;
 
 import aleiiioa.systems.dialog.DialogEvent;
 import aleiiioa.systems.dialog.DialogEvent.InstancedDialogEvent;
-import aleiiioa.builders.UIBuild;
 
 import hxyarn.program.VirtualMachine.ExecutionState;
 import haxe.Exception;
@@ -18,20 +17,18 @@ import hxyarn.compiler.Compiler;
 import hxyarn.compiler.CompilationJob;
 
 
-// ici transferer dialogsystem and add event listener 
 class YarnDialogConponent {
   
     var yarnFilePath:String;
    
 	var events :InstancedDialogEvent; 
-	
+	public var optionCount:Int;
 	public var currentEvent:DialogEvent;
 	public var currentText:String;
 	public var currentOptions:Array<String>;
-	public var currentOptionsCount:Int;
+	
     
 	public var dialogue:Dialogue;
-	public var optionCount:Int = 0;
     public var isComplete:Bool = false;
 
 	var storage = new MemoryVariableStore();
@@ -39,7 +36,6 @@ class YarnDialogConponent {
 	
     
     public function new(_yarnFilePath:String) {
-        //ajouter command pattern pour ordonner a Dialogue UI les modification (event listener)
 
         yarnFilePath = _yarnFilePath;
 		
@@ -72,12 +68,11 @@ class YarnDialogConponent {
 
 	function setUp(fileName:String) {}
 
-    // ovverride? 
 	public function lineHandler(line:Line):HandlerExecutionType {
 		var text = getComposedTextForLine(line);
-		//UIBuild.dialog('$text',2);// command send text and player/pnj position 
 		currentText = text;
 		currentEvent = events.speak;
+
 		return HandlerExecutionType.ContinueExecution;
 	}
 
@@ -86,7 +81,6 @@ class YarnDialogConponent {
 		currentOptions = new Array<String>();
 		var count:Int = -1;
 
-		//trace("Options:");
 		for (option in options.options) {
 			var text = getComposedTextForLine(option.line);
 			currentOptions.push(text);
@@ -122,8 +116,7 @@ class YarnDialogConponent {
 	public function nodeStartHandler(nodeName:String) {}
 
 	public function dialogueCompleteHandler() {
-		//trace("current dialogue end");
-        isComplete = true;// command 
+        isComplete = true; 
 		currentEvent = events.end;
 	}
 

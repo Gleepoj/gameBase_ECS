@@ -114,13 +114,15 @@ class DialogSystem extends echoes.System {
 			ca.unlock();
 			ca.lock(0.12);	
 		}
-
-		if(dc.isComplete == true)
-			entity.add(new IsDiedFlag());
 		
 		//handle selector skip bug 
 		if(selector < 1 || selector > maxSelector )
 			selector = 1;
+
+		// delete dialog if complete
+		if(dc.isComplete == true)
+			entity.add(new IsDiedFlag());
+		
     }
 
 	@r function onDialogRemove(dc:YarnDialogConponent){
