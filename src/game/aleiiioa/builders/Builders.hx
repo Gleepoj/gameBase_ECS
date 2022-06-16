@@ -17,6 +17,8 @@ import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.*;
 
+import aleiiioa.components.dialog.*;
+
 
 class Builders {    
 

@@ -1,10 +1,10 @@
 package aleiiioa;
 
 
-import aleiiioa.systems.dialog.YarnDialogSystem;
-import aleiiioa.systems.dialog.DialogUISystem;
+//import aleiiioa.systems.dialog.YarnDialogSystem;
+//import aleiiioa.systems.dialog.DialogUISystem;
 
-import aleiiioa.components.ui.UIDialogComponent;
+//import aleiiioa.components.ui.UIDialogComponent;
 import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
 
@@ -16,6 +16,7 @@ import aleiiioa.systems.solver.*;
 import aleiiioa.systems.modifier.*;
 import aleiiioa.systems.collisions.*;
 import aleiiioa.systems.vehicule.*;
+import aleiiioa.systems.dialog.*;
 
 import echoes.Workflow;
 
@@ -64,8 +65,8 @@ class Aleiiioa extends Game {
 		//Helpers
 		Workflow.add60FpsSystem(new UIHelperSystem());
 		//Workflow.add60FpsSystem(new UIDialogSystem());
-		Workflow.add60FpsSystem(new YarnDialogSystem());
-		Workflow.add60FpsSystem(new DialogSystem());
+		Workflow.add60FpsSystem(new DialogYarnSystem());
+		Workflow.add60FpsSystem(new DialogInputSystem());
 		Workflow.add60FpsSystem(new DialogUISystem());
 		
 		//Input

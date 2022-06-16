@@ -3,7 +3,7 @@ package aleiiioa.systems.dialog;
 import aleiiioa.components.dialog.YarnDialogListener;
 import aleiiioa.components.dialog.YarnDialogConponent;
 
-class YarnDialogSystem extends echoes.System {
+class DialogYarnSystem extends echoes.System {
     public function new() {
         
     }

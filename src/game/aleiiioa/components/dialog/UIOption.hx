@@ -5,7 +5,7 @@ import h2d.Layers;
 
 class UIOption{
     
-    public var layer:h2d.Layers;// new layer not flow 
+    public var layer:h2d.Layers; 
     public var flow:h2d.Flow;
     public var bubbles:Array<FlowBg>;
         

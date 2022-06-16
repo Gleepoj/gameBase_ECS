@@ -1,12 +1,10 @@
-
-package aleiiioa.systems.ui;
-
+package aleiiioa.systems.dialog;
 
 import aleiiioa.components.dialog.YarnDialogListener;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.InputComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
-import aleiiioa.components.core.dialog.DialogReferenceComponent;
+import aleiiioa.components.dialog.DialogReferenceComponent;
 import aleiiioa.components.flags.PNJFlag;
 import aleiiioa.components.flags.PlayerFlag;
 
@@ -18,7 +16,7 @@ import aleiiioa.components.dialog.YarnDialogConponent;
 import echoes.Entity;
 import hxyarn.program.VirtualMachine.ExecutionState;
 
-class DialogSystem extends echoes.System {
+class DialogInputSystem extends echoes.System {
 	
     var ca : ControllerAccess<GameAction>;
 	var previousState :ExecutionState;

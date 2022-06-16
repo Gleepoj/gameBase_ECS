@@ -1,4 +1,4 @@
-package aleiiioa.components.core.dialog;
+package aleiiioa.components.dialog;
 
 class DialogReferenceComponent {
     public var reference:String;
