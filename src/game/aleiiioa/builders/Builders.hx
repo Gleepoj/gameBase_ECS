@@ -25,6 +25,7 @@ class Builders {
     public static function pnj(cx:Int,cy:Int,yarnPath:String) {
         var pos = new GridPosition(cx,cy);
         var spr = new SpriteComponent(D.tiles.fxCircle15);
+        var sq  = new SquashComponent();
         var vas = new VelocityAnalogSpeed();
         var se  = new SpriteExtension();
         var vc  = new VelocityComponent();
@@ -35,12 +36,13 @@ class Builders {
         //var col = 
         se.baseColor = new Vector(0.3,0.8,0.6);
         
-        new echoes.Entity().add(pos,spr,se,vc,vas,pnj,cl,bflag,yarn);
+        new echoes.Entity().add(pos,spr,se,sq,vc,vas,pnj,cl,bflag,yarn);
     }
 
     public static function player(cx:Int,cy:Int) {
         var pos = new GridPosition(cx,cy);
         var spr = new SpriteComponent(D.tiles.fxCircle15);
+        var sq  = new SquashComponent();
         var se  = new SpriteExtension();
         var vc  = new VelocityComponent();
         var vas = new VelocityAnalogSpeed();
@@ -51,7 +53,7 @@ class Builders {
         
         se.baseColor = new Vector(0.9,0.2,0.6);
 
-        new echoes.Entity().add(pos,spr,se,vas,vc,inp,cl,bflag,player);
+        new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player);
     }
 
 

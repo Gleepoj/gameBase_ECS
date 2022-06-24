@@ -40,15 +40,15 @@ class SpriteRenderer extends echoes.System {
 	}
 
 	/** Briefly squash sprite on X (Y changes accordingly). "1.0" means no distorsion. **/
-	private function setSquash(se:SpriteExtension,spr:SpriteComponent) {
-		se.squashX = spr.scaleX;
-		se.squashY = 2 - spr.scaleX;
+	private function setSquash(se:SpriteExtension,sq:SquashComponent) {
+		se.squashX = sq.squashX;
+		se.squashY = 2 - sq.squashX;
 		
-		se.squashX = 2 - spr.scaleY;
-		se.squashY = spr.scaleY;
+		se.squashX = 2 - sq.squashY;
+		se.squashY = sq.squashY;
 	}
 
-	@u private function renderSprite(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension) {
+	@u private function renderSprite(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension,sq:SquashComponent) {
 		if (se.interpolateSprPos){
 			var interpolatePos = this.interpolateSpritePosition(gp);
 			spr.x = interpolatePos.x;
@@ -59,11 +59,11 @@ class SpriteRenderer extends echoes.System {
 			spr.y = gp.attachY;
 		}
 
-		spr.scaleX = se.dir * se.sprScaleX * se.squashX;
-		spr.scaleY = se.sprScaleY * se.squashY;
+		spr.scaleX = se.dir * se.sprScaleX * sq.squashX;
+		spr.scaleY = se.sprScaleY * sq.squashY;
 
-		se.squashX += (1 - se.squashX) * M.fmin(1, 0.2 * dt);
-		se.squashY += (1 - se.squashY) * M.fmin(1, 0.2 * dt);		
+		sq.squashX += (1 - sq.squashX) * M.fmin(1, 0.2 * dt);
+		sq.squashY += (1 - sq.squashY) * M.fmin(1, 0.2 * dt);		
 	}
 
 

@@ -124,6 +124,7 @@ class VelocitySystem extends echoes.System {
 		if( gp.yr>1 && cl.onLanding ) {
 			vc.dy = 0;
 			gp.yr = 1;
+			cl.cd.setS("landing",0.05);
 		}
 
 		

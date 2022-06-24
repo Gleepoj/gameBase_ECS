@@ -16,6 +16,8 @@ class CollisionsListener {
     public var on_left:Bool   = false;
     public var on_right:Bool  = false;
     public var on_ceil:Bool   = false;
+    public var on_fall:Bool   = false;
+    public var on_jump:Bool   = false;
 
     public var onArea(get,never):Bool;
         inline function get_onArea() return cd.has("pnj ready");
@@ -28,8 +30,7 @@ class CollisionsListener {
     
     public var onLanding(get,never):Bool;
         inline function get_onLanding() return on_land;
-    
-    
+     
     public var onLeft(get,never):Bool;
         inline function get_onLeft() return on_left;
     
@@ -38,6 +39,13 @@ class CollisionsListener {
     
     public var onCeil(get,never):Bool;
         inline function get_onCeil() return on_ceil;
+    
+    public var onFall(get,never):Bool;
+        inline function get_onFall() return on_fall;
+    
+    public var onJump(get,never):Bool;
+        inline function get_onJump() return on_jump;
+
     
     public function new(){
         lastEvent = new Event_Reset();
