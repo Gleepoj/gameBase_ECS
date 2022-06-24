@@ -20,6 +20,19 @@ class SpriteExtensionFx extends System {
         if(cl.onArea){
             spr.colorize(0xFF0000);
         }
+
+        if(cl.onGround){
+            spr.colorize(0x3566D5);
+        }
+        if(cl.onRight){
+            spr.colorize(0xbae1ff);
+        }
+        if(cl.onLeft){
+            spr.colorize(0xbaffc9);
+        }
+        if(cl.onCeil){
+            spr.colorize(0xeea990);
+        }
     }
    
 }

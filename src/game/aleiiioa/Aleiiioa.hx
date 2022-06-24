@@ -1,21 +1,12 @@
 package aleiiioa;
 
-
-//import aleiiioa.systems.dialog.YarnDialogSystem;
-//import aleiiioa.systems.dialog.DialogUISystem;
-
-//import aleiiioa.components.ui.UIDialogComponent;
 import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
-
 
 import aleiiioa.systems.ui.*;
 import aleiiioa.systems.core.*;
 import aleiiioa.systems.renderer.*;
-import aleiiioa.systems.solver.*;
-import aleiiioa.systems.modifier.*;
 import aleiiioa.systems.collisions.*;
-import aleiiioa.systems.vehicule.*;
 import aleiiioa.systems.dialog.*;
 
 import echoes.Workflow;
@@ -51,20 +42,18 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GarbageCollectionSystem());
 		Workflow.addSystem(new CollisionsListenerActualizer());
 		Workflow.addSystem(new EntityCollisionsSystem());
-		
 		//Object
-		Workflow.add60FpsSystem(new VelocitySystem());
+		Workflow.addSystem(new VelocitySystem());
 		Workflow.add60FpsSystem(new GridPositionActualizer());
 		
-		
-		
+		Workflow.addSystem(new LevelCollisionsSystem());
 		//Graphics
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		
 		//Helpers
 		Workflow.add60FpsSystem(new UIHelperSystem());
-		//Workflow.add60FpsSystem(new UIDialogSystem());
+
 		Workflow.add60FpsSystem(new DialogYarnSystem());
 		Workflow.add60FpsSystem(new DialogInputSystem());
 		Workflow.add60FpsSystem(new DialogUISystem());
@@ -72,11 +61,6 @@ class Aleiiioa extends Game {
 		//Input
 		Workflow.add60FpsSystem(new InputSystem());
 
-	
-		//UIBuild.dialog("this is my funny textfpjfspejfpsjofsepfofjspoefspojfpsjpodsjsofkskpoeskfposkfposekfposkfpokespofkseofkposekfposkfpokspofkposekfposkpofksepofkposkfpoksepofksepokfposkfposkfposkefpoksepofkosekfposkefposkepofkspofekspoefkposekfposkfpokspofkspoekfposkfposkfposkfposekfpsoek");
-		//UIBuild.dialog("this is my second funny tex;xjjspofthjjhjhhjhhhjhjhjhjhjhjhjijijijijijijijyuyuyuyuyuyuy uyuyuyuuyyugugyyugyugyugyugygyg ijijijijij ijiijijij ijijijiji oijjoijioji iojoij ioj  oijoii oijoi jjijoi joijoijoijoi oi joij oij oijoi joij oij oij oijoijoijoi joi o o jiojoijoi joij oij uyuyuyuuyyugugyyugyugyugyugygyg ijijijijij ijiijijij ijijijiji oijjoijioji iojoij ioj  oijoii oijoi jjijoi joijoijoijoi oi joij oij oijoi joij oij oij oijoijoijoi joi o o jiojoijoi joij oijuyuyuyuuyyugugyyugyugyugyugygyg ijijijijij ijiijijij ijijijiji oijjoijioji iojoij ioj  oijoii oijoi jjijoi joijoijoijoi oi joij oij oijoi joij oij oij oijoijoijoi joi o o jiojoijoi joij oij");
-		//UIBuild.dialog("this is my second funny text");
-		//trace(Workflow.entities.length);
 	}
 
 

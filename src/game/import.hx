@@ -3,7 +3,7 @@
 // Libs
 import dn.M;
 import dn.Lib;
-import dn.Color;
+import dn.Col;
 import dn.Tweenie;
 import dn.data.GetText;
 import dn.heaps.input.*;
@@ -23,7 +23,7 @@ import assets.CastleDb;
 import assets.World;
 
 // Aliases
-import dn.Color as C;
+import dn.Col as C;
 import dn.RandomTools as R;
 import assets.Assets as A;
 import assets.AssetsDictionaries as D;

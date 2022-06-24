@@ -1,5 +1,6 @@
 package aleiiioa.systems.core;
 
+import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.GridPosition;
 
@@ -7,14 +8,34 @@ class VelocitySystem extends echoes.System {
 	public function new() {}
 
 	
-	@u function updateAnalogDrivenEntity(gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed) {
-		vc.dx = vas.xSpeed*0.5;
-		vc.dy = vas.ySpeed*0.5;
-		fixedUpdate(gp, vc);
+	@u function updateAnalogDrivenEntity(gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed, cl:CollisionsListener) {
+		//vc.dx = vas.xSpeed;
+		//vc.dy = vas.ySpeed;
+
+		//gravity//
+		if(cl.onGround)
+			cl.cd.setS("recentlyOnGround",0.1);
+
+		if(!cl.onGround){
+			vc.dy += 0.1;
+		}
+
+		if( vas.ySpeed != 0 ) {
+			vc.dy += vas.ySpeed;
+		}
+
+		if( vas.xSpeed != 0 ) {
+			var speed = 0.3;
+			vc.dx += vas.xSpeed * speed;
+		}
+
+		vas.xSpeed = 0;
+		vas.ySpeed = 0;
+		fixedUpdate(gp,vc,cl);
 		applyFriction(vc);
 	}
 
-	function fixedUpdate(gp:GridPosition, vc:VelocityComponent) {
+	function fixedUpdate(gp:GridPosition, vc:VelocityComponent, cl:CollisionsListener) {
 		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
 		if (steps > 0) {
 			var n = 0;
@@ -23,7 +44,7 @@ class VelocitySystem extends echoes.System {
 				gp.xr += vc.dxTotal / steps;
 
 				if (vc.dxTotal != 0)
-					onPreStepX(); // <---- Add X collisions checks and physics in here
+					onPreStepX(gp,cl); // <---- Add X collisions checks and physics in here
 
 				while (gp.xr > 1) {
 					gp.xr--;
@@ -38,7 +59,7 @@ class VelocitySystem extends echoes.System {
 				gp.yr += vc.dyTotal / steps;
 
 				if (vc.dyTotal != 0)
-					onPreStepY(); // <---- Add Y collisions checks and physics in here
+					onPreStepY(gp,cl,vc); // <---- Add Y collisions checks and physics in here
 
 				while (gp.yr > 1) {
 					gp.yr--;
@@ -86,8 +107,28 @@ class VelocitySystem extends echoes.System {
 	}
 
 	/** Called at the beginning of each X movement step **/
-	function onPreStepX() {}
+	function onPreStepX(gp:GridPosition,cl:CollisionsListener) {
+		// Right collision
+		if( gp.xr>0.6 && cl.onRight )
+			gp.xr = 0.6;
+		
+		// Left collision
+		if( gp.xr<0.3 && cl.onLeft )
+			gp.xr = 0.3;
+	}
 
 	/** Called at the beginning of each Y movement step **/
-	function onPreStepY() {}
+	function onPreStepY(gp:GridPosition,cl:CollisionsListener,vc:VelocityComponent) {
+		
+		// Land on ground
+		if( gp.yr>1 && cl.onLanding ) {
+			vc.dy = 0;
+			gp.yr = 1;
+		}
+
+		
+		// Ceiling collision
+		if( gp.yr<0.4 && cl.onCeil )
+			gp.yr = 0.4;
+	}
 }

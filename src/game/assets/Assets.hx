@@ -14,7 +14,6 @@ class Assets {
 
 	/** LDtk world data **/
 	public static var worldData : World;
-
 	
 
 	static var _initDone = false;
@@ -60,7 +59,7 @@ class Assets {
 
 		// LDtk init & parsing
 		worldData = new World();
-
+	
 		// LDtk file hot-reloading
 		#if debug
 		var res = try hxd.Res.load(worldData.projectFilePath.substr(4)) catch(_) null; // assume the LDtk file is in "res/" subfolder
@@ -75,6 +74,12 @@ class Assets {
 				}, 0.2);
 			});
 		#end
+		// load yarn file
+		//var y = hxd.Res.yarn;
+		//var yarn = hxd.Res.load("res/yarn/Example.yarn");
+		hxd.Res.loader.load("yarn/Example.yarn");
+		hxd.Res.loader.load("yarn/Test2.yarn");
+
 	}
 
 

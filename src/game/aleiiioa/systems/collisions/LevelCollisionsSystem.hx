@@ -1,5 +1,7 @@
 package aleiiioa.systems.collisions;
 
+import aleiiioa.components.core.velocity.VelocityComponent;
+import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.flags.collision.*;
 
@@ -17,13 +19,13 @@ class LevelCollisionsSystem extends echoes.System {
 		return camera.isOnScreen(gp.attachX, gp.attachY, 0);
 	}
 
-    @u public function destroyObjectOnWallCollision(entity:Entity,gp:GridPosition,bf:BodyFlag) {
+    @u public function destroyObjectOnWallCollision(entity:Entity,gp:GridPosition,bf:BodyFlag,cl:CollisionsListener,vc:VelocityComponent,gp:GridPosition) {
         if(entity.isValid()){
-            if(level.hasCollision(gp.cx,gp.cy)){
-                if(!entity.exists(IsDiedFlag)){
-                    entity.add(new IsDiedFlag());
-                }
-            }
+            cl.on_ground = level.hasCollision(gp.cx,gp.cy+1) && vc.dy == 0 && gp.yr ==1;
+            cl.on_land   = level.hasCollision(gp.cx,gp.cy+1) && vc.dy > 0;
+            cl.on_ceil   = level.hasCollision(gp.cx,gp.cy-1);
+            cl.on_left   = level.hasCollision(gp.cx-1,gp.cy);
+            cl.on_right  = level.hasCollision(gp.cx+1,gp.cy);   
         }
     }
 

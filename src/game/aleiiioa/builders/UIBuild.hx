@@ -2,10 +2,11 @@ package aleiiioa.builders;
 
 import aleiiioa.components.dialog.UIBubble;
 import aleiiioa.components.dialog.UIOption;
-import aleiiioa.components.dialog.YarnDialogListener;
 import aleiiioa.components.dialog.UIDialog;
+
 import aleiiioa.components.dialog.YarnDialogConponent;
-import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.dialog.YarnDialogListener;
+
 import aleiiioa.components.ui.UICheckComponent;
 import aleiiioa.components.ui.UISliderComponent;
 

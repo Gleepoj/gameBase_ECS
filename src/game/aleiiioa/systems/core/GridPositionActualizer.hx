@@ -35,7 +35,6 @@ class GridPositionActualizer extends echoes.System {
 	
 
     @u inline function ActualizeGridComponent(gp:GridPosition){
-		//updateLastFixedUpdatePos(gp);
 		onPosManuallyChanged(gp);
     }
 

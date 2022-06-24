@@ -27,7 +27,7 @@ class GarbageCollectionSystem extends System {
         }
     }
 
-    @u function destroyBody(en:Entity,dflag:IsDiedFlag) {
+    @u function destroyEntity(en:Entity,dflag:IsDiedFlag) {
         en.destroy();
     }
 
