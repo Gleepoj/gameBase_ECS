@@ -33,7 +33,7 @@ class Builders {
         var cl   = new CollisionsListener();
         var bflag = new BodyFlag();
         var yarn = new DialogReferenceComponent(yarnPath);
-        //var col = 
+        
         se.baseColor = new Vector(0.3,0.8,0.6);
         
         new echoes.Entity().add(pos,spr,se,sq,vc,vas,pnj,cl,bflag,yarn);

@@ -19,7 +19,7 @@ class LevelCollisionsSystem extends echoes.System {
 		return camera.isOnScreen(gp.attachX, gp.attachY, 0);
 	}
 
-    @u public function destroyObjectOnWallCollision(entity:Entity,gp:GridPosition,bf:BodyFlag,cl:CollisionsListener,vc:VelocityComponent,gp:GridPosition) {
+    @u public function updateListener(entity:Entity,gp:GridPosition,bf:BodyFlag,cl:CollisionsListener,vc:VelocityComponent,gp:GridPosition) {
         if(entity.isValid()){
             cl.on_ground = level.hasCollision(gp.cx,gp.cy+1) && vc.dy == 0 && gp.yr ==1;
             cl.on_land   = level.hasCollision(gp.cx,gp.cy+1) && vc.dy > 0;
