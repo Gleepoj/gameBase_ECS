@@ -1,5 +1,6 @@
 package aleiiioa.systems.dialog;
 
+import aleiiioa.components.dialog.DialogReferenceComponent;
 import h2d.Flow;
 import dn.heaps.FlowBg;
 import h2d.Flow.FlowLayout;
@@ -18,11 +19,10 @@ class DialogUISystem extends echoes.System {
         
     }
 
-    @a public function onBubbleAdded(udc:UIDialog,b:UIBubble){
-        //bubble is added once and then update//
+    @a public function onBubbleAdded(udc:UIDialog,b:UIBubble,ydl:YarnDialogListener){
         
         b.flow = new h2d.Flow(udc.dialogLayer);
-        b.flow.setPosition(600,50);
+        b.flow.setPosition(ydl.attachX,ydl.attachY + Game.ME.scroller.y);
 
         b.flow.layout = Vertical;
         b.flow.multiline = true;

@@ -27,7 +27,7 @@ class UIBuild {
         public static function dialogEntity(_yarnFile:DialogReferenceComponent){
             
             var ydc = new YarnDialogConponent(_yarnFile);
-            var ydl = new YarnDialogListener();
+            var ydl = new YarnDialogListener(_yarnFile);
 
             var ui    = new UIDialog();
             var uiBub = new UIBubble();

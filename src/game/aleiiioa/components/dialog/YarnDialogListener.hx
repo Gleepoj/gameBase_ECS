@@ -16,6 +16,9 @@ class YarnDialogListener {
     public var text:String;
     public var option:Array<String>;
     public var selector:Int;
+
+    public var attachX:Float;
+    public var attachY:Float;
     
     public var onStep(get,never):Bool;
         inline function get_onStep() return lastText != text; 
@@ -38,9 +41,11 @@ class YarnDialogListener {
     public var onAnswer(get,never):Bool;
         inline function get_onAnswer() return  cd.has("answer");
 
-    public function new() {
+    public function new(dr:DialogReferenceComponent) {
         lastEvent = null;
         newEvent = null;
+        attachX = dr.attachX;
+        attachY = dr.attachY;
         cd = new Cooldown(Const.FIXED_UPDATE_FPS);
     }
 }

@@ -22,7 +22,7 @@ import aleiiioa.components.dialog.*;
 
 class Builders {    
 
-    public static function pnj(cx:Int,cy:Int,yarnPath:String) {
+    public static function pnj(cx:Int,cy:Int,yarnDialogName:String) {
         var pos = new GridPosition(cx,cy);
         var spr = new SpriteComponent(D.tiles.fxCircle15);
         var sq  = new SquashComponent();
@@ -32,7 +32,7 @@ class Builders {
         var pnj = new PNJFlag();
         var cl   = new CollisionsListener();
         var bflag = new BodyFlag();
-        var yarn = new DialogReferenceComponent(yarnPath);
+        var yarn = new DialogReferenceComponent(yarnDialogName,pos.attachX,pos.attachY);
         
         se.baseColor = new Vector(0.3,0.8,0.6);
         

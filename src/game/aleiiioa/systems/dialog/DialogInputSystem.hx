@@ -44,6 +44,8 @@ class DialogInputSystem extends echoes.System {
 	@u function updateSystem(p:PlayerFlag,cl:CollisionsListener,gameInput:InputComponent,gp:GridPosition){
 		if(cl.onArea){
 			if(gameInput.ca.isPressed(Blow)){
+				currentDialog.attachX = gp.attachX;
+				currentDialog.attachY = gp.attachY;
 				UIBuild.dialogEntity(currentDialog);
 				gameInput.ca.lock();
 				ca.unlock();
