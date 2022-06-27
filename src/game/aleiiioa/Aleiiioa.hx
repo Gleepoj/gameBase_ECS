@@ -44,9 +44,9 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new EntityCollisionsSystem());
 		//Object
 		Workflow.addSystem(new VelocitySystem());
-		Workflow.add60FpsSystem(new GridPositionActualizer());
 		
-		Workflow.addSystem(new LevelCollisionsSystem());
+		Workflow.add60FpsSystem(new GridPositionActualizer());
+		Workflow.add60FpsSystem(new LevelCollisionsSystem());
 		//Graphics
 		Workflow.add60FpsSystem(new SquashRenderer());
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
