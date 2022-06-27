@@ -507,7 +507,7 @@
 			"pivotY": 1,
 			"fieldDefs": [
 				{
-					"identifier": "String",
+					"identifier": "Dialog",
 					"__type": "String",
 					"uid": 39,
 					"type": "F_String",
@@ -646,9 +646,9 @@
 							"height": 16,
 							"defUid": 38,
 							"px": [523,323],
-							"fieldInstances": [{ "__identifier": "String", "__value": "res/yarn/Test2.yarn", "__type": "String", "__tile": null, "defUid": 39, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Dialog", "__value": "Test2", "__type": "String", "__tile": null, "defUid": 39, "realEditorValues": [{
 								"id": "V_String",
-								"params": ["res/yarn/Test2.yarn"]
+								"params": ["Test2"]
 							}] }]
 						},
 						{
@@ -663,9 +663,9 @@
 							"height": 16,
 							"defUid": 38,
 							"px": [750,374],
-							"fieldInstances": [{ "__identifier": "String", "__value": "res/yarn/Example.yarn", "__type": "String", "__tile": null, "defUid": 39, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Dialog", "__value": "Example", "__type": "String", "__tile": null, "defUid": 39, "realEditorValues": [{
 								"id": "V_String",
-								"params": ["res/yarn/Example.yarn"]
+								"params": ["Example"]
 							}] }]
 						},
 						{

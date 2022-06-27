@@ -14,9 +14,9 @@ class Assets {
 
 	/** LDtk world data **/
 	public static var worldData : World;
-	
 
 	static var _initDone = false;
+	
 	public static function init() {
 		if( _initDone )
 			return;
@@ -74,12 +74,6 @@ class Assets {
 				}, 0.2);
 			});
 		#end
-		// load yarn file
-		//var y = hxd.Res.yarn;
-		//var yarn = hxd.Res.load("res/yarn/Example.yarn");
-		hxd.Res.loader.load("yarn/Example.yarn");
-		hxd.Res.loader.load("yarn/Test2.yarn");
-
 	}
 
 

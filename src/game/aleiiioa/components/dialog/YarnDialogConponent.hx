@@ -19,7 +19,7 @@ import hxyarn.compiler.CompilationJob;
 
 class YarnDialogConponent {
   
-    var yarnFilePath:String;
+    var yarnFilePath:DialogReferenceComponent;
    
 	var events :InstancedDialogEvent; 
 	public var optionCount:Int;
@@ -35,7 +35,7 @@ class YarnDialogConponent {
 	var stringTable:Map<String, StringInfo>;
 	
     
-    public function new(_yarnFilePath:String) {
+    public function new(_yarnFilePath:DialogReferenceComponent) {
 
         yarnFilePath = _yarnFilePath;
 		
@@ -52,7 +52,7 @@ class YarnDialogConponent {
 		dialogue.nodeStartHandler = this.nodeStartHandler;
 		dialogue.dialogueCompleteHandler = this.dialogueCompleteHandler;
 
-		var job = CompilationJob.createFromFiles([yarnFilePath], dialogue.library);
+		var job = CompilationJob.createFromStrings([yarnFilePath.res.entry.getText()], [yarnFilePath.res.entry.name]);
 		var compilerResults = Compiler.compile(job);
 		stringTable = compilerResults.stringTable;
 

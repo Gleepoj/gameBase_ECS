@@ -35,7 +35,7 @@ class Aleiiioa extends Game {
 		Builders.player(player.cx,player.cy);
 
 		for (e in level.data.l_Entities.all_PNJ){
-			Builders.pnj(e.cx,e.cy,e.f_String);
+			Builders.pnj(e.cx,e.cy,e.f_Dialog);
 		}
 		
 		//Collision

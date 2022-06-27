@@ -26,7 +26,7 @@ class DialogInputSystem extends echoes.System {
 	var selector:Int = 1;
 	var dialogIsStreaming:Bool = false;
 
-	var currentDialog:String = null;
+	var currentDialog:DialogReferenceComponent = null;
 
     public function new() {
         ca = App.ME.controller.createAccess();
@@ -35,16 +35,16 @@ class DialogInputSystem extends echoes.System {
     }
 
 	@u function getCurrentDialog(pnj:PNJFlag,yarn:DialogReferenceComponent,cl:CollisionsListener) {
-		if(yarn.reference != currentDialog)
+		if(yarn != currentDialog)
 			if(cl.onArea)
-				currentDialog = yarn.reference;
+				currentDialog = yarn;
 
 	}
 
 	@u function updateSystem(p:PlayerFlag,cl:CollisionsListener,gameInput:InputComponent,gp:GridPosition){
 		if(cl.onArea){
 			if(gameInput.ca.isPressed(Blow)){
-				UIBuild.dialogEntity('$currentDialog');
+				UIBuild.dialogEntity(currentDialog);
 				gameInput.ca.lock();
 				ca.unlock();
 			}
@@ -88,9 +88,7 @@ class DialogInputSystem extends echoes.System {
 					dc.dialogue.resume();
 					selector = 1; 
 					yl.cd.setS("answer",0.1);
-				}
-				
-               
+				}               
 			}
         }
 		
@@ -99,6 +97,7 @@ class DialogInputSystem extends echoes.System {
 
 			if(selector < 1)
 				selector = 0;
+			
 			ca.unlock();
 			ca.lock(0.12);
 		}

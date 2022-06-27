@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.dialog.DialogReferenceComponent;
 import aleiiioa.components.dialog.UIBubble;
 import aleiiioa.components.dialog.UIOption;
 import aleiiioa.components.dialog.UIDialog;
@@ -23,7 +24,7 @@ class UIBuild {
             new echoes.Entity().add(ucc);
         }
 
-        public static function dialogEntity(_yarnFile:String){
+        public static function dialogEntity(_yarnFile:DialogReferenceComponent){
             
             var ydc = new YarnDialogConponent(_yarnFile);
             var ydl = new YarnDialogListener();
