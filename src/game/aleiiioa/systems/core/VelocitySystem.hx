@@ -6,7 +6,7 @@ import aleiiioa.components.core.position.GridPosition;
 
 class VelocitySystem extends echoes.System {
 	public function new() {}
-
+	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	
 	@u function updateAnalogDrivenEntity(gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed, cl:CollisionsListener) {
 		//vc.dx = vas.xSpeed;
@@ -14,7 +14,7 @@ class VelocitySystem extends echoes.System {
 
 		//gravity//
 		if(cl.onGround)
-			cl.cd.setS("recentlyOnGround",0.1);
+			cl.cd.setS("recentlyOnGround",0.01);
 
 		if(!cl.onGround){
 			vc.dy += 0.1;
@@ -109,11 +109,11 @@ class VelocitySystem extends echoes.System {
 	/** Called at the beginning of each X movement step **/
 	function onPreStepX(gp:GridPosition,cl:CollisionsListener) {
 		// Right collision
-		if( gp.xr>0.6 && cl.onRight )
+		if( gp.xr>0.6 && level.hasCollision(gp.cx+1,gp.cy) )
 			gp.xr = 0.6;
 		
 		// Left collision
-		if( gp.xr<0.3 && cl.onLeft )
+		if( gp.xr<0.3 && level.hasCollision(gp.cx-1,gp.cy) )
 			gp.xr = 0.3;
 	}
 
@@ -121,15 +121,16 @@ class VelocitySystem extends echoes.System {
 	function onPreStepY(gp:GridPosition,cl:CollisionsListener,vc:VelocityComponent) {
 		
 		// Land on ground
-		if( gp.yr>1 && cl.onLanding ) {
-			vc.dy = 0;
+		if( gp.yr>1 && level.hasCollision(gp.cx,gp.cy+1) ) {
+			vc.dy  = 0;
+			vc.bdy = 0;
 			gp.yr = 1;
-			cl.cd.setS("landing",0.05);
+			cl.cd.setS("landing",0.005);
 		}
 
 		
 		// Ceiling collision
-		if( gp.yr<0.4 && cl.onCeil )
-			gp.yr = 0.4;
+		if( gp.yr<=0.5 && level.hasCollision(gp.cx,gp.cy-1) )
+			gp.yr = 0.5;
 	}
 }

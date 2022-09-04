@@ -34,6 +34,7 @@ class Const {
 		"Fixed" updates framerate. 30fps is a good value here, as it's almost guaranteed to work on any decent setup, and it's more than enough to run any gameplay related physics.
 	**/
 	public static final FIXED_UPDATE_FPS = 30;
+	public static var FIXED_DELTA = 1/FIXED_UPDATE_FPS;
 
 	/** Grid size in pixels **/
 	public static final GRID:Int = 16;

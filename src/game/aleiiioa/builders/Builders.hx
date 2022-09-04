@@ -1,6 +1,8 @@
 package aleiiioa.builders;
 
 
+import aleiiioa.components.particules.EmitterComponent;
+import aleiiioa.components.particules.ParticulesComponent;
 import aleiiioa.components.flags.PlayerFlag;
 import aleiiioa.components.flags.PNJFlag;
 import aleiiioa.components.flags.collision.BodyFlag;
@@ -56,6 +58,16 @@ class Builders {
         new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player);
     }
 
+    public static function particule() {
+        var pa = new ParticulesComponent();
+        new echoes.Entity().add(pa);
+    }
+
+    public static function emitter() {
+        var em = new EmitterComponent();
+        var gp = new GridPosition(40,40);
+        new echoes.Entity().add(em,gp);
+    }
 
     public static function cameraFocus(cx:Int,cy:Int) {
         

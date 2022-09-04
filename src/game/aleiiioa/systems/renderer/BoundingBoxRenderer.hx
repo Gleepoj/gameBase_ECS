@@ -25,7 +25,7 @@ class BoundingBoxRenderer extends echoes.System{
     }
 
     private function renderDebugBounds(bb:BoundingBox) {
-		var c = Color.makeColorHsl(1 / 20, 1, 1);
+		var c = Col.makeColorHsl(1 / 20, 1, 1);
 		bb.debugBounds.clear();
 
 		// Bounds rect

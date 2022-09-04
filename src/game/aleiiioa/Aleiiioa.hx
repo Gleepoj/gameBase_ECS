@@ -5,6 +5,7 @@ import aleiiioa.components.core.position.GridPosition;
 
 import aleiiioa.systems.ui.*;
 import aleiiioa.systems.core.*;
+import aleiiioa.systems.particules.*;
 import aleiiioa.systems.renderer.*;
 import aleiiioa.systems.collisions.*;
 import aleiiioa.systems.dialog.*;
@@ -43,10 +44,14 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new CollisionsListenerActualizer());
 		Workflow.addSystem(new EntityCollisionsSystem());
 		//Object
-		Workflow.addSystem(new VelocitySystem());
 		
-		Workflow.add60FpsSystem(new GridPositionActualizer());
-		Workflow.add60FpsSystem(new LevelCollisionsSystem());
+		Workflow.addSystem(new LevelCollisionsSystem());
+		Workflow.addSystem(new VelocitySystem());
+		Workflow.addSystem(new GridPositionActualizer());
+		
+		
+		Workflow.add60FpsSystem(new ParticulesSystem());
+
 		//Graphics
 		Workflow.add60FpsSystem(new SquashRenderer());
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
@@ -54,7 +59,8 @@ class Aleiiioa extends Game {
 		
 		//Helpers
 		Workflow.add60FpsSystem(new UIHelperSystem());
-
+		
+		//Dialog
 		Workflow.add60FpsSystem(new DialogYarnSystem());
 		Workflow.add60FpsSystem(new DialogInputSystem());
 		Workflow.add60FpsSystem(new DialogUISystem());
@@ -67,7 +73,7 @@ class Aleiiioa extends Game {
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
-		Workflow.update(tmod);
+		Workflow.update(Const.FIXED_DELTA);
 	}
 
 	override function postUpdate() {
