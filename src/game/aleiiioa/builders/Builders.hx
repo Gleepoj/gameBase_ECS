@@ -48,10 +48,10 @@ class Builders {
         var se  = new SpriteExtension();
         var vc  = new VelocityComponent();
         var vas = new VelocityAnalogSpeed();
-        var cl    = new CollisionsListener();
-        var bflag = new BodyFlag();
+        var cl     = new CollisionsListener();
+        var bflag  = new BodyFlag();
         var player = new PlayerFlag();
-        var inp = new InputComponent();
+        var inp  = new InputComponent();
         
         se.baseColor = new Vector(0.9,0.2,0.6);
 

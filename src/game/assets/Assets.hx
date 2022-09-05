@@ -1,5 +1,9 @@
 package assets;
 
+import h2d.Tile;
+import hxd.BitmapData;
+import h2d.Bitmap;
+import h3d.mat.Texture;
 import dn.heaps.slib.*;
 
 /**
@@ -15,6 +19,9 @@ class Assets {
 	/** LDtk world data **/
 	public static var worldData : World;
 
+	public static var texture:Tile;
+	public static var alpha:Tile;
+
 	static var _initDone = false;
 	
 	public static function init() {
@@ -24,7 +31,9 @@ class Assets {
 
 		// Fonts
 		fontPixel = new hxd.res.BitmapFont( hxd.Res.fonts.pixel_unicode_regular_12_xml.entry ).toFont();
-
+		// Texture
+		texture = hxd.Res.texture.test_alpha.toTile();
+		alpha = hxd.Res.texture.alpha_channel.toTile();
 		// build sprite atlas directly from Aseprite file
 		tiles = dn.heaps.assets.Aseprite.convertToSLib(Const.FPS, hxd.Res.atlas.tiles.toAseprite());
 
