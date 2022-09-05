@@ -35,7 +35,7 @@ class ShaderRenderer extends echoes.System {
 
         var b = uniBitmap();
         
-        for(i in 0...20){
+        for(i in 0...200){
             //bitmap = new h2d.Bitmap(h2d.Tile.fromBitmap(b));
             bitmap = new h2d.Bitmap(Assets.alpha);
             var tex =  bitmap.tile.getTexture();
@@ -43,12 +43,12 @@ class ShaderRenderer extends echoes.System {
             //shader = new PerlinNoiseShader(tex);
             
             bitmap.addShader(shader);
-            bitmap.height = 532;
-            bitmap.width  = 532;
+            bitmap.height = 128;
+            bitmap.width  = 128;
             //bitmap.alpha = 0.5;
             bitmap.blendMode = Add;
-            bitmap.x = M.frand()*1000;
-            bitmap.y = M.frand()*1000;
+            bitmap.x = M.frand()*100;
+            bitmap.y = M.frand()*100;
             layer.add(bitmap);
         }
     }

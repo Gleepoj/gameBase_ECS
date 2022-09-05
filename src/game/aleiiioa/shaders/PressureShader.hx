@@ -73,8 +73,21 @@ class BeetleShader extends hxsl.Shader {
 			color = mix(color,
 						vec3(0.666667,1,1),
 						clamp(length(r.x),0.0,1.0));
-		
-			pixelColor = vec4((f*f*f+.6*f*f+.5*f)*color,input.r);
+			color = vec3((f*f*f+.6*f*f+.5*f)*color);
+
+			
+			var threshold:Float = 0.1;
+					
+			
+						// treshold
+			var bright:Float = 0.33333 * (color.r + color.g + color.b);
+			var b:Float = mix(0.0, 1.0, step(threshold, bright));
+			//var co:Vec3(step(threshold,color.r),step(threshold,color.g),step(threshold,color.b));
+						//gl_FragColor = vec4(vec3(b), 1.0);
+			
+			//pixelColor = vec4(co,input.r);
+			pixelColor = vec4(color,b*input.r);
+			//pixelColor = vec4(color,input.r);
 
 		}
 		
@@ -136,11 +149,19 @@ class PerlinNoiseShader extends hxsl.Shader {
 		function fragment() {
 			var st = calculatedUV;
 			var color = vec3(0.0);
-			
+			var input:Vec4 = texture.get(input.uv);
+			var threshold:Float = 0.5;
 			//st.x *=
 			color += fbm(st*3.0);
 
-			pixelColor = vec4(color,1.);
+			// treshold
+			//var bright:Float = 0.33333 * (color.r + color.g + color.b);
+			//var b:Float = mix(0.0, 1.0, step(threshold, bright));
+			//var co:Vec3(step(threshold,color.r),step(threshold,color.g),step(threshold,color.b));
+    		//gl_FragColor = vec4(vec3(b), 1.0);
+
+			//pixelColor = vec4(co,input.r);
+			pixelColor = vec4(color,input.r);
 
 		}
 		
