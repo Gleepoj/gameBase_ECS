@@ -28,7 +28,7 @@ class Builders {
         var pos = new GridPosition(cx,cy);
         var spr = new SpriteComponent(D.tiles.fxCircle15);
         var sq  = new SquashComponent();
-        var vas = new VelocityAnalogSpeed();
+        var vas = new VelocityAnalogSpeed(0,0);
         var se  = new SpriteExtension();
         var vc  = new VelocityComponent();
         var pnj = new PNJFlag();
@@ -47,7 +47,7 @@ class Builders {
         var sq  = new SquashComponent();
         var se  = new SpriteExtension();
         var vc  = new VelocityComponent();
-        var vas = new VelocityAnalogSpeed();
+        var vas = new VelocityAnalogSpeed(0,0);
         var cl     = new CollisionsListener();
         var bflag  = new BodyFlag();
         var player = new PlayerFlag();
@@ -58,14 +58,19 @@ class Builders {
         new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player);
     }
 
-    public static function particule() {
+    public static function particule(gpemit:GridPosition) {
         var pa = new ParticulesComponent();
-        new echoes.Entity().add(pa);
+        var gp = new GridPosition(gpemit.cx,gpemit.cy);
+        var vas = new VelocityAnalogSpeed(0,-0.4);
+        var vc  = new VelocityComponent();
+        var cl     = new CollisionsListener();
+        var ent = new echoes.Entity().add(pa,gp,vas,vc,cl);
+        return ent;
     }
 
     public static function emitter() {
         var em = new EmitterComponent();
-        var gp = new GridPosition(40,40);
+        var gp = new GridPosition(40,20);
         new echoes.Entity().add(em,gp);
     }
 
@@ -76,7 +81,7 @@ class Builders {
         var spr = new SpriteComponent(D.tiles.Square);
         var se  = new SpriteExtension();
         se.baseColor = new Vector(0,0.3,1,1);
-        var vas = new VelocityAnalogSpeed();
+        var vas = new VelocityAnalogSpeed(0,0);
         var vc  = new VelocityComponent();
 
         vas.ySpeed = foc.cameraScrollingSpeed;

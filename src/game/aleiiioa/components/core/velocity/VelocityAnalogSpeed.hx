@@ -5,7 +5,8 @@ class VelocityAnalogSpeed {
     public var ySpeed:Float = 0;
     
 
-    public function new() {
-        
+    public function new(xSp,ySp) {
+        xSpeed = xSp;
+        ySpeed = ySp;
     }
 }
