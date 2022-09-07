@@ -185,8 +185,42 @@ class BitmapShader extends hxsl.Shader {
 			pixelColor = vec4(color);
 		}
 	}
-	
 }
+class SmokeShader extends hxsl.Shader {
+		static var SRC = {
+			@:import h3d.shader.Base2d;
+			@param var texture:Sampler2D;
+			@param var speed:Float;
+			@param var frequency:Float;
+			
+
+			function fragment() {
+				var st = calculatedUV;
+				var input:Vec4 = texture.get(input.uv);
+				
+				var colorA:Vec3 = vec3(0.9,0.7,0);
+				var colorB:Vec3 = vec3(0.6,0.5,0);
+				
+				var color = vec3(0,0,0);
+				var mask = vec3(0,0,0);
+
+				color += mix(mask,colorA,input.r);
+				color += mix(mask,colorB,input.b);
+
+				pixelColor = vec4(color,input.r+input.b);
+	
+			}
+			
+		}
+	
+		public function new(tex:Texture) {
+			super();
+			texture = tex;
+		
+		}
+	}
+	
+
 /* #ifdef GL_ES
 precision mediump float;
 #endif

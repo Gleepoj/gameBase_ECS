@@ -21,6 +21,7 @@ class Assets {
 
 	public static var texture:Tile;
 	public static var alpha:Tile;
+	public static var smoke:Tile;
 
 	static var _initDone = false;
 	
@@ -33,7 +34,9 @@ class Assets {
 		fontPixel = new hxd.res.BitmapFont( hxd.Res.fonts.pixel_unicode_regular_12_xml.entry ).toFont();
 		// Texture
 		texture = hxd.Res.texture.test_alpha.toTile();
-		alpha = hxd.Res.texture.alpha_channel.toTile();
+		alpha = hxd.Res.texture.alpha_channel.toTile();	
+		smoke = hxd.Res.texture.smoke.toTile();
+		
 		// build sprite atlas directly from Aseprite file
 		tiles = dn.heaps.assets.Aseprite.convertToSLib(Const.FPS, hxd.Res.atlas.tiles.toAseprite());
 

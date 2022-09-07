@@ -70,6 +70,7 @@ class Aleiiioa extends Game {
 		//Input
 		Workflow.add60FpsSystem(new InputSystem());
 
+
 	}
 
 

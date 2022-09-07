@@ -8,19 +8,18 @@ import h2d.Tile;
 class EmitterComponent {
     
     public var cd:dn.Cooldown;
-    public var tick:Bool = false;
+    public var tick:Float = 0.08;
 
     public var layer  : h2d.Layers;
     public var nbParticules:Int = 0;
-    public var maxParticules:Int = 50 ;
+    public var maxParticules:Int = 5000 ;
 
     public function new() {
         cd = new dn.Cooldown(Const.FPS);
 
         layer = new h2d.Layers();
-        Game.ME.root.add(layer,Const.DP_BG);
+        Game.ME.scroller.add(layer,Const.DP_BG);
 		layer.name = "VFX";    
-
     }
 
     public function addParticule(en:echoes.Entity) {

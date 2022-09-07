@@ -34,11 +34,11 @@ class Builders {
         var pnj = new PNJFlag();
         var cl   = new CollisionsListener();
         var bflag = new BodyFlag();
-        var yarn = new DialogReferenceComponent(yarnDialogName,pos.attachX,pos.attachY);
-        
+        var yarn = new DialogReferenceComponent(yarnDialogName,pos.attachX,pos.attachY);   
+        var em     = new EmitterComponent();
         se.baseColor = new Vector(0.3,0.8,0.6);
         
-        new echoes.Entity().add(pos,spr,se,sq,vc,vas,pnj,cl,bflag,yarn);
+        new echoes.Entity().add(pos,spr,se,sq,vc,vas,pnj,cl,bflag,yarn,em);
     }
 
     public static function player(cx:Int,cy:Int) {
@@ -51,26 +51,27 @@ class Builders {
         var cl     = new CollisionsListener();
         var bflag  = new BodyFlag();
         var player = new PlayerFlag();
-        var inp  = new InputComponent();
+        var inp    = new InputComponent();
+        var em     = new EmitterComponent();
         
         se.baseColor = new Vector(0.9,0.2,0.6);
 
-        new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player);
+        new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player,em);
     }
 
     public static function particule(gpemit:GridPosition) {
-        var pa = new ParticulesComponent();
-        var gp = new GridPosition(gpemit.cx,gpemit.cy);
-        var vas = new VelocityAnalogSpeed(0,-0.4);
+        var pa  = new ParticulesComponent();
+        var gp  = new GridPosition(gpemit.cx,gpemit.cy,gpemit.xr,gpemit.yr);
+        var vas = new VelocityAnalogSpeed(M.frandRange(-0.1,0.1),M.frandRange(-0.1,0.1));
         var vc  = new VelocityComponent();
-        var cl     = new CollisionsListener();
+        var cl  = new CollisionsListener();
         var ent = new echoes.Entity().add(pa,gp,vas,vc,cl);
         return ent;
     }
 
     public static function emitter() {
         var em = new EmitterComponent();
-        var gp = new GridPosition(40,20);
+        var gp = new GridPosition(5,10);
         new echoes.Entity().add(em,gp);
     }
 

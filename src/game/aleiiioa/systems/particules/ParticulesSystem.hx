@@ -8,10 +8,9 @@ import aleiiioa.components.particules.ParticulesComponent;
 
 
 class ParticulesSystem extends echoes.System {
-    
+
     public function new() {
-              
-        Builders.emitter();
+        //Builders.emitter();
     }
     
     @a function onEmitterAdded(em:EmitterComponent,gp:GridPosition) {
@@ -22,7 +21,7 @@ class ParticulesSystem extends echoes.System {
         em.cd.update(dt);
 
         if(!em.cd.has("tick") && em.nbParticules < em.maxParticules){
-            em.cd.setS("tick",0.3);
+            em.cd.setS("tick",em.tick);
             emitParticule(em,gp);
             em.nbParticules += 1;
         }
@@ -30,6 +29,12 @@ class ParticulesSystem extends echoes.System {
 
     @u function deletePart(dt:Float,en:echoes.Entity,p:ParticulesComponent) {
         p.cd.update(dt);
+        //shrink part 
+        
+        p.scaleX -= 0.0001;
+        p.scaleY -= 0.0001;
+        p.alpha  -= p.shrink;
+
         if(!p.cd.has("alive")){
             p.bitmap.remove();
             en.destroy();

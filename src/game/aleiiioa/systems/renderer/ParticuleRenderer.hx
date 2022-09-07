@@ -11,6 +11,11 @@ class ParticuleRenderer extends echoes.System {
     @u function actualizeBitmapPos(p:ParticulesComponent,gp:GridPosition){
         p.bitmap.x = gp.attachX;
         p.bitmap.y = gp.attachY;
+        
+        p.bitmap.rotation += p.rotation;
+        
+        p.bitmap.scaleX *= p.scaleX;
+        p.bitmap.scaleY *= p.scaleY;
 
     }
 }

@@ -1,5 +1,6 @@
 package aleiiioa.systems.core;
 
+import echoes.Entity;
 import aleiiioa.components.flags.collision.BodyFlag;
 import aleiiioa.components.particules.ParticulesComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
@@ -10,14 +11,16 @@ class VelocitySystem extends echoes.System {
 	public function new() {}
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	
-	@u function updateAnalogParticule(gp:GridPosition,vc:VelocityComponent, vas:VelocityAnalogSpeed, pc:ParticulesComponent,cl:CollisionsListener) {
+	@u function updateAnalogParticule(en:Entity,gp:GridPosition,vc:VelocityComponent, vas:VelocityAnalogSpeed, pc:ParticulesComponent,cl:CollisionsListener) {
 		vc.dx = vas.xSpeed;
 		vc.dy = vas.ySpeed;
 
-		fixedUpdate(gp,vc,cl);
+		var body:Bool = false;
+		fixedUpdate(gp,vc,cl,body);
 	}
+	
 
-	@u function updateAnalogDrivenEntity(gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed, cl:CollisionsListener,bf:BodyFlag) {
+	@u function updateAnalogDrivenEntity(en:Entity,gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed, cl:CollisionsListener,bf:BodyFlag) {
 		//vc.dx = vas.xSpeed;
 		//vc.dy = vas.ySpeed;
 
@@ -40,11 +43,12 @@ class VelocitySystem extends echoes.System {
 
 		vas.xSpeed = 0;
 		vas.ySpeed = 0;
-		fixedUpdate(gp,vc,cl);
+		var body = true;
+		fixedUpdate(gp,vc,cl,body);
 		applyFriction(vc);
 	}
 
-	function fixedUpdate(gp:GridPosition, vc:VelocityComponent, cl:CollisionsListener) {
+	function fixedUpdate(gp:GridPosition, vc:VelocityComponent, cl:CollisionsListener, body:Bool) {
 		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
 		if (steps > 0) {
 			var n = 0;
@@ -52,9 +56,10 @@ class VelocitySystem extends echoes.System {
 				// X movement
 				gp.xr += vc.dxTotal / steps;
 
-				if (vc.dxTotal != 0)
-					onPreStepX(gp,cl); // <---- Add X collisions checks and physics in here
-
+				if (vc.dxTotal != 0){
+					if(body)
+						onPreStepX(gp,cl); // <---- Add X collisions checks and physics in here
+				}
 				while (gp.xr > 1) {
 					gp.xr--;
 					gp.cx++;
@@ -67,9 +72,10 @@ class VelocitySystem extends echoes.System {
 				// Y movement
 				gp.yr += vc.dyTotal / steps;
 
-				if (vc.dyTotal != 0)
-					onPreStepY(gp,cl,vc); // <---- Add Y collisions checks and physics in here
-
+				if (vc.dyTotal != 0){
+					if(body)
+						onPreStepY(gp,cl,vc); // <---- Add Y collisions checks and physics in here
+				}
 				while (gp.yr > 1) {
 					gp.yr--;
 					gp.cy++;
