@@ -10,8 +10,8 @@ class ParticuleRenderer extends echoes.System {
 
     }
     @a function onParticuleAdded(p:ParticulesComponent,bmp:BitmapComponent) {      
-        p.bitmap.scaleX *= p.scaleX;
-        p.bitmap.scaleY *= p.scaleY;
+        bmp.bitmap.scaleX *= p.scaleX;
+        bmp.bitmap.scaleY *= p.scaleY;
     }
     @u function actualizeBitmapPos(bmp:BitmapComponent,gp:GridPosition) {
         bmp.bitmap.x = gp.attachX;
@@ -23,16 +23,6 @@ class ParticuleRenderer extends echoes.System {
         
         bmp.bitmap.scaleX *= p.scaleX;
         bmp.bitmap.scaleY *= p.scaleY;
-    }
-    // to remove
-    @u function actualizeBitmapPosOld(p:ParticulesComponent,gp:GridPosition){
-        p.bitmap.x = gp.attachX;
-        p.bitmap.y = gp.attachY;
-        
-        p.bitmap.rotation += p.rotation;
-        
-        p.bitmap.scaleX *= p.scaleX;
-        p.bitmap.scaleY *= p.scaleY;
     }
 }
 

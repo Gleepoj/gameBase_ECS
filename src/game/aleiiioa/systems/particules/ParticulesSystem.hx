@@ -1,5 +1,7 @@
 package aleiiioa.systems.particules;
 
+import aleiiioa.builders.ParticulesBuilders;
+import aleiiioa.components.particules.BitmapComponent;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.particules.EmitterComponent;
 import aleiiioa.builders.Builders;
@@ -43,7 +45,7 @@ class ParticulesSystem extends echoes.System {
         }
     }
 
-    @u function deletePart(dt:Float,en:echoes.Entity,p:ParticulesComponent) {
+    @u function deletePart(dt:Float,en:echoes.Entity,p:ParticulesComponent,bmp:BitmapComponent) {
         p.cd.update(dt);
         
         p.scaleX -= 0.0001;
@@ -51,18 +53,18 @@ class ParticulesSystem extends echoes.System {
         p.alpha  -= p.shrink;
 
         if(!p.cd.has("alive")){
-            p.bitmap.remove();
+            bmp.bitmap.remove();
             en.destroy();
         }
     }
 
     private function emitParticule(em:EmitterComponent,gp:GridPosition,spx:Float,spy:Float,lifetime:Float,g:Float){
-       var e = Builders.particule(gp,spx,spy,lifetime,false,0,g);
-       em.addParticule(e);
+       var e = ParticulesBuilders.smokeParticule(gp,spx,spy,lifetime,false,0,g);
+       em.addBitmap(e);
     }
     private function emitRandParticule(em:EmitterComponent,gp:GridPosition,sprange:Float,lifetime:Float){
-        var e = Builders.randParticule(gp,sprange,lifetime);
-        em.addParticule(e);
+        var e = ParticulesBuilders.randParticule(gp,sprange,lifetime);
+        em.addBitmap(e);
     }
 
 }

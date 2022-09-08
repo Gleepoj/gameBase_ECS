@@ -1,25 +1,24 @@
 package aleiiioa.builders;
 
 
-import aleiiioa.components.particules.EmitterComponent;
-import aleiiioa.components.particules.ParticulesComponent;
-import aleiiioa.components.flags.PlayerFlag;
-import aleiiioa.components.flags.PNJFlag;
-import aleiiioa.components.flags.collision.BodyFlag;
-import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.shaders.PressureShader.SmokeShader;
 import h3d.Vector;
 import echoes.Entity;
 
 import aleiiioa.components.InputComponent;
-import aleiiioa.components.flags.hierarchy.ChildFlag;
 
-import aleiiioa.components.core.dialog.*;
+import aleiiioa.components.flags.*;
+import aleiiioa.components.flags.collision.*;
+
+import aleiiioa.components.particules.*;
+import aleiiioa.components.dialog.*;
+
 import aleiiioa.components.core.camera.*;
 import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.*;
+import aleiiioa.components.core.collision.*;
 
-import aleiiioa.components.dialog.*;
 
 
 class Builders {    
@@ -59,34 +58,7 @@ class Builders {
         new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player,em);
     }
 
-    public static function randParticule(gpemit:GridPosition,speedRange:Float,lifetime:Float,?col:Bool=false,?fric:Float=0,?gr:Float=0) {
-        
-        var pa  = new ParticulesComponent(lifetime,true,0.001,gr);
-        var gp  = new GridPosition(gpemit.cx,gpemit.cy,gpemit.xr,gpemit.yr);
-        var vas = new VelocityAnalogSpeed(M.frandRange(-speedRange,speedRange),M.frandRange(-speedRange,speedRange));
-        var vc  = new VelocityComponent();
-        var cl  = new CollisionsListener();
-        var ent = new echoes.Entity().add(pa,gp,vas,vc,cl);
-        return ent;
-    }
-   
-    public static function particule(gpemit:GridPosition,dirX:Float,dirY:Float,lifetime:Float,?col:Bool=false,?fric:Float=0,?gr:Float=0) {
-        
-        var pa  = new ParticulesComponent(lifetime,col,fric,gr);
-        var gp  = new GridPosition(gpemit.cx,gpemit.cy,gpemit.xr,gpemit.yr);
-        var vas = new VelocityAnalogSpeed(dirX,dirY);
-        var vc  = new VelocityComponent();
-        var cl  = new CollisionsListener();
-        var ent = new echoes.Entity().add(pa,gp,vas,vc,cl);
-        return ent;
-    }
-
-    public static function emitter() {
-        var em = new EmitterComponent();
-        var gp = new GridPosition(5,10);
-        new echoes.Entity().add(em,gp);
-    }
-
+    
     public static function cameraFocus(cx:Int,cy:Int) {
         
         var foc = new CameraFocusComponent();

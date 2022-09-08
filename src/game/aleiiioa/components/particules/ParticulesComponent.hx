@@ -34,23 +34,8 @@ class ParticulesComponent {
         gravity = _gravity;
         shrink  = 1/lifetime;
 
-
         cd = new Cooldown(Const.FPS);
         cd.setS("alive",lifetime);
        
-        var tile = Assets.smoke;
-        tile = tile.center();
-
-        bitmap = new h2d.Bitmap(tile);
-        var tex =  bitmap.tile.getTexture();
-        
-        shader = new SmokeShader(tex);
-        bitmap.addShader(shader);
-        //bitmap.blendMode = Add;
-        var r = M.frandRange(0.4,0.7);
-        bitmap.scaleX *= r;
-        bitmap.scaleY *= r;
-        
-        bitmap.rotate(M.frand()*Math.PI);
     }
 }

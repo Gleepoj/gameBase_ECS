@@ -22,9 +22,9 @@ class EmitterComponent {
 		layer.name = "VFX";    
     }
 
-    public function addParticule(en:echoes.Entity) {
-        var pc = en.get(ParticulesComponent);
-        layer.add(pc.bitmap);
+    public function addBitmap(en:echoes.Entity) {
+        var b = en.get(BitmapComponent);
+        layer.add(b.bitmap);
     }
 
 }
