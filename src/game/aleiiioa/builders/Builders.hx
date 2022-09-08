@@ -29,7 +29,7 @@ class Builders {
         var sq  = new SquashComponent();
         var vas = new VelocityAnalogSpeed(0,0);
         var se  = new SpriteExtension();
-        var vc  = new VelocityComponent();
+        var vc  = new VelocityComponent(true);
         var pnj = new PNJFlag();
         var cl   = new CollisionsListener();
         var bflag = new BodyFlag();
@@ -45,7 +45,7 @@ class Builders {
         var spr = new SpriteComponent(D.tiles.fxCircle15);
         var sq  = new SquashComponent();
         var se  = new SpriteExtension();
-        var vc  = new VelocityComponent();
+        var vc  = new VelocityComponent(true);
         var vas = new VelocityAnalogSpeed(0,0);
         var cl     = new CollisionsListener();
         var bflag  = new BodyFlag();

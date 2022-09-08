@@ -26,8 +26,9 @@ class VelocityComponent {
 	public var bumpFrictX = 0.93;
 	public var bumpFrictY = 0.93;
 
-    public function new() {
-        
+	public var physicBody:Bool = false;
+    public function new(?_physicBody:Bool = false) {
+        physicBody = _physicBody;
     }
 
     

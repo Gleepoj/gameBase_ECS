@@ -11,42 +11,42 @@ class VelocitySystem extends echoes.System {
 	public function new() {}
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	
-	@u function updateAnalogParticule(en:Entity,gp:GridPosition,vc:VelocityComponent, vas:VelocityAnalogSpeed, pc:ParticulesComponent,cl:CollisionsListener) {
-		vc.dx = vas.xSpeed;
-		vc.dy = vas.ySpeed;
 
-	
-		fixedUpdate(gp,vc,cl,pc.collide);
+	@u function updateAnalogDrivenEntity(en:Entity,gp:GridPosition,vc:VelocityComponent,vas:VelocityAnalogSpeed,cl:CollisionsListener) {
+		if(!vc.physicBody){
+			
+			vc.dx = vas.xSpeed;
+			vc.dy = vas.ySpeed;
+			fixedUpdate(gp,vc,cl);
+		}
+
+		if(vc.physicBody){
+		
+			if(cl.onGround)
+				cl.cd.setS("recentlyOnGround",0.01);
+
+			if(!cl.onGround){
+				vc.dy += 0.1;
+			}
+
+			if( vas.ySpeed != 0 ) {
+				vc.dy += vas.ySpeed;
+			}
+
+			if( vas.xSpeed != 0 ) {
+				var speed = 0.3;
+				vc.dx += vas.xSpeed * speed;
+			}
+
+			vas.xSpeed = 0;
+			vas.ySpeed = 0;
+
+			fixedUpdate(gp,vc,cl);
+			applyFriction(vc);
+		}
 	}
-	
 
-	@u function updateAnalogDrivenEntity(en:Entity,gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed, cl:CollisionsListener,bf:BodyFlag) {
-
-		//gravity//
-		if(cl.onGround)
-			cl.cd.setS("recentlyOnGround",0.01);
-
-		if(!cl.onGround){
-			vc.dy += 0.1;
-		}
-
-		if( vas.ySpeed != 0 ) {
-			vc.dy += vas.ySpeed;
-		}
-
-		if( vas.xSpeed != 0 ) {
-			var speed = 0.3;
-			vc.dx += vas.xSpeed * speed;
-		}
-
-		vas.xSpeed = 0;
-		vas.ySpeed = 0;
-
-		fixedUpdate(gp,vc,cl,true);
-		applyFriction(vc);
-	}
-
-	function fixedUpdate(gp:GridPosition, vc:VelocityComponent, cl:CollisionsListener, body:Bool) {
+	function fixedUpdate(gp:GridPosition, vc:VelocityComponent, cl:CollisionsListener) {
 		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
 		if (steps > 0) {
 			var n = 0;
@@ -55,7 +55,7 @@ class VelocitySystem extends echoes.System {
 				gp.xr += vc.dxTotal / steps;
 
 				if (vc.dxTotal != 0){
-					if(body)
+					if(vc.physicBody)
 						onPreStepX(gp,cl); // <---- Add X collisions checks and physics in here
 				}
 				while (gp.xr > 1) {
@@ -71,7 +71,7 @@ class VelocitySystem extends echoes.System {
 				gp.yr += vc.dyTotal / steps;
 
 				if (vc.dyTotal != 0){
-					if(body)
+					if(vc.physicBody)
 						onPreStepY(gp,cl,vc); // <---- Add Y collisions checks and physics in here
 				}
 				while (gp.yr > 1) {

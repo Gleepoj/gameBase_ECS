@@ -1,12 +1,8 @@
 package aleiiioa.systems.particules;
 
 import aleiiioa.builders.ParticulesBuilders;
-import aleiiioa.components.particules.BitmapComponent;
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.particules.EmitterComponent;
-import aleiiioa.builders.Builders;
-import h2d.SpriteBatch.BatchElement;
-import aleiiioa.components.particules.ParticulesComponent;
+import aleiiioa.components.particules.*;
 
 
 class ParticulesSystem extends echoes.System {
@@ -16,7 +12,6 @@ class ParticulesSystem extends echoes.System {
     }
     
     @a function onEmitterAdded(em:EmitterComponent,gp:GridPosition) {
-       // em.layer.setPosition(gp.attachX,gp.attachY);
     }
 
     @u private function updateEmitter(dt:Float,em:EmitterComponent,gp:GridPosition){
@@ -25,13 +20,13 @@ class ParticulesSystem extends echoes.System {
         if(!em.cd.has("tick") && em.nbParticules < em.maxParticules){
             em.cd.setS("tick",em.tick);
             for(p in 0...30){
-                emitRandParticule(em,gp,1,2);
+                emitRandParticule(em,gp,1,2,true);
                 em.nbParticules += 1;
             }
-            emitParticule(em,gp,-2,-2,1,1);
-            emitParticule(em,gp,-0.7,-1.5,1,1);
-            emitParticule(em,gp,0.8,-1.5,1,1);
-            emitParticule(em,gp,2.2,-1.8,1,1); 
+            emitParticule(em,gp,-6,-7,1,1,true);
+            emitParticule(em,gp,-7.7,-6.5,1,1,true);
+            emitParticule(em,gp,8.8,-5.5,1,1,true);
+            emitParticule(em,gp,10.2,-7,1,1,true); 
             
             for (right in 0...5){
                 var r = right*0.1;
@@ -58,12 +53,12 @@ class ParticulesSystem extends echoes.System {
         }
     }
 
-    private function emitParticule(em:EmitterComponent,gp:GridPosition,spx:Float,spy:Float,lifetime:Float,g:Float){
-       var e = ParticulesBuilders.smokeParticule(gp,spx,spy,lifetime,false,0,g);
+    private function emitParticule(em:EmitterComponent,gp:GridPosition,spx:Float,spy:Float,lifetime:Float,g:Float,?body:Bool = false){
+       var e = ParticulesBuilders.smokeParticule(gp,spx,spy,lifetime,body,0,g);
        em.addBitmap(e);
     }
-    private function emitRandParticule(em:EmitterComponent,gp:GridPosition,sprange:Float,lifetime:Float){
-        var e = ParticulesBuilders.randParticule(gp,sprange,lifetime);
+    private function emitRandParticule(em:EmitterComponent,gp:GridPosition,sprange:Float,lifetime:Float,?body:Bool = false){
+        var e = ParticulesBuilders.randParticule(gp,sprange,lifetime,body);
         em.addBitmap(e);
     }
 
