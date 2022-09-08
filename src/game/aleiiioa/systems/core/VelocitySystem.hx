@@ -15,14 +15,12 @@ class VelocitySystem extends echoes.System {
 		vc.dx = vas.xSpeed;
 		vc.dy = vas.ySpeed;
 
-		var body:Bool = false;
-		fixedUpdate(gp,vc,cl,body);
+	
+		fixedUpdate(gp,vc,cl,pc.collide);
 	}
 	
 
 	@u function updateAnalogDrivenEntity(en:Entity,gp:GridPosition, vc:VelocityComponent, vas:VelocityAnalogSpeed, cl:CollisionsListener,bf:BodyFlag) {
-		//vc.dx = vas.xSpeed;
-		//vc.dy = vas.ySpeed;
 
 		//gravity//
 		if(cl.onGround)
@@ -43,8 +41,8 @@ class VelocitySystem extends echoes.System {
 
 		vas.xSpeed = 0;
 		vas.ySpeed = 0;
-		var body = true;
-		fixedUpdate(gp,vc,cl,body);
+
+		fixedUpdate(gp,vc,cl,true);
 		applyFriction(vc);
 	}
 

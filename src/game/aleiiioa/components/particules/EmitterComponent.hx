@@ -8,11 +8,11 @@ import h2d.Tile;
 class EmitterComponent {
     
     public var cd:dn.Cooldown;
-    public var tick:Float = 0.08;
+    public var tick:Float = 5;
 
     public var layer  : h2d.Layers;
-    public var nbParticules:Int = 0;
-    public var maxParticules:Int = 5000 ;
+    public var nbParticules: Int = 0;
+    public var maxParticules:Int = 5000;
 
     public function new() {
         cd = new dn.Cooldown(Const.FPS);

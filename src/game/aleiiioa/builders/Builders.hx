@@ -59,10 +59,22 @@ class Builders {
         new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player,em);
     }
 
-    public static function particule(gpemit:GridPosition) {
-        var pa  = new ParticulesComponent();
+    public static function randParticule(gpemit:GridPosition,speedRange:Float,lifetime:Float,?col:Bool=false,?fric:Float=0,?gr:Float=0) {
+        
+        var pa  = new ParticulesComponent(lifetime,true,0.001,gr);
         var gp  = new GridPosition(gpemit.cx,gpemit.cy,gpemit.xr,gpemit.yr);
-        var vas = new VelocityAnalogSpeed(M.frandRange(-0.1,0.1),M.frandRange(-0.1,0.1));
+        var vas = new VelocityAnalogSpeed(M.frandRange(-speedRange,speedRange),M.frandRange(-speedRange,speedRange));
+        var vc  = new VelocityComponent();
+        var cl  = new CollisionsListener();
+        var ent = new echoes.Entity().add(pa,gp,vas,vc,cl);
+        return ent;
+    }
+   
+    public static function particule(gpemit:GridPosition,dirX:Float,dirY:Float,lifetime:Float,?col:Bool=false,?fric:Float=0,?gr:Float=0) {
+        
+        var pa  = new ParticulesComponent(lifetime,col,fric,gr);
+        var gp  = new GridPosition(gpemit.cx,gpemit.cy,gpemit.xr,gpemit.yr);
+        var vas = new VelocityAnalogSpeed(dirX,dirY);
         var vc  = new VelocityComponent();
         var cl  = new CollisionsListener();
         var ent = new echoes.Entity().add(pa,gp,vas,vc,cl);
