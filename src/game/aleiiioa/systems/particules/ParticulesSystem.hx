@@ -30,6 +30,7 @@ class ParticulesSystem extends echoes.System {
             emitParticule(em,gp,-0.7,-1.5,1,1);
             emitParticule(em,gp,0.8,-1.5,1,1);
             emitParticule(em,gp,2.2,-1.8,1,1); 
+            
             for (right in 0...5){
                 var r = right*0.1;
                 emitParticule(em,gp,-0.5-r,0,0.5,0);

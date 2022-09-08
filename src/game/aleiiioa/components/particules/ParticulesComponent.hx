@@ -46,7 +46,7 @@ class ParticulesComponent {
         
         shader = new SmokeShader(tex);
         bitmap.addShader(shader);
-        
+        //bitmap.blendMode = Add;
         var r = M.frandRange(0.4,0.7);
         bitmap.scaleX *= r;
         bitmap.scaleY *= r;
