@@ -7,4 +7,6 @@
 -lib ldtk-haxe-api
 -lib heaps-aseprite
 -lib hxyarn
+-lib hxease
+
 -main Boot

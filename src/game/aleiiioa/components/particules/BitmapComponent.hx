@@ -9,10 +9,10 @@ import h2d.Bitmap;
 class BitmapComponent {
     
     public var bitmap:Bitmap;
-    public var shader:Dynamic<>;
+    public var shader:Dynamic;
 
     
-    public function new(_asset:Tile,?_scale:Float = 1,?_rotate:Float = null,?_shader:Dynamic<>=null,?_blend:BlendMode = Alpha) {
+    public function new(_asset:Tile,?_scale:Float = 1,?_rotate:Float = null,?_shader:Dynamic=null,?_blend:BlendMode = Alpha) {
         
         var tile = _asset;
         tile = tile.center();

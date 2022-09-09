@@ -2,10 +2,13 @@ package aleiiioa.systems.particules;
 
 import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
 import aleiiioa.components.particules.ParticulesComponent;
+import dn.Tweenie;
 
-class AnalogVelocitySystem extends echoes.System {
+class ParticulesVelocitySystem extends echoes.System {
+    
     public function new() {
         
+    
     }
 
     @u function updateParticule(pc:ParticulesComponent,vas:VelocityAnalogSpeed) {

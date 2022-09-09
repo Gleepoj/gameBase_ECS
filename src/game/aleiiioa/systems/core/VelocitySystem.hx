@@ -11,16 +11,21 @@ class VelocitySystem extends echoes.System {
 	public function new() {}
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	
-
 	@u function updateAnalogDrivenEntity(en:Entity,gp:GridPosition,vc:VelocityComponent,vas:VelocityAnalogSpeed,cl:CollisionsListener) {
-		if(!vc.physicBody){
+		if(!vc.physicBody && vc.customPhysics){
 			
 			vc.dx = vas.xSpeed;
 			vc.dy = vas.ySpeed;
 			fixedUpdate(gp,vc,cl);
 		}
+		
+		if(vc.physicBody && vc.customPhysics){
+			vc.dx = vas.xSpeed;
+			vc.dy = vas.ySpeed;
+			fixedUpdate(gp,vc,cl);
+		}
 
-		if(vc.physicBody){
+		if(vc.physicBody && !vc.customPhysics){
 		
 			if(cl.onGround)
 				cl.cd.setS("recentlyOnGround",0.01);
