@@ -1,5 +1,6 @@
 package aleiiioa.systems.particules;
 
+import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.builders.ParticulesBuilders;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.particules.*;
@@ -14,27 +15,29 @@ class ParticulesSystem extends echoes.System {
     @a function onEmitterAdded(em:EmitterComponent,gp:GridPosition) {
     }
 
-    @u private function updateEmitter(dt:Float,em:EmitterComponent,gp:GridPosition){
+    @u private function updateEmitter(dt:Float,em:EmitterComponent,gp:GridPosition,cl:CollisionsListener){
         em.cd.update(dt);
 
-        if(!em.cd.has("tick") && em.nbParticules < em.maxParticules){
-            em.cd.setS("tick",em.tick);
-            for(p in 0...30){
-                emitRandParticule(em,gp,1,2,true,true);
+        if(cl.onLanding && !em.cd.has("cooldown")){
+            //em.cd.setS("tick",em.tick);
+            em.cd.setS("cooldown",0.3);
+
+            for(p in 0...100){
+                emitRandParticule(em,gp,0.6,3,true,true);
                 em.nbParticules += 1;
             }
-            emitParticule(em,gp,-3,-3,1,1,true);
-            emitParticule(em,gp,0,-3.5,1,1,true);
-            emitParticule(em,gp,2,-4,1,1,true);
-            emitParticule(em,gp,4,-5,1,1,true); 
+           // emitParticule(em,gp,-0.3,-0.3,1,1,true);
+            //emitParticule(em,gp,0.1,-0.35,1,1,true);
+            //emitParticule(em,gp,0.22,-0.4,1,1,true);
+            //emitParticule(em,gp,0.44,-0.55,1,1,true); 
             
             for (right in 0...5){
                 var r = right*0.1;
-                emitParticule(em,gp,-0.5-r,0,0.5,0,false,true);
+               // emitParticule(em,gp,-0.2-r,0,0.5,0,false,true);
             }
             for (left in 0...5){
                 var l = left*0.1;
-                emitParticule(em,gp,0.5+l,0,0.5,0,false,true);
+                //emitParticule(em,gp,0.2+l,0,0.5,0,false,true);
             }
             
         }
@@ -51,6 +54,9 @@ class ParticulesSystem extends echoes.System {
             bmp.bitmap.remove();
             en.destroy();
         }
+    }
+    @r function removeEmitterLayer(em:EmitterComponent){
+
     }
 
     private function emitParticule(em:EmitterComponent,gp:GridPosition,spx:Float,spy:Float,lifetime:Float,g:Float,?body:Bool = false,?customPhysics:Bool = false){

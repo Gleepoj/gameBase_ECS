@@ -37,7 +37,7 @@ class Builders {
         var em     = new EmitterComponent();
         se.baseColor = new Vector(0.3,0.8,0.6);
         
-        new echoes.Entity().add(pos,spr,se,sq,vc,vas,pnj,cl,bflag,yarn,em);
+        new echoes.Entity().add(pos,spr,se,sq,vc,vas,pnj,cl,bflag,yarn);
     }
 
     public static function player(cx:Int,cy:Int) {

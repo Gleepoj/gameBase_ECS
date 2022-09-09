@@ -8,7 +8,7 @@ import h2d.Tile;
 class EmitterComponent {
     
     public var cd:dn.Cooldown;
-    public var tick:Float = 5;
+    public var tick:Float = 10;
 
     public var layer  : h2d.Layers;
     public var nbParticules: Int = 0;
