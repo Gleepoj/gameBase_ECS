@@ -24,7 +24,6 @@ class ParticulesSystem extends echoes.System {
 
             for(p in 0...100){
                 emitRandParticule(em,gp,0.6,3,true,true);
-                em.nbParticules += 1;
             }
            // emitParticule(em,gp,-0.3,-0.3,1,1,true);
             //emitParticule(em,gp,0.1,-0.35,1,1,true);

@@ -19,7 +19,10 @@ class ParticulesBuilders {
         var bmp = new BitmapComponent(Assets.smoke,0.5,null,SmokeShader);
 
         var gp  = new GridPosition(gpemit.cx,gpemit.cy,gpemit.xr,gpemit.yr);
-        var vas = new VelocityAnalogSpeed(M.frandRange(-speedRange,speedRange),M.frandRange(-speedRange,speedRange));
+        var ang = M.frandRange(-Math.PI,Math.PI);
+        var spx = Math.cos(ang)*M.frandRange(0.2,1); 
+        var spy = Math.sin(ang)*M.frandRange(0.2,1); 
+        var vas = new VelocityAnalogSpeed(spx,spy);
         var vc  = new VelocityComponent(body,customPhysics);
         var cl  = new CollisionsListener();
         var ent = new echoes.Entity().add(pa,bmp,gp,vas,vc,cl);
