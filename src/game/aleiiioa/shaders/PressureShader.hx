@@ -186,10 +186,12 @@ class BitmapShader extends hxsl.Shader {
 		}
 	}
 }
+
 class SmokeShader extends hxsl.Shader {
 		static var SRC = {
 			@:import h3d.shader.Base2d;
 			@param var texture:Sampler2D;
+			@param var seed:Int;
 			@param var speed:Float;
 			@param var frequency:Float;
 			
@@ -198,9 +200,18 @@ class SmokeShader extends hxsl.Shader {
 				var st = calculatedUV;
 				var input:Vec4 = texture.get(input.uv);
 				
-				var colorA:Vec3 = vec3(0.9,0.7,0);
-				var colorB:Vec3 = vec3(0.6,0.5,0);
+				var colorA:Vec3 = vec3(0.9,0.7,0.8);
+				var colorB:Vec3 = vec3(0.6,0.5,0.6);
 				
+				if(seed == 2){
+					colorA = vec3(1,0.9,0.9);
+					colorB = vec3(0.8,0.7,0.7);
+				}
+				if(seed == 3){
+					colorA = vec3(0.3,0.3,0.3);
+					colorB = vec3(0.2,0.2,0.2);
+				}
+
 				var color = vec3(0,0,0);
 				var mask = vec3(0,0,0);
 
@@ -213,9 +224,10 @@ class SmokeShader extends hxsl.Shader {
 			
 		}
 	
-		public function new(tex:Texture) {
+		public function new(tex:Texture,se:Int) {
 			super();
 			texture = tex;
+			seed = se;
 		
 		}
 	}

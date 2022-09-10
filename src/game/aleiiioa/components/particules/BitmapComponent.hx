@@ -19,10 +19,11 @@ class BitmapComponent {
 
         bitmap = new h2d.Bitmap(tile);
         var tex =  bitmap.tile.getTexture();
-        
+        var ran = M.randRange(1,3);
+
         if(_shader != null){
             if(_shader == SmokeShader)
-                shader = new SmokeShader(tex);
+                shader = new SmokeShader(tex,ran);
             bitmap.addShader(shader);
         }
         bitmap.blendMode = _blend;
