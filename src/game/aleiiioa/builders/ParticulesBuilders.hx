@@ -16,7 +16,7 @@ class ParticulesBuilders {
     public static function randParticule(gpemit:GridPosition,speedRange:Float,lifetime:Float,?body:Bool=false,?customPhysics:Bool=false,?fric:Float=0) {
             
         var pa  = new ParticulesComponent(lifetime,body,0.001);
-        var bmp = new BitmapComponent(Assets.smoke,0.5,null,SmokeShader);
+        var bmp = new BitmapComponent(Assets.smoke,0.5);
 
         var gp  = new GridPosition(gpemit.cx,gpemit.cy,gpemit.xr,gpemit.yr);
         var ang = M.frandRange(-Math.PI,Math.PI);
@@ -29,9 +29,9 @@ class ParticulesBuilders {
         return ent;
     }
 
-    public static function smokeParticule(gpemit:GridPosition,dirX:Float,dirY:Float,lifetime:Float,?body:Bool=false,?customPhysics:Bool=false,?fric:Float=0) {
+    public static function smokeParticule(gpemit:GridPosition,dirX:Float,dirY:Float,lifetime:Float,?seed:Int = 0,?body:Bool=false,?customPhysics:Bool=false,?fric:Float=0) {
         var pa  = new ParticulesComponent(lifetime,body,fric);
-        var bmp = new BitmapComponent(Assets.smoke,0.5,null,SmokeShader);
+        var bmp = new BitmapComponent(Assets.smoke,0.5,null,seed);
         var gp  = new GridPosition(gpemit.cx,gpemit.cy,gpemit.xr,gpemit.yr);
         var vas = new VelocityAnalogSpeed(dirX,dirY);
         

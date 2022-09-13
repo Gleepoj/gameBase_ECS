@@ -31,15 +31,20 @@ class ParticulesSystem extends echoes.System {
             //emitParticule(em,gp,0.44,-0.55,1,1,true); 
             
             for (right in 0...5){
-                var r = right*0.1;
-               // emitParticule(em,gp,-0.2-r,0,0.5,0,false,true);
+                var r = right*0.05;
+                emitParticule(em,gp,-0.2-r,0,1,3,false,true);
             }
             for (left in 0...5){
-                var l = left*0.1;
-                //emitParticule(em,gp,0.2+l,0,0.5,0,false,true);
+                var l = left*0.05;
+                emitParticule(em,gp,0.2+l,0,1,3,false,true);
             }
             
         }
+    }
+    @u function updateShaderLifetime(p:ParticulesComponent,bmp:BitmapComponent){
+        var l = p.lifeRatio;
+        bmp.shader.ratio = l;
+    
     }
 
     @u function deletePart(dt:Float,en:echoes.Entity,p:ParticulesComponent,bmp:BitmapComponent) {
@@ -58,8 +63,8 @@ class ParticulesSystem extends echoes.System {
 
     }
 
-    private function emitParticule(em:EmitterComponent,gp:GridPosition,spx:Float,spy:Float,lifetime:Float,g:Float,?body:Bool = false,?customPhysics:Bool = false){
-       var e = ParticulesBuilders.smokeParticule(gp,spx,spy,lifetime,body,customPhysics);
+    private function emitParticule(em:EmitterComponent,gp:GridPosition,spx:Float,spy:Float,lifetime:Float,seed:Int,?body:Bool = false,?customPhysics:Bool = false){
+       var e = ParticulesBuilders.smokeParticule(gp,spx,spy,lifetime,seed,body,customPhysics);
        em.addBitmap(e);
     }
     private function emitRandParticule(em:EmitterComponent,gp:GridPosition,sprange:Float,lifetime:Float,?body:Bool = false,?customPhysics:Bool = false){

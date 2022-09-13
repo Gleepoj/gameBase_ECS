@@ -192,43 +192,60 @@ class SmokeShader extends hxsl.Shader {
 			@:import h3d.shader.Base2d;
 			@param var texture:Sampler2D;
 			@param var seed:Int;
+			@param var ratio:Float;
 			@param var speed:Float;
 			@param var frequency:Float;
+			@param var lifetime:Float;
+			@param var decay:Float;
 			
+
+			function __init__() {
+			//lt = lifetime;
+			}
 
 			function fragment() {
 				var st = calculatedUV;
 				var input:Vec4 = texture.get(input.uv);
 				
-				var colorA:Vec3 = vec3(0.9,0.7,0.8);
-				var colorB:Vec3 = vec3(0.6,0.5,0.6);
+
+				var colorA:Vec3 = vec3(0.8,0,0);
+				var colorB:Vec3 = vec3(0.6,0,0);
 				
 				if(seed == 2){
-					colorA = vec3(1,0.9,0.9);
-					colorB = vec3(0.8,0.7,0.7);
+					colorB = vec3(0.8,0.4,0.);
+					colorA = vec3(1,0.6,0.);
 				}
+
 				if(seed == 3){
-					colorA = vec3(0.3,0.3,0.3);
-					colorB = vec3(0.2,0.2,0.2);
+					colorA = vec3(0.4,0.,0.);
+					colorB = vec3(0.2,0.,0.);
 				}
+
+				var eA = vec3(0.3,0.1,0.);
+				var eB = vec3(0.2,0.1,0.);
 
 				var color = vec3(0,0,0);
-				var mask = vec3(0,0,0);
+				
+				colorA = mix(eA,colorA,ratio);
+				colorB = mix(eB,colorB,ratio);
 
-				color += mix(mask,colorA,input.r);
-				color += mix(mask,colorB,input.b);
+				color = mix(color,colorA,input.r);
+				color = mix(color,colorB,input.b);
 
-				pixelColor = vec4(color,input.r+input.b);
+				pixelColor = vec4(color,(input.r+input.b)*ratio);
+				//pixelColor = vec4(color,input.r+input.b);
 	
 			}
 			
 		}
 	
-		public function new(tex:Texture,se:Int) {
+		public function new(tex:Texture,se:Int,rat:Float) {
 			super();
 			texture = tex;
 			seed = se;
-		
+			ratio = rat;
+			lifetime = 1.;
+			decay = 0.5;
 		}
 	}
 	
