@@ -1,6 +1,7 @@
 package aleiiioa.builders;
 
 
+import aleiiioa.components.logic.InteractiveComponent;
 import aleiiioa.components.logic.ActionComponent;
 import aleiiioa.shaders.PressureShader.SmokeShader;
 import h3d.Vector;
@@ -52,10 +53,11 @@ class Builders {
         var bflag  = new BodyFlag();
         var bomb   = new BombFlag();
         var em     = new EmitterComponent();
+        var ic     = new InteractiveComponent();
         
         se.baseColor = new Vector(0.3,0.2,0.8);
         
-        new echoes.Entity().add(pos,spr,sq,se,vas,vc,cl,bflag,em,bomb);
+        new echoes.Entity().add(pos,spr,sq,se,vas,vc,cl,bflag,em,bomb,ic);
     }
 
     public static function player(cx:Int,cy:Int) {
