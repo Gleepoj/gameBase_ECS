@@ -1,5 +1,6 @@
 package aleiiioa;
 
+import aleiiioa.systems.logic.InteractivesSystem;
 import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
 
@@ -48,6 +49,7 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new VelocitySystem());
 		Workflow.addSystem(new GridPositionActualizer());
 
+		Workflow.add60FpsSystem(new InteractivesSystem());
 		//Particles
 		
 		Workflow.addSystem(new ParticulesVelocitySystem());

@@ -1,6 +1,7 @@
 package aleiiioa.builders;
 
 
+import aleiiioa.components.logic.ActionComponent;
 import aleiiioa.shaders.PressureShader.SmokeShader;
 import h3d.Vector;
 import echoes.Entity;
@@ -69,10 +70,11 @@ class Builders {
         var player = new PlayerFlag();
         var inp    = new InputComponent();
         var em     = new EmitterComponent();
+        var ac     = new ActionComponent();
         
         se.baseColor = new Vector(0.5,0.2,0.6);
 
-        new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player,em);
+        new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player,em,ac);
     }
 
     
