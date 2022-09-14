@@ -43,14 +43,15 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GarbageCollectionSystem());
 		Workflow.addSystem(new CollisionsListenerActualizer());
 		Workflow.addSystem(new EntityCollisionsSystem());
-		//Object
 		
+		//Object
 		Workflow.addSystem(new LevelCollisionsSystem());
 		Workflow.addSystem(new VelocitySystem());
-		Workflow.addSystem(new ParticulesVelocitySystem());
 		Workflow.addSystem(new GridPositionActualizer());
 
-	
+		//Particles
+		
+		Workflow.addSystem(new ParticulesVelocitySystem());
 		Workflow.add60FpsSystem(new ParticulesSystem());
 		Workflow.add60FpsSystem(new ParticuleRenderer());
 		
@@ -58,16 +59,15 @@ class Aleiiioa extends Game {
 		Workflow.add60FpsSystem(new SquashRenderer());
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
-		Workflow.add60FpsSystem(new ShaderRenderer(Game.ME.scroller));
-		
-		//Helpers
-		Workflow.add60FpsSystem(new UIHelperSystem());
 		
 		//Dialog
 		Workflow.add60FpsSystem(new DialogYarnSystem());
 		Workflow.add60FpsSystem(new DialogInputSystem());
 		Workflow.add60FpsSystem(new DialogUISystem());
 		
+		
+		//Helpers
+		Workflow.add60FpsSystem(new UIHelperSystem());
 		//Input
 		Workflow.add60FpsSystem(new InputSystem());
 

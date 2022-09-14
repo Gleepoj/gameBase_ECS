@@ -27,12 +27,7 @@ class BitmapComponent {
 
         var ratio = 1;
         
-        //shader = new BitmapShader();
-        /* 
-        if(_shader != null){
-            if(_shader == SmokeShader) */
         shader = new SmokeShader(tex,ran,ratio);
-        //}
         
         bitmap.addShader(shader);
         bitmap.blendMode = _blend;

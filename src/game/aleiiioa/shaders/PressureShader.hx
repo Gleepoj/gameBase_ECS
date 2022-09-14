@@ -221,8 +221,8 @@ class SmokeShader extends hxsl.Shader {
 					colorB = vec3(0.2,0.,0.);
 				}
 
-				var eA = vec3(0.3,0.1,0.);
-				var eB = vec3(0.2,0.1,0.);
+				var eA = vec3(0.,0.,0.);
+				var eB = vec3(0.,0.,0.);
 
 				var color = vec3(0,0,0);
 				
@@ -233,7 +233,6 @@ class SmokeShader extends hxsl.Shader {
 				color = mix(color,colorB,input.b);
 
 				pixelColor = vec4(color,(input.r+input.b)*ratio);
-				//pixelColor = vec4(color,input.r+input.b);
 	
 			}
 			

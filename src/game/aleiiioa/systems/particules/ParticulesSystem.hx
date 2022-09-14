@@ -1,5 +1,6 @@
 package aleiiioa.systems.particules;
 
+import aleiiioa.builders.FxBuilders;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.builders.ParticulesBuilders;
 import aleiiioa.components.core.position.GridPosition;
@@ -19,28 +20,11 @@ class ParticulesSystem extends echoes.System {
         em.cd.update(dt);
 
         if(cl.onLanding && !em.cd.has("cooldown")){
-            //em.cd.setS("tick",em.tick);
             em.cd.setS("cooldown",0.3);
-
-            for(p in 0...100){
-                emitRandParticule(em,gp,0.6,3,true,true);
-            }
-           // emitParticule(em,gp,-0.3,-0.3,1,1,true);
-            //emitParticule(em,gp,0.1,-0.35,1,1,true);
-            //emitParticule(em,gp,0.22,-0.4,1,1,true);
-            //emitParticule(em,gp,0.44,-0.55,1,1,true); 
-            
-            for (right in 0...5){
-                var r = right*0.05;
-                emitParticule(em,gp,-0.2-r,0,1,3,false,true);
-            }
-            for (left in 0...5){
-                var l = left*0.05;
-                emitParticule(em,gp,0.2+l,0,1,3,false,true);
-            }
-            
+            FxBuilders.bombSmoke(em,gp);
         }
     }
+
     @u function updateShaderLifetime(p:ParticulesComponent,bmp:BitmapComponent){
         var l = p.lifeRatio;
         bmp.shader.ratio = l;
@@ -59,17 +43,6 @@ class ParticulesSystem extends echoes.System {
             en.destroy();
         }
     }
-    @r function removeEmitterLayer(em:EmitterComponent){
 
-    }
-
-    private function emitParticule(em:EmitterComponent,gp:GridPosition,spx:Float,spy:Float,lifetime:Float,seed:Int,?body:Bool = false,?customPhysics:Bool = false){
-       var e = ParticulesBuilders.smokeParticule(gp,spx,spy,lifetime,seed,body,customPhysics);
-       em.addBitmap(e);
-    }
-    private function emitRandParticule(em:EmitterComponent,gp:GridPosition,sprange:Float,lifetime:Float,?body:Bool = false,?customPhysics:Bool = false){
-        var e = ParticulesBuilders.randParticule(gp,sprange,lifetime,body,customPhysics);
-        em.addBitmap(e);
-    }
 
 }
