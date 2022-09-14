@@ -40,6 +40,23 @@ class Builders {
         new echoes.Entity().add(pos,spr,se,sq,vc,vas,pnj,cl,bflag,yarn);
     }
 
+    public static function chouxPeteur(cx:Int,cy:Int) {
+        var pos = new GridPosition(cx,cy);
+        var spr = new SpriteComponent(D.tiles.fxCircle15);
+        var sq  = new SquashComponent();
+        var se  = new SpriteExtension();
+        var vc  = new VelocityComponent(true);
+        var vas = new VelocityAnalogSpeed(0,0);
+        var cl     = new CollisionsListener();
+        var bflag  = new BodyFlag();
+        var bomb   = new BombFlag();
+        var em     = new EmitterComponent();
+        
+        se.baseColor = new Vector(0.3,0.2,0.8);
+        
+        new echoes.Entity().add(pos,spr,sq,se,vas,vc,cl,bflag,em,bomb);
+    }
+
     public static function player(cx:Int,cy:Int) {
         var pos = new GridPosition(cx,cy);
         var spr = new SpriteComponent(D.tiles.fxCircle15);
@@ -53,7 +70,7 @@ class Builders {
         var inp    = new InputComponent();
         var em     = new EmitterComponent();
         
-        se.baseColor = new Vector(0.9,0.2,0.6);
+        se.baseColor = new Vector(0.5,0.2,0.6);
 
         new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player,em);
     }

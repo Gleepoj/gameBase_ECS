@@ -21,7 +21,7 @@ class ParticulesSystem extends echoes.System {
 
         if(cl.onLanding && !em.cd.has("cooldown")){
             em.cd.setS("cooldown",0.3);
-            FxBuilders.bombSmoke(em,gp);
+            FxBuilders.landing(em,gp);
         }
     }
 

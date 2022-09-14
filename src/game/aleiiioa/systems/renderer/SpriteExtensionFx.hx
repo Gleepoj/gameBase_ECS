@@ -14,13 +14,17 @@ class SpriteExtensionFx extends System {
             spr.colorize(se.baseColor.toColor());
     }
 
-    @u function collide(spr:SpriteComponent,se:SpriteExtension,cl:CollisionsListener) {
+    @u function collideDebug(spr:SpriteComponent,se:SpriteExtension,cl:CollisionsListener) {
         spr.colorize(se.baseColor.toColor());
         
         if(cl.onArea){
             spr.colorize(0xFF0000);
         }
 
+        if(cl.onInteract){
+            spr.colorize(0x01AA74);
+        }
+/*  
         if(cl.onGround){
             spr.colorize(0x3566D5);
         }
@@ -32,7 +36,7 @@ class SpriteExtensionFx extends System {
         }
         if(cl.onCeil){
             spr.colorize(0xeea990);
-        }
+        } */
     }
    
 }

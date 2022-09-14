@@ -19,8 +19,6 @@ class Aleiiioa extends Game {
 		super();
 		Workflow.reset();
 		
-		
-		
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
 		var cameraFocus = Builders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
 		var cameraFocusPosition = cameraFocus.get(GridPosition);
@@ -39,6 +37,7 @@ class Aleiiioa extends Game {
 			Builders.pnj(e.cx,e.cy,e.f_Dialog);
 		}
 		
+		Builders.chouxPeteur(30,30);
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());
 		Workflow.addSystem(new CollisionsListenerActualizer());

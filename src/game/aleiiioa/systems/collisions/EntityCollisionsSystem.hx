@@ -1,5 +1,6 @@
 package aleiiioa.systems.collisions;
 
+import aleiiioa.components.flags.BombFlag;
 import aleiiioa.components.flags.PlayerFlag;
 import aleiiioa.components.flags.PNJFlag;
 import echoes.View;
@@ -10,6 +11,7 @@ import aleiiioa.components.core.position.GridPosition;
 
 class EntityCollisionsSystem extends echoes.System {
     var ALL_PNJ:View<GridPosition,PNJFlag>;
+    var ALL_BOMB:View<BombFlag>;
     var PLAYER :View<GridPosition,PlayerFlag>;
 
     var events:InstancedCollisionEvent;
@@ -46,6 +48,34 @@ class EntityCollisionsSystem extends echoes.System {
         
     }
 
+    @u function playerInInteractArea(gp:GridPosition,flag:PlayerFlag,cl:CollisionsListener) {
+        var head = ALL_BOMB.entities.head;
+        var playerPos = gp.gpToVector();
+
+        while (head != null){
+            var obj = head.value;
+            var objPos = obj.get(GridPosition).gpToVector();
+            if(playerPos.distance(objPos)<10){
+                cl.lastEvent = events.allowInteract;
+                orderListener(cl);
+            }
+            head = head.next;
+        }
+    }
+
+    
+    @u function ObjInInteractArea(gp:GridPosition,flag:BombFlag,cl:CollisionsListener) {
+        var player = PLAYER.entities.head.value;
+        var pgp = player.get(GridPosition);
+        var playerPos = pgp.gpToVector();
+        var objPos = gp.gpToVector();
+
+        if(playerPos.distance(objPos)<10){
+            cl.lastEvent = events.allowInteract;
+            orderListener(cl);
+        }
+        
+    }
 
 
     function orderListener(cl:CollisionsListener){
