@@ -38,7 +38,11 @@ class Aleiiioa extends Game {
 			Builders.pnj(e.cx,e.cy,e.f_Dialog);
 		}
 		
-		Builders.chouxPeteur(30,30);
+		Builders.chouxPeteur(40,30);
+		Builders.chouxPeteur(42,30);
+		Builders.chouxPeteur(42,30);
+		Builders.chouxPeteur(46,30);
+		
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());
 		Workflow.addSystem(new CollisionsListenerActualizer());

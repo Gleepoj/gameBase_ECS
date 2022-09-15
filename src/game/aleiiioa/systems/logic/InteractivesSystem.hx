@@ -1,5 +1,7 @@
 package aleiiioa.systems.logic;
 
+import aleiiioa.builders.FxBuilders;
+import aleiiioa.components.particules.EmitterComponent;
 import aleiiioa.components.core.velocity.VelocityComponent;
 import echoes.View;
 import aleiiioa.components.flags.BombFlag;
@@ -20,6 +22,22 @@ class InteractivesSystem extends echoes.System {
     
     public function new() {
         
+    }
+    @u function unsetStatus(dt:Float,cl:CollisionsListener,bf:BombFlag,ic:InteractiveComponent,em:EmitterComponent,gp:GridPosition){
+        ic.cd.update(dt);
+        
+        if(ic.isGrabbed && !ic.cd.has("countdown")){
+            ic.cd.setS("countdown",3);
+            //trace("set cd");
+        }
+        
+        if(ic.cd.has("countdown")){
+            //trace(ic.cd.getRatio("countdown"));
+            if(ic.cd.getRatio("countdown") <= 0.05){
+             FxBuilders.bombSmoke(em,gp);
+            }
+        }
+
     }
 
     @u function playerGrabBomb(cl:CollisionsListener,inp:InputComponent,pl:PlayerFlag,ac:ActionComponent) {
