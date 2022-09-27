@@ -5,7 +5,6 @@ import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.particules.ParticulesComponent;
 
 class ParticuleRenderer extends echoes.System {
-    // switch to bitmap renderer
     public function new (){
 
     }

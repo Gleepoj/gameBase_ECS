@@ -1,6 +1,6 @@
 package aleiiioa.components.particules;
 
-import aleiiioa.shaders.PressureShader;
+import aleiiioa.shaders.SmokeShader.SmokeShader;
 import h2d.Bitmap;
 import dn.Cooldown;
 

@@ -1,9 +1,8 @@
 package aleiiioa.components.particules;
 
-import aleiiioa.shaders.PressureShader.BitmapShader;
 import h2d.BlendMode;
 import h2d.Tile;
-import aleiiioa.shaders.PressureShader.SmokeShader;
+import aleiiioa.shaders.SmokeShader.SmokeShader;
 import h2d.Bitmap;
 
 

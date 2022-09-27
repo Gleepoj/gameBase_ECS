@@ -1,4 +1,4 @@
-package aleiiioa.shaders;
+/* package aleiiioa.shaders;
 
 import h3d.mat.Texture;
 
@@ -247,7 +247,7 @@ class SmokeShader extends hxsl.Shader {
 			decay = 0.5;
 		}
 	}
-	
+	 */
 
 /* #ifdef GL_ES
 precision mediump float;

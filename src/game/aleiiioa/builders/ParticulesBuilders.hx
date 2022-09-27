@@ -8,8 +8,6 @@ import aleiiioa.components.core.collision.*;
 import aleiiioa.components.particules.*;
 
 
-import aleiiioa.shaders.PressureShader.SmokeShader;
-
 class ParticulesBuilders {
     
 

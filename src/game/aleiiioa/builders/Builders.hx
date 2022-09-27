@@ -5,7 +5,6 @@ import aleiiioa.components.flags.logic.CatchableFlag;
 import aleiiioa.components.flags.hierarchy.MasterFlag;
 import aleiiioa.components.logic.InteractiveComponent;
 import aleiiioa.components.logic.ActionComponent;
-import aleiiioa.shaders.PressureShader.SmokeShader;
 import h3d.Vector;
 import echoes.Entity;
 

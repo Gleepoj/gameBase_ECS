@@ -15,11 +15,7 @@ class FxBuilders {
          var e = ParticulesBuilders.randParticule(gp,sprange,lifetime,body,customPhysics);
          em.addBitmap(e);
     }
-/* 
-    private static function emitDustParticle(em:EmitterComponent,gp:GridPosition,sprange:Float,lifetime:Float,?body:Bool = false,?customPhysics:Bool = false){
-        var e = ParticulesBuilders.smokeParticule(gp,spx,spy,lifetime,seed,body,customPhysics);
-        em.addBitmap(e);
-    } */
+
     public static function landing(em:EmitterComponent,gp:GridPosition) {
         for(p in 0...5){
             emitRandParticule(em,gp,0.2,1,true,true);
