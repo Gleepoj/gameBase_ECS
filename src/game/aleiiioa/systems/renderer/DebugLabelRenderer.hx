@@ -5,7 +5,7 @@ package aleiiioa.systems.renderer;
 import echoes.Entity;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.rendering.DebugLabel;
-import aleiiioa.components.flags.vessel.*;
+
 
 import echoes.System;
 
