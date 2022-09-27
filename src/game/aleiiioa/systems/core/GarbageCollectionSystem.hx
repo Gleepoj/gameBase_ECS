@@ -23,8 +23,7 @@ class GarbageCollectionSystem extends System {
 
     @u function flagChild(en:Entity,cflag:ChildFlag,mgp:MasterGridPosition){
         if(!en.get(MasterGridPosition).isMasterAlive){
-            en.add(new IsDiedFlag());
-            
+            en.add(new IsDiedFlag()); 
         }
     }
 

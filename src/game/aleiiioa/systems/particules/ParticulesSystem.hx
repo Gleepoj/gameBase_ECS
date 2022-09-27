@@ -10,7 +10,6 @@ import aleiiioa.components.particules.*;
 class ParticulesSystem extends echoes.System {
 
     public function new() {
-        //Builders.emitter();
     }
     
     @a function onEmitterAdded(em:EmitterComponent,gp:GridPosition) {

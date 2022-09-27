@@ -1,13 +1,11 @@
 package aleiiioa.systems.renderer;
 
 
-import aleiiioa.components.flags.vessel.*;
-import aleiiioa.components.vehicule.WingsSharedComponent;
 
 import echoes.Entity;
-import aleiiioa.components.vehicule.VeilComponent;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.rendering.DebugLabel;
+import aleiiioa.components.flags.vessel.*;
 
 import echoes.System;
 
@@ -31,16 +29,6 @@ class DebugLabelRenderer extends System{
         renderAllDebugs(dl,gp);
     } */
 
-	@u function updateDebugWingR(dl:DebugLabel,gp:GridPosition,win:WingsSharedComponent,wr:WingRightFlag) {
-		var val = Game.ME.framesToSec(Game.ME.ftime);
-		debugFloat(dl,val);
-        renderAllDebugs(dl,gp);
-    }
-
-	@u function updateDebugWingL(dl:DebugLabel,gp:GridPosition,win:WingsSharedComponent,wl:WingLeftFlag) {
-		debugFloat(dl,win.angleL);
-        renderAllDebugs(dl,gp);
-    }
 	 
 	function renderAllDebugs(dl:DebugLabel,gp:GridPosition) {
 

@@ -11,7 +11,7 @@ class VelocitySystem extends echoes.System {
 	public function new() {}
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	
-	@u function updateAnalogDrivenEntity(en:Entity,gp:GridPosition,vc:VelocityComponent,vas:VelocityAnalogSpeed,cl:CollisionsListener) {
+	@u function updateVelocity(en:Entity,gp:GridPosition,vc:VelocityComponent,vas:VelocityAnalogSpeed,cl:CollisionsListener) {
 		if(!vc.physicBody && vc.customPhysics){
 			
 			vc.dx = vas.xSpeed;

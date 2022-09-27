@@ -3,6 +3,12 @@ package aleiiioa.systems.ui;
 import aleiiioa.components.ui.UICheckComponent;
 import aleiiioa.components.ui.UISliderComponent;
 
+
+//SAMPLE USAGE // Could be use everywhere in code 
+        
+//UIBuild.slider("Speed", function() return speed, function(v) speed = v, 0, 10);
+//UIBuild.check("Button", function() return button, function(v)  button = v );
+
 class UIHelperSystem extends echoes.System {
     
     var fui : h2d.Flow;
@@ -19,10 +25,6 @@ class UIHelperSystem extends echoes.System {
         fui.verticalSpacing = 5;
         fui.padding = 10;
         
-        //SAMPLE USAGE //
-        
-        //UIBuild.slider("Speed", function() return tf, function(v) tf = v, 0, 10);
-        //UIBuild.check("Loop", function() return tv, function(v)  tv = v );
     }
 
     private function getFont() {
