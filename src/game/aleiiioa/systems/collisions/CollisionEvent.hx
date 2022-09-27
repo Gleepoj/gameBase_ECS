@@ -22,7 +22,7 @@ class Event_OnDialogArea implements  CollisionEvent {
     }
 
     public function send(cl:CollisionsListener) {
-        cl.cd.setS("pnj ready",0.02);  
+        cl.cd.setS("pnj ready",0.005);  
     }
 }
 

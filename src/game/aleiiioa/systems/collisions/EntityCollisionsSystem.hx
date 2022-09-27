@@ -1,5 +1,7 @@
 package aleiiioa.systems.collisions;
 
+import aleiiioa.components.flags.logic.CatchableFlag;
+import aleiiioa.components.logic.InteractiveComponent;
 import aleiiioa.components.flags.BombFlag;
 import aleiiioa.components.flags.PlayerFlag;
 import aleiiioa.components.flags.PNJFlag;
@@ -11,7 +13,7 @@ import aleiiioa.components.core.position.GridPosition;
 
 class EntityCollisionsSystem extends echoes.System {
     var ALL_PNJ:View<GridPosition,PNJFlag>;
-    var ALL_BOMB:View<BombFlag>;
+    var ALL_CATCHABLE:View<CatchableFlag,InteractiveComponent>;
     var PLAYER :View<GridPosition,PlayerFlag>;
 
     var events:InstancedCollisionEvent;
@@ -49,7 +51,7 @@ class EntityCollisionsSystem extends echoes.System {
     }
 
     @u function playerInInteractArea(gp:GridPosition,flag:PlayerFlag,cl:CollisionsListener) {
-        var head = ALL_BOMB.entities.head;
+        var head = ALL_CATCHABLE.entities.head;
         var playerPos = gp.gpToVector();
 
         while (head != null){
@@ -64,7 +66,7 @@ class EntityCollisionsSystem extends echoes.System {
     }
 
     
-    @u function ObjInInteractArea(gp:GridPosition,flag:BombFlag,cl:CollisionsListener) {
+    @u function CatchableInInteractArea(catchable:CatchableFlag,gp:GridPosition,cl:CollisionsListener) {
         var player = PLAYER.entities.head.value;
         var pgp = player.get(GridPosition);
         var playerPos = pgp.gpToVector();

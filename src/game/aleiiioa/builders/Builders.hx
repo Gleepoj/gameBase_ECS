@@ -1,6 +1,8 @@
 package aleiiioa.builders;
 
 
+import aleiiioa.components.flags.logic.CatchableFlag;
+import aleiiioa.components.flags.hierarchy.MasterFlag;
 import aleiiioa.components.logic.InteractiveComponent;
 import aleiiioa.components.logic.ActionComponent;
 import aleiiioa.shaders.PressureShader.SmokeShader;
@@ -28,55 +30,70 @@ class Builders {
     public static function pnj(cx:Int,cy:Int,yarnDialogName:String) {
         var pos = new GridPosition(cx,cy);
         var spr = new SpriteComponent(D.tiles.fxCircle15);
+        
         var sq  = new SquashComponent();
         var vas = new VelocityAnalogSpeed(0,0);
         var se  = new SpriteExtension();
         var vc  = new VelocityComponent(true);
         var pnj = new PNJFlag();
-        var cl   = new CollisionsListener();
+        var cl  = new CollisionsListener();
         var bflag = new BodyFlag();
         var yarn = new DialogReferenceComponent(yarnDialogName,pos.attachX,pos.attachY);   
+        
+        var cflag = new CatchableFlag();
+        var ic    = new InteractiveComponent();
+
         var em     = new EmitterComponent();
         se.baseColor = new Vector(0.3,0.8,0.6);
         
-        new echoes.Entity().add(pos,spr,se,sq,vc,vas,pnj,cl,bflag,yarn);
+        new echoes.Entity().add(pos,spr,se,sq,vc,vas,pnj,cl,bflag,yarn,cflag,ic);
     }
 
     public static function chouxPeteur(cx:Int,cy:Int) {
         var pos = new GridPosition(cx,cy);
         var spr = new SpriteComponent(D.tiles.fxCircle15);
+        
         var sq  = new SquashComponent();
         var se  = new SpriteExtension();
+        
         var vc  = new VelocityComponent(true);
         var vas = new VelocityAnalogSpeed(0,0);
+        
         var cl     = new CollisionsListener();
         var bflag  = new BodyFlag();
         var bomb   = new BombFlag();
+        var cflag  = new CatchableFlag();
         var em     = new EmitterComponent();
         var ic     = new InteractiveComponent();
         
         se.baseColor = new Vector(0.3,0.2,0.8);
         
-        new echoes.Entity().add(pos,spr,sq,se,vas,vc,cl,bflag,em,bomb,ic);
+        new echoes.Entity().add(pos,spr,sq,se,vas,vc,cl,bflag,em,bomb,ic,cflag);
     }
 
     public static function player(cx:Int,cy:Int) {
         var pos = new GridPosition(cx,cy);
+        var mgp = new MasterGridPosition(cx,cy);
+
         var spr = new SpriteComponent(D.tiles.fxCircle15);
         var sq  = new SquashComponent();
         var se  = new SpriteExtension();
+        
         var vc  = new VelocityComponent(true);
         var vas = new VelocityAnalogSpeed(0,0);
         var cl     = new CollisionsListener();
+        
         var bflag  = new BodyFlag();
         var player = new PlayerFlag();
+        var mflag  = new MasterFlag();
+
         var inp    = new InputComponent();
         var em     = new EmitterComponent();
         var ac     = new ActionComponent();
         
         se.baseColor = new Vector(0.5,0.2,0.6);
 
-        new echoes.Entity().add(pos,spr,sq,se,vas,vc,inp,cl,bflag,player,em,ac);
+        new echoes.Entity().add(pos,mgp,spr,sq,se,vas,vc,inp,cl,bflag,player,mflag,em,ac);
     }
 
     
