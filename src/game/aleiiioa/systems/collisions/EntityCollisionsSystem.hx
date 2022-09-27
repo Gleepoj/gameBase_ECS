@@ -2,7 +2,6 @@ package aleiiioa.systems.collisions;
 
 import aleiiioa.components.flags.logic.CatchableFlag;
 import aleiiioa.components.logic.InteractiveComponent;
-import aleiiioa.components.flags.BombFlag;
 import aleiiioa.components.flags.PlayerFlag;
 import aleiiioa.components.flags.PNJFlag;
 import echoes.View;
