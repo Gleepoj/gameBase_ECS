@@ -42,5 +42,11 @@ enum AreaInfluence {
 	AiLarge;
 }
 
-enum LevelMark {
+enum abstract LevelMark(Int) to Int {
+	var Coll_Wall;
+}
+	
+
+enum abstract LevelSubMark(Int) to Int {
+	var None; // 0
 }

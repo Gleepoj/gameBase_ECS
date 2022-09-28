@@ -1,5 +1,7 @@
 package ui;
 
+import h2d.Console.ConsoleArg;
+
 class Console extends h2d.Console {
 	public static var ME : Console;
 	#if debug
@@ -13,6 +15,8 @@ class Console extends h2d.Console {
 
 		logTxt.filter = new dn.heaps.filter.PixelOutline();
 		scale(2); // TODO smarter scaling for 4k screens
+		logTxt.condenseWhite = false;
+		errorColor = 0xff6666;
 
 		// Settings
 		ME = this;
@@ -48,9 +52,58 @@ class Console extends h2d.Console {
 			this.addCommand("ctrl", [], ()->{
 				App.ME.ca.toggleDebugger(App.ME, dbg->{
 					dbg.root.filter = new dn.heaps.filter.PixelOutline();
-					dbg.onUpdateCb = ()->dbg.root.setScale( Const.UI_SCALE );
 				});
 			});
+
+			// Garbage collector
+			this.addCommand("gc", [{ name:"state", t:AInt, opt:true }], (?state:Int)->{
+				if( !dn.Gc.isSupported() )
+					log("GC is not supported on this platform", Red);
+				else {
+					if( state!=null )
+						dn.Gc.setState(state!=0);
+					dn.Gc.runNow();
+					log("GC forced (current state: "+(dn.Gc.isActive() ? "active" : "inactive" )+")", dn.Gc.isActive()?Green:Yellow);
+				}
+			});
+
+			// Level marks
+			var allLevelMarks : Array<{ name:String, value:Int }>;
+			allLevelMarks = dn.MacroTools.getAbstractEnumValues(Types.LevelMark);
+			this.addCommand(
+				"mark",
+				[
+					{ name:"levelMark", t:AEnum( allLevelMarks.map(m->m.name) ), opt:true },
+					{ name:"bit", t:AInt, opt:true },
+				],
+				(k:String, bit:Null<Int>)->{
+					if( !Game.exists() ) {
+						error('Game is not running');
+						return;
+					}
+					if( k==null ) {
+						// Game.ME.level.clearDebug();
+						return;
+					}
+
+					var bit : Null<LevelSubMark> = cast bit;
+					var mark = -1;
+					for(m in allLevelMarks)
+						if( m.name==k ) {
+							mark = m.value;
+							break;
+						}
+					if( mark<0 ) {
+						error('Unknown level mark $k');
+						return;
+					}
+
+					var col = 0xffcc00;
+					log('Displaying $mark (bit=$bit)...', col);
+					// Game.ME.level.renderDebugMark(cast mark, bit);
+				}
+			);
+			this.addAlias("m","mark");
 		#end
 
 		// List all active dn.Process
@@ -63,17 +116,15 @@ class Console extends h2d.Console {
 		// Show build info
 		this.addCommand("build", [], ()->log( Const.BUILD_INFO ) );
 
-		this.addCommand("grid", [], ()->{
+		// Create a debug drone
+		#if debug
+		this.addCommand("drone", [], ()->{
+			//new en.DebugDrone();
 		});
+		#end
+
 		// Create a stats box
-		this.addCommand("fps", [], ()->{
-			if( stats!=null ) {
-				stats.destroy();
-				stats = null;
-			}
-			else
-				stats = new dn.heaps.StatsBox(App.ME);
-		});
+		this.addCommand("fps", [], ()->toggleStats());
 		this.addAlias("stats","fps");
 
 		// Misc flag aliases
@@ -81,8 +132,60 @@ class Console extends h2d.Console {
 		addFlagCommandAlias("affect");
 		addFlagCommandAlias("scroll");
 		addFlagCommandAlias("cam");
-		addFlagCommandAlias("grid");
-		//addFlagCommandAlias("vector");
+	}
+
+	public function disableStats() {
+		if( stats!=null ) {
+			stats.destroy();
+			stats = null;
+		}
+	}
+
+	public function enableStats() {
+		disableStats();
+		stats = new dn.heaps.StatsBox(App.ME);
+		stats.addFpsChart();
+		stats.addDrawCallsChart();
+		#if hl
+		stats.addMemoryChart();
+		#end
+	}
+
+	public function toggleStats() {
+		if( stats!=null )
+			disableStats();
+		else
+			enableStats();
+	}
+
+	override function getCommandSuggestion(cmd:String):String {
+		var sugg = super.getCommandSuggestion(cmd);
+		if( sugg.length>0 )
+			return sugg;
+
+		if( cmd.length==0 )
+			return "";
+
+		// Simplistic argument auto-complete
+		for(c in commands.keys()) {
+			var reg = new EReg("([ \t\\/]*"+c+"[ \t]+)(.*)", "gi");
+			if( reg.match(cmd) ) {
+				var lowArg = reg.matched(2).toLowerCase();
+				for(a in commands.get(c).args)
+					switch a.t {
+						case AInt:
+						case AFloat:
+						case AString:
+						case ABool:
+						case AEnum(values):
+							for(v in values)
+								if( v.toLowerCase().indexOf(lowArg)==0 )
+									return reg.matched(1) + v;
+					}
+			}
+		}
+
+		return "";
 	}
 
 	/** Creates a shortcut command "/flag" to toggle specified flag state **/
@@ -100,7 +203,7 @@ class Console extends h2d.Console {
 	}
 
 	public function error(msg:Dynamic) {
-		log("[ERROR] "+Std.string(msg), 0xff0000);
+		log("[ERROR] "+Std.string(msg), errorColor);
 		h2d.Console.HIDE_LOG_TIMEOUT = Const.INFINITE;
 	}
 
