@@ -1,4 +1,4 @@
-package aleiiioa.components;
+package aleiiioa.components.core;
 
 import hxd.Pad.PadConfig;
 
