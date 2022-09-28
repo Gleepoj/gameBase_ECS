@@ -5,24 +5,25 @@ enum abstract GameAction(Int) to Int {
 	var MoveUp;
 	var MoveDown;
 
-
-	var WingLeft;
-	var WingRight;
+	var TriggerLeft;
+	var TriggerRight;
 	
 	var Rb;
 	var Lb;
 	
+	var ActionX;
+	var ActionY;
 	var Jump;
-	var Restart;
-	var Blow;
-	var ShapeWind;
-	
-	var MenuCancel;
+	var Interaction;
+
 	var Pause;
+	var Restart;
 
 	var DebugTurbo;
 	var DebugSlowMo;
 	var ScreenshotMode;
+
+	var MenuCancel;
 }
 
 enum Affect {

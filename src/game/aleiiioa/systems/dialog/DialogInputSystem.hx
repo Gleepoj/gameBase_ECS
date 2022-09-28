@@ -42,7 +42,7 @@ class DialogInputSystem extends echoes.System {
 
 	@u function updateSystem(p:PlayerFlag,cl:CollisionsListener,gameInput:InputComponent,gp:GridPosition){
 		if(cl.onArea){
-			if(gameInput.ca.isPressed(Blow)){
+			if(gameInput.ca.isPressed(Interaction)){
 				currentDialog.attachX = gp.attachX;
 				currentDialog.attachY = gp.attachY;
 				UIBuilders.dialogEntity(currentDialog);
@@ -77,7 +77,7 @@ class DialogInputSystem extends echoes.System {
 		optionSelect = selector-1;
 		yl.selector = optionSelect;
 		
-        if(ca.isPressed(Blow)){
+        if(ca.isPressed(Interaction)){
             if(dc.dialogue.isActive()){
 				
 				if(state == ExecutionState.WaitingForContinue)

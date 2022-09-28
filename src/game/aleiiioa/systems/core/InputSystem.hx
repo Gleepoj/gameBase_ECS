@@ -24,7 +24,7 @@ class InputSystem extends echoes.System {
 		if(inp.ca.isDown(MoveLeft)){
 			vas.xSpeed = -0.3;
 		}
-		if(inp.ca.isPressed(Blow) && cl.cd.has("recentlyOnGround")){
+		if(inp.ca.isPressed(Jump) && cl.cd.has("recentlyOnGround")){
 			vas.ySpeed = -0.9;
 			cl.cd.unset("recentlyOnGround");
 		}

@@ -26,14 +26,14 @@ class InteractivesSystem extends echoes.System {
     }
 
     @u function playerGrabObject(pl:PlayerFlag,cl:CollisionsListener,inp:InputComponent,ac:ActionComponent) {
-        if(cl.onInteract && inp.ca.isPressed(ShapeWind)){
+        if(cl.onInteract && inp.ca.isPressed(ActionX)){
             ac.query = true;
         }
     }
 
 
     @u function playerThrowCatchable(pl:PlayerFlag,inp:InputComponent,ac:ActionComponent,vc:VelocityComponent){
-        if(ac.grab && inp.ca.isPressed(ShapeWind)){
+        if(ac.grab && inp.ca.isPressed(ActionX)){
             var head = ALL_CATCHABLE.entities.head;
 
             while (head != null){

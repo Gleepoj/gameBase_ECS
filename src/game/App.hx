@@ -193,27 +193,28 @@ class App extends dn.Process {
 		// Gamepad bindings
 		controller.bindPadLStick4(MoveLeft, MoveRight, MoveUp, MoveDown);
 		
-		controller.bindPad(WingLeft ,LT);
-		controller.bindPad(WingRight,RT);
+		controller.bindPad(TriggerLeft ,LT);
+		controller.bindPad(TriggerRight,RT);
 
 		controller.bindPad(Rb,RB);
 		controller.bindPad(Lb,LB);
 		
-		controller.bindPad(Blow, X);
-		controller.bindPad(ShapeWind,B);
+		controller.bindPad(ActionX,X);
+		controller.bindPad(ActionY,Y);
+		controller.bindPad(Interaction,B);
 		controller.bindPad(Jump, A);
+
 		controller.bindPad(Restart, SELECT);
 		controller.bindPad(Pause, START);
-		//controller.bindPadButtonsAsStick(MoveX, MoveY, DPAD_UP, DPAD_LEFT, DPAD_DOWN, DPAD_RIGHT);
-		controller.bindPad(MenuCancel, B);
 
 		// Keyboard bindings
 		//controller.bindKeyboardAsStick(MoveX,MoveY, K.UP, K.LEFT, K.DOWN, K.RIGHT);
 		controller.bindKeyboard(MoveLeft,K.LEFT);
 		controller.bindKeyboard(MoveRight,K.RIGHT);
 		controller.bindKeyboard(Jump, K.SPACE);
-		controller.bindKeyboard(ShapeWind,K.X);
-		controller.bindKeyboard(Blow, K.Z);
+		controller.bindKeyboard(Interaction,K.X);
+		controller.bindKeyboard(ActionX,K.Z);
+		controller.bindKeyboard(ActionY,K.C);
 		controller.bindKeyboard(Restart, K.R);
 		controller.bindKeyboard(ScreenshotMode, K.F9);
 		controller.bindKeyboard(Pause, K.P);
