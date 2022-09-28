@@ -386,18 +386,18 @@
 			}
 		}
 	], "enums": [], "externalEnums": [
-		{ "identifier": "Affect", "uid": 3, "values": [{ "id": "Stun", "tileId": null, "color": 0, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "f474e17cce15956ce261de8b931d8d5d", "tags": [] },
+		{ "identifier": "Affect", "uid": 3, "values": [{ "id": "Stun", "tileId": null, "color": 0, "__tileSrcRect": null }], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "134b6e0018d4e6c78b57284db3984381", "tags": [] },
 		{ "identifier": "AreaEquation", "uid": 25, "values": [
 			{ "id": "EqConverge", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "EqCurl", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "EqDiverge", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "EqRepel", "tileId": null, "color": 0, "__tileSrcRect": null }
-		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "f474e17cce15956ce261de8b931d8d5d", "tags": [] },
+		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "134b6e0018d4e6c78b57284db3984381", "tags": [] },
 		{ "identifier": "AreaInfluence", "uid": 26, "values": [
 			{ "id": "AiLarge", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "AiMedium", "tileId": null, "color": 0, "__tileSrcRect": null },
 			{ "id": "AiSmall", "tileId": null, "color": 0, "__tileSrcRect": null }
-		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "f474e17cce15956ce261de8b931d8d5d", "tags": [] }
+		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "134b6e0018d4e6c78b57284db3984381", "tags": [] }
 	], "levelFields": [] },
 	"levels": [
 		{
@@ -471,9 +471,9 @@
 							"height": 16,
 							"defUid": 38,
 							"px": [523,323],
-							"fieldInstances": [{ "__identifier": "Dialog", "__value": "Test2", "__type": "String", "__tile": null, "defUid": 39, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Dialog", "__value": "Barbulle", "__type": "String", "__tile": null, "defUid": 39, "realEditorValues": [{
 								"id": "V_String",
-								"params": ["Test2"]
+								"params": ["Barbulle"]
 							}] }]
 						},
 						{
@@ -488,9 +488,9 @@
 							"height": 16,
 							"defUid": 38,
 							"px": [750,374],
-							"fieldInstances": [{ "__identifier": "Dialog", "__value": "Example", "__type": "String", "__tile": null, "defUid": 39, "realEditorValues": [{
+							"fieldInstances": [{ "__identifier": "Dialog", "__value": "Arflantil", "__type": "String", "__tile": null, "defUid": 39, "realEditorValues": [{
 								"id": "V_String",
-								"params": ["Example"]
+								"params": ["Arflantil"]
 							}] }]
 						},
 						{
