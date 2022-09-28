@@ -9,7 +9,7 @@ import aleiiioa.components.flags.PNJFlag;
 import aleiiioa.components.flags.PlayerFlag;
 
 
-import aleiiioa.builders.UIBuild;
+import aleiiioa.builders.UIBuilders;
 import aleiiioa.components.flags.collision.IsDiedFlag;
 import aleiiioa.components.dialog.YarnDialogConponent;
 
@@ -46,7 +46,7 @@ class DialogInputSystem extends echoes.System {
 			if(gameInput.ca.isPressed(Blow)){
 				currentDialog.attachX = gp.attachX;
 				currentDialog.attachY = gp.attachY;
-				UIBuild.dialogEntity(currentDialog);
+				UIBuilders.dialogEntity(currentDialog);
 				gameInput.ca.lock();
 				ca.unlock();
 			}

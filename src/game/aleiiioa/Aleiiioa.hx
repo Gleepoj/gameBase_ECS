@@ -1,5 +1,6 @@
 package aleiiioa;
 
+import echoes.Entity;
 import aleiiioa.systems.logic.EntityLogicSystem;
 import aleiiioa.systems.logic.InteractivesSystem;
 import aleiiioa.builders.*;
@@ -16,14 +17,17 @@ import echoes.Workflow;
 
 class Aleiiioa extends Game {
 	var game(get,never) : Game; inline function get_game() return Game.ME;
+	
+	var cameraFocus:Entity;
+	var cameraFocusPosition:GridPosition;
 
 	public function new() {
 		super();
 		Workflow.reset();
 		
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
-		var cameraFocus = Builders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
-		var cameraFocusPosition = cameraFocus.get(GridPosition);
+		cameraFocus = EntityBuilders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
+		cameraFocusPosition = cameraFocus.get(GridPosition);
 
 		Game.ME.camera.trackEntityGridPosition(cameraFocusPosition,true,1);
 		Game.ME.camera.centerOnGridTarget();		
@@ -32,17 +36,16 @@ class Aleiiioa extends Game {
 		
 		// ECS //
 		var player = level.data.l_Entities.all_PlayerStart[0];
-		
-		Builders.player(player.cx,player.cy);
+		EntityBuilders.player(player.cx,player.cy);
 
 		for (e in level.data.l_Entities.all_PNJ){
-			Builders.pnj(e.cx,e.cy,e.f_Dialog);
+			EntityBuilders.pnj(e.cx,e.cy,e.f_Dialog);
 		}
 		
-		Builders.chouxPeteur(40,30);
-		Builders.chouxPeteur(42,30);
-		Builders.chouxPeteur(42,30);
-		Builders.chouxPeteur(46,30);
+		EntityBuilders.chouxPeteur(40,30);
+		EntityBuilders.chouxPeteur(42,30);
+		EntityBuilders.chouxPeteur(42,30);
+		EntityBuilders.chouxPeteur(46,30);
 		
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());

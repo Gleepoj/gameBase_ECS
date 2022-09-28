@@ -3,7 +3,7 @@ package aleiiioa.builders;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.particules.EmitterComponent;
 
-class FxBuilders {
+class VfxBuilders {
 
     
     private static function emitParticule(em:EmitterComponent,gp:GridPosition,spx:Float,spy:Float,lifetime:Float,seed:Int,?body:Bool = false,?customPhysics:Bool = false){

@@ -1,8 +1,6 @@
 package aleiiioa.systems.core;
 
 import echoes.Entity;
-import aleiiioa.components.flags.collision.BodyFlag;
-import aleiiioa.components.particules.ParticulesComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.velocity.*;
 import aleiiioa.components.core.position.GridPosition;
@@ -12,8 +10,8 @@ class VelocitySystem extends echoes.System {
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	
 	@u function updateVelocity(en:Entity,gp:GridPosition,vc:VelocityComponent,vas:VelocityAnalogSpeed,cl:CollisionsListener) {
-		if(!vc.physicBody && vc.customPhysics){
-			
+		
+		if(!vc.physicBody && vc.customPhysics){	
 			vc.dx = vas.xSpeed;
 			vc.dy = vas.ySpeed;
 			fixedUpdate(gp,vc,cl);

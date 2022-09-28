@@ -1,6 +1,6 @@
 package aleiiioa.systems.particules;
 
-import aleiiioa.builders.FxBuilders;
+import aleiiioa.builders.VfxBuilders;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.builders.ParticulesBuilders;
 import aleiiioa.components.core.position.GridPosition;
@@ -20,7 +20,7 @@ class ParticulesSystem extends echoes.System {
 
         if(cl.onLanding && !em.cd.has("cooldown")){
             em.cd.setS("cooldown",0.3);
-            FxBuilders.landing(em,gp);
+            VfxBuilders.landing(em,gp);
         }
     }
 

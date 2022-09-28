@@ -11,7 +11,7 @@ import aleiiioa.components.dialog.YarnDialogListener;
 import aleiiioa.components.ui.UICheckComponent;
 import aleiiioa.components.ui.UISliderComponent;
 
-class UIBuild {
+class UIBuilders {
     
     ////////ACTORS////////////////
         public static function slider(label : String, get : Void -> Float, set : Float -> Void, min : Float = 0., max : Float = 1.) {
