@@ -25,7 +25,7 @@ class Level extends dn.Process {
 
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
 		data = ldtkLevel;
-		tilesetSource = hxd.Res.levels.josWorldTiles.toAseprite().toTile();
+		tilesetSource = hxd.Res.levels.gameBase_ECS_Tiles.toAseprite().toTile();
 	}
 
 
