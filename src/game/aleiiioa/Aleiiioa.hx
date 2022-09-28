@@ -35,17 +35,16 @@ class Aleiiioa extends Game {
 		
 		
 		// ECS //
-		var player = level.data.l_Entities.all_PlayerStart[0];
+		var player = level.data.l_Entities.all_Player[0];
 		EntityBuilders.player(player.cx,player.cy);
 
 		for (e in level.data.l_Entities.all_PNJ){
 			EntityBuilders.pnj(e.cx,e.cy,e.f_Dialog);
 		}
-		
-		EntityBuilders.chouxPeteur(40,30);
-		EntityBuilders.chouxPeteur(42,30);
-		EntityBuilders.chouxPeteur(42,30);
-		EntityBuilders.chouxPeteur(46,30);
+
+		for (cp in level.data.l_Entities.all_ChouxPeteur){
+			EntityBuilders.chouxPeteur(cp.cx,cp.cy);
+		}
 		
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());
