@@ -181,6 +181,7 @@ class Console extends h2d.Console {
 							for(v in values)
 								if( v.toLowerCase().indexOf(lowArg)==0 )
 									return reg.matched(1) + v;
+						case AArray(t):
 					}
 			}
 		}
