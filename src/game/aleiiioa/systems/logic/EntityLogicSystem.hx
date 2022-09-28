@@ -3,7 +3,7 @@ package aleiiioa.systems.logic;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.particules.EmitterComponent;
 import aleiiioa.components.logic.InteractiveComponent;
-import aleiiioa.components.flags.BombFlag;
+import aleiiioa.components.flags.logic.*;
 import aleiiioa.builders.VfxBuilders;
 import aleiiioa.components.flags.collision.IsDiedFlag;
 
@@ -12,7 +12,6 @@ class EntityLogicSystem  extends echoes.System{
         
     }
 
-    
     @u function bombBehavior(en:echoes.Entity,bomb:BombFlag,ic:InteractiveComponent,em:EmitterComponent,gp:GridPosition){
         
         

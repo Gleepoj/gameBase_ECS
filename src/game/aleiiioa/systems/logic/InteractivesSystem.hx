@@ -4,9 +4,8 @@ import echoes.Entity;
 import echoes.View;
 
 import aleiiioa.components.logic.*;
-import aleiiioa.components.flags.PlayerFlag;
 import aleiiioa.components.flags.hierarchy.*;
-import aleiiioa.components.flags.logic.CatchableFlag;
+import aleiiioa.components.flags.logic.*;
 
 import aleiiioa.components.InputComponent;
 import aleiiioa.components.core.collision.CollisionsListener;

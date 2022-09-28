@@ -5,8 +5,7 @@ import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.InputComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.dialog.DialogReferenceComponent;
-import aleiiioa.components.flags.PNJFlag;
-import aleiiioa.components.flags.PlayerFlag;
+import aleiiioa.components.flags.logic.*;
 
 
 import aleiiioa.builders.UIBuilders;

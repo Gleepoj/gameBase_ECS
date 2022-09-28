@@ -2,8 +2,7 @@ package aleiiioa.systems.collisions;
 
 import aleiiioa.components.flags.logic.CatchableFlag;
 import aleiiioa.components.logic.InteractiveComponent;
-import aleiiioa.components.flags.PlayerFlag;
-import aleiiioa.components.flags.PNJFlag;
+import aleiiioa.components.flags.logic.*;
 import echoes.View;
 
 import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;

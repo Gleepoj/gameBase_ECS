@@ -1,4 +1,4 @@
-package aleiiioa.components.flags;
+package aleiiioa.components.flags.logic;
 
 class PNJFlag{
     public function new() {
