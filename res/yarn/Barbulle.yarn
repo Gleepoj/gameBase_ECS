@@ -13,7 +13,7 @@ Barbulle: Here : https:/ /github.com/deepcake/echo
     Barbulle: Then each entity are identified by systems according to its different components.
     Barbulle: For example, I can be grabbed and thrown by the player like the little blue bombs on the floor.
     Barbulle: The only thing you have to do in order to remove this behavior,
-    Barbulle: is to delete the "CatchableFlag" from my component collection. 
+    Barbulle: is to delete the "CatchableFlag" from my component collection in aleiiioa.builders.EntityBuilders.hx in function "pnj". 
     Barbulle: If you want to know more about this topic, you can read this article 
     Barbulle: https:/ /cowboyprogramming.com/2007/01/05/evolve-your-heirachy/
 -> Have a nice day !

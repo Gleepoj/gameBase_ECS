@@ -15,7 +15,8 @@ If you're not familiar with Haxe and Heaps.io see install instructions *[here](h
  2. An embryo of particules system which is quite confuse and poorly customizable for the moment.
  3. A prototype of a  *[YarnSpinner](https://yarnspinner.dev/docs/writing/yarn-editor/)* based dialog system using *[hxyarn](https://github.com/cxsquared/hxyarn)* by *[cxsquared](https://github.com/cxsquared)*
  4. There is no camera system for the moment.
- 5. More about ECS *[here](https://cowboyprogramming.com/2007/01/05/evolve-your-heirachy/)*
+ 5. Scene is load in aleiiioa.Aleiiioa.hx which extends Game class, all ECS logic is store in aleiiioa file (sorry for the name space its a   name of an abandoned game and I am too lazy to rename it properly :) )
+ 6. More about ECS *[here](https://cowboyprogramming.com/2007/01/05/evolve-your-heirachy/)*
 
 # Compile
 
