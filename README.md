@@ -40,11 +40,11 @@ Run the result with either:
    and setup.hxml have not work as intended. Normally my fork of deepnightLibs and Heaps.io aren't necessary.
 
  - I actually use Hashlink nightly build and Haxe 4.2.5.
- 
+
  - There is a compiled version for Windows in redist/opengl that should work. 
 
  - This code is not intended to be use as is for game developpement, I made it for my own purpose as a "self"-taught developer,
-   and I share it more as bunch of snippet for curious people than as a polished tools. Fell free to tell me if you have any suggestions or if you find weirds things, bugs,bad practices,or a pretext for medieval theoretical controversy about software architecture :) . 
+   and I share it more as bunch of snippet for curious people than as a polished tools. Fell free to tell me if you have any suggestions or if you find weirds things, bugs,bad practices,or a pretext for medieval-like theoretical controversy about software architecture :) . 
 
 
 
