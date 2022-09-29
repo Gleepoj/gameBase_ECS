@@ -11,7 +11,7 @@ Arflantil: Here is the dialog system based on YarnSpinner tool and "hxyarn" pars
 -> How does it works ? 
     Arflantil: It is actually quite simple !
     Arflantil: You just have to write a dialog with any yarnSpinner editor and export it in .yarn file.
-    Arflantil: Then you put it in res/yarn/ and then you can link the dialog file to your npc in LDtk editor. 
+    Arflantil: Then you put it in res/yarn/ and then you can link the dialog file by passing the title of your dialog as a String parameter to your npc in LDtk editor. 
     -> I understand 
         <<jump Leave>>
     -> Learn more

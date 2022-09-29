@@ -50,6 +50,8 @@ class EntityBuilders {
         
         
         new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,body,catchable);
+        // Uncomment next entity creation and comment previous one to remove catchable behavior 
+        // new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,body);
     }
 
     public static function chouxPeteur(cx:Int,cy:Int) {
