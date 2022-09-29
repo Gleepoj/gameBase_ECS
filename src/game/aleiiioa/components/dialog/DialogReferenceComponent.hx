@@ -8,7 +8,7 @@ class DialogReferenceComponent {
     
     public function new(yarnFileName:String,x:Float,y:Float) {
         reference = yarnFileName;
-        trace(yarnFileName);
+        //trace(yarnFileName);
         var path:String = "yarn/"+yarnFileName+".yarn";
         res = hxd.Res.loader.load(path); 
         attachX = x;
