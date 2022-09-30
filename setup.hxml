@@ -31,7 +31,7 @@
 --cmd haxelib --always git hxyarn https://github.com/Gleepoj/hxyarn.git
 
 --next
---cmd haxelib --always git echo https://github.com/Gleepoj/echo.git
+--cmd haxelib --always git echoes https://github.com/Gleepoj/echo.git
 
 --next
 --cmd haxelib --always install hxease
