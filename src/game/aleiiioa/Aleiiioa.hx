@@ -71,6 +71,7 @@ class Aleiiioa extends Game {
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		
 		//Dialog
+		Workflow.add60FpsSystem(new DialogAreaCollisions());
 		Workflow.add60FpsSystem(new DialogYarnSystem());
 		Workflow.add60FpsSystem(new DialogInputSystem());
 		Workflow.add60FpsSystem(new DialogUISystem());
