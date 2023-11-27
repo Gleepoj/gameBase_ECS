@@ -7,7 +7,7 @@ import h2d.Flow.FlowLayout;
 import h2d.Flow.FlowAlign;
 
 import aleiiioa.components.dialog.YarnDialogListener;
-import aleiiioa.components.dialog.DialogUIOption;
+import aleiiioa.components.dialog.DialogUIOptionLayout;
 import aleiiioa.components.dialog.UIDialog;
 import aleiiioa.components.dialog.DialogUIBubble;
 
@@ -44,7 +44,7 @@ class DialogUISystem extends echoes.System {
     }
 
     
-    @a public function onOptionFlowAdded(ud:UIDialog,o:DialogUIOption){
+    @a public function onOptionFlowAdded(ud:UIDialog,o:DialogUIOptionLayout){
         
         o.flow = new h2d.Flow(ud.dialogLayer);
 
@@ -54,7 +54,7 @@ class DialogUISystem extends echoes.System {
         o.flow.padding = 10;
     }
 
-    @u public function updateDialogText(ydl:YarnDialogListener,b:DialogUIBubble,o:DialogUIOption) {
+    @u public function updateDialogText(ydl:YarnDialogListener,b:DialogUIBubble,o:DialogUIOptionLayout) {
         
         if(ydl.onSpeak && b.text.text != ydl.text){
             b.bubble.removeChild(b.text);
@@ -85,7 +85,7 @@ class DialogUISystem extends echoes.System {
         return hxd.res.DefaultFont.get();
     }
 
-    public function newOptionBubble(text:String,o:DialogUIOption,b:DialogUIBubble){
+    public function newOptionBubble(text:String,o:DialogUIOptionLayout,b:DialogUIBubble){
        
         var tile = Assets.tiles.getTile(D.tiles.uiBar);
 		var f = new dn.heaps.FlowBg(tile,2,o.flow);
@@ -109,7 +109,7 @@ class DialogUISystem extends echoes.System {
         o.bubbles.push(f);
     }
 
-    @u function colorizeOption(o:DialogUIOption,yl:YarnDialogListener){
+    @u function colorizeOption(o:DialogUIOptionLayout,yl:YarnDialogListener){
         
         for(bubble in o.bubbles){
             bubble.colorizeBg(0xA56FF7);
@@ -127,7 +127,7 @@ class DialogUISystem extends echoes.System {
         b.flow.removeChildren();
     }
 
-    @r function onRemoveOption(o:DialogUIOption){
+    @r function onRemoveOption(o:DialogUIOptionLayout){
         o.flow.removeChildren();
     }
 

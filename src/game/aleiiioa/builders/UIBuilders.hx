@@ -2,7 +2,7 @@ package aleiiioa.builders;
 
 import aleiiioa.components.dialog.DialogReferenceComponent;
 import aleiiioa.components.dialog.DialogUIBubble;
-import aleiiioa.components.dialog.DialogUIOption;
+import aleiiioa.components.dialog.DialogUIOptionLayout;
 import aleiiioa.components.dialog.UIDialog;
 
 import aleiiioa.components.dialog.YarnDialogConponent;
@@ -31,7 +31,7 @@ class UIBuilders {
 
             var ui    = new UIDialog();
             var uiBub = new DialogUIBubble();
-            var uiOpt = new DialogUIOption();
+            var uiOpt = new DialogUIOptionLayout();
 
             new echoes.Entity().add(ydc,ydl,ui,uiBub,uiOpt);
         }

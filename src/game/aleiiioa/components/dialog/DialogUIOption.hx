@@ -3,7 +3,7 @@ package aleiiioa.components.dialog;
 import dn.heaps.FlowBg;
 import h2d.Layers;
 
-class DialogUIOption{
+class DialogUIOptionLayout{
     
     public var layer:h2d.Layers; 
     public var flow:h2d.Flow;
