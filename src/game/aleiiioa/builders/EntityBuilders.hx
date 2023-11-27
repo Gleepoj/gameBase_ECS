@@ -8,7 +8,7 @@ import aleiiioa.components.logic.ActionComponent;
 import h3d.Vector;
 import echoes.Entity;
 
-import aleiiioa.components.core.InputComponent;
+import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.flags.logic.*;
 import aleiiioa.components.flags.collision.*;
 

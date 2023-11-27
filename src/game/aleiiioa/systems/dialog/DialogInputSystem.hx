@@ -2,7 +2,7 @@ package aleiiioa.systems.dialog;
 
 import aleiiioa.components.dialog.YarnDialogListener;
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.core.InputComponent;
+import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.dialog.DialogReferenceComponent;
 import aleiiioa.components.flags.logic.*;

@@ -5,7 +5,7 @@ import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.physics.VelocityAnalogSpeed;
 import aleiiioa.components.core.physics.VelocityComponent;
 import hxd.Pad.PadConfig;
-import aleiiioa.components.core.InputComponent;
+import aleiiioa.components.core.input.InputComponent;
 
 import aleiiioa.components.core.position.GridPositionOffset;
 
