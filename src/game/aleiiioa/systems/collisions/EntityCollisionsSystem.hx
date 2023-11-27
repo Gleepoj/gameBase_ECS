@@ -3,6 +3,8 @@ package aleiiioa.systems.collisions;
 import aleiiioa.components.flags.logic.CatchableFlag;
 import aleiiioa.components.logic.InteractiveComponent;
 import aleiiioa.components.flags.logic.*;
+import aleiiioa.components.dialog.flag.*;
+
 import echoes.View;
 
 import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
@@ -10,9 +12,10 @@ import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.position.GridPosition;
 
 class EntityCollisionsSystem extends echoes.System {
-    var ALL_PNJ:View<GridPosition,PNJFlag>;
+    var ALL_PNJ:View<GridPosition,PNJDialogFlag>;
     var ALL_CATCHABLE:View<CatchableFlag,InteractiveComponent>;
     var PLAYER :View<GridPosition,PlayerFlag>;
+    var PLAYER_SPEAKER:View<GridPosition,PlayerDialogFlag>;
 
     var events:InstancedCollisionEvent;
 
@@ -20,7 +23,7 @@ class EntityCollisionsSystem extends echoes.System {
         events = new InstancedCollisionEvent();
     }
 
-    @u function playerInDialogArea(gp:GridPosition,flag:PlayerFlag,cl:CollisionsListener) {
+    @u function playerInDialogArea(gp:GridPosition,flag:PlayerDialogFlag,cl:CollisionsListener) {
         var head = ALL_PNJ.entities.head;
         var playerPos = gp.gpToVector();
 
@@ -35,8 +38,8 @@ class EntityCollisionsSystem extends echoes.System {
         }
     }
 
-    @u function pnjInDialogArea(gp:GridPosition,flag:PNJFlag,cl:CollisionsListener) {
-        var player = PLAYER.entities.head.value;
+    @u function pnjInDialogArea(gp:GridPosition,flag:PNJDialogFlag,cl:CollisionsListener) {
+        var player = PLAYER_SPEAKER.entities.head.value;
         var pgp = player.get(GridPosition);
         var playerPos = pgp.gpToVector();
         var pnjPos = gp.gpToVector();

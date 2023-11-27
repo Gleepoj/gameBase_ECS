@@ -5,7 +5,8 @@ import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.dialog.DialogReferenceComponent;
-import aleiiioa.components.flags.logic.*;
+
+import aleiiioa.components.dialog.flag.*;
 
 
 import aleiiioa.builders.UIBuilders;
@@ -33,14 +34,14 @@ class DialogInputSystem extends echoes.System {
 
     }
 
-	@u function getCurrentDialog(pnj:PNJFlag,yarn:DialogReferenceComponent,cl:CollisionsListener) {
+	@u function getCurrentDialog(pnj:PNJDialogFlag,yarn:DialogReferenceComponent,cl:CollisionsListener) {
 		if(yarn != currentDialog)
 			if(cl.onArea)
 				currentDialog = yarn;
 
 	}
 
-	@u function updateSystem(p:PlayerFlag,cl:CollisionsListener,gameInput:InputComponent,gp:GridPosition){
+	@u function updateSystem(p:PlayerDialogFlag,cl:CollisionsListener,gameInput:InputComponent,gp:GridPosition){
 		if(cl.onArea){
 			if(gameInput.ca.isPressed(Interaction)){
 				currentDialog.attachX = gp.attachX;

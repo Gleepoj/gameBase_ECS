@@ -14,12 +14,14 @@ import aleiiioa.components.logic.*;
 
 import aleiiioa.components.particules.*;
 import aleiiioa.components.dialog.*;
+import aleiiioa.components.dialog.flag.*;
 
 import aleiiioa.components.camera.*;
 import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.physics.*;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.core.collision.*;
+
 
 
 
@@ -44,7 +46,7 @@ class EntityBuilders {
         var yarn  = new DialogReferenceComponent(yarnDialogName,pos.attachX,pos.attachY);
         
         //Flags
-        var pnj   = new PNJFlag();
+        var pnj   = new PNJDialogFlag();
         //var body  = new BodyFlag();   
         var catchable = new CatchableFlag();
         
@@ -107,10 +109,11 @@ class EntityBuilders {
         
         //Flags
         //var body   = new BodyFlag();   
-        var player = new PlayerFlag();
+        var player  = new PlayerFlag();
+        var speaker = new PlayerDialogFlag();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,ic,em,ac,inp,player,master);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,ic,em,ac,inp,player,master,speaker);
     }
 
     
