@@ -267,7 +267,5 @@ class App extends dn.Process {
 
 		if( ui.Console.ME.isActive() )
 			cd.setF("consoleRecentlyActive",2);
-
-
     }
 }

@@ -10,7 +10,7 @@ import aleiiioa.components.flags.logic.*;
 import aleiiioa.components.core.InputComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.position.*;
-import aleiiioa.components.core.velocity.*;
+import aleiiioa.components.core.physics.*;
 
 class InteractivesSystem extends echoes.System {
     

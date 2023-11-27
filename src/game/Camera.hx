@@ -1,4 +1,4 @@
-import aleiiioa.components.core.velocity.VelocityComponent;
+import aleiiioa.components.core.physics.VelocityComponent;
 import aleiiioa.components.core.position.GridPosition;
 
 class Camera extends dn.Process {

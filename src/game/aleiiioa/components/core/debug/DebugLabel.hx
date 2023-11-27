@@ -1,4 +1,4 @@
-package aleiiioa.components.core.rendering;
+package aleiiioa.components.core.debug;
 
 class DebugLabel {
     public var float:Float = 0 ;

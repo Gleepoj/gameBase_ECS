@@ -1,4 +1,4 @@
-package aleiiioa.components.core.velocity;
+package aleiiioa.components.core.physics;
 
 class VelocityComponent {
     

@@ -2,7 +2,7 @@ package aleiiioa.systems.core;
 
 import echoes.Entity;
 import aleiiioa.components.core.collision.CollisionsListener;
-import aleiiioa.components.core.velocity.*;
+import aleiiioa.components.core.physics.*;
 import aleiiioa.components.core.position.GridPosition;
 
 class VelocitySystem extends echoes.System {

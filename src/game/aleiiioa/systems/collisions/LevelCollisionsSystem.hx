@@ -1,6 +1,6 @@
 package aleiiioa.systems.collisions;
 
-import aleiiioa.components.core.velocity.VelocityComponent;
+import aleiiioa.components.core.physics.VelocityComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.flags.collision.*;

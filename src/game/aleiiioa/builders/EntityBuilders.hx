@@ -17,7 +17,7 @@ import aleiiioa.components.dialog.*;
 
 import aleiiioa.components.core.camera.*;
 import aleiiioa.components.core.rendering.*;
-import aleiiioa.components.core.velocity.*;
+import aleiiioa.components.core.physics.*;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.core.collision.*;
 

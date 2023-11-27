@@ -2,8 +2,8 @@ package aleiiioa.systems.core;
 
 
 import aleiiioa.components.core.collision.CollisionsListener;
-import aleiiioa.components.core.velocity.VelocityAnalogSpeed;
-import aleiiioa.components.core.velocity.VelocityComponent;
+import aleiiioa.components.core.physics.VelocityAnalogSpeed;
+import aleiiioa.components.core.physics.VelocityComponent;
 import hxd.Pad.PadConfig;
 import aleiiioa.components.core.InputComponent;
 
