@@ -11,6 +11,7 @@ import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.position.GridPosition;
 
+
 class EntityCollisionsSystem extends echoes.System {
     
     var ALL_CATCHABLE:View<CatchableFlag,InteractiveComponent>;
