@@ -1,4 +1,4 @@
-package aleiiioa.components.core.camera;
+package aleiiioa.components.camera;
 
 class CameraFocusComponent {
     public var cameraScrollingSpeed:Float;
