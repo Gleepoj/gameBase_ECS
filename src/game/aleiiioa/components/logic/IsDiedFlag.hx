@@ -1,4 +1,4 @@
-package aleiiioa.components.flags.collision;
+package aleiiioa.components.logic;
 
 class IsDiedFlag {
     public function new() {

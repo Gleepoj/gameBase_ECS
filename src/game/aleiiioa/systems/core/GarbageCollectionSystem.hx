@@ -8,7 +8,7 @@ import echoes.Entity;
 import aleiiioa.components.core.position.MasterGridPosition;
 
 import aleiiioa.components.core.position.flags.*;
-import aleiiioa.components.flags.collision.*;
+import aleiiioa.components.logic.*;
 
 
 

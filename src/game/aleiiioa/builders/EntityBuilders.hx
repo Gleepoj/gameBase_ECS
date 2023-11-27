@@ -10,7 +10,7 @@ import echoes.Entity;
 
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.flags.logic.*;
-import aleiiioa.components.flags.collision.*;
+import aleiiioa.components.logic.*;
 
 import aleiiioa.components.particules.*;
 import aleiiioa.components.dialog.*;
@@ -45,11 +45,11 @@ class EntityBuilders {
         
         //Flags
         var pnj   = new PNJFlag();
-        var body  = new BodyFlag();   
+        //var body  = new BodyFlag();   
         var catchable = new CatchableFlag();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,body,catchable);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,catchable);
         // Uncomment next entity creation and comment previous one to remove catchable behavior 
         // new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,body);
     }
@@ -73,12 +73,12 @@ class EntityBuilders {
         var em    = new EmitterComponent();
         
         //Flags
-        var body = new BodyFlag(); 
+       // var body = new BodyFlag(); 
         var bomb = new BombFlag();
         var catchable = new CatchableFlag();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,body,bomb,catchable);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,bomb,catchable);
     }
 
     public static function player(cx:Int,cy:Int) {
@@ -106,11 +106,11 @@ class EntityBuilders {
         var inp= new InputComponent();
         
         //Flags
-        var body   = new BodyFlag();   
+        //var body   = new BodyFlag();   
         var player = new PlayerFlag();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,ic,em,ac,inp,body,player,master);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,ic,em,ac,inp,player,master);
     }
 
     

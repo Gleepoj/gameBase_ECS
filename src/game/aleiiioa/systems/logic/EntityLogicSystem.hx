@@ -5,7 +5,7 @@ import aleiiioa.components.particules.EmitterComponent;
 import aleiiioa.components.logic.InteractiveComponent;
 import aleiiioa.components.flags.logic.*;
 import aleiiioa.builders.VfxBuilders;
-import aleiiioa.components.flags.collision.IsDiedFlag;
+import aleiiioa.components.logic.IsDiedFlag;
 
 class EntityLogicSystem  extends echoes.System{
     public function new() {

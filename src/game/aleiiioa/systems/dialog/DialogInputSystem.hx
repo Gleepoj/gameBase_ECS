@@ -9,7 +9,7 @@ import aleiiioa.components.flags.logic.*;
 
 
 import aleiiioa.builders.UIBuilders;
-import aleiiioa.components.flags.collision.IsDiedFlag;
+import aleiiioa.components.logic.IsDiedFlag;
 import aleiiioa.components.dialog.YarnDialogConponent;
 
 import echoes.Entity;
