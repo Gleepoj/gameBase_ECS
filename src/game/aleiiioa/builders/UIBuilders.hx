@@ -1,8 +1,8 @@
 package aleiiioa.builders;
 
 import aleiiioa.components.dialog.DialogReferenceComponent;
-import aleiiioa.components.dialog.UIBubble;
-import aleiiioa.components.dialog.UIOption;
+import aleiiioa.components.dialog.DialogUIBubble;
+import aleiiioa.components.dialog.DialogUIOption;
 import aleiiioa.components.dialog.UIDialog;
 
 import aleiiioa.components.dialog.YarnDialogConponent;
@@ -30,8 +30,8 @@ class UIBuilders {
             var ydl = new YarnDialogListener(_yarnFile);
 
             var ui    = new UIDialog();
-            var uiBub = new UIBubble();
-            var uiOpt = new UIOption();
+            var uiBub = new DialogUIBubble();
+            var uiOpt = new DialogUIOption();
 
             new echoes.Entity().add(ydc,ydl,ui,uiBub,uiOpt);
         }

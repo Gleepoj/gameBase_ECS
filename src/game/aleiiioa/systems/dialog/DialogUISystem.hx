@@ -7,9 +7,9 @@ import h2d.Flow.FlowLayout;
 import h2d.Flow.FlowAlign;
 
 import aleiiioa.components.dialog.YarnDialogListener;
-import aleiiioa.components.dialog.UIOption;
+import aleiiioa.components.dialog.DialogUIOption;
 import aleiiioa.components.dialog.UIDialog;
-import aleiiioa.components.dialog.UIBubble;
+import aleiiioa.components.dialog.DialogUIBubble;
 
 
 class DialogUISystem extends echoes.System {
@@ -19,7 +19,7 @@ class DialogUISystem extends echoes.System {
         
     }
 
-    @a public function onBubbleAdded(udc:UIDialog,b:UIBubble,ydl:YarnDialogListener){
+    @a public function onBubbleAdded(udc:UIDialog,b:DialogUIBubble,ydl:YarnDialogListener){
         
         b.flow = new h2d.Flow(udc.dialogLayer);
         b.flow.setPosition(ydl.attachX,ydl.attachY + Game.ME.scroller.y);
@@ -44,7 +44,7 @@ class DialogUISystem extends echoes.System {
     }
 
     
-    @a public function onOptionFlowAdded(ud:UIDialog,o:UIOption){
+    @a public function onOptionFlowAdded(ud:UIDialog,o:DialogUIOption){
         
         o.flow = new h2d.Flow(ud.dialogLayer);
 
@@ -54,7 +54,7 @@ class DialogUISystem extends echoes.System {
         o.flow.padding = 10;
     }
 
-    @u public function updateDialogText(ydl:YarnDialogListener,b:UIBubble,o:UIOption) {
+    @u public function updateDialogText(ydl:YarnDialogListener,b:DialogUIBubble,o:DialogUIOption) {
         
         if(ydl.onSpeak && b.text.text != ydl.text){
             b.bubble.removeChild(b.text);
@@ -85,7 +85,7 @@ class DialogUISystem extends echoes.System {
         return hxd.res.DefaultFont.get();
     }
 
-    public function newOptionBubble(text:String,o:UIOption,b:UIBubble){
+    public function newOptionBubble(text:String,o:DialogUIOption,b:DialogUIBubble){
        
         var tile = Assets.tiles.getTile(D.tiles.uiBar);
 		var f = new dn.heaps.FlowBg(tile,2,o.flow);
@@ -109,7 +109,7 @@ class DialogUISystem extends echoes.System {
         o.bubbles.push(f);
     }
 
-    @u function colorizeOption(o:UIOption,yl:YarnDialogListener){
+    @u function colorizeOption(o:DialogUIOption,yl:YarnDialogListener){
         
         for(bubble in o.bubbles){
             bubble.colorizeBg(0xA56FF7);
@@ -123,11 +123,11 @@ class DialogUISystem extends echoes.System {
     }
 
     
-    @r function onRemoveBubble(b:UIBubble){
+    @r function onRemoveBubble(b:DialogUIBubble){
         b.flow.removeChildren();
     }
 
-    @r function onRemoveOption(o:UIOption){
+    @r function onRemoveOption(o:DialogUIOption){
         o.flow.removeChildren();
     }
 
