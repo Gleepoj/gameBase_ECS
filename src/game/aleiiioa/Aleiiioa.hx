@@ -1,5 +1,6 @@
 package aleiiioa;
 
+import echoes.SystemList;
 import echoes.Entity;
 import aleiiioa.systems.logic.EntityLogicSystem;
 import aleiiioa.systems.logic.InteractivesSystem;
@@ -71,13 +72,15 @@ class Aleiiioa extends Game {
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		
 		//Dialog
-		Workflow.add60FpsSystem(new DialogAreaCollisions());
-		Workflow.add60FpsSystem(new DialogYarnSystem());
-		Workflow.add60FpsSystem(new DialogInputSystem());
-		Workflow.add60FpsSystem(new DialogUISystem());
+		var dialog = new echoes.SystemList()
+		.add(new DialogAreaCollisions())
+		.add(new DialogYarnSystem())
+		.add(new DialogInputSystem())
+		.add(new DialogUISystem());
+
+		Workflow.add60FpsSystem(dialog);
 		
-		
-		//Helpers
+			//Helpers
 		Workflow.add60FpsSystem(new UIHelperSystem());
 		//Input
 		Workflow.add60FpsSystem(new InputSystem());
