@@ -4,7 +4,7 @@ import echoes.Entity;
 import echoes.View;
 
 import aleiiioa.components.logic.*;
-import aleiiioa.components.flags.hierarchy.*;
+import aleiiioa.components.core.position.flags.*;
 import aleiiioa.components.flags.logic.*;
 
 import aleiiioa.components.core.input.InputComponent;
@@ -71,7 +71,7 @@ class InteractivesSystem extends echoes.System {
     function linkObject(en:echoes.Entity,mgp:MasterGridPosition) {
         en.add(new GridPositionOffset(0,-1));
         en.add(mgp);
-        en.add(new ChildFlag());
+        en.add(new ChildPositionFlag());
         en.get(InteractiveComponent).isGrabbed = true;           
     }
 
@@ -79,7 +79,7 @@ class InteractivesSystem extends echoes.System {
         en.get(InteractiveComponent).isGrabbed = false;
         en.remove(MasterGridPosition);
         en.remove(GridPositionOffset);
-        en.remove(ChildFlag);
+        en.remove(ChildPositionFlag);
     }
 
     function throwObject(en:echoes.Entity,vc:VelocityComponent){ 

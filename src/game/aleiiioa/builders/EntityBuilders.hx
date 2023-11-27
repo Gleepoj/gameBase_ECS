@@ -2,7 +2,7 @@ package aleiiioa.builders;
 
 
 import aleiiioa.components.flags.logic.CatchableFlag;
-import aleiiioa.components.flags.hierarchy.MasterFlag;
+import aleiiioa.components.core.position.flags.MasterPositionFlag;
 import aleiiioa.components.logic.InteractiveComponent;
 import aleiiioa.components.logic.ActionComponent;
 import h3d.Vector;
@@ -91,7 +91,7 @@ class EntityBuilders {
         
         //Hierarchy Component and Flag (to attach any entity depending on player position)
         var mpos   = new MasterGridPosition(cx,cy);
-        var master = new MasterFlag();
+        var master = new MasterPositionFlag();
 
         //Rendering Component
         var spr = new SpriteComponent(D.tiles.fxCircle15);

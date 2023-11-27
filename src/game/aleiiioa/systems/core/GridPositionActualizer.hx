@@ -1,8 +1,8 @@
 package aleiiioa.systems.core;
 
 
-import aleiiioa.components.flags.hierarchy.ChildFlag;
-import aleiiioa.components.flags.hierarchy.MasterFlag;
+import aleiiioa.components.core.position.flags.ChildPositionFlag;
+import aleiiioa.components.core.position.flags.MasterPositionFlag;
 import aleiiioa.components.core.position.*;
 
 
@@ -17,14 +17,14 @@ class GridPositionActualizer extends echoes.System {
     }
 
 	
-	@u function updateMasterGridPosition(mgp:MasterGridPosition,gp:GridPosition,mflag:MasterFlag) {
+	@u function updateMasterGridPosition(mgp:MasterGridPosition,gp:GridPosition,mflag:MasterPositionFlag) {
 	  	mgp.cx = gp.cx;
 		mgp.cy = gp.cy;
 		mgp.xr = gp.xr;
 		mgp.yr = gp.yr;
 	}
 
-	@u function updateChildPos(mgp:MasterGridPosition,gp:GridPosition,gpo:GridPositionOffset,cflag:ChildFlag) {
+	@u function updateChildPos(mgp:MasterGridPosition,gp:GridPosition,gpo:GridPositionOffset,cflag:ChildPositionFlag) {
 		gp.cx = mgp.cx + gpo.ocx;
 		gp.cy = mgp.cy + gpo.ocy;
 		gp.xr = mgp.xr + gpo.oxr;

@@ -7,7 +7,7 @@ import echoes.Entity;
 
 import aleiiioa.components.core.position.MasterGridPosition;
 
-import aleiiioa.components.flags.hierarchy.*;
+import aleiiioa.components.core.position.flags.*;
 import aleiiioa.components.flags.collision.*;
 
 
@@ -17,11 +17,11 @@ class GarbageCollectionSystem extends System {
         
     }
     
-    @r function onRemoveMasterGridPos(en:Entity,mgp:MasterGridPosition,mf:MasterFlag) {
+    @r function onRemoveMasterGridPos(en:Entity,mgp:MasterGridPosition,mf:MasterPositionFlag) {
         mgp.isMasterAlive = false;
     }
 
-    @u function flagChild(en:Entity,cflag:ChildFlag,mgp:MasterGridPosition){
+    @u function flagChild(en:Entity,cflag:ChildPositionFlag,mgp:MasterGridPosition){
         if(!en.get(MasterGridPosition).isMasterAlive){
             en.add(new IsDiedFlag()); 
         }
