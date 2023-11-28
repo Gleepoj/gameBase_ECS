@@ -3,7 +3,7 @@ package aleiiioa.systems.logic;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.particules.EmitterComponent;
 import aleiiioa.components.logic.InteractiveComponent;
-import aleiiioa.components.flags.logic.*;
+import aleiiioa.components.logic.qualia.*;
 import aleiiioa.builders.VfxBuilders;
 import aleiiioa.components.logic.IsDiedFlag;
 

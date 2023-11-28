@@ -1,7 +1,8 @@
 package aleiiioa.systems.collisions;
 
-import aleiiioa.components.flags.logic.CatchableFlag;
+import aleiiioa.components.logic.ability.CatchableFlag;
 import aleiiioa.components.logic.InteractiveComponent;
+import aleiiioa.components.logic.qualia.PlayerFlag;
 import aleiiioa.components.flags.logic.*;
 import aleiiioa.components.dialog.flag.*;
 

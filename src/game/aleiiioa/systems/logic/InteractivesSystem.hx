@@ -5,7 +5,9 @@ import echoes.View;
 
 import aleiiioa.components.logic.*;
 import aleiiioa.components.core.position.flags.*;
-import aleiiioa.components.flags.logic.*;
+import aleiiioa.components.logic.qualia.*;
+import aleiiioa.components.logic.ability.CatchableFlag;
+
 
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.collision.CollisionsListener;

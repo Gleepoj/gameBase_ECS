@@ -1,7 +1,7 @@
 package aleiiioa.builders;
 
 
-import aleiiioa.components.flags.logic.CatchableFlag;
+import aleiiioa.components.logic.ability.CatchableFlag;
 import aleiiioa.components.core.position.flags.MasterPositionFlag;
 import aleiiioa.components.logic.InteractiveComponent;
 import aleiiioa.components.logic.ActionComponent;
@@ -11,6 +11,7 @@ import echoes.Entity;
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.flags.logic.*;
 import aleiiioa.components.logic.*;
+import aleiiioa.components.logic.qualia.*;
 
 import aleiiioa.components.particules.*;
 import aleiiioa.components.dialog.*;
