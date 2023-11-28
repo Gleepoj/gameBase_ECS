@@ -1,4 +1,4 @@
-package aleiiioa.systems.logic.action;
+package aleiiioa.systems.logic.interaction;
 
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.logic.qualia.PlayerFlag;

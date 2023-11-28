@@ -2,10 +2,10 @@ package aleiiioa;
 
 import echoes.SystemList;
 import echoes.Entity;
-import aleiiioa.systems.logic.BombLogicSystem;
+import aleiiioa.systems.logic.behavior.BombLogicSystem;
 import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.systems.logic.action.CatchLogicSystem;
+import aleiiioa.systems.logic.interaction.CatchLogicSystem;
 
 import aleiiioa.systems.ui.*;
 import aleiiioa.systems.core.*;

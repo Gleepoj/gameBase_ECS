@@ -1,4 +1,4 @@
-package aleiiioa.systems.logic;
+package aleiiioa.systems.logic.behavior;
 
 import aleiiioa.components.logic.interaction.catching.IsCatched;
 import aleiiioa.components.core.position.GridPosition;

@@ -3,7 +3,7 @@ package aleiiioa.builders;
 
 import aleiiioa.components.logic.interaction.catching.CatchableCollection;
 import aleiiioa.components.logic.interaction.catching.Catcher;
-import aleiiioa.components.logic.ability.CatchableFlag;
+
 import aleiiioa.components.core.position.flags.MasterPositionFlag;
 import aleiiioa.components.logic.InteractiveComponent;
 import aleiiioa.components.logic.ActionComponent;
@@ -51,7 +51,7 @@ class EntityBuilders {
         //Flags
         var pnj   = new PNJDialogFlag();
         //var body  = new BodyFlag();   
-        var catchable = new CatchableFlag();
+        var catchable = new CatchableCollection();
         
         
         new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,catchable);
