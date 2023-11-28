@@ -6,7 +6,7 @@ import aleiiioa.components.logic.interaction.catching.Catcher;
 
 import aleiiioa.components.core.position.flags.MasterPositionFlag;
 import aleiiioa.components.logic.InteractiveComponent;
-import aleiiioa.components.logic.ActionComponent;
+
 import h3d.Vector;
 import echoes.Entity;
 
@@ -44,7 +44,7 @@ class EntityBuilders {
         se.baseColor = new Vector(0.3,0.8,0.6);
 
         //Logic and Dialog Component
-        var ic    = new InteractiveComponent();
+        //var ic    = new InteractiveComponent();
         var em    = new EmitterComponent();
         var yarn  = new DialogReferenceComponent(yarnDialogName,pos.attachX,pos.attachY);
         
@@ -54,7 +54,7 @@ class EntityBuilders {
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,catchable);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,em,yarn,pnj,catchable);
         // Uncomment next entity creation and comment previous one to remove catchable behavior 
         // new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,body);
     }
@@ -83,7 +83,7 @@ class EntityBuilders {
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,bomb,catchable);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,ic,se,em,bomb,catchable);
     }
 
     public static function player(cx:Int,cy:Int) {
@@ -105,9 +105,9 @@ class EntityBuilders {
         se.baseColor = new Vector(0.5,0.2,0.6);
 
         //Logic and Dialog Component
-        var ic = new InteractiveComponent();
+        //var ic = new InteractiveComponent();
         var em = new EmitterComponent();
-        var ac = new ActionComponent();
+        //var ac = new ActionComponent();
         var inp= new InputComponent();
         
         //Flags
@@ -118,7 +118,7 @@ class EntityBuilders {
         var speaker = new PlayerDialogFlag();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,ic,em,ac,inp,player,master,speaker,catcher);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,player,master,speaker,catcher);
     }
 
     
