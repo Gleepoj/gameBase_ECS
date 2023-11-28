@@ -2,7 +2,7 @@ package aleiiioa.systems.logic.action;
 
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.logic.qualia.PlayerFlag;
-import aleiiioa.components.logic.catching.*;
+import aleiiioa.components.logic.interaction.catching.*;
 import aleiiioa.components.logic.*;
 import aleiiioa.components.core.physics.*;
 import aleiiioa.components.core.collision.CollisionsListener;
@@ -13,16 +13,29 @@ import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
 
 class CatchLogicSystem extends echoes.System {
     
-    var ALL_CATCHER          :View<Catcher,GridPosition,CollisionsListener>;
-    //var ALL_CATCHER_ON_QUERY :View<Catcher,OnQueryCatch,GridPosition,CollisionsListener>;
+    var ALL_CATCHER  :View<Catcher,GridPosition,CollisionsListener>;
     var ALL_CATCHABLE:View<CatchableCollection,GridPosition,CollisionsListener>;
-    var ALL_CATCHED  :View<IsCatched>;
+    var ALL_CATCHED  :View<IsCatched,MasterGridPosition,GridPositionOffset,ChildPositionFlag>;
 
     var events:InstancedCollisionEvent;
 
     public function new() {
         events = new InstancedCollisionEvent();
     }
+
+    
+    // Input logic could be move to another system
+    @u function playerRequireCatching(en:echoes.Entity,pl:PlayerFlag,cl:CollisionsListener,inp:InputComponent) {
+        
+        if(cl.onInteract && inp.ca.isPressed(ActionX) && !en.exists(IsOnCatch)){
+            en.add(new OnQueryCatch());
+        }
+
+        if(inp.ca.isPressed(ActionX) && en.exists(IsOnCatch)){
+            en.add(new OnQueryThrow());
+        }
+    }
+    
 
     @u function CatcherInInteractArea(catcher:Catcher,gp:GridPosition,cl:CollisionsListener) {
         var head = ALL_CATCHABLE.entities.head;
@@ -50,25 +63,12 @@ class CatchLogicSystem extends echoes.System {
             if(catcherPos.distance(objPos)<10){
                 cl.lastEvent = events.allowInteract;
                 orderListener(cl);
-                //trace("allowInteract");
             }
             head = head.next;
         }    
     }
 
 
-
-    @u function playerRequireCatching(en:echoes.Entity,pl:PlayerFlag,cl:CollisionsListener,inp:InputComponent) {
-        
-        if(cl.onInteract && inp.ca.isPressed(ActionX) && !en.exists(IsOnCatch)){
-            en.add(new OnQueryCatch());
-        }
-
-        if(inp.ca.isPressed(ActionX) && en.exists(IsOnCatch)){
-            en.add(new OnQueryThrow());
-        }
-    }
-    
     @u function onAddQueryCatch(en:echoes.Entity,add:OnQueryCatch,catcher:Catcher,mgp:MasterGridPosition){
         var head = ALL_CATCHABLE.entities.head;
         
@@ -103,12 +103,10 @@ class CatchLogicSystem extends echoes.System {
         en.add(new GridPositionOffset(0,-1));
         en.add(mgp);
         en.add(new ChildPositionFlag());
-        en.add(new IsCatched());
-        en.get(InteractiveComponent).isGrabbed = true;           
+        en.add(new IsCatched());    
     }
 
     function unlinkObject(en:echoes.Entity) {
-        en.get(InteractiveComponent).isGrabbed = false;
         en.remove(MasterGridPosition);
         en.remove(GridPositionOffset);
         en.remove(ChildPositionFlag);

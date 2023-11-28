@@ -1,4 +1,4 @@
-package aleiiioa.components.logic.catching;
+package aleiiioa.components.logic.interaction.catching;
 
 class IsOnCatch {
     public function new (){

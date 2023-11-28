@@ -1,8 +1,8 @@
 package aleiiioa.builders;
 
 
-import aleiiioa.components.logic.catching.CatchableCollection;
-import aleiiioa.components.logic.catching.Catcher;
+import aleiiioa.components.logic.interaction.catching.CatchableCollection;
+import aleiiioa.components.logic.interaction.catching.Catcher;
 import aleiiioa.components.logic.ability.CatchableFlag;
 import aleiiioa.components.core.position.flags.MasterPositionFlag;
 import aleiiioa.components.logic.InteractiveComponent;

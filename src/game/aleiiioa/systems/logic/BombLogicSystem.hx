@@ -1,6 +1,6 @@
 package aleiiioa.systems.logic;
 
-import aleiiioa.components.logic.catching.IsCatched;
+import aleiiioa.components.logic.interaction.catching.IsCatched;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.particules.EmitterComponent;
 import aleiiioa.components.logic.InteractiveComponent;

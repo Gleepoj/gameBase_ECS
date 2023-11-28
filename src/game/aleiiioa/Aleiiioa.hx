@@ -3,7 +3,6 @@ package aleiiioa;
 import echoes.SystemList;
 import echoes.Entity;
 import aleiiioa.systems.logic.BombLogicSystem;
-import aleiiioa.systems.logic.InteractivesSystem;
 import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.systems.logic.action.CatchLogicSystem;
@@ -18,6 +17,7 @@ import aleiiioa.systems.dialog.*;
 import echoes.Workflow;
 
 class Aleiiioa extends Game {
+
 	var game(get,never) : Game; inline function get_game() return Game.ME;
 	
 	var cameraFocus:Entity;
@@ -51,7 +51,7 @@ class Aleiiioa extends Game {
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());
 		Workflow.addSystem(new CollisionsListenerActualizer());
-		//Workflow.addSystem(new EntityCollisionsSystem());
+		
 		
 		//Object
 		Workflow.addSystem(new LevelCollisionsSystem());
@@ -59,7 +59,7 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GridPositionActualizer());
 
 		//Interaction
-		//Workflow.add60FpsSystem(new InteractivesSystem())
+		
 		Workflow.add60FpsSystem(new CatchLogicSystem());
 		Workflow.add60FpsSystem(new BombLogicSystem());
 		
