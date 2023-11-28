@@ -16,7 +16,7 @@ import aleiiioa.components.core.physics.*;
 
 class InteractivesSystem extends echoes.System {
     
-    var ALL_PLAYERS :View<GridPosition,PlayerFlag>;
+    var ALL_PLAYERS  :View<GridPosition,PlayerFlag>;
     var ALL_CATCHABLE:View<CatchableFlag,InteractiveComponent>;
     
     public function new() {
@@ -32,24 +32,7 @@ class InteractivesSystem extends echoes.System {
             ac.query = true;
         }
     }
-
-
-    @u function playerThrowCatchable(pl:PlayerFlag,inp:InputComponent,ac:ActionComponent,vc:VelocityComponent){
-        if(ac.grab && inp.ca.isPressed(ActionX)){
-            var head = ALL_CATCHABLE.entities.head;
-
-            while (head != null){
-                var catchable = head.value;
-                var catchableIc = catchable.get(InteractiveComponent);
-                if(catchableIc.isGrabbed){
-                    unlinkObject(catchable);
-                    throwObject(catchable,vc);
-                }
-                head = head.next;
-            }
-        }
-    }
-
+    
     @u function catchableIsGrabbedByPlayer(en:echoes.Entity,catchable:CatchableFlag,cl:CollisionsListener) {
         if(cl.onInteract){
             var head = ALL_PLAYERS.entities.head;
@@ -69,6 +52,24 @@ class InteractivesSystem extends echoes.System {
         }
     }
     
+
+    @u function playerThrowCatchable(pl:PlayerFlag,inp:InputComponent,ac:ActionComponent,vc:VelocityComponent){
+        if(ac.grab && inp.ca.isPressed(ActionX)){
+            var head = ALL_CATCHABLE.entities.head;
+
+            while (head != null){
+                var catchable = head.value;
+                var catchableIc = catchable.get(InteractiveComponent);
+                if(catchableIc.isGrabbed){
+                    unlinkObject(catchable);
+                    throwObject(catchable,vc);
+                }
+                head = head.next;
+            }
+        }
+    }
+
+
 
     function linkObject(en:echoes.Entity,mgp:MasterGridPosition) {
         en.add(new GridPositionOffset(0,-1));

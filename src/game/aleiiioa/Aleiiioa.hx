@@ -2,10 +2,11 @@ package aleiiioa;
 
 import echoes.SystemList;
 import echoes.Entity;
-import aleiiioa.systems.logic.EntityLogicSystem;
+import aleiiioa.systems.logic.BombLogicSystem;
 import aleiiioa.systems.logic.InteractivesSystem;
 import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.systems.logic.action.CatchLogicSystem;
 
 import aleiiioa.systems.ui.*;
 import aleiiioa.systems.core.*;
@@ -50,7 +51,7 @@ class Aleiiioa extends Game {
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());
 		Workflow.addSystem(new CollisionsListenerActualizer());
-		Workflow.addSystem(new EntityCollisionsSystem());
+		//Workflow.addSystem(new EntityCollisionsSystem());
 		
 		//Object
 		Workflow.addSystem(new LevelCollisionsSystem());
@@ -58,8 +59,9 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GridPositionActualizer());
 
 		//Interaction
-		Workflow.add60FpsSystem(new InteractivesSystem());
-		Workflow.add60FpsSystem(new EntityLogicSystem());
+		//Workflow.add60FpsSystem(new InteractivesSystem())
+		Workflow.add60FpsSystem(new CatchLogicSystem());
+		Workflow.add60FpsSystem(new BombLogicSystem());
 		
 		//Particles
 		Workflow.addSystem(new ParticulesVelocitySystem());

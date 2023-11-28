@@ -1,6 +1,8 @@
 package aleiiioa.builders;
 
 
+import aleiiioa.components.logic.catching.CatchableCollection;
+import aleiiioa.components.logic.catching.Catcher;
 import aleiiioa.components.logic.ability.CatchableFlag;
 import aleiiioa.components.core.position.flags.MasterPositionFlag;
 import aleiiioa.components.logic.InteractiveComponent;
@@ -78,7 +80,7 @@ class EntityBuilders {
         //Flags
        // var body = new BodyFlag(); 
         var bomb = new BombFlag();
-        var catchable = new CatchableFlag();
+        var catchable = new CatchableCollection();
         
         
         new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,bomb,catchable);
@@ -109,12 +111,14 @@ class EntityBuilders {
         var inp= new InputComponent();
         
         //Flags
-        //var body   = new BodyFlag();   
+        //var body   = new BodyFlag();  
+        var catcher   = new Catcher(); 
+
         var player  = new PlayerFlag();
         var speaker = new PlayerDialogFlag();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,ic,em,ac,inp,player,master,speaker);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,ic,em,ac,inp,player,master,speaker,catcher);
     }
 
     
