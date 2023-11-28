@@ -5,7 +5,7 @@ import aleiiioa.components.logic.interaction.catching.CatchableCollection;
 import aleiiioa.components.logic.interaction.catching.Catcher;
 
 import aleiiioa.components.core.position.flags.MasterPositionFlag;
-import aleiiioa.components.logic.InteractiveComponent;
+import aleiiioa.components.logic.BombComponent;
 
 import h3d.Vector;
 import echoes.Entity;
@@ -74,7 +74,7 @@ class EntityBuilders {
         se.baseColor = new Vector(0.3,0.2,0.8);
 
         //Logic and Dialog Component
-        var ic    = new InteractiveComponent();
+        var ic    = new BombComponent();
         var em    = new EmitterComponent();
         
         //Flags
