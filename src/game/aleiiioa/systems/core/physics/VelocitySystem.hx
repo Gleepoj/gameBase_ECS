@@ -7,7 +7,7 @@ import aleiiioa.components.core.physics.flags.body.KinematicBodyFlag;
 import echoes.Entity;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.physics.*;
-import aleiiioa.components.core.position.GridPosition;
+
 
 class VelocitySystem extends echoes.System {
 	public function new() {}
@@ -58,21 +58,6 @@ class VelocitySystem extends echoes.System {
 		if (M.fabs(vc.bdy) <= 0.0005)
 			vc.bdy = 0;
 	
-	}
-
-
-
-
-	/** Apply a bump/kick force to entity **/
-	public function bump(x:Float, y:Float, vc:VelocityComponent) {
-		vc.bdx += x;
-		vc.bdy += y;
-	}
-
-	/** Reset velocities to zero **/
-	public function cancelVelocities(vc:VelocityComponent) {
-		vc.dx = vc.bdx = 0;
-		vc.dy = vc.bdy = 0;
 	}
 
 }
