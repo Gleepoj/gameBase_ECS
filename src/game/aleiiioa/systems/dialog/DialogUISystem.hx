@@ -1,15 +1,15 @@
 package aleiiioa.systems.dialog;
 
-import aleiiioa.components.dialog.DialogReferenceComponent;
+import aleiiioa.components.local.dialog.DialogReferenceComponent;
 import h2d.Flow;
 import dn.heaps.FlowBg;
 import h2d.Flow.FlowLayout;
 import h2d.Flow.FlowAlign;
 
-import aleiiioa.components.dialog.YarnDialogListener;
-import aleiiioa.components.dialog.DialogUIOptionLayout;
-import aleiiioa.components.dialog.UIDialog;
-import aleiiioa.components.dialog.DialogUIBubble;
+import aleiiioa.components.local.dialog.YarnDialogListener;
+import aleiiioa.components.local.dialog.DialogUIOptionLayout;
+import aleiiioa.components.local.dialog.UIDialog;
+import aleiiioa.components.local.dialog.DialogUIBubble;
 
 
 class DialogUISystem extends echoes.System {

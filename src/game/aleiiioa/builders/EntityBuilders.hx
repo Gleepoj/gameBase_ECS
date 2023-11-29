@@ -16,8 +16,8 @@ import aleiiioa.components.logic.*;
 import aleiiioa.components.logic.qualia.*;
 
 import aleiiioa.components.particules.*;
-import aleiiioa.components.dialog.*;
-import aleiiioa.components.dialog.flag.*;
+import aleiiioa.components.local.dialog.*;
+import aleiiioa.components.local.dialog.flag.*;
 
 import aleiiioa.components.utils.camera.*;
 import aleiiioa.components.core.rendering.*;

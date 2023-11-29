@@ -1,7 +1,7 @@
 package aleiiioa.systems.dialog;
 
-import aleiiioa.components.dialog.YarnDialogListener;
-import aleiiioa.components.dialog.YarnDialogConponent;
+import aleiiioa.components.local.dialog.YarnDialogListener;
+import aleiiioa.components.local.dialog.YarnDialogConponent;
 
 class DialogYarnSystem extends echoes.System {
     public function new() {

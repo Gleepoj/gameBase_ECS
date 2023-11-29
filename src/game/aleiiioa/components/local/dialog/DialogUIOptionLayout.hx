@@ -1,4 +1,4 @@
-package aleiiioa.components.dialog;
+package aleiiioa.components.local.dialog;
 
 import dn.heaps.FlowBg;
 import h2d.Layers;

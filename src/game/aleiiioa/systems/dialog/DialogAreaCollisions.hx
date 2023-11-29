@@ -1,7 +1,7 @@
 package aleiiioa.systems.dialog;
 
 import aleiiioa.components.flags.logic.*;
-import aleiiioa.components.dialog.flag.*;
+import aleiiioa.components.local.dialog.flag.*;
 
 import echoes.View;
 

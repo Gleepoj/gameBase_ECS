@@ -1,6 +1,6 @@
 package aleiiioa.systems.dialog;
 
-import aleiiioa.components.dialog.YarnDialogListener;
+import aleiiioa.components.local.dialog.YarnDialogListener;
 
 interface DialogEvent {
     public function send(dl:YarnDialogListener):Void;    

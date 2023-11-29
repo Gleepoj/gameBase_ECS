@@ -1,12 +1,12 @@
 package aleiiioa.builders;
 
-import aleiiioa.components.dialog.DialogReferenceComponent;
-import aleiiioa.components.dialog.DialogUIBubble;
-import aleiiioa.components.dialog.DialogUIOptionLayout;
-import aleiiioa.components.dialog.UIDialog;
+import aleiiioa.components.local.dialog.DialogReferenceComponent;
+import aleiiioa.components.local.dialog.DialogUIBubble;
+import aleiiioa.components.local.dialog.DialogUIOptionLayout;
+import aleiiioa.components.local.dialog.UIDialog;
 
-import aleiiioa.components.dialog.YarnDialogConponent;
-import aleiiioa.components.dialog.YarnDialogListener;
+import aleiiioa.components.local.dialog.YarnDialogConponent;
+import aleiiioa.components.local.dialog.YarnDialogListener;
 
 
 import aleiiioa.components.utils.helper.*;

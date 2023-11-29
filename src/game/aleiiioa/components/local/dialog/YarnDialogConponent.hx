@@ -1,4 +1,4 @@
-package aleiiioa.components.dialog;
+package aleiiioa.components.local.dialog;
 
 import aleiiioa.systems.dialog.DialogEvent;
 import aleiiioa.systems.dialog.DialogEvent.InstancedDialogEvent;

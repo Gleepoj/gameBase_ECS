@@ -1,4 +1,4 @@
-package aleiiioa.components.dialog;
+package aleiiioa.components.local.dialog;
 
 import dn.Cooldown;
 import aleiiioa.systems.dialog.DialogEvent;
