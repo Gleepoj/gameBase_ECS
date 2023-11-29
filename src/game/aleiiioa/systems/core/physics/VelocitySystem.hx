@@ -71,9 +71,7 @@ class VelocitySystem extends echoes.System {
 				gp.xr += vc.dxTotal / steps;
 
 				if (vc.dxTotal != 0){
-					if(vc.physicBody)
 						en.add(new OnPreStepX());//<---- Add X collisions checks and physics in here
-				
 				}
 
 				while (gp.xr > 1) {
@@ -89,7 +87,6 @@ class VelocitySystem extends echoes.System {
 				gp.yr += vc.dyTotal / steps;
 
 				if (vc.dyTotal != 0){
-					if(vc.physicBody)
 						en.add(new OnPreStepY());// <---- Add Y collisions checks and physics in here
 				}
 
