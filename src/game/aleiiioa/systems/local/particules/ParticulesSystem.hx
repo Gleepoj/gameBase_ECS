@@ -1,4 +1,4 @@
-package aleiiioa.systems.particules;
+package aleiiioa.systems.local.particules;
 
 import aleiiioa.builders.VfxBuilders;
 import aleiiioa.components.core.collision.CollisionsListener;

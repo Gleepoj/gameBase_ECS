@@ -1,4 +1,4 @@
-package aleiiioa.systems.particules;
+package aleiiioa.systems.local.particules;
 
 import aleiiioa.components.core.physics.VelocityAnalogSpeed;
 import aleiiioa.components.local.particules.ParticulesComponent;

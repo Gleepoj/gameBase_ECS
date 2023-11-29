@@ -9,7 +9,7 @@ import aleiiioa.systems.logic.interaction.CatchLogicSystem;
 
 import aleiiioa.systems.ui.*;
 import aleiiioa.systems.core.*;
-import aleiiioa.systems.particules.*;
+import aleiiioa.systems.local.particules.*;
 import aleiiioa.systems.core.renderer.*;
 import aleiiioa.systems.core.input.*;
 import aleiiioa.systems.core.physics.*;
