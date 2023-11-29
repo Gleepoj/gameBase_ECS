@@ -1,4 +1,4 @@
-package aleiiioa.systems.core.renderer;
+package aleiiioa.systems.utils;
 
 import aleiiioa.components.core.collision.BoundingBox;
 import aleiiioa.components.core.position.GridPosition;

@@ -7,7 +7,7 @@ import aleiiioa.builders.*;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.systems.logic.interaction.CatchLogicSystem;
 
-import aleiiioa.systems.ui.*;
+import aleiiioa.systems.utils.*;
 import aleiiioa.systems.core.*;
 import aleiiioa.systems.local.particules.*;
 import aleiiioa.systems.core.renderer.*;

@@ -1,4 +1,4 @@
-package aleiiioa.systems.ui;
+package aleiiioa.systems.utils;
 
 import aleiiioa.components.utils.helper.HelperCheckComponent;
 import aleiiioa.components.utils.helper.HelperSliderComponent;

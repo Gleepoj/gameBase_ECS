@@ -1,4 +1,4 @@
-package aleiiioa.shaders;
+package aleiiioa.components.utils.shaders;
 
 class SmokeShader extends hxsl.Shader {
 		static var SRC = {
