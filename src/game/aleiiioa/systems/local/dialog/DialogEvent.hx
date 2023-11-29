@@ -1,4 +1,4 @@
-package aleiiioa.systems.dialog;
+package aleiiioa.systems.local.dialog;
 
 import aleiiioa.components.local.dialog.YarnDialogListener;
 

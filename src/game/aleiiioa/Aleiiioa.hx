@@ -16,7 +16,7 @@ import aleiiioa.systems.core.physics.*;
 import aleiiioa.systems.core.position.*;
 import aleiiioa.systems.core.collisions.*;
 
-import aleiiioa.systems.dialog.*;
+import aleiiioa.systems.local.dialog.*;
 
 import echoes.Workflow;
 

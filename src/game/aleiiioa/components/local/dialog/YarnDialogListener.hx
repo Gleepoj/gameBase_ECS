@@ -1,7 +1,7 @@
 package aleiiioa.components.local.dialog;
 
 import dn.Cooldown;
-import aleiiioa.systems.dialog.DialogEvent;
+import aleiiioa.systems.local.dialog.DialogEvent;
 
 class YarnDialogListener {
     

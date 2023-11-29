@@ -1,4 +1,4 @@
-package aleiiioa.systems.dialog;
+package aleiiioa.systems.local.dialog;
 
 import aleiiioa.components.flags.logic.*;
 import aleiiioa.components.local.dialog.flag.*;

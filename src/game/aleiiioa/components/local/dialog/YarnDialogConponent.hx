@@ -1,7 +1,7 @@
 package aleiiioa.components.local.dialog;
 
-import aleiiioa.systems.dialog.DialogEvent;
-import aleiiioa.systems.dialog.DialogEvent.InstancedDialogEvent;
+import aleiiioa.systems.local.dialog.DialogEvent;
+import aleiiioa.systems.local.dialog.DialogEvent.InstancedDialogEvent;
 
 import hxyarn.program.VirtualMachine.ExecutionState;
 import haxe.Exception;
