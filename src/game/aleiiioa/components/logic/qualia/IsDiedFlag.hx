@@ -1,4 +1,4 @@
-package aleiiioa.components.logic;
+package aleiiioa.components.logic.qualia;
 
 class IsDiedFlag {
     public function new() {

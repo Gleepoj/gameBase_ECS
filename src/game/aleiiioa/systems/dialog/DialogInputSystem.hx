@@ -7,10 +7,11 @@ import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.dialog.DialogReferenceComponent;
 
 import aleiiioa.components.dialog.flag.*;
+import aleiiioa.components.logic.qualia.*;
 
 
 import aleiiioa.builders.UIBuilders;
-import aleiiioa.components.logic.IsDiedFlag;
+
 import aleiiioa.components.dialog.YarnDialogConponent;
 
 import echoes.Entity;

@@ -6,7 +6,8 @@ import aleiiioa.components.particules.EmitterComponent;
 import aleiiioa.components.logic.BombComponent;
 import aleiiioa.components.logic.qualia.*;
 import aleiiioa.builders.VfxBuilders;
-import aleiiioa.components.logic.IsDiedFlag;
+
+import aleiiioa.components.logic.qualia.*;
 
 class BombLogicSystem  extends echoes.System{
     public function new() {
@@ -20,7 +21,7 @@ class BombLogicSystem  extends echoes.System{
         ic.cd.update(dt);
     }
 
-    @u function bombBehavior(en:echoes.Entity,bomb:BombFlag,ic:BombComponent,em:EmitterComponent,gp:GridPosition){
+    @u function bombBehavior(en:echoes.Entity,ic:BombComponent,em:EmitterComponent,gp:GridPosition){
   
         if(ic.cd.has("countdown")){
             if(ic.cd.getRatio("countdown") <= 0.05){

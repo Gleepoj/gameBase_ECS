@@ -79,11 +79,11 @@ class EntityBuilders {
         
         //Flags
        // var body = new BodyFlag(); 
-        var bomb = new BombFlag();
+        //var bomb = new BombFlag();
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,ic,se,em,bomb,catchable);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,ic,se,em,catchable);
     }
 
     public static function player(cx:Int,cy:Int) {
