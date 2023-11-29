@@ -1,7 +1,7 @@
 package aleiiioa.systems.ui;
 
-import aleiiioa.components.ui.UICheckComponent;
-import aleiiioa.components.ui.UISliderComponent;
+import aleiiioa.components.utils.helper.HelperCheckComponent;
+import aleiiioa.components.utils.helper.HelperSliderComponent;
 
 
 //SAMPLE USAGE // Could be use everywhere in code 
@@ -31,7 +31,7 @@ class UIHelperSystem extends echoes.System {
         return hxd.res.DefaultFont.get();
     }
 
-    @a public function onSliderAdded(usc:UISliderComponent){
+    @a public function onSliderAdded(usc:HelperSliderComponent){
         
         var f = new h2d.Flow(fui);
         
@@ -62,7 +62,7 @@ class UIHelperSystem extends echoes.System {
         };
     }
 
-    @a  function onCheckAdded(ucc:UICheckComponent) {
+    @a  function onCheckAdded(ucc:HelperCheckComponent) {
             var f = new h2d.Flow(fui);
     
             f.horizontalSpacing = 5;

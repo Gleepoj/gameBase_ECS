@@ -1,6 +1,6 @@
-package aleiiioa.components.ui;
+package aleiiioa.components.utils.helper;
 
-class UICheckComponent {
+class HelperCheckComponent {
     
     
     public var label:String;

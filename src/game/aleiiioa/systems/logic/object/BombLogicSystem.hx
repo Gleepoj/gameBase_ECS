@@ -1,9 +1,9 @@
-package aleiiioa.systems.logic.behavior;
+package aleiiioa.systems.logic.object;
 
 import aleiiioa.components.logic.interaction.catching.IsCatched;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.particules.EmitterComponent;
-import aleiiioa.components.logic.BombComponent;
+import aleiiioa.components.logic.object.BombComponent;
 import aleiiioa.components.logic.qualia.*;
 import aleiiioa.builders.VfxBuilders;
 

@@ -1,7 +1,7 @@
-package aleiiioa.components.ui;
+package aleiiioa.components.utils.helper;
 
 
-class UISliderComponent {
+class HelperSliderComponent {
     
     public var label:String;
     public var get:Void->Float;

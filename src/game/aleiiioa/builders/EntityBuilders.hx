@@ -5,7 +5,7 @@ import aleiiioa.components.logic.interaction.catching.CatchableCollection;
 import aleiiioa.components.logic.interaction.catching.Catcher;
 
 import aleiiioa.components.core.position.flags.MasterPositionFlag;
-import aleiiioa.components.logic.BombComponent;
+import aleiiioa.components.logic.object.BombComponent;
 
 import h3d.Vector;
 import echoes.Entity;
