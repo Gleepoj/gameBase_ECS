@@ -1,4 +1,4 @@
-package aleiiioa.systems.core;
+package aleiiioa.systems.core.input;
 
 
 import aleiiioa.components.core.collision.CollisionsListener;

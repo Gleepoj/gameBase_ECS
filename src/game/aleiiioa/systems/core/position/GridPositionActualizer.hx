@@ -1,4 +1,4 @@
-package aleiiioa.systems.core;
+package aleiiioa.systems.core.position;
 
 
 import aleiiioa.components.core.position.flags.ChildPositionFlag;

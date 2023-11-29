@@ -9,7 +9,7 @@ import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.core.position.flags.*;
 import echoes.View;
-import aleiiioa.systems.collisions.CollisionEvent.InstancedCollisionEvent;
+import aleiiioa.systems.core.collisions.CollisionEvent.InstancedCollisionEvent;
 
 class CatchLogicSystem extends echoes.System {
     

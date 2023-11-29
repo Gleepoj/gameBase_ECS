@@ -1,6 +1,6 @@
-package aleiiioa.systems.renderer;
+package aleiiioa.systems.core.renderer;
 
-import aleiiioa.components.core.rendering.BoundingBox;
+import aleiiioa.components.core.collision.BoundingBox;
 import aleiiioa.components.core.position.GridPosition;
 
 class BoundingBoxRenderer extends echoes.System{

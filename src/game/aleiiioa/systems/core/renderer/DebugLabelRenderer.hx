@@ -1,10 +1,10 @@
-package aleiiioa.systems.renderer;
+package aleiiioa.systems.core.renderer;
 
 
 
 import echoes.Entity;
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.core.rendering.DebugLabel;
+import aleiiioa.components.utils.debug.DebugLabel;
 
 
 import echoes.System;

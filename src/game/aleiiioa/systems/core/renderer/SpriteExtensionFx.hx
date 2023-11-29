@@ -1,4 +1,4 @@
-package aleiiioa.systems.renderer;
+package aleiiioa.systems.core.renderer;
 
 //import aleiiioa.components.core.SpriteExtension;
 import aleiiioa.components.core.collision.CollisionsListener;

@@ -2,7 +2,7 @@ package aleiiioa.components.core.collision;
 
 
 import dn.Cooldown;
-import aleiiioa.systems.collisions.CollisionEvent;
+import aleiiioa.systems.core.collisions.CollisionEvent;
 
 
 class CollisionsListener {

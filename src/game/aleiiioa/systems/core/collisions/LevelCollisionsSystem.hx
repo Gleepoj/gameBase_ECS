@@ -1,4 +1,4 @@
-package aleiiioa.systems.collisions;
+package aleiiioa.systems.core.collisions;
 
 import aleiiioa.components.core.physics.VelocityComponent;
 import aleiiioa.components.core.collision.CollisionsListener;

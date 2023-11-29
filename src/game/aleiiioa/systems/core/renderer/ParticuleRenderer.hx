@@ -1,4 +1,4 @@
-package aleiiioa.systems.renderer;
+package aleiiioa.systems.core.renderer;
 
 import aleiiioa.components.local.particules.BitmapComponent;
 import aleiiioa.components.core.position.GridPosition;

@@ -10,8 +10,12 @@ import aleiiioa.systems.logic.interaction.CatchLogicSystem;
 import aleiiioa.systems.ui.*;
 import aleiiioa.systems.core.*;
 import aleiiioa.systems.particules.*;
-import aleiiioa.systems.renderer.*;
-import aleiiioa.systems.collisions.*;
+import aleiiioa.systems.core.renderer.*;
+import aleiiioa.systems.core.input.*;
+import aleiiioa.systems.core.physics.*;
+import aleiiioa.systems.core.position.*;
+import aleiiioa.systems.core.collisions.*;
+
 import aleiiioa.systems.dialog.*;
 
 import echoes.Workflow;

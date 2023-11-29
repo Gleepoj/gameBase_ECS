@@ -1,4 +1,4 @@
-package aleiiioa.systems.collisions;
+package aleiiioa.systems.core.collisions;
 
 import h3d.Vector;
 import aleiiioa.components.core.collision.CollisionsListener;
