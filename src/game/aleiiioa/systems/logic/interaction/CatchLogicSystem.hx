@@ -1,7 +1,7 @@
 package aleiiioa.systems.logic.interaction;
 
 import aleiiioa.components.core.input.InputComponent;
-import aleiiioa.components.logic.qualia.PlayerFlag;
+import aleiiioa.components.core.qualia.PlayerFlag;
 import aleiiioa.components.logic.interaction.catching.*;
 import aleiiioa.components.logic.*;
 import aleiiioa.components.core.physics.*;

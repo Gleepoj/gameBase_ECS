@@ -4,7 +4,7 @@ import aleiiioa.builders.VfxBuilders;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.builders.ParticulesBuilders;
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.particules.*;
+import aleiiioa.components.local.particules.*;
 
 
 class ParticulesSystem extends echoes.System {

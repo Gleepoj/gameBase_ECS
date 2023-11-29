@@ -5,7 +5,7 @@ import echoes.Entity;
 import aleiiioa.components.core.physics.*;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.core.collision.*;
-import aleiiioa.components.particules.*;
+import aleiiioa.components.local.particules.*;
 
 
 class ParticulesBuilders {

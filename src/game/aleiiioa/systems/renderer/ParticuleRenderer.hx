@@ -1,8 +1,8 @@
 package aleiiioa.systems.renderer;
 
-import aleiiioa.components.particules.BitmapComponent;
+import aleiiioa.components.local.particules.BitmapComponent;
 import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.particules.ParticulesComponent;
+import aleiiioa.components.local.particules.ParticulesComponent;
 
 class ParticuleRenderer extends echoes.System {
     public function new (){

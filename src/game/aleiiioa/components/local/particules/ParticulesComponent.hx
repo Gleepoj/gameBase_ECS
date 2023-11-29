@@ -1,4 +1,4 @@
-package aleiiioa.components.particules;
+package aleiiioa.components.local.particules;
 
 import aleiiioa.shaders.SmokeShader.SmokeShader;
 import h2d.Bitmap;

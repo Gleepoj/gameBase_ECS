@@ -1,4 +1,4 @@
-package aleiiioa.components.particules;
+package aleiiioa.components.local.particules;
 
 import h2d.BlendMode;
 import h2d.Tile;

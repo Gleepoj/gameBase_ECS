@@ -9,7 +9,7 @@ import aleiiioa.components.core.position.MasterGridPosition;
 
 import aleiiioa.components.core.position.flags.*;
 import aleiiioa.components.logic.*;
-import aleiiioa.components.logic.qualia.*;
+import aleiiioa.components.core.qualia.*;
 
 
 

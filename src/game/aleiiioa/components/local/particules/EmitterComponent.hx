@@ -1,4 +1,4 @@
-package aleiiioa.components.particules;
+package aleiiioa.components.local.particules;
 
 import ldtk.Entity;
 import h2d.Bitmap;
