@@ -9,18 +9,18 @@ class VelocitySystem extends echoes.System {
 	public function new() {}
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	
-	@u function updateVelocity(en:Entity,gp:GridPosition,vc:VelocityComponent,vas:VelocityAnalogSpeed,cl:CollisionsListener) {
+	@u function updateVelocity(en:echoes.Entity,gp:GridPosition,vc:VelocityComponent,vas:VelocityAnalogSpeed,cl:CollisionsListener) {
 		
 		if(!vc.physicBody && vc.customPhysics){	
 			vc.dx = vas.xSpeed;
 			vc.dy = vas.ySpeed;
-			fixedUpdate(gp,vc,cl);
+			fixedUpdate(en,gp,vc,cl);
 		}
 		
 		if(vc.physicBody && vc.customPhysics){
 			vc.dx = vas.xSpeed;
 			vc.dy = vas.ySpeed;
-			fixedUpdate(gp,vc,cl);
+			fixedUpdate(en,gp,vc,cl);
 		}
 
 		if(vc.physicBody && !vc.customPhysics){
@@ -44,12 +44,12 @@ class VelocitySystem extends echoes.System {
 			vas.xSpeed = 0;
 			vas.ySpeed = 0;
 
-			fixedUpdate(gp,vc,cl);
+			fixedUpdate(en,gp,vc,cl);
 			applyFriction(vc);
 		}
 	}
 
-	function fixedUpdate(gp:GridPosition, vc:VelocityComponent, cl:CollisionsListener) {
+	function fixedUpdate(en:echoes.Entity,gp:GridPosition, vc:VelocityComponent, cl:CollisionsListener) {
 		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
 		if (steps > 0) {
 			var n = 0;
@@ -59,8 +59,10 @@ class VelocitySystem extends echoes.System {
 
 				if (vc.dxTotal != 0){
 					if(vc.physicBody)
-						onPreStepX(gp,cl); // <---- Add X collisions checks and physics in here
+						en.add(new OnPreStepX());
+						//onPreStepX(gp,cl); // <---- Add X collisions checks and physics in here
 				}
+
 				while (gp.xr > 1) {
 					gp.xr--;
 					gp.cx++;
@@ -69,13 +71,14 @@ class VelocitySystem extends echoes.System {
 					gp.xr++;
 					gp.cx--;
 				}
-
+				en.remove(OnPreStepX);
 				// Y movement
 				gp.yr += vc.dyTotal / steps;
 
 				if (vc.dyTotal != 0){
 					if(vc.physicBody)
-						onPreStepY(gp,cl,vc); // <---- Add Y collisions checks and physics in here
+						en.add(new OnPreStepY());
+						//onPreStepY(gp,cl,vc); // <---- Add Y collisions checks and physics in here
 				}
 				while (gp.yr > 1) {
 					gp.yr--;
@@ -85,7 +88,7 @@ class VelocitySystem extends echoes.System {
 					gp.yr++;
 					gp.cy--;
 				}
-
+				en.remove(OnPreStepY);
 				n++;
 			}
 		}
