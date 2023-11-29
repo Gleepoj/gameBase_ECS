@@ -1,5 +1,6 @@
 package aleiiioa.systems.core.physics;
 
+import aleiiioa.components.core.physics.flags.affects.CollisionLayer_Wall;
 import aleiiioa.components.core.physics.OnPreStepX;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.physics.VelocityComponent;
@@ -12,7 +13,7 @@ class CollisionReactionEvent extends echoes.System {
 
     }
 
-    @a function onAddOnPreStepX(en:echoes.Entity, add:OnPreStepX, gp:GridPosition){
+    @a function wallCollisionOnPreStepX(en:echoes.Entity, add:OnPreStepX, gp:GridPosition, layer:CollisionLayer_Wall){
         		// Right collision
 		if( gp.xr>0.6 && level.hasCollision(gp.cx+1,gp.cy) )
 			gp.xr = 0.6;
@@ -22,7 +23,7 @@ class CollisionReactionEvent extends echoes.System {
 			gp.xr = 0.3;
     }
 
-    @a function onAddOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition, vc:VelocityComponent,cl:CollisionsListener){
+    @a function floorCollisionOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition, vc:VelocityComponent,cl:CollisionsListener, layer:CollisionLayer_Wall){
        		// Land on ground
 		if( gp.yr>1 && level.hasCollision(gp.cx,gp.cy+1) ) {
 			vc.dy  = 0;
@@ -31,7 +32,6 @@ class CollisionReactionEvent extends echoes.System {
 			cl.cd.setS("landing",0.005);
 		}
 
-		
 		// Ceiling collision
 		if( gp.yr<=0.5 && level.hasCollision(gp.cx,gp.cy-1) )
 			gp.yr = 0.5;

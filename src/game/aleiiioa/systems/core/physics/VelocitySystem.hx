@@ -1,5 +1,9 @@
 package aleiiioa.systems.core.physics;
 
+import aleiiioa.components.core.physics.flags.affects.*;
+import aleiiioa.components.core.physics.flags.body.ParticuleBodyFlag;
+import aleiiioa.components.core.physics.flags.affects.GravitySensitiveAffects;
+import aleiiioa.components.core.physics.flags.body.KinematicBodyFlag;
 import echoes.Entity;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.physics.*;
@@ -9,92 +13,36 @@ class VelocitySystem extends echoes.System {
 	public function new() {}
 	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	
-	@u function updateVelocity(en:echoes.Entity,gp:GridPosition,vc:VelocityComponent,vas:VelocityAnalogSpeed,cl:CollisionsListener) {
+	@u function undefinedInputAffects(vas:VelocityAnalogSpeed,vc:VelocityComponent,part:ParticuleBodyFlag) {
 		
-		if(!vc.physicBody && vc.customPhysics){	
-			vc.dx = vas.xSpeed;
-			vc.dy = vas.ySpeed;
-			fixedUpdate(en,gp,vc,cl);
-		}
-		
-		if(vc.physicBody && vc.customPhysics){
-			vc.dx = vas.xSpeed;
-			vc.dy = vas.ySpeed;
-			fixedUpdate(en,gp,vc,cl);
-		}
+		vc.dx = vas.xSpeed;
+		vc.dy = vas.ySpeed;
+	}
 
-		if(vc.physicBody && !vc.customPhysics){
-		
-			if(cl.onGround)
-				cl.cd.setS("recentlyOnGround",0.01);
-
-			if(!cl.onGround){
-				vc.dy += 0.1;
-			}
-
-			if( vas.ySpeed != 0 ) {
-				vc.dy += vas.ySpeed;
-			}
-
-			if( vas.xSpeed != 0 ) {
-				var speed = 0.3;
+	@u function kinematicInputAffects(vas:VelocityAnalogSpeed,vc:VelocityComponent,kin:KinematicBodyFlag) {
+		if (vas.xSpeed != 0) {
+			var speed = 0.3;
 				vc.dx += vas.xSpeed * speed;
-			}
+		}
+		if (vas.ySpeed != 0) {
+			vc.dy += vas.ySpeed;
+		}
 
-			vas.xSpeed = 0;
-			vas.ySpeed = 0;
+		vas.xSpeed = 0;
+		vas.ySpeed = 0;
+	}
 
-			fixedUpdate(en,gp,vc,cl);
-			applyFriction(vc);
+	@u function kinematicGravityAffects(cl:CollisionsListener,vc:VelocityComponent,kin:KinematicBodyFlag,gr:GravitySensitiveAffects){
+		
+		if(cl.onGround)
+			cl.cd.setS("recentlyOnGround",0.01);
+
+		if(!cl.onGround){
+			vc.dy += 0.1;
 		}
 	}
 
-	function fixedUpdate(en:echoes.Entity,gp:GridPosition, vc:VelocityComponent, cl:CollisionsListener) {
-		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
-		if (steps > 0) {
-			var n = 0;
-			while (n < steps) {
-				// X movement
-				gp.xr += vc.dxTotal / steps;
-
-				if (vc.dxTotal != 0){
-					if(vc.physicBody)
-						en.add(new OnPreStepX());
-						//onPreStepX(gp,cl); // <---- Add X collisions checks and physics in here
-				}
-
-				while (gp.xr > 1) {
-					gp.xr--;
-					gp.cx++;
-				}
-				while (gp.xr < 0) {
-					gp.xr++;
-					gp.cx--;
-				}
-				en.remove(OnPreStepX);
-				// Y movement
-				gp.yr += vc.dyTotal / steps;
-
-				if (vc.dyTotal != 0){
-					if(vc.physicBody)
-						en.add(new OnPreStepY());
-						//onPreStepY(gp,cl,vc); // <---- Add Y collisions checks and physics in here
-				}
-				while (gp.yr > 1) {
-					gp.yr--;
-					gp.cy++;
-				}
-				while (gp.yr < 0) {
-					gp.yr++;
-					gp.cy--;
-				}
-				en.remove(OnPreStepY);
-				n++;
-			}
-		}
-	}
-
-	function applyFriction(vc:VelocityComponent) {
+	@u function agnosticFrictionAffects(vc:VelocityComponent,fr:FrictionSensitiveAffects) {
 		// X frictions
 		vc.dx *= vc.frictX;
 		vc.bdx *= vc.bumpFrictX;
@@ -113,6 +61,54 @@ class VelocitySystem extends echoes.System {
 	
 	}
 
+	@u function steppedPositionUpdateAndCallCollisions(en:echoes.Entity,gp:GridPosition, vc:VelocityComponent, cl:CollisionsListener) {
+		// step is the max lenght of a implemented movement (in grid ratio) in one frame (0.33 is the max speed) precision could be improved by using a smaller step 0.2
+		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
+		if (steps > 0) {
+			var n = 0;
+			while (n < steps) {
+				// X movement
+				gp.xr += vc.dxTotal / steps;
+
+				if (vc.dxTotal != 0){
+					if(vc.physicBody)
+						en.add(new OnPreStepX());//<---- Add X collisions checks and physics in here
+				
+				}
+
+				while (gp.xr > 1) {
+					gp.xr--;
+					gp.cx++;
+				}
+				while (gp.xr < 0) {
+					gp.xr++;
+					gp.cx--;
+				}
+				en.remove(OnPreStepX);
+				// Y movement
+				gp.yr += vc.dyTotal / steps;
+
+				if (vc.dyTotal != 0){
+					if(vc.physicBody)
+						en.add(new OnPreStepY());// <---- Add Y collisions checks and physics in here
+				}
+
+				while (gp.yr > 1) {
+					gp.yr--;
+					gp.cy++;
+				}
+				while (gp.yr < 0) {
+					gp.yr++;
+					gp.cy--;
+				}
+				en.remove(OnPreStepY);
+				n++;
+			}
+		}
+	}
+
+
+
 	/** Apply a bump/kick force to entity **/
 	public function bump(x:Float, y:Float, vc:VelocityComponent) {
 		vc.bdx += x;
@@ -125,31 +121,4 @@ class VelocitySystem extends echoes.System {
 		vc.dy = vc.bdy = 0;
 	}
 
-	/** Called at the beginning of each X movement step **/
-	function onPreStepX(gp:GridPosition,cl:CollisionsListener) {
-		// Right collision
-		if( gp.xr>0.6 && level.hasCollision(gp.cx+1,gp.cy) )
-			gp.xr = 0.6;
-		
-		// Left collision
-		if( gp.xr<0.3 && level.hasCollision(gp.cx-1,gp.cy) )
-			gp.xr = 0.3;
-	}
-
-	/** Called at the beginning of each Y movement step **/
-	function onPreStepY(gp:GridPosition,cl:CollisionsListener,vc:VelocityComponent) {
-		
-		// Land on ground
-		if( gp.yr>1 && level.hasCollision(gp.cx,gp.cy+1) ) {
-			vc.dy  = 0;
-			vc.bdy = 0;
-			gp.yr = 1;
-			cl.cd.setS("landing",0.005);
-		}
-
-		
-		// Ceiling collision
-		if( gp.yr<=0.5 && level.hasCollision(gp.cx,gp.cy-1) )
-			gp.yr = 0.5;
-	}
 }

@@ -1,6 +1,9 @@
 package aleiiioa.builders;
 
 
+
+import aleiiioa.components.core.physics.flags.affects.*;
+import aleiiioa.components.core.physics.flags.body.*;
 import aleiiioa.components.logic.interaction.catching.CatchableCollection;
 import aleiiioa.components.logic.interaction.catching.Catcher;
 
@@ -51,10 +54,15 @@ class EntityBuilders {
         //Flags
         var pnj   = new PNJDialogFlag();
         //var body  = new BodyFlag();   
+        var kinematic = new KinematicBodyFlag();
+        var g = new GravitySensitiveAffects();
+        var f = new FrictionSensitiveAffects();
+        var w = new CollisionLayer_Wall();
+
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,em,yarn,pnj,catchable);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,em,yarn,pnj,catchable,kinematic,g,f,w);
         // Uncomment next entity creation and comment previous one to remove catchable behavior 
         // new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,body);
     }
@@ -80,10 +88,15 @@ class EntityBuilders {
         //Flags
        // var body = new BodyFlag(); 
         //var bomb = new BombFlag();
+        var kinematic = new KinematicBodyFlag();
+        var g = new GravitySensitiveAffects();
+        var f = new FrictionSensitiveAffects();
+        var w = new CollisionLayer_Wall();
+
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,ic,se,em,catchable);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,ic,se,em,catchable,kinematic,g,f,w);
     }
 
     public static function player(cx:Int,cy:Int) {
@@ -113,12 +126,17 @@ class EntityBuilders {
         //Flags
         //var body   = new BodyFlag();  
         var catcher   = new Catcher(); 
+   
+        var kinematic = new KinematicBodyFlag();
+        var g = new GravitySensitiveAffects();
+        var f = new FrictionSensitiveAffects();
+        var w = new CollisionLayer_Wall();
 
         var player  = new PlayerFlag();
         var speaker = new PlayerDialogFlag();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,player,master,speaker,catcher);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,player,master,speaker,catcher,kinematic,g,f,w);
     }
 
     

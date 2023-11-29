@@ -20,16 +20,16 @@ class ParticulesComponent {
     
     public var alpha  :Float  =1;
     
-    public var collide:Bool  =true;
+    
     public var gravity:Float =0.;
     public var frict:Float   =0.;
 
     public var lifeRatio(get,never):Float; inline function get_lifeRatio() return cd.getRatio("alive");
    
-    public function new(_lifetime:Float,?_collide:Bool=false,?_frict:Float=0,?_gravity:Float=0) {
+    public function new(_lifetime:Float,?_frict:Float=0,?_gravity:Float=0) {
         
         lifetime= _lifetime;
-        collide = _collide;
+        
         frict   = _frict;
         gravity = _gravity;
         shrink  = 1/lifetime;
