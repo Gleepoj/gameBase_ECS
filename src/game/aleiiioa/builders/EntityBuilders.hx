@@ -19,7 +19,7 @@ import aleiiioa.components.particules.*;
 import aleiiioa.components.dialog.*;
 import aleiiioa.components.dialog.flag.*;
 
-import aleiiioa.components.camera.*;
+import aleiiioa.components.utils.camera.*;
 import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.physics.*;
 import aleiiioa.components.core.position.*;
