@@ -117,21 +117,19 @@ class EntityBuilders {
         var se  = new SpriteExtension();
         se.baseColor = new Vector(0.5,0.2,0.6);
 
-        //Logic and Dialog Component
-        //var ic = new InteractiveComponent();
         var em = new EmitterComponent();
-        //var ac = new ActionComponent();
         var inp= new InputComponent();
         
-        //Flags
-        //var body   = new BodyFlag();  
+        //Ability
         var catcher   = new Catcher(); 
-   
+        
+        //Physics
         var kinematic = new KinematicBodyFlag();
         var g = new GravitySensitiveAffects();
         var f = new FrictionSensitiveAffects();
         var w = new CollisionLayer_Wall();
 
+        //Qualia
         var player  = new PlayerFlag();
         var speaker = new PlayerDialogFlag();
 

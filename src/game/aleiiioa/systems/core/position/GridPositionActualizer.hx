@@ -1,9 +1,11 @@
 package aleiiioa.systems.core.position;
 
 
+import aleiiioa.components.core.physics.VelocityComponent;
 import aleiiioa.components.core.position.flags.ChildPositionFlag;
 import aleiiioa.components.core.position.flags.MasterPositionFlag;
 import aleiiioa.components.core.position.*;
+import aleiiioa.components.core.physics.*;
 
 
 class GridPositionActualizer extends echoes.System {
@@ -15,6 +17,51 @@ class GridPositionActualizer extends echoes.System {
     @a function onGridPositionAdded(gp:GridPosition) {
 	   onPosManuallyChanged(gp);
     }
+
+	@u function steppedPositionUpdateAndCallCollisions(en:echoes.Entity,gp:GridPosition,vc:VelocityComponent) {
+		// step is the max lenght of a implemented movement (in grid ratio) in one frame (0.33 is the max speed) precision could be improved by using a smaller step 0.2
+		
+		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
+		if (steps > 0) {
+			var n = 0;
+			while (n < steps) {
+				// X movement
+				gp.xr += vc.dxTotal / steps;
+
+				if (vc.dxTotal != 0)
+					en.add(new OnPreStepX());//<---- Add X collisions checks and physics in CollisionReactionSystem
+				
+				while (gp.xr > 1) {
+					gp.xr--;
+					gp.cx++;
+				}
+				while (gp.xr < 0) {
+					gp.xr++;
+					gp.cx--;
+				}
+				
+				en.remove(OnPreStepX);
+				
+				
+				//Y movement
+				gp.yr += vc.dyTotal / steps;
+				
+				if (vc.dyTotal != 0)
+					en.add(new OnPreStepY());
+
+				while (gp.yr > 1) {
+					gp.yr--;
+					gp.cy++;
+				}
+				while (gp.yr < 0) {
+					gp.yr++;
+					gp.cy--;
+				}
+				en.remove(OnPreStepY);
+				n++;
+			}
+		}
+	}
 
 	
 	@u function updateMasterGridPosition(mgp:MasterGridPosition,gp:GridPosition,mflag:MasterPositionFlag) {

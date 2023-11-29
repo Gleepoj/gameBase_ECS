@@ -11,7 +11,6 @@ import aleiiioa.components.core.position.GridPosition;
 
 class VelocitySystem extends echoes.System {
 	public function new() {}
-	public var level(get,never) : Level; inline function get_level() return Game.ME.level;
 	
 	@u function undefinedInputAffects(vas:VelocityAnalogSpeed,vc:VelocityComponent,part:ParticuleBodyFlag) {
 		
@@ -61,48 +60,6 @@ class VelocitySystem extends echoes.System {
 	
 	}
 
-	@u function steppedPositionUpdateAndCallCollisions(en:echoes.Entity,gp:GridPosition, vc:VelocityComponent, cl:CollisionsListener) {
-		// step is the max lenght of a implemented movement (in grid ratio) in one frame (0.33 is the max speed) precision could be improved by using a smaller step 0.2
-		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
-		if (steps > 0) {
-			var n = 0;
-			while (n < steps) {
-				// X movement
-				gp.xr += vc.dxTotal / steps;
-
-				if (vc.dxTotal != 0){
-						en.add(new OnPreStepX());//<---- Add X collisions checks and physics in here
-				}
-
-				while (gp.xr > 1) {
-					gp.xr--;
-					gp.cx++;
-				}
-				while (gp.xr < 0) {
-					gp.xr++;
-					gp.cx--;
-				}
-				en.remove(OnPreStepX);
-				// Y movement
-				gp.yr += vc.dyTotal / steps;
-
-				if (vc.dyTotal != 0){
-						en.add(new OnPreStepY());// <---- Add Y collisions checks and physics in here
-				}
-
-				while (gp.yr > 1) {
-					gp.yr--;
-					gp.cy++;
-				}
-				while (gp.yr < 0) {
-					gp.yr++;
-					gp.cy--;
-				}
-				en.remove(OnPreStepY);
-				n++;
-			}
-		}
-	}
 
 
 
