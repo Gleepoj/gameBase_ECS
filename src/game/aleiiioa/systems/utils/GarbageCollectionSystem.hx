@@ -1,4 +1,4 @@
-package aleiiioa.systems.core;
+package aleiiioa.systems.utils;
 
 //Bullets are destroy in various collisions systems 
 import echoes.System;
@@ -9,7 +9,7 @@ import aleiiioa.components.core.physics.position.MasterGridPosition;
 
 import aleiiioa.components.core.physics.position.flags.*;
 import aleiiioa.components.logic.*;
-import aleiiioa.components.core.qualia.*;
+import aleiiioa.components.logic.qualia.*;
 
 
 

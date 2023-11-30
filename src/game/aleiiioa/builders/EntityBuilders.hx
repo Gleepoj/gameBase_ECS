@@ -17,7 +17,7 @@ import echoes.Entity;
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.flags.logic.*;
 import aleiiioa.components.logic.*;
-import aleiiioa.components.core.qualia.*;
+import aleiiioa.components.logic.qualia.*;
 
 import aleiiioa.components.local.particules.*;
 import aleiiioa.components.local.dialog.*;

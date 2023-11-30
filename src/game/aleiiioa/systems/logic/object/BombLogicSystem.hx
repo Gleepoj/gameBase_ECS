@@ -4,10 +4,10 @@ import aleiiioa.components.logic.interaction.catching.IsCatched;
 import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.local.particules.EmitterComponent;
 import aleiiioa.components.logic.object.BombComponent;
-import aleiiioa.components.core.qualia.*;
+import aleiiioa.components.logic.qualia.*;
 import aleiiioa.builders.VfxBuilders;
 
-import aleiiioa.components.core.qualia.*;
+import aleiiioa.components.logic.qualia.*;
 
 class BombLogicSystem  extends echoes.System{
     public function new() {

@@ -8,7 +8,7 @@ import aleiiioa.components.core.physics.collision.CollisionSensor;
 import aleiiioa.components.local.dialog.DialogReferenceComponent;
 
 import aleiiioa.components.local.dialog.flag.*;
-import aleiiioa.components.core.qualia.*;
+import aleiiioa.components.logic.qualia.*;
 
 
 import aleiiioa.builders.UIBuilders;

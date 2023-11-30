@@ -1,4 +1,4 @@
-package aleiiioa.components.core.qualia;
+package aleiiioa.components.logic.qualia;
 
 class PlayerFlag {
     public function new() {
