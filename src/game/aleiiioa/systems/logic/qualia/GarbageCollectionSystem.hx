@@ -1,4 +1,4 @@
-package aleiiioa.systems.utils;
+package aleiiioa.systems.logic.qualia;
 
 //Bullets are destroy in various collisions systems 
 import echoes.System;

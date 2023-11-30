@@ -12,6 +12,7 @@ import aleiiioa.systems.core.*;
 import aleiiioa.systems.local.particules.*;
 import aleiiioa.systems.core.renderer.*;
 import aleiiioa.systems.core.input.*;
+import aleiiioa.systems.logic.qualia.*;
 import aleiiioa.systems.core.physics.*;
 import aleiiioa.systems.core.physics.collision.*;
 import aleiiioa.systems.core.physics.position.*;
