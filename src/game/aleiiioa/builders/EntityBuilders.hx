@@ -4,11 +4,11 @@ package aleiiioa.builders;
 
 import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.core.physics.flags.affects.*;
-import aleiiioa.components.core.physics.flags.body.*;
+import aleiiioa.components.core.physics.velocity.body.*;
 import aleiiioa.components.logic.interaction.catching.CatchableCollection;
 import aleiiioa.components.logic.interaction.catching.Catcher;
 
-import aleiiioa.components.core.position.flags.MasterPositionFlag;
+import aleiiioa.components.core.physics.position.flags.MasterPositionFlag;
 import aleiiioa.components.logic.object.BombComponent;
 
 import h3d.Vector;
@@ -25,9 +25,9 @@ import aleiiioa.components.local.dialog.flag.*;
 
 import aleiiioa.components.utils.camera.*;
 import aleiiioa.components.core.rendering.*;
-import aleiiioa.components.core.physics.*;
-import aleiiioa.components.core.position.*;
-import aleiiioa.components.core.collision.*;
+import aleiiioa.components.core.physics.velocity.*;
+import aleiiioa.components.core.physics.position.*;
+import aleiiioa.components.core.physics.collision.*;
 
 
 

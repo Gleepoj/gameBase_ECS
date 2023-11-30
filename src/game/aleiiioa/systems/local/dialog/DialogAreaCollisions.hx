@@ -7,7 +7,7 @@ import aleiiioa.components.local.dialog.flag.*;
 
 import echoes.View;
 
-import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.core.physics.position.GridPosition;
 
 class DialogAreaCollisions extends echoes.System {
     

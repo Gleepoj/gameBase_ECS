@@ -1,8 +1,8 @@
 package aleiiioa.systems.core.physics;
 
-import aleiiioa.components.core.physics.VelocityComponent;
-import aleiiioa.components.core.collision.CollisionSensor;
-import aleiiioa.components.core.position.*;
+import aleiiioa.components.core.physics.velocity.VelocityComponent;
+import aleiiioa.components.core.physics.collision.CollisionSensor;
+import aleiiioa.components.core.physics.position.*;
 
 
 import echoes.Entity;

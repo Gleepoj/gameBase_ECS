@@ -1,13 +1,13 @@
 package aleiiioa.systems.core.input;
 
 
-import aleiiioa.components.core.collision.CollisionSensor;
-import aleiiioa.components.core.physics.VelocityAnalogSpeed;
-import aleiiioa.components.core.physics.VelocityComponent;
+import aleiiioa.components.core.physics.collision.CollisionSensor;
+import aleiiioa.components.core.physics.velocity.VelocityAnalogSpeed;
+import aleiiioa.components.core.physics.velocity.VelocityComponent;
 import hxd.Pad.PadConfig;
 import aleiiioa.components.core.input.InputComponent;
 
-import aleiiioa.components.core.position.GridPositionOffset;
+import aleiiioa.components.core.physics.position.GridPositionOffset;
 
 
 

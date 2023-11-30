@@ -1,11 +1,11 @@
 package aleiiioa.systems.core.physics;
 
 import aleiiioa.components.core.physics.flags.affects.CollisionLayer_Wall;
-import aleiiioa.components.core.physics.OnPreStepX;
-import aleiiioa.components.core.collision.CollisionSensor;
-import aleiiioa.components.core.physics.VelocityComponent;
-import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.core.physics.OnPreStepY;
+import aleiiioa.components.core.physics.collision.OnPreStepX;
+import aleiiioa.components.core.physics.collision.CollisionSensor;
+import aleiiioa.components.core.physics.velocity.VelocityComponent;
+import aleiiioa.components.core.physics.position.GridPosition;
+import aleiiioa.components.core.physics.collision.OnPreStepY;
 
 class CollisionReactionEvent extends echoes.System {
     public var level(get,never) : Level; inline function get_level() return Game.ME.level;

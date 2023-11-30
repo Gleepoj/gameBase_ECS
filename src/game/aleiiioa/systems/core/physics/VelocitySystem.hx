@@ -1,12 +1,12 @@
 package aleiiioa.systems.core.physics;
 
 import aleiiioa.components.core.physics.flags.affects.*;
-import aleiiioa.components.core.physics.flags.body.ParticuleBodyFlag;
+import aleiiioa.components.core.physics.velocity.body.ParticuleBodyFlag;
 import aleiiioa.components.core.physics.flags.affects.GravitySensitiveAffects;
-import aleiiioa.components.core.physics.flags.body.KinematicBodyFlag;
+import aleiiioa.components.core.physics.velocity.body.KinematicBodyFlag;
 import echoes.Entity;
-import aleiiioa.components.core.collision.CollisionSensor;
-import aleiiioa.components.core.physics.*;
+import aleiiioa.components.core.physics.collision.CollisionSensor;
+import aleiiioa.components.core.physics.velocity.*;
 
 
 class VelocitySystem extends echoes.System {

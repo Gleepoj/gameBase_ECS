@@ -1,7 +1,7 @@
 package aleiiioa.systems.utils;
 
-import aleiiioa.components.core.collision.BoundingBox;
-import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.core.physics.collision.BoundingBox;
+import aleiiioa.components.core.physics.position.GridPosition;
 
 class BoundingBoxRenderer extends echoes.System{
     var gameScroller:h2d.Layers;

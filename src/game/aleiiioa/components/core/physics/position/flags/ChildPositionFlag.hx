@@ -1,4 +1,4 @@
-package aleiiioa.components.core.position.flags;
+package aleiiioa.components.core.physics.position.flags;
 
 class ChildPositionFlag {
     public function new() {

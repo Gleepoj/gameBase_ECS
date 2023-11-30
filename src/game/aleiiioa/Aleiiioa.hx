@@ -4,7 +4,7 @@ import echoes.SystemList;
 import echoes.Entity;
 import aleiiioa.systems.logic.object.BombLogicSystem;
 import aleiiioa.builders.*;
-import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.systems.logic.interaction.CatchLogicSystem;
 
 import aleiiioa.systems.utils.*;

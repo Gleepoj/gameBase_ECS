@@ -1,6 +1,6 @@
 package aleiiioa.builders;
 
-import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.local.particules.EmitterComponent;
 
 class VfxBuilders {

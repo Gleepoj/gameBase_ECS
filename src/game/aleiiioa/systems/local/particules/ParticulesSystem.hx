@@ -1,9 +1,9 @@
 package aleiiioa.systems.local.particules;
 
 import aleiiioa.builders.VfxBuilders;
-import aleiiioa.components.core.collision.CollisionSensor;
+import aleiiioa.components.core.physics.collision.CollisionSensor;
 import aleiiioa.builders.ParticulesBuilders;
-import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.local.particules.*;
 
 

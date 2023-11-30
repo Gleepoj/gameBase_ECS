@@ -1,11 +1,12 @@
 package aleiiioa.systems.core.position;
 
 
-import aleiiioa.components.core.physics.VelocityComponent;
-import aleiiioa.components.core.position.flags.ChildPositionFlag;
-import aleiiioa.components.core.position.flags.MasterPositionFlag;
-import aleiiioa.components.core.position.*;
-import aleiiioa.components.core.physics.*;
+import aleiiioa.components.core.physics.velocity.VelocityComponent;
+import aleiiioa.components.core.physics.position.flags.ChildPositionFlag;
+import aleiiioa.components.core.physics.position.flags.MasterPositionFlag;
+import aleiiioa.components.core.physics.position.*;
+import aleiiioa.components.core.physics.collision.*;
+import aleiiioa.components.core.physics.velocity.*;
 
 
 class GridPositionActualizer extends echoes.System {

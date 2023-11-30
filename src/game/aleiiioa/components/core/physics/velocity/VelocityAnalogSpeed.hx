@@ -1,4 +1,4 @@
-package aleiiioa.components.core.physics;
+package aleiiioa.components.core.physics.velocity;
 
 class VelocityAnalogSpeed {
     public var xSpeed:Float = 0;

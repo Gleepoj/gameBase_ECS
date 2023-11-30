@@ -5,9 +5,9 @@ import echoes.System;
 import echoes.Entity;
 
 
-import aleiiioa.components.core.position.MasterGridPosition;
+import aleiiioa.components.core.physics.position.MasterGridPosition;
 
-import aleiiioa.components.core.position.flags.*;
+import aleiiioa.components.core.physics.position.flags.*;
 import aleiiioa.components.logic.*;
 import aleiiioa.components.core.qualia.*;
 

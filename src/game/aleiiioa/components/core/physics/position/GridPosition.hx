@@ -1,4 +1,4 @@
-package aleiiioa.components.core.position;
+package aleiiioa.components.core.physics.position;
 
 import h3d.Vector;
 

@@ -6,10 +6,10 @@ import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.qualia.PlayerFlag;
 import aleiiioa.components.logic.interaction.catching.*;
 import aleiiioa.components.logic.*;
-import aleiiioa.components.core.physics.*;
-//import aleiiioa.components.core.collision.InteractionListener;
-import aleiiioa.components.core.position.*;
-import aleiiioa.components.core.position.flags.*;
+import aleiiioa.components.core.physics.velocity.*;
+//import aleiiioa.components.core.physics.collision.InteractionListener;
+import aleiiioa.components.core.physics.position.*;
+import aleiiioa.components.core.physics.position.flags.*;
 import echoes.View;
 
 

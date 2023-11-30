@@ -1,4 +1,4 @@
-package aleiiioa.components.core.collision;
+package aleiiioa.components.core.physics.collision;
 
 
 import dn.Cooldown;

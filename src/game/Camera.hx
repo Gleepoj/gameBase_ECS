@@ -1,5 +1,6 @@
-import aleiiioa.components.core.physics.VelocityComponent;
-import aleiiioa.components.core.position.GridPosition;
+
+import aleiiioa.components.core.physics.velocity.VelocityComponent;
+import aleiiioa.components.core.physics.position.GridPosition;
 
 class Camera extends dn.Process {
 	public static var MIN_ZOOM : Float = 1.0;

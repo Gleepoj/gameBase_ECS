@@ -1,6 +1,6 @@
 package aleiiioa.systems.local.particules;
 
-import aleiiioa.components.core.physics.VelocityAnalogSpeed;
+import aleiiioa.components.core.physics.velocity.VelocityAnalogSpeed;
 import aleiiioa.components.local.particules.ParticulesComponent;
 import hxease.Quart;
 import hxease.*;

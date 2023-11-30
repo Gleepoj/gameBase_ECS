@@ -1,4 +1,4 @@
-package aleiiioa.components.core.physics.flags.body;
+package aleiiioa.components.core.physics.velocity.body;
 
 class DynamicBodyFlag {
     public function new(){

@@ -3,7 +3,7 @@ package aleiiioa.systems.utils;
 
 
 import echoes.Entity;
-import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.utils.debug.DebugLabel;
 
 

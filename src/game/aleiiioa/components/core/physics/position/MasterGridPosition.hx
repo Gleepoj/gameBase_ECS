@@ -1,5 +1,5 @@
-package aleiiioa.components.core.position;
-import aleiiioa.components.core.position.GridPosition;
+package aleiiioa.components.core.physics.position;
+import aleiiioa.components.core.physics.position.GridPosition;
 
 class MasterGridPosition extends GridPosition{
     public var isMasterAlive = true;

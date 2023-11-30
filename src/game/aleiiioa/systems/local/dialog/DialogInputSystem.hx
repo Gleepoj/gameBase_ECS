@@ -2,9 +2,9 @@ package aleiiioa.systems.local.dialog;
 
 import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.local.dialog.YarnDialogListener;
-import aleiiioa.components.core.position.GridPosition;
+import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.core.input.InputComponent;
-import aleiiioa.components.core.collision.CollisionSensor;
+import aleiiioa.components.core.physics.collision.CollisionSensor;
 import aleiiioa.components.local.dialog.DialogReferenceComponent;
 
 import aleiiioa.components.local.dialog.flag.*;

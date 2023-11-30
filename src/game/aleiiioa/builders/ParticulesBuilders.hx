@@ -1,14 +1,14 @@
 package aleiiioa.builders;
 
 import aleiiioa.components.core.physics.flags.affects.FrictionSensitiveAffects;
-import aleiiioa.components.core.physics.flags.body.ParticuleBodyFlag;
+import aleiiioa.components.core.physics.velocity.body.ParticuleBodyFlag;
 import aleiiioa.components.core.physics.flags.affects.CollisionLayer_Wall;
 
 import echoes.Entity;
 
-import aleiiioa.components.core.physics.*;
-import aleiiioa.components.core.position.*;
-import aleiiioa.components.core.collision.*;
+import aleiiioa.components.core.physics.velocity.*;
+import aleiiioa.components.core.physics.position.*;
+import aleiiioa.components.core.physics.collision.*;
 import aleiiioa.components.local.particules.*;
 
 
