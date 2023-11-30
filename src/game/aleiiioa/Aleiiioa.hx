@@ -54,11 +54,9 @@ class Aleiiioa extends Game {
 		
 		//Collision
 		Workflow.addSystem(new GarbageCollectionSystem());
-		Workflow.addSystem(new CollisionsListenerActualizer());
-		
 		
 		//Object
-		Workflow.addSystem(new LevelCollisionsSystem());
+		Workflow.addSystem(new CollisionSensorSystem());
 		Workflow.addSystem(new VelocitySystem());
 		Workflow.addSystem(new CollisionReactionEvent());
 		Workflow.addSystem(new GridPositionActualizer());

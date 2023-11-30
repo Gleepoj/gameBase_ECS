@@ -8,20 +8,24 @@ import aleiiioa.components.logic.interaction.InteractionEvent;
 
 class InteractionListener {
     //public var onPnjArea:Bool = false;
-    public var cd:Cooldown;
+    var cd:Cooldown;
     
     public var lastEvent:InteractionEvent;
     
     public var onInteract(get,never):Bool;
-        inline function get_onInteract() return cd.has("interact");
+        inline function get_onInteract() return cd.has("ALLOW_INTERACT");
     
     public var onArea(get,never):Bool;
-        inline function get_onArea() return cd.has("pnj ready");
+        inline function get_onArea() return cd.has("PNJ_IN_DIALOG_AREA");
     
     
     public function new(){
         lastEvent = new IEvent_Reset();
         cd = new Cooldown(Const.FIXED_UPDATE_FPS);
+    }
+    
+    public function updateCooldown(dt:Float){
+        cd.update(dt);
     }
 
     public function order(){

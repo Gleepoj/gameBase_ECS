@@ -1,4 +1,4 @@
-package aleiiioa.systems.core.collisions;
+package aleiiioa.systems.core.physics;
 
 import aleiiioa.components.core.physics.VelocityComponent;
 import aleiiioa.components.core.collision.CollisionsListener;
@@ -7,7 +7,7 @@ import aleiiioa.components.core.position.*;
 
 import echoes.Entity;
 
-class LevelCollisionsSystem extends echoes.System {
+class CollisionSensorSystem extends echoes.System {
     public var level(get,never) : Level; inline function get_level() return Game.ME.level;
     public var camera(get,never): Camera; inline function get_camera() return Game.ME.camera; 
     
@@ -18,6 +18,10 @@ class LevelCollisionsSystem extends echoes.System {
 	public inline function isOnScreen(gp:GridPosition) {
 		return camera.isOnScreen(gp.attachX, gp.attachY, 0);
 	}
+
+    @u function cooldownUpdate(dt:Float,cl:CollisionsListener) {
+        cl.cd.update(dt);
+    }
 
     @u public function updateListener(entity:echoes.Entity,gp:GridPosition,cl:CollisionsListener,vc:VelocityComponent) {
         if(entity.isValid() && !entity.exists(GridPositionOffset)){

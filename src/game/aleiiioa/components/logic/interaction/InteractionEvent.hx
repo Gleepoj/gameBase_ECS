@@ -21,7 +21,7 @@ class IEvent_OnDialogArea implements  InteractionEvent {
 
     public function send(cd:Cooldown) {
         //cd.setS("pnj ready",0.005);  
-        cd.setMs("pnj ready",1000);
+        cd.setMs("PNJ_IN_DIALOG_AREA",1000);
     }
 }
 
@@ -30,7 +30,7 @@ class IEvent_OnInteractArea implements InteractionEvent {
         
     }
     public function send(cd:Cooldown){
-        cd.setMs("interact",100);
+        cd.setMs("ALLOW_INTERACT",100);
     }
 }
 

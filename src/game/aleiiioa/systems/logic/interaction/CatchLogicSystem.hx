@@ -11,7 +11,7 @@ import aleiiioa.components.core.physics.*;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.core.position.flags.*;
 import echoes.View;
-import aleiiioa.systems.core.collisions.CollisionEvent.InstancedCollisionEvent;
+
 
 class CatchLogicSystem extends echoes.System {
     
@@ -26,7 +26,8 @@ class CatchLogicSystem extends echoes.System {
     }
 
     @u function updateListener(dt:Float,il:InteractionListener){
-        il.cd.update(dt);
+        //il.cd.update(dt);
+        il.updateCooldown(dt);
     }
     // Input logic could be move to another system
     @u function playerRequireCatching(en:echoes.Entity,pl:PlayerFlag,il:InteractionListener,inp:InputComponent) {

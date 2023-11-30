@@ -7,7 +7,6 @@ import aleiiioa.components.local.dialog.flag.*;
 
 import echoes.View;
 
-import aleiiioa.systems.core.collisions.CollisionEvent.InstancedCollisionEvent;
 import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.position.GridPosition;
 

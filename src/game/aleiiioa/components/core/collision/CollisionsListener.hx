@@ -2,14 +2,12 @@ package aleiiioa.components.core.collision;
 
 
 import dn.Cooldown;
-import aleiiioa.systems.core.collisions.CollisionEvent;
+
 
 
 class CollisionsListener {
-    //public var onPnjArea:Bool = false;
+ 
     public var cd:Cooldown;
-    
-    public var lastEvent:CollisionEvent;
 
     public var on_land:Bool   = false;
     public var on_ground:Bool = false;
@@ -18,13 +16,6 @@ class CollisionsListener {
     public var on_ceil:Bool   = false;
     public var on_fall:Bool   = false;
     public var on_jump:Bool   = false;
-    
-
-    public var onInteract(get,never):Bool;
-        inline function get_onInteract() return cd.has("interact");
-    
-    public var onArea(get,never):Bool;
-        inline function get_onArea() return cd.has("pnj ready");
     
     public var recentlyOnGround(get,never):Bool;
         inline function get_recentlyOnGround() return cd.has("onGround");
@@ -52,7 +43,6 @@ class CollisionsListener {
 
     
     public function new(){
-        lastEvent = new Event_Reset();
         cd = new Cooldown(Const.FIXED_UPDATE_FPS);
     }
 }
