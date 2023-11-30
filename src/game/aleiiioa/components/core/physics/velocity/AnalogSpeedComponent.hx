@@ -1,6 +1,6 @@
 package aleiiioa.components.core.physics.velocity;
 
-class VelocityAnalogSpeed {
+class AnalogSpeedComponent {
     public var xSpeed:Float = 0;
     public var ySpeed:Float = 0;
     

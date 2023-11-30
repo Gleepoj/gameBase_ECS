@@ -37,7 +37,7 @@ class EntityBuilders {
     public static function pnj(cx:Int,cy:Int,yarnDialogName:String) {
         //Physics Component
         var pos = new GridPosition(cx,cy);
-        var vas = new VelocityAnalogSpeed(0,0);
+        var vas = new AnalogSpeedComponent(0,0);
         var vc  = new VelocityComponent();
         var cl  = new CollisionSensor();
         
@@ -73,7 +73,7 @@ class EntityBuilders {
 
         //Physics Component
         var pos = new GridPosition(cx,cy);
-        var vas = new VelocityAnalogSpeed(0,0);
+        var vas = new AnalogSpeedComponent(0,0);
         var vc  = new VelocityComponent();
         var cl  = new CollisionSensor();
         
@@ -106,7 +106,7 @@ class EntityBuilders {
         
         //Physics Component
         var pos = new GridPosition(cx,cy);
-        var vas = new VelocityAnalogSpeed(0,0);
+        var vas = new AnalogSpeedComponent(0,0);
         var vc  = new VelocityComponent();
         var cl  = new CollisionSensor();
         
@@ -145,7 +145,7 @@ class EntityBuilders {
     public static function cameraFocus(cx:Int,cy:Int) {
         
         var pos  = new GridPosition(cx,cy);
-        var vas = new VelocityAnalogSpeed(0,0);
+        var vas = new AnalogSpeedComponent(0,0);
         var vc  = new VelocityComponent();
 
 

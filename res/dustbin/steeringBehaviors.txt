@@ -124,7 +124,7 @@ class  SteeringBehaviors extends System {
 
     }
 
-        @u function updateKayakTarget(pad:PaddleSharedComponent,gp:GridPosition,vas:VelocityAnalogSpeed,tf:TargetedFlag,tsf:SteeringPointFlag){
+        @u function updateKayakTarget(pad:PaddleSharedComponent,gp:GridPosition,vas:AnalogSpeedComponent,tf:TargetedFlag,tsf:SteeringPointFlag){
         if(pad.rb){
             trace("ok rb");
             gp.xr += Math.cos(kayakAngle)*0.1;
@@ -151,7 +151,7 @@ class  SteeringBehaviors extends System {
      
     }
 
-    function capTargetMaxDist(vas:VelocityAnalogSpeed,gp:GridPosition){
+    function capTargetMaxDist(vas:AnalogSpeedComponent,gp:GridPosition){
         vas.xSpeed = 0;
         vas.ySpeed = 0;
 

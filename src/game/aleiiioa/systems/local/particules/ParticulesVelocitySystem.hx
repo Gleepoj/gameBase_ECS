@@ -1,6 +1,6 @@
 package aleiiioa.systems.local.particules;
 
-import aleiiioa.components.core.physics.velocity.VelocityAnalogSpeed;
+import aleiiioa.components.core.physics.velocity.AnalogSpeedComponent;
 import aleiiioa.components.local.particules.ParticulesComponent;
 import hxease.Quart;
 import hxease.*;
@@ -10,7 +10,7 @@ class ParticulesVelocitySystem extends echoes.System {
     
     }
 
-    @u function updateParticule(pc:ParticulesComponent,vas:VelocityAnalogSpeed) {
+    @u function updateParticule(pc:ParticulesComponent,vas:AnalogSpeedComponent) {
         var qe = Back.easeIn.calculate(pc.lifeRatio);
         
         if(pc.frict > 0){

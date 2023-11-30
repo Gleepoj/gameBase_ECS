@@ -12,13 +12,13 @@ import aleiiioa.components.core.physics.velocity.*;
 class VelocitySystem extends echoes.System {
 	public function new() {}
 	
-	@u function undefinedInputAffects(vas:VelocityAnalogSpeed,vc:VelocityComponent,part:ParticuleBodyFlag) {
+	@u function undefinedInputAffects(vas:AnalogSpeedComponent,vc:VelocityComponent,part:ParticuleBodyFlag) {
 		
 		vc.dx = vas.xSpeed;
 		vc.dy = vas.ySpeed;
 	}
 
-	@u function kinematicInputAffects(vas:VelocityAnalogSpeed,vc:VelocityComponent,kin:KinematicBodyFlag) {
+	@u function kinematicInputAffects(vas:AnalogSpeedComponent,vc:VelocityComponent,kin:KinematicBodyFlag) {
 		if (vas.xSpeed != 0) {
 			var speed = 0.3;
 				vc.dx += vas.xSpeed * speed;

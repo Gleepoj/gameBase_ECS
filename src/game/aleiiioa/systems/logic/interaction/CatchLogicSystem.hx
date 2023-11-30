@@ -119,8 +119,8 @@ class CatchLogicSystem extends echoes.System {
     }
 
     function throwObject(en:echoes.Entity,vc:VelocityComponent){ 
-        en.get(VelocityAnalogSpeed).xSpeed = vc.dx * 20;
-        en.get(VelocityAnalogSpeed).ySpeed = -2;
+        en.get(AnalogSpeedComponent).xSpeed = vc.dx * 20;
+        en.get(AnalogSpeedComponent).ySpeed = -2;
     }
 
 }

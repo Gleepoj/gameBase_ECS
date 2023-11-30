@@ -23,7 +23,7 @@ class ParticulesBuilders {
         var ang = M.frandRange(-Math.PI,Math.PI);
         var spx = Math.cos(ang)*M.frandRange(0.2,1); 
         var spy = Math.sin(ang)*M.frandRange(0.2,1); 
-        var vas = new VelocityAnalogSpeed(spx,spy);
+        var vas = new AnalogSpeedComponent(spx,spy);
         var vc  = new VelocityComponent();
         
         var body = new ParticuleBodyFlag();
@@ -44,7 +44,7 @@ class ParticulesBuilders {
         var ang = M.frandRange(-Math.PI,Math.PI);
         var spx = Math.cos(ang)*M.frandRange(0.2,1); 
         var spy = Math.sin(ang)*M.frandRange(0.2,1); 
-        var vas = new VelocityAnalogSpeed(spx,spy);
+        var vas = new AnalogSpeedComponent(spx,spy);
         var body = new ParticuleBodyFlag();
         var fric = new FrictionSensitiveAffects();
 
@@ -58,7 +58,7 @@ class ParticulesBuilders {
         var pa  = new ParticulesComponent(lifetime,fric);
         var bmp = new BitmapComponent(Assets.smoke,0.5,null,seed);
         var gp  = new GridPosition(gpemit.cx,gpemit.cy,gpemit.xr,gpemit.yr);
-        var vas = new VelocityAnalogSpeed(dirX,dirY);
+        var vas = new AnalogSpeedComponent(dirX,dirY);
         
         var vc  = new VelocityComponent();
         var body = new ParticuleBodyFlag();
@@ -74,7 +74,7 @@ class ParticulesBuilders {
         var pa  = new ParticulesComponent(lifetime,fric);
         var bmp = new BitmapComponent(Assets.smoke,0.5,null,seed);
         var gp  = new GridPosition(gpemit.cx,gpemit.cy,gpemit.xr,gpemit.yr);
-        var vas = new VelocityAnalogSpeed(dirX,dirY);
+        var vas = new AnalogSpeedComponent(dirX,dirY);
         
         var vc  = new VelocityComponent();
         var body = new ParticuleBodyFlag();
