@@ -64,7 +64,6 @@ class Aleiiioa extends Game {
 		Workflow.addSystem(new GridPositionActualizer());
 
 		//Interaction
-		
 		Workflow.add60FpsSystem(new CatchLogicSystem());
 		Workflow.add60FpsSystem(new BombLogicSystem());
 		

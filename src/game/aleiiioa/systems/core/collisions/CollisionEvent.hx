@@ -44,7 +44,7 @@ class InstancedCollisionEvent {
 
     public function new() {
         allowInteract = new Event_OnInteractArea();
-        allowDialog = new Event_OnDialogArea();
+        allowDialog   = new Event_OnDialogArea();
         reset  = new Event_Reset();
     }
     

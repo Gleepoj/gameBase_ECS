@@ -1,11 +1,13 @@
 package aleiiioa.systems.logic.interaction;
 
+import aleiiioa.components.logic.interaction.InteractionListener;
+import aleiiioa.components.logic.interaction.InteractionEvent.InstancedInteractionEvent;
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.qualia.PlayerFlag;
 import aleiiioa.components.logic.interaction.catching.*;
 import aleiiioa.components.logic.*;
 import aleiiioa.components.core.physics.*;
-import aleiiioa.components.core.collision.CollisionsListener;
+//import aleiiioa.components.core.collision.InteractionListener;
 import aleiiioa.components.core.position.*;
 import aleiiioa.components.core.position.flags.*;
 import echoes.View;
@@ -13,23 +15,25 @@ import aleiiioa.systems.core.collisions.CollisionEvent.InstancedCollisionEvent;
 
 class CatchLogicSystem extends echoes.System {
     
-    var ALL_CATCHER  :View<Catcher,GridPosition,CollisionsListener>;
-    var ALL_CATCHABLE:View<CatchableCollection,GridPosition,CollisionsListener>;
+    var ALL_CATCHER  :View<Catcher,GridPosition,InteractionListener>;
+    var ALL_CATCHABLE:View<CatchableCollection,GridPosition,InteractionListener>;
     var ALL_CATCHED  :View<IsCatched,MasterGridPosition,GridPositionOffset,ChildPositionFlag>;
 
-    var events:InstancedCollisionEvent;
+    var events:InstancedInteractionEvent;
 
     public function new() {
-        events = new InstancedCollisionEvent();
+        events = new InstancedInteractionEvent();
     }
 
-    
+    @u function updateListener(dt:Float,il:InteractionListener){
+        il.cd.update(dt);
+    }
     // Input logic could be move to another system
-    @u function playerRequireCatching(en:echoes.Entity,pl:PlayerFlag,cl:CollisionsListener,inp:InputComponent) {
+    @u function playerRequireCatching(en:echoes.Entity,pl:PlayerFlag,il:InteractionListener,inp:InputComponent) {
         
-        if(cl.onInteract && inp.ca.isPressed(ActionX) && !en.exists(IsOnCatch)){
+        if(il.onInteract && inp.ca.isPressed(ActionX) && !en.exists(IsOnCatch)){
             en.add(new OnQueryCatch());
-        }
+        } 
 
         if(inp.ca.isPressed(ActionX) && en.exists(IsOnCatch)){
             en.add(new OnQueryThrow());
@@ -37,7 +41,7 @@ class CatchLogicSystem extends echoes.System {
     }
     
 
-    @u function CatcherInInteractArea(catcher:Catcher,gp:GridPosition,cl:CollisionsListener) {
+    @u function CatcherInInteractArea(catcher:Catcher,gp:GridPosition,il:InteractionListener) {
         var head = ALL_CATCHABLE.entities.head;
         var playerPos = gp.gpToVector();
 
@@ -45,15 +49,15 @@ class CatchLogicSystem extends echoes.System {
             var obj = head.value;
             var objPos = obj.get(GridPosition).gpToVector();
             if(playerPos.distance(objPos)<10){
-                cl.lastEvent = events.allowInteract;
-                orderListener(cl);
+                il.lastEvent = events.allowInteract;
+                il.order();
             }
             head = head.next;
         }
     }
 
     
-    @u function CatchableInInteractArea(catchable:CatchableCollection,gp:GridPosition,cl:CollisionsListener) {
+    @u function CatchableInInteractArea(catchable:CatchableCollection,gp:GridPosition,il:InteractionListener) {
         var head = ALL_CATCHER.entities.head;
         var objPos = gp.gpToVector();
 
@@ -61,8 +65,8 @@ class CatchLogicSystem extends echoes.System {
             var catcher = head.value;
             var catcherPos = catcher.get(GridPosition).gpToVector();
             if(catcherPos.distance(objPos)<10){
-                cl.lastEvent = events.allowInteract;
-                orderListener(cl);
+                il.lastEvent = events.allowInteract;
+                il.order();
             }
             head = head.next;
         }    
@@ -74,7 +78,7 @@ class CatchLogicSystem extends echoes.System {
         
         while (head != null){
             var catchable = head.value;
-            var ocl = catchable.get(CollisionsListener);
+            var ocl = catchable.get(InteractionListener);
             if(ocl.onInteract){
                 linkObject(catchable,mgp);
                 en.add(new IsOnCatch());
@@ -94,8 +98,8 @@ class CatchLogicSystem extends echoes.System {
             head = head.next;
             }
             
-            en.remove(IsOnCatch);
-            en.remove(OnQueryThrow);
+        en.remove(IsOnCatch);
+        en.remove(OnQueryThrow);
     }
 
 
@@ -119,9 +123,9 @@ class CatchLogicSystem extends echoes.System {
     }
 
     
-    function orderListener(cl:CollisionsListener){
+   /*  function orderListener(cl:InteractionListener){
         if (cl.lastEvent!=null)
             cl.lastEvent.send(cl);
-    }
+    } */
 
 }

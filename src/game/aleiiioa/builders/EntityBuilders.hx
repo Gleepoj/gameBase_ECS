@@ -2,6 +2,7 @@ package aleiiioa.builders;
 
 
 
+import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.core.physics.flags.affects.*;
 import aleiiioa.components.core.physics.flags.body.*;
 import aleiiioa.components.logic.interaction.catching.CatchableCollection;
@@ -49,6 +50,7 @@ class EntityBuilders {
         //Logic and Dialog Component
         //var ic    = new InteractiveComponent();
         var em    = new EmitterComponent();
+        var il    = new InteractionListener();
         var yarn  = new DialogReferenceComponent(yarnDialogName,pos.attachX,pos.attachY);
         
         //Flags
@@ -62,7 +64,7 @@ class EntityBuilders {
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,em,yarn,pnj,catchable,kinematic,g,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,em,yarn,il,pnj,catchable,kinematic,g,f,w);
         // Uncomment next entity creation and comment previous one to remove catchable behavior 
         // new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,body);
     }
@@ -82,6 +84,7 @@ class EntityBuilders {
         se.baseColor = new Vector(0.3,0.2,0.8);
 
         //Logic and Dialog Component
+        var il    = new InteractionListener();
         var ic    = new BombComponent();
         var em    = new EmitterComponent();
         
@@ -96,7 +99,7 @@ class EntityBuilders {
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,ic,se,em,catchable,kinematic,g,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,il,ic,se,em,catchable,kinematic,g,f,w);
     }
 
     public static function player(cx:Int,cy:Int) {
@@ -118,6 +121,7 @@ class EntityBuilders {
         se.baseColor = new Vector(0.5,0.2,0.6);
 
         var em = new EmitterComponent();
+        var il    = new InteractionListener();
         var inp= new InputComponent();
         
         //Ability
@@ -134,7 +138,7 @@ class EntityBuilders {
         var speaker = new PlayerDialogFlag();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,player,master,speaker,catcher,kinematic,g,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,g,f,w);
     }
 
     

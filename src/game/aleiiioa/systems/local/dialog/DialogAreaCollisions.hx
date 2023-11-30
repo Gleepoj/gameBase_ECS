@@ -1,5 +1,7 @@
 package aleiiioa.systems.local.dialog;
 
+import aleiiioa.components.logic.interaction.InteractionEvent.InstancedInteractionEvent;
+import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.flags.logic.*;
 import aleiiioa.components.local.dialog.flag.*;
 
@@ -14,13 +16,13 @@ class DialogAreaCollisions extends echoes.System {
     var ALL_PNJ:View<GridPosition,PNJDialogFlag>;
     var PLAYER_SPEAKER:View<GridPosition,PlayerDialogFlag>;
 
-    var events:InstancedCollisionEvent;
+    var events:InstancedInteractionEvent;
 
     public function new() {
-        events = new InstancedCollisionEvent();
+        events = new InstancedInteractionEvent();
     }
 
-    @u function playerInDialogArea(gp:GridPosition,flag:PlayerDialogFlag,cl:CollisionsListener) {
+    @u function playerInDialogArea(gp:GridPosition,flag:PlayerDialogFlag,il:InteractionListener) {
         var head = ALL_PNJ.entities.head;
         var playerPos = gp.gpToVector();
 
@@ -28,28 +30,28 @@ class DialogAreaCollisions extends echoes.System {
             var pnj = head.value;
             var pnjPos = pnj.get(GridPosition).gpToVector();
             if(playerPos.distance(pnjPos)<30){
-                cl.lastEvent = events.allowDialog;
-                orderListener(cl);
+                il.lastEvent = events.allowDialog;
+                il.order();
             }
             head = head.next;
         }
     }
 
-    @u function pnjInDialogArea(gp:GridPosition,flag:PNJDialogFlag,cl:CollisionsListener) {
+    @u function pnjInDialogArea(gp:GridPosition,flag:PNJDialogFlag,il:InteractionListener) {
         var player = PLAYER_SPEAKER.entities.head.value;
         var pgp = player.get(GridPosition);
         var playerPos = pgp.gpToVector();
         var pnjPos = gp.gpToVector();
 
         if(playerPos.distance(pnjPos)<30){
-            cl.lastEvent = events.allowDialog;
-            orderListener(cl);
+            il.lastEvent = events.allowDialog;
+            il.order();
         }
         
     }
     
-    function orderListener(cl:CollisionsListener){
+/*     function orderListener(cl:CollisionsListener){
         if (cl.lastEvent!=null)
             cl.lastEvent.send(cl);
-    }
+    } */
 }

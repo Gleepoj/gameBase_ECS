@@ -1,5 +1,6 @@
 package aleiiioa.systems.local.dialog;
 
+import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.local.dialog.YarnDialogListener;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.input.InputComponent;
@@ -35,15 +36,15 @@ class DialogInputSystem extends echoes.System {
 
     }
 
-	@u function getCurrentDialog(pnj:PNJDialogFlag,yarn:DialogReferenceComponent,cl:CollisionsListener) {
+	@u function getCurrentDialog(pnj:PNJDialogFlag,yarn:DialogReferenceComponent,il:InteractionListener) {
 		if(yarn != currentDialog)
-			if(cl.onArea)
+			if(il.onArea)
 				currentDialog = yarn;
 
 	}
 
-	@u function updateSystem(p:PlayerDialogFlag,cl:CollisionsListener,gameInput:InputComponent,gp:GridPosition){
-		if(cl.onArea){
+	@u function updateSystem(p:PlayerDialogFlag,il:InteractionListener,gameInput:InputComponent,gp:GridPosition){
+		if(il.onArea){
 			if(gameInput.ca.isPressed(Interaction)){
 				currentDialog.attachX = gp.attachX;
 				currentDialog.attachY = gp.attachY;
