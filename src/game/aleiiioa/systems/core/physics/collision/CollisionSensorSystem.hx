@@ -1,4 +1,4 @@
-package aleiiioa.systems.core.physics;
+package aleiiioa.systems.core.physics.collision;
 
 import aleiiioa.components.core.physics.velocity.VelocityComponent;
 import aleiiioa.components.core.physics.collision.CollisionSensor;

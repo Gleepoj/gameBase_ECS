@@ -1,4 +1,4 @@
-package aleiiioa.systems.core.physics;
+package aleiiioa.systems.core.physics.velocity;
 
 import aleiiioa.components.core.physics.collision.affects.*;
 import aleiiioa.components.core.physics.velocity.body.ParticuleBodyFlag;

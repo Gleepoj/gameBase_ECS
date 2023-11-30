@@ -13,7 +13,9 @@ import aleiiioa.systems.local.particules.*;
 import aleiiioa.systems.core.renderer.*;
 import aleiiioa.systems.core.input.*;
 import aleiiioa.systems.core.physics.*;
-import aleiiioa.systems.core.position.*;
+import aleiiioa.systems.core.physics.collision.*;
+import aleiiioa.systems.core.physics.position.*;
+import aleiiioa.systems.core.physics.velocity.*;
 import aleiiioa.systems.core.collisions.*;
 
 import aleiiioa.systems.local.dialog.*;

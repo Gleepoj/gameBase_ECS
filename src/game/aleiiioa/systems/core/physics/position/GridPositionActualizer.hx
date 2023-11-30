@@ -1,4 +1,4 @@
-package aleiiioa.systems.core.position;
+package aleiiioa.systems.core.physics.position;
 
 
 import aleiiioa.components.core.physics.velocity.VelocityComponent;
