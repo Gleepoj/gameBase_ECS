@@ -5,7 +5,7 @@ import aleiiioa.components.core.physics.flags.body.ParticuleBodyFlag;
 import aleiiioa.components.core.physics.flags.affects.GravitySensitiveAffects;
 import aleiiioa.components.core.physics.flags.body.KinematicBodyFlag;
 import echoes.Entity;
-import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.components.core.collision.CollisionSensor;
 import aleiiioa.components.core.physics.*;
 
 
@@ -31,7 +31,7 @@ class VelocitySystem extends echoes.System {
 		vas.ySpeed = 0;
 	}
 
-	@u function kinematicGravityAffects(cl:CollisionsListener,vc:VelocityComponent,kin:KinematicBodyFlag,gr:GravitySensitiveAffects){
+	@u function kinematicGravityAffects(cl:CollisionSensor,vc:VelocityComponent,kin:KinematicBodyFlag,gr:GravitySensitiveAffects){
 		
 		if(cl.onGround)
 			cl.cd.setS("recentlyOnGround",0.01);

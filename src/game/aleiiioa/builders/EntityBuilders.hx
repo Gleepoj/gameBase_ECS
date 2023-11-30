@@ -39,7 +39,7 @@ class EntityBuilders {
         var pos = new GridPosition(cx,cy);
         var vas = new VelocityAnalogSpeed(0,0);
         var vc  = new VelocityComponent();
-        var cl  = new CollisionsListener();
+        var cl  = new CollisionSensor();
         
         //Rendering Component
         var spr = new SpriteComponent(D.tiles.fxCircle15);
@@ -75,7 +75,7 @@ class EntityBuilders {
         var pos = new GridPosition(cx,cy);
         var vas = new VelocityAnalogSpeed(0,0);
         var vc  = new VelocityComponent();
-        var cl  = new CollisionsListener();
+        var cl  = new CollisionSensor();
         
         //Rendering Component
         var spr = new SpriteComponent(D.tiles.fxCircle15);
@@ -108,7 +108,7 @@ class EntityBuilders {
         var pos = new GridPosition(cx,cy);
         var vas = new VelocityAnalogSpeed(0,0);
         var vc  = new VelocityComponent();
-        var cl  = new CollisionsListener();
+        var cl  = new CollisionSensor();
         
         //Hierarchy Component and Flag (to attach any entity depending on player position)
         var mpos   = new MasterGridPosition(cx,cy);

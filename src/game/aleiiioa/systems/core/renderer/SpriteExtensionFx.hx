@@ -2,7 +2,7 @@ package aleiiioa.systems.core.renderer;
 
 //import aleiiioa.components.core.SpriteExtension;
 import aleiiioa.components.logic.interaction.InteractionListener;
-import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.components.core.collision.CollisionSensor;
 import aleiiioa.components.core.rendering.*;
 import echoes.System;
 
@@ -15,7 +15,7 @@ class SpriteExtensionFx extends System {
             spr.colorize(se.baseColor.toColor());
     }
 
-    @u function collideDebug(spr:SpriteComponent,se:SpriteExtension,cl:CollisionsListener,il:InteractionListener) {
+    @u function collideDebug(spr:SpriteComponent,se:SpriteExtension,cl:CollisionSensor,il:InteractionListener) {
         spr.colorize(se.baseColor.toColor());
         
         if(il.onArea){

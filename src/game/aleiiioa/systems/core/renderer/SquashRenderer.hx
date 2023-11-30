@@ -1,7 +1,7 @@
 package aleiiioa.systems.core.renderer;
 
 import aleiiioa.components.core.rendering.SquashComponent;
-import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.components.core.collision.CollisionSensor;
 import echoes.System;
 
 class SquashRenderer extends System {
@@ -9,7 +9,7 @@ class SquashRenderer extends System {
         
     }
 
-    @u function updateSquash(sq:SquashComponent, cl:CollisionsListener) {
+    @u function updateSquash(sq:SquashComponent, cl:CollisionSensor) {
         if(cl.onFall)
             sq.squashX = 0.90;
 

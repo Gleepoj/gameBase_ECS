@@ -1,7 +1,7 @@
 package aleiiioa.systems.local.particules;
 
 import aleiiioa.builders.VfxBuilders;
-import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.components.core.collision.CollisionSensor;
 import aleiiioa.builders.ParticulesBuilders;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.local.particules.*;
@@ -15,7 +15,7 @@ class ParticulesSystem extends echoes.System {
     @a function onEmitterAdded(em:EmitterComponent,gp:GridPosition) {
     }
 
-    @u private function updateEmitter(dt:Float,em:EmitterComponent,gp:GridPosition,cl:CollisionsListener){
+    @u private function updateEmitter(dt:Float,em:EmitterComponent,gp:GridPosition,cl:CollisionSensor){
         em.cd.update(dt);
 
         if(cl.onLanding && !em.cd.has("cooldown")){

@@ -5,7 +5,7 @@ import dn.Cooldown;
 
 
 
-class CollisionsListener {
+class CollisionSensor {
  
     public var cd:Cooldown;
 

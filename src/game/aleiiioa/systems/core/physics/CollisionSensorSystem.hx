@@ -1,7 +1,7 @@
 package aleiiioa.systems.core.physics;
 
 import aleiiioa.components.core.physics.VelocityComponent;
-import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.components.core.collision.CollisionSensor;
 import aleiiioa.components.core.position.*;
 
 
@@ -19,11 +19,11 @@ class CollisionSensorSystem extends echoes.System {
 		return camera.isOnScreen(gp.attachX, gp.attachY, 0);
 	}
 
-    @u function cooldownUpdate(dt:Float,cl:CollisionsListener) {
+    @u function cooldownUpdate(dt:Float,cl:CollisionSensor) {
         cl.cd.update(dt);
     }
 
-    @u public function updateListener(entity:echoes.Entity,gp:GridPosition,cl:CollisionsListener,vc:VelocityComponent) {
+    @u public function updateListener(entity:echoes.Entity,gp:GridPosition,cl:CollisionSensor,vc:VelocityComponent) {
         if(entity.isValid() && !entity.exists(GridPositionOffset)){
             cl.on_ground = level.hasCollision(gp.cx,gp.cy+1) && vc.dy == 0 && gp.yr ==1;
             cl.on_land   = level.hasCollision(gp.cx,gp.cy+1) && vc.dy > 0;

@@ -1,7 +1,7 @@
 package aleiiioa.systems.core.input;
 
 
-import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.components.core.collision.CollisionSensor;
 import aleiiioa.components.core.physics.VelocityAnalogSpeed;
 import aleiiioa.components.core.physics.VelocityComponent;
 import hxd.Pad.PadConfig;
@@ -16,7 +16,7 @@ class InputSystem extends echoes.System {
     public function new() {
 	}
 
-	@u function updatePlayer(inp:InputComponent,vas:VelocityAnalogSpeed,cl:CollisionsListener){
+	@u function updatePlayer(inp:InputComponent,vas:VelocityAnalogSpeed,cl:CollisionSensor){
 	
 		if(inp.ca.isDown(MoveRight)){
 			vas.xSpeed = 0.3;

@@ -30,7 +30,7 @@ class ParticulesBuilders {
         var wall = new CollisionLayer_Wall();
         var fric = new FrictionSensitiveAffects();
 
-        var cl  = new CollisionsListener();
+        var cl  = new CollisionSensor();
         var ent = new echoes.Entity().add(pa,bmp,gp,vas,vc,cl,body,wall,fric);
         return ent;
     }
@@ -49,7 +49,7 @@ class ParticulesBuilders {
         var fric = new FrictionSensitiveAffects();
 
         var vc  = new VelocityComponent();
-        var cl  = new CollisionsListener();
+        var cl  = new CollisionSensor();
         var ent = new echoes.Entity().add(pa,bmp,gp,vas,vc,cl,body,fric);
         return ent;
     }
@@ -65,7 +65,7 @@ class ParticulesBuilders {
         var wall = new CollisionLayer_Wall();
         var fric = new FrictionSensitiveAffects();
 
-        var cl  = new CollisionsListener();
+        var cl  = new CollisionSensor();
         var ent = new echoes.Entity().add(pa,bmp,gp,vas,vc,cl,body,wall,fric);
         return ent;
     }
@@ -79,7 +79,7 @@ class ParticulesBuilders {
         var vc  = new VelocityComponent();
         var body = new ParticuleBodyFlag();
         var fric = new FrictionSensitiveAffects();
-        var cl  = new CollisionsListener();
+        var cl  = new CollisionSensor();
         var ent = new echoes.Entity().add(pa,bmp,gp,vas,vc,cl,body,fric);
         return ent;
     }

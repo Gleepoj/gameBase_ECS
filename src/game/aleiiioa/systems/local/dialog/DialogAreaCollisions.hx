@@ -7,7 +7,6 @@ import aleiiioa.components.local.dialog.flag.*;
 
 import echoes.View;
 
-import aleiiioa.components.core.collision.CollisionsListener;
 import aleiiioa.components.core.position.GridPosition;
 
 class DialogAreaCollisions extends echoes.System {
@@ -49,7 +48,7 @@ class DialogAreaCollisions extends echoes.System {
         
     }
     
-/*     function orderListener(cl:CollisionsListener){
+/*     function orderListener(cl:CollisionSensor){
         if (cl.lastEvent!=null)
             cl.lastEvent.send(cl);
     } */

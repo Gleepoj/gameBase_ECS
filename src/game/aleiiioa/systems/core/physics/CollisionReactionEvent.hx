@@ -2,7 +2,7 @@ package aleiiioa.systems.core.physics;
 
 import aleiiioa.components.core.physics.flags.affects.CollisionLayer_Wall;
 import aleiiioa.components.core.physics.OnPreStepX;
-import aleiiioa.components.core.collision.CollisionsListener;
+import aleiiioa.components.core.collision.CollisionSensor;
 import aleiiioa.components.core.physics.VelocityComponent;
 import aleiiioa.components.core.position.GridPosition;
 import aleiiioa.components.core.physics.OnPreStepY;
@@ -23,7 +23,7 @@ class CollisionReactionEvent extends echoes.System {
 			gp.xr = 0.3;
     }
 
-    @a function floorCollisionOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition, vc:VelocityComponent,cl:CollisionsListener, layer:CollisionLayer_Wall){
+    @a function floorCollisionOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition, vc:VelocityComponent,cl:CollisionSensor, layer:CollisionLayer_Wall){
        		// Land on ground
 		if( gp.yr>1 && level.hasCollision(gp.cx,gp.cy+1) ) {
 			vc.dy  = 0;
