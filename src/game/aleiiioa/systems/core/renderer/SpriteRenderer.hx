@@ -1,15 +1,14 @@
 package aleiiioa.systems.core.renderer;
 
 import h3d.Vector;
-import echoes.System;
+
 import aleiiioa.components.core.rendering.*;
-//import aleiiioa.components.core.SpriteExtension;
+
 import aleiiioa.components.core.physics.position.GridPosition;
 
 class SpriteRenderer extends echoes.System {
 	var gameScroller:h2d.Layers;
 	var game:Game;
-
 
 	public function new(scroller:h2d.Layers,_game:Game) {
 		this.gameScroller = scroller;

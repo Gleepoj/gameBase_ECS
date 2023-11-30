@@ -1,12 +1,12 @@
 package aleiiioa.systems.core.renderer;
 
-//import aleiiioa.components.core.SpriteExtension;
+
+import aleiiioa.components.core.rendering.*;
+
 import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.core.physics.collision.CollisionSensor;
-import aleiiioa.components.core.rendering.*;
-import echoes.System;
 
-class SpriteExtensionFx extends System {
+class SpriteExtensionFx extends echoes.System {
     public function new() {
         
     }

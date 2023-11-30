@@ -1,11 +1,14 @@
 package aleiiioa.systems.core.physics.collision;
 
-import aleiiioa.components.core.physics.collision.affects.CollisionLayer_Wall;
+
 import aleiiioa.components.core.physics.collision.OnPreStepX;
+import aleiiioa.components.core.physics.collision.OnPreStepY;
 import aleiiioa.components.core.physics.collision.CollisionSensor;
+import aleiiioa.components.core.physics.collision.affects.CollisionLayer_Wall;
+
 import aleiiioa.components.core.physics.velocity.VelocityComponent;
 import aleiiioa.components.core.physics.position.GridPosition;
-import aleiiioa.components.core.physics.collision.OnPreStepY;
+
 
 class CollisionReactionEvent extends echoes.System {
     public var level(get,never) : Level; inline function get_level() return Game.ME.level;
@@ -14,7 +17,7 @@ class CollisionReactionEvent extends echoes.System {
     }
 
     @a function wallCollisionOnPreStepX(en:echoes.Entity, add:OnPreStepX, gp:GridPosition, layer:CollisionLayer_Wall){
-        		// Right collision
+        // Right collision
 		if( gp.xr>0.6 && level.hasCollision(gp.cx+1,gp.cy) )
 			gp.xr = 0.6;
 		

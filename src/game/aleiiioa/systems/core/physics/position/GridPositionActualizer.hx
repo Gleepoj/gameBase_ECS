@@ -1,12 +1,13 @@
 package aleiiioa.systems.core.physics.position;
 
 
-import aleiiioa.components.core.physics.velocity.VelocityComponent;
-import aleiiioa.components.core.physics.position.flags.ChildPositionFlag;
-import aleiiioa.components.core.physics.position.flags.MasterPositionFlag;
+import aleiiioa.components.core.physics.position.flags.*;
 import aleiiioa.components.core.physics.position.*;
-import aleiiioa.components.core.physics.collision.*;
-import aleiiioa.components.core.physics.velocity.*;
+
+import aleiiioa.components.core.physics.velocity.VelocityComponent;
+import aleiiioa.components.core.physics.collision.OnPreStepX;
+import aleiiioa.components.core.physics.collision.OnPreStepY;
+
 
 
 class GridPositionActualizer extends echoes.System {
@@ -19,7 +20,7 @@ class GridPositionActualizer extends echoes.System {
 	   onPosManuallyChanged(gp);
     }
 
-	@u function steppedPositionUpdateAndCallCollisions(en:echoes.Entity,gp:GridPosition,vc:VelocityComponent) {
+	@u function steppedPositionUpdateAndCollisionCall(en:echoes.Entity,gp:GridPosition,vc:VelocityComponent) {
 		// step is the max lenght of a implemented movement (in grid ratio) in one frame (0.33 is the max speed) precision could be improved by using a smaller step 0.2
 		
 		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);

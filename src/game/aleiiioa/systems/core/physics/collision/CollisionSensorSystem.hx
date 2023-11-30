@@ -1,23 +1,19 @@
 package aleiiioa.systems.core.physics.collision;
 
-import aleiiioa.components.core.physics.velocity.VelocityComponent;
 import aleiiioa.components.core.physics.collision.CollisionSensor;
+
+import aleiiioa.components.core.physics.velocity.VelocityComponent;
 import aleiiioa.components.core.physics.position.*;
 
 
 import echoes.Entity;
 
 class CollisionSensorSystem extends echoes.System {
-    public var level(get,never) : Level; inline function get_level() return Game.ME.level;
-    public var camera(get,never): Camera; inline function get_camera() return Game.ME.camera; 
     
-    public function new() {
-        
+    public var level(get,never) : Level; inline function get_level() return Game.ME.level;
+    
+    public function new() {    
     }
-
-	public inline function isOnScreen(gp:GridPosition) {
-		return camera.isOnScreen(gp.attachX, gp.attachY, 0);
-	}
 
     @u function cooldownUpdate(dt:Float,cl:CollisionSensor) {
         cl.cd.update(dt);
