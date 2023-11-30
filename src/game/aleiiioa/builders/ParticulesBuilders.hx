@@ -1,8 +1,8 @@
 package aleiiioa.builders;
 
-import aleiiioa.components.core.physics.flags.affects.FrictionSensitiveAffects;
+import aleiiioa.components.core.physics.collision.affects.FrictionSensitiveAffects;
 import aleiiioa.components.core.physics.velocity.body.ParticuleBodyFlag;
-import aleiiioa.components.core.physics.flags.affects.CollisionLayer_Wall;
+import aleiiioa.components.core.physics.collision.affects.CollisionLayer_Wall;
 
 import echoes.Entity;
 

@@ -3,7 +3,7 @@ package aleiiioa.builders;
 
 
 import aleiiioa.components.logic.interaction.InteractionListener;
-import aleiiioa.components.core.physics.flags.affects.*;
+import aleiiioa.components.core.physics.collision.affects.*;
 import aleiiioa.components.core.physics.velocity.body.*;
 import aleiiioa.components.logic.interaction.catching.CatchableCollection;
 import aleiiioa.components.logic.interaction.catching.Catcher;

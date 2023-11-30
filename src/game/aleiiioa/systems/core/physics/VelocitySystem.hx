@@ -1,8 +1,8 @@
 package aleiiioa.systems.core.physics;
 
-import aleiiioa.components.core.physics.flags.affects.*;
+import aleiiioa.components.core.physics.collision.affects.*;
 import aleiiioa.components.core.physics.velocity.body.ParticuleBodyFlag;
-import aleiiioa.components.core.physics.flags.affects.GravitySensitiveAffects;
+import aleiiioa.components.core.physics.collision.affects.GravitySensitiveAffects;
 import aleiiioa.components.core.physics.velocity.body.KinematicBodyFlag;
 import echoes.Entity;
 import aleiiioa.components.core.physics.collision.CollisionSensor;

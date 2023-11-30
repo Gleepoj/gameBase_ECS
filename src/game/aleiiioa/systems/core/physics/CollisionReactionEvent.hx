@@ -1,6 +1,6 @@
 package aleiiioa.systems.core.physics;
 
-import aleiiioa.components.core.physics.flags.affects.CollisionLayer_Wall;
+import aleiiioa.components.core.physics.collision.affects.CollisionLayer_Wall;
 import aleiiioa.components.core.physics.collision.OnPreStepX;
 import aleiiioa.components.core.physics.collision.CollisionSensor;
 import aleiiioa.components.core.physics.velocity.VelocityComponent;
