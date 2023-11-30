@@ -1,13 +1,13 @@
 package aleiiioa.systems.logic.object;
 
-import aleiiioa.components.logic.interaction.catching.IsCatched;
-import aleiiioa.components.core.physics.position.GridPosition;
-import aleiiioa.components.local.particules.EmitterComponent;
+import aleiiioa.components.logic.qualia.*;
 import aleiiioa.components.logic.object.BombComponent;
-import aleiiioa.components.logic.qualia.*;
-import aleiiioa.builders.VfxBuilders;
+import aleiiioa.components.logic.interaction.catching.IsCatched;
 
-import aleiiioa.components.logic.qualia.*;
+import aleiiioa.builders.VfxBuilders;
+import aleiiioa.components.local.particules.EmitterComponent;
+import aleiiioa.components.core.physics.position.GridPosition;
+
 
 class BombLogicSystem  extends echoes.System{
     public function new() {

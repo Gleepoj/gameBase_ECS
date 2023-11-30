@@ -2,9 +2,8 @@ package aleiiioa.systems.core.renderer;
 
 import aleiiioa.components.core.rendering.SquashComponent;
 import aleiiioa.components.core.physics.collision.CollisionSensor;
-import echoes.System;
 
-class SquashRenderer extends System {
+class SquashRenderer extends echoes.System {
     public function new() {
         
     }

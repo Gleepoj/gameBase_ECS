@@ -2,14 +2,14 @@ package aleiiioa.systems.logic.interaction;
 
 import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.logic.interaction.InteractionEvent.InstancedInteractionEvent;
-import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.logic.qualia.PlayerFlag;
 import aleiiioa.components.logic.interaction.catching.*;
-import aleiiioa.components.logic.*;
+
+import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.physics.velocity.*;
-//import aleiiioa.components.core.physics.collision.InteractionListener;
 import aleiiioa.components.core.physics.position.*;
 import aleiiioa.components.core.physics.position.flags.*;
+
 import echoes.View;
 
 
@@ -122,11 +122,5 @@ class CatchLogicSystem extends echoes.System {
         en.get(VelocityAnalogSpeed).xSpeed = vc.dx * 20;
         en.get(VelocityAnalogSpeed).ySpeed = -2;
     }
-
-    
-   /*  function orderListener(cl:InteractionListener){
-        if (cl.lastEvent!=null)
-            cl.lastEvent.send(cl);
-    } */
 
 }

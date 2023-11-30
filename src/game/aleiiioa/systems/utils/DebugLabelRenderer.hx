@@ -1,15 +1,11 @@
 package aleiiioa.systems.utils;
 
-
-
 import echoes.Entity;
 import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.utils.debug.DebugLabel;
 
 
-import echoes.System;
-
-class DebugLabelRenderer extends System{
+class DebugLabelRenderer extends echoes.System{
     var gameScroller:h2d.Layers;
 	var val:Float =0 ;
     
@@ -20,16 +16,11 @@ class DebugLabelRenderer extends System{
     @a function onEntityAdd(dl:DebugLabel,gp:GridPosition){
 
     }
+
     @r function onEntityRemove(dl:DebugLabel) {
         dl.debugLabel.remove();
     }
-/* 
-    @u function updateDebugBounds(dl:DebugLabel,gp:GridPosition,veil:VeilComponent) {
-        debugFloat(dl,);
-        renderAllDebugs(dl,gp);
-    } */
 
-	 
 	function renderAllDebugs(dl:DebugLabel,gp:GridPosition) {
 
         		// Debug label
