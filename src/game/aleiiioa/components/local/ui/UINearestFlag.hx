@@ -1,4 +1,4 @@
-package aleiiioa.components.core.local.ui;
+package aleiiioa.components.local.ui;
 
 class UINearestFlag {
     public var distance:Float = 0;

@@ -1,12 +1,12 @@
 package aleiiioa.systems.tactical;
 
-import aleiiioa.components.core.local.ui.UIObject;
-import aleiiioa.components.core.local.ui.InteractiveHeapsComponent;
+import aleiiioa.components.local.ui.UIObject;
+import aleiiioa.components.local.ui.InteractiveHeapsComponent;
 import aleiiioa.components.core.physics.position.GridPosition;
 import h2d.ScaleGrid;
 import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.core.rendering.SpriteComponent;
-import aleiiioa.components.core.local.ui.UISelectorFlag;
+import aleiiioa.components.local.ui.UISelectorFlag;
 
 
 

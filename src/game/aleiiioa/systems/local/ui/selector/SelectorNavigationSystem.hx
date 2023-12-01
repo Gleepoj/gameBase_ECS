@@ -2,15 +2,13 @@ package aleiiioa.systems.tactical;
 
 
 import aleiiioa.components.core.physics.position.GridPosition;
-import aleiiioa.components.core.local.ui.UINearestFlag;
+import aleiiioa.components.local.ui.UINearestFlag;
 import aleiiioa.components.local.ui.layers.UISelectableFlag;
-import aleiiioa.components.core.local.ui.UISelectorFlag;
+import aleiiioa.components.local.ui.UISelectorFlag;
+import aleiiioa.components.local.ui.UITargetedObject;
+
 import echoes.System;
 import echoes.View;
-/* import aleiiioa.flags.ui.*;
-import aleiiioa.components.localui.*;
-import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.core.position.TransformPositionComponent; */
 
 class SelectorNavigationSystem extends echoes.System {
 	var SELECTOR:View<UISelectorFlag>;

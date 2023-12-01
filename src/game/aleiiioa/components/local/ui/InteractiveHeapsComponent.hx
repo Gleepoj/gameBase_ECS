@@ -1,4 +1,4 @@
-package aleiiioa.components.core.local.ui;
+package aleiiioa.components.local.ui;
 
 @:forward
 abstract InteractiveHeapsComponent(h2d.Interactive) from h2d.Interactive to h2d.Interactive {

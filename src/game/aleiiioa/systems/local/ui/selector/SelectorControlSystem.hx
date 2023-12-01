@@ -1,6 +1,7 @@
 package aleiiioa.systems.tactical;
 
 
+import aleiiioa.components.local.ui.UISelectorFlag;
 import aleiiioa.aleiiioa.components.core.local.ui.*;
 import aleiiioa.components.core.input.InputComponent;
 

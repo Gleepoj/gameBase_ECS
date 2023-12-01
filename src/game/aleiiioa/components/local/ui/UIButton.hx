@@ -1,4 +1,4 @@
-package aleiiioa.components.core.local.ui;
+package aleiiioa.components.local.ui;
 
 import h2d.ScaleGrid;
 
