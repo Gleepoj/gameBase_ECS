@@ -201,8 +201,15 @@ class App extends dn.Process {
 		
 		controller.bindPad(ActionX,X);
 		controller.bindPad(ActionY,Y);
-		controller.bindPad(Interaction,B);
-		controller.bindPad(Jump, A);
+		controller.bindPad(ActionA,A);
+		controller.bindPad(ActionB,B);
+
+		controller.bindPad(MoveLeft,DPAD_LEFT);
+		controller.bindPad(MoveRight,DPAD_RIGHT);
+		controller.bindPad(MoveUp,DPAD_UP);
+		controller.bindPad(MoveDown,DPAD_DOWN);
+		//controller.bindPad(Interaction,B);
+		//controller.bindPad(Jump, A);
 
 		controller.bindPad(Restart, SELECT);
 		controller.bindPad(Pause, START);
@@ -211,20 +218,27 @@ class App extends dn.Process {
 		//controller.bindKeyboardAsStick(MoveX,MoveY, K.UP, K.LEFT, K.DOWN, K.RIGHT);
 		controller.bindKeyboard(MoveLeft,K.LEFT);
 		controller.bindKeyboard(MoveRight,K.RIGHT);
+		controller.bindKeyboard(MoveUp,K.UP);
+		controller.bindKeyboard(MoveDown,K.DOWN);
 		controller.bindKeyboard(Jump, K.SPACE);
 		controller.bindKeyboard(Interaction,K.X);
 		controller.bindKeyboard(ActionX,K.Z);
 		controller.bindKeyboard(ActionY,K.C);
+		controller.bindKeyboard(ActionA,K.SPACE);
+		controller.bindKeyboard(ActionB,K.X);
 		controller.bindKeyboard(Restart, K.R);
 		controller.bindKeyboard(ScreenshotMode, K.F9);
 		controller.bindKeyboard(Pause, K.P);
 		controller.bindKeyboard(Pause, K.PAUSE_BREAK);
 		controller.bindKeyboard(MenuCancel, K.ESCAPE);
 
+
+		controller.bindKeyboard(ActionX,K.MOUSE_LEFT);
+		
 		// Debug controls
 		#if debug
-		controller.bindPad(DebugTurbo, DPAD_UP);
-		controller.bindPad(DebugSlowMo, DPAD_DOWN);
+		//controller.bindPad(DebugTurbo, DPAD_UP);
+		//controller.bindPad(DebugSlowMo, DPAD_DOWN);
 		controller.bindKeyboard(DebugTurbo, [K.END, K.NUMPAD_ADD]);
 		controller.bindKeyboard(DebugSlowMo, [K.HOME, K.NUMPAD_SUB]);
 		#end

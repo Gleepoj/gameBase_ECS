@@ -13,6 +13,9 @@ enum abstract GameAction(Int) to Int {
 	
 	var ActionX;
 	var ActionY;
+	var ActionA;
+	var ActionB;
+	
 	var Jump;
 	var Interaction;
 
@@ -24,6 +27,13 @@ enum abstract GameAction(Int) to Int {
 	var ScreenshotMode;
 
 	var MenuCancel;
+}
+
+enum abstract UISelectableType (String) to String {
+	var Category_None;
+	var Category_A;
+	var Category_B;
+	var Category_C;
 }
 
 enum Affect {
@@ -54,7 +64,7 @@ enum  UI_Button_Event {
 	Order_Next;
 	Order_Previous;
 	Order_Undefined;
-	
+
 }
 
 enum abstract LevelMark(Int) to Int {
