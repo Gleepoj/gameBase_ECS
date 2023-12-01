@@ -92,8 +92,8 @@ class WorkflowBuilders {
 		
 		
 		// ECS //
-		var player = level.data.l_Entities.all_Player[0];
-		EntityBuilders.player(player.cx,player.cy);
+		//var player = level.data.l_Entities.all_Player[0];
+		//EntityBuilders.player(player.cx,player.cy);
 
 		for (e in level.data.l_Entities.all_PNJ){
 			EntityBuilders.pnj(e.cx,e.cy,e.f_Dialog);

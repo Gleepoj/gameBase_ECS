@@ -23,6 +23,11 @@ class UIBuilders {
             var ucc = new HelperCheckComponent(label,get,set);
             new echoes.Entity().add(ucc);
         }
+        
+        public static function debugfloat(label : String, get : Void -> Float, set : Float -> Void) {
+            var udf = new HelperDebugFloat(label,get,set);
+            new echoes.Entity().add(udf);
+        }
 
         public static function dialogEntity(_yarnFile:DialogReferenceComponent){
             

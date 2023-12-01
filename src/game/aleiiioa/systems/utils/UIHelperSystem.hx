@@ -1,5 +1,6 @@
 package aleiiioa.systems.utils;
 
+import aleiiioa.components.utils.helper.HelperDebugFloat;
 import aleiiioa.components.utils.helper.HelperCheckComponent;
 import aleiiioa.components.utils.helper.HelperSliderComponent;
 
@@ -29,6 +30,29 @@ class UIHelperSystem extends echoes.System {
 
     private function getFont() {
         return hxd.res.DefaultFont.get();
+    }
+
+    @a public function onDebugFloatAdded(df:HelperDebugFloat){
+        
+        var f = new h2d.Flow(fui);
+        
+        f.horizontalSpacing = 5;
+        f.paddingLeft = 40;
+        //f.
+    
+        var tf = new h2d.Text(getFont(), f);
+        tf.text = "::" + df.label + "::->" + df.get();
+        tf.maxWidth = 70;
+        tf.textAlign = Left;
+        df.text = tf;
+        //df.flow = f;
+
+    }
+
+    @u public function updateDebugFloat(df:HelperDebugFloat){
+
+        df.text.text = "::" + df.label + "::->" + df.get();
+
     }
 
     @a public function onSliderAdded(usc:HelperSliderComponent){

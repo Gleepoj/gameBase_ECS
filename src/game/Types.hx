@@ -43,6 +43,20 @@ enum AreaInfluence {
 	AiLarge;
 }
 
+enum  UI_Button_Event {
+
+	GameState_Play;
+	GameState_Save;
+	GameState_Load;
+	GameState_Settings;
+	GameState_Quit;
+	GameState_Menu;
+	Order_Next;
+	Order_Previous;
+	Order_Undefined;
+	
+}
+
 enum abstract LevelMark(Int) to Int {
 	var Coll_Wall;
 }
