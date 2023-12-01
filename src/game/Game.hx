@@ -2,8 +2,8 @@
 import dn.Process;
 
 class Game extends Process {
+	
 	public static var ME : Game;
-
 	public var app(get,never) : App; inline function get_app() return App.ME;
 
 	/** Game controller (pad or keyboard) **/
@@ -30,7 +30,6 @@ class Game extends Process {
 
 	public function new() {
 		super(App.ME);
-
 		ME = this;
 		ca = App.ME.controller.createAccess();
 		ca.lockCondition = isGameControllerLocked;
@@ -44,7 +43,6 @@ class Game extends Process {
 		hud = new ui.Hud();
 		camera = new Camera();
 
-		startLevel(Assets.worldData.all_worlds.Default.all_levels.Level_0);
 	}
 
 
@@ -59,20 +57,19 @@ class Game extends Process {
 
 
 	/** Load a level **/
-	function startLevel(l:World.World_Level) {
+	/** Load a level **/
+	function loadLevel(l:World.World_Level) {
 		if( level!=null ){
 			level.destroy();
-			//solver.onDispose();
 		}
+
 		fx.clear();
 
 		level = new Level(l);
-		//solver = new Solver();
 		camera.centerOnTarget();
 		hud.onLevelStart();
 		Process.resizeAll();
 	}
-
 
 
 	/** Called when either CastleDB or `const.json` changes on disk **/
@@ -87,7 +84,7 @@ class Game extends Process {
 	function onLdtkReload() {
 		hud.notify("LDtk reloaded");
 		if( level!=null )
-			startLevel(Assets.worldData.all_worlds.Default.getLevel(level.data.uid) );
+			loadLevel(Assets.worldData.all_worlds.Default.getLevel(level.data.uid) );
 	}
 
 	/** Window/app resize event **/
@@ -116,7 +113,7 @@ class Game extends Process {
 		@param sec Realtime second duration of this slowmo
 		@param speedFactor Cumulative multiplier to the Process `tmod`
 	**/
-	public function addSlowMo(id:String, sec:Float, speedFactor=0.3) {
+	public function addSlowMo(id:String, sec:Float, speedFactor = 0.1) {
 		if( slowMos.exists(id) ) {
 			var s = slowMos.get(id);
 			s.f = speedFactor;

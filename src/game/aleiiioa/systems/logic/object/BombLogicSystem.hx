@@ -27,6 +27,7 @@ class BombLogicSystem  extends echoes.System{
             if(ic.cd.getRatio("countdown") <= 0.05){
              VfxBuilders.bombSmoke(em,gp);
              en.add(new IsDiedFlag());
+             //Game.ME.addSlowMo("bomb",0.5,0.7);
             }
         }
 
