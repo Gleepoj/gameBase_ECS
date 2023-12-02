@@ -1,6 +1,6 @@
 package aleiiioa.systems.core.physics.position;
 
-import aleiiioa.components.core.physics.position.flag.OnTransformComplete;
+import aleiiioa.components.core.physics.position.flags.OnTransformComplete;
 import aleiiioa.components.core.physics.position.TransformPositionComponent;
 import aleiiioa.components.core.physics.position.GridPosition;
 

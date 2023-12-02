@@ -1,4 +1,4 @@
-package aleiiioa.systems.tactical;
+package aleiiioa.systems.local.ui.selector;
 
 
 import aleiiioa.components.core.physics.position.GridPosition;
@@ -6,6 +6,8 @@ import aleiiioa.components.local.ui.UINearestFlag;
 import aleiiioa.components.local.ui.layers.UISelectableFlag;
 import aleiiioa.components.local.ui.UISelectorFlag;
 import aleiiioa.components.local.ui.UITargetedObject;
+import aleiiioa.components.local.ui.UIMoveIntentComponent;
+import aleiiioa.components.core.physics.position.TransformPositionComponent;
 
 import echoes.System;
 import echoes.View;

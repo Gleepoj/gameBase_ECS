@@ -1,8 +1,8 @@
-package aleiiioa.systems.tactical;
+package aleiiioa.systems.local.ui.selector;
 
 
 import aleiiioa.components.local.ui.UISelectorFlag;
-import aleiiioa.aleiiioa.components.core.local.ui.*;
+import aleiiioa.components.local.ui.UIMoveIntentComponent;
 import aleiiioa.components.core.input.InputComponent;
 
 

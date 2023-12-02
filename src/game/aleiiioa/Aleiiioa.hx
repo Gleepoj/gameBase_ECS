@@ -35,8 +35,8 @@ class Aleiiioa extends Game {
 		ME = this;
 		Workflow.reset();
 		
-		startPlay();
-		//goToMenu();
+		//startPlay();
+		goToMenu();
 	}
 
 	public function startPlay(){
@@ -45,11 +45,15 @@ class Aleiiioa extends Game {
 	}
 
 	public function goToSetting(){
+
 		//Workflow.reset();
 		//game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Settings);
 		//WorkflowBuilders.newMainMenu(level);
 	}
+
 	public function goToMenu(){
+		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Level_0);
+		WorkflowBuilders.newMenu(level);
 		//Workflow.reset();
 		//game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Main_Menu);
 		//WorkflowBuilders.newMainMenu(level);

@@ -33,4 +33,37 @@ class GridPosition {
     public function gpToVector() {
         return new Vector(attachX,attachY);
     }
+
+    public function setPosCase(_cx:Int,_cy:Int) {
+		cx = _cx;
+		cy = _cy;
+		xr = 0;
+		yr = 1;
+		onPosManuallyChanged();
+	}
+
+    public function setPosPixel(x:Float, y:Float) {
+		cx = Std.int(x/Const.GRID);
+		cy = Std.int(y/Const.GRID);
+		xr = (x-cx*Const.GRID)/Const.GRID;
+		yr = (y-cy*Const.GRID)/Const.GRID;
+		onPosManuallyChanged();
+	}
+    public function onPosManuallyChanged() {
+		if( M.dist(attachX,attachY,prevFrameattachX,prevFrameattachY) > Const.GRID*2 ) {
+			prevFrameattachX = attachX;
+			prevFrameattachY = attachY;
+		}
+		updateLastFixedUpdatePos();
+	}
+
+	public function finalUpdate() {
+		prevFrameattachX = attachX;
+		prevFrameattachY = attachY;
+	}
+
+    public function updateLastFixedUpdatePos() {
+		lastFixedUpdateX = attachX;
+		lastFixedUpdateY = attachY;
+	}
 }

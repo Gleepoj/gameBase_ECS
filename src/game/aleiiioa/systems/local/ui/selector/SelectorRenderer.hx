@@ -1,4 +1,4 @@
-package aleiiioa.systems.tactical;
+package aleiiioa.systems.local.ui.selector;
 
 import aleiiioa.components.local.ui.UIObject;
 import aleiiioa.components.local.ui.InteractiveHeapsComponent;

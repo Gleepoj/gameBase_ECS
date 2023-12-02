@@ -251,7 +251,7 @@ class Camera extends dn.Process {
 
 		// Rounding
 		scroller.x = M.round(scroller.x);
-		scroller.y = -gtarget.attachY;//M.round(scroller.y);
+		scroller.y = M.round(scroller.y);
 
 		// Zoom
 		scroller.setScale(Const.SCALE * zoom);

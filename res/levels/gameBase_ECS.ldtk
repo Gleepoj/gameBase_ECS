@@ -669,18 +669,18 @@
 			}
 		}
 	], "enums": [], "externalEnums": [
-		{ "identifier": "Affect", "uid": 3, "values": [{ "id": "Stun", "tileRect": null, "color": 0 }], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "c04ce8e62b72dab7d06183652e448b0a", "tags": [] },
+		{ "identifier": "Affect", "uid": 3, "values": [{ "id": "Stun", "tileRect": null, "color": 0 }], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "27323f2dffb5875db12905cf3e7e4ea4", "tags": [] },
 		{ "identifier": "AreaEquation", "uid": 25, "values": [
 			{ "id": "EqCurl", "tileRect": null, "color": 0 },
 			{ "id": "EqDiverge", "tileRect": null, "color": 0 },
 			{ "id": "EqConverge", "tileRect": null, "color": 0 },
 			{ "id": "EqRepel", "tileRect": null, "color": 0 }
-		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "c04ce8e62b72dab7d06183652e448b0a", "tags": [] },
+		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "27323f2dffb5875db12905cf3e7e4ea4", "tags": [] },
 		{ "identifier": "AreaInfluence", "uid": 26, "values": [
 			{ "id": "AiSmall", "tileRect": null, "color": 0 },
 			{ "id": "AiMedium", "tileRect": null, "color": 0 },
 			{ "id": "AiLarge", "tileRect": null, "color": 0 }
-		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "c04ce8e62b72dab7d06183652e448b0a", "tags": [] },
+		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "27323f2dffb5875db12905cf3e7e4ea4", "tags": [] },
 		{ "identifier": "UI_Button_Event", "uid": 45, "values": [
 			{ "id": "GameState_Play", "tileRect": null, "color": 12470831 },
 			{ "id": "GameState_Save", "tileRect": null, "color": 14120515 },
@@ -691,7 +691,7 @@
 			{ "id": "Order_Next", "tileRect": null, "color": 16690740 },
 			{ "id": "Order_Previous", "tileRect": null, "color": 16705377 },
 			{ "id": "Order_Undefined", "tileRect": null, "color": 6539085 }
-		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "c04ce8e62b72dab7d06183652e448b0a", "tags": [] }
+		], "iconTilesetUid": null, "externalRelPath": "../../src/game/Types.hx", "externalFileChecksum": "27323f2dffb5875db12905cf3e7e4ea4", "tags": [] }
 	], "levelFields": [] },
 	"levels": [
 		{

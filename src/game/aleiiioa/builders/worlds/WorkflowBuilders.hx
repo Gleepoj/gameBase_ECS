@@ -1,5 +1,8 @@
 package aleiiioa.builders.worlds;
 
+import aleiiioa.systems.local.ui.selector.SelectorRenderer;
+import aleiiioa.systems.local.ui.selector.SelectorNavigationSystem;
+import aleiiioa.systems.local.ui.selector.SelectorControlSystem;
 import echoes.SystemList;
 import echoes.Entity;
 import echoes.Workflow;
@@ -27,9 +30,9 @@ class WorkflowBuilders {
     var game(get,never) : Game; inline function get_game() return Game.ME;
 	
 	
-    public static function buildMainMenu(level:Level){
+    public static function newMenu(level:Level){
         
-      /*   var cameraFocus:Entity;
+        var cameraFocus:Entity;
 	    var cameraFocusPosition:GridPosition;
 		
 		Workflow.reset();
@@ -42,28 +45,28 @@ class WorkflowBuilders {
 
 		
 
-        for (e in level.data.l_Entities.all_UIMenu){
+        for (e in level.data.l_Entities.all_UIWindow){
 			//ActorBuilders.bonhomme(e.cx,e.cy,0.,0.,opos,e.f_PieceSide);
             UIBuilders.menu(e);
 		} 
-        ActorBuilders.cursor(10,10,0.,1.1,cameraFocusPosition);
-		ActorBuilders.mouse(cameraFocusPosition);
+        //ActorBuilders.cursor(10,10,0.,1.1,cameraFocusPosition);
+		//ActorBuilders.mouse(cameraFocusPosition); */
 		
 		//Workflow.add60FpsSystem(new MouseSystem());
-		Workflow.add60FpsSystem(new CollisionsListenerActualizer());
-		Workflow.add60FpsSystem(new EntityCollisionsSystem());
+		//Workflow.add60FpsSystem(new CollisionsListenerActualizer());
+		//Workflow.add60FpsSystem(new EntityCollisionsSystem());
 		//Object
 		Workflow.add60FpsSystem(new VelocitySystem());
 		Workflow.add60FpsSystem(new GridPositionActualizer());
         Workflow.add60FpsSystem(new DelayedMovementSystem());
 		
 		Workflow.add60FpsSystem(new SelectorControlSystem());
-		Workflow.add60FpsSystem(new SelectorSelectabilitySystem());
+		///Workflow.add60FpsSystem(new SelectorSelectabilitySystem());
 		Workflow.add60FpsSystem(new SelectorNavigationSystem());
 		Workflow.add60FpsSystem(new SelectorRenderer());
 		
-		Workflow.add60FpsSystem(new UIMenuSystem());
-        Workflow.add60FpsSystem(new UISubmenuSystem());
+		//Workflow.add60FpsSystem(new UIMenuSystem());
+        //Workflow.add60FpsSystem(new UISubmenuSystem());
 
 		
 		//Graphics
@@ -74,7 +77,7 @@ class WorkflowBuilders {
 		
 	    Workflow.addSystem(new UIHelperSystem());
 		Workflow.add60FpsSystem(new InputSystem());
-		Workflow.add60FpsSystem(new GarbageCollectionSystem()); */
+		Workflow.add60FpsSystem(new GarbageCollectionSystem()); 
     }
 
 
