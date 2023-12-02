@@ -575,7 +575,7 @@
 					"tilesetUid": null
 				},
 				{
-					"identifier": "String",
+					"identifier": "Label",
 					"doc": null,
 					"__type": "String",
 					"uid": 47,
@@ -811,7 +811,7 @@
 									"id": "V_String",
 									"params": ["GameState_Play"]
 								}] },
-								{ "__identifier": "String", "__type": "String", "__value": "Play", "__tile": null, "defUid": 47, "realEditorValues": [{
+								{ "__identifier": "Label", "__type": "String", "__value": "Play", "__tile": null, "defUid": 47, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Play"]
 								}] }
@@ -836,7 +836,7 @@
 									"id": "V_String",
 									"params": ["GameState_Load"]
 								}] },
-								{ "__identifier": "String", "__type": "String", "__value": "Load", "__tile": null, "defUid": 47, "realEditorValues": [{
+								{ "__identifier": "Label", "__type": "String", "__value": "Load", "__tile": null, "defUid": 47, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Load"]
 								}] }
@@ -861,7 +861,7 @@
 									"id": "V_String",
 									"params": ["GameState_Settings"]
 								}] },
-								{ "__identifier": "String", "__type": "String", "__value": "Setting", "__tile": null, "defUid": 47, "realEditorValues": [{
+								{ "__identifier": "Label", "__type": "String", "__value": "Setting", "__tile": null, "defUid": 47, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Setting"]
 								}] }
@@ -886,7 +886,7 @@
 									"id": "V_String",
 									"params": ["GameState_Quit"]
 								}] },
-								{ "__identifier": "String", "__type": "String", "__value": "Quit", "__tile": null, "defUid": 47, "realEditorValues": [{
+								{ "__identifier": "Label", "__type": "String", "__value": "Quit", "__tile": null, "defUid": 47, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Quit"]
 								}] }

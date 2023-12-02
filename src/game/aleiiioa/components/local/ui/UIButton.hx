@@ -8,8 +8,8 @@ class UIButton {
     public var label:h2d.Text;
     public var event:UI_Button_Event;
     
-    public function new(l:h2d.Text,s:ScaleGrid){
-        scaleGrid = s;
+    public function new(l:h2d.Text){
+        
         label = l;
     }
 }

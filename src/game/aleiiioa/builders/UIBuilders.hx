@@ -1,5 +1,9 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.local.ui.UIButton;
+import aleiiioa.components.local.ui.InteractiveHeapsComponent;
+import aleiiioa.components.local.ui.UIObject;
+import h2d.ScaleGrid;
 import aleiiioa.components.core.rendering.SpriteExtension;
 import aleiiioa.components.core.rendering.SquashComponent;
 import aleiiioa.components.core.rendering.SpriteComponent;
@@ -57,11 +61,9 @@ class UIBuilders {
             var sq  = new SquashComponent();
             var se  = new SpriteExtension();
 
-            var flow = new h2d.Flow(spr);
-
-            flow.backgroundTile = Assets.tiles.getTile(D.tiles.ui_window);
-            flow.borderWidth =16;
-            flow.borderHeight=16;
+            var flow = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_window),3,3);
+            Game.ME.scroller.add(flow);
+       
             //flow.debug = true;
             
             flow.layout = Vertical;
@@ -69,6 +71,21 @@ class UIBuilders {
             flow.horizontalAlign = Middle;
             flow.padding = 60;
             flow.verticalSpacing = 20;
+            
+            var affiliatedID:Array<String> = [] ;
+            
+            for (en in e.f_Entity_ref){
+                affiliatedID.push(en.entityIid);
+            }
+            
+
+            for (en in Game.ME.level.data.l_Entities.all_UIButton){
+                for(a in affiliatedID)
+                    if(a == en.iid){
+                       UIBuilders.button(en,flow);
+                    }
+            }
+           
 
             //var affiliatedID:Array<String> = [] ;
 
@@ -84,57 +101,64 @@ class UIBuilders {
                     }
             }
             
-            for (en in Game.ME.level.data.l_Entities.all_UIButton){
-                for(a in affiliatedID)
-                    if(a == en.iid){
-                       UIBuilders.button(en,flow);
-                    }
-            }
+      
  */
 
             
             flow.reflow();
+            //flow.debug = true;
            // flow.visible = false;
             new echoes.Entity().add(pos,spr,sq,se,flow);
         } 
 
         public static function button(e:Entity_UIButton,flow:h2d.Flow){
                       
-/*             var pos = new GridPosition(0,0,0,0);
-            
-            //Rendering Component
-            
-            var g   = new ScaleGrid(Assets.tiles.getTile(D.tiles.button),7,7,flow);
-            
+            var pos = new GridPosition(0,0,0,0);
             var spr = new SpriteComponent(D.tiles.fxDot0);
             var sq  = new SquashComponent();
             var se  = new SpriteExtension();     
-
-            var cl  = new CollisionsListener();
+            spr.visible = true;
+            
+            //Rendering Component
+            
+            //var g   = new ScaleGrid(Assets.tiles.getTile(D.tiles.ui_button),2,2,flow);
+            var g = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_button),2,2,flow);
+            
+         /*    g.borderBottom = 10;
+            g.borderHeight = 10;
+            g.borderLeft = 20;
+            g.borderRight = 20; */
+           
+       
+            g.paddingHorizontal = 30;
+            g.paddingVertical   = 10;
+            //g.innerWidth   = 200;
 
             var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
-            //var cat = new UICategory_A();
             var obj = new UIObject();
 
-            txt.text= e.f_button_label;
 
-            g.ignoreScale = true;
-            g.tileBorders = true;
+
+            txt.text = e.f_Label;
+            //trace(txt.text);
+
+            //g.ignoreScale = true;
+            //g.tileBorders = true;
             
-            g.height = e.height;
-            g.width  = txt.calcTextWidth(txt.text)+30;
+            //g.height = e.height;
+            //g.width  = txt.calcTextWidth(txt.text)+30;
             
-            txt.setPosition(g.width/2,g.height/4);
-            txt.textAlign = Center;
+            //txt.setPosition(g.width/2,g.height/4);
+            //txt.textAlign = Center;
             
-            g.scaleX = 2;
-            g.scaleY = 2;
+            //g.scaleX = 2;
+            //g.scaleY = 2;
 
             var interactive = new InteractiveHeapsComponent();
-            var button      = new UIButton(txt,g);
+            var button      = new UIButton(txt);
             button.event = e.f_UI_Button_Event;
  
 
-            new echoes.Entity().add(pos,spr,sq,se,g,interactive,button,cat,obj,cl); */
+            new echoes.Entity().add(pos,spr,sq,se,g,interactive,button,obj);
         } 
     }
