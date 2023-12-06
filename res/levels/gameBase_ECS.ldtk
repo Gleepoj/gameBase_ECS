@@ -11,7 +11,7 @@
 	"iid": "37006fc0-8990-11ee-95e1-c1ff7c03c62e",
 	"jsonVersion": "1.4.1",
 	"appBuildId": 471015,
-	"nextUid": 50,
+	"nextUid": 51,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "LinearHorizontal",
@@ -608,6 +608,44 @@
 					"allowedRefsEntityUid": null,
 					"allowedRefTags": [],
 					"tilesetUid": null
+				},
+				{
+					"identifier": "isFirstTargeted",
+					"doc": null,
+					"__type": "Bool",
+					"uid": 50,
+					"type": "F_Bool",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": {
+						"id": "V_Bool",
+						"params": [ false ]
+					},
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
 				}
 			]
 		},
@@ -850,6 +888,10 @@
 								{ "__identifier": "Label", "__type": "String", "__value": "Play", "__tile": null, "defUid": 47, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Play"]
+								}] },
+								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": true, "__tile": null, "defUid": 50, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
 								}] }
 							]
 						},
@@ -875,7 +917,8 @@
 								{ "__identifier": "Label", "__type": "String", "__value": "Load", "__tile": null, "defUid": 47, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Load"]
-								}] }
+								}] },
+								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 50, "realEditorValues": [] }
 							]
 						},
 						{
@@ -900,7 +943,8 @@
 								{ "__identifier": "Label", "__type": "String", "__value": "Setting", "__tile": null, "defUid": 47, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Setting"]
-								}] }
+								}] },
+								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 50, "realEditorValues": [] }
 							]
 						},
 						{
@@ -925,7 +969,8 @@
 								{ "__identifier": "Label", "__type": "String", "__value": "Quit", "__tile": null, "defUid": 47, "realEditorValues": [{
 									"id": "V_String",
 									"params": ["Quit"]
-								}] }
+								}] },
+								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 50, "realEditorValues": [] }
 							]
 						},
 						{

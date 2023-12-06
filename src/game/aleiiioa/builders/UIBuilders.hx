@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.local.ui.UITargetedObject;
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.local.ui.layers.UISelectableFlag;
 import aleiiioa.components.local.ui.UISelectorFlag;
@@ -81,6 +82,7 @@ class UIBuilders {
 
     public static function menu(e:Entity_UIWindow) {
             //Physics Component
+            selector();
             var pos = new GridPosition(e.cx,e.cy,0,0);
             
             //Rendering Component
@@ -117,7 +119,7 @@ class UIBuilders {
             flow.bg.visible = false;
   
             new echoes.Entity().add(pos,spr,sq,se,flow);
-            selector();
+           
         }
 
    
@@ -151,9 +153,15 @@ class UIBuilders {
             //var interactive = new InteractiveHeapsComponent();
             var button      = new UIButton(txt);
             button.event = e.f_UI_Button_Event;
- 
 
-            new echoes.Entity().add(pos,spr,sq,se,g,button,obj,sel);
+            
+            if(!e.f_isFirstTargeted)
+                new echoes.Entity().add(pos,spr,sq,se,g,button,obj,sel);
+
+            if(e.f_isFirstTargeted){
+                var tar = new UITargetedObject();
+                new echoes.Entity().add(pos,spr,sq,se,g,button,obj,sel,tar);
+            }
         } 
 
         
