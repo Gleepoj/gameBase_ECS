@@ -11,7 +11,7 @@
 	"iid": "37006fc0-8990-11ee-95e1-c1ff7c03c62e",
 	"jsonVersion": "1.4.1",
 	"appBuildId": 471015,
-	"nextUid": 49,
+	"nextUid": 50,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "LinearHorizontal",
@@ -643,7 +643,43 @@
 			"limitBehavior": "MoveLastOne",
 			"pivotX": 0.5,
 			"pivotY": 1,
-			"fieldDefs": []
+			"fieldDefs": [
+				{
+					"identifier": "First_targeted",
+					"doc": null,
+					"__type": "EntityRef",
+					"uid": 49,
+					"type": "F_EntityRef",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "RefLinkBetweenCenters",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "CurvedArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlyTags",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": ["UIObject"],
+					"tilesetUid": null
+				}
+			]
 		}
 	], "tilesets": [
 		{
@@ -906,7 +942,15 @@
 							"height": 16,
 							"defUid": 48,
 							"px": [104,48],
-							"fieldInstances": []
+							"fieldInstances": [{ "__identifier": "First_targeted", "__type": "EntityRef", "__value": {
+								"entityIid": "1b48a8d0-8990-11ee-84eb-1328a9c1b15f",
+								"layerIid": "7fd78701-8990-11ee-84eb-f95d3c256026",
+								"levelIid": "7fd78700-8990-11ee-84eb-dba2cc189fbd",
+								"worldIid": "37018130-8990-11ee-95e1-f54865b6c996"
+							}, "__tile": null, "defUid": 49, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["1b48a8d0-8990-11ee-84eb-1328a9c1b15f"]
+							}] }]
 						},
 						{
 							"__identifier": "CameraPoint",

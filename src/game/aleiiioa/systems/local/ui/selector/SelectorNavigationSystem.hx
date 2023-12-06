@@ -36,6 +36,7 @@ class SelectorNavigationSystem extends echoes.System {
 			var selector = selector_i.value;
 
 			if (selector.exists(UIMoveIntentComponent) && !selector.exists(TransformPositionComponent)) {
+				
 				var select_int = selector.get(UIMoveIntentComponent);
 				var select_gp  = selector.get(GridPosition);
 			
@@ -70,6 +71,7 @@ class SelectorNavigationSystem extends echoes.System {
 
 			if (select) {
 				en.add(new UINearestFlag(dist));
+				
 				if (dist < dist_to_player)
 					dist_to_player = dist;
 			}
@@ -83,7 +85,7 @@ class SelectorNavigationSystem extends echoes.System {
 	}
 
 	@u function convertNearestToTargeted(en:echoes.Entity, near:UINearestFlag){
-
+		
 		en.add(new UITargetedObject());
 		en.remove(UINearestFlag);
 	}
@@ -97,6 +99,7 @@ class SelectorNavigationSystem extends echoes.System {
 			var ori = selector.get(GridPosition).gpToVector();
 			selector.remove(UIMoveIntentComponent);
 			selector.add(new TransformPositionComponent(ori,tar,duration,TBurnOut));
+			
 		}
 		en.remove(UITargetedObject);
 	}

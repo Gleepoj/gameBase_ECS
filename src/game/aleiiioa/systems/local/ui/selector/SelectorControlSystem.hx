@@ -37,8 +37,10 @@ class SelectorControlSystem extends echoes.System {
 			inp.ca.lock(0.06);
 		}
 
-		if (pdx != 0 || pdy != 0)
+		if (pdx != 0 || pdy != 0){
 			en.add(new UIMoveIntentComponent(pdx, pdy));
+			//trace("new mov4");
+		}
 
 	}
 	

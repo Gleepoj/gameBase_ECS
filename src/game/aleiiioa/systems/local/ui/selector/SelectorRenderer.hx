@@ -1,5 +1,5 @@
 package aleiiioa.systems.local.ui.selector;
-
+/* 
 import aleiiioa.components.local.ui.UIObject;
 import aleiiioa.components.local.ui.InteractiveHeapsComponent;
 import aleiiioa.components.core.physics.position.GridPosition;
@@ -26,7 +26,7 @@ class SelectorRenderer extends echoes.System {
            sc.width  = current_sw*2;
            sc.height = current_sh*2;
            //trace('$current_sh :: $current_sw');
-        } */
+        } 
 
         //sc.setPosition(gp.attachX ,gp.attachY - current_sh);
     }
@@ -40,7 +40,7 @@ class SelectorRenderer extends echoes.System {
             sc.color.r = 1; 
             current_sh = sc.height;
             current_sw = sc.width;
-        } */
-    }
+        } 
+    } 
 
-}
+}*/
