@@ -1,5 +1,6 @@
 package aleiiioa.builders.worlds;
 
+import aleiiioa.systems.local.ui.selector.MouseSystem;
 import aleiiioa.systems.local.ui.UIGridPositionActualizer;
 import aleiiioa.systems.local.ui.selector.SelectorRenderer;
 import aleiiioa.systems.local.ui.selector.SelectorNavigationSystem;
@@ -62,6 +63,7 @@ class WorkflowBuilders {
         Workflow.add60FpsSystem(new DelayedMovementSystem());
 		
 		Workflow.add60FpsSystem(new UIGridPositionActualizer());
+		Workflow.add60FpsSystem(new MouseSystem());
 		Workflow.add60FpsSystem(new SelectorControlSystem());
 		///Workflow.add60FpsSystem(new SelectorSelectabilitySystem());
 		Workflow.add60FpsSystem(new SelectorNavigationSystem());

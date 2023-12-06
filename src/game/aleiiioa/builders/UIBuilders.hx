@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.local.ui.MouseInteractiveComponent;
 import aleiiioa.components.local.ui.UITargetedObject;
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.local.ui.layers.UISelectableFlag;
@@ -75,6 +76,7 @@ class UIBuilders {
         //Physics Component
         var vc = new VelocityComponent();
         var vas = new AnalogSpeedComponent(0,0);
+        spr.visible = false;
 
         new echoes.Entity().add(pos,spr,sq,se,vc,vas,input,selector);
 
@@ -142,6 +144,7 @@ class UIBuilders {
             var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
             var obj = new UIObject();
             var sel = new UISelectableFlag();
+            var m = new MouseInteractiveComponent();
 
             txt.text = e.f_Label;
             
@@ -156,11 +159,11 @@ class UIBuilders {
 
             
             if(!e.f_isFirstTargeted)
-                new echoes.Entity().add(pos,spr,sq,se,g,button,obj,sel);
+                new echoes.Entity().add(m,pos,spr,sq,se,g,button,obj,sel);
 
             if(e.f_isFirstTargeted){
                 var tar = new UITargetedObject();
-                new echoes.Entity().add(pos,spr,sq,se,g,button,obj,sel,tar);
+                new echoes.Entity().add(m,pos,spr,sq,se,g,button,obj,sel,tar);
             }
         } 
 
