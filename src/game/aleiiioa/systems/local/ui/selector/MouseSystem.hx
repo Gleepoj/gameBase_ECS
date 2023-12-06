@@ -4,11 +4,11 @@ import echoes.View;
 import h2d.ScaleGrid;
 import aleiiioa.components.local.ui.UIButton;
 import h2d.Interactive;
-import aleiiioa.components.local.ui.MouseInteractiveComponent;
-import aleiiioa.components.local.ui.UICurrentlySelected;
+import aleiiioa.components.local.ui.InteractiveMouseComponent;
+import aleiiioa.components.local.ui.On_UICurrentlySelected;
 import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.local.ui.UISelectorFlag;
-import aleiiioa.components.local.ui.UITargetedObject;
+import aleiiioa.components.local.ui.On_UITargetedObject;
 import aleiiioa.components.core.physics.position.TransformPositionComponent;
 import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.input.MouseComponent;
@@ -25,20 +25,20 @@ class MouseSystem extends echoes.System {
 
     var freeMove:Bool = false;
 
-    var PREVIOUSLY_SELECTED:View<UICurrentlySelected>;
+    var PREVIOUSLY_SELECTED:View<On_UICurrentlySelected>;
 
     public function new (){
     }
 
 
-    @a function addButtonInteractive(en:echoes.Entity,interactive:MouseInteractiveComponent,u:UIButton,gp:GridPosition,spr:SpriteComponent,sc:ScaleGrid){
+    @a function addButtonInteractive(en:echoes.Entity,interactive:InteractiveMouseComponent,u:UIButton,gp:GridPosition,spr:SpriteComponent,sc:ScaleGrid){
      
         interactive = new Interactive(sc.width,sc.height,sc);
    
 
         interactive.onOver = function(_) {
             clearCurrentlySelected();
-            en.add(new UITargetedObject());
+            en.add(new On_UITargetedObject());
         }
 
         interactive.onOut = function(_){
@@ -47,12 +47,12 @@ class MouseSystem extends echoes.System {
     }
 
     function clearCurrentlySelected(){
-        // Remove uicurrentlyselected flag from PREVIOUSLY_SELECTED view
+        // Remove On_UICurrentlySelected flag from PREVIOUSLY_SELECTED view
         var head = PREVIOUSLY_SELECTED.entities.head;
 
         while(head != null){
             var en = head.value;
-            en.remove(UICurrentlySelected);
+            en.remove(On_UICurrentlySelected);
             head = head.next;
         }
     }

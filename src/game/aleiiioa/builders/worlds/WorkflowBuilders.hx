@@ -2,7 +2,6 @@ package aleiiioa.builders.worlds;
 
 import aleiiioa.systems.local.ui.selector.MouseSystem;
 import aleiiioa.systems.local.ui.UIGridPositionActualizer;
-import aleiiioa.systems.local.ui.selector.SelectorRenderer;
 import aleiiioa.systems.local.ui.selector.SelectorNavigationSystem;
 import aleiiioa.systems.local.ui.selector.SelectorControlSystem;
 import echoes.SystemList;

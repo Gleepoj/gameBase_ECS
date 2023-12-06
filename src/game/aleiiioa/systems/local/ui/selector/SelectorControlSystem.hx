@@ -2,7 +2,7 @@ package aleiiioa.systems.local.ui.selector;
 
 
 import aleiiioa.components.local.ui.UISelectorFlag;
-import aleiiioa.components.local.ui.UIMoveIntentComponent;
+import aleiiioa.components.local.ui.On_UIPadMove;
 import aleiiioa.components.core.input.InputComponent;
 
 
@@ -34,7 +34,7 @@ class SelectorControlSystem extends echoes.System {
 		}
 
 		if (pdx != 0 || pdy != 0){
-			en.add(new UIMoveIntentComponent(pdx, pdy));
+			en.add(new On_UIPadMove(pdx, pdy));
 		}
 
 	}

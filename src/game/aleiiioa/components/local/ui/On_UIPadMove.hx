@@ -1,6 +1,6 @@
 package aleiiioa.components.local.ui;
 
-class UIMoveIntentComponent {
+class On_UIPadMove {
     
     public var x:Int = 0;
     public var y:Int = 0;

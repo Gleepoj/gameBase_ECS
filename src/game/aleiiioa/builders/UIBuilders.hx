@@ -1,7 +1,7 @@
 package aleiiioa.builders;
 
-import aleiiioa.components.local.ui.MouseInteractiveComponent;
-import aleiiioa.components.local.ui.UITargetedObject;
+import aleiiioa.components.local.ui.InteractiveMouseComponent;
+import aleiiioa.components.local.ui.On_UITargetedObject;
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.local.ui.layers.UISelectableFlag;
 import aleiiioa.components.local.ui.UISelectorFlag;
@@ -144,7 +144,7 @@ class UIBuilders {
             var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
             var obj = new UIObject();
             var sel = new UISelectableFlag();
-            var m = new MouseInteractiveComponent();
+            var m = new InteractiveMouseComponent();
 
             txt.text = e.f_Label;
             
@@ -162,7 +162,7 @@ class UIBuilders {
                 new echoes.Entity().add(m,pos,spr,sq,se,g,button,obj,sel);
 
             if(e.f_isFirstTargeted){
-                var tar = new UITargetedObject();
+                var tar = new On_UITargetedObject();
                 new echoes.Entity().add(m,pos,spr,sq,se,g,button,obj,sel,tar);
             }
         } 

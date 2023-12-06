@@ -1,6 +1,6 @@
 package aleiiioa.components.local.ui;
 
-class PadInteractiveComponent {
+class On_UICurrentlySelected {
     public function new (){
         
     }

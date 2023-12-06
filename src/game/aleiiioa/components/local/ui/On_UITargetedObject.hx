@@ -1,6 +1,6 @@
 package aleiiioa.components.local.ui;
 
-class UITargetedObject {
+class On_UITargetedObject {
     public function new(){
         
     }
