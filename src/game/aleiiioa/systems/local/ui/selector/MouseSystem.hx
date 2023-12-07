@@ -12,7 +12,7 @@ import aleiiioa.components.local.ui.On_UITargetedObject;
 import aleiiioa.components.core.physics.position.TransformPositionComponent;
 import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.input.MouseComponent;
-
+import aleiiioa.components.local.ui.On_UISelectInput;
 
 class MouseSystem extends echoes.System {
     var window = hxd.Window.getInstance();
@@ -41,21 +41,11 @@ class MouseSystem extends echoes.System {
             en.add(new On_UITargetedObject());
         }
 
-        interactive.onOut = function(_){
-            //sc.alpha = 1; 
+        interactive.onClick = function(_){
+            en.add(new On_UISelectInput());
         }
     }
 
-    function clearCurrentlySelected(){
-        // Remove On_UICurrentlySelected flag from PREVIOUSLY_SELECTED view
-        var head = PREVIOUSLY_SELECTED.entities.head;
-
-        while(head != null){
-            var en = head.value;
-            en.remove(On_UICurrentlySelected);
-            head = head.next;
-        }
-    }
 
     @u function mouse_position_update(dt:Float,m:MouseComponent,gp:GridPosition,spr:SpriteComponent) {
         m.cd.update(dt);
@@ -77,5 +67,18 @@ class MouseSystem extends echoes.System {
         }
 
         gp.setPosPixel(m.x,m.y);      
+    }
+
+    
+    function clearCurrentlySelected(){
+
+        var head = PREVIOUSLY_SELECTED.entities.head;
+
+        while(head != null){
+            var en = head.value;
+            en.remove(On_UICurrentlySelected);
+            head = head.next;
+        }
+        
     }
 }

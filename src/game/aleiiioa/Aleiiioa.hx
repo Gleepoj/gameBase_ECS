@@ -40,12 +40,14 @@ class Aleiiioa extends Game {
 	}
 
 	public function startPlay(){
-		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Level_0);
+		Workflow.reset();
+	
+		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Level_1);
 		WorkflowBuilders.newLevel(level);
 	}
 
 	public function goToSetting(){
-
+		//trace("go to setting");
 		//Workflow.reset();
 		//game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Settings);
 		//WorkflowBuilders.newMainMenu(level);
@@ -54,6 +56,7 @@ class Aleiiioa extends Game {
 	public function goToMenu(){
 		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Level_0);
 		WorkflowBuilders.newMenu(level);
+		//trace("go to menu");
 		//Workflow.reset();
 		//game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Main_Menu);
 		//WorkflowBuilders.newMainMenu(level);

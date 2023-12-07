@@ -36,16 +36,17 @@ class DialogAreaCollisions extends echoes.System {
     }
 
     @u function pnjInDialogArea(gp:GridPosition,flag:PNJDialogFlag,il:InteractionListener) {
-        var player = PLAYER_SPEAKER.entities.head.value;
-        var pgp = player.get(GridPosition);
-        var playerPos = pgp.gpToVector();
-        var pnjPos = gp.gpToVector();
+        var head = PLAYER_SPEAKER.entities.head;
+        if(head!=null){
+            var player = head.value;
+            var playerPos = player.get(GridPosition).gpToVector();
+            var pnjPos = gp.gpToVector();
 
-        if(playerPos.distance(pnjPos)<30){
-            il.lastEvent = events.allowDialog;
-            il.order();
+            if(playerPos.distance(pnjPos)<30){
+                il.lastEvent = events.allowDialog;
+                il.order();
+            }
         }
-        
     }
     
 /*     function orderListener(cl:CollisionSensor){

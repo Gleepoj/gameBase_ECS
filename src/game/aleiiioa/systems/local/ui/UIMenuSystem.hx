@@ -1,22 +1,7 @@
 /* package aleiiioa.systems.ui;
 
 
-import aleiiioa.flags.ui.UIObject;
-import aleiiioa.components.core.collision.CollisionsListener;
-import aleiiioa.components.core.InputComponent;
-import h2d.ScaleGrid;
 
-import aleiiioa.components.ui.UIButton;
-
-
-import aleiiioa.flags.ui.UISelectorFlag;
-import h2d.Interactive;
-import aleiiioa.components.core.rendering.SpriteComponent;
-import aleiiioa.components.core.InteractiveHeapsComponent;
-
-import aleiiioa.components.core.position.GridPosition;
-import aleiiioa.components.core.MouseComponent;
-import aleiiioa.components.core.position.TransformPositionComponent;
 
 
 
@@ -153,6 +138,6 @@ class UIMenuSystem extends echoes.System {
         sc.remove();
         //trace("clear scale grid");
     }
-} */
-
+}
+ */
 

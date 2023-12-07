@@ -1708,18 +1708,18 @@
 						},
 						{
 							"__identifier": "Player",
-							"__grid": [29,28],
+							"__grid": [19,28],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#75FF00",
-							"__worldX": 1000,
+							"__worldX": 840,
 							"__worldY": 448,
 							"iid": "ca0b9bb0-dbe0-11ec-a977-5d12ac1e654d",
 							"width": 16,
 							"height": 16,
 							"defUid": 21,
-							"px": [472,448],
+							"px": [312,448],
 							"fieldInstances": []
 						}
 					]

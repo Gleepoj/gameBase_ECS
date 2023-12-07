@@ -25,4 +25,11 @@ class UIGridPositionActualizer extends echoes.System {
         s.color = new Vector(1,1,1);
         //trace("rem");
     }
+
+    
+    @r function removeSc(sc:ScaleGrid){
+        //sc.clear();
+        sc.remove();
+        //trace("clear scale grid");
+    }
 }

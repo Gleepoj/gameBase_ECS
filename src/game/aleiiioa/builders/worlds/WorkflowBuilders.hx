@@ -1,5 +1,6 @@
 package aleiiioa.builders.worlds;
 
+import aleiiioa.systems.local.ui.UIButtonInteractionSystem;
 import aleiiioa.systems.local.ui.selector.MouseSystem;
 import aleiiioa.systems.local.ui.UIGridPositionActualizer;
 import aleiiioa.systems.local.ui.selector.SelectorNavigationSystem;
@@ -47,16 +48,9 @@ class WorkflowBuilders {
 		
 
         for (e in level.data.l_Entities.all_UIWindow){
-			//ActorBuilders.bonhomme(e.cx,e.cy,0.,0.,opos,e.f_PieceSide);
             UIBuilders.menu(e);
 		} 
-        //ActorBuilders.cursor(10,10,0.,1.1,cameraFocusPosition);
-		//ActorBuilders.mouse(cameraFocusPosition); */
-		
-		//Workflow.add60FpsSystem(new MouseSystem());
-		//Workflow.add60FpsSystem(new CollisionsListenerActualizer());
-		//Workflow.add60FpsSystem(new EntityCollisionsSystem());
-		//Object
+ 
 		Workflow.add60FpsSystem(new VelocitySystem());
 		Workflow.add60FpsSystem(new GridPositionActualizer());
         Workflow.add60FpsSystem(new DelayedMovementSystem());
@@ -64,10 +58,8 @@ class WorkflowBuilders {
 		Workflow.add60FpsSystem(new UIGridPositionActualizer());
 		Workflow.add60FpsSystem(new MouseSystem());
 		Workflow.add60FpsSystem(new SelectorControlSystem());
-		///Workflow.add60FpsSystem(new SelectorSelectabilitySystem());
 		Workflow.add60FpsSystem(new SelectorNavigationSystem());
-		//Workflow.add60FpsSystem(new SelectorRenderer());
-		
+		Workflow.add60FpsSystem(new UIButtonInteractionSystem());
 		//Workflow.add60FpsSystem(new UIMenuSystem());
         //Workflow.add60FpsSystem(new UISubmenuSystem());
 
@@ -85,8 +77,6 @@ class WorkflowBuilders {
 
 
 	public static function newLevel(level:Level){
-		Workflow.reset();
-			
 		
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
 		var cameraFocus = EntityBuilders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
@@ -98,8 +88,8 @@ class WorkflowBuilders {
 		
 		
 		// ECS //
-		//var player = level.data.l_Entities.all_Player[0];
-		//EntityBuilders.player(player.cx,player.cy);
+		var player = level.data.l_Entities.all_Player[0];
+		EntityBuilders.player(player.cx,player.cy);
 
 		for (e in level.data.l_Entities.all_PNJ){
 			EntityBuilders.pnj(e.cx,e.cy,e.f_Dialog);
@@ -133,13 +123,10 @@ class WorkflowBuilders {
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
 		
 		//Dialog
-		var dialog = new echoes.SystemList()
-		.add(new DialogAreaCollisions())
-		.add(new DialogYarnSystem())
-		.add(new DialogInputSystem())
-		.add(new DialogUISystem());
-
-		Workflow.add60FpsSystem(dialog);
+		Workflow.add60FpsSystem(new DialogAreaCollisions());
+		Workflow.add60FpsSystem(new DialogYarnSystem());	
+		Workflow.add60FpsSystem(new DialogInputSystem());
+		Workflow.add60FpsSystem(new DialogUISystem());
 		
 			//Helpers
 		Workflow.add60FpsSystem(new UIHelperSystem());
