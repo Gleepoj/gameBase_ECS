@@ -1,6 +1,6 @@
 package aleiiioa.components.local.ui;
 
-class On_UICurrentlySelected {
+class AlgoUI_CurrentlySelected {
     public function new (){
         
     }

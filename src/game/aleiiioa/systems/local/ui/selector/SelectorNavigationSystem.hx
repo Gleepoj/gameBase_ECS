@@ -1,12 +1,12 @@
 package aleiiioa.systems.local.ui.selector;
 
 
-import aleiiioa.components.local.ui.On_UICurrentlySelected;
+import aleiiioa.components.local.ui.AlgoUI_CurrentlySelected;
 import aleiiioa.components.core.physics.position.GridPosition;
-import aleiiioa.components.local.ui.On_UINearestFlag;
-import aleiiioa.components.local.ui.layers.UISelectableFlag;
+import aleiiioa.components.local.ui.AlgoUI_NearestSelectable;
+import aleiiioa.components.local.ui.AlgoUI_SelectableFlag;
 import aleiiioa.components.local.ui.UISelectorFlag;
-import aleiiioa.components.local.ui.On_UITargetedObject;
+import aleiiioa.components.local.ui.AlgoUI_TargetedSelectable;
 import aleiiioa.components.local.ui.On_UIPadMove;
 import aleiiioa.components.core.physics.position.TransformPositionComponent;
 
@@ -15,7 +15,7 @@ import echoes.View;
 
 class SelectorNavigationSystem extends echoes.System {
 	var SELECTOR:View<UISelectorFlag>;
-	var SELECTABLE:View<UISelectableFlag>;
+	var SELECTABLE:View<AlgoUI_SelectableFlag>;
 
 	var dist_to_player:Float = 500;
 	var current_category:UISelectableType = Category_None;
@@ -34,7 +34,7 @@ class SelectorNavigationSystem extends echoes.System {
 		current_category = Category_None;
 	}
 
-	@a function setMinMax(sel:UISelectableFlag,gp:GridPosition){
+	@a function setMinMax(sel:AlgoUI_SelectableFlag,gp:GridPosition){
 		if(gp.cy < lowest_cy)
 			lowest_cy = gp.cy;
 		if(gp.cy > highest_cy)
@@ -49,7 +49,7 @@ class SelectorNavigationSystem extends echoes.System {
 	}
 
 	
-	@u function preCastNearestInSelectorIntent(en:echoes.Entity, s:UISelectableFlag, gp:GridPosition) {
+	@u function preCastNearestInSelectorIntent(en:echoes.Entity, s:AlgoUI_SelectableFlag, gp:GridPosition) {
 		var dist = 10000.;
 		var select = false;
 		var selector_i = SELECTOR.entities.head;
@@ -64,7 +64,7 @@ class SelectorNavigationSystem extends echoes.System {
 				var select_gp  = selector.get(GridPosition);
 				
 				if (select_int.y < 0 ) {
-					if(en.exists(On_UICurrentlySelected) && lowest_cy == select_gp.cy){
+					if(en.exists(AlgoUI_CurrentlySelected) && lowest_cy == select_gp.cy){
 						select = true;
 						dist = M.dist(gp.cx, gp.cy, select_gp.cx, select_gp.cy);
 					}
@@ -75,7 +75,7 @@ class SelectorNavigationSystem extends echoes.System {
 				}
 				//&& select_gp.cy != highest_cy
 				if (select_int.y > 0 ) {
-					if(en.exists(On_UICurrentlySelected) && highest_cy == select_gp.cy){
+					if(en.exists(AlgoUI_CurrentlySelected) && highest_cy == select_gp.cy){
 						select = true;
 						dist = M.dist(gp.cx, gp.cy, select_gp.cx, select_gp.cy);
 					}
@@ -86,7 +86,7 @@ class SelectorNavigationSystem extends echoes.System {
 				}
 
 				if (select_int.x < 0) {
-					if(en.exists(On_UICurrentlySelected) && lowest_cx == select_gp.cx){
+					if(en.exists(AlgoUI_CurrentlySelected) && lowest_cx == select_gp.cx){
 						select = true;
 						dist = M.dist(gp.cx, gp.cy, select_gp.cx, select_gp.cy);
 					}
@@ -97,7 +97,7 @@ class SelectorNavigationSystem extends echoes.System {
 				}
 
 				if (select_int.x > 0) {
-					if(en.exists(On_UICurrentlySelected) && highest_cx == select_gp.cx){
+					if(en.exists(AlgoUI_CurrentlySelected) && highest_cx == select_gp.cx){
 						select = true;
 						dist = M.dist(gp.cx, gp.cy, select_gp.cx, select_gp.cy);
 					}
@@ -106,11 +106,11 @@ class SelectorNavigationSystem extends echoes.System {
 						dist = M.dist(gp.cx, gp.cy, select_gp.cx, select_gp.cy);
 					}
 				}
-				en.remove(On_UICurrentlySelected);
+				en.remove(AlgoUI_CurrentlySelected);
 			}
 
 			if (select) {
-				en.add(new On_UINearestFlag(dist));
+				en.add(new AlgoUI_NearestSelectable(dist));
 				onChangeSelect = true;
 				if (dist < dist_to_player)
 					dist_to_player = dist;
@@ -118,26 +118,26 @@ class SelectorNavigationSystem extends echoes.System {
 		}
 	}
 
-	@u function onChangeSelectItem(en:echoes.Entity,u:On_UICurrentlySelected){
+	@u function onChangeSelectItem(en:echoes.Entity,u:AlgoUI_CurrentlySelected){
 		if(onChangeSelect){
-			//en.remove(On_UICurrentlySelected);
+			//en.remove(AlgoUI_CurrentlySelected);
 			onChangeSelect = false;
 		}
 	}
 
-	@u function removeNoneNearest(en:echoes.Entity, near:On_UINearestFlag) {
+	@u function removeNoneNearest(en:echoes.Entity, near:AlgoUI_NearestSelectable) {
 		if (near.distance > dist_to_player) {
-			en.remove(On_UINearestFlag);
+			en.remove(AlgoUI_NearestSelectable);
 		}
 	}
 
-	@u function convertNearestToTargeted(en:echoes.Entity, near:On_UINearestFlag){
+	@u function convertNearestToTargeted(en:echoes.Entity, near:AlgoUI_NearestSelectable){
 		
-		en.add(new On_UITargetedObject());
-		en.remove(On_UINearestFlag);
+		en.add(new AlgoUI_TargetedSelectable());
+		en.remove(AlgoUI_NearestSelectable);
 	}
 
-	@a function updateNearest(en:echoes.Entity, add:On_UITargetedObject, s:UISelectableFlag, gp:GridPosition) {
+	@a function updateNearest(en:echoes.Entity, add:AlgoUI_TargetedSelectable, s:AlgoUI_SelectableFlag, gp:GridPosition) {
 
 		var selector = SELECTOR.entities.head.value;
 		
@@ -150,8 +150,8 @@ class SelectorNavigationSystem extends echoes.System {
 			
 		}
 
-		en.add(new On_UICurrentlySelected());
-		en.remove(On_UITargetedObject);
+		en.add(new AlgoUI_CurrentlySelected());
+		en.remove(AlgoUI_TargetedSelectable);
 	}
 
 }

@@ -1,6 +1,6 @@
 package aleiiioa.components.local.ui;
 
-class On_UITargetedObject {
+class AlgoUI_TargetedSelectable {
     public function new(){
         
     }
