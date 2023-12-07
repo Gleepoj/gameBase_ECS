@@ -14,16 +14,17 @@ class UIButtonInteractionSystem extends echoes.System {
     public function new (){
  
     }
+    
+    
+    @u function updateSystem(dt:Float){
+        cd.update(dt);
+    }
 
     @u function selectorInteract(inp:InputComponent,selector:UISelectorFlag){
         if(inp.ca.isPressed(ActionX) && cd.has("select")){
             inputAnyKey == true;
             cd.setMs("select",100);
         }
-    }
-
-    @u function updateSystem(dt:Float){
-        cd.update(dt);
     }
 
     @u function UIPadInput(en:echoes.Entity,b:UIButton,on:Currently_Hovered){

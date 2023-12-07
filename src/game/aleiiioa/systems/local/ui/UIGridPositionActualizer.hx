@@ -1,14 +1,13 @@
 package aleiiioa.systems.local.ui;
 
 import h3d.Vector;
-import aleiiioa.components.core.rendering.SpriteComponent;
-import aleiiioa.components.local.ui.algo.Currently_Hovered;
 import h2d.ScaleGrid;
+
+import aleiiioa.components.local.ui.algo.Currently_Hovered;
 import aleiiioa.components.core.physics.position.GridPosition;
 
 class UIGridPositionActualizer extends echoes.System {
     public function new (){
-
     }
 
     @a function syncUIButton(gp:GridPosition,sc:ScaleGrid){
@@ -18,18 +17,14 @@ class UIGridPositionActualizer extends echoes.System {
 
     @a function colorize(u:Currently_Hovered,s:ScaleGrid){
         s.color = new Vector(0.7,0.3,0.3);
-        //trace("add");
     }
 
     @r function uncolorize(rem:Currently_Hovered,s:ScaleGrid){
         s.color = new Vector(1,1,1);
-        //trace("rem");
     }
 
-    
     @r function removeSc(sc:ScaleGrid){
-        //sc.clear();
         sc.remove();
-        //trace("clear scale grid");
     }
+
 }

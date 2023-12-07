@@ -4,7 +4,7 @@ import echoes.View;
 import h2d.ScaleGrid;
 import aleiiioa.components.local.ui.UIButton;
 import h2d.Interactive;
-import aleiiioa.components.local.ui.InteractiveMouseComponent;
+import aleiiioa.components.local.ui.UIMouse_Interactive_Component;
 import aleiiioa.components.local.ui.algo.Currently_Hovered;
 import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.local.ui.UISelectorFlag;
@@ -25,7 +25,7 @@ class UIMouseSystem extends echoes.System {
     }
 
 
-    @a function addButtonInteractive(en:echoes.Entity,interactive:InteractiveMouseComponent,u:UIButton,gp:GridPosition,spr:SpriteComponent,sc:ScaleGrid){
+    @a function addButtonInteractive(en:echoes.Entity,interactive:UIMouse_Interactive_Component,u:UIButton,gp:GridPosition,spr:SpriteComponent,sc:ScaleGrid){
      
         interactive = new Interactive(sc.width,sc.height,sc);
    

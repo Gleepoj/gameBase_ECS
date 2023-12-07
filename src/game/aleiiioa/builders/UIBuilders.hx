@@ -1,6 +1,6 @@
 package aleiiioa.builders;
 
-import aleiiioa.components.local.ui.InteractiveMouseComponent;
+import aleiiioa.components.local.ui.UIMouse_Interactive_Component;
 import aleiiioa.components.local.ui.algo.On_Targeted_Selectable;
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.local.ui.algo.Currently_Selectable;
@@ -10,7 +10,7 @@ import aleiiioa.components.core.physics.velocity.AnalogSpeedComponent;
 import hxd.Window;
 import aleiiioa.components.local.ui.UIButton;
 //import aleiiioa.components.local.ui.InteractiveHeapsComponent;
-import aleiiioa.components.local.ui.UIObject;
+
 import h2d.ScaleGrid;
 import aleiiioa.components.core.rendering.SpriteExtension;
 import aleiiioa.components.core.rendering.SquashComponent;
@@ -142,12 +142,11 @@ class UIBuilders {
             g.height = v.height/10;
 
             var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
-            var obj = new UIObject();
+         
             var sel = new Currently_Selectable();
-            var m = new InteractiveMouseComponent();
+            var m   = new UIMouse_Interactive_Component();
 
             txt.text = e.f_Label;
-            
             txt.setPosition(g.width/2,g.height/5);
             txt.textAlign = Center;
             txt.scale(3);
@@ -159,11 +158,11 @@ class UIBuilders {
 
             
             if(!e.f_isFirstTargeted)
-                new echoes.Entity().add(m,pos,spr,sq,se,g,button,obj,sel);
+                new echoes.Entity().add(m,pos,spr,sq,se,g,button,sel);
 
             if(e.f_isFirstTargeted){
                 var tar = new On_Targeted_Selectable();
-                new echoes.Entity().add(m,pos,spr,sq,se,g,button,obj,sel,tar);
+                new echoes.Entity().add(m,pos,spr,sq,se,g,button,sel,tar);
             }
         } 
 
