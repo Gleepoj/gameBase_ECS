@@ -1,9 +1,9 @@
 package aleiiioa.builders;
 
 import aleiiioa.components.local.ui.InteractiveMouseComponent;
-import aleiiioa.components.local.ui.AlgoUI_TargetedSelectable;
+import aleiiioa.components.local.ui.Alg_TargetedSelectable;
 import aleiiioa.components.core.input.InputComponent;
-import aleiiioa.components.local.ui.AlgoUI_SelectableFlag;
+import aleiiioa.components.local.ui.Alg_SelectableFlag;
 import aleiiioa.components.local.ui.UISelectorFlag;
 import aleiiioa.components.core.physics.velocity.VelocityComponent;
 import aleiiioa.components.core.physics.velocity.AnalogSpeedComponent;
@@ -143,7 +143,7 @@ class UIBuilders {
 
             var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
             var obj = new UIObject();
-            var sel = new AlgoUI_SelectableFlag();
+            var sel = new Alg_SelectableFlag();
             var m = new InteractiveMouseComponent();
 
             txt.text = e.f_Label;
@@ -162,7 +162,7 @@ class UIBuilders {
                 new echoes.Entity().add(m,pos,spr,sq,se,g,button,obj,sel);
 
             if(e.f_isFirstTargeted){
-                var tar = new AlgoUI_TargetedSelectable();
+                var tar = new Alg_TargetedSelectable();
                 new echoes.Entity().add(m,pos,spr,sq,se,g,button,obj,sel,tar);
             }
         } 

@@ -5,10 +5,10 @@ import h2d.ScaleGrid;
 import aleiiioa.components.local.ui.UIButton;
 import h2d.Interactive;
 import aleiiioa.components.local.ui.InteractiveMouseComponent;
-import aleiiioa.components.local.ui.AlgoUI_CurrentlySelected;
+import aleiiioa.components.local.ui.Alg_CurrentlySelected;
 import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.local.ui.UISelectorFlag;
-import aleiiioa.components.local.ui.AlgoUI_TargetedSelectable;
+import aleiiioa.components.local.ui.Alg_TargetedSelectable;
 import aleiiioa.components.core.physics.position.TransformPositionComponent;
 import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.input.MouseComponent;
@@ -25,7 +25,7 @@ class MouseSystem extends echoes.System {
 
     var freeMove:Bool = false;
 
-    var PREVIOUSLY_SELECTED:View<AlgoUI_CurrentlySelected>;
+    var PREVIOUSLY_SELECTED:View<Alg_CurrentlySelected>;
 
     public function new (){
     }
@@ -38,7 +38,7 @@ class MouseSystem extends echoes.System {
 
         interactive.onOver = function(_) {
             clearCurrentlySelected();
-            en.add(new AlgoUI_TargetedSelectable());
+            en.add(new Alg_TargetedSelectable());
         }
 
         interactive.onClick = function(_){
@@ -76,7 +76,7 @@ class MouseSystem extends echoes.System {
 
         while(head != null){
             var en = head.value;
-            en.remove(AlgoUI_CurrentlySelected);
+            en.remove(Alg_CurrentlySelected);
             head = head.next;
         }
         

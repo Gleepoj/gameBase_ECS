@@ -2,7 +2,7 @@ package aleiiioa.systems.local.ui;
 
 import h3d.Vector;
 import aleiiioa.components.core.rendering.SpriteComponent;
-import aleiiioa.components.local.ui.AlgoUI_CurrentlySelected;
+import aleiiioa.components.local.ui.Alg_CurrentlySelected;
 import h2d.ScaleGrid;
 import aleiiioa.components.core.physics.position.GridPosition;
 
@@ -16,12 +16,12 @@ class UIGridPositionActualizer extends echoes.System {
         gp.setPosPixel(pos.x,pos.y+sc.height/2);
     }
 
-    @a function colorize(u:AlgoUI_CurrentlySelected,s:ScaleGrid){
+    @a function colorize(u:Alg_CurrentlySelected,s:ScaleGrid){
         s.color = new Vector(0.7,0.3,0.3);
         //trace("add");
     }
 
-    @r function uncolorize(rem:AlgoUI_CurrentlySelected,s:ScaleGrid){
+    @r function uncolorize(rem:Alg_CurrentlySelected,s:ScaleGrid){
         s.color = new Vector(1,1,1);
         //trace("rem");
     }

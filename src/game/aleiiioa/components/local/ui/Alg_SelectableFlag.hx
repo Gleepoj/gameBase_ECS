@@ -1,6 +1,6 @@
 package aleiiioa.components.local.ui;
 
-class AlgoUI_SelectableFlag {
+class Alg_SelectableFlag {
     public function new (){
         
     }
