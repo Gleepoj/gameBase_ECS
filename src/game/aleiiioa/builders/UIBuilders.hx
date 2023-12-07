@@ -144,7 +144,7 @@ class UIBuilders {
             var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
          
             var sel = new Currently_Selectable();
-            var m   = new UIMouse_Interactive_Component();
+            //var m   = new UIMouse_Interactive_Component();
 
             txt.text = e.f_Label;
             txt.setPosition(g.width/2,g.height/5);
@@ -158,11 +158,11 @@ class UIBuilders {
 
             
             if(!e.f_isFirstTargeted)
-                new echoes.Entity().add(m,pos,spr,sq,se,g,button,sel);
+                new echoes.Entity().add(pos,spr,sq,se,g,button,sel);
 
             if(e.f_isFirstTargeted){
                 var tar = new On_Targeted_Selectable();
-                new echoes.Entity().add(m,pos,spr,sq,se,g,button,sel,tar);
+                new echoes.Entity().add(pos,spr,sq,se,g,button,sel,tar);
             }
         } 
 

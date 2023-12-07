@@ -1,10 +1,10 @@
 package aleiiioa.builders.worlds;
 
 import aleiiioa.systems.local.ui.UIButtonInteractionSystem;
-import aleiiioa.systems.local.ui.selector.UIMouseSystem;
+
 import aleiiioa.systems.local.ui.UIGridPositionActualizer;
-import aleiiioa.systems.local.ui.selector.UIPadNavigationSystem;
-import aleiiioa.systems.local.ui.selector.UIPadInputSystem;
+import aleiiioa.systems.local.ui.pad.UIPadNavigationSystem;
+import aleiiioa.systems.local.ui.pad.UIPadInputSystem;
 import echoes.SystemList;
 import echoes.Entity;
 import echoes.Workflow;
@@ -56,13 +56,9 @@ class WorkflowBuilders {
         Workflow.add60FpsSystem(new DelayedMovementSystem());
 		
 		Workflow.add60FpsSystem(new UIGridPositionActualizer());
-		Workflow.add60FpsSystem(new UIMouseSystem());
 		Workflow.add60FpsSystem(new UIPadInputSystem());
 		Workflow.add60FpsSystem(new UIPadNavigationSystem());
 		Workflow.add60FpsSystem(new UIButtonInteractionSystem());
-		//Workflow.add60FpsSystem(new UIMenuSystem());
-        //Workflow.add60FpsSystem(new UISubmenuSystem());
-
 		
 		//Graphics
 		Workflow.add60FpsSystem(new SquashRenderer());

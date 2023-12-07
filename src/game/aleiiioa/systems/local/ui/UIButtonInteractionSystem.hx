@@ -1,4 +1,18 @@
 package aleiiioa.systems.local.ui;
+import echoes.View;
+import h2d.ScaleGrid;
+import h2d.Interactive;
+
+import aleiiioa.components.local.ui.UIButton;
+import aleiiioa.components.local.ui.UIMouse_Interactive_Component;
+import aleiiioa.components.local.ui.algo.Currently_Hovered;
+import aleiiioa.components.core.physics.position.GridPosition;
+import aleiiioa.components.local.ui.UISelectorFlag;
+import aleiiioa.components.local.ui.algo.On_Targeted_Selectable;
+import aleiiioa.components.core.physics.position.TransformPositionComponent;
+import aleiiioa.components.core.rendering.*;
+import aleiiioa.components.core.input.MouseComponent;
+import aleiiioa.components.local.ui.UISignalPressSelect;
 
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.local.ui.algo.Currently_Hovered;
@@ -10,11 +24,25 @@ import aleiiioa.components.local.ui.UISelectorFlag;
 class UIButtonInteractionSystem extends echoes.System {
     var inputAnyKey:Bool = false;
     var cd:dn.Cooldown = new Cooldown(Const.FIXED_UPDATE_FPS);
+    var PREVIOUSLY_SELECTED:View<Currently_Hovered>;
 
     public function new (){
  
     }
-    
+
+    @a function addButtonInteractive(en:echoes.Entity,u:UIButton,gp:GridPosition,spr:SpriteComponent,sc:ScaleGrid){
+        
+        u.interactive = new Interactive(sc.width,sc.height,sc);
+   
+        u.interactive.onOver = function(_) {
+            clearCurrentlySelected();
+            en.add(new On_Targeted_Selectable());
+        }
+        
+        u.interactive.onClick = function(_){
+            en.add(new UISignalPressSelect());
+        }
+    }
     
     @u function updateSystem(dt:Float){
         cd.update(dt);
@@ -50,6 +78,19 @@ class UIButtonInteractionSystem extends echoes.System {
             case Order_Previous:
             case Order_Undefined:
         }
+    }
+
+        
+    function clearCurrentlySelected(){
+
+        var head = PREVIOUSLY_SELECTED.entities.head;
+
+        while(head != null){
+            var en = head.value;
+            en.remove(Currently_Hovered);
+            head = head.next;
+        }
+        
     }
 
 }
