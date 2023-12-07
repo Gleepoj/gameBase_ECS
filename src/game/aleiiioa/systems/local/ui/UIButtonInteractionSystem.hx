@@ -4,7 +4,7 @@ import h2d.ScaleGrid;
 import h2d.Interactive;
 
 import aleiiioa.components.local.ui.UIButton;
-import aleiiioa.components.local.ui.UIMouse_Interactive_Component;
+
 import aleiiioa.components.local.ui.algo.Currently_Hovered;
 import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.local.ui.UISelectorFlag;
@@ -23,14 +23,14 @@ import aleiiioa.components.local.ui.UISelectorFlag;
 
 class UIButtonInteractionSystem extends echoes.System {
     var inputAnyKey:Bool = false;
-    var cd:dn.Cooldown = new Cooldown(Const.FIXED_UPDATE_FPS);
+    
     var PREVIOUSLY_SELECTED:View<Currently_Hovered>;
 
     public function new (){
  
     }
 
-    @a function addButtonInteractive(en:echoes.Entity,u:UIButton,gp:GridPosition,spr:SpriteComponent,sc:ScaleGrid){
+    @a function addButtonInteractive(en:echoes.Entity,u:UIButton,gp:GridPosition,sc:ScaleGrid){
         
         u.interactive = new Interactive(sc.width,sc.height,sc);
    
@@ -38,24 +38,20 @@ class UIButtonInteractionSystem extends echoes.System {
             clearCurrentlySelected();
             en.add(new On_Targeted_Selectable());
         }
-        
+
         u.interactive.onClick = function(_){
             en.add(new UISignalPressSelect());
         }
     }
     
-    @u function updateSystem(dt:Float){
-        cd.update(dt);
-    }
-
-    @u function selectorInteract(inp:InputComponent,selector:UISelectorFlag){
-        if(inp.ca.isPressed(ActionX) && cd.has("select")){
-            inputAnyKey == true;
-            cd.setMs("select",100);
+    @u function padPressSelct(inp:InputComponent,selector:UISelectorFlag){
+        if(inp.ca.isPressed(ActionX) && !inp.cd.has("select")){
+            inputAnyKey = true;
+            inp.cd.setMs("select",100);
         }
     }
 
-    @u function UIPadInput(en:echoes.Entity,b:UIButton,on:Currently_Hovered){
+    @u function orderPadInput(en:echoes.Entity,b:UIButton,on:Currently_Hovered){
         if(inputAnyKey){
             en.add(new UISignalPressSelect());
             inputAnyKey = false;

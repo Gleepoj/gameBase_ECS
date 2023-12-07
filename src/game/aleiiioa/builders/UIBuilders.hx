@@ -1,29 +1,28 @@
 package aleiiioa.builders;
 
-import aleiiioa.components.local.ui.UIMouse_Interactive_Component;
-import aleiiioa.components.local.ui.algo.On_Targeted_Selectable;
-import aleiiioa.components.core.input.InputComponent;
-import aleiiioa.components.local.ui.algo.Currently_Selectable;
-import aleiiioa.components.local.ui.UISelectorFlag;
-import aleiiioa.components.core.physics.velocity.VelocityComponent;
-import aleiiioa.components.core.physics.velocity.AnalogSpeedComponent;
 import hxd.Window;
-import aleiiioa.components.local.ui.UIButton;
-//import aleiiioa.components.local.ui.InteractiveHeapsComponent;
-
 import h2d.ScaleGrid;
+
+import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.rendering.SpriteExtension;
 import aleiiioa.components.core.rendering.SquashComponent;
 import aleiiioa.components.core.rendering.SpriteComponent;
+
 import aleiiioa.components.core.physics.position.GridPosition;
+import aleiiioa.components.core.physics.velocity.VelocityComponent;
+import aleiiioa.components.core.physics.velocity.AnalogSpeedComponent;
+
 import aleiiioa.components.local.dialog.DialogReferenceComponent;
 import aleiiioa.components.local.dialog.DialogUIBubble;
 import aleiiioa.components.local.dialog.DialogUIOptionLayout;
 import aleiiioa.components.local.dialog.UIDialog;
-
 import aleiiioa.components.local.dialog.YarnDialogConponent;
 import aleiiioa.components.local.dialog.YarnDialogListener;
 
+import aleiiioa.components.local.ui.UIButton;
+import aleiiioa.components.local.ui.UISelectorFlag;
+import aleiiioa.components.local.ui.algo.On_Targeted_Selectable;
+import aleiiioa.components.local.ui.algo.Currently_Selectable;
 
 import aleiiioa.components.utils.helper.*;
 
@@ -166,36 +165,4 @@ class UIBuilders {
             }
         } 
 
-        
- /*        public static function flowButton(e:Entity_UIButton,flow:h2d.Flow){
-                      
-            var pos = new GridPosition(0,0,0,0);
-            var spr = new SpriteComponent(D.tiles.fxDot0);
-            var sq  = new SquashComponent();
-            var se  = new SpriteExtension();     
-            spr.visible = true;
-            
-            //Rendering Component
-            
-            //var g   = new ScaleGrid(Assets.tiles.getTile(D.tiles.ui_button),2,2,flow);
-            var g = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_button),2,2,flow);
-            
-            g.paddingHorizontal = 5;
-            g.paddingVertical   = 2;
-            
-
-            var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
-            var obj = new UIObject();
-
-
-
-            txt.text = e.f_Label;
-  
-            var interactive = new InteractiveHeapsComponent();
-            var button      = new UIButton(txt);
-            button.event = e.f_UI_Button_Event;
- 
-
-            new echoes.Entity().add(pos,spr,sq,se,g,interactive,button,obj);
-        }  */
     }
