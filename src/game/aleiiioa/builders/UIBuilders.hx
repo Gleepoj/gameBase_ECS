@@ -1,6 +1,5 @@
 package aleiiioa.builders;
 
-import hxd.Window;
 import h2d.ScaleGrid;
 
 import aleiiioa.components.core.input.InputComponent;
@@ -65,30 +64,26 @@ class UIBuilders {
         var sq  = new SquashComponent();
         var se  = new SpriteExtension();
 
-        var input = new InputComponent();
-        var selector = new UISelectorFlag();
-
-
-        se.sprScaleX = 4;
-        se.sprScaleY = 4;
-
-        //Physics Component
-        var vc = new VelocityComponent();
-        var vas = new AnalogSpeedComponent(0,0);
         spr.visible = false;
 
-        new echoes.Entity().add(pos,spr,sq,se,vc,vas,input,selector);
+        //Physics Component
+        var vc  = new VelocityComponent();
+        var vas = new AnalogSpeedComponent(0,0);
+        
+        var input    = new InputComponent();
+        var selector = new UISelectorFlag();
 
+        new echoes.Entity().add(pos,spr,sq,se,vc,vas,input,selector);
     }
 
     public static function menu(e:Entity_UIWindow) {
             //Physics Component
             selector();
+
             var pos = new GridPosition(e.cx,e.cy,0,0);
             
             //Rendering Component
             var spr = new SpriteComponent(D.tiles.fxDot0);
-
 
             var sq  = new SquashComponent();
             var se  = new SpriteExtension();
@@ -108,7 +103,6 @@ class UIBuilders {
                 affiliatedID.push(en.entityIid);
             }
             
-
             for (en in Game.ME.level.data.l_Entities.all_UIButton){
                 for(a in affiliatedID)
                     if(a == en.iid){
@@ -142,20 +136,16 @@ class UIBuilders {
 
             var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
          
-            var sel = new Currently_Selectable();
-            //var m   = new UIMouse_Interactive_Component();
-
             txt.text = e.f_Label;
             txt.setPosition(g.width/2,g.height/5);
             txt.textAlign = Center;
             txt.scale(3);
         
-
-            //var interactive = new InteractiveHeapsComponent();
-            var button      = new UIButton(txt);
+            var button   = new UIButton(txt);
             button.event = e.f_UI_Button_Event;
 
-            
+            var sel = new Currently_Selectable();
+
             if(!e.f_isFirstTargeted)
                 new echoes.Entity().add(pos,spr,sq,se,g,button,sel);
 

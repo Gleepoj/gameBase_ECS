@@ -82,7 +82,6 @@ class WorkflowBuilders {
 		Game.ME.camera.centerOnGridTarget();		
 		Game.ME.camera.clampToLevelBounds = false;
 		
-		
 		// ECS //
 		var player = level.data.l_Entities.all_Player[0];
 		EntityBuilders.player(player.cx,player.cy);

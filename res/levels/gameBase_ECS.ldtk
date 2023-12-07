@@ -936,9 +936,9 @@
 							"defUid": 44,
 							"px": [248,152],
 							"fieldInstances": [
-								{ "__identifier": "UI_Button_Event", "__type": "ExternEnum.UI_Button_Event", "__value": "GameState_Settings", "__tile": null, "defUid": 46, "realEditorValues": [{
+								{ "__identifier": "UI_Button_Event", "__type": "ExternEnum.UI_Button_Event", "__value": "Order_Next", "__tile": null, "defUid": 46, "realEditorValues": [{
 									"id": "V_String",
-									"params": ["GameState_Settings"]
+									"params": ["Order_Next"]
 								}] },
 								{ "__identifier": "Label", "__type": "String", "__value": "Setting", "__tile": null, "defUid": 47, "realEditorValues": [{
 									"id": "V_String",
@@ -1708,18 +1708,18 @@
 						},
 						{
 							"__identifier": "Player",
-							"__grid": [19,28],
+							"__grid": [30,27],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#75FF00",
-							"__worldX": 840,
-							"__worldY": 448,
-							"iid": "ca0b9bb0-dbe0-11ec-a977-5d12ac1e654d",
+							"__worldX": 1016,
+							"__worldY": 440,
+							"iid": "b2aae5d0-8990-11ee-a9d5-33f74cb4fefc",
 							"width": 16,
 							"height": 16,
 							"defUid": 21,
-							"px": [312,448],
+							"px": [488,440],
 							"fieldInstances": []
 						}
 					]
