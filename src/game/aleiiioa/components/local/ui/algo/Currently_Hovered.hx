@@ -1,6 +1,6 @@
 package aleiiioa.components.local.ui.algo;
 
-class Alg_CurrentlySelectable {
+class Currently_Hovered {
     public function new (){
         
     }

@@ -21,7 +21,7 @@ without good knowledge of the algorythm.
 - drapeaux ability - object   : IsCatchable.hx 
 
 - événement d'ajout : OnAction.hx
-- composant lié a un algorythme precis : Alg_Something.hx, Alg_Pf_Something.hx for pathfinding for example. 
+- composant implicite lié a un algorythme precis : Adjective_Something.hx, Verb_Something.hx for example. 
 
 :: Convention de nommage et d'utilisation des system :: 
 

@@ -1,6 +1,6 @@
 package aleiiioa.components.local.ui.algo;
 
-class Alg_TargetedSelectable {
+class On_Targeted_Selectable {
     public function new(){
         
     }

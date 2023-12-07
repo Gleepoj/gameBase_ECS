@@ -1,7 +1,7 @@
 package aleiiioa.systems.local.ui;
 
 import aleiiioa.components.core.input.InputComponent;
-import aleiiioa.components.local.ui.algo.Alg_CurrentlyHovered;
+import aleiiioa.components.local.ui.algo.Currently_Hovered;
 import aleiiioa.components.local.ui.On_UISelectInput;
 import aleiiioa.components.local.ui.UIButton;
 import dn.Cooldown;
@@ -26,7 +26,7 @@ class UIButtonInteractionSystem extends echoes.System {
         cd.update(dt);
     }
 
-    @u function UIPadInput(en:echoes.Entity,b:UIButton,on:Alg_CurrentlyHovered){
+    @u function UIPadInput(en:echoes.Entity,b:UIButton,on:Currently_Hovered){
         if(inputAnyKey){
             en.add(new On_UISelectInput());
             inputAnyKey = false;
