@@ -5,7 +5,11 @@
 - données statique  : SomethingStaticComponent.hx
                     : SomethingSettingComponent.hx
 
-- composant automatique : SomethingAutoComponent.hx
+- composant implicite   : Alg_Something_Component.hx On_Something.hx // 
+the underscore signal that main use is implicit that mean that programmer shouldn't add or remove component 
+without good knowledge of the algorythm. 
+
+
 - données partagés      : SomethingSharedComponent.hx
 
 - drapeaux statique     : SomethingStaticFlag.hx
@@ -17,6 +21,7 @@
 - drapeaux ability - object   : IsCatchable.hx 
 
 - événement d'ajout : OnAction.hx
+- composant lié a un algorythme precis : Alg_Something.hx, Alg_Pf_Something.hx for pathfinding for example. 
 
 :: Convention de nommage et d'utilisation des system :: 
 

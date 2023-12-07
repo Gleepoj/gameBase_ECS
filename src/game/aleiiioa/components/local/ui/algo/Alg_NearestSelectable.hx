@@ -1,4 +1,4 @@
-package aleiiioa.components.local.ui;
+package aleiiioa.components.local.ui.algo;
 
 class Alg_NearestSelectable {
     public var distance:Float = 0;
