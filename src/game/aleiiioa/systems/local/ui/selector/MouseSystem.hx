@@ -12,7 +12,7 @@ import aleiiioa.components.local.ui.algo.On_Targeted_Selectable;
 import aleiiioa.components.core.physics.position.TransformPositionComponent;
 import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.input.MouseComponent;
-import aleiiioa.components.local.ui.On_UISelectInput;
+import aleiiioa.components.local.ui.UISignalPressSelect;
 
 class MouseSystem extends echoes.System {
     var window = hxd.Window.getInstance();
@@ -42,7 +42,7 @@ class MouseSystem extends echoes.System {
         }
 
         interactive.onClick = function(_){
-            en.add(new On_UISelectInput());
+            en.add(new UISignalPressSelect());
         }
     }
 

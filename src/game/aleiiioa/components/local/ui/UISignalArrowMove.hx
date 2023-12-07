@@ -1,6 +1,6 @@
 package aleiiioa.components.local.ui;
 
-class On_UIPadMove {
+class UISignalArrowMove {
     
     public var x:Int = 0;
     public var y:Int = 0;

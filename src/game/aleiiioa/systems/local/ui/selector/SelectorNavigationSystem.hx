@@ -7,7 +7,7 @@ import aleiiioa.components.local.ui.algo.Nearest_Selectable;
 import aleiiioa.components.local.ui.algo.Currently_Selectable;
 import aleiiioa.components.local.ui.UISelectorFlag;
 import aleiiioa.components.local.ui.algo.On_Targeted_Selectable;
-import aleiiioa.components.local.ui.On_UIPadMove;
+import aleiiioa.components.local.ui.UISignalArrowMove;
 import aleiiioa.components.core.physics.position.TransformPositionComponent;
 
 import echoes.System;
@@ -58,9 +58,9 @@ class SelectorNavigationSystem extends echoes.System {
 			var selector = selector_i.value;
 			
 
-			if (selector.exists(On_UIPadMove) && !selector.exists(TransformPositionComponent)) {
+			if (selector.exists(UISignalArrowMove) && !selector.exists(TransformPositionComponent)) {
 				
-				var select_int = selector.get(On_UIPadMove);
+				var select_int = selector.get(UISignalArrowMove);
 				var select_gp  = selector.get(GridPosition);
 				
 				if (select_int.y < 0 ) {
@@ -145,7 +145,7 @@ class SelectorNavigationSystem extends echoes.System {
 			var duration:Float = 0.1;
 			var tar = gp.gpToVector();
 			var ori = selector.get(GridPosition).gpToVector();
-			selector.remove(On_UIPadMove);
+			selector.remove(UISignalArrowMove);
 			selector.add(new TransformPositionComponent(ori,tar,duration,TBurnOut));
 			
 		}

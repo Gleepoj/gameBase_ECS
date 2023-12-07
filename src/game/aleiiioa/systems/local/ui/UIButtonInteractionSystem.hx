@@ -2,7 +2,7 @@ package aleiiioa.systems.local.ui;
 
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.local.ui.algo.Currently_Hovered;
-import aleiiioa.components.local.ui.On_UISelectInput;
+import aleiiioa.components.local.ui.UISignalPressSelect;
 import aleiiioa.components.local.ui.UIButton;
 import dn.Cooldown;
 import aleiiioa.components.local.ui.UISelectorFlag;
@@ -28,12 +28,12 @@ class UIButtonInteractionSystem extends echoes.System {
 
     @u function UIPadInput(en:echoes.Entity,b:UIButton,on:Currently_Hovered){
         if(inputAnyKey){
-            en.add(new On_UISelectInput());
+            en.add(new UISignalPressSelect());
             inputAnyKey = false;
         }
     }
 
-    @u function UIButtonUpdate(b:UIButton,addOnClick:On_UISelectInput){
+    @u function UIButtonUpdate(b:UIButton,addOnClick:UISignalPressSelect){
         interact(b.event);
     }
 
