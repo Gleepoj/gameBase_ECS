@@ -7,7 +7,7 @@ import aleiiioa.components.core.input.InputComponent;
 
 
 
-class SelectorControlSystem extends echoes.System {
+class UIPadInputSystem extends echoes.System {
 
 
 	@u function playerReceiveInput(en:echoes.Entity, inp:InputComponent, s:UISelectorFlag) {

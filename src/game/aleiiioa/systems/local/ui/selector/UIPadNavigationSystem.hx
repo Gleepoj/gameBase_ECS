@@ -13,7 +13,8 @@ import aleiiioa.components.core.physics.position.TransformPositionComponent;
 import echoes.System;
 import echoes.View;
 
-class SelectorNavigationSystem extends echoes.System {
+class UIPadNavigationSystem extends echoes.System {
+	
 	var SELECTOR:View<UISelectorFlag>;
 	var SELECTABLE:View<Currently_Selectable>;
 

@@ -14,15 +14,9 @@ import aleiiioa.components.core.rendering.*;
 import aleiiioa.components.core.input.MouseComponent;
 import aleiiioa.components.local.ui.UISignalPressSelect;
 
-class MouseSystem extends echoes.System {
+class UIMouseSystem extends echoes.System {
     var window = hxd.Window.getInstance();
-
-    var onNewOver = false;
-    var onOverInteractGp:GridPosition = new GridPosition(0,0,0,0);
     
-    var mx:Int = 0;
-    var my:Int = 0;
-
     var freeMove:Bool = false;
 
     var PREVIOUSLY_SELECTED:View<Currently_Hovered>;
