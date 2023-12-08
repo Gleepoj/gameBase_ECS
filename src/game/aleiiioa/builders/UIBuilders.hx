@@ -2,7 +2,7 @@ package aleiiioa.builders;
 
 import aleiiioa.components.local.ui.UIModalSetting;
 import aleiiioa.components.local.ui.UIValue;
-import aleiiioa.components.local.ui.UISignalArrowMove;
+import aleiiioa.components.local.ui.signal.UISignalArrowMove;
 import h2d.ScaleGrid;
 
 import aleiiioa.components.core.input.InputComponent;

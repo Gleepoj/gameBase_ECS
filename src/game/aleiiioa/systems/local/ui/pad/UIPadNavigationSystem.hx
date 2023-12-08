@@ -7,7 +7,7 @@ import aleiiioa.components.local.ui.algo.Nearest_Selectable;
 import aleiiioa.components.local.ui.algo.Currently_Selectable;
 import aleiiioa.components.local.ui.UISelectorFlag;
 import aleiiioa.components.local.ui.algo.On_Targeted_Selectable;
-import aleiiioa.components.local.ui.UISignalArrowMove;
+import aleiiioa.components.local.ui.signal.UISignalArrowMove;
 import aleiiioa.components.core.physics.position.TransformPositionComponent;
 
 import echoes.System;

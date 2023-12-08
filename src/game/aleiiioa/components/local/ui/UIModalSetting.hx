@@ -21,7 +21,6 @@ class UIModalSetting {
         addResolution("2K", {width: 2560, height: 1440});
         addResolution("4K", {width: 3840, height: 2160});
 
-        
         updateDisplayValue();
 
         callback = function(){      

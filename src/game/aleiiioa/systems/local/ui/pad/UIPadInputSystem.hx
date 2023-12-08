@@ -2,7 +2,7 @@ package aleiiioa.systems.local.ui.pad;
 
 
 import aleiiioa.components.local.ui.UISelectorFlag;
-import aleiiioa.components.local.ui.UISignalArrowMove;
+import aleiiioa.components.local.ui.signal.UISignalArrowMove;
 import aleiiioa.components.core.input.InputComponent;
 
 

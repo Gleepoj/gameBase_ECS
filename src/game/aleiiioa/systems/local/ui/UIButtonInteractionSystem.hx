@@ -13,11 +13,11 @@ import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.local.ui.UISelectorFlag;
 import aleiiioa.components.local.ui.algo.On_Targeted_Selectable;
 import aleiiioa.components.local.ui.algo.Currently_Hovered;
-import aleiiioa.components.local.ui.UISignalPressSelect;
+import aleiiioa.components.local.ui.signal.UISignalPressSelect;
 import aleiiioa.components.local.ui.UIButton;
-import aleiiioa.components.local.ui.UISignal_OnNext;
-import aleiiioa.components.local.ui.UISignal_OnPrevious;
-import aleiiioa.components.local.ui.UISignal_OnUndefined;
+import aleiiioa.components.local.ui.signal.UISignal_OnNext;
+import aleiiioa.components.local.ui.signal.UISignal_OnPrevious;
+import aleiiioa.components.local.ui.signal.UISignal_OnUndefined;
 
 
 class UIButtonInteractionSystem extends echoes.System {
