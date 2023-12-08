@@ -1,5 +1,7 @@
 package aleiiioa.systems.local.ui;
 
+import dn.Cooldown;
+import aleiiioa.components.local.ui.UIModalSetting;
 import echoes.View;
 
 import h2d.ScaleGrid;
@@ -22,6 +24,7 @@ class UIButtonInteractionSystem extends echoes.System {
     var inputAnyKey:Bool = false;
     
     var PREVIOUSLY_SELECTED:View<Currently_Hovered>;
+    var cd:Cooldown = new Cooldown(Const.FPS);
 
     public function new (){
  
@@ -41,12 +44,21 @@ class UIButtonInteractionSystem extends echoes.System {
         }
     }
 
-    @a function bitbol(u:UISignal_OnNext){
-        trace("next");
+    @a function buttonOnNext(en:echoes.Entity,u:UISignal_OnNext,modal:UIModalSetting){
+        modal.next();
+        en.remove(UISignal_OnNext);
+    }
+
+    @a function buttonOnPrevious(en:echoes.Entity,u:UISignal_OnPrevious,modal:UIModalSetting){
+ 
+        modal.prev();
+        en.remove(UISignal_OnPrevious);
+
     }
 
     @a function addButtonInteractive(en:echoes.Entity,u:UIButton,gp:GridPosition,sc:ScaleGrid){
-        
+        // Mouse Right click is map on gamepad action X so no need to interact.Onclick
+
         u.interactive = new Interactive(sc.width,sc.height,sc);
    
         u.interactive.onOver = function(_) {
@@ -54,12 +66,9 @@ class UIButtonInteractionSystem extends echoes.System {
             en.add(new On_Targeted_Selectable());
         }
 
-        u.interactive.onClick = function(_){
-            en.add(new UISignalPressSelect());
-        }
     }
     
-    @u function padPressSelct(inp:InputComponent,selector:UISelectorFlag){
+    @u function controllerAccessPressSelct(inp:InputComponent,selector:UISelectorFlag){
         if(inp.ca.isPressed(ActionX) && !inp.cd.has("select")){
             inputAnyKey = true;
             inp.cd.setMs("select",100);
@@ -73,8 +82,9 @@ class UIButtonInteractionSystem extends echoes.System {
         }
     }
 
-    @u function triggerButtonFunction(b:UIButton,addOnClick:UISignalPressSelect){
+    @a function triggerButtonFunction(en:echoes.Entity,b:UIButton,addOnClick:UISignalPressSelect){
         b.embedded_function();
+        en.remove(UISignalPressSelect);
     }
         
     function clearCurrentlySelected(){

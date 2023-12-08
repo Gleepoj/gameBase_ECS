@@ -1,5 +1,6 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.local.ui.UIModalSetting;
 import aleiiioa.components.local.ui.UIValue;
 import aleiiioa.components.local.ui.UISignalArrowMove;
 import h2d.ScaleGrid;
@@ -123,33 +124,6 @@ class UIBuilders {
            
         }
 
-        
-        public static function ldtk_UISetting(e:Entity_UISetting,flow:h2d.Flow){
-      /*       var pos = new GridPosition(0,0,0,0);
-            var spr = new SpriteComponent(D.tiles.fxDot0);
-            var sq  = new SquashComponent();
-            var se  = new SpriteExtension();     
-            spr.visible = true; */
-
-            var subflow = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_window),3,3);
-            flow.addChild(subflow);
-            
-            subflow.layout = Horizontal;
-            subflow.verticalAlign = Middle;
-            subflow.horizontalAlign = Middle;
-            subflow.padding = 4;
-            subflow.verticalSpacing = 2;
-
-            var lab = e.f_UI_Setting_Type;
-
-            label(subflow,lab.getName());
-            prev_button(subflow);
-            value(subflow);
-            next_button(subflow);
-            subflow.reflow();
-
-        }
-
         public static function ldtk_UIbutton(e:Entity_UIButton,flow:h2d.Flow){
                       
             var pos = new GridPosition(0,0,0,0);
@@ -185,8 +159,36 @@ class UIBuilders {
                 new echoes.Entity().add(pos,spr,sq,se,g,button,sel,tar);
             }
         } 
+        
+        public static function ldtk_UISetting(e:Entity_UISetting,flow:h2d.Flow){
+      /*       var pos = new GridPosition(0,0,0,0);
+            var spr = new SpriteComponent(D.tiles.fxDot0);
+            var sq  = new SquashComponent();
+            var se  = new SpriteExtension();     
+            spr.visible = true; */
 
-        public static function next_button(flow:h2d.Flow){
+            var subflow = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_window),3,3);
+            flow.addChild(subflow);
+            
+            subflow.layout = Horizontal;
+            subflow.verticalAlign = Middle;
+            subflow.horizontalAlign = Middle;
+            subflow.padding = 4;
+            subflow.verticalSpacing = 2;
+
+            var lab = e.f_UI_Setting_Type;
+            var shared = new UIModalSetting();
+
+            label(subflow,lab.getName());
+            prev_button(subflow,shared);
+            value(subflow,shared);
+            next_button(subflow,shared);
+            
+            subflow.reflow();
+
+        }
+
+        public static function next_button(flow:h2d.Flow,shared:UIModalSetting){
             var pos = new GridPosition(0,0,0,0);
             var spr = new SpriteComponent(D.tiles.fxDot0);
             var sq  = new SquashComponent();
@@ -202,7 +204,7 @@ class UIBuilders {
 
             var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
          
-            txt.text = ":>>";
+            txt.text = ">>";
             txt.setPosition(g.width/2,g.height/5);
             txt.textAlign = Center;
             txt.scale(2);
@@ -213,10 +215,10 @@ class UIBuilders {
             var sel = new Currently_Selectable();
 
          
-            new echoes.Entity().add(pos,spr,sq,se,g,button,sel);
+            new echoes.Entity().add(pos,spr,sq,se,g,button,sel,shared);
         }
 
-        public static function prev_button(flow:h2d.Flow,isFirstTargeted:Bool = false){
+        public static function prev_button(flow:h2d.Flow,isFirstTargeted:Bool = false,shared:UIModalSetting){
             var pos = new GridPosition(0,0,0,0);
             var spr = new SpriteComponent(D.tiles.fxDot0);
             var sq  = new SquashComponent();
@@ -232,7 +234,7 @@ class UIBuilders {
 
             var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
          
-            txt.text = "<<:";
+            txt.text = "<<";
             txt.setPosition(g.width/2,g.height/5);
             txt.textAlign = Center;
             txt.scale(2);
@@ -243,11 +245,11 @@ class UIBuilders {
             var sel = new Currently_Selectable();
 
             if(!isFirstTargeted)
-                new echoes.Entity().add(pos,spr,sq,se,g,button,sel);
+                new echoes.Entity().add(pos,spr,sq,se,g,button,sel,shared);
 
             if(isFirstTargeted){
                 var tar = new On_Targeted_Selectable();
-                new echoes.Entity().add(pos,spr,sq,se,g,button,sel,tar);
+                new echoes.Entity().add(pos,spr,sq,se,g,button,sel,tar,shared);
             }
         }
 
@@ -276,7 +278,7 @@ class UIBuilders {
 
         }
 
-        public static function value(flow:h2d.Flow){
+        public static function value(flow:h2d.Flow,shared:UIModalSetting){
             
             var pos = new GridPosition(0,0,0,0);
             var spr = new SpriteComponent(D.tiles.fxDot0);
@@ -291,16 +293,18 @@ class UIBuilders {
             g.width  = v.width/4;
             g.height = 40;
 
-            var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
-         
-            txt.text = "::INIT value::";
+            shared.text = new h2d.Text(hxd.res.DefaultFont.get(), g);
+            var txt = shared.text;
+            txt.text = shared.current_display_value;
             txt.setPosition(g.width/2,g.height/5);
             txt.textAlign = Center;
             txt.scale(2);
 
-            var value = new UIValue(txt);
+         
+
+            //var value = new UIValue(txt);
  
-            new echoes.Entity().add(pos,spr,sq,se,g,value);
+            new echoes.Entity().add(pos,spr,sq,se,g,shared);
 
         }
 
