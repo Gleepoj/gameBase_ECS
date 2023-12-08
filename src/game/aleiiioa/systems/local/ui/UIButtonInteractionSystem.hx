@@ -34,7 +34,7 @@ class UIButtonInteractionSystem extends echoes.System {
             case GameState_Quit : b.embedded_function =  function(){App.ME.exit();};
             case GameState_Menu : b.embedded_function =  function(){Aleiiioa.ME.goToMenu();};
             case GameState_Save : 
-            case GameState_Settings :b.embedded_function =  function(){Aleiiioa.ME.goToSetting();};
+            case GameState_Settings :b.embedded_function = function(){Aleiiioa.ME.goToSetting();};
             case Order_Next     : b.embedded_function = function(){ en.add(new UISignal_OnNext());};
             case Order_Previous : b.embedded_function = function(){ en.add(new UISignal_OnPrevious());};
             case Order_Undefined: b.embedded_function = function(){ en.add(new UISignal_OnUndefined());}

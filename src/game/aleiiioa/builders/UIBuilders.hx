@@ -1,5 +1,7 @@
 package aleiiioa.builders;
 
+import aleiiioa.components.local.ui.UIValue;
+import aleiiioa.components.local.ui.UISignalArrowMove;
 import h2d.ScaleGrid;
 
 import aleiiioa.components.core.input.InputComponent;
@@ -81,10 +83,7 @@ class UIBuilders {
             selector();
 
             var pos = new GridPosition(e.cx,e.cy,0,0);
-            
-            //Rendering Component
             var spr = new SpriteComponent(D.tiles.fxDot0);
-
             var sq  = new SquashComponent();
             var se  = new SpriteExtension();
 
@@ -106,7 +105,14 @@ class UIBuilders {
             for (en in Game.ME.level.data.l_Entities.all_UIButton){
                 for(a in affiliatedID)
                     if(a == en.iid){
-                       UIBuilders.button(en,flow);
+                       UIBuilders.ldtk_UIbutton(en,flow);
+                    }
+            }
+
+            for (en in Game.ME.level.data.l_Entities.all_UISetting){
+                for(a in affiliatedID)
+                    if(a == en.iid){
+                       UIBuilders.ldtk_UISetting(en,flow);
                     }
             }
                        
@@ -117,9 +123,34 @@ class UIBuilders {
            
         }
 
-   
+        
+        public static function ldtk_UISetting(e:Entity_UISetting,flow:h2d.Flow){
+      /*       var pos = new GridPosition(0,0,0,0);
+            var spr = new SpriteComponent(D.tiles.fxDot0);
+            var sq  = new SquashComponent();
+            var se  = new SpriteExtension();     
+            spr.visible = true; */
 
-        public static function button(e:Entity_UIButton,flow:h2d.Flow){
+            var subflow = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_window),3,3);
+            flow.addChild(subflow);
+            
+            subflow.layout = Horizontal;
+            subflow.verticalAlign = Middle;
+            subflow.horizontalAlign = Middle;
+            subflow.padding = 4;
+            subflow.verticalSpacing = 2;
+
+            var lab = e.f_UI_Setting_Type;
+
+            label(subflow,lab.getName());
+            prev_button(subflow);
+            value(subflow);
+            next_button(subflow);
+            subflow.reflow();
+
+        }
+
+        public static function ldtk_UIbutton(e:Entity_UIButton,flow:h2d.Flow){
                       
             var pos = new GridPosition(0,0,0,0);
             var spr = new SpriteComponent(D.tiles.fxDot0);
@@ -154,5 +185,124 @@ class UIBuilders {
                 new echoes.Entity().add(pos,spr,sq,se,g,button,sel,tar);
             }
         } 
+
+        public static function next_button(flow:h2d.Flow){
+            var pos = new GridPosition(0,0,0,0);
+            var spr = new SpriteComponent(D.tiles.fxDot0);
+            var sq  = new SquashComponent();
+            var se  = new SpriteExtension();     
+            spr.visible = true;
+            
+            //Rendering Component
+            
+            var g   = new ScaleGrid(Assets.tiles.getTile(D.tiles.ui_button),2,2,flow);
+            
+            g.width  = 50;
+            g.height = 40;
+
+            var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
+         
+            txt.text = ":>>";
+            txt.setPosition(g.width/2,g.height/5);
+            txt.textAlign = Center;
+            txt.scale(2);
+        
+            var button   = new UIButton(txt);
+            button.event = Order_Next;
+
+            var sel = new Currently_Selectable();
+
+         
+            new echoes.Entity().add(pos,spr,sq,se,g,button,sel);
+        }
+
+        public static function prev_button(flow:h2d.Flow,isFirstTargeted:Bool = false){
+            var pos = new GridPosition(0,0,0,0);
+            var spr = new SpriteComponent(D.tiles.fxDot0);
+            var sq  = new SquashComponent();
+            var se  = new SpriteExtension();     
+            spr.visible = true;
+            
+            //Rendering Component
+            
+            var g   = new ScaleGrid(Assets.tiles.getTile(D.tiles.ui_button),2,2,flow);
+           
+            g.width  = 50;
+            g.height = 40;
+
+            var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
+         
+            txt.text = "<<:";
+            txt.setPosition(g.width/2,g.height/5);
+            txt.textAlign = Center;
+            txt.scale(2);
+        
+            var button   = new UIButton(txt);
+            button.event = Order_Previous;
+
+            var sel = new Currently_Selectable();
+
+            if(!isFirstTargeted)
+                new echoes.Entity().add(pos,spr,sq,se,g,button,sel);
+
+            if(isFirstTargeted){
+                var tar = new On_Targeted_Selectable();
+                new echoes.Entity().add(pos,spr,sq,se,g,button,sel,tar);
+            }
+        }
+
+        public static function label(flow:h2d.Flow,label:String){
+            var pos = new GridPosition(0,0,0,0);
+            var spr = new SpriteComponent(D.tiles.fxDot0);
+            var sq  = new SquashComponent();
+            var se  = new SpriteExtension();     
+            spr.visible = true;
+            
+            //Rendering Component
+            
+            var g   = new ScaleGrid(Assets.tiles.getTile(D.tiles.ui_button),2,2,flow);
+            var v = hxd.Window.getInstance();
+            g.width  = v.width/6;
+            g.height = 40;
+
+            var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
+         
+            txt.text = label;
+            txt.setPosition(g.width/2,g.height/5);
+            txt.textAlign = Center;
+            txt.scale(2);
+ 
+            new echoes.Entity().add(pos,spr,sq,se,g);
+
+        }
+
+        public static function value(flow:h2d.Flow){
+            
+            var pos = new GridPosition(0,0,0,0);
+            var spr = new SpriteComponent(D.tiles.fxDot0);
+            var sq  = new SquashComponent();
+            var se  = new SpriteExtension();     
+            spr.visible = true;
+            
+            //Rendering Component
+            
+            var g   = new ScaleGrid(Assets.tiles.getTile(D.tiles.ui_button),2,2,flow);
+            var v = hxd.Window.getInstance();
+            g.width  = v.width/4;
+            g.height = 40;
+
+            var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
+         
+            txt.text = "::INIT value::";
+            txt.setPosition(g.width/2,g.height/5);
+            txt.textAlign = Center;
+            txt.scale(2);
+
+            var value = new UIValue(txt);
+ 
+            new echoes.Entity().add(pos,spr,sq,se,g,value);
+
+        }
+
 
     }

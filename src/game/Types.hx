@@ -67,6 +67,13 @@ enum  UI_Button_Event {
 
 }
 
+enum UI_Setting_Type{
+	Window_Size;
+	Window_Mode;
+	Volume_Music;
+	Volume_SFX;
+}
+
 enum abstract LevelMark(Int) to Int {
 	var Coll_Wall;
 }

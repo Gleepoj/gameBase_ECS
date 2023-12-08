@@ -48,9 +48,9 @@ class Aleiiioa extends Game {
 
 	public function goToSetting(){
 		//trace("go to setting");
-		//Workflow.reset();
-		//game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Settings);
-		//WorkflowBuilders.newMainMenu(level);
+		Workflow.reset();
+		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Setting);
+		WorkflowBuilders.newMenu(level);
 	}
 
 	public function goToMenu(){
