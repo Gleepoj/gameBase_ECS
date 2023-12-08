@@ -1,30 +1,29 @@
 package aleiiioa.systems.local.ui;
 
-import dn.Cooldown;
-import aleiiioa.components.local.ui.UIModalSetting;
 import echoes.View;
-
 import h2d.ScaleGrid;
 import h2d.Interactive;
 
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.physics.position.GridPosition;
 
+import aleiiioa.components.local.ui.UIButton;
 import aleiiioa.components.local.ui.UISelectorFlag;
+import aleiiioa.components.local.ui.UIModalSetting;
+
 import aleiiioa.components.local.ui.algo.On_Targeted_Selectable;
 import aleiiioa.components.local.ui.algo.Currently_Hovered;
-import aleiiioa.components.local.ui.signal.UISignalPressSelect;
-import aleiiioa.components.local.ui.UIButton;
+
 import aleiiioa.components.local.ui.signal.UISignal_OnNext;
 import aleiiioa.components.local.ui.signal.UISignal_OnPrevious;
 import aleiiioa.components.local.ui.signal.UISignal_OnUndefined;
+import aleiiioa.components.local.ui.signal.UISignalPressSelect;
 
 
 class UIButtonInteractionSystem extends echoes.System {
     var inputAnyKey:Bool = false;
     
     var PREVIOUSLY_SELECTED:View<Currently_Hovered>;
-    var cd:Cooldown = new Cooldown(Const.FPS);
 
     public function new (){
  
@@ -45,6 +44,7 @@ class UIButtonInteractionSystem extends echoes.System {
     }
 
     @a function buttonOnNext(en:echoes.Entity,u:UISignal_OnNext,modal:UIModalSetting){
+        
         modal.next();
         en.remove(UISignal_OnNext);
     }
@@ -53,7 +53,6 @@ class UIButtonInteractionSystem extends echoes.System {
  
         modal.prev();
         en.remove(UISignal_OnPrevious);
-
     }
 
     @a function addButtonInteractive(en:echoes.Entity,u:UIButton,gp:GridPosition,sc:ScaleGrid){
