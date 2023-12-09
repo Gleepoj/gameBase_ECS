@@ -100,7 +100,7 @@ class UIBuilders {
             
             var viewport = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_window),3,3);
             Game.ME.ui_layer.add(viewport);
-
+            viewport.bg.alpha = 0;
             viewport.fillHeight = true;
             viewport.fillWidth = true;
 
@@ -116,8 +116,9 @@ class UIBuilders {
             flow.layout = Vertical;
             flow.verticalAlign = Middle;
             flow.horizontalAlign = Middle;
-
+            flow.bg.alpha = 0;
             viewport.addChild(flow);
+
 
             var affiliatedID:Array<String> = [] ;
             
