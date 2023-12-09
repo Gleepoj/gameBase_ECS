@@ -1,27 +1,6 @@
 package aleiiioa;
 
 import aleiiioa.builders.worlds.WorkflowBuilders;
-import echoes.SystemList;
-import echoes.Entity;
-import aleiiioa.systems.logic.object.BombLogicSystem;
-import aleiiioa.builders.*;
-import aleiiioa.components.core.physics.position.GridPosition;
-import aleiiioa.systems.logic.interaction.CatchLogicSystem;
-
-import aleiiioa.systems.utils.*;
-import aleiiioa.systems.core.*;
-import aleiiioa.systems.local.particules.*;
-import aleiiioa.systems.core.renderer.*;
-import aleiiioa.systems.core.input.*;
-import aleiiioa.systems.logic.qualia.*;
-import aleiiioa.systems.core.physics.*;
-import aleiiioa.systems.core.physics.collision.*;
-import aleiiioa.systems.core.physics.position.*;
-import aleiiioa.systems.core.physics.velocity.*;
-import aleiiioa.systems.core.collisions.*;
-
-import aleiiioa.systems.local.dialog.*;
-
 import echoes.Workflow;
 
 class Aleiiioa extends Game {
@@ -61,7 +40,6 @@ class Aleiiioa extends Game {
 		//game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Main_Menu);
 		//WorkflowBuilders.newMainMenu(level);
 	}
-
 
 	override function fixedUpdate() {
 		super.fixedUpdate();

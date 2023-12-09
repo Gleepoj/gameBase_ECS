@@ -1,5 +1,7 @@
 package aleiiioa.systems.local.ui;
 
+import aleiiioa.components.local.ui.setting.ISettingComponent;
+import aleiiioa.components.local.ui.setting.SettingResolution;
 import echoes.View;
 import h2d.ScaleGrid;
 import h2d.Interactive;
@@ -43,15 +45,17 @@ class UIButtonInteractionSystem extends echoes.System {
         }
     }
 
-    @a function buttonOnNext(en:echoes.Entity,u:UISignal_OnNext,modal:UIModalSetting){
-        
-        modal.next();
+    @a function buttonOnNext(en:echoes.Entity,u:UISignal_OnNext,modal:UIModalSetting,set:ISettingComponent){
+        trace("triger next ");
+        set.next();
+        modal.refresh(set.getDisplayText());
         en.remove(UISignal_OnNext);
     }
 
-    @a function buttonOnPrevious(en:echoes.Entity,u:UISignal_OnPrevious,modal:UIModalSetting){
- 
-        modal.prev();
+    @a function buttonOnPrevious(en:echoes.Entity,u:UISignal_OnPrevious,modal:UIModalSetting,set:ISettingComponent){
+        //trace("triger prev ");
+        set.prev();
+        modal.refresh(set.getDisplayText());
         en.remove(UISignal_OnPrevious);
     }
 
