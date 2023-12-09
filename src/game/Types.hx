@@ -13,6 +13,9 @@ enum abstract GameAction(Int) to Int {
 	
 	var ActionX;
 	var ActionY;
+	var ActionA;
+	var ActionB;
+	
 	var Jump;
 	var Interaction;
 
@@ -24,6 +27,13 @@ enum abstract GameAction(Int) to Int {
 	var ScreenshotMode;
 
 	var MenuCancel;
+}
+
+enum abstract UISelectableType (String) to String {
+	var Category_None;
+	var Category_A;
+	var Category_B;
+	var Category_C;
 }
 
 enum Affect {
@@ -41,6 +51,27 @@ enum AreaInfluence {
 	AiSmall;
 	AiMedium;
 	AiLarge;
+}
+
+enum  UI_Button_Event {
+
+	GameState_Play;
+	GameState_Save;
+	GameState_Load;
+	GameState_Settings;
+	GameState_Quit;
+	GameState_Menu;
+	Order_Next;
+	Order_Previous;
+	Order_Undefined;
+
+}
+
+enum UI_Setting_Type{
+	Window_Size;
+	Window_Mode;
+	Volume_Music;
+	Volume_SFX;
 }
 
 enum abstract LevelMark(Int) to Int {

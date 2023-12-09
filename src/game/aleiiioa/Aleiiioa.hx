@@ -1,89 +1,45 @@
 package aleiiioa;
 
-import echoes.Entity;
-import aleiiioa.systems.logic.EntityLogicSystem;
-import aleiiioa.systems.logic.InteractivesSystem;
-import aleiiioa.builders.*;
-import aleiiioa.components.core.position.GridPosition;
-
-import aleiiioa.systems.ui.*;
-import aleiiioa.systems.core.*;
-import aleiiioa.systems.particules.*;
-import aleiiioa.systems.renderer.*;
-import aleiiioa.systems.collisions.*;
-import aleiiioa.systems.dialog.*;
-
+import aleiiioa.builders.worlds.WorkflowBuilders;
 import echoes.Workflow;
 
 class Aleiiioa extends Game {
+
 	var game(get,never) : Game; inline function get_game() return Game.ME;
-	
-	var cameraFocus:Entity;
-	var cameraFocusPosition:GridPosition;
+	public static var ME : Aleiiioa;
 
 	public function new() {
 		super();
+		
+		ME = this;
 		Workflow.reset();
 		
-		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
-		cameraFocus = EntityBuilders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
-		cameraFocusPosition = cameraFocus.get(GridPosition);
-
-		Game.ME.camera.trackEntityGridPosition(cameraFocusPosition,true,1);
-		Game.ME.camera.centerOnGridTarget();		
-		Game.ME.camera.clampToLevelBounds = false;
-		
-		
-		// ECS //
-		var player = level.data.l_Entities.all_Player[0];
-		EntityBuilders.player(player.cx,player.cy);
-
-		for (e in level.data.l_Entities.all_PNJ){
-			EntityBuilders.pnj(e.cx,e.cy,e.f_Dialog);
-		}
-
-		for (cp in level.data.l_Entities.all_ChouxPeteur){
-			EntityBuilders.chouxPeteur(cp.cx,cp.cy);
-		}
-		
-		//Collision
-		Workflow.addSystem(new GarbageCollectionSystem());
-		Workflow.addSystem(new CollisionsListenerActualizer());
-		Workflow.addSystem(new EntityCollisionsSystem());
-		
-		//Object
-		Workflow.addSystem(new LevelCollisionsSystem());
-		Workflow.addSystem(new VelocitySystem());
-		Workflow.addSystem(new GridPositionActualizer());
-
-		//Interaction
-		Workflow.add60FpsSystem(new InteractivesSystem());
-		Workflow.add60FpsSystem(new EntityLogicSystem());
-		
-		//Particles
-		Workflow.addSystem(new ParticulesVelocitySystem());
-		Workflow.add60FpsSystem(new ParticulesSystem());
-		Workflow.add60FpsSystem(new ParticuleRenderer());
-		
-		//Graphics
-		Workflow.add60FpsSystem(new SquashRenderer());
-		Workflow.add60FpsSystem(new SpriteExtensionFx());
-		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
-		
-		//Dialog
-		Workflow.add60FpsSystem(new DialogYarnSystem());
-		Workflow.add60FpsSystem(new DialogInputSystem());
-		Workflow.add60FpsSystem(new DialogUISystem());
-		
-		
-		//Helpers
-		Workflow.add60FpsSystem(new UIHelperSystem());
-		//Input
-		Workflow.add60FpsSystem(new InputSystem());
-
-
+		//startPlay();
+		goToMenu();
 	}
 
+	public function startPlay(){
+		Workflow.reset();
+	
+		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Level_1);
+		WorkflowBuilders.newLevel(level);
+	}
+
+	public function goToSetting(){
+		//trace("go to setting");
+		Workflow.reset();
+		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Setting);
+		WorkflowBuilders.newMenu(level);
+	}
+
+	public function goToMenu(){
+		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Menu);
+		WorkflowBuilders.newMenu(level);
+		//trace("go to menu");
+		//Workflow.reset();
+		//game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Main_Menu);
+		//WorkflowBuilders.newMainMenu(level);
+	}
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
@@ -95,6 +51,10 @@ class Aleiiioa extends Game {
 		Workflow.postUpdate(tmod);
 	}
 
+	override function onDispose() {
+		super.onDispose();
+		Workflow.reset();
+	}
 
 }
 	

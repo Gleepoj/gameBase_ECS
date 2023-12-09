@@ -1,9 +1,11 @@
 
+import aleiiioa.Aleiiioa;
+import h2d.Layers;
 import dn.Process;
 
 class Game extends Process {
+	
 	public static var ME : Game;
-
 	public var app(get,never) : App; inline function get_app() return App.ME;
 
 	/** Game controller (pad or keyboard) **/
@@ -17,6 +19,7 @@ class Game extends Process {
 
 	/** Container of all visual game objects. Ths wrapper is moved around by Camera. **/
 	public var scroller : h2d.Layers;
+	public var ui_layer: h2d.Layers;
 	
 	/** Level data **/
 	public var level : Level;
@@ -30,7 +33,6 @@ class Game extends Process {
 
 	public function new() {
 		super(App.ME);
-
 		ME = this;
 		ca = App.ME.controller.createAccess();
 		ca.lockCondition = isGameControllerLocked;
@@ -40,11 +42,14 @@ class Game extends Process {
 		root.add(scroller, Const.DP_FX_BG);
 		scroller.filter = new h2d.filter.Nothing(); // force rendering for pixel perfect
 
+		ui_layer = new h2d.Layers();
+		root.add(ui_layer,Const.DP_UI);
+		scroller.filter = new h2d.filter.Nothing();
+
 		fx = new Fx();
 		hud = new ui.Hud();
 		camera = new Camera();
 
-		startLevel(Assets.worldData.all_worlds.Default.all_levels.Level_0);
 	}
 
 
@@ -59,20 +64,19 @@ class Game extends Process {
 
 
 	/** Load a level **/
-	function startLevel(l:World.World_Level) {
+	/** Load a level **/
+	function loadLevel(l:World.World_Level) {
 		if( level!=null ){
 			level.destroy();
-			//solver.onDispose();
 		}
+
 		fx.clear();
 
 		level = new Level(l);
-		//solver = new Solver();
 		camera.centerOnTarget();
 		hud.onLevelStart();
 		Process.resizeAll();
 	}
-
 
 
 	/** Called when either CastleDB or `const.json` changes on disk **/
@@ -87,7 +91,7 @@ class Game extends Process {
 	function onLdtkReload() {
 		hud.notify("LDtk reloaded");
 		if( level!=null )
-			startLevel(Assets.worldData.all_worlds.Default.getLevel(level.data.uid) );
+			loadLevel(Assets.worldData.all_worlds.Default.getLevel(level.data.uid) );
 	}
 
 	/** Window/app resize event **/
@@ -116,7 +120,7 @@ class Game extends Process {
 		@param sec Realtime second duration of this slowmo
 		@param speedFactor Cumulative multiplier to the Process `tmod`
 	**/
-	public function addSlowMo(id:String, sec:Float, speedFactor=0.3) {
+	public function addSlowMo(id:String, sec:Float, speedFactor = 0.1) {
 		if( slowMos.exists(id) ) {
 			var s = slowMos.get(id);
 			s.f = speedFactor;
@@ -194,7 +198,7 @@ class Game extends Process {
 				if( !cd.hasSetS("exitWarn",3) )
 					hud.notify(Lang.t._("Press ESCAPE again to exit."));
 				else
-					App.ME.exit();
+					Aleiiioa.ME.goToMenu();
 			#end
 
 			// Attach debug drone (CTRL-SHIFT-D)
