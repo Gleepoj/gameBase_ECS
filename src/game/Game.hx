@@ -1,4 +1,6 @@
 
+import aleiiioa.Aleiiioa;
+import h2d.Layers;
 import dn.Process;
 
 class Game extends Process {
@@ -17,6 +19,7 @@ class Game extends Process {
 
 	/** Container of all visual game objects. Ths wrapper is moved around by Camera. **/
 	public var scroller : h2d.Layers;
+	public var ui_layer: h2d.Layers;
 	
 	/** Level data **/
 	public var level : Level;
@@ -38,6 +41,10 @@ class Game extends Process {
 		scroller = new h2d.Layers();
 		root.add(scroller, Const.DP_FX_BG);
 		scroller.filter = new h2d.filter.Nothing(); // force rendering for pixel perfect
+
+		ui_layer = new h2d.Layers();
+		root.add(ui_layer,Const.DP_UI);
+		scroller.filter = new h2d.filter.Nothing();
 
 		fx = new Fx();
 		hud = new ui.Hud();
@@ -191,7 +198,7 @@ class Game extends Process {
 				if( !cd.hasSetS("exitWarn",3) )
 					hud.notify(Lang.t._("Press ESCAPE again to exit."));
 				else
-					App.ME.exit();
+					Aleiiioa.ME.goToMenu();
 			#end
 
 			// Attach debug drone (CTRL-SHIFT-D)

@@ -33,7 +33,7 @@ class Aleiiioa extends Game {
 	}
 
 	public function goToMenu(){
-		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Level_0);
+		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Menu);
 		WorkflowBuilders.newMenu(level);
 		//trace("go to menu");
 		//Workflow.reset();

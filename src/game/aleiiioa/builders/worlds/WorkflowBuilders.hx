@@ -33,20 +33,10 @@ class WorkflowBuilders {
 	
 	
     public static function newMenu(level:Level){
-        
-        var cameraFocus:Entity;
-	    var cameraFocusPosition:GridPosition;
-		
-		Workflow.reset();
+        Game.ME.ui_layer.removeChildren();
+
 		Workflow.reset();
 		
-		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
-		cameraFocus = EntityBuilders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
-		cameraFocusPosition = cameraFocus.get(GridPosition);
-        Game.ME.camera.clampToLevelBounds = true;
-
-		
-
         for (e in level.data.l_Entities.all_UIWindow){
             UIBuilders.menu(e);
 		} 
@@ -73,7 +63,8 @@ class WorkflowBuilders {
 
 
 	public static function newLevel(level:Level){
-		
+		 Game.ME.ui_layer.removeChildren();
+
 		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
 		var cameraFocus = EntityBuilders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
 		var cameraFocusPosition = cameraFocus.get(GridPosition);

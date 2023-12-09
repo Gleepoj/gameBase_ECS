@@ -7,7 +7,7 @@ import aleiiioa.components.local.ui.setting.SettingSfx;
 import aleiiioa.components.local.ui.setting.ISettingComponent;
 import aleiiioa.components.local.ui.setting.SettingResolution;
 import aleiiioa.components.local.ui.UIModalSetting;
-import aleiiioa.components.local.ui.UIValue;
+
 import aleiiioa.components.local.ui.signal.UISignalArrowMove;
 import h2d.ScaleGrid;
 
@@ -94,39 +94,53 @@ class UIBuilders {
             var sq  = new SquashComponent();
             var se  = new SpriteExtension();
 
-            var flow = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_window),3,3);
-            Game.ME.scroller.add(flow);
+           /*  var flow = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_window),3,3);
+            Game.ME.root.add(flow,Const.DP_UI); */
+            var w = hxd.Window.getInstance();
             
+            var viewport = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_window),3,3);
+            Game.ME.ui_layer.add(viewport);
+
+            viewport.fillHeight = true;
+            viewport.fillWidth = true;
+
+            viewport.verticalAlign = Middle;
+            viewport.horizontalAlign = Middle;
+           
+            
+            var flow = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_window),3,3);
+           
+            flow.paddingHorizontal = M.floor(200/Const.UI_SCALE);
+            flow.paddingVertical   = M.floor(200/Const.UI_SCALE);
+
             flow.layout = Vertical;
             flow.verticalAlign = Middle;
             flow.horizontalAlign = Middle;
-            flow.padding = 40;
-            flow.verticalSpacing = 2;
-            
+
+            viewport.addChild(flow);
+
             var affiliatedID:Array<String> = [] ;
             
             for (en in e.f_Entity_ref){
                 affiliatedID.push(en.entityIid);
             }
-            
-            for (en in Game.ME.level.data.l_Entities.all_UIButton){
-                for(a in affiliatedID)
-                    if(a == en.iid){
-                       UIBuilders.ldtk_UIbutton(en,flow);
-                    }
-            }
+        
 
             for (en in Game.ME.level.data.l_Entities.all_UISetting){
                 for(a in affiliatedID)
                     if(a == en.iid){
                        UIBuilders.ldtk_UISetting(en,flow);
                     }
+            } 
+
+            for (en in Game.ME.level.data.l_Entities.all_UIButton){
+                for(a in affiliatedID)
+                    if(a == en.iid){
+                       UIBuilders.ldtk_UIbutton(en,flow);
+                    }
             }
                        
-            flow.reflow();
-            flow.bg.visible = false;
-  
-            new echoes.Entity().add(pos,spr,sq,se,flow);
+            viewport.reflow();
            
         }
 
@@ -167,11 +181,6 @@ class UIBuilders {
         } 
         
         public static function ldtk_UISetting(e:Entity_UISetting,flow:h2d.Flow){
-      /*       var pos = new GridPosition(0,0,0,0);
-            var spr = new SpriteComponent(D.tiles.fxDot0);
-            var sq  = new SquashComponent();
-            var se  = new SpriteExtension();     
-            spr.visible = true; */
 
             var subflow = new dn.heaps.FlowBg(Assets.tiles.getTile(D.tiles.ui_window),3,3);
             flow.addChild(subflow);
@@ -282,7 +291,7 @@ class UIBuilders {
             
             var g   = new ScaleGrid(Assets.tiles.getTile(D.tiles.ui_button),2,2,flow);
             var v = hxd.Window.getInstance();
-            g.width  = v.width/6;
+            g.width  = v.width/4;
             g.height = 40;
 
             var txt = new h2d.Text(hxd.res.DefaultFont.get(), g);
@@ -308,7 +317,7 @@ class UIBuilders {
             
             var g   = new ScaleGrid(Assets.tiles.getTile(D.tiles.ui_button),2,2,flow);
             var v = hxd.Window.getInstance();
-            g.width  = v.width/4;
+            g.width  = v.width/5;
             g.height = 40;
 
             shared.text = new h2d.Text(hxd.res.DefaultFont.get(), g);

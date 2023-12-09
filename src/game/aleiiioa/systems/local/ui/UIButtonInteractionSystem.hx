@@ -46,14 +46,12 @@ class UIButtonInteractionSystem extends echoes.System {
     }
 
     @a function buttonOnNext(en:echoes.Entity,u:UISignal_OnNext,modal:UIModalSetting,set:ISettingComponent){
-        trace("triger next ");
         set.next();
         modal.refresh(set.getDisplayText());
         en.remove(UISignal_OnNext);
     }
 
     @a function buttonOnPrevious(en:echoes.Entity,u:UISignal_OnPrevious,modal:UIModalSetting,set:ISettingComponent){
-        //trace("triger prev ");
         set.prev();
         modal.refresh(set.getDisplayText());
         en.remove(UISignal_OnPrevious);

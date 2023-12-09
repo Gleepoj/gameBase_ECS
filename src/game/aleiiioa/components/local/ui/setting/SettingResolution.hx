@@ -12,12 +12,13 @@ class SettingResolution implements ISettingComponent {
 
     public function new(){
         
-        addResolution("800x600", {width: 800, height: 600});
-        addResolution("1024x768", {width: 1024, height: 768});
-        addResolution("HD", {width: 1280, height: 720});
-        addResolution("Full HD", {width: 1920, height: 1080});
-        addResolution("2K", {width: 2560, height: 1440});
-        addResolution("4K", {width: 3840, height: 2160});
+        addResolution("::800x600::", {width: 800,  height: 600});
+        addResolution(":1024x768::", {width: 1024, height: 768});
+        addResolution(":::Old Hd::", {width: 1280, height: 1024});
+        addResolution(":::HD::::::", {width: 1280, height: 720});
+        addResolution(":::Full HD:", {width: 1920, height: 1080});
+        addResolution(":::2K::::::", {width: 2560, height: 1440});
+        addResolution(":::4K::::::", {width: 3840, height: 2160});
  
         updateDisplayValue();
 
