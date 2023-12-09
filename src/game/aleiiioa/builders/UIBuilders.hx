@@ -1,6 +1,8 @@
 package aleiiioa.builders;
 
 
+import aleiiioa.components.local.ui.setting.SettingVolume;
+import aleiiioa.components.local.ui.setting.SettingWindowMode;
 import aleiiioa.components.local.ui.setting.SettingSfx;
 import aleiiioa.components.local.ui.setting.ISettingComponent;
 import aleiiioa.components.local.ui.setting.SettingResolution;
@@ -188,9 +190,9 @@ class UIBuilders {
                 case Window_Size:
                     setter = new SettingResolution();
                 case Window_Mode:
-                    setter = new SettingSfx();
+                    setter = new SettingWindowMode();
                 case Volume_Music:
-                    setter = new SettingSfx();
+                    setter = new SettingVolume();
                 case Volume_SFX:
                     setter = new SettingSfx();
             }

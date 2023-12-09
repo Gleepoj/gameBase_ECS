@@ -25,6 +25,7 @@ class SettingResolution implements ISettingComponent {
             var resolution = mapped_values.get(keys[currentIndex]);
             var w = hxd.Window.getInstance();
             w.resize(resolution.width, resolution.height);
+
         };
     }
 
@@ -59,60 +60,8 @@ class SettingResolution implements ISettingComponent {
         display_text = current_display_value;
     }
 
-    public function getCurrentDisplayValue():String {
-        return current_display_value;
-    }
-
-    public function setCurrentDisplayValue(value:String):Void {
-        current_display_value = value;
-    }
-
-    public function getCurrentKey():Int {
-        return current_key;
-    }
-
-    public function setCurrentKey(value:Int):Void {
-        current_key = value;
-    }
-
     public function getDisplayText():String {
         return display_text;
-    }
-
-    public function setDisplayText(value:String):Void {
-        display_text = value;
-    }
-
-    public function getMappedValues():Map<String, Dynamic> {
-        return mapped_values;
-    }
-
-    public function setMappedValues(value:Map<String, Dynamic>):Void {
-        mapped_values = value;
-    }
-
-    public function getKeys():Array<String> {
-        return keys;
-    }
-
-    public function setKeys(value:Array<String>):Void {
-        keys = value;
-    }
-
-    public function getCurrentIndex():Int {
-        return currentIndex;
-    }
-
-    public function setCurrentIndex(value:Int):Void {
-        currentIndex = value;
-    }
-
-    public function getCallback():Void->Void {
-        return callback;
-    }
-
-    public function setCallback(value:Void->Void):Void {
-        callback = value;
     }
 
 }
