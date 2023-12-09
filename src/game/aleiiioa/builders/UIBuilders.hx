@@ -7,7 +7,7 @@ import aleiiioa.components.local.ui.setting.SettingSfx;
 import aleiiioa.components.local.ui.setting.ISettingComponent;
 import aleiiioa.components.local.ui.setting.SettingResolution;
 import aleiiioa.components.local.ui.UIModalSetting;
-
+///
 import aleiiioa.components.local.ui.signal.UISignalArrowMove;
 import h2d.ScaleGrid;
 
