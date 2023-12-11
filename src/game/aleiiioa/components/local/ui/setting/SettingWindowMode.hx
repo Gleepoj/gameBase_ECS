@@ -25,7 +25,7 @@ class SettingWindowMode implements ISettingComponent {
             var mode = mapped_values.get(keys[currentIndex]);
             var w = hxd.Window.getInstance();
             w.displayMode = mode;
-            w.applyDisplay();
+            //w.applyDisplay();
         };
     }
 
