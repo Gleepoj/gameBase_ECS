@@ -11,7 +11,7 @@ import aleiiioa.components.local.dialog.flag.*;
 import aleiiioa.components.logic.qualia.*;
 
 
-import aleiiioa.builders.UIBuilders;
+import aleiiioa.builders.entity.local.UIBuilders;
 
 import aleiiioa.components.local.dialog.YarnDialogConponent;
 

@@ -13,20 +13,16 @@ class Aleiiioa extends Game {
 		
 		ME = this;
 		Workflow.reset();
-		
-		//startPlay();
 		goToMenu();
 	}
 
 	public function startPlay(){
 		Workflow.reset();
-	
 		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Level_1);
-		WorkflowBuilders.newLevel(level);
+		WorkflowBuilders.newPlateformerLevel(level);
 	}
 
 	public function goToSetting(){
-		//trace("go to setting");
 		Workflow.reset();
 		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Setting);
 		WorkflowBuilders.newMenu(level);
@@ -35,10 +31,6 @@ class Aleiiioa extends Game {
 	public function goToMenu(){
 		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Menu);
 		WorkflowBuilders.newMenu(level);
-		//trace("go to menu");
-		//Workflow.reset();
-		//game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Main_Menu);
-		//WorkflowBuilders.newMainMenu(level);
 	}
 
 	override function fixedUpdate() {

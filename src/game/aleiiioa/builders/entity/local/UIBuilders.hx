@@ -1,5 +1,6 @@
-package aleiiioa.builders;
+package aleiiioa.builders.entity.local;
 
+import h2d.ScaleGrid;
 
 import aleiiioa.components.local.ui.setting.SettingVolume;
 import aleiiioa.components.local.ui.setting.SettingWindowMode;
@@ -7,9 +8,6 @@ import aleiiioa.components.local.ui.setting.SettingSfx;
 import aleiiioa.components.local.ui.setting.ISettingComponent;
 import aleiiioa.components.local.ui.setting.SettingResolution;
 import aleiiioa.components.local.ui.UIModalSetting;
-
-import aleiiioa.components.local.ui.signal.UISignalArrowMove;
-import h2d.ScaleGrid;
 
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.rendering.SpriteExtension;

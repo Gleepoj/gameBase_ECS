@@ -1,5 +1,8 @@
 package aleiiioa.builders.worlds;
 
+import aleiiioa.builders.entity.local.UIBuilders;
+import aleiiioa.builders.entity.plateformer.PlateformerEntity;
+import aleiiioa.builders.entity.CoreEntity;
 import aleiiioa.systems.local.ui.UIButtonInteractionSystem;
 
 import aleiiioa.systems.local.ui.UIGridPositionActualizer;
@@ -61,65 +64,66 @@ class WorkflowBuilders {
 		Workflow.add60FpsSystem(new GarbageCollectionSystem()); 
     }
 
+	public static function newPlateformerLevel(level:Level){
+		Game.ME.ui_layer.removeChildren();
 
-	public static function newLevel(level:Level){
-		 Game.ME.ui_layer.removeChildren();
+	   var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
+	   var cameraFocus = CoreEntity.cameraFocus(cameraPoint.cx,cameraPoint.cy);
+	   var cameraFocusPosition = cameraFocus.get(GridPosition);
 
-		var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
-		var cameraFocus = EntityBuilders.cameraFocus(cameraPoint.cx,cameraPoint.cy);
-		var cameraFocusPosition = cameraFocus.get(GridPosition);
+	   Game.ME.camera.trackEntityGridPosition(cameraFocusPosition,true,1);
+	   Game.ME.camera.centerOnGridTarget();		
+	   Game.ME.camera.clampToLevelBounds = false;
+	   
+	   // ECS //
+	   var player = level.data.l_Entities.all_Player[0];
+	   PlateformerEntity.player(player.cx,player.cy);
 
-		Game.ME.camera.trackEntityGridPosition(cameraFocusPosition,true,1);
-		Game.ME.camera.centerOnGridTarget();		
-		Game.ME.camera.clampToLevelBounds = false;
-		
-		// ECS //
-		var player = level.data.l_Entities.all_Player[0];
-		EntityBuilders.player(player.cx,player.cy);
+	   for (e in level.data.l_Entities.all_PNJ){
+		   PlateformerEntity.pnj(e.cx,e.cy,e.f_Dialog);
+	   }
 
-		for (e in level.data.l_Entities.all_PNJ){
-			EntityBuilders.pnj(e.cx,e.cy,e.f_Dialog);
-		}
+	   for (cp in level.data.l_Entities.all_ChouxPeteur){
+		   PlateformerEntity.chouxPeteur(cp.cx,cp.cy);
+	   }
+	   
+	   //Collision
+	   Workflow.addSystem(new GarbageCollectionSystem());
+	   
+	   //Object
+	   Workflow.addSystem(new CollisionSensorSystem());
+	   Workflow.addSystem(new VelocitySystem());
+	   Workflow.addSystem(new CollisionReactionEvent());
+	   Workflow.addSystem(new GridPositionActualizer());
 
-		for (cp in level.data.l_Entities.all_ChouxPeteur){
-			EntityBuilders.chouxPeteur(cp.cx,cp.cy);
-		}
-		
-		//Collision
-		Workflow.addSystem(new GarbageCollectionSystem());
-		
-		//Object
-		Workflow.addSystem(new CollisionSensorSystem());
-		Workflow.addSystem(new VelocitySystem());
-		Workflow.addSystem(new CollisionReactionEvent());
-		Workflow.addSystem(new GridPositionActualizer());
+	   //Interaction
+	   Workflow.add60FpsSystem(new CatchLogicSystem());
+	   Workflow.add60FpsSystem(new BombLogicSystem());
+	   
+	   //Particles
+	   Workflow.addSystem(new ParticulesVelocitySystem());
+	   Workflow.add60FpsSystem(new ParticulesSystem());
+	   Workflow.add60FpsSystem(new ParticuleRenderer());
+	   
+	   //Graphics
+	   Workflow.add60FpsSystem(new SquashRenderer());
+	   Workflow.add60FpsSystem(new SpriteExtensionFx());
+	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
+	   
+	   //Dialog
+	   Workflow.add60FpsSystem(new DialogAreaCollisions());
+	   Workflow.add60FpsSystem(new DialogYarnSystem());	
+	   Workflow.add60FpsSystem(new DialogInputSystem());
+	   Workflow.add60FpsSystem(new DialogUISystem());
+	   
+		   //Helpers
+	   Workflow.add60FpsSystem(new UIHelperSystem());
+	   //Input
+	   Workflow.add60FpsSystem(new InputSystem());
 
-		//Interaction
-		Workflow.add60FpsSystem(new CatchLogicSystem());
-		Workflow.add60FpsSystem(new BombLogicSystem());
-		
-		//Particles
-		Workflow.addSystem(new ParticulesVelocitySystem());
-		Workflow.add60FpsSystem(new ParticulesSystem());
-		Workflow.add60FpsSystem(new ParticuleRenderer());
-		
-		//Graphics
-		Workflow.add60FpsSystem(new SquashRenderer());
-		Workflow.add60FpsSystem(new SpriteExtensionFx());
-		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
-		
-		//Dialog
-		Workflow.add60FpsSystem(new DialogAreaCollisions());
-		Workflow.add60FpsSystem(new DialogYarnSystem());	
-		Workflow.add60FpsSystem(new DialogInputSystem());
-		Workflow.add60FpsSystem(new DialogUISystem());
-		
-			//Helpers
-		Workflow.add60FpsSystem(new UIHelperSystem());
-		//Input
-		Workflow.add60FpsSystem(new InputSystem());
+   }
 
-    }
+  
+}
 
    
-}

@@ -1,4 +1,4 @@
-package aleiiioa.builders;
+package aleiiioa.builders.entity.local;
 
 import aleiiioa.components.core.physics.collision.affects.FrictionSensitiveAffects;
 import aleiiioa.components.core.physics.velocity.body.ParticuleBodyFlag;

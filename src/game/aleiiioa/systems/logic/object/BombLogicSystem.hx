@@ -4,7 +4,7 @@ import aleiiioa.components.logic.qualia.*;
 import aleiiioa.components.logic.object.BombComponent;
 import aleiiioa.components.logic.interaction.catching.IsCatched;
 
-import aleiiioa.builders.VfxBuilders;
+import aleiiioa.builders.entity.local.VfxBuilders;
 import aleiiioa.components.local.particules.EmitterComponent;
 import aleiiioa.components.core.physics.position.GridPosition;
 

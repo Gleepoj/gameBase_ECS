@@ -1,4 +1,4 @@
-package aleiiioa.builders;
+package aleiiioa.builders.entity.local;
 
 import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.local.particules.EmitterComponent;
