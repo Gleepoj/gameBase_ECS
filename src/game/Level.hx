@@ -16,6 +16,7 @@ class Level extends dn.Process {
 
 	public var data : World_Level;
 	var tilesetSource : h2d.Tile;
+	var backgroundImage:Null<h2d.Object>;
 
 	var marks : Map< LevelMark, Map<Int,Bool> > = new Map();
 	var invalidated = true;
@@ -26,6 +27,8 @@ class Level extends dn.Process {
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
 		data = ldtkLevel;
 		tilesetSource = hxd.Res.levels.gameBase_ECS_Tiles.toAseprite().toTile();
+		if(ldtkLevel.hasBgImage())
+			backgroundImage = ldtkLevel.getBgBitmap();
 	}
 
 
@@ -33,6 +36,7 @@ class Level extends dn.Process {
 		super.onDispose();
 		data = null;
 		tilesetSource = null;
+		backgroundImage = null;
 		marks = null;
 	}
 
@@ -76,6 +80,9 @@ class Level extends dn.Process {
 	function render() {
 		// Placeholder level render
 		root.removeChildren();
+		if(backgroundImage != null){
+			root.add(backgroundImage,Const.DP_BG);
+		}
 
 		var tg = new h2d.TileGroup(tilesetSource, root);
 

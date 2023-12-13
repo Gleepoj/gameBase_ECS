@@ -1,5 +1,8 @@
 package aleiiioa.builders.entity.plateformer;
 
+
+import dn.FileTools;
+import sys.FileSystem;
 import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.core.physics.collision.affects.*;
 import aleiiioa.components.core.physics.velocity.body.*;
@@ -29,7 +32,7 @@ import aleiiioa.components.core.physics.collision.*;
 
 class PlateformerEntity {    
 
-    public static function pnj(cx:Int,cy:Int,yarnDialogName:String) {
+    public static function pnj(cx:Int,cy:Int,filepath:String) {
         //Physics Component
         var pos = new GridPosition(cx,cy);
         var vas = new AnalogSpeedComponent(0,0);
@@ -46,7 +49,7 @@ class PlateformerEntity {
         //var ic    = new InteractiveComponent();
         var em    = new EmitterComponent();
         var il    = new InteractionListener();
-        var yarn  = new DialogReferenceComponent(yarnDialogName,pos.attachX,pos.attachY);
+        var yarn  = new DialogReferenceComponent(filepath,pos.attachX,pos.attachY);
         
         //Flags
         var pnj   = new PNJDialogFlag();
@@ -59,7 +62,7 @@ class PlateformerEntity {
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,em,yarn,il,pnj,catchable,kinematic,g,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,em,il,pnj,catchable,yarn,kinematic,g,f,w);
         // Uncomment next entity creation and comment previous one to remove catchable behavior 
         // new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,body);
     }
