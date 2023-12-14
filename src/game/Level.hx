@@ -20,6 +20,9 @@ class Level extends dn.Process {
 
 	var marks : Map< LevelMark, Map<Int,Bool> > = new Map();
 	var invalidated = true;
+	
+	var worldCx:Int;
+	var worldCy:Int;
 
 	public function new(ldtkLevel:World.World_Level) {
 		super(Game.ME);
@@ -30,8 +33,8 @@ class Level extends dn.Process {
 		if(ldtkLevel.hasBgImage())
 			backgroundImage = ldtkLevel.getBgBitmap();
 
-		Game.ME.scroller.x = ldtkLevel.worldX;
-		Game.ME.scroller.y = ldtkLevel.worldY;
+		//Game.ME.scroller.x = ldtkLevel.worldX;
+		//Game.ME.scroller.y = ldtkLevel.worldY;
 	}
 
 
@@ -90,7 +93,7 @@ class Level extends dn.Process {
 
 		var tg = new h2d.TileGroup(tilesetSource, root);
 		tg.setPosition(data.worldX,data.worldY);
-		
+
 		var layer = data.l_Collisions;
 		for( autoTile in layer.autoTiles ) {
 			var tile = layer.tileset.getAutoLayerTile(autoTile);

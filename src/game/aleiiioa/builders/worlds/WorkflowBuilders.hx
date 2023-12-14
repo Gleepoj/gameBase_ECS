@@ -77,6 +77,8 @@ class WorkflowBuilders {
 		Game.ME.ui_layer.removeChildren();
 	
 	   // ECS //
+	   var camera = level.data.l_Entities.all_CameraPoint[0];
+	   CoreEntity.cameraFocus(camera.cx,camera.cy);
 	   var player = level.data.l_Entities.all_Player[0];
 	   TopDownEntity.player(player.cx,player.cy);
 	

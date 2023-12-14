@@ -135,10 +135,10 @@ class TopDownEntity {
         //Qualia
         var player  = new PlayerFlag();
         var speaker = new PlayerDialogFlag();
-        var camera  = new CameraFocusComponent();
+        //var camera  = new CameraFocusComponent();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,f,w,camera);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,f,w);
     }
 
     

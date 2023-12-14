@@ -228,8 +228,8 @@ class Camera extends dn.Process {
 		var scroller = Game.ME.scroller;
 
 		// Update scroller
-		scroller.x = -clampedFocus.levelX + pxWid*0.5;
-		scroller.y = -clampedFocus.levelY + pxHei*0.5;
+		scroller.x = 0;//-clampedFocus.levelX + pxWid*0.5;
+		scroller.y = 0;//-clampedFocus.levelY + pxHei*0.5;
 
 		// Bumps friction
 		bumpOffX *= Math.pow(bumpFrict, tmod);
@@ -246,15 +246,15 @@ class Camera extends dn.Process {
 		}
 
 		// Scaling
-		scroller.x*=Const.SCALE*zoom;
-		scroller.y*=Const.SCALE*zoom;
+		//scroller.x*=Const.SCALE*zoom;
+		//scroller.y*=Const.SCALE*zoom;
 
 		// Rounding
 		scroller.x = M.round(scroller.x);
 		scroller.y = M.round(scroller.y);
 
 		// Zoom
-		scroller.setScale(Const.SCALE * zoom);
+		//scroller.setScale(Const.SCALE * zoom);
 	}
 
 

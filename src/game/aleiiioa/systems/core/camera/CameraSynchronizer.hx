@@ -21,9 +21,14 @@ class CameraSynchronizer extends echoes.System {
     }
 
     @a function onAddCamera(cam:CameraFocusComponent,gp:GridPosition){
-        Game.ME.camera.trackEntityGridPosition(gp,true,1);
-        Game.ME.camera.centerOnGridTarget();		
-        Game.ME.camera.clampToLevelBounds = false;
+        Game.ME.camera.enableDebugBounds();
+       /*  Game.ME.camera.
+        Game.ME.camera.centerX = 0;
+        Game.ME.camera.centerY = 0; */
+        //Game.ME.camera.trackEntityGridPosition(gp,true,1);
+        ///Game.ME.camera.centerOnGridTarget();
+
+        //Game.ME.camera.clampToLevelBounds = false;
     }
 
     @u function syncCameraFocus(player:PlayerFlag,gp:GridPosition){
@@ -53,14 +58,16 @@ class CameraSynchronizer extends echoes.System {
     function loadEast(){
         // load east
         var xpos = Game.ME.level.data.worldX;
-        var ypos = Game.ME.level.data.worldY;
-   
-        var eastLevel = Assets.worldData.all_worlds.Default.getLevelAt(xpos+(loadCxDistance*Const.GRID*Const.GRID),ypos);
-        var test = eastLevel.isLoaded();
-        var test2 = eastLevel.identifier;
-        trace('current ::'+ Game.ME.level.data.identifier +'');
-        trace('level :'+test2+' is loaded :: '+test+'');
-
-        var l:Level = new Level(eastLevel);
+        var w    = Game.ME.level.data.pxWid;
+        var ypos = M.floor(Game.ME.level.data.worldY + Game.ME.level.data.pxHei/2) ;
+        
+        var eastLevel = Assets.worldData.all_worlds.Default.getLevelAt(xpos+w+10,ypos);
+        if(eastLevel != null){
+            var test  = eastLevel.isLoaded();
+            var test2 = eastLevel.identifier;
+            trace('current :: '+Game.ME.level.data.identifier+'');
+            trace('level   :: '+test2+' :: is loaded :: '+test+'');
+            var l:Level = new Level(eastLevel);
+        }
     }
 }
