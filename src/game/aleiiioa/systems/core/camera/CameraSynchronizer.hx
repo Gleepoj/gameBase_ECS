@@ -22,13 +22,10 @@ class CameraSynchronizer extends echoes.System {
 
     @a function onAddCamera(cam:CameraFocusComponent,gp:GridPosition){
         Game.ME.camera.enableDebugBounds();
-       /*  Game.ME.camera.
-        Game.ME.camera.centerX = 0;
-        Game.ME.camera.centerY = 0; */
-        //Game.ME.camera.trackEntityGridPosition(gp,true,1);
-        ///Game.ME.camera.centerOnGridTarget();
+        Game.ME.camera.trackEntityGridPosition(gp,true,1);
+        Game.ME.camera.centerOnGridTarget();
 
-        //Game.ME.camera.clampToLevelBounds = false;
+        Game.ME.camera.clampToLevelBounds = false;
     }
 
     @u function syncCameraFocus(player:PlayerFlag,gp:GridPosition){

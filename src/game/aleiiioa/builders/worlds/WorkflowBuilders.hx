@@ -78,7 +78,8 @@ class WorkflowBuilders {
 	
 	   // ECS //
 	   var camera = level.data.l_Entities.all_CameraPoint[0];
-	   CoreEntity.cameraFocus(camera.cx,camera.cy);
+	   var camGp = CoreEntity.cameraFocus(camera.cx,camera.cy);
+	   Game.ME.level.setFocus(camGp);
 	   var player = level.data.l_Entities.all_Player[0];
 	   TopDownEntity.player(player.cx,player.cy);
 	
@@ -137,13 +138,13 @@ class WorkflowBuilders {
 	public static function newPlateformerLevel(level:Level){
 		Game.ME.ui_layer.removeChildren();
 
-	   var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
+	   /* var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
 	   var cameraFocus = CoreEntity.cameraFocus(cameraPoint.cx,cameraPoint.cy);
 	   var cameraFocusPosition = cameraFocus.get(GridPosition);
 
 	   Game.ME.camera.trackEntityGridPosition(cameraFocusPosition,true,1);
 	   Game.ME.camera.centerOnGridTarget();		
-	   Game.ME.camera.clampToLevelBounds = false;
+	   Game.ME.camera.clampToLevelBounds = false; */
 	   
 	   // ECS //
 	   var player = level.data.l_Entities.all_Player[0];

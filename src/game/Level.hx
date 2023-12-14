@@ -1,3 +1,5 @@
+import aleiiioa.components.core.physics.position.GridPosition;
+
 class Level extends dn.Process {
 	var game(get,never) : Game; inline function get_game() return Game.ME;
 	var fx(get,never) : Fx; inline function get_fx() return Game.ME.fx;
@@ -21,11 +23,13 @@ class Level extends dn.Process {
 	var marks : Map< LevelMark, Map<Int,Bool> > = new Map();
 	var invalidated = true;
 	
-	var worldCx:Int;
-	var worldCy:Int;
+	var focus:GridPosition;
+
 
 	public function new(ldtkLevel:World.World_Level) {
 		super(Game.ME);
+		
+		focus = new GridPosition(0,0,0,0);
 
 		createRootInLayers(Game.ME.scroller, Const.DP_BG);
 		data = ldtkLevel;
@@ -33,11 +37,15 @@ class Level extends dn.Process {
 		if(ldtkLevel.hasBgImage())
 			backgroundImage = ldtkLevel.getBgBitmap();
 
+
+
 		//Game.ME.scroller.x = ldtkLevel.worldX;
 		//Game.ME.scroller.y = ldtkLevel.worldY;
 	}
 
-
+	public function setFocus(_focus:GridPosition){
+		focus = _focus;
+	}
 	override function onDispose() {
 		super.onDispose();
 		data = null;
@@ -78,7 +86,9 @@ class Level extends dn.Process {
 	}
 
 	/** Return TRUE if "Collisions" layer contains a collision value **/
-	public inline function hasCollision(cx,cy) : Bool {
+	public inline function hasCollision(_cx,_cy) : Bool {
+		var cx = _cx+focus.cx;
+		var cy = _cy+focus.cy;
 		return !isValid(cx,cy) ? true : data.l_Collisions.getInt(cx,cy)==1;
 	}
 

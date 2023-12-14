@@ -228,8 +228,8 @@ class Camera extends dn.Process {
 		var scroller = Game.ME.scroller;
 
 		// Update scroller
-		scroller.x = 0;//-clampedFocus.levelX + pxWid*0.5;
-		scroller.y = 0;//-clampedFocus.levelY + pxHei*0.5;
+		scroller.x = -clampedFocus.levelX ;
+		scroller.y = -clampedFocus.levelY ;
 
 		// Bumps friction
 		bumpOffX *= Math.pow(bumpFrict, tmod);

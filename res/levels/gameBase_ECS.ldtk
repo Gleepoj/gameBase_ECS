@@ -1816,18 +1816,18 @@
 						},
 						{
 							"__identifier": "CameraPoint",
-							"__grid": [29,23],
+							"__grid": [14,12],
 							"__pivot": [0.5,1],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#D60F42",
-							"__worldX": 472,
-							"__worldY": 384,
+							"__worldX": 232,
+							"__worldY": 208,
 							"iid": "b2192750-8990-11ee-9860-ad396765c3e8",
 							"width": 16,
 							"height": 16,
 							"defUid": 31,
-							"px": [472,384],
+							"px": [232,208],
 							"fieldInstances": []
 						}
 					]
