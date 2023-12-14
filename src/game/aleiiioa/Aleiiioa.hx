@@ -13,12 +13,18 @@ class Aleiiioa extends Game {
 		
 		ME = this;
 		Workflow.reset();
-		goToMenu();
+		#if( hl && !debug )
+        goToMenu();
+		#else
+		startPlay();
+        #end
+		
+
 	}
 
 	public function startPlay(){
 		Workflow.reset();
-		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Level_1);
+		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Hero_home);
 		WorkflowBuilders.newTopDownLevel(level);
 	}
 
