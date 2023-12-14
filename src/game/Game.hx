@@ -18,7 +18,9 @@ class Game extends Process {
 	public var camera : Camera;
 
 	/** Container of all visual game objects. Ths wrapper is moved around by Camera. **/
+	public var origin   : h2d.Layers;
 	public var scroller : h2d.Layers;
+
 	public var ui_layer: h2d.Layers;
 	
 	/** Level data **/
@@ -41,13 +43,18 @@ class Game extends Process {
 	
 		camera = new Camera();
 
+		origin   = new h2d.Layers();
+		root.add(origin,Const.DP_MAIN); 
+		origin.filter = new h2d.filter.Blur();
+
 		scroller = new h2d.Layers();
 		root.add(scroller, Const.DP_FX_BG);
 		scroller.filter = new h2d.filter.Nothing(); // force rendering for pixel perfect
+		//scroller.visible = false;
 
 		ui_layer = new h2d.Layers();
 		root.add(ui_layer,Const.DP_UI);
-		scroller.filter = new h2d.filter.Nothing();
+		//scroller.filter = new h2d.filter.Nothing();
 		
 		fx = new Fx();
 		hud = new ui.Hud();

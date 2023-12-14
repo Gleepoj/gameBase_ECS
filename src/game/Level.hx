@@ -29,6 +29,9 @@ class Level extends dn.Process {
 		tilesetSource = hxd.Res.levels.gameBase_ECS_Tiles.toAseprite().toTile();
 		if(ldtkLevel.hasBgImage())
 			backgroundImage = ldtkLevel.getBgBitmap();
+
+		Game.ME.scroller.x = ldtkLevel.worldX;
+		Game.ME.scroller.y = ldtkLevel.worldY;
 	}
 
 
@@ -82,10 +85,12 @@ class Level extends dn.Process {
 		root.removeChildren();
 		if(backgroundImage != null){
 			root.add(backgroundImage,Const.DP_BG);
+			backgroundImage.setPosition(data.worldX,data.worldY);
 		}
 
 		var tg = new h2d.TileGroup(tilesetSource, root);
-
+		tg.setPosition(data.worldX,data.worldY);
+		
 		var layer = data.l_Collisions;
 		for( autoTile in layer.autoTiles ) {
 			var tile = layer.tileset.getAutoLayerTile(autoTile);

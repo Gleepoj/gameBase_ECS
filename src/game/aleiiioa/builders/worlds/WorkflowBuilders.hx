@@ -58,8 +58,8 @@ class WorkflowBuilders {
 		//Graphics
 		Workflow.add60FpsSystem(new SquashRenderer());
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
-		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
-		Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.scroller));
+		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
+		Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.origin));
 		
 	    Workflow.addSystem(new UIHelperSystem());
 		Workflow.add60FpsSystem(new InputSystem());
@@ -110,7 +110,7 @@ class WorkflowBuilders {
 	   //Graphics
 	   Workflow.add60FpsSystem(new SquashRenderer());
 	   Workflow.add60FpsSystem(new SpriteExtensionFx());
-	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
+	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
 	   
 	   //Dialog
 	   Workflow.add60FpsSystem(new DialogAreaCollisions());

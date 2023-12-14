@@ -18,7 +18,7 @@ class EmitterComponent {
         cd = new dn.Cooldown(Const.FPS);
 
         layer = new h2d.Layers();
-        Game.ME.scroller.add(layer,Const.DP_BG);
+        Game.ME.origin.add(layer,Const.DP_BG);
 		layer.name = "VFX";    
     }
 

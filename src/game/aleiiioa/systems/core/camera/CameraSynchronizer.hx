@@ -61,6 +61,6 @@ class CameraSynchronizer extends echoes.System {
         trace('current ::'+ Game.ME.level.data.identifier +'');
         trace('level :'+test2+' is loaded :: '+test+'');
 
-
+        var l:Level = new Level(eastLevel);
     }
 }
