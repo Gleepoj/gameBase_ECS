@@ -20,11 +20,12 @@ class VelocitySystem extends echoes.System {
 
 	@u function kinematicInputAffects(vas:AnalogSpeedComponent,vc:VelocityComponent,kin:KinematicBodyFlag) {
 		if (vas.xSpeed != 0) {
-			var speed = 0.3;
+			var speed = 0.1;
 				vc.dx += vas.xSpeed * speed;
 		}
 		if (vas.ySpeed != 0) {
-			vc.dy += vas.ySpeed;
+			var speed = 0.1;
+				vc.dy += vas.ySpeed * speed;
 		}
 
 		vas.xSpeed = 0;

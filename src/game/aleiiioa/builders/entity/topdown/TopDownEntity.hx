@@ -57,14 +57,14 @@ class TopDownEntity {
         var pnj   = new PNJDialogFlag();
         //var body  = new BodyFlag();   
         var kinematic = new KinematicBodyFlag();
-        var g = new GravitySensitiveAffects();
+        
         var f = new FrictionSensitiveAffects();
         var w = new CollisionLayer_Wall();
 
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,em,il,pnj,catchable,yarn,kinematic,g,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,em,il,pnj,catchable,yarn,kinematic,f,w);
         // Uncomment next entity creation and comment previous one to remove catchable behavior 
         // new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,body);
     }
@@ -92,14 +92,14 @@ class TopDownEntity {
        // var body = new BodyFlag(); 
         //var bomb = new BombFlag();
         var kinematic = new KinematicBodyFlag();
-        var g = new GravitySensitiveAffects();
+        
         var f = new FrictionSensitiveAffects();
         var w = new CollisionLayer_Wall();
 
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,il,ic,se,em,catchable,kinematic,g,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,il,ic,se,em,catchable,kinematic,f,w);
     }
 
     public static function player(cx:Int,cy:Int) {
@@ -129,16 +129,16 @@ class TopDownEntity {
         
         //Physics
         var kinematic = new KinematicBodyFlag();
-        var g = new GravitySensitiveAffects();
         var f = new FrictionSensitiveAffects();
         var w = new CollisionLayer_Wall();
 
         //Qualia
         var player  = new PlayerFlag();
         var speaker = new PlayerDialogFlag();
+        var camera  = new CameraFocusComponent();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,g,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,f,w,camera);
     }
 
     

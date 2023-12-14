@@ -19,7 +19,7 @@ class Aleiiioa extends Game {
 	public function startPlay(){
 		Workflow.reset();
 		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Level_1);
-		WorkflowBuilders.newPlateformerLevel(level);
+		WorkflowBuilders.newTopDownLevel(level);
 	}
 
 	public function goToSetting(){

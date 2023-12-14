@@ -37,6 +37,9 @@ class Game extends Process {
 		ca = App.ME.controller.createAccess();
 		ca.lockCondition = isGameControllerLocked;
 		createRootInLayers(App.ME.root, Const.DP_BG);
+		
+	
+		camera = new Camera();
 
 		scroller = new h2d.Layers();
 		root.add(scroller, Const.DP_FX_BG);
@@ -45,10 +48,10 @@ class Game extends Process {
 		ui_layer = new h2d.Layers();
 		root.add(ui_layer,Const.DP_UI);
 		scroller.filter = new h2d.filter.Nothing();
-
+		
 		fx = new Fx();
 		hud = new ui.Hud();
-		camera = new Camera();
+
 
 	}
 
