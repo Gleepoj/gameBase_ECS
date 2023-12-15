@@ -43,7 +43,7 @@ class InputSystem extends echoes.System {
 		if(inp.ca.isPressed(ActionX)){
 			trace(''+gp.cx+':::'+ gp.cy+'');
 			trace(''+gp.attachX+':::'+ gp.attachY+'');
-			trace(''+Game.ME.origin.x+':::'+Game.ME.origin.y);
+			//trace(''+Game.ME.origin.x+':::'+Game.ME.origin.y);
 		}
 /* 
 		if(inp.ca.isPressed(Jump) && cl.cd.has("recentlyOnGround")){

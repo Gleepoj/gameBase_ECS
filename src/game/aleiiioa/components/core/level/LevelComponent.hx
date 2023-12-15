@@ -66,7 +66,7 @@ class LevelComponent {
 
     public function render() {
 		// Placeholder level render
-		scroller.removeChildren();
+		//scroller.removeChildren();
      
 		if(backgroundImage != null){
 			scroller.add(backgroundImage,Const.DP_BG);
