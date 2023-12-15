@@ -41,7 +41,7 @@ class Game extends Process {
 		createRootInLayers(App.ME.root, Const.DP_BG);
 		
 	
-		camera = new Camera();
+		//camera = new Camera();
 
 		origin   = new h2d.Layers();
 		root.add(origin,Const.DP_MAIN); 
@@ -83,7 +83,7 @@ class Game extends Process {
 		fx.clear();
 
 		level = new Level(l);
-		camera.centerOnTarget();
+		//camera.centerOnTarget();
 		hud.onLevelStart();
 		Process.resizeAll();
 	}

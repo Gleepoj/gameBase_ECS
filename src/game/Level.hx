@@ -84,6 +84,7 @@ class Level extends dn.Process {
 		if( isValid(cx,cy) && hasMark(mark,cx,cy) )
 			marks.get(mark).remove( coordId(cx,cy) );
 	}
+	
 	public function updateFocus(_focus:GridPosition){
 		focus = _focus;
 	}
@@ -98,7 +99,7 @@ class Level extends dn.Process {
 	/** Render current level**/
 	function render() {
 		// Placeholder level render
-		root.removeChildren();
+		/* root.removeChildren();
 		if(backgroundImage != null){
 			root.add(backgroundImage,Const.DP_BG);
 			backgroundImage.setPosition(data.worldX,data.worldY);
@@ -111,7 +112,7 @@ class Level extends dn.Process {
 		for( autoTile in layer.autoTiles ) {
 			var tile = layer.tileset.getAutoLayerTile(autoTile);
 			tg.add(autoTile.renderX, autoTile.renderY, tile);
-		}
+		} */
 	}
 
 	override function postUpdate() {

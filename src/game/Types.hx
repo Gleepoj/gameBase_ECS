@@ -75,7 +75,7 @@ enum UI_Setting_Type{
 }
 
 enum abstract LevelMark(Int) to Int {
-	var Coll_Wall;
+	var M_Coll_Wall;
 }
 	
 

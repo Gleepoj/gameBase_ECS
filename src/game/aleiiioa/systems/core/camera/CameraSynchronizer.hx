@@ -1,5 +1,6 @@
 package aleiiioa.systems.core.camera;
 
+import aleiiioa.components.core.level.LevelComponent;
 import aleiiioa.components.logic.qualia.PlayerFlag;
 import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.utils.camera.CameraFocusComponent;
@@ -26,11 +27,11 @@ class CameraSynchronizer extends echoes.System {
     }
 
     @a function onAddCamera(cam:CameraFocusComponent,gp:GridPosition){
-        Game.ME.camera.enableDebugBounds();
+ /*        Game.ME.camera.enableDebugBounds();
         Game.ME.camera.trackEntityGridPosition(gp,true,1);
         //Game.ME.camera.centerOnGridTarget();
 
-        Game.ME.camera.clampToLevelBounds = false;
+        Game.ME.camera.clampToLevelBounds = false; */
     }
 
 
@@ -68,9 +69,11 @@ class CameraSynchronizer extends echoes.System {
         if(eastLevel != null){
             var test  = eastLevel.isLoaded();
             var test2 = eastLevel.identifier;
-            trace('current :: '+Game.ME.level.data.identifier+'');
-            trace('level   :: '+test2+' :: is loaded :: '+test+'');
-            var l:Level = new Level(eastLevel);
+            //trace('current :: '+Game.ME.level.data.identifier+'');
+            //trace('level   :: '+test2+' :: is loaded :: '+test+'');
+            //var l:Level = new Level(eastLevel);
+            var nlevel = new LevelComponent(eastLevel);
+            new echoes.Entity().add(nlevel);
         }
     }
 }

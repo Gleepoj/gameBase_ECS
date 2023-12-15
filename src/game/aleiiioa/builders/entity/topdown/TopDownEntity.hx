@@ -94,12 +94,12 @@ class TopDownEntity {
         var kinematic = new KinematicBodyFlag();
         
         var f = new FrictionSensitiveAffects();
-        var w = new CollisionLayer_Wall();
+        //var w = new CollisionLayer_Wall();
 
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,il,ic,se,em,catchable,kinematic,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,il,ic,se,em,catchable,kinematic,f);
     }
 
     public static function player(cx:Int,cy:Int) {
@@ -130,7 +130,7 @@ class TopDownEntity {
         //Physics
         var kinematic = new KinematicBodyFlag();
         var f = new FrictionSensitiveAffects();
-        var w = new CollisionLayer_Wall();
+        //var w = new CollisionLayer_Wall();
 
         //Qualia
         var player  = new PlayerFlag();
@@ -138,7 +138,7 @@ class TopDownEntity {
         //var camera  = new CameraFocusComponent();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,f);
     }
 
     

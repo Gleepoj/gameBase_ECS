@@ -1,5 +1,6 @@
 package aleiiioa.builders.worlds;
 
+import aleiiioa.components.core.level.LevelComponent;
 import aleiiioa.builders.entity.local.UIBuilders;
 import aleiiioa.builders.entity.plateformer.PlateformerEntity;
 import aleiiioa.builders.entity.topdown.TopDownEntity;
@@ -77,9 +78,9 @@ class WorkflowBuilders {
 		Game.ME.ui_layer.removeChildren();
 	
 	   // ECS //
-	   var camera = level.data.l_Entities.all_CameraPoint[0];
+	/*    var camera = level.data.l_Entities.all_CameraPoint[0];
 	   var camGp = CoreEntity.cameraFocus(camera.cx,camera.cy);
-	   Game.ME.level.setFocus(camGp);
+	   Game.ME.level.setFocus(camGp); */
 	   
 	   var player = level.data.l_Entities.all_Player[0];
 	   TopDownEntity.player(player.cx,player.cy);
@@ -92,6 +93,8 @@ class WorkflowBuilders {
 			TopDownEntity.chouxPeteur(cp.cx,cp.cy);
 	   }
 	   
+	   var level = new LevelComponent(level.data);
+	   new echoes.Entity().add(level);
 	   //Collision
 	   Workflow.addSystem(new GarbageCollectionSystem());
 	   
@@ -112,9 +115,11 @@ class WorkflowBuilders {
 	   Workflow.add60FpsSystem(new ParticuleRenderer());
 	   
 	   //Graphics
+	   Workflow.add60FpsSystem(new LevelRenderer());
 	   Workflow.add60FpsSystem(new SquashRenderer());
 	   Workflow.add60FpsSystem(new SpriteExtensionFx());
 	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
+	   
 	   
 	   //Dialog
 	   Workflow.add60FpsSystem(new DialogAreaCollisions());
@@ -122,7 +127,9 @@ class WorkflowBuilders {
 	   Workflow.add60FpsSystem(new DialogInputSystem());
 	   Workflow.add60FpsSystem(new DialogUISystem());
 	   
-		   //Helpers
+	   //Level 
+	  
+	   //Helpers
 	   Workflow.add60FpsSystem(new UIHelperSystem());
 	   //Input
 	   Workflow.add60FpsSystem(new InputSystem());
