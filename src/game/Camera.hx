@@ -14,8 +14,8 @@ class Camera extends dn.Process {
 	var clampedFocus : LPoint;
 
 	//var target : Null<>; target offset in pixel 
-	public var targetOffX = 0.;
-	public var targetOffY = 0.;
+	public var targetOffX = -8.;
+	public var targetOffY = -32.;
 	/** Width of viewport in level pixels **/
 	public var pxWid(get,never) : Int;
 
@@ -84,6 +84,7 @@ class Camera extends dn.Process {
 	// Debugging
 	var invalidateDebugBounds = false;
 	var debugBounds : Null<h2d.Graphics>;
+	var debug:Null<h2d.Graphics>;
 
 
 	public function new() {
@@ -226,7 +227,8 @@ class Camera extends dn.Process {
 
 		var level = Game.ME.level;
 		var scroller = Game.ME.scroller;
-
+		level.updateFocus(gtarget);
+		
 		// Update scroller
 		scroller.x = -clampedFocus.levelX ;
 		scroller.y = -clampedFocus.levelY ;
@@ -283,10 +285,11 @@ class Camera extends dn.Process {
 		
 		apply();
 		// Debug bounds
-		if( ui.Console.ME.hasFlag("cam") && debugBounds==null )
-			enableDebugBounds();
-		else if( !ui.Console.ME.hasFlag("cam") && debugBounds!=null )
-			disableDebugBounds();
+		//if( ui.Console.ME.hasFlag("cam") && debugBounds==null )
+			
+		enableDebugBounds();
+		//else if( !ui.Console.ME.hasFlag("cam") && debugBounds!=null )
+		//	disableDebugBounds();
 
 		if( debugBounds!=null ) {
 			if( invalidateDebugBounds ) {
@@ -421,11 +424,19 @@ class Camera extends dn.Process {
 		disableDebugBounds();
 		debugBounds = new h2d.Graphics();
 		Game.ME.scroller.add(debugBounds, Const.DP_TOP);
+		debug = new h2d.Graphics();
+		Game.ME.origin.add(debug, Const.DP_TOP);
 		invalidateDebugBounds = true;
 	}
 
+	function renderDebugFocus(){
+		debug.clear();
+		debug.lineStyle(4,0x3fa4c9);
+		debug.drawCircle(300,300,100);
+	}
+
 	function renderDebugBounds() {
-		debugBounds.clear(); 
+		debugBounds.clear();
 
 		debugBounds.lineStyle(2,0xff00ff);
 		debugBounds.drawRect(0,0,pxWid,pxHei);
@@ -435,6 +446,11 @@ class Camera extends dn.Process {
 
 		debugBounds.moveTo(0, pxHei*0.5);
 		debugBounds.lineTo(pxWid, pxHei*0.5);
+
+		debug.clear();
+		debug.lineStyle(2,0x3fa4c9);
+		debug.drawCircle(pxWid, pxHei*0.5,20);
+
 	}
 
 }

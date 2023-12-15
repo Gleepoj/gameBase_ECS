@@ -11,6 +11,7 @@ class CameraSynchronizer extends echoes.System {
     var loadCxDistance:Int = 5;
     var east:Int = 0;
     var west:Int = 0 ;
+    var focus:GridPosition;
 
     
     public function new(){
@@ -18,15 +19,20 @@ class CameraSynchronizer extends echoes.System {
         east = Game.ME.level.cWid - loadCxDistance;
         west = 0 + loadCxDistance ;
 
+
+    }
+    @a function onAddPlayer(player:PlayerFlag,gp:GridPosition){
+        focus = gp;
     }
 
     @a function onAddCamera(cam:CameraFocusComponent,gp:GridPosition){
         Game.ME.camera.enableDebugBounds();
         Game.ME.camera.trackEntityGridPosition(gp,true,1);
-        Game.ME.camera.centerOnGridTarget();
+        //Game.ME.camera.centerOnGridTarget();
 
         Game.ME.camera.clampToLevelBounds = false;
     }
+
 
     @u function syncCameraFocus(player:PlayerFlag,gp:GridPosition){
         if(!onEast && gp.cx > east){

@@ -80,9 +80,10 @@ class WorkflowBuilders {
 	   var camera = level.data.l_Entities.all_CameraPoint[0];
 	   var camGp = CoreEntity.cameraFocus(camera.cx,camera.cy);
 	   Game.ME.level.setFocus(camGp);
+	   
 	   var player = level.data.l_Entities.all_Player[0];
 	   TopDownEntity.player(player.cx,player.cy);
-	
+	   
 	   for (e in level.data.l_Entities.all_PNJ){
 			TopDownEntity.pnj(e.cx,e.cy,e.f_Dialog_File_Path);
 	   }

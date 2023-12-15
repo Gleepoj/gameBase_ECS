@@ -40,7 +40,7 @@ class CoreEntity {
         var spr = new SpriteComponent(D.tiles.Square);
         var se  = new SpriteExtension();
         se.baseColor = new Vector(1,0,0,1);
-    
+        spr.visible = false;
         
         var foc = new CameraFocusComponent();
         vas.ySpeed = foc.cameraScrollingSpeed;

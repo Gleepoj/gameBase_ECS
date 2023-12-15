@@ -84,11 +84,14 @@ class Level extends dn.Process {
 		if( isValid(cx,cy) && hasMark(mark,cx,cy) )
 			marks.get(mark).remove( coordId(cx,cy) );
 	}
-
+	public function updateFocus(_focus:GridPosition){
+		focus = _focus;
+	}
 	/** Return TRUE if "Collisions" layer contains a collision value **/
 	public inline function hasCollision(_cx,_cy) : Bool {
 		var cx = _cx+focus.cx;
 		var cy = _cy+focus.cy;
+		//trace(''+focus.cx+'::'+focus.cy+'');
 		return !isValid(cx,cy) ? true : data.l_Collisions.getInt(cx,cy)==1;
 	}
 

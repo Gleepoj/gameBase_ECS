@@ -17,7 +17,7 @@ class SpriteRenderer extends echoes.System {
 
 	@a function onEntityAdded(spr:SpriteComponent) {
 		this.gameScroller.add(spr);
-		spr.setCenterRatio(0.5,1);
+		spr.setCenterRatio(0,0);
 		spr.alpha = 1;
 	}
 	
