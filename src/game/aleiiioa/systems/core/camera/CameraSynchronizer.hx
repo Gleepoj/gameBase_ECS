@@ -70,8 +70,10 @@ class CameraSynchronizer extends echoes.System {
         Game.ME.camera.trackEntityGridPosition(gp,true,1);
         //Game.ME.camera.centerOnGridTarget();
 
-        Game.ME.camera.clampToLevelBounds = false; */
+        Game.ME.
+        camera.clampToLevelBounds = false; */
     }
+
     @u function debugControlSpace(){
         debugBounds.clear();
 
@@ -89,6 +91,7 @@ class CameraSynchronizer extends echoes.System {
         debugBounds.drawRect(limitWest,limitNorth,limitEast,limitSouth);
 
     }
+    
     @u function pushScrollerWhenLimitsReach(player:PlayerFlag,gp:GridPosition){
         var scroller = Game.ME.scroller;
 

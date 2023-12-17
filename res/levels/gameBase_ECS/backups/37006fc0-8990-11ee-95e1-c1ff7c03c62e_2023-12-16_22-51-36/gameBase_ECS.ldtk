@@ -1516,22 +1516,6 @@
 							"defUid": 31,
 							"px": [0,0],
 							"fieldInstances": []
-						},
-						{
-							"__identifier": "Player",
-							"__grid": [16,16],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#75FF00",
-							"__worldX": 8,
-							"__worldY": 8,
-							"iid": "4781e210-8990-11ee-8f82-f7ce60f7bb1c",
-							"width": 16,
-							"height": 16,
-							"defUid": 21,
-							"px": [264,264],
-							"fieldInstances": []
 						}
 					]
 				},
