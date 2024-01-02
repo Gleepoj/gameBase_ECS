@@ -41,8 +41,8 @@ class InputSystem extends echoes.System {
 			vas.ySpeed = -0.3;
 		}
 		if(inp.ca.isPressed(ActionX)){
-			trace(''+gp.cx+':::'+ gp.cy+'');
-			trace(''+gp.attachX+':::'+ gp.attachY+'');
+			//trace(''+gp.cx+':::'+ gp.cy+'');
+			//trace(''+gp.attachX+':::'+ gp.attachY+'');
 			//trace(''+Game.ME.origin.x+':::'+Game.ME.origin.y);
 		}
 /* 

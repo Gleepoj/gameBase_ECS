@@ -9,6 +9,7 @@ import aleiiioa.components.utils.helper.HelperSliderComponent;
         
 //UIBuild.slider("Speed", function() return speed, function(v) speed = v, 0, 10);
 //UIBuild.check("Button", function() return button, function(v)  button = v );
+//UIBuilders.debugfloat("player_wcx ::",function()return player_world_cx,function(v) player_world_cx = v);
 
 class UIHelperSystem extends echoes.System {
     
@@ -23,7 +24,7 @@ class UIHelperSystem extends echoes.System {
         fui = new h2d.Flow(helper);
         
         fui.layout = Vertical;
-        fui.verticalSpacing = 5;
+        fui.verticalSpacing = -2;
         fui.padding = 10;
         
     }
@@ -37,14 +38,24 @@ class UIHelperSystem extends echoes.System {
         var f = new h2d.Flow(fui);
         
         f.horizontalSpacing = 5;
-        f.paddingLeft = 40;
+        //f.paddingLeft = 40;
         //f.
-    
-        var tf = new h2d.Text(getFont(), f);
-        tf.text = "::" + df.label + "::->" + df.get();
+        var i = new h2d.Interactive(200, 25, f);
+        i.backgroundColor =0xFF6A5151;
+        i.alpha =0.5;
+        i.blendMode = AlphaAdd;
+
+        var tf = new h2d.Text(getFont(), i);
+        //tf.textAlign = Center;
+        tf.blendMode = Alpha;
+        tf.text = ":: " + df.label + " ::-> " + df.get();
+        tf.dropShadow = { dx: 1, dy: 1, color: 0, alpha: 1 };
         tf.maxWidth = 70;
         tf.textAlign = Left;
         df.text = tf;
+
+    
+
         //df.flow = f;
 
     }
