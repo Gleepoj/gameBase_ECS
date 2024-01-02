@@ -18,7 +18,7 @@ class UIPadNavigationSystem extends echoes.System {
 	var SELECTOR:View<UISelectorFlag>;
 	var SELECTABLE:View<Currently_Selectable>;
 
-	var dist_to_player:Float = 500;
+	var dist_to_selector:Float = 500;
 	var current_category:UISelectableType = Category_None;
 
 	var lowest_cy :Int = 30;
@@ -31,7 +31,7 @@ class UIPadNavigationSystem extends echoes.System {
 	public function new() {}
 
 	@u function initDistance() {
-		dist_to_player = 5000.;
+		dist_to_selector = 5000.;
 		current_category = Category_None;
 	}
 
@@ -74,7 +74,7 @@ class UIPadNavigationSystem extends echoes.System {
 						dist = M.dist(gp.cx, gp.cy, select_gp.cx, select_gp.cy);
 					}
 				}
-				//&& select_gp.cy != highest_cy
+			
 				if (select_int.y > 0 ) {
 					if(en.exists(Currently_Hovered) && highest_cy == select_gp.cy){
 						select = true;
@@ -113,21 +113,20 @@ class UIPadNavigationSystem extends echoes.System {
 			if (select) {
 				en.add(new Nearest_Selectable(dist));
 				onChangeSelect = true;
-				if (dist < dist_to_player)
-					dist_to_player = dist;
+				if (dist < dist_to_selector)
+					dist_to_selector = dist;
 			}
 		}
 	}
 
 	@u function onChangeSelectItem(en:echoes.Entity,u:Currently_Hovered){
 		if(onChangeSelect){
-			//en.remove(Currently_Hovered);
 			onChangeSelect = false;
 		}
 	}
 
 	@u function removeNoneNearest(en:echoes.Entity, near:Nearest_Selectable) {
-		if (near.distance > dist_to_player) {
+		if (near.distance > dist_to_selector) {
 			en.remove(Nearest_Selectable);
 		}
 	}
