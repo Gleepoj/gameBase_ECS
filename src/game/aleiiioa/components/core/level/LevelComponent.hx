@@ -31,9 +31,9 @@ class LevelComponent {
 		cHei = data.l_Collisions.cHei;
 		pxWid = cWid * Const.GRID;
 		pxHei = cHei * Const.GRID;
-        
-        marks = new dn.MarkerMap(cWid, cHei);
 
+        marks = new dn.MarkerMap(cWid, cHei);
+		
 		for(cy in 0...cHei){
             for(cx in 0...cWid) {
                 var value = data.l_Collisions.getInt(cx,cy);

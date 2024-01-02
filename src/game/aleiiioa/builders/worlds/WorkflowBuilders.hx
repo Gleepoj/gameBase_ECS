@@ -93,8 +93,13 @@ class WorkflowBuilders {
 			TopDownEntity.chouxPeteur(cp.cx,cp.cy);
 	   }
 	   
-	   var level = new LevelComponent(level.data);
-	   new echoes.Entity().add(level);
+	   var _level = new LevelComponent(level.data);
+	   new echoes.Entity().add(_level);
+	   for(l in level.data.neighbours){
+		 var a:World_Level = Assets.worldData.all_worlds.Default.getLevel(l.levelIid);
+		 var new_l = new LevelComponent(a);
+		 new echoes.Entity().add(new_l);
+	   }
 	   //Collision
 	   Workflow.addSystem(new GarbageCollectionSystem());
 	   
