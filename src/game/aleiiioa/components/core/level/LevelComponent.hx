@@ -6,13 +6,15 @@ class LevelComponent {
     public var cWid(default,null): Int;
 	/** Level grid-based height **/
 	public var cHei(default,null): Int;
-	
-	public var i:Int = 0;
-	public var j:Int = 0;
 	/** Level pixel width**/
 	public var pxWid(default,null) : Int;
 	/** Level pixel height**/
 	public var pxHei(default,null) : Int;
+	
+	/** Chunk World Position X**/
+	public var i:Int = 0;
+	/** Chunk World Position Y**/
+	public var j:Int = 0;
 
     var tilesetSource : h2d.Tile;
 	var backgroundImage:Null<h2d.Object>;
@@ -23,18 +25,19 @@ class LevelComponent {
     var scroller = Game.ME.scroller;
     
     public function new (ldtkLevel:World_Level){
-		//createRootInLayers(Game.ME.scroller, Const.DP_BG);
+		
 		data = ldtkLevel;
+
 		tilesetSource = hxd.Res.levels.gameBase_ECS_Tiles.toAseprite().toTile();
+		
 		if(ldtkLevel.hasBgImage())
 			backgroundImage = ldtkLevel.getBgBitmap();
         
 		// Store chunk coordinates
 		i = M.floor((M.floor(data.worldX/Const.GRID))/Const.CHUNK_SIZE);
 		j = M.floor((M.floor(data.worldY/Const.GRID))/Const.CHUNK_SIZE);
-		//trace("i:"+i+" j:"+j+"");
 
-        cWid = data.l_Collisions.cWid;
+		cWid = data.l_Collisions.cWid;
 		cHei = data.l_Collisions.cHei;
 
 		pxWid = cWid * Const.GRID;
@@ -72,7 +75,6 @@ class LevelComponent {
 
     public function render() {
 		// Placeholder level render
-		//scroller.removeChildren();
      
 		if(backgroundImage != null){
 			scroller.add(backgroundImage,Const.DP_BG);

@@ -121,6 +121,7 @@ class WorkflowBuilders {
 	   
 	   //Graphics
 	   Workflow.add60FpsSystem(new LevelRenderer());
+	   Workflow.add60FpsSystem(new TemporarySystem());
 	   Workflow.add60FpsSystem(new SquashRenderer());
 	   Workflow.add60FpsSystem(new SpriteExtensionFx());
 	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
