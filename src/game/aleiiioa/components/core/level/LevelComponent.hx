@@ -47,10 +47,7 @@ class LevelComponent {
                 var value = data.l_Collisions.getInt(cx,cy);
                 if((data.l_Collisions.getInt(cx,cy)) == 1 ){
                     marks.set(M_Coll_Wall,cx,cy);
-					//trace("col cx"+cx+" cy"+cy+"");
                 }
-                    //marks.set
-                    //marks.set(M_Coll_Wall, cx,cy);
             }
         }
     }

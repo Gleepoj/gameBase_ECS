@@ -62,14 +62,14 @@ class LevelRenderer extends echoes.System {
 
     @u function swapChunkCollisionMask(en:echoes.Entity,gp:GridPosition,c:ChunkCollisionLayer){
         if(gp.iw != c.i || gp.jw != c.j){
-            trace("swap collision");
+            //trace("swap collision");
             var head = ALL_LEVELS.entities.head;
             en.remove(ChunkCollisionLayer);
             while(head != null){
                 var level = head.value.get(LevelComponent);
                 if(level.i == gp.iw && level.j == gp.jw){
                     en.add(new ChunkCollisionLayer(level.marks,level.i,level.j));
-                    trace("i:"+level.i+" j:"+level.j+"");
+                    //trace("i:"+level.i+" j:"+level.j+"");
                 }
                 head = head.next;
             }
