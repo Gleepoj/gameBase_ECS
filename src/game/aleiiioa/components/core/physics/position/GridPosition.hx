@@ -11,6 +11,14 @@ class GridPosition {
     public var xr = 0.5;
     public var yr = 1.0;
 
+	//Local X and Y//
+	
+	public var iw(get,never) : Int; inline function get_iw() return Math.floor(cx/Const.CHUNK_SIZE);
+	public var jw(get,never) : Int; inline function get_jw() return Math.floor(cy/Const.CHUNK_SIZE);
+
+	public var lcx(get,never) : Int; inline function get_lcx() return cx%Const.CHUNK_SIZE;
+	public var lcy(get,never) : Int; inline function get_lcy() return cy%Const.CHUNK_SIZE; 
+
 	public var lastFixedUpdateX = 0.;
 	public var lastFixedUpdateY = 0.;
     

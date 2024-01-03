@@ -122,7 +122,7 @@ class TopDownEntity {
 
         var em = new EmitterComponent();
         var il    = new InteractionListener();
-        var inp= new InputComponent();
+        var inp   = new InputComponent();
         
         //Ability
         var catcher   = new Catcher(); 

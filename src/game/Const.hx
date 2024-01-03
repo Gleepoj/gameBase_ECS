@@ -38,6 +38,9 @@ class Const {
 
 	/** Grid size in pixels **/
 	public static final GRID:Int = 16;
+	//in nb case (32*grid = 512px)
+	public static final CHUNK_SIZE:Int = 32;
+
 	public static var WINDOW_HEIGHT:Int = 860; // resolution ecran a cleaner
 	public static final FLUID_MAX_HEIGHT:Int = 80;
 	public static final FLUID_OFFSCREEN_TOP:Int = 30;// nb case OfS

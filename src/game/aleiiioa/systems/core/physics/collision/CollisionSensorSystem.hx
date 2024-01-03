@@ -1,5 +1,6 @@
 package aleiiioa.systems.core.physics.collision;
 
+import aleiiioa.components.core.level.ChunkCollisionLayer;
 import aleiiioa.components.core.physics.collision.CollisionSensor;
 
 import aleiiioa.components.core.physics.velocity.VelocityComponent;
@@ -10,7 +11,7 @@ import echoes.Entity;
 
 class CollisionSensorSystem extends echoes.System {
     
-    public var level(get,never) : Level; inline function get_level() return Game.ME.level;
+    //public var level(get,never) : Level; inline function get_level() return Game.ME.level;
     
     public function new() {    
     }
@@ -19,7 +20,7 @@ class CollisionSensorSystem extends echoes.System {
         cl.cd.update(dt);
     }
 
-    @u public function updateListener(entity:echoes.Entity,gp:GridPosition,cl:CollisionSensor,vc:VelocityComponent) {
+    @u public function updateListener(entity:echoes.Entity,gp:GridPosition,cl:CollisionSensor,vc:VelocityComponent,level:ChunkCollisionLayer) {
         if(entity.isValid() && !entity.exists(GridPositionOffset)){
             cl.on_ground = level.hasCollision(gp.cx,gp.cy+1) && vc.dy == 0 && gp.yr ==1;
             cl.on_land   = level.hasCollision(gp.cx,gp.cy+1) && vc.dy > 0;

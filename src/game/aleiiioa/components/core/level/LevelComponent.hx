@@ -6,7 +6,9 @@ class LevelComponent {
     public var cWid(default,null): Int;
 	/** Level grid-based height **/
 	public var cHei(default,null): Int;
-
+	
+	public var i:Int = 0;
+	public var j:Int = 0;
 	/** Level pixel width**/
 	public var pxWid(default,null) : Int;
 	/** Level pixel height**/
@@ -27,8 +29,14 @@ class LevelComponent {
 		if(ldtkLevel.hasBgImage())
 			backgroundImage = ldtkLevel.getBgBitmap();
         
+		// Store chunk coordinates
+		i = M.floor((M.floor(data.worldX/Const.GRID))/Const.CHUNK_SIZE);
+		j = M.floor((M.floor(data.worldY/Const.GRID))/Const.CHUNK_SIZE);
+		//trace("i:"+i+" j:"+j+"");
+
         cWid = data.l_Collisions.cWid;
 		cHei = data.l_Collisions.cHei;
+
 		pxWid = cWid * Const.GRID;
 		pxHei = cHei * Const.GRID;
 
@@ -39,6 +47,7 @@ class LevelComponent {
                 var value = data.l_Collisions.getInt(cx,cy);
                 if((data.l_Collisions.getInt(cx,cy)) == 1 ){
                     marks.set(M_Coll_Wall,cx,cy);
+					//trace("col cx"+cx+" cy"+cy+"");
                 }
                     //marks.set
                     //marks.set(M_Coll_Wall, cx,cy);
@@ -73,9 +82,9 @@ class LevelComponent {
 			backgroundImage.setPosition(data.worldX,data.worldY);
 		}
 
-		//var tg = new h2d.TileGroup(tilesetSource, scroller);
-		//tg.setPosition(data.worldX,data.worldY);
-		//data.l_Collisions.render(tg);
+		var tg = new h2d.TileGroup(tilesetSource, scroller);
+		tg.setPosition(data.worldX,data.worldY);
+		data.l_Collisions.render(tg);
 	}
 
 /* 	override function postUpdate() {
