@@ -9,7 +9,7 @@ class GridPosition {
     public var cy = 0;
 	/** Sub-grid X/Y ratio coordinate (from 0.0 to 1.0) **/
     public var xr = 0.5;
-    public var yr = 1.0;
+    public var yr = 0.5;
 
 	//Local X and Y//
 	
@@ -35,7 +35,7 @@ class GridPosition {
         cx = _cx;
         cy = _cy;
         xr = _xr!=null ? _xr : 0.5;
-        yr = _yr!=null ? _yr : 1;
+        yr = _yr!=null ? _yr : 0.5;
     }
 
     public function gpToVector() {
@@ -45,8 +45,8 @@ class GridPosition {
     public function setPosCase(_cx:Int,_cy:Int) {
 		cx = _cx;
 		cy = _cy;
-		xr = 0;
-		yr = 1;
+		xr = 0.5;
+		yr = 0.5;
 		onPosManuallyChanged();
 	}
 

@@ -22,6 +22,9 @@ class InputSystem extends echoes.System {
         inp.joy_left_ratio  = inp.ca.getHoldRatio(MoveLeft,0.06);
 
     }
+	@u function updateCameraCenter(inp:InputComponent,vas:AnalogSpeedComponent,gp:GridPosition){
+		//inp.ca.isKeyboardDown()
+	}
 
 	@u function updatePlayer(inp:InputComponent,vas:AnalogSpeedComponent,cl:CollisionSensor,gp:GridPosition){
 		

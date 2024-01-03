@@ -18,8 +18,8 @@ class BoundingBox {
 	public var attachX :Float = 0 ;
 	public var attachY :Float = 0 ;
 
-	public var pivotX :Float = 0.5; // a initialize avec sprite
-	public var pivotY :Float = 1;
+	public var pivotX :Float = 0.; // a initialize avec sprite
+	public var pivotY :Float = 0.;
 
 	//Bounding box getters//
 	public var left(get,never)  : Float; inline function get_left()  return attachX + (0-pivotX) * wid;

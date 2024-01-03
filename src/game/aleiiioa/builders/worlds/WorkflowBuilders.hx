@@ -125,6 +125,7 @@ class WorkflowBuilders {
 	   Workflow.add60FpsSystem(new SquashRenderer());
 	   Workflow.add60FpsSystem(new SpriteExtensionFx());
 	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
+	   Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.origin));
 	   
 	   
 	   //Dialog
