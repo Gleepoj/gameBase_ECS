@@ -25,7 +25,7 @@ class SpriteExtensionFx extends echoes.System {
         if(il.onInteract){
             spr.colorize(0x01AA74);
         }
-  
+ /*  
         if(cl.onGround){
             spr.colorize(0x3566D5);
         }
@@ -37,7 +37,7 @@ class SpriteExtensionFx extends echoes.System {
         }
         if(cl.onCeil){
             spr.colorize(0xeea990);
-        } 
+        }  */
     }
    
 }

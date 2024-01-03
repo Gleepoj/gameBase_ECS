@@ -16,7 +16,7 @@ class VelocityComponent {
 
 	/** Multiplier applied on each frame to normal X/Y velocity 0.82**/
 	public var frictX = 0.84;//0.9;//0.82;
-	public var frictY = 0.94;//0.82;
+	public var frictY = 0.84;//0.82;
 
 	/** Sets both frictX/Y at the same time **/
 	public var frict(never,set) : Float;
@@ -36,12 +36,15 @@ class VelocityComponent {
 		vc.bdx += x;
 		vc.bdy += y;
 	}
-	
+	public function cancelVelocities() {
+		dx = bdx = 0;
+		dy = bdy = 0;
+	}
 		/** Reset velocities to zero **/
-	public function cancelVelocities(vc:VelocityComponent) {
+/* 	public function cancelVelocities(vc:VelocityComponent) {
 		vc.dx = vc.bdx = 0;
 		vc.dy = vc.bdy = 0;
-	}
+	} */
 
     
 }

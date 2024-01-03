@@ -24,21 +24,25 @@ class InputSystem extends echoes.System {
     }
 
 	@u function updatePlayer(inp:InputComponent,vas:AnalogSpeedComponent,cl:CollisionSensor,gp:GridPosition){
-	
+		
+		
+		var tl = inp.ca.input.pad.values[inp.conf.LT];
+		var ratio = 1+tl;
+
 		if(inp.ca.isDown(MoveRight)){
-			vas.xSpeed = 0.3;
+			vas.xSpeed = 0.3*ratio;
 		}
 		
 		if(inp.ca.isDown(MoveLeft)){
-			vas.xSpeed = -0.3;
+			vas.xSpeed = -0.3*ratio;
 		}
 
 		if(inp.ca.isDown(MoveDown)){
-			vas.ySpeed = 0.3;
+			vas.ySpeed = 0.3*ratio;
 		}
 		
 		if(inp.ca.isDown(MoveUp)){
-			vas.ySpeed = -0.3;
+			vas.ySpeed = -0.3*ratio;
 		}
 		if(inp.ca.isPressed(ActionX)){
 			//trace(''+gp.cx+':::'+ gp.cy+'');

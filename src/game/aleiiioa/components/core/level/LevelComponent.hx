@@ -49,7 +49,7 @@ class LevelComponent {
             for(cx in 0...cWid) {
                 var value = data.l_Collisions.getInt(cx,cy);
                 if((data.l_Collisions.getInt(cx,cy)) == 1 ){
-                    marks.set(M_Coll_Wall,cx,cy);
+                    marks.set(M_Coll_Wall,cx-1,cy-1);
                 }
             }
         }
