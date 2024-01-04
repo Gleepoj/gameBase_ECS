@@ -35,6 +35,7 @@ class BoundingBoxRenderer extends echoes.System{
     }
 
     private function renderDebugBounds(bb:BoundingBox) {
+		// debug bound origin is attachX attachY 
 		var c = Col.randomRGB(0.9,0.3,0.3);
 		bb.debugBounds.clear();
 
@@ -43,14 +44,38 @@ class BoundingBoxRenderer extends echoes.System{
 		bb.debugBounds.drawRect(bb.left - bb.attachX, bb.top - bb.attachY, bb.wid, bb.hei);
 
 		// Attach point
-		bb.debugBounds.lineStyle(2);
+		bb.debugBounds.lineStyle(1);
 		bb.debugBounds.beginFill(c, 0.8);
 		bb.debugBounds.drawRect(-1, -1, 3, 3);
 		bb.debugBounds.endFill();
 
+		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
+		bb.debugBounds.drawCircle((bb.cr*Const.GRID),0, 3);
+
+		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
+		bb.debugBounds.drawCircle((bb.cl*Const.GRID),0, 3);
+
+		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
+		bb.debugBounds.drawCircle(0,(bb.ct*Const.GRID), 3);
+
+		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
+		bb.debugBounds.drawCircle(0,(bb.cb*Const.GRID), 3);
+
 		// Center
-		bb.debugBounds.lineStyle(1, c, 0.3);
+		/* bb.debugBounds.lineStyle(1, c, 0.3);
 		bb.debugBounds.drawCircle(bb.centerX - bb.attachX, bb.centerY - bb.attachY, 3);
+		
+		bb.debugBounds.lineStyle(1, dn.Col.blue(), 1);
+		bb.debugBounds.drawCircle(0,0, 3);
+
+		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
+		bb.debugBounds.drawCircle(bb.attachX + (bb.cr*16),bb.attachY, 3);
+
+		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
+		bb.debugBounds.drawCircle(bb.attachX,bb.attachY, 3);
+ */	
+		
+	
 	}
 
 	private function disableDebugBounds(bb:BoundingBox) {

@@ -28,16 +28,16 @@ class TemporarySystem extends echoes.System {
         UIBuilders.debugfloat("player_wcy",function()return player_world_cy,function(v) player_world_cy = v);
         UIBuilders.debugfloat("level_chunk_x",function()return level_chunk_x,function(v) level_chunk_x = v);
         UIBuilders.debugfloat("level_chunk_y",function()return level_chunk_y,function(v) level_chunk_y = v);
-        UIBuilders.debugfloat("local_pos_x",function()return local_pos_x,function(v) local_pos_x = v);
-        UIBuilders.debugfloat("local_pos_y",function()return local_pos_y,function(v) local_pos_y = v);
+        UIBuilders.debugfloat("ratio_x",function()return local_pos_x,function(v) local_pos_x = v);
+        UIBuilders.debugfloat("ratio_y",function()return local_pos_y,function(v) local_pos_y = v);
     }
 
     @u function updateWorldDebug(pl:PlayerFlag,gp:GridPosition){
         player_world_cx = gp.cx;
         player_world_cy = gp.cy;
 
-        local_pos_x = gp.lcx;
-        local_pos_y = gp.lcy;
+        local_pos_x = gp.xr;
+        local_pos_y = gp.yr;
 
         level_chunk_x = gp.iw;
         level_chunk_y = gp.jw;
