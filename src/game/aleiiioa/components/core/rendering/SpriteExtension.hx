@@ -8,7 +8,7 @@ class SpriteExtension{
 		return dir = v>0 ? 1 : v<0 ? -1 : dir;
 	}
 
-	public var pivotX(default,set) : Float = 0.5;
+	public var pivotX(default,set) : Float = 0.;
     
 	function set_pivotX(v) {
 		pivotX = M.fclamp(v,0,1);
@@ -16,7 +16,7 @@ class SpriteExtension{
 	}
 
 
-	public var pivotY(default,set) : Float = 1;
+	public var pivotY(default,set) : Float = 0.;
     
 	function set_pivotY(v) {
 		pivotY = M.fclamp(v,0,1);
@@ -45,5 +45,9 @@ class SpriteExtension{
         
     }
 
+	public function setScale(v:Float) {
+		sprScaleX = v;
+		sprScaleY = v;
+	}
     
 }

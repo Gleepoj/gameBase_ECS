@@ -45,7 +45,7 @@ class Game extends Process {
 
 		origin   = new h2d.Layers();
 		root.add(origin,Const.DP_MAIN); 
-		origin.filter = new h2d.filter.Blur();
+		//origin.filter = new h2d.filter.Blur();
 
 		scroller = new h2d.Layers();
 		root.add(scroller, Const.DP_FX_BG);

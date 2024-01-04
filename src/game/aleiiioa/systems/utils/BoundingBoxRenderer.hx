@@ -1,5 +1,7 @@
 package aleiiioa.systems.utils;
 
+import aleiiioa.components.core.rendering.SpriteExtension;
+import aleiiioa.components.core.rendering.SpriteComponent;
 import aleiiioa.components.core.physics.collision.BoundingBox;
 import aleiiioa.components.core.physics.position.GridPosition;
 
@@ -10,10 +12,18 @@ class BoundingBoxRenderer extends echoes.System{
         this.gameScroller = scroller;
     }
 
-    @a function onEntityAdd(bb:BoundingBox,gp:GridPosition){
+    @a function onEntityAdd(bb:BoundingBox,gp:GridPosition,spr:SpriteComponent,se:SpriteExtension){
         bb.attachX = gp.attachX;
         bb.attachY = gp.attachY;
+		bb.pivotX = spr.pivot.centerFactorX;
+		bb.pivotY = spr.pivot.centerFactorY;
+		bb.hei = spr.frameData.hei*se.sprScaleY;
+		bb.wid = spr.frameData.wid*se.sprScaleX;
+
+		trace("cl  :: "+bb.cl+" cr :: "+bb.cr+" ct :: "+bb.ct+" cb :: "+bb.cb+"/");
+		
     }
+
     @r function onEntityRemove(bb:BoundingBox) {
         bb.debugBounds.remove();
     }
@@ -33,7 +43,7 @@ class BoundingBoxRenderer extends echoes.System{
 		bb.debugBounds.drawRect(bb.left - bb.attachX, bb.top - bb.attachY, bb.wid, bb.hei);
 
 		// Attach point
-		bb.debugBounds.lineStyle(0);
+		bb.debugBounds.lineStyle(2);
 		bb.debugBounds.beginFill(c, 0.8);
 		bb.debugBounds.drawRect(-1, -1, 3, 3);
 		bb.debugBounds.endFill();

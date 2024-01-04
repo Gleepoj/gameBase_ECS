@@ -1,6 +1,7 @@
 package aleiiioa.systems.core.physics.collision;
 
 
+import aleiiioa.components.core.physics.collision.BoundingBox;
 import aleiiioa.components.core.level.ChunkCollisionLayer;
 import aleiiioa.components.core.physics.collision.OnPreStepX;
 import aleiiioa.components.core.physics.collision.OnPreStepY;
@@ -17,9 +18,9 @@ class CollisionReactionEvent extends echoes.System {
 
     }
 
-    @a function wallCollisionOnPreStepX(en:echoes.Entity, add:OnPreStepX, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer){
+    @a function wallCollisionOnPreStepX(en:echoes.Entity, add:OnPreStepX, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer,bb:BoundingBox){
         // Right collision
-		if( gp.xr>0.5 && level.hasCollision(gp.lcx+1,gp.lcy)){
+		if( gp.xr>0.5 && level.hasCollision(gp.lcx+bb.cr,gp.lcy)){
 			gp.xr =0.5;
 			vc.dx  = 0;
 			vc.bdx = 0; 
@@ -27,7 +28,7 @@ class CollisionReactionEvent extends echoes.System {
 		}
 		
 		// Left collision
-		if( gp.xr<0.5 && level.hasCollision(gp.lcx-1,gp.lcy)){
+		if( gp.xr<0.5 && level.hasCollision(gp.lcx+bb.cl,gp.lcy)){
 			gp.xr=0.5;
 			vc.dx  = 0;
 			vc.bdx = 0; 
@@ -35,9 +36,9 @@ class CollisionReactionEvent extends echoes.System {
 		}
     }
 
-    @a function floorCollisionOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer){
+    @a function floorCollisionOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer,bb:BoundingBox){
        		// Land on ground
-		if( gp.yr>=0.5 && level.hasCollision(gp.lcx,gp.lcy+1) ) {
+		if( gp.yr>=0.5 && level.hasCollision(gp.lcx,gp.lcy+bb.cb) ) {
 			gp.yr =0.5;
 			vc.dy  = 0;
 			vc.bdy = 0; 
@@ -46,7 +47,7 @@ class CollisionReactionEvent extends echoes.System {
 		}
 
 		// Ceiling collision
-		if( gp.yr<=0.5 && level.hasCollision(gp.lcx,gp.lcy-1) ){
+		if( gp.yr<=0.5 && level.hasCollision(gp.lcx,gp.lcy+bb.ct) ){
 			gp.yr =0.5;
 			vc.dy  = 0;
 			vc.bdy = 0;	 
