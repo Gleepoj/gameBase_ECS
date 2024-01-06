@@ -39,8 +39,8 @@ class TemporarySystem extends echoes.System {
         local_pos_x = gp.xr;
         local_pos_y = gp.yr;
 
-        level_chunk_x = gp.iw;
-        level_chunk_y = gp.jw;
+        level_chunk_x = gp.lcx;
+        level_chunk_y = gp.lcy;
     }
 
     @a function addChunkCollisionMask(en:echoes.Entity,gp:GridPosition,k:KinematicBodyFlag){

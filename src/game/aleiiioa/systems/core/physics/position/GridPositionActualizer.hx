@@ -29,10 +29,12 @@ class GridPositionActualizer extends echoes.System {
 			while (n < steps) {
 				// X movement
 				gp.xr += vc.dxTotal / steps;
+				gp.yr += vc.dyTotal / steps;
 
 				if (vc.dxTotal != 0)
 					en.add(new OnPreStepX());//<---- Add X collisions checks and physics in CollisionReactionSystem
 				
+				en.remove(OnPreStepX);
 				while (gp.xr > 1) {
 					gp.xr--;
 					gp.cx++;
@@ -42,14 +44,13 @@ class GridPositionActualizer extends echoes.System {
 					gp.cx--;
 				}
 				
-				en.remove(OnPreStepX);
-				
-				
 				//Y movement
-				gp.yr += vc.dyTotal / steps;
+				
 				
 				if (vc.dyTotal != 0)
 					en.add(new OnPreStepY());
+				
+				en.remove(OnPreStepY);
 
 				while (gp.yr > 1) {
 					gp.yr--;
@@ -59,7 +60,7 @@ class GridPositionActualizer extends echoes.System {
 					gp.yr++;
 					gp.cy--;
 				}
-				en.remove(OnPreStepY);
+				
 				n++;
 			}
 		}
