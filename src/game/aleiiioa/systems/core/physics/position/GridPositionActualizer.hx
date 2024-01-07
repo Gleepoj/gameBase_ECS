@@ -1,6 +1,8 @@
 package aleiiioa.systems.core.physics.position;
 
 
+import aleiiioa.components.core.rendering.SpriteComponent;
+import aleiiioa.components.core.physics.collision.BoundingBox;
 import aleiiioa.components.core.physics.position.flags.*;
 import aleiiioa.components.core.physics.position.*;
 
@@ -20,6 +22,17 @@ class GridPositionActualizer extends echoes.System {
 	   onPosManuallyChanged(gp);
     }
 
+	@a function onEntityAdded(spr:SpriteComponent) {
+		Game.ME.origin.addChild(spr);
+		spr.setCenterRatio(0.5,0.5);
+		spr.alpha = 1;
+	}
+	
+	@u function updateDebugBounds(bb:BoundingBox,gp:GridPosition) {
+        bb.attachX = gp.attachX;
+        bb.attachY = gp.attachY;
+	}
+	
 	@u function steppedPositionUpdateAndCollisionCall(en:echoes.Entity,gp:GridPosition,vc:VelocityComponent) {
 		// step is the max lenght of a implemented movement (in grid ratio) in one frame (0.33 is the max speed) precision could be improved by using a smaller step 0.2
 		
@@ -29,12 +42,11 @@ class GridPositionActualizer extends echoes.System {
 			while (n < steps) {
 				// X movement
 				gp.xr += vc.dxTotal / steps;
-				gp.yr += vc.dyTotal / steps;
-
 				if (vc.dxTotal != 0)
 					en.add(new OnPreStepX());//<---- Add X collisions checks and physics in CollisionReactionSystem
 				
 				en.remove(OnPreStepX);
+		
 				while (gp.xr > 1) {
 					gp.xr--;
 					gp.cx++;
@@ -43,15 +55,15 @@ class GridPositionActualizer extends echoes.System {
 					gp.xr++;
 					gp.cx--;
 				}
-				
+		        
 				//Y movement
-				
+				gp.yr += vc.dyTotal / steps;
 				
 				if (vc.dyTotal != 0)
 					en.add(new OnPreStepY());
-				
+			
 				en.remove(OnPreStepY);
-
+		
 				while (gp.yr > 1) {
 					gp.yr--;
 					gp.cy++;
@@ -63,10 +75,10 @@ class GridPositionActualizer extends echoes.System {
 				
 				n++;
 			}
+
 		}
 	}
 
-	
 	@u function updateMasterGridPosition(mgp:MasterGridPosition,gp:GridPosition,mflag:MasterPositionFlag) {
 	  	mgp.cx = gp.cx;
 		mgp.cy = gp.cy;

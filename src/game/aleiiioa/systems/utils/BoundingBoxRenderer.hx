@@ -15,10 +15,10 @@ class BoundingBoxRenderer extends echoes.System{
     @a function onEntityAdd(bb:BoundingBox,gp:GridPosition,spr:SpriteComponent,se:SpriteExtension){
         bb.attachX = gp.attachX;
         bb.attachY = gp.attachY;
-		bb.pivotX = spr.pivot.centerFactorX;
-		bb.pivotY = spr.pivot.centerFactorY;
-		bb.hei = spr.frameData.hei*se.sprScaleY;
-		bb.wid = spr.frameData.wid*se.sprScaleX;
+		bb.pivotX = spr.frameData.wid/2;
+		bb.pivotY = spr.frameData.hei - Const.GRID/2;
+		bb.hei = Const.GRID;
+		bb.wid = Const.GRID;
 
 		trace("cl  :: "+bb.cl+" cr :: "+bb.cr+" ct :: "+bb.ct+" cb :: "+bb.cb+"/");
 		
@@ -41,7 +41,7 @@ class BoundingBoxRenderer extends echoes.System{
 
 		// Bounds rect
 		bb.debugBounds.lineStyle(1, c, 0.5);
-		bb.debugBounds.drawRect(bb.left - bb.attachX, bb.top - bb.attachY, bb.wid, bb.hei);
+		bb.debugBounds.drawRect(0-bb.pivotX,0-bb.pivotY, bb.wid, bb.hei);
 
 		// Attach point
 		bb.debugBounds.lineStyle(1);

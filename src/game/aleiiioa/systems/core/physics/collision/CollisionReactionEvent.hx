@@ -53,7 +53,17 @@ class CollisionReactionEvent extends echoes.System {
 			vc.bdx = 0; 
 			//trace("stop r ");
 		} */
+		if( level.hasCollision(gp.lcx+1,gp.lcy) && gp.xr>=0.7 ) {
+			gp.xr = 0.7;
+			vc.dx = 0;
+			vc.bdx = 0;
+		}
 
+		if( level.hasCollision(gp.lcx-1,gp.lcy) && gp.xr<=0.3 ) {
+			gp.xr = 0.3;
+			vc.dx = 0;
+			vc.bdx = 0;
+		}
 		var leftCollision  = gp.xr<0.5 && checkCollisionLine(top, bottom, function(y) return level.hasCollision(Math.ceil(gp.lcx+bb.cl)-1, y));
 		var rightCollision = gp.xr>0.5 && checkCollisionLine(top, bottom, function(y) return level.hasCollision(Math.ceil(gp.lcx+bb.cr), y));
 

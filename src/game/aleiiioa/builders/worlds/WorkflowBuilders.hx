@@ -105,10 +105,11 @@ class WorkflowBuilders {
 	   
 	   //Object
 	   Workflow.addSystem(new CollisionSensorSystem());
-	   
-	   Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.origin));
+
+	  
 	   Workflow.add60FpsSystem(new CollisionReactionEvent());
 	   Workflow.add60FpsSystem(new GridPositionActualizer());
+	  
 	   Workflow.add60FpsSystem(new VelocitySystem());
 	   //Workflow.add60FpsSystem(new CameraSynchronizer());
 	
@@ -124,9 +125,14 @@ class WorkflowBuilders {
 	   //Graphics
 	   Workflow.add60FpsSystem(new LevelRenderer());
 	   Workflow.add60FpsSystem(new TemporarySystem());
+	   Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.origin));
+	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
+	  
 	   Workflow.add60FpsSystem(new SquashRenderer());
 	   Workflow.add60FpsSystem(new SpriteExtensionFx());
-	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
+	  
+	  
+	  
 	   
 	   
 	   

@@ -15,12 +15,12 @@ class SpriteRenderer extends echoes.System {
 		this.game = _game;
 	}
 
-	@a function onEntityAdded(spr:SpriteComponent) {
+/* 	@a function onEntityAdded(spr:SpriteComponent) {
 		this.gameScroller.add(spr);
 		spr.setCenterRatio(0.5,0.5);
 		spr.alpha = 1;
 	}
-	
+	 */
 	@r function onEntityRemoved(spr:SpriteComponent) {
 		spr.remove();
 	}

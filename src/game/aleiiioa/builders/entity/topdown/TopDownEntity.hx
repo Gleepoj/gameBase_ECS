@@ -119,8 +119,9 @@ class TopDownEntity {
         var sq  = new SquashComponent();
         var se  = new SpriteExtension();
         //se.sprScaleY = 3;
-        //se.setScale(2);
+        se.setScale(2);
         se.baseColor = new Vector(0.5,0.2,0.6);
+
         var bb  = new BoundingBox();
 
         var em = new EmitterComponent();
@@ -141,7 +142,7 @@ class TopDownEntity {
         //var camera  = new CameraFocusComponent();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,f,w,bb);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,bb,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,f,w);
     }
 
     
