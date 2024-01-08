@@ -131,11 +131,6 @@ class WorkflowBuilders {
 	   Workflow.add60FpsSystem(new SquashRenderer());
 	   Workflow.add60FpsSystem(new SpriteExtensionFx());
 	  
-	  
-	  
-	   
-	   
-	   
 	   //Dialog
 	   Workflow.add60FpsSystem(new DialogAreaCollisions());
 	   Workflow.add60FpsSystem(new DialogYarnSystem());	

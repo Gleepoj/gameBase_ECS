@@ -13,27 +13,9 @@ import aleiiioa.components.core.physics.position.GridPosition;
 
 
 class CollisionReactionEvent extends echoes.System {
-    //public var level(get,never) : Level; inline function get_level() return Game.ME.level;
     public function new (){
 
     }
-
-	function checkCollisionLine(start:Int, end:Int, check:Int->Bool):Bool {
-		var i = start;
-		while (i < end) {
-			if (check(i)) return true;
-			i++;
-		}
-		return false; 
-	}
-	function checkReverseCollisionLine(start:Int, end:Int, check:Int->Bool):Bool {
-		var i = end;
-		while (i > start) {
-			if (check(i)) return true;
-			i--;
-		}
-		return false; 
-	}
 
 	@a function wallCollisionOnPreStepX(en:echoes.Entity, add:OnPreStepX, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer,bb:BoundingBox){
 

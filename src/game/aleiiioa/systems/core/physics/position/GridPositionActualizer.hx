@@ -25,7 +25,6 @@ class GridPositionActualizer extends echoes.System {
 
 	@a function onEntityAdded(spr:SpriteComponent,se:SpriteExtension) {
 		Game.ME.origin.addChild(spr);
-		
 		var ratio = (spr.frameData.hei * se.sprScaleY)/(Const.GRID/2);
 		var cr = M.pretty(1-(1/ratio),1);
 		trace(cr);
@@ -96,15 +95,11 @@ class GridPositionActualizer extends echoes.System {
 		gp.cy = mgp.cy + gpo.ocy;
 		gp.xr = mgp.xr + gpo.oxr;
 		gp.yr = mgp.yr + gpo.oyr;
-
 	}
-
-	
 
     @u inline function ActualizeGridComponent(gp:GridPosition){
 		onPosManuallyChanged(gp);
     }
-
 
 	function setPosCase(gp:GridPosition,_cx:Int,_cy:Int) {
 		gp.cx = _cx;

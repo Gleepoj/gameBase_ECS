@@ -16,26 +16,20 @@ class BoundingBoxRenderer extends echoes.System{
         bb.attachX = gp.attachX;
         bb.attachY = gp.attachY;
 		
-		bb.pivotX = 0.5;//spr.pivot.centerFactorX;
-		bb.pivotY = 0.5;//spr.pivot.centerFactorY;
-		//bb.pivotX = spr.frameData.wid/2;
-		//bb.pivotY = (spr.frameData.hei * se.sprScaleY/2) - (Const.GRID/2);
+		bb.pivotX = 0.5;
+		bb.pivotY = 0.5;
+		
 		bb.hei = Const.GRID;
 		bb.wid = Const.GRID;
-
-		trace("cl  :: "+bb.cb+"/");
     }
 
-    @r function onEntityRemove(bb:BoundingBox) {
-        bb.debugBounds.remove();
-    }
     @u function updateDebugBounds(bb:BoundingBox,gp:GridPosition) {
-        //bb.attachX = gp.attachX;
-        //bb.attachY = gp.attachY;
         debugRequest(bb);
         renderAllDebugs(bb);
     }
-
+	@r function onEntityRemove(bb:BoundingBox) {
+        bb.debugBounds.remove();
+    }
     private function renderDebugBounds(bb:BoundingBox) {
 		// debug bound origin is attachX attachY 
 		var c = Col.randomRGB(0.9,0.3,0.3);
@@ -52,32 +46,7 @@ class BoundingBoxRenderer extends echoes.System{
 		bb.debugBounds.endFill();
 
 		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
-		bb.debugBounds.drawCircle(0,0, 2);
-
-		/* bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
-		bb.debugBounds.drawCircle((bb.cl*Const.GRID),0, 3);
-
-		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
-		bb.debugBounds.drawCircle(0,(bb.ct*Const.GRID), 3);
-
-		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
-		bb.debugBounds.drawCircle(0,(bb.cb*Const.GRID), 3); */
-
-		// Center
-		/* bb.debugBounds.lineStyle(1, c, 0.3);
-		bb.debugBounds.drawCircle(bb.centerX - bb.attachX, bb.centerY - bb.attachY, 3);
-		
-		bb.debugBounds.lineStyle(1, dn.Col.blue(), 1);
-		bb.debugBounds.drawCircle(0,0, 3);
-
-		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
-		bb.debugBounds.drawCircle(bb.attachX + (bb.cr*16),bb.attachY, 3);
-
-		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
-		bb.debugBounds.drawCircle(bb.attachX,bb.attachY, 3);
- */	
-		
-	
+		bb.debugBounds.drawCircle(0,0, 2);	
 	}
 
 	private function disableDebugBounds(bb:BoundingBox) {
@@ -109,15 +78,14 @@ class BoundingBoxRenderer extends echoes.System{
 	}
 
 	function debugRequest(bb:BoundingBox) {
-		enableDebugBounds(bb);
 		#if debug
 		// Show bounds (with `/bounds` in console)
 		if (ui.Console.ME.hasFlag("bounds") && bb.debugBounds == null)
 			enableDebugBounds(bb);
 
 		// Hide bounds
-/* 		if (!ui.Console.ME.hasFlag("bounds") && bb.debugBounds != null)
-			disableDebugBounds(bb); */
+ 		if (!ui.Console.ME.hasFlag("bounds") && bb.debugBounds != null)
+			disableDebugBounds(bb); 
 		#end
 	}
 }

@@ -292,7 +292,7 @@
 			"uiTileRect": null,
 			"nineSliceBorders": [],
 			"maxCount": 1,
-			"limitScope": "PerWorld",
+			"limitScope": "PerLevel",
 			"limitBehavior": "MoveLastOne",
 			"pivotX": 0.5,
 			"pivotY": 0.5,
@@ -1519,18 +1519,18 @@
 						},
 						{
 							"__identifier": "Player",
-							"__grid": [15,17],
+							"__grid": [16,15],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#75FF00",
-							"__worldX": 248,
-							"__worldY": 280,
-							"iid": "4781e210-8990-11ee-8f82-f7ce60f7bb1c",
+							"__worldX": 264,
+							"__worldY": 248,
+							"iid": "4f800400-8990-11ee-b7cc-aba7f7656329",
 							"width": 16,
 							"height": 16,
 							"defUid": 21,
-							"px": [248,280],
+							"px": [264,248],
 							"fieldInstances": []
 						}
 					]
@@ -3632,6 +3632,22 @@
 							"height": 16,
 							"defUid": 40,
 							"px": [63,644],
+							"fieldInstances": []
+						},
+						{
+							"__identifier": "Player",
+							"__grid": [32,41],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#75FF00",
+							"__worldX": -1784,
+							"__worldY": -1640,
+							"iid": "4781e210-8990-11ee-8f82-f7ce60f7bb1c",
+							"width": 16,
+							"height": 16,
+							"defUid": 21,
+							"px": [520,664],
 							"fieldInstances": []
 						}
 					]
