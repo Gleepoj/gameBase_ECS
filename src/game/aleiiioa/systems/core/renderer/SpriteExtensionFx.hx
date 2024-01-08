@@ -25,10 +25,14 @@ class SpriteExtensionFx extends echoes.System {
         if(il.onInteract){
             spr.colorize(0x01AA74);
         }
- /*  
-        if(cl.onGround){
+  
+ /*        if(cl.onGround){
             spr.colorize(0x3566D5);
         }
+        if(cl.recentlyOnGround){
+            spr.colorize(0x02FDE4);
+        } */
+        /*
         if(cl.onRight){
             spr.colorize(0xbae1ff);
         }

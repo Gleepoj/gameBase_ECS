@@ -22,13 +22,17 @@ class CollisionSensorSystem extends echoes.System {
 
     @u public function updateListener(entity:echoes.Entity,gp:GridPosition,cl:CollisionSensor,vc:VelocityComponent,chunk:ChunkCollisionLayer) {
         if(entity.isValid() && !entity.exists(GridPositionOffset)){
-            cl.on_ground = chunk.hasCollision(gp.lcx,gp.lcy+1) && vc.dy == 0 && gp.yr ==1;
+            cl.on_ground = chunk.hasCollision(gp.lcx,gp.lcy+1) && vc.dy == 0 && gp.yr == 0.5;
             cl.on_land   = chunk.hasCollision(gp.lcx,gp.lcy+1) && vc.dy > 0;
             cl.on_ceil   = chunk.hasCollision(gp.lcx,gp.lcy-1);
             cl.on_left   = chunk.hasCollision(gp.lcx-1,gp.lcy);
             cl.on_right  = chunk.hasCollision(gp.lcx+1,gp.lcy); 
             cl.on_fall   = vc.dy > 0 ; 
             cl.on_jump   = vc.dy < 0 ; 
+            if(cl.onGround){
+                cl.cd.setMs("onGround",10);
+            }
+   
             
         }
     }

@@ -1,6 +1,7 @@
 package aleiiioa.systems.core.input;
 
 
+import aleiiioa.components.core.physics.collision.affects.GravitySensitiveAffects;
 import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.core.physics.collision.CollisionSensor;
 import aleiiioa.components.core.physics.velocity.AnalogSpeedComponent;
@@ -22,44 +23,55 @@ class InputSystem extends echoes.System {
         inp.joy_left_ratio  = inp.ca.getHoldRatio(MoveLeft,0.06);
 
     }
-	@u function updateCameraCenter(inp:InputComponent,vas:AnalogSpeedComponent,gp:GridPosition){
+/* 	@u function updateCameraCenter(inp:InputComponent,vas:AnalogSpeedComponent,gp:GridPosition,gr:GravitySensitiveAffects){
 		//inp.ca.isKeyboardDown()
-	}
 
-	@u function updatePlayer(inp:InputComponent,vas:AnalogSpeedComponent,cl:CollisionSensor,gp:GridPosition){
+	} */
+
+	@u function updateTopDown(inp:InputComponent,vas:AnalogSpeedComponent,cl:CollisionSensor,gp:GridPosition){
 		
-		
+		var speed = 0.6;
+
 		var tl = inp.ca.input.pad.values[inp.conf.LT];
 		var ratio = 1+tl;
 
 		if(inp.ca.isDown(MoveRight)){
-			vas.xSpeed = 0.3*ratio;
+			vas.xSpeed = speed*ratio;
 		}
 		
 		if(inp.ca.isDown(MoveLeft)){
-			vas.xSpeed = -0.3*ratio;
+			vas.xSpeed = -speed*ratio;
 		}
 
 		if(inp.ca.isDown(MoveDown)){
-			vas.ySpeed = 0.3*ratio;
+			vas.ySpeed = speed*ratio;
 		}
 		
 		if(inp.ca.isDown(MoveUp)){
-			vas.ySpeed = -0.3*ratio;
+			vas.ySpeed = -speed*ratio;
 		}
-		if(inp.ca.isPressed(ActionX)){
-			//trace(''+gp.cx+':::'+ gp.cy+'');
-			//trace(''+gp.attachX+':::'+ gp.attachY+'');
-			//trace(''+Game.ME.origin.x+':::'+Game.ME.origin.y);
-		}
-/* 
-		if(inp.ca.isPressed(Jump) && cl.cd.has("recentlyOnGround")){
-			vas.ySpeed = -0.9;
-			cl.cd.unset("recentlyOnGround");
-		} */
+	
 
-		if(inp.ca.isDown(MoveUp)){
-			//vas.ySpeed = -0.3;
+	}
+
+	@u function updatePlateformer(inp:InputComponent,vas:AnalogSpeedComponent,cl:CollisionSensor,gp:GridPosition,gr:GravitySensitiveAffects){
+		
+		var speed = 0.6;
+
+		var tl = inp.ca.input.pad.values[inp.conf.LT];
+		var ratio = 1+tl;
+
+		if(inp.ca.isDown(MoveRight)){
+			vas.xSpeed = speed*ratio;
 		}
+		
+		if(inp.ca.isDown(MoveLeft)){
+			vas.xSpeed = -speed*ratio;
+		}
+		if(inp.ca.isPressed(ActionX) && cl.recentlyOnGround){
+			vas.ySpeed = -4.8;
+			//trace("jump");
+			
+		} 
 	}
 }

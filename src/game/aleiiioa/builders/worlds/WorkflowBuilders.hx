@@ -104,12 +104,12 @@ class WorkflowBuilders {
 	   Workflow.addSystem(new GarbageCollectionSystem());
 	   
 	   //Object
-	   Workflow.addSystem(new CollisionSensorSystem());
+	   
 
 	  
 	   Workflow.add60FpsSystem(new CollisionReactionEvent());
 	   Workflow.add60FpsSystem(new GridPositionActualizer());
-	  
+	   Workflow.add60FpsSystem(new CollisionSensorSystem());
 	   Workflow.add60FpsSystem(new VelocitySystem());
 	   //Workflow.add60FpsSystem(new CameraSynchronizer());
 	
