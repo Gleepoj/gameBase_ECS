@@ -38,6 +38,7 @@ class PlateformerEntity {
         var vas = new AnalogSpeedComponent(0,0);
         var vc  = new VelocityComponent();
         var cl  = new CollisionSensor();
+        var bb  = new BoundingBox();
         
         //Rendering Component
         var spr = new SpriteComponent(D.tiles.fxCircle15);
@@ -62,7 +63,7 @@ class PlateformerEntity {
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,em,il,pnj,catchable,yarn,kinematic,g,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,bb,em,il,pnj,catchable,yarn,kinematic,g,f,w);
         // Uncomment next entity creation and comment previous one to remove catchable behavior 
         // new echoes.Entity().add(pos,vas,vc,cl,spr,sq,se,ic,em,yarn,pnj,body);
     }
@@ -74,6 +75,7 @@ class PlateformerEntity {
         var vas = new AnalogSpeedComponent(0,0);
         var vc  = new VelocityComponent();
         var cl  = new CollisionSensor();
+        var bb  = new BoundingBox();
         
         //Rendering Component
         var spr = new SpriteComponent(D.tiles.fxCircle15);
@@ -97,7 +99,7 @@ class PlateformerEntity {
         var catchable = new CatchableCollection();
         
         
-        new echoes.Entity().add(pos,vas,vc,cl,spr,sq,il,ic,se,em,catchable,kinematic,g,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,spr,bb,sq,il,ic,se,em,catchable,kinematic,g,f,w);
     }
 
     public static function player(cx:Int,cy:Int) {
@@ -107,6 +109,7 @@ class PlateformerEntity {
         var vas = new AnalogSpeedComponent(0,0);
         var vc  = new VelocityComponent();
         var cl  = new CollisionSensor();
+        var bb  = new BoundingBox();
         
         //Hierarchy Component and Flag (to attach any entity depending on player position)
         var mpos   = new MasterGridPosition(cx,cy);
@@ -119,7 +122,7 @@ class PlateformerEntity {
         se.baseColor = new Vector(0.5,0.2,0.6);
 
         var em = new EmitterComponent();
-        var il    = new InteractionListener();
+        var il = new InteractionListener();
         var inp= new InputComponent();
         
         //Ability
@@ -136,7 +139,7 @@ class PlateformerEntity {
         var speaker = new PlayerDialogFlag();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,g,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,bb,mpos,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,g,f,w);
     }
 
     

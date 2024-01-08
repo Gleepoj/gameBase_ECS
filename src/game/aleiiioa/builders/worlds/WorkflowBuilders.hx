@@ -175,6 +175,14 @@ class WorkflowBuilders {
 	   for (cp in level.data.l_Entities.all_ChouxPeteur){
 		   PlateformerEntity.chouxPeteur(cp.cx,cp.cy);
 	   }
+
+	   var _level = new LevelComponent(level.data);
+	   new echoes.Entity().add(_level);
+	   for(l in level.data.neighbours){
+		 var a:World_Level = Assets.worldData.all_worlds.Default.getLevel(l.levelIid);
+		 var new_l = new LevelComponent(a);
+		 new echoes.Entity().add(new_l);
+	   } 
 	   
 	   //Collision
 	   Workflow.addSystem(new GarbageCollectionSystem());
@@ -183,7 +191,8 @@ class WorkflowBuilders {
 	   Workflow.addSystem(new CollisionSensorSystem());
 	   Workflow.addSystem(new VelocitySystem());
 	   Workflow.addSystem(new CollisionReactionEvent());
-	   Workflow.addSystem(new GridPositionActualizer());
+	   Workflow.add60FpsSystem(new GridPositionActualizer());
+	   Workflow.addSystem(new TemporarySystem());
 	  
 
 	   //Interaction
@@ -196,6 +205,7 @@ class WorkflowBuilders {
 	   Workflow.add60FpsSystem(new ParticuleRenderer());
 	   
 	   //Graphics
+	   Workflow.add60FpsSystem(new LevelRenderer());
 	   Workflow.add60FpsSystem(new SquashRenderer());
 	   Workflow.add60FpsSystem(new SpriteExtensionFx());
 	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.scroller,Game.ME));
