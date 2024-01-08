@@ -20,14 +20,13 @@ class GridPositionActualizer extends echoes.System {
     }
 
     @a function onGridPositionAdded(gp:GridPosition) {
-	   onPosManuallyChanged(gp);
+	   gp.onPosManuallyChanged();
     }
 
 	@a function onEntityAdded(spr:SpriteComponent,se:SpriteExtension) {
 		Game.ME.origin.addChild(spr);
 		var ratio = (spr.frameData.hei * se.sprScaleY)/(Const.GRID/2);
 		var cr = M.pretty(1-(1/ratio),1);
-		//trace(cr);
 		spr.setCenterRatio(0.5,cr);
 		spr.alpha = 1;
 	}
@@ -39,8 +38,9 @@ class GridPositionActualizer extends echoes.System {
 	
 	@u function steppedPositionUpdateAndCollisionCall(en:echoes.Entity,gp:GridPosition,vc:VelocityComponent) {
 		// step is the max lenght of a implemented movement (in grid ratio) in one frame (0.33 is the max speed) precision could be improved by using a smaller step 0.2
-		
+		// allowing continuous collision detection 
 		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
+		
 		if (steps > 0) {
 			var n = 0;
 			while (n < steps) {
@@ -97,42 +97,8 @@ class GridPositionActualizer extends echoes.System {
 		gp.yr = mgp.yr + gpo.oyr;
 	}
 
-    @u inline function ActualizeGridComponent(gp:GridPosition){
-		onPosManuallyChanged(gp);
+    @u function ActualizeGridComponent(gp:GridPosition){
+		gp.onPosManuallyChanged();
     }
-
-	function setPosCase(gp:GridPosition,_cx:Int,_cy:Int) {
-		gp.cx = _cx;
-		gp.cy = _cy;
-		gp.xr = 0.5;
-		gp.yr = 1;
-		onPosManuallyChanged(gp);
-	}
-
-    function setPosPixel(gp:GridPosition,x:Float, y:Float) {
-		gp.cx = Std.int(x/Const.GRID);
-		gp.cy = Std.int(y/Const.GRID);
-		gp.xr = (x-gp.cx*Const.GRID)/Const.GRID;
-		gp.yr = (y-gp.cy*Const.GRID)/Const.GRID;
-		onPosManuallyChanged(gp);
-	}
-
-	function onPosManuallyChanged(gp:GridPosition) {
-		if( M.dist(gp.attachX,gp.attachY,gp.prevFrameattachX,gp.prevFrameattachY) > Const.GRID*2 ) {
-			gp.prevFrameattachX = gp.attachX;
-			gp.prevFrameattachY = gp.attachY;
-		}
-		updateLastFixedUpdatePos(gp);
-	}
-
-	function finalUpdate(gp:GridPosition) {
-		gp.prevFrameattachX = gp.attachX;
-		gp.prevFrameattachY = gp.attachY;
-	}
-
-    function updateLastFixedUpdatePos(gp:GridPosition) {
-		gp.lastFixedUpdateX = gp.attachX;
-		gp.lastFixedUpdateY = gp.attachY;
-	}
 
 }

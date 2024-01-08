@@ -11,9 +11,8 @@ import echoes.Entity;
 
 class CollisionSensorSystem extends echoes.System {
     
-    //public var chunk(get,never) : chunk; inline function get_level() return Game.ME.chunk;
-    
     public function new() {    
+
     }
 
     @u function cooldownUpdate(dt:Float,cl:CollisionSensor) {

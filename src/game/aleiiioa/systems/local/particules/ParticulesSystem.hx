@@ -18,10 +18,10 @@ class ParticulesSystem extends echoes.System {
     @u private function updateEmitter(dt:Float,em:EmitterComponent,gp:GridPosition,cl:CollisionSensor){
         em.cd.update(dt);
 
-    /*     if(cl.onLanding && !em.cd.has("cooldown")){
+        if(cl.onLanding && !em.cd.has("cooldown")){
             em.cd.setS("cooldown",0.3);
             VfxBuilders.landing(em,gp);
-        } */
+        } 
     }
 
     @u function updateShaderLifetime(p:ParticulesComponent,bmp:BitmapComponent){

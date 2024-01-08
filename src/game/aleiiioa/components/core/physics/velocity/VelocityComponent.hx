@@ -32,19 +32,16 @@ class VelocityComponent {
     }
 
 	/** Apply a bump/kick force to entity **/
-	public function bump(x:Float, y:Float, vc:VelocityComponent) {
-		vc.bdx += x;
-		vc.bdy += y;
+	public function bump(x:Float, y:Float) {
+		bdx += x;
+		bdy += y;
 	}
+	
 	public function cancelVelocities() {
 		dx = bdx = 0;
 		dy = bdy = 0;
 	}
-		/** Reset velocities to zero **/
-/* 	public function cancelVelocities(vc:VelocityComponent) {
-		vc.dx = vc.bdx = 0;
-		vc.dy = vc.bdy = 0;
-	} */
+
 
     
 }
