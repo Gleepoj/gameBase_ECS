@@ -22,10 +22,10 @@ class BoundingBox {
 	public var pivotY :Float = 0.;
 
 	//Bounding box getters//
-	public var left(get,never)  : Float; inline function get_left()  return attachX + (0-pivotX) * wid;
-	public var right(get,never) : Float; inline function get_right() return attachX + (1-pivotX) * wid;
-	public var top(get,never)   : Float; inline function get_top()   return attachY + (0-pivotY) * hei;
-	public var bottom(get,never): Float; inline function get_bottom()return attachY + (1-pivotY) * hei;
+	public var left(get,never)  : Float; inline function get_left()  return (0-pivotX) * wid;
+	public var right(get,never) : Float; inline function get_right() return (1-pivotX) * wid;
+	public var top(get,never)   : Float; inline function get_top()   return (0-pivotY) * hei;
+	public var bottom(get,never): Float; inline function get_bottom()return (1-pivotY) * hei;
 	// Bounding box center//
 	public var centerX(get,never) : Float; inline function get_centerX() return attachX + (0.5-pivotX) * wid;
 	public var centerY(get,never) : Float; inline function get_centerY() return attachY + (0.5-pivotY) * hei;
@@ -33,7 +33,7 @@ class BoundingBox {
 	/* public var cl(get,never) : Int; inline function get_cl() return M.floor(((0-pivotX) * wid)/Const.GRID);
 	public var cr(get,never) : Int; inline function get_cr() return M.ceil(((1-pivotX) * wid)/Const.GRID);
 	public var ct(get,never) : Int; inline function get_ct() return M.floor(((0-pivotY) * hei)/Const.GRID); */
-	public var cb(get,never) : Int; inline function get_cb() return M.ceil(pivotY/Const.GRID);
+	public var cb(get,never) : Int; inline function get_cb() return M.floor(pivotY/Const.GRID);
 
 	/** Inner radius in pixels (ie. smallest value between width/height, then divided by 2) **/
 	public var innerRadius(get,never) : Float;

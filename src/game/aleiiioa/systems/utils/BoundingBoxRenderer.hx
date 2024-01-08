@@ -15,20 +15,23 @@ class BoundingBoxRenderer extends echoes.System{
     @a function onEntityAdd(bb:BoundingBox,gp:GridPosition,spr:SpriteComponent,se:SpriteExtension){
         bb.attachX = gp.attachX;
         bb.attachY = gp.attachY;
-		bb.pivotX = spr.frameData.wid/2;
-		bb.pivotY = (spr.frameData.hei * se.sprScaleY/2) - (Const.GRID/2);
+		
+		bb.pivotX = 0.5;//spr.pivot.centerFactorX;
+		bb.pivotY = 0.5;//spr.pivot.centerFactorY;
+		//bb.pivotX = spr.frameData.wid/2;
+		//bb.pivotY = (spr.frameData.hei * se.sprScaleY/2) - (Const.GRID/2);
 		bb.hei = Const.GRID;
 		bb.wid = Const.GRID;
 
-		//trace("cl  :: "+bb.cl+" cr :: "+bb.cr+" ct :: "+bb.ct+" cb :: "+bb.cb+"/");
+		trace("cl  :: "+bb.cb+"/");
     }
 
     @r function onEntityRemove(bb:BoundingBox) {
         bb.debugBounds.remove();
     }
     @u function updateDebugBounds(bb:BoundingBox,gp:GridPosition) {
-        bb.attachX = gp.attachX;
-        bb.attachY = gp.attachY;
+        //bb.attachX = gp.attachX;
+        //bb.attachY = gp.attachY;
         debugRequest(bb);
         renderAllDebugs(bb);
     }
@@ -40,7 +43,7 @@ class BoundingBoxRenderer extends echoes.System{
 
 		// Bounds rect
 		bb.debugBounds.lineStyle(1, c, 0.5);
-		bb.debugBounds.drawRect(0-bb.pivotX,bb.pivotY-(bb.wid/2), bb.wid, bb.hei);
+		bb.debugBounds.drawRect(bb.left,bb.top, bb.wid, bb.hei);
 
 		// Attach point
 		bb.debugBounds.lineStyle(1);
@@ -49,7 +52,7 @@ class BoundingBoxRenderer extends echoes.System{
 		bb.debugBounds.endFill();
 
 		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
-		bb.debugBounds.drawCircle(0,bb.pivotY, 3);
+		bb.debugBounds.drawCircle(0,0, 2);
 
 		/* bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
 		bb.debugBounds.drawCircle((bb.cl*Const.GRID),0, 3);

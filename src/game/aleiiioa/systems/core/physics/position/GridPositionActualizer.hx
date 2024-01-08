@@ -1,6 +1,7 @@
 package aleiiioa.systems.core.physics.position;
 
 
+import aleiiioa.components.core.rendering.SpriteExtension;
 import aleiiioa.components.core.rendering.SpriteComponent;
 import aleiiioa.components.core.physics.collision.BoundingBox;
 import aleiiioa.components.core.physics.position.flags.*;
@@ -22,9 +23,13 @@ class GridPositionActualizer extends echoes.System {
 	   onPosManuallyChanged(gp);
     }
 
-	@a function onEntityAdded(spr:SpriteComponent) {
+	@a function onEntityAdded(spr:SpriteComponent,se:SpriteExtension) {
 		Game.ME.origin.addChild(spr);
-		spr.setCenterRatio(0.5,0.5);
+		
+		var ratio = (spr.frameData.hei * se.sprScaleY)/(Const.GRID/2);
+		var cr = M.pretty(1-(1/ratio),1);
+		trace(cr);
+		spr.setCenterRatio(0.5,cr);
 		spr.alpha = 1;
 	}
 	
