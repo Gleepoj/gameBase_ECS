@@ -16,12 +16,11 @@ class BoundingBoxRenderer extends echoes.System{
         bb.attachX = gp.attachX;
         bb.attachY = gp.attachY;
 		bb.pivotX = spr.frameData.wid/2;
-		bb.pivotY = spr.frameData.hei - Const.GRID/2;
+		bb.pivotY = (spr.frameData.hei * se.sprScaleY/2) - (Const.GRID/2);
 		bb.hei = Const.GRID;
 		bb.wid = Const.GRID;
 
-		trace("cl  :: "+bb.cl+" cr :: "+bb.cr+" ct :: "+bb.ct+" cb :: "+bb.cb+"/");
-		
+		//trace("cl  :: "+bb.cl+" cr :: "+bb.cr+" ct :: "+bb.ct+" cb :: "+bb.cb+"/");
     }
 
     @r function onEntityRemove(bb:BoundingBox) {
@@ -41,7 +40,7 @@ class BoundingBoxRenderer extends echoes.System{
 
 		// Bounds rect
 		bb.debugBounds.lineStyle(1, c, 0.5);
-		bb.debugBounds.drawRect(0-bb.pivotX,0-bb.pivotY, bb.wid, bb.hei);
+		bb.debugBounds.drawRect(0-bb.pivotX,bb.pivotY-(bb.wid/2), bb.wid, bb.hei);
 
 		// Attach point
 		bb.debugBounds.lineStyle(1);
@@ -50,16 +49,16 @@ class BoundingBoxRenderer extends echoes.System{
 		bb.debugBounds.endFill();
 
 		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
-		bb.debugBounds.drawCircle((bb.cr*Const.GRID),0, 3);
+		bb.debugBounds.drawCircle(0,bb.pivotY, 3);
 
-		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
+		/* bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
 		bb.debugBounds.drawCircle((bb.cl*Const.GRID),0, 3);
 
 		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
 		bb.debugBounds.drawCircle(0,(bb.ct*Const.GRID), 3);
 
 		bb.debugBounds.lineStyle(1, dn.Col.green(), 1);
-		bb.debugBounds.drawCircle(0,(bb.cb*Const.GRID), 3);
+		bb.debugBounds.drawCircle(0,(bb.cb*Const.GRID), 3); */
 
 		// Center
 		/* bb.debugBounds.lineStyle(1, c, 0.3);
@@ -107,14 +106,15 @@ class BoundingBoxRenderer extends echoes.System{
 	}
 
 	function debugRequest(bb:BoundingBox) {
+		enableDebugBounds(bb);
 		#if debug
 		// Show bounds (with `/bounds` in console)
 		if (ui.Console.ME.hasFlag("bounds") && bb.debugBounds == null)
 			enableDebugBounds(bb);
 
 		// Hide bounds
-		if (!ui.Console.ME.hasFlag("bounds") && bb.debugBounds != null)
-			disableDebugBounds(bb);
+/* 		if (!ui.Console.ME.hasFlag("bounds") && bb.debugBounds != null)
+			disableDebugBounds(bb); */
 		#end
 	}
 }

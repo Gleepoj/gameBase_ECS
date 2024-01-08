@@ -36,70 +36,31 @@ class CollisionReactionEvent extends echoes.System {
 	}
 
 	@a function wallCollisionOnPreStepX(en:echoes.Entity, add:OnPreStepX, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer,bb:BoundingBox){
-		// Calculate top and bottom of the bounding box in grid units
-		var top = Math.floor(gp.lcy + bb.ct);
-		var bottom = Math.ceil(gp.lcy + bb.cb);
-			// Left collision
-	/* 	if (gp.xr<0.5 && checkCollisionLine(top, bottom, function(y) return level.hasCollision(Math.ceil(gp.lcx+bb.cl), y))) {
-			gp.xr=0.5;
-			vc.dx  = 0;
-			vc.bdx = 0; 
-				//trace("stop l ");
-		}
-	 	// Right collision
-		if (gp.xr>0.5 && checkCollisionLine(top, bottom, function(y) return level.hasCollision(Math.ceil(gp.lcx+bb.cr), y))) {
-			gp.xr = 0.5;
-			vc.dx  = 0;
-			vc.bdx = 0; 
-			//trace("stop r ");
-		} */
-		if( level.hasCollision(gp.lcx+1,gp.lcy) && gp.xr>=0.7 ) {
-			gp.xr = 0.7;
-			vc.dx = 0;
-			vc.bdx = 0;
-		}
 
-		if( level.hasCollision(gp.lcx-1,gp.lcy) && gp.xr<=0.3 ) {
-			gp.xr = 0.3;
-			vc.dx = 0;
-			vc.bdx = 0;
-		}
-		var leftCollision  = gp.xr<0.5 && checkCollisionLine(top, bottom, function(y) return level.hasCollision(Math.ceil(gp.lcx+bb.cl)-1, y));
-		var rightCollision = gp.xr>0.5 && checkCollisionLine(top, bottom, function(y) return level.hasCollision(Math.ceil(gp.lcx+bb.cr), y));
-
-		
-		if (leftCollision || rightCollision) {
+		if( level.hasCollision(gp.lcx+1,gp.lcy+bb.cb) && gp.xr>=0.5 ) {
 			gp.xr = 0.5;
 			vc.dx = 0;
 			vc.bdx = 0;
 		}
+
+		if( level.hasCollision(gp.lcx-1,gp.lcy+bb.cb) && gp.xr<=0.5 ) {
+			gp.xr = 0.5;
+			vc.dx = 0;
+			vc.bdx = 0;
+		}
+
 	}
 	
 	@a function floorCollisionOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer,bb:BoundingBox){
-		// Calculate left and right of the bounding box in grid units
-		var left = Math.floor(gp.lcx + bb.cl);
-		var right = Math.ceil(gp.lcx + bb.cr);
-/* 			// Bottom collision
- 		if (gp.yr>0.5 && checkCollisionLine(left, right, function(x) return level.hasCollision(x, Math.ceil(gp.lcy+bb.cb)))) {
-				gp.yr=0.5;
-				vc.dy  = 0;
-				vc.bdy = 0; 
-		} 
-		// Top collision
- 		if (gp.yr<0.5 && checkCollisionLine(left, right, function(x) return level.hasCollision(x, Math.ceil(gp.lcy+bb.ct) ))) {
-			gp.yr=0.5;
-			vc.dy  = 0;
-			vc.bdy = 0; 
-		}  */
-	
-		var bottomCollision = gp.yr > 0.5
-			&& checkCollisionLine(left, right, function(x) return level.hasCollision(x, Math.ceil(gp.lcy + bb.cb)));
-		var topCollision = gp.yr < 0.5
-			&& checkCollisionLine(left, right, function(x) return level.hasCollision(x, Math.ceil(gp.lcy + bb.ct)-1));
+		//ceil Collision
 
-	
-		if (bottomCollision || topCollision) {
-			gp.yr = 0.5;
+		if( level.hasCollision(gp.lcx,gp.lcy+bb.cb-2) && gp.yr<=0.) {
+			gp.yr = 0.;
+			vc.dy = 0;
+			vc.bdy = 0;
+		}
+		  if( level.hasCollision(gp.lcx,gp.lcy+bb.cb+1) && gp.yr>=1 ) {
+			gp.yr = 1;
 			vc.dy = 0;
 			vc.bdy = 0;
 		}

@@ -118,8 +118,9 @@ class TopDownEntity {
         var spr = new SpriteComponent(D.tiles.fxCircle15);
         var sq  = new SquashComponent();
         var se  = new SpriteExtension();
-        //se.sprScaleY = 3;
-        se.setScale(2);
+        se.sprScaleX = 2;
+        se.sprScaleY = 4;
+        //se.setScale(2);
         se.baseColor = new Vector(0.5,0.2,0.6);
 
         var bb  = new BoundingBox();
