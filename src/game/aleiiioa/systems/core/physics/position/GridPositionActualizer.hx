@@ -23,13 +23,13 @@ class GridPositionActualizer extends echoes.System {
 	   gp.onPosManuallyChanged();
     }
 
-	@a function onEntityAdded(spr:SpriteComponent,se:SpriteExtension) {
+/* 	@a function onEntityAdded(spr:SpriteComponent,se:SpriteExtension) {
 		Game.ME.origin.addChild(spr);
 		var ratio = (spr.frameData.hei * se.sprScaleY)/(Const.GRID/2);
 		var cr = M.pretty(1-(1/ratio),1);
 		spr.setCenterRatio(0.5,cr);
 		spr.alpha = 1;
-	}
+	} */
 	
 	@u function updateDebugBounds(bb:BoundingBox,gp:GridPosition) {
         bb.attachX = gp.attachX;

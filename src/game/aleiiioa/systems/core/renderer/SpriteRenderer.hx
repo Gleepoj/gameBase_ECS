@@ -14,13 +14,15 @@ class SpriteRenderer extends echoes.System {
 		this.gameScroller = scroller;
 		this.game = _game;
 	}
-
-/* 	@a function onEntityAdded(spr:SpriteComponent) {
-		this.gameScroller.add(spr);
-		spr.setCenterRatio(0.5,0.5);
+	// Pas besoin pour le moment, mais implementer une possibilité de centrer la bounding box serait de bon aloi 
+	@a function onEntityAdded(spr:SpriteComponent,se:SpriteExtension) {
+		Game.ME.origin.addChild(spr);
+		var ratio = (spr.frameData.hei * se.sprScaleY)/(Const.GRID/2);
+		var cr = M.pretty(1-(1/ratio),1);
+		spr.setCenterRatio(0.5,cr);
 		spr.alpha = 1;
 	}
-	 */
+
 	@r function onEntityRemoved(spr:SpriteComponent) {
 		spr.remove();
 	}
