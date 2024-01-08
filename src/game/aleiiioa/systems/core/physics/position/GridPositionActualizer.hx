@@ -47,8 +47,8 @@ class GridPositionActualizer extends echoes.System {
 			while (n < steps) {
 				// X movement
 				gp.xr += vc.dxTotal / steps;
-				if (vc.dxTotal != 0)
-					en.add(new OnPreStepX());//<---- Add X collisions checks and physics in CollisionReactionSystem
+				if (vc.dxTotal != 0 || vc.dyTotal != 0)
+			    	en.add(new OnPreStepX());//<---- Add X collisions checks and physics in CollisionReactionSystem
 				
 				en.remove(OnPreStepX);
 		
@@ -64,7 +64,7 @@ class GridPositionActualizer extends echoes.System {
 				//Y movement
 				gp.yr += vc.dyTotal / steps;
 				
-				if (vc.dyTotal != 0)
+				if (vc.dyTotal != 0  || vc.dxTotal != 0)
 					en.add(new OnPreStepY());
 			
 				en.remove(OnPreStepY);
