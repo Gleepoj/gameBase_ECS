@@ -1,6 +1,7 @@
 package aleiiioa.builders.entity;
 
 
+import aleiiioa.components.core.level.CameraBisComponent;
 import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.core.physics.collision.affects.*;
 import aleiiioa.components.core.physics.velocity.body.*;
@@ -47,6 +48,29 @@ class CoreEntity {
 
         var focus = new echoes.Entity().add(foc,pos,vas,vc,spr,se);
         return pos;
+    }
+
+    public static function cameraBis(cx:Int,cy:Int) {
+        
+        var pos  = new GridPosition(cx,cy);
+        var vas = new AnalogSpeedComponent(0,0);
+        var vc  = new VelocityComponent();
+        trace("new "+cx+" :: "+cy+"");
+
+        var spr = new SpriteComponent(D.tiles.Cross);
+        var se  = new SpriteExtension();
+        var sq  = new SquashComponent();
+
+        var bb  = new BoundingBox();
+
+       // se.baseColor = new Vector(0,0,1,1);
+        //spr.visible = false;
+        
+        var foc = new CameraBisComponent();
+        //vas.ySpeed = foc.cameraScrollingSpeed;
+
+        var focus = new echoes.Entity().add(foc,pos,vas,vc,spr,se,sq,bb);
+        
     }
    
 }

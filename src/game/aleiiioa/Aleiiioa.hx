@@ -18,8 +18,6 @@ class Aleiiioa extends Game {
 		#else
 		startPlay();
         #end
-		
-
 	}
 
 	public function startPlay(){

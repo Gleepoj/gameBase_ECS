@@ -162,8 +162,14 @@ class WorkflowBuilders {
 	   Game.ME.camera.clampToLevelBounds = false; */
 	   
 	   // ECS //
+
+
 	   var player = level.data.l_Entities.all_Player[0];
 	   PlateformerEntity.player(player.cx,player.cy);
+	   
+	   for (c in level.data.l_Entities.all_Camera_Center){
+			CoreEntity.cameraBis(c.cx,c.cy);
+	   } 
 
 	   for (e in level.data.l_Entities.all_PNJ){
 		   PlateformerEntity.pnj(e.cx,e.cy,e.f_Dialog_File_Path);

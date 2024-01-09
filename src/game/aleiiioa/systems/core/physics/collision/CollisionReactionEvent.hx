@@ -34,8 +34,7 @@ class CollisionReactionEvent extends echoes.System {
 	}
 	
 	@a function floorCollisionOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer,bb:BoundingBox){
-		//ceil Collision
-
+		//ceil
 		if( level.hasCollision(gp.lcx,gp.lcy-1) && gp.yr<=0.5) {
 			gp.yr = 0.5;
 			vc.dy = 0;
@@ -50,19 +49,3 @@ class CollisionReactionEvent extends echoes.System {
 	}
 
 }
-
-
-/* 
-@a function floorCollisionOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition, vc:VelocityComponent,cl:CollisionSensor, layer:CollisionLayer_Wall,level:ChunkCollisionLayer){
-		   // Land on ground
-	if( gp.yr>1 && level.hasCollision(gp.lcx,gp.lcy+1) ) {
-		vc.dy  = 0;
-		vc.bdy = 0;
-		gp.yr = 1;
-		//cl.cd.setS("landing",0.005);
-	}
-
-	// Ceiling collision
-	if( gp.yr<=0.5 && level.hasCollision(gp.lcx,gp.lcy-1) )
-		gp.yr = 0.5;
-} */ 
