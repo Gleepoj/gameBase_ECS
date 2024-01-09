@@ -41,6 +41,7 @@ class CameraSynchronizer extends echoes.System {
 
     var scroll :Bool;
     var lock:Bool;
+    var zoom:Float = 1.;
 
 
     public function new(){
@@ -103,6 +104,14 @@ class CameraSynchronizer extends echoes.System {
             else lock = true;
         }
 
+        if(inp.ca.isKeyboardPressed(K.T)){
+         zoom -= 0.1;
+        }
+
+        if(inp.ca.isKeyboardPressed(K.Y)){
+          zoom += 0.1;
+        }
+
         if(inp.ca.isKeyboardDown(K.I)){
             vas.ySpeed = -0.1;
         }
@@ -149,10 +158,13 @@ class CameraSynchronizer extends echoes.System {
 
     }
     @u function pushScrollerWhenLimitsReach(c:CameraBisComponent,gp:GridPosition){
-        Game.ME.origin.x = -gp.attachX + wwid;
-        Game.ME.origin.y = -gp.attachY + whei;
+        var s = zoom;
+        Game.ME.origin.x = -(gp.attachX*s) + (wwid);
+        Game.ME.origin.y = -(gp.attachY*s) + (whei);
         Game.ME.scroller.x = Game.ME.origin.x;
         Game.ME.scroller.y = Game.ME.origin.y;
+        Game.ME.scroller.setScale(s);
+        Game.ME.origin.setScale(s);
     }
 
 }
