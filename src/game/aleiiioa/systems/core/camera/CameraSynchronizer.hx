@@ -105,11 +105,11 @@ class CameraSynchronizer extends echoes.System {
         }
 
         if(inp.ca.isKeyboardPressed(K.T)){
-         zoom -= 0.1;
+            zoom -= 0.1;
         }
 
         if(inp.ca.isKeyboardPressed(K.Y)){
-          zoom += 0.1;
+            zoom += 0.1;
         }
 
         if(inp.ca.isKeyboardDown(K.I)){
