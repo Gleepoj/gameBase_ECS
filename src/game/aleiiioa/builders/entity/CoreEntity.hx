@@ -63,6 +63,7 @@ class CoreEntity {
 
         var bb  = new BoundingBox();
         var inp = new InputComponent();
+        var body = new ParticuleBodyFlag();
 
        // se.baseColor = new Vector(0,0,1,1);
         //spr.visible = false;
@@ -70,7 +71,7 @@ class CoreEntity {
         var foc = new CameraBisComponent();
         //vas.ySpeed = foc.cameraScrollingSpeed;
 
-        var focus = new echoes.Entity().add(foc,pos,vas,vc,spr,se,sq,bb,inp);
+        var focus = new echoes.Entity().add(foc,pos,vas,vc,spr,se,sq,bb,inp,body);
         
     }
    

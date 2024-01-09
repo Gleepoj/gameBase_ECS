@@ -1,5 +1,7 @@
 package aleiiioa.systems.core.camera;
 
+import aleiiioa.components.core.physics.velocity.AnalogSpeedComponent;
+import aleiiioa.components.core.physics.velocity.VelocityComponent;
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.level.CameraBisComponent;
 import aleiiioa.components.core.level.LevelComponent;
@@ -37,11 +39,16 @@ class CameraSynchronizer extends echoes.System {
     var limitEast:Float;
     var limitWest:Float;
 
+    var scroll :Bool;
+    var lock:Bool;
+
 
     public function new(){
         debugBounds = new h2d.Graphics();
 		Game.ME.origin.add(debugBounds, Const.DP_TOP);
         window = hxd.Window.getInstance();
+        wwid = window.width/2;
+        whei = window.height/2;
 /*        
         wwid = window.width;
         whei = window.height;
@@ -75,10 +82,46 @@ class CameraSynchronizer extends echoes.System {
         Game.ME.
         camera.clampToLevelBounds = false; */
     }
-    @u function order(en:echoes.Entity,c:CameraBisComponent,inp:InputComponent,gp:GridPosition){
+
+    @u function order(en:echoes.Entity,c:CameraBisComponent,inp:InputComponent,gp:GridPosition,vas:AnalogSpeedComponent){
         if(inp.ca.isKeyboardPressed(K.U)){
             //trace("move to player");
             gp.moveTo(en,focus.gpToVector(),0.2);
+        }
+
+        vas.reset();
+
+        if(inp.ca.isKeyboardPressed(K.O)){
+            if(scroll)
+                scroll =false;
+            else scroll = true;
+        }
+
+        if(inp.ca.isKeyboardPressed(K.P)){
+            if(lock)
+                lock =false;
+            else lock = true;
+        }
+
+        if(inp.ca.isKeyboardDown(K.I)){
+            vas.ySpeed = -0.1;
+        }
+        if(inp.ca.isKeyboardDown(K.K)){
+            vas.ySpeed = 0.1;
+        }
+        if(inp.ca.isKeyboardDown(K.J)){
+            vas.xSpeed = -0.1;
+        }
+        if(inp.ca.isKeyboardDown(K.L)){
+            vas.xSpeed = 0.1;
+        }
+
+        if(scroll)
+            vas.ySpeed = -0.1;
+
+        if(lock){
+            vas.reset();
+            gp.setPosPixel(focus.attachX,focus.attachY);
         }
     }
 
@@ -104,6 +147,12 @@ class CameraSynchronizer extends echoes.System {
 		//debugBounds.drawRect(ori.x+inner_width,ori.y+inner_height,wwid-(inner_width*2),whei-(inner_height*2));
         //debugBounds.drawRect(limitWest,limitNorth,limitEast,limitSouth);
 
+    }
+    @u function pushScrollerWhenLimitsReach(c:CameraBisComponent,gp:GridPosition){
+        Game.ME.origin.x = -gp.attachX + wwid;
+        Game.ME.origin.y = -gp.attachY + whei;
+        Game.ME.scroller.x = Game.ME.origin.x;
+        Game.ME.scroller.y = Game.ME.origin.y;
     }
 
 }

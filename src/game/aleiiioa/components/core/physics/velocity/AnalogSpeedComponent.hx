@@ -9,4 +9,9 @@ class AnalogSpeedComponent {
         xSpeed = xSp;
         ySpeed = ySp;
     }
+
+    inline public function reset(){
+        xSpeed = 0;
+        ySpeed = 0;
+    }
 }

@@ -1537,18 +1537,18 @@
 					"entityInstances": [
 						{
 							"__identifier": "CameraPoint",
-							"__grid": [0,0],
+							"__grid": [7,0],
 							"__pivot": [0,0],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#D60F42",
-							"__worldX": 0,
+							"__worldX": 112,
 							"__worldY": 0,
 							"iid": "df652980-8990-11ee-b370-738b69e0e0ea",
 							"width": 16,
 							"height": 16,
 							"defUid": 31,
-							"px": [0,0],
+							"px": [112,0],
 							"fieldInstances": []
 						},
 						{
@@ -1844,18 +1844,18 @@
 						},
 						{
 							"__identifier": "Camera_Center",
-							"__grid": [5,16],
+							"__grid": [0,0],
 							"__pivot": [0.5,1],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#733E39",
-							"__worldX": 88,
-							"__worldY": 272,
+							"__worldX": 8,
+							"__worldY": 16,
 							"iid": "df3dd7b0-8990-11ee-b7cc-19e9c797cff4",
 							"width": 16,
 							"height": 16,
 							"defUid": 71,
-							"px": [88,272],
+							"px": [8,16],
 							"fieldInstances": []
 						}
 					]
