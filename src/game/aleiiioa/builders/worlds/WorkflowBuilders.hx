@@ -195,7 +195,9 @@ class WorkflowBuilders {
 	   Workflow.addSystem(new VelocitySystem());
 	   Workflow.addSystem(new CollisionReactionEvent());
 	   Workflow.add60FpsSystem(new GridPositionActualizer());
+	   Workflow.add60FpsSystem(new DelayedMovementSystem());
 	   Workflow.addSystem(new TemporarySystem());
+	   Workflow.add60FpsSystem(new CameraSynchronizer());
 	  
 
 	   //Interaction

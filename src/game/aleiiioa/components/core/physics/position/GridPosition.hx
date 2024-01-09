@@ -74,4 +74,9 @@ class GridPosition {
 		lastFixedUpdateX = attachX;
 		lastFixedUpdateY = attachY;
 	}
+	
+	public function moveTo(en:echoes.Entity,tar:Vector,sec:Float){
+		if(!en.exists(TransformPositionComponent))
+			en.add(new TransformPositionComponent(gpToVector(),tar,sec,TEaseOut));
+	}
 }

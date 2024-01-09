@@ -1,5 +1,7 @@
 package aleiiioa.systems.core.camera;
 
+import aleiiioa.components.core.input.InputComponent;
+import aleiiioa.components.core.level.CameraBisComponent;
 import aleiiioa.components.core.level.LevelComponent;
 import aleiiioa.components.logic.qualia.PlayerFlag;
 import aleiiioa.components.core.physics.position.GridPosition;
@@ -40,7 +42,7 @@ class CameraSynchronizer extends echoes.System {
         debugBounds = new h2d.Graphics();
 		Game.ME.origin.add(debugBounds, Const.DP_TOP);
         window = hxd.Window.getInstance();
-       
+/*        
         wwid = window.width;
         whei = window.height;
         ori = Game.ME.origin;
@@ -56,7 +58,7 @@ class CameraSynchronizer extends echoes.System {
         east = Game.ME.level.cWid - loadCxDistance;
         west = 0 + loadCxDistance ;
         north = 0 + loadCxDistance;
-        south = Game.ME.level.cHei - loadCyDistance;
+        south = Game.ME.level.cHei - loadCyDistance; */
 
     }
 
@@ -73,27 +75,41 @@ class CameraSynchronizer extends echoes.System {
         Game.ME.
         camera.clampToLevelBounds = false; */
     }
+    @u function order(en:echoes.Entity,c:CameraBisComponent,inp:InputComponent,gp:GridPosition){
+        if(inp.ca.isKeyboardPressed(K.U)){
+            //trace("move to player");
+            gp.moveTo(en,focus.gpToVector(),0.2);
+        }
+    }
 
-    @u function debugControlSpace(){
+    @u function debugControlSpace(c:CameraBisComponent,gp:GridPosition){
+        var w = 30;
+        var h = 60;
+        
+        debugBounds.setPosition(gp.attachX,gp.attachY);
         debugBounds.clear();
+		debugBounds.lineStyle(1,0x007ddd);
+		debugBounds.drawRect(-w*0.5,-h*0.5,w,h);
 
-		debugBounds.lineStyle(2,0x007ddd);
-		debugBounds.drawRect(ori.x,ori.y,wwid,whei);
+	 	debugBounds.moveTo(0, -h*0.5);
+		debugBounds.lineTo(0, h*0.5); 
 
-		debugBounds.moveTo(wwid*0.5, 0);
-		debugBounds.lineTo(wwid*0.5, whei);
+        debugBounds.moveTo(-w*0.5,0);
+        debugBounds.lineTo(w*0.5,0);
 
-		debugBounds.moveTo(0, whei*0.5);
-		debugBounds.lineTo(wwid, whei*0.5);
+		/* debugBounds.moveTo(0,h*0.5);
+		debugBounds.lineTo(w,h*0.5); */
 
-        debugBounds.lineStyle(2,0xdda200);
+        //debugBounds.lineStyle(2,0xdda200);
 		//debugBounds.drawRect(ori.x+inner_width,ori.y+inner_height,wwid-(inner_width*2),whei-(inner_height*2));
-        debugBounds.drawRect(limitWest,limitNorth,limitEast,limitSouth);
+        //debugBounds.drawRect(limitWest,limitNorth,limitEast,limitSouth);
 
     }
-    
-    @u function pushScrollerWhenLimitsReach(player:PlayerFlag,gp:GridPosition){
-        var scroller = Game.ME.scroller;
+
+}
+
+  /*   @u function pushScrollerWhenLimitsReach(player:PlayerFlag,gp:GridPosition){
+         var scroller = Game.ME.scroller;
 
         if(gp.attachX < limitWest){
            scroller.x +=1;
@@ -229,5 +245,4 @@ class CameraSynchronizer extends echoes.System {
             var nlevel = new LevelComponent(southLevel);
             new echoes.Entity().add(nlevel);
         }
-    }
-}
+    } */
