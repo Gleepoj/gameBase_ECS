@@ -1,5 +1,6 @@
 package aleiiioa.builders.worlds;
 
+import aleiiioa.components.core.level.Chunk_Active;
 import aleiiioa.components.core.level.Focused_Chunk;
 import aleiiioa.components.core.level.LevelComponent;
 import aleiiioa.builders.entity.local.UIBuilders;
@@ -95,23 +96,47 @@ class WorkflowBuilders {
 			PlateformerEntity.chouxPeteur(cp.cx+ocx,cp.cy+ocy);
 		}
 	   
-	   var _level = new LevelComponent(level.data);
-	   var focus = new Focused_Chunk();
-
+	   //var _level = new LevelComponent(level.data);
+	   //var focus = new Focused_Chunk();
+/* 
 	   new echoes.Entity().add(_level,focus);
 	   for(l in level.data.neighbours){
 		 var a:World_Level = Assets.worldData.all_worlds.Default.getLevel(l.levelIid);
 		 var new_l = new LevelComponent(a);
 		 new echoes.Entity().add(new_l);
 	   }
-	   createWorkflow();
+ */
+	   var loadedLevels = new Map<String, Bool>();
+	   // Load the initial level
+		var _level = new LevelComponent(level.data);
+		
+		var focus = new Focused_Chunk();
+		var active = new Chunk_Active();
 
+		new echoes.Entity().add(_level,focus,active);
+
+		loadedLevels.set(level.data.iid, true);
+		loadNeighbours(level,loadedLevels);
+
+	    createWorkflow();
+	}
+
+	public static function loadNeighbours(level:Level, _previouslyLoaded:Map<String,Bool>) {
+		for(l in level.data.neighbours){
+			if (!_previouslyLoaded.exists(l.levelIid)) {
+				var a:World_Level = Assets.worldData.all_worlds.Default.getLevel(l.levelIid);
+				var new_l = new LevelComponent(a);
+				var new_wl = new Level(a);
+				var active = new Chunk_Active();
+				new echoes.Entity().add(new_l,active);
+				_previouslyLoaded.set(l.levelIid, true);
+				loadNeighbours(new_wl,_previouslyLoaded);
+			}
+		}
 	}
 
 	/////////////////////////////////////////////////////////
 	////////////////PLATEFORMER//////////////////////////////
-
-
 
 	public static function newPlateformerLevel(level:Level){
 		Game.ME.ui_layer.removeChildren();	   
@@ -189,10 +214,6 @@ class WorkflowBuilders {
 		   //Input
 		   Workflow.add60FpsSystem(new InputSystem());
    }
-
-
-
-  
 }
 
    

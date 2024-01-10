@@ -12,8 +12,12 @@ class LevelRenderer extends echoes.System {
     @u function clearRenderer(){
         Game.ME.scroller.removeChildren();
     }
-
-    @u function levelRendering(level:LevelComponent,focus:Focused_Chunk){
+    // Attention focus n'est pas un chunk actif //
+    @u function levelRendering(level:LevelComponent,active:Chunk_Active){
         level.render();
-    }
+    } 
+    @u function levelfocusRendering(level:LevelComponent,active:Focused_Chunk){
+        level.render();
+    } 
+
 }
