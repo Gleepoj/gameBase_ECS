@@ -76,19 +76,24 @@ class WorkflowBuilders {
 	public static function newTopDownLevel(level:Level){
 		Game.ME.ui_layer.removeChildren();
 	   
-	   var player = level.data.l_Entities.all_Player[0];
-	   TopDownEntity.player(player.cx,player.cy);
-	      
-	   for (c in level.data.l_Entities.all_Camera_Center){
-			CoreEntity.cameraBis(c.cx,c.cy);
-       } 
-	   for (e in level.data.l_Entities.all_PNJ){
-			TopDownEntity.pnj(e.cx,e.cy,e.f_Dialog_File_Path);
-	   }
-	
-	   for (cp in level.data.l_Entities.all_ChouxPeteur){
-			TopDownEntity.chouxPeteur(cp.cx,cp.cy);
-	   }
+		var ocx = level.data.f_ci * Const.CHUNK_SIZE;
+		var ocy = level.data.f_cj * Const.CHUNK_SIZE;
+		// ECS //
+		var player = level.data.l_Entities.all_Player[0];
+		
+		TopDownEntity.player(player.cx+ocx,player.cy+ocy);
+		
+		for (c in level.data.l_Entities.all_Camera_Center){
+			 CoreEntity.cameraBis(c.cx+ocx,c.cy+ocy);
+		} 
+ 
+		for (e in level.data.l_Entities.all_PNJ){
+			PlateformerEntity.pnj(e.cx+ocx,e.cy+ocy,e.f_Dialog_File_Path);
+		}
+ 
+		for (cp in level.data.l_Entities.all_ChouxPeteur){
+			PlateformerEntity.chouxPeteur(cp.cx+ocx,cp.cy+ocy);
+		}
 	   
 	   var _level = new LevelComponent(level.data);
 	   var focus = new Focused_Chunk();
@@ -110,21 +115,23 @@ class WorkflowBuilders {
 
 	public static function newPlateformerLevel(level:Level){
 		Game.ME.ui_layer.removeChildren();	   
-	   
+	   var ocx = level.data.f_ci * Const.CHUNK_SIZE;
+	   var ocy = level.data.f_cj * Const.CHUNK_SIZE;
 	   // ECS //
 	   var player = level.data.l_Entities.all_Player[0];
+	   
 	   PlateformerEntity.player(player.cx,player.cy);
 	   
 	   for (c in level.data.l_Entities.all_Camera_Center){
-			CoreEntity.cameraBis(c.cx,c.cy);
+			CoreEntity.cameraBis(c.cx+ocx,c.cy+ocy);
 	   } 
 
 	   for (e in level.data.l_Entities.all_PNJ){
-		   PlateformerEntity.pnj(e.cx,e.cy,e.f_Dialog_File_Path);
+		   PlateformerEntity.pnj(e.cx+ocx,e.cy+ocy,e.f_Dialog_File_Path);
 	   }
 
 	   for (cp in level.data.l_Entities.all_ChouxPeteur){
-		   PlateformerEntity.chouxPeteur(cp.cx,cp.cy);
+		   PlateformerEntity.chouxPeteur(cp.cx+ocx,cp.cy+ocy);
 	   }
 
 	   var _level = new LevelComponent(level.data);

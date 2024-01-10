@@ -36,7 +36,7 @@ class LevelComponent {
 		// Store chunk coordinates
 		i = M.floor((M.floor(data.worldX/Const.GRID))/Const.CHUNK_SIZE);
 		j = M.floor((M.floor(data.worldY/Const.GRID))/Const.CHUNK_SIZE);
-
+		//trace('Level - i ::$i :: j :: $j');
 		cWid = data.l_Collisions.cWid;
 		cHei = data.l_Collisions.cHei;
 

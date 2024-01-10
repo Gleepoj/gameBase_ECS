@@ -78,12 +78,14 @@ class TemporarySystem extends echoes.System {
 
     @u function swapChunkCollisionMask(en:echoes.Entity,gp:GridPosition,c:ChunkCollisionLayer){
         if(gp.iw != c.i || gp.jw != c.j){
+            
             var head = ALL_LEVELS.entities.head;
             while(head != null){
                 var level = head.value.get(LevelComponent);
                 if(level.i == gp.iw && level.j == gp.jw){
                     en.remove(ChunkCollisionLayer);
                     en.add(new ChunkCollisionLayer(level.marks,level.i,level.j));
+                    trace("swap collision to i:"+ level.i + " j: "+ level.j+"");
                 }
                 head = head.next;
             }
