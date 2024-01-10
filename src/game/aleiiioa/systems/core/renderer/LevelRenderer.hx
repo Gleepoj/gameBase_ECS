@@ -1,6 +1,6 @@
 package aleiiioa.systems.core.renderer;
 
-import aleiiioa.components.core.level.LevelComponent;
+import aleiiioa.components.core.level.*;
 
 
 class LevelRenderer extends echoes.System {
@@ -13,7 +13,7 @@ class LevelRenderer extends echoes.System {
         Game.ME.scroller.removeChildren();
     }
 
-    @u function levelRendering(level:LevelComponent){
+    @u function levelRendering(level:LevelComponent,focus:Focused_Chunk){
         level.render();
     }
 }

@@ -1,5 +1,6 @@
 package aleiiioa.builders.worlds;
 
+import aleiiioa.components.core.level.Focused_Chunk;
 import aleiiioa.components.core.level.LevelComponent;
 import aleiiioa.builders.entity.local.UIBuilders;
 import aleiiioa.builders.entity.plateformer.PlateformerEntity;
@@ -68,23 +69,19 @@ class WorkflowBuilders {
     }
 
 	//////////////////////////////////////////////////
-	///////////////////////////////////////////////////
-	////////////////////////////////////////////////
-	//////////////////////////////////////////////////
-	///////////////////////////////////////////////
-	/////////////////////////////////////////////////
+	//////////////////TOPDOWN////////////////////////
+
+
 
 	public static function newTopDownLevel(level:Level){
 		Game.ME.ui_layer.removeChildren();
-	
-	   // ECS //
-	/*    var camera = level.data.l_Entities.all_CameraPoint[0];
-	   var camGp = CoreEntity.cameraFocus(camera.cx,camera.cy);
-	   Game.ME.level.setFocus(camGp); */
 	   
 	   var player = level.data.l_Entities.all_Player[0];
 	   TopDownEntity.player(player.cx,player.cy);
-	   
+	      
+	   for (c in level.data.l_Entities.all_Camera_Center){
+			CoreEntity.cameraBis(c.cx,c.cy);
+       } 
 	   for (e in level.data.l_Entities.all_PNJ){
 			TopDownEntity.pnj(e.cx,e.cy,e.f_Dialog_File_Path);
 	   }
@@ -94,76 +91,27 @@ class WorkflowBuilders {
 	   }
 	   
 	   var _level = new LevelComponent(level.data);
-	   new echoes.Entity().add(_level);
+	   var focus = new Focused_Chunk();
+
+	   new echoes.Entity().add(_level,focus);
 	   for(l in level.data.neighbours){
 		 var a:World_Level = Assets.worldData.all_worlds.Default.getLevel(l.levelIid);
 		 var new_l = new LevelComponent(a);
 		 new echoes.Entity().add(new_l);
 	   }
-	   //Collision
-	   Workflow.addSystem(new GarbageCollectionSystem());
-	   
-	   //Object
-	   Workflow.add60FpsSystem(new CollisionReactionEvent());
-	   Workflow.add60FpsSystem(new GridPositionActualizer());
-	   Workflow.add60FpsSystem(new CollisionSensorSystem());
-	   Workflow.add60FpsSystem(new VelocitySystem());
-	   //Workflow.add60FpsSystem(new CameraSynchronizer());
-	
-	   //Interaction
-	   Workflow.add60FpsSystem(new CatchLogicSystem());
-	   Workflow.add60FpsSystem(new BombLogicSystem());
-	   
-	   //Particles
-	   Workflow.addSystem(new ParticulesVelocitySystem());
-	   Workflow.add60FpsSystem(new ParticulesSystem());
-	   Workflow.add60FpsSystem(new ParticuleRenderer());
-	   
-	   //Graphics
-	   Workflow.add60FpsSystem(new LevelRenderer());
-	   Workflow.add60FpsSystem(new TemporarySystem());
-	   Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.origin));
-	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
-	  
-	   Workflow.add60FpsSystem(new SquashRenderer());
-	   Workflow.add60FpsSystem(new SpriteExtensionFx());
-	  
-	   //Dialog
-	   Workflow.add60FpsSystem(new DialogAreaCollisions());
-	   Workflow.add60FpsSystem(new DialogYarnSystem());	
-	   Workflow.add60FpsSystem(new DialogInputSystem());
-	   Workflow.add60FpsSystem(new DialogUISystem());
-	   
-	   //Level 
-	  
-	   //Helpers
-	   Workflow.add60FpsSystem(new UIHelperSystem());
-	   //Input
-	   Workflow.add60FpsSystem(new InputSystem());
-	
+	   createWorkflow();
+
 	}
 
 	/////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////////
-	///////////////////////////////////////////////////////
+	////////////////PLATEFORMER//////////////////////////////
+
 
 
 	public static function newPlateformerLevel(level:Level){
-		Game.ME.ui_layer.removeChildren();
-
-	   /* var cameraPoint = level.data.l_Entities.all_CameraPoint[0];
-	   var cameraFocus = CoreEntity.cameraFocus(cameraPoint.cx,cameraPoint.cy);
-	   var cameraFocusPosition = cameraFocus.get(GridPosition);
-
-	   Game.ME.camera.trackEntityGridPosition(cameraFocusPosition,true,1);
-	   Game.ME.camera.centerOnGridTarget();		
-	   Game.ME.camera.clampToLevelBounds = false; */
+		Game.ME.ui_layer.removeChildren();	   
 	   
 	   // ECS //
-
-
 	   var player = level.data.l_Entities.all_Player[0];
 	   PlateformerEntity.player(player.cx,player.cy);
 	   
@@ -187,47 +135,52 @@ class WorkflowBuilders {
 		 new echoes.Entity().add(new_l);
 	   } 
 	   
-	   //Collision
-	   Workflow.addSystem(new GarbageCollectionSystem());
-	   
-	   //Object
-	   Workflow.addSystem(new CollisionSensorSystem());
-	   Workflow.addSystem(new VelocitySystem());
-	   Workflow.addSystem(new CollisionReactionEvent());
-	   Workflow.add60FpsSystem(new GridPositionActualizer());
-	   Workflow.add60FpsSystem(new DelayedMovementSystem());
-	   Workflow.addSystem(new TemporarySystem());
-	   
-	  
+	   createWorkflow();
 
-	   //Interaction
-	   Workflow.add60FpsSystem(new CatchLogicSystem());
-	   Workflow.add60FpsSystem(new BombLogicSystem());
-	   
-	   //Particles
-	   Workflow.addSystem(new ParticulesVelocitySystem());
-	   Workflow.add60FpsSystem(new ParticulesSystem());
-	   Workflow.add60FpsSystem(new ParticuleRenderer());
-	   
-	   //Graphics
-	   Workflow.add60FpsSystem(new CameraSynchronizer());
-	   Workflow.add60FpsSystem(new LevelRenderer());
-	   Workflow.add60FpsSystem(new SquashRenderer());
-	   Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.origin));
-	   Workflow.add60FpsSystem(new SpriteExtensionFx());
-	   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
-	   
-	   //Dialog
-	   Workflow.add60FpsSystem(new DialogAreaCollisions());
-	   Workflow.add60FpsSystem(new DialogYarnSystem());	
-	   Workflow.add60FpsSystem(new DialogInputSystem());
-	   Workflow.add60FpsSystem(new DialogUISystem());
-	   
-		   //Helpers
-	   Workflow.add60FpsSystem(new UIHelperSystem());
-	   //Input
-	   Workflow.add60FpsSystem(new InputSystem());
 
+   }
+
+   public static function createWorkflow() {
+		   //Collision
+		   Workflow.addSystem(new GarbageCollectionSystem());
+	   
+		   //Object
+		   Workflow.addSystem(new CollisionSensorSystem());
+		   Workflow.addSystem(new VelocitySystem());
+		   Workflow.addSystem(new CollisionReactionEvent());
+		   Workflow.add60FpsSystem(new GridPositionActualizer());
+		   Workflow.add60FpsSystem(new DelayedMovementSystem());
+		   Workflow.addSystem(new TemporarySystem());
+		   
+		  
+	
+		   //Interaction
+		   Workflow.add60FpsSystem(new CatchLogicSystem());
+		   Workflow.add60FpsSystem(new BombLogicSystem());
+		   
+		   //Particles
+		   Workflow.addSystem(new ParticulesVelocitySystem());
+		   Workflow.add60FpsSystem(new ParticulesSystem());
+		   Workflow.add60FpsSystem(new ParticuleRenderer());
+		   
+		   //Graphics
+		   Workflow.add60FpsSystem(new CameraSynchronizer());
+		   Workflow.add60FpsSystem(new LevelRenderer());
+		   Workflow.add60FpsSystem(new SquashRenderer());
+		   Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.origin));
+		   Workflow.add60FpsSystem(new SpriteExtensionFx());
+		   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
+		   
+		   //Dialog
+		   Workflow.add60FpsSystem(new DialogAreaCollisions());
+		   Workflow.add60FpsSystem(new DialogYarnSystem());	
+		   Workflow.add60FpsSystem(new DialogInputSystem());
+		   Workflow.add60FpsSystem(new DialogUISystem());
+		   
+			   //Helpers
+		   Workflow.add60FpsSystem(new UIHelperSystem());
+		   //Input
+		   Workflow.add60FpsSystem(new InputSystem());
    }
 
 

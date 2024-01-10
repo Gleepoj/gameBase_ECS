@@ -40,7 +40,7 @@ class CameraSynchronizer extends echoes.System {
     var limitWest:Float;
 
     var scroll :Bool;
-    var lock:Bool;
+    var lock:Bool = true;
     var zoom:Float = 1.;
 
 
@@ -75,7 +75,8 @@ class CameraSynchronizer extends echoes.System {
         focus = gp;
     }
 
-    @a function onAddCamera(cam:CameraFocusComponent,gp:GridPosition){
+    @a function onAddCamera(en:echoes.Entity,c:CameraBisComponent,gp:GridPosition){
+        gp.moveTo(en,focus.gpToVector(),0.2);
  /*        Game.ME.camera.enableDebugBounds();
         Game.ME.camera.trackEntityGridPosition(gp,true,1);
         //Game.ME.camera.centerOnGridTarget();
@@ -100,7 +101,7 @@ class CameraSynchronizer extends echoes.System {
 
         if(inp.ca.isKeyboardPressed(K.P)){
             if(lock)
-                lock =false;
+                lock = false;
             else lock = true;
         }
 

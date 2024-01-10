@@ -1,5 +1,6 @@
 package aleiiioa.builders.entity.topdown;
 
+import aleiiioa.components.core.level.Focused_Entity;
 import dn.FileTools;
 import sys.FileSystem;
 import aleiiioa.components.logic.interaction.InteractionListener;
@@ -136,6 +137,7 @@ class TopDownEntity {
         var kinematic = new KinematicBodyFlag();
         var f = new FrictionSensitiveAffects();
         var w = new CollisionLayer_Wall();
+        var focused = new Focused_Entity();
 
         //Qualia
         var player  = new PlayerFlag();
@@ -143,7 +145,7 @@ class TopDownEntity {
         //var camera  = new CameraFocusComponent();
 
         
-        new echoes.Entity().add(pos,vas,vc,cl,mpos,bb,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,f,w);
+        new echoes.Entity().add(pos,vas,vc,cl,mpos,bb,spr,sq,se,em,inp,il,player,master,speaker,catcher,kinematic,f,w,focused);
     }
 
     
