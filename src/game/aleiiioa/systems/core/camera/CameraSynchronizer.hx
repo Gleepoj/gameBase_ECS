@@ -150,6 +150,11 @@ class CameraSynchronizer extends echoes.System {
         debugBounds.moveTo(-w*0.5,0);
         debugBounds.lineTo(w*0.5,0);
 
+        for(resolution in Const.RESOLUTIONS){
+            debugBounds.lineStyle(4, dn.Col.green());
+            debugBounds.drawRect(-resolution.x*0.5,-resolution.y*0.5,resolution.x,resolution.y);
+        }
+
 		/* debugBounds.moveTo(0,h*0.5);
 		debugBounds.lineTo(w,h*0.5); */
 

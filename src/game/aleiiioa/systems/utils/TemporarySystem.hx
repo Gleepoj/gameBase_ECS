@@ -15,6 +15,7 @@ import aleiiioa.components.logic.qualia.PlayerFlag;
 import aleiiioa.builders.entity.local.UIBuilders;
 
 
+
 class TemporarySystem extends echoes.System {
     var ALL_LEVELS:View<LevelComponent>;
     var ALL_ACTIVE_LEVELS:View<LevelComponent,Chunk_Active>;
@@ -113,9 +114,7 @@ class TemporarySystem extends echoes.System {
             getNeighbours(position);
         }
 
-        last_position = position;
-
-        
+        last_position = position; 
     }
 
     function removeActiveFlag() {
@@ -129,7 +128,6 @@ class TemporarySystem extends echoes.System {
     }
 
     function getNeighbours(position:String){
-        var neighbours = new Array<LevelComponent>();
         var positions = [];
     
         switch(position) {
@@ -183,7 +181,6 @@ class TemporarySystem extends echoes.System {
 
     @u function swapChunkCollisionMask(en:echoes.Entity,gp:GridPosition,c:ChunkCollisionLayer){
         if(gp.iw != c.i || gp.jw != c.j){
-            
             var head = ALL_LEVELS.entities.head;
             while(head != null){
                 var level = head.value.get(LevelComponent);
@@ -192,13 +189,8 @@ class TemporarySystem extends echoes.System {
                     en.add(new ChunkCollisionLayer(level.marks,level.i,level.j));
                     //trace("swap collision to i:"+ level.i + " j: "+ level.j+"");
                 }
-                head = head.next;
+            head = head.next;
             }
         }
     }
-
-    @u function drawFocusedEntityChunk(focus:Focused_Entity) {
-        
-    }
-
 }

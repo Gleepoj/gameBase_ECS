@@ -35,6 +35,35 @@ class Const {
 	**/
 	public static final FIXED_UPDATE_FPS = 30;
 	public static var FIXED_DELTA = 1/FIXED_UPDATE_FPS;
+	
+/* 	public static final RESOLUTIONS:Array<Vector> = [
+		new Vector(800.,600.),
+		new Vector(1024.,768.),
+		new Vector(1280.,720.),
+		new Vector(1280.,800.),
+		new Vector(1280.,1024.),
+		new Vector(1366.,768.),
+		new Vector(1440.,900.),
+		new Vector(1600.,900.),
+		new Vector(1680.,1050.),
+		new Vector(1920.,1080.),
+		new Vector(1920.,1200.),
+		new Vector(2560.,1440.),
+		new Vector(2560.,1600.),
+		new Vector(3840.,2160.),
+		new Vector(4096.,2160.)
+	]; */
+
+		
+	public static final RESOLUTIONS:Array<Vector> = [
+		
+		new Vector(1024.,768.),
+		new Vector(1280.,720.),
+		new Vector(1366.,768.),
+		new Vector(1440.,900.),
+		new Vector(1536.,864.),
+		new Vector(1920.,1080.),
+	];
 
 	/** Grid size in pixels **/
 	public static final GRID:Int = 16;
