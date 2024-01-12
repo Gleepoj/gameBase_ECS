@@ -71,7 +71,7 @@ class CoreEntity {
         var foc = new CameraBisComponent();
         //vas.ySpeed = foc.cameraScrollingSpeed;
 
-        var focus = new echoes.Entity().add(foc,pos,vas,vc,spr,se,sq,bb,inp,body);
+        new echoes.Entity().add(foc,pos,vas,vc,spr,se,sq,bb,inp,body);
         
     }
    

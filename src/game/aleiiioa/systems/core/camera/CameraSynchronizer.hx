@@ -40,7 +40,7 @@ class CameraSynchronizer extends echoes.System {
     var limitWest:Float;
 
     var scroll :Bool;
-    var lock:Bool = true;
+    var lock:Bool = false;
     var zoom:Float = 1.;
 
 
@@ -50,41 +50,21 @@ class CameraSynchronizer extends echoes.System {
         window = hxd.Window.getInstance();
         wwid = window.width/2;
         whei = window.height/2;
-/*        
-        wwid = window.width;
-        whei = window.height;
-        ori = Game.ME.origin;
-
-        inner_width = wwid*1/6;
-        inner_height = whei*1/6;
-
-        limitNorth = ori.y+inner_height;
-        limitSouth = whei-(inner_height*2);
-        limitEast  = wwid-(inner_width*2);
-        limitWest  = ori.x+inner_width;
-
-        east = Game.ME.level.cWid - loadCxDistance;
-        west = 0 + loadCxDistance ;
-        north = 0 + loadCxDistance;
-        south = Game.ME.level.cHei - loadCyDistance; */
-
     }
 
-
-    @a function onAddPlayer(player:PlayerFlag,gp:GridPosition){
+    @a function onNoFocusedEntity(c:CameraBisComponent,gp:GridPosition) {
+        focus = gp;
+       // trace(gp.gpToVector());
+    }
+    
+/*     @a function onAddPlayer(player:PlayerFlag,gp:GridPosition){
         focus = gp;
     }
-
+ 
     @a function onAddCamera(en:echoes.Entity,c:CameraBisComponent,gp:GridPosition){
         gp.moveTo(en,focus.gpToVector(),0.2);
- /*        Game.ME.camera.enableDebugBounds();
-        Game.ME.camera.trackEntityGridPosition(gp,true,1);
-        //Game.ME.camera.centerOnGridTarget();
-
-        Game.ME.
-        camera.clampToLevelBounds = false; */
     }
-
+ */
     @u function order(en:echoes.Entity,c:CameraBisComponent,inp:InputComponent,gp:GridPosition,vas:AnalogSpeedComponent){
         if(inp.ca.isKeyboardPressed(K.U)){
             //trace("move to player");
@@ -155,13 +135,6 @@ class CameraSynchronizer extends echoes.System {
             debugBounds.drawRect(-resolution.x*0.5,-resolution.y*0.5,resolution.x,resolution.y);
         }
 
-		/* debugBounds.moveTo(0,h*0.5);
-		debugBounds.lineTo(w,h*0.5); */
-
-        //debugBounds.lineStyle(2,0xdda200);
-		//debugBounds.drawRect(ori.x+inner_width,ori.y+inner_height,wwid-(inner_width*2),whei-(inner_height*2));
-        //debugBounds.drawRect(limitWest,limitNorth,limitEast,limitSouth);
-
     }
     @u function pushScrollerWhenLimitsReach(c:CameraBisComponent,gp:GridPosition){
         var s = zoom;
@@ -173,143 +146,15 @@ class CameraSynchronizer extends echoes.System {
         Game.ME.origin.setScale(s);
     }
 
+    @r function onRemoveCamera(c:CameraBisComponent){
+        //trace("reset scroller");
+        var s = 1;
+        Game.ME.origin.x = 0;
+        Game.ME.origin.y = 0;
+        Game.ME.scroller.x = 0;
+        Game.ME.scroller.y = 0;
+        Game.ME.scroller.setScale(s);
+        Game.ME.origin.setScale(s);
+    }
+
 }
-
-  /*   @u function pushScrollerWhenLimitsReach(player:PlayerFlag,gp:GridPosition){
-         var scroller = Game.ME.scroller;
-
-        if(gp.attachX < limitWest){
-           scroller.x +=1;
-            gp.setPosPixel(limitWest,gp.attachY);
-        }
-        if(gp.attachX > limitEast){
-            scroller.x -=1;
-            gp.setPosPixel(limitEast,gp.attachY);
-        }
-        if(gp.attachY < limitNorth){
-            scroller.y +=1;
-            gp.setPosPixel(gp.attachX,limitNorth);
-        }
-        if(gp.attachY > limitSouth){
-            scroller.y -=1;
-            gp.setPosPixel(gp.attachX,limitSouth);
-        }
-
-    }
-
-    @u function syncCameraFocus(player:PlayerFlag,gp:GridPosition){
-        if(!onEast && gp.cx > east){
-            onEast = true;
-            //trace("load East");
-            loadEast();
-        }
-        // chexk load west
-        if(!onWest && gp.cx < west){
-            onWest = true;
-            loadWest();
-            //trace("load West");
-        }
-        // check load north
-        if(!onNorth && gp.cy < north){
-            onNorth = true;
-            loadNorth();
-            //trace("load North");
-        }
-        // check load south
-        if(!onSouth && gp.cy > south){
-            onSouth = true;
-            //trace("load South");
-            loadSouth();
-        }
-
-        // check unload north   
-        if(onNorth && gp.cy > north){
-            onNorth = false;
-            //trace("unload North");
-        }
-        // check unload south   
-        if(onSouth && gp.cy < south){
-            onSouth = false;
-            //trace("unload South");
-        }   
-        // check unload east
-        if(onEast && gp.cx < east){
-            onEast = false;
-            //trace("unload East");
-        }
-        // check unload west
-        if(onWest && gp.cx > west){
-            onWest = false;
-            //trace("unload West");
-        }
-
-    }
-
-    function loadEast(){
-        // load east
-        var xpos = Game.ME.level.data.worldX;
-        var w    = Game.ME.level.data.pxWid;
-        var ypos = M.floor(Game.ME.level.data.worldY + Game.ME.level.data.pxHei/2) ;
-        
-        var eastLevel = Assets.worldData.all_worlds.Default.getLevelAt(xpos+w+10,ypos);
-        if(eastLevel != null){
-            var test  = eastLevel.isLoaded();
-            var test2 = eastLevel.identifier;
-            //trace('current :: '+Game.ME.level.data.identifier+'');
-            //trace('level   :: '+test2+' :: is loaded :: '+test+'');
-            //var l:Level = new Level(eastLevel);
-            var nlevel = new LevelComponent(eastLevel);
-            new echoes.Entity().add(nlevel);
-        }
-    }
-    //load west
-    function loadWest(){
-        var xpos = Game.ME.level.data.worldX;
-        var w    = Game.ME.level.data.pxWid;
-        var ypos = M.floor(Game.ME.level.data.worldY + Game.ME.level.data.pxHei/2) ;
-        
-        var westLevel = Assets.worldData.all_worlds.Default.getLevelAt(xpos-w-10,ypos);
-        if(westLevel != null){
-            var test  = westLevel.isLoaded();
-            var test2 = westLevel.identifier;
-            //trace('current :: '+Game.ME.level.data.identifier+'');
-            //trace('level   :: '+test2+' :: is loaded :: '+test+'');
-            //var l:Level = new Level(eastLevel);
-            var nlevel = new LevelComponent(westLevel);
-            new echoes.Entity().add(nlevel);
-        }
-    }
-    //load north
-    function loadNorth(){
-        var xpos = Game.ME.level.data.worldX;
-        var w    = Game.ME.level.data.pxWid;
-        var ypos = M.floor(Game.ME.level.data.worldY + Game.ME.level.data.pxHei/2) ;
-        
-        var northLevel = Assets.worldData.all_worlds.Default.getLevelAt(xpos,ypos-w-10);
-        if(northLevel != null){
-            var test  = northLevel.isLoaded();
-            var test2 = northLevel.identifier;
-            //trace('current :: '+Game.ME.level.data.identifier+'');
-            //trace('level   :: '+test2+' :: is loaded :: '+test+'');
-            //var l:Level = new Level(eastLevel);
-            var nlevel = new LevelComponent(northLevel);
-            new echoes.Entity().add(nlevel);
-        }
-    }
-    //load south
-    function loadSouth(){
-        var xpos = Game.ME.level.data.worldX;
-        var w    = Game.ME.level.data.pxWid;
-        var ypos = M.floor(Game.ME.level.data.worldY + Game.ME.level.data.pxHei/2) ;
-        
-        var southLevel = Assets.worldData.all_worlds.Default.getLevelAt(xpos,ypos+w+10);
-        if(southLevel != null){
-            var test  = southLevel.isLoaded();
-            var test2 = southLevel.identifier;
-            //trace('current :: '+Game.ME.level.data.identifier+'');
-            //trace('level   :: '+test2+' :: is loaded :: '+test+'');
-            //var l:Level = new Level(eastLevel);
-            var nlevel = new LevelComponent(southLevel);
-            new echoes.Entity().add(nlevel);
-        }
-    } */

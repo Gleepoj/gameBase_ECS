@@ -83,7 +83,6 @@ class TemporarySystem extends echoes.System {
     @u function removeFocusOnFocusedEntityOut(en:echoes.Entity,level:LevelComponent,f:Focused_Chunk){
         if(level.i != local_pos_x || level.j != local_pos_y)
             en.remove(Focused_Chunk);
-
     }
 
     @u function getPositionString():String {

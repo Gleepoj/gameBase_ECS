@@ -16,7 +16,9 @@ class Aleiiioa extends Game {
 		#if( hl && !debug )
         goToMenu();
 		#else
-		startPlay();
+		//goToMenu();
+		goToSetting();
+		//startPlay();
         #end
 	}
 

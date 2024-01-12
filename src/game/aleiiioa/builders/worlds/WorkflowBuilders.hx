@@ -42,12 +42,32 @@ class WorkflowBuilders {
 	
     public static function newMenu(level:Level){
         Game.ME.ui_layer.removeChildren();
+		Game.ME.scroller.removeChildren();
+		Game.ME.origin.removeChildren();
 
 		Workflow.reset();
+
+		var ocx = level.data.f_ci * Const.CHUNK_SIZE;
+		var ocy = level.data.f_cj * Const.CHUNK_SIZE;
+		var cxoff = M.floor(level.data.worldX/Const.GRID);
+		var cyoff = M.floor(level.data.worldY/Const.GRID);
+		//trace('$cxoff :: $cyoff');
+		//level.coordId()
+		// ECS //
 		
         for (e in level.data.l_Entities.all_UIWindow){
             UIBuilders.menu(e);
 		} 
+
+		for (c in level.data.l_Entities.all_Camera_Center){
+			CoreEntity.cameraBis(c.cx+cxoff,c.cy+cyoff);
+	   	} 
+		var _level = new LevelComponent(level.data);
+		
+		var focus  = new Focused_Chunk();
+		var active = new Chunk_Active();
+
+		new echoes.Entity().add(_level,focus,active);
  
 		Workflow.add60FpsSystem(new VelocitySystem());
 		Workflow.add60FpsSystem(new GridPositionActualizer());
@@ -59,6 +79,8 @@ class WorkflowBuilders {
 		Workflow.add60FpsSystem(new UIButtonInteractionSystem());
 		
 		//Graphics
+		Workflow.add60FpsSystem(new CameraSynchronizer());
+		Workflow.add60FpsSystem(new LevelRenderer());
 		Workflow.add60FpsSystem(new SquashRenderer());
 		Workflow.add60FpsSystem(new SpriteExtensionFx());
 		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
@@ -79,6 +101,9 @@ class WorkflowBuilders {
 	   
 		var ocx = level.data.f_ci * Const.CHUNK_SIZE;
 		var ocy = level.data.f_cj * Const.CHUNK_SIZE;
+		//level.coordId() quesako ? 
+		//trace(level.coordId(level.w));
+		//trace('custom x $ocx y $ocy');
 		// ECS //
 		var player = level.data.l_Entities.all_Player[0];
 		
