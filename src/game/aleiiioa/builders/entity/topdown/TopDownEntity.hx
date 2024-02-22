@@ -13,6 +13,8 @@ import aleiiioa.components.core.physics.position.flags.MasterPositionFlag;
 import aleiiioa.components.logic.object.BombComponent;
 
 import h3d.Vector;
+import h3d.Vector4;
+
 import echoes.Entity;
 
 import aleiiioa.components.core.input.InputComponent;
@@ -43,7 +45,7 @@ class TopDownEntity {
         var spr = new SpriteComponent(D.tiles.fxCircle15);
         var sq  = new SquashComponent();
         var se  = new SpriteExtension();
-        se.baseColor = new Vector(0.3,0.8,0.6);
+        se.baseColor = new Vector4(0.3,0.8,0.6);
 
         //Logic and Dialog Component
         //var ic    = new InteractiveComponent();
@@ -82,7 +84,7 @@ class TopDownEntity {
         var spr = new SpriteComponent(D.tiles.fxCircle15);
         var sq  = new SquashComponent();
         var se  = new SpriteExtension();
-        se.baseColor = new Vector(0.3,0.2,0.8);
+        se.baseColor = new Vector4(0.3,0.2,0.8);
 
         //Logic and Dialog Component
         var il    = new InteractionListener();
@@ -122,7 +124,7 @@ class TopDownEntity {
        // se.sprScaleX = 2;
         se.sprScaleY = 4;
         //se.setScale(2);
-        se.baseColor = new Vector(0.5,0.2,0.6);
+        se.baseColor = new Vector4(0.5,0.2,0.6);
 
         var bb  = new BoundingBox();
 

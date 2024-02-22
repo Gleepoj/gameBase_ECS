@@ -11,7 +11,7 @@ import aleiiioa.components.logic.interaction.catching.Catcher;
 import aleiiioa.components.core.physics.position.flags.MasterPositionFlag;
 import aleiiioa.components.logic.object.BombComponent;
 
-import h3d.Vector;
+import h3d.Vector4;
 import echoes.Entity;
 
 import aleiiioa.components.core.input.InputComponent;
@@ -40,7 +40,7 @@ class CoreEntity {
 
         var spr = new SpriteComponent(D.tiles.Square);
         var se  = new SpriteExtension();
-        se.baseColor = new Vector(1,0,0,1);
+        se.baseColor = new Vector4(1,0,0,1);
         spr.visible = false;
         
         var foc = new CameraFocusComponent();

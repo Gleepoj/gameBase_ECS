@@ -69,6 +69,7 @@ class CameraSynchronizer extends echoes.System {
         if(inp.ca.isKeyboardPressed(K.U)){
             //trace("move to player");
             gp.moveTo(en,focus.gpToVector(),0.2);
+            
         }
 
         vas.reset();

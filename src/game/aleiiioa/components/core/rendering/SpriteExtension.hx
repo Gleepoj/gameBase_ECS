@@ -35,8 +35,8 @@ class SpriteExtension{
 	
 	/** Color matrix transformation applied to sprite **/
 	public var colorMatrix : h3d.Matrix;   
-	public var baseColor : h3d.Vector;
-	public var blinkColor : h3d.Vector;
+	public var baseColor : h3d.Vector4;
+	public var blinkColor : h3d.Vector4;
     
 	//Position on screen (ie. absolute)//
 	
