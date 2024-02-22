@@ -17,7 +17,7 @@ class CollisionReactionEvent extends echoes.System {
 
     }
 
-	@a function wallCollisionOnPreStepX(en:echoes.Entity, add:OnPreStepX, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer,bb:BoundingBox){
+	@:a function wallCollisionOnPreStepX(en:echoes.Entity, add:OnPreStepX, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer,bb:BoundingBox){
 
 		if( level.hasCollision(gp.lcx+1,gp.lcy) && gp.xr>0.5 ) {
 			gp.xr = 0.5;
@@ -33,7 +33,7 @@ class CollisionReactionEvent extends echoes.System {
 
 	}
 	
-	@a function floorCollisionOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer,bb:BoundingBox){
+	@:a function floorCollisionOnPreStepY(en:echoes.Entity, add:OnPreStepY, gp:GridPosition,vc:VelocityComponent,layer:CollisionLayer_Wall,level:ChunkCollisionLayer,bb:BoundingBox){
 		//ceil
 		if( level.hasCollision(gp.lcx,gp.lcy-1) && gp.yr<=0.5) {
 			gp.yr = 0.5;

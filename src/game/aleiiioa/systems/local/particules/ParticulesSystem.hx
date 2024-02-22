@@ -12,10 +12,10 @@ class ParticulesSystem extends echoes.System {
     public function new() {
     }
     
-    @a function onEmitterAdded(em:EmitterComponent,gp:GridPosition) {
+    @:a function onEmitterAdded(em:EmitterComponent,gp:GridPosition) {
     }
 
-    @u private function updateEmitter(dt:Float,em:EmitterComponent,gp:GridPosition,cl:CollisionSensor){
+    @:u private function updateEmitter(dt:Float,em:EmitterComponent,gp:GridPosition,cl:CollisionSensor){
         em.cd.update(dt);
 
         if(cl.onLanding && !em.cd.has("cooldown")){
@@ -24,13 +24,13 @@ class ParticulesSystem extends echoes.System {
         } 
     }
 
-    @u function updateShaderLifetime(p:ParticulesComponent,bmp:BitmapComponent){
+    @:u function updateShaderLifetime(p:ParticulesComponent,bmp:BitmapComponent){
         var l = p.lifeRatio;
         bmp.shader.ratio = l;
     
     }
 
-    @u function deletePart(dt:Float,en:echoes.Entity,p:ParticulesComponent,bmp:BitmapComponent) {
+    @:u function deletePart(dt:Float,en:echoes.Entity,p:ParticulesComponent,bmp:BitmapComponent) {
         p.cd.update(dt);
         
         p.scaleX -= 0.0001;

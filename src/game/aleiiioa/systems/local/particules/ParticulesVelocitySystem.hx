@@ -10,7 +10,7 @@ class ParticulesVelocitySystem extends echoes.System {
     
     }
 
-    @u function updateParticule(pc:ParticulesComponent,vas:AnalogSpeedComponent) {
+    @:u function updateParticule(pc:ParticulesComponent,vas:AnalogSpeedComponent) {
         var qe = Back.easeIn.calculate(pc.lifeRatio);
         
         if(pc.frict > 0){

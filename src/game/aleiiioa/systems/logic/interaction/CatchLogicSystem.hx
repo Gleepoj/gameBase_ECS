@@ -25,12 +25,12 @@ class CatchLogicSystem extends echoes.System {
         events = new InstancedInteractionEvent();
     }
 
-    @u function updateListener(dt:Float,il:InteractionListener){
+    @:u function updateListener(dt:Float,il:InteractionListener){
         //il.cd.update(dt);
         il.updateCooldown(dt);
     }
     // Input logic could be move to another system
-    @u function playerRequireCatching(en:echoes.Entity,pl:PlayerFlag,il:InteractionListener,inp:InputComponent) {
+    @:u function playerRequireCatching(en:echoes.Entity,pl:PlayerFlag,il:InteractionListener,inp:InputComponent) {
         
         if(il.onInteract && inp.ca.isPressed(ActionX) && !en.exists(IsOnCatch)){
             en.add(new OnQueryCatch());
@@ -42,7 +42,7 @@ class CatchLogicSystem extends echoes.System {
     }
     
 
-    @u function CatcherInInteractArea(catcher:Catcher,gp:GridPosition,il:InteractionListener) {
+    @:u function CatcherInInteractArea(catcher:Catcher,gp:GridPosition,il:InteractionListener) {
         var head = ALL_CATCHABLE.entities.head;
         var playerPos = gp.gpToVector();
 
@@ -58,7 +58,7 @@ class CatchLogicSystem extends echoes.System {
     }
 
     
-    @u function CatchableInInteractArea(catchable:CatchableCollection,gp:GridPosition,il:InteractionListener) {
+    @:u function CatchableInInteractArea(catchable:CatchableCollection,gp:GridPosition,il:InteractionListener) {
         var head = ALL_CATCHER.entities.head;
         var objPos = gp.gpToVector();
 
@@ -74,7 +74,7 @@ class CatchLogicSystem extends echoes.System {
     }
 
 
-    @u function onAddQueryCatch(en:echoes.Entity,add:OnQueryCatch,catcher:Catcher,mgp:MasterGridPosition){
+    @:u function onAddQueryCatch(en:echoes.Entity,add:OnQueryCatch,catcher:Catcher,mgp:MasterGridPosition){
         var head = ALL_CATCHABLE.entities.head;
         
         while (head != null){
@@ -89,7 +89,7 @@ class CatchLogicSystem extends echoes.System {
         en.remove(OnQueryCatch);
     }
 
-    @u function onAddQueryThrow(en:echoes.Entity,add:OnQueryThrow,catcher:Catcher,mgp:MasterGridPosition,vc:VelocityComponent){
+    @:u function onAddQueryThrow(en:echoes.Entity,add:OnQueryThrow,catcher:Catcher,mgp:MasterGridPosition,vc:VelocityComponent){
         var head = ALL_CATCHED.entities.head;
         
         while (head != null){

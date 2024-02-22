@@ -8,7 +8,7 @@ class SquashRenderer extends echoes.System {
         
     }
 
-    @u function updateSquash(sq:SquashComponent, cl:CollisionSensor) {
+    @:u function updateSquash(sq:SquashComponent, cl:CollisionSensor) {
         if(cl.onFall)
             sq.squashX = 0.90;
 

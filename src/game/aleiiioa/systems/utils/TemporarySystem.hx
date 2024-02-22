@@ -39,7 +39,7 @@ class TemporarySystem extends echoes.System {
         UIBuilders.debugfloat("current_chunk_j",function()return local_pos_y,function(v) local_pos_y = v);
     }
 
-    @u function updateWorldDebug(pl:PlayerFlag,gp:GridPosition,f:Focused_Entity){
+    @:u function updateWorldDebug(pl:PlayerFlag,gp:GridPosition,f:Focused_Entity){
         player_world_cx = gp.cx;
         player_world_cy = gp.cy;
 
@@ -50,7 +50,7 @@ class TemporarySystem extends echoes.System {
         level_chunk_y = gp.lcy;
     }
 
-    @a function addChunkCollisionMask(en:echoes.Entity,gp:GridPosition,k:KinematicBodyFlag){
+    @:a function addChunkCollisionMask(en:echoes.Entity,gp:GridPosition,k:KinematicBodyFlag){
         var head = ALL_LEVELS.entities.head;
         while(head != null){
             var level = head.value.get(LevelComponent);
@@ -66,7 +66,7 @@ class TemporarySystem extends echoes.System {
         }
     }
 
-    @a function onEntityFocusChangeChunk(en:echoes.Entity,gp:GridPosition,f:Focused_Entity,c:ChunkCollisionLayer){
+    @:a function onEntityFocusChangeChunk(en:echoes.Entity,gp:GridPosition,f:Focused_Entity,c:ChunkCollisionLayer){
         var head = ALL_LEVELS.entities.head;
         while(head != null){
             var level = head.value.get(LevelComponent);
@@ -80,12 +80,12 @@ class TemporarySystem extends echoes.System {
         }
     }
 
-    @u function removeFocusOnFocusedEntityOut(en:echoes.Entity,level:LevelComponent,f:Focused_Chunk){
+    @:u function removeFocusOnFocusedEntityOut(en:echoes.Entity,level:LevelComponent,f:Focused_Chunk){
         if(level.i != local_pos_x || level.j != local_pos_y)
             en.remove(Focused_Chunk);
     }
 
-    @u function getPositionString():String {
+    @:u function getPositionString():String {
         var topleft:Bool = level_chunk_x < Const.CHUNK_SIZE/2 && level_chunk_y < Const.CHUNK_SIZE/2;
         var topright:Bool = level_chunk_x >= Const.CHUNK_SIZE/2 && level_chunk_y < Const.CHUNK_SIZE/2;
         var bottomleft:Bool = level_chunk_x < Const.CHUNK_SIZE/2 && level_chunk_y >= Const.CHUNK_SIZE/2;
@@ -104,7 +104,7 @@ class TemporarySystem extends echoes.System {
         }
     }
 
-    @u function checkNeighbours(level:LevelComponent, focus:Focused_Chunk) {
+    @:u function checkNeighbours(level:LevelComponent, focus:Focused_Chunk) {
         
         var position = getPositionString();
 
@@ -178,7 +178,7 @@ class TemporarySystem extends echoes.System {
         }
     }
 
-    @u function swapChunkCollisionMask(en:echoes.Entity,gp:GridPosition,c:ChunkCollisionLayer){
+    @:u function swapChunkCollisionMask(en:echoes.Entity,gp:GridPosition,c:ChunkCollisionLayer){
         if(gp.iw != c.i || gp.jw != c.j){
             var head = ALL_LEVELS.entities.head;
             while(head != null){

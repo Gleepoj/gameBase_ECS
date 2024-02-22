@@ -52,20 +52,20 @@ class CameraSynchronizer extends echoes.System {
         whei = window.height/2;
     }
 
-    @a function onNoFocusedEntity(c:CameraBisComponent,gp:GridPosition) {
+    @:a function onNoFocusedEntity(c:CameraBisComponent,gp:GridPosition) {
         focus = gp;
        // trace(gp.gpToVector());
     }
     
-/*     @a function onAddPlayer(player:PlayerFlag,gp:GridPosition){
+/*     @:a function onAddPlayer(player:PlayerFlag,gp:GridPosition){
         focus = gp;
     }
  
-    @a function onAddCamera(en:echoes.Entity,c:CameraBisComponent,gp:GridPosition){
+    @:a function onAddCamera(en:echoes.Entity,c:CameraBisComponent,gp:GridPosition){
         gp.moveTo(en,focus.gpToVector(),0.2);
     }
  */
-    @u function order(en:echoes.Entity,c:CameraBisComponent,inp:InputComponent,gp:GridPosition,vas:AnalogSpeedComponent){
+    @:u function order(en:echoes.Entity,c:CameraBisComponent,inp:InputComponent,gp:GridPosition,vas:AnalogSpeedComponent){
         if(inp.ca.isKeyboardPressed(K.U)){
             //trace("move to player");
             gp.moveTo(en,focus.gpToVector(),0.2);
@@ -116,7 +116,7 @@ class CameraSynchronizer extends echoes.System {
         }
     }
 
-    @u function debugControlSpace(c:CameraBisComponent,gp:GridPosition){
+    @:u function debugControlSpace(c:CameraBisComponent,gp:GridPosition){
         var w = 30;
         var h = 60;
         
@@ -137,7 +137,7 @@ class CameraSynchronizer extends echoes.System {
         }
 
     }
-    @u function pushScrollerWhenLimitsReach(c:CameraBisComponent,gp:GridPosition){
+    @:u function pushScrollerWhenLimitsReach(c:CameraBisComponent,gp:GridPosition){
         var s = zoom;
         Game.ME.origin.x = -(gp.attachX*s) + (wwid);
         Game.ME.origin.y = -(gp.attachY*s) + (whei);
@@ -147,7 +147,7 @@ class CameraSynchronizer extends echoes.System {
         Game.ME.origin.setScale(s);
     }
 
-    @r function onRemoveCamera(c:CameraBisComponent){
+    @:r function onRemoveCamera(c:CameraBisComponent){
         //trace("reset scroller");
         var s = 1;
         Game.ME.origin.x = 0;

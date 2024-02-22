@@ -20,7 +20,7 @@ class DialogAreaCollisions extends echoes.System {
         events = new InstancedInteractionEvent();
     }
 
-    @u function playerInDialogArea(gp:GridPosition,flag:PlayerDialogFlag,il:InteractionListener) {
+    @:u function playerInDialogArea(gp:GridPosition,flag:PlayerDialogFlag,il:InteractionListener) {
         var head = ALL_PNJ.entities.head;
         var playerPos = gp.gpToVector();
 
@@ -35,7 +35,7 @@ class DialogAreaCollisions extends echoes.System {
         }
     }
 
-    @u function pnjInDialogArea(gp:GridPosition,flag:PNJDialogFlag,il:InteractionListener) {
+    @:u function pnjInDialogArea(gp:GridPosition,flag:PNJDialogFlag,il:InteractionListener) {
         var head = PLAYER_SPEAKER.entities.head;
         if(head!=null){
             var player = head.value;

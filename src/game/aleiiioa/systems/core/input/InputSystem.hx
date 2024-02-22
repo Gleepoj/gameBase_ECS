@@ -13,7 +13,7 @@ class InputSystem extends echoes.System {
     public function new() {
 	}
 
-	@u function updateCooldown(dt:Float,inp:InputComponent){
+	@:u function updateCooldown(dt:Float,inp:InputComponent){
         inp.cd.update(dt);
 
         //for UI Nevigation;
@@ -23,12 +23,12 @@ class InputSystem extends echoes.System {
         inp.joy_left_ratio  = inp.ca.getHoldRatio(MoveLeft,0.06);
 
     }
-/* 	@u function updateCameraCenter(inp:InputComponent,vas:AnalogSpeedComponent,gp:GridPosition,gr:GravitySensitiveAffects){
+/* 	@:u function updateCameraCenter(inp:InputComponent,vas:AnalogSpeedComponent,gp:GridPosition,gr:GravitySensitiveAffects){
 		//inp.ca.isKeyboardDown()
 
 	} */
 
-	@u function updateTopDown(inp:InputComponent,vas:AnalogSpeedComponent,cl:CollisionSensor,gp:GridPosition){
+	@:u function updateTopDown(inp:InputComponent,vas:AnalogSpeedComponent,cl:CollisionSensor,gp:GridPosition){
 		
 		var speed = 0.6;
 
@@ -54,7 +54,7 @@ class InputSystem extends echoes.System {
 
 	}
 
-	@u function updatePlateformer(inp:InputComponent,vas:AnalogSpeedComponent,cl:CollisionSensor,gp:GridPosition,gr:GravitySensitiveAffects){
+	@:u function updatePlateformer(inp:InputComponent,vas:AnalogSpeedComponent,cl:CollisionSensor,gp:GridPosition,gr:GravitySensitiveAffects){
 		
 		var speed = 0.6;
 

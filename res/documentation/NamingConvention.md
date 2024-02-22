@@ -27,10 +27,10 @@ without good knowledge of the algorythm.
 
 - La ordre d'ecriture d'un system suis du mieux ce schema : 
     
-    - @add entity creation or adding component event,
+    - @:add entity creation or adding component event,
     - local system update (if needed/possible), 
-    - @u entity updt
-    - @r entity remove or component remove event 
+    - @:u entity updt
+    - @:r entity remove or component remove event 
     - local function needed by the local sys 
 
 :: Convention de nommage des entités :: 

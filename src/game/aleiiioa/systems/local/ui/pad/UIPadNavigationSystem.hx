@@ -30,12 +30,12 @@ class UIPadNavigationSystem extends echoes.System {
 
 	public function new() {}
 
-	@u function initDistance() {
+	@:u function initDistance() {
 		dist_to_selector = 5000.;
 		current_category = Category_None;
 	}
 
-	@a function setMinMax(sel:Currently_Selectable,gp:GridPosition){
+	@:a function setMinMax(sel:Currently_Selectable,gp:GridPosition){
 		if(gp.cy < lowest_cy)
 			lowest_cy = gp.cy;
 		if(gp.cy > highest_cy)
@@ -50,7 +50,7 @@ class UIPadNavigationSystem extends echoes.System {
 	}
 
 	
-	@u function preCastNearestInSelectorIntent(en:echoes.Entity, s:Currently_Selectable, gp:GridPosition) {
+	@:u function preCastNearestInSelectorIntent(en:echoes.Entity, s:Currently_Selectable, gp:GridPosition) {
 		var dist = 10000.;
 		var select = false;
 		var selector_i = SELECTOR.entities.head;
@@ -119,25 +119,25 @@ class UIPadNavigationSystem extends echoes.System {
 		}
 	}
 
-	@u function onChangeSelectItem(en:echoes.Entity,u:Currently_Hovered){
+	@:u function onChangeSelectItem(en:echoes.Entity,u:Currently_Hovered){
 		if(onChangeSelect){
 			onChangeSelect = false;
 		}
 	}
 
-	@u function removeNoneNearest(en:echoes.Entity, near:Nearest_Selectable) {
+	@:u function removeNoneNearest(en:echoes.Entity, near:Nearest_Selectable) {
 		if (near.distance > dist_to_selector) {
 			en.remove(Nearest_Selectable);
 		}
 	}
 
-	@u function convertNearestToTargeted(en:echoes.Entity, near:Nearest_Selectable){
+	@:u function convertNearestToTargeted(en:echoes.Entity, near:Nearest_Selectable){
 		
 		en.add(new On_Targeted_Selectable());
 		en.remove(Nearest_Selectable);
 	}
 
-	@a function updateNearest(en:echoes.Entity, add:On_Targeted_Selectable, s:Currently_Selectable, gp:GridPosition) {
+	@:a function updateNearest(en:echoes.Entity, add:On_Targeted_Selectable, s:Currently_Selectable, gp:GridPosition) {
 
 		var selector = SELECTOR.entities.head.value;
 		

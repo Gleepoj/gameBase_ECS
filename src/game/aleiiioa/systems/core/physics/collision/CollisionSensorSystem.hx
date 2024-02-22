@@ -15,11 +15,11 @@ class CollisionSensorSystem extends echoes.System {
 
     }
 
-    @u function cooldownUpdate(dt:Float,cl:CollisionSensor) {
+    @:u function cooldownUpdate(dt:Float,cl:CollisionSensor) {
         cl.cd.update(dt);
     }
 
-    @u public function updateListener(entity:echoes.Entity,gp:GridPosition,cl:CollisionSensor,vc:VelocityComponent,chunk:ChunkCollisionLayer) {
+    @:u public function updateListener(entity:echoes.Entity,gp:GridPosition,cl:CollisionSensor,vc:VelocityComponent,chunk:ChunkCollisionLayer) {
         if(entity.isValid() && !entity.exists(GridPositionOffset)){
             cl.on_ground = chunk.hasCollision(gp.lcx,gp.lcy+1) && vc.dy == 0 && gp.yr == 0.5;
             cl.on_land   = chunk.hasCollision(gp.lcx,gp.lcy+1) && vc.dy > 0;

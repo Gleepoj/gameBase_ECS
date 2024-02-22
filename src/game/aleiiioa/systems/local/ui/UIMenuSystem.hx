@@ -24,7 +24,7 @@ class UIMenuSystem extends echoes.System {
         current_GS = GameState_Menu;
     }
 
-    @a function onAddButton(add:UIButton,interactive:InteractiveHeapsComponent,gp:GridPosition,nine:ScaleGrid) {
+    @:a function onAddButton(add:UIButton,interactive:InteractiveHeapsComponent,gp:GridPosition,nine:ScaleGrid) {
 
         interactive = new Interactive(add.scaleGrid.width,add.scaleGrid.height,add.scaleGrid);
 
@@ -49,7 +49,7 @@ class UIMenuSystem extends echoes.System {
         
     }
 
-    @u function updatePos(add:UIObject,nine:ScaleGrid,gp:GridPosition) {
+    @:u function updatePos(add:UIObject,nine:ScaleGrid,gp:GridPosition) {
        
         var x = nine.x;
         var y = nine.y;
@@ -62,7 +62,7 @@ class UIMenuSystem extends echoes.System {
         
     }
 
-    @u function onSelectorOverButton(select:InteractiveHeapsComponent,cl:CollisionsListener,ui:UIButton){
+    @:u function onSelectorOverButton(select:InteractiveHeapsComponent,cl:CollisionsListener,ui:UIButton){
         
         if(cl.overInteractive){
             current_GS = ui.event;
@@ -71,7 +71,7 @@ class UIMenuSystem extends echoes.System {
 
 
 
-    @u function cursor_position_update(en:echoes.Entity,gp:GridPosition,selector:UISelectorFlag) {
+    @:u function cursor_position_update(en:echoes.Entity,gp:GridPosition,selector:UISelectorFlag) {
         
         if(onNewOver && !en.exists(TransformPositionComponent) ){
             var ori = gp.gpToVector();
@@ -87,7 +87,7 @@ class UIMenuSystem extends echoes.System {
 
     }
 
-    @u function mouse_position_update(dt:Float,m:MouseComponent,gp:GridPosition,spr:SpriteComponent) {
+    @:u function mouse_position_update(dt:Float,m:MouseComponent,gp:GridPosition,spr:SpriteComponent) {
         //spr.visible = true;
         m.cd.update(dt);
         m.setLastPos(m.x,m.y);
@@ -117,7 +117,7 @@ class UIMenuSystem extends echoes.System {
       
     }
 
-    @u function selectorInteract(inp:InputComponent){
+    @:u function selectorInteract(inp:InputComponent){
         if(inp.ca.isPressed(ActionX))
             interact(current_GS);
         
@@ -133,7 +133,7 @@ class UIMenuSystem extends echoes.System {
         }
     }
 
-    @r function removeSc(sc:ScaleGrid){
+    @:r function removeSc(sc:ScaleGrid){
         //sc.clear();
         sc.remove();
         //trace("clear scale grid");

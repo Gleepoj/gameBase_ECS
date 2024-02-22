@@ -8,11 +8,11 @@ class DialogYarnSystem extends echoes.System {
         
     }
 
-    @a function onDialogAdded(yd:YarnDialogConponent,yl:YarnDialogListener) {
+    @:a function onDialogAdded(yd:YarnDialogConponent,yl:YarnDialogListener) {
         yd.start();
     }
 
-    @u function updateDialogListener(dt:Float,ydial:YarnDialogConponent,yl:YarnDialogListener) {
+    @:u function updateDialogListener(dt:Float,ydial:YarnDialogConponent,yl:YarnDialogListener) {
         yl.cd.update(dt);
         
         yl.lastEvent = yl.newEvent;

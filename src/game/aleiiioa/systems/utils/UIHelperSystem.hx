@@ -33,7 +33,7 @@ class UIHelperSystem extends echoes.System {
         return hxd.res.DefaultFont.get();
     }
 
-    @a public function onDebugFloatAdded(df:HelperDebugFloat){
+    @:a public function onDebugFloatAdded(df:HelperDebugFloat){
         
         var f = new h2d.Flow(fui);
         
@@ -60,13 +60,13 @@ class UIHelperSystem extends echoes.System {
 
     }
 
-    @u public function updateDebugFloat(df:HelperDebugFloat){
+    @:u public function updateDebugFloat(df:HelperDebugFloat){
 
         df.text.text = "::" + df.label + "::->" + df.get();
 
     }
 
-    @a public function onSliderAdded(usc:HelperSliderComponent){
+    @:a public function onSliderAdded(usc:HelperSliderComponent){
         
         var f = new h2d.Flow(fui);
         
@@ -97,7 +97,7 @@ class UIHelperSystem extends echoes.System {
         };
     }
 
-    @a  function onCheckAdded(ucc:HelperCheckComponent) {
+    @:a  function onCheckAdded(ucc:HelperCheckComponent) {
             var f = new h2d.Flow(fui);
     
             f.horizontalSpacing = 5;

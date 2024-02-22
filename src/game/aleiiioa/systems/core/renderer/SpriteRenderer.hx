@@ -15,7 +15,7 @@ class SpriteRenderer extends echoes.System {
 		this.game = _game;
 	}
 	// Pas besoin pour le moment, mais implementer une possibilité de centrer la bounding box serait de bon aloi 
-	@a function onEntityAdded(spr:SpriteComponent,se:SpriteExtension) {
+	@:a function onEntityAdded(spr:SpriteComponent,se:SpriteExtension) {
 		Game.ME.origin.addChild(spr);
 		var ratio = (spr.frameData.hei * se.sprScaleY)/(Const.GRID/2);
 		var cr = M.pretty(1-(1/ratio),1);
@@ -23,7 +23,7 @@ class SpriteRenderer extends echoes.System {
 		spr.alpha = 1;
 	}
 
-	@r function onEntityRemoved(spr:SpriteComponent) {
+	@:r function onEntityRemoved(spr:SpriteComponent) {
 		spr.remove();
 	}
 
@@ -49,7 +49,7 @@ class SpriteRenderer extends echoes.System {
 		se.squashY = sq.squashY;
 	}
 
-	@u private function renderSprite(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension,sq:SquashComponent) {
+	@:u private function renderSprite(dt:Float,spr:SpriteComponent,gp:GridPosition,se:SpriteExtension,sq:SquashComponent) {
 		if (se.interpolateSprPos){
 			var interpolatePos = this.interpolateSpritePosition(gp);
 			spr.x = interpolatePos.x;

@@ -36,14 +36,14 @@ class DialogInputSystem extends echoes.System {
 
     }
 
-	@u function getCurrentDialog(pnj:PNJDialogFlag,yarn:DialogReferenceComponent,il:InteractionListener) {
+	@:u function getCurrentDialog(pnj:PNJDialogFlag,yarn:DialogReferenceComponent,il:InteractionListener) {
 		if(yarn != currentDialog)
 			if(il.onArea)
 				currentDialog = yarn;
 
 	}
 
-	@u function updateSystem(p:PlayerDialogFlag,il:InteractionListener,gameInput:InputComponent,gp:GridPosition){
+	@:u function updateSystem(p:PlayerDialogFlag,il:InteractionListener,gameInput:InputComponent,gp:GridPosition){
 		if(il.onArea){
 			if(gameInput.ca.isPressed(Interaction)){
 				currentDialog.attachX = gp.attachX;
@@ -62,7 +62,7 @@ class DialogInputSystem extends echoes.System {
 				
 	}
 
-	@a function onDialogAdded(dc:YarnDialogConponent){
+	@:a function onDialogAdded(dc:YarnDialogConponent){
 
 		state = dc.dialogue.get_executionState();
 		previousState = state;
@@ -71,7 +71,7 @@ class DialogInputSystem extends echoes.System {
 	}
 
 
-    @u function updateDialog(entity:echoes.Entity,dc:YarnDialogConponent,yl:YarnDialogListener){
+    @:u function updateDialog(entity:echoes.Entity,dc:YarnDialogConponent,yl:YarnDialogListener){
         
     	state = dc.dialogue.get_executionState();
 		previousState = state;
@@ -126,7 +126,7 @@ class DialogInputSystem extends echoes.System {
 		
     }
 
-	@r function onDialogRemove(dc:YarnDialogConponent){
+	@:r function onDialogRemove(dc:YarnDialogConponent){
 		dialogIsStreaming = false;
 	}
 	

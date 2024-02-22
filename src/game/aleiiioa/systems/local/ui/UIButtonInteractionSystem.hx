@@ -30,7 +30,7 @@ class UIButtonInteractionSystem extends echoes.System {
     public function new (){
  
     }
-    @a function addButtonFunction(en:echoes.Entity,b:UIButton){
+    @:a function addButtonFunction(en:echoes.Entity,b:UIButton){
         
         switch b.event {
             case GameState_Play : b.embedded_function =  function(){Aleiiioa.ME.startPlay();};
@@ -45,19 +45,19 @@ class UIButtonInteractionSystem extends echoes.System {
         }
     }
 
-    @a function buttonOnNext(en:echoes.Entity,u:UISignal_OnNext,modal:UIModalSetting,set:ISettingComponent){
+    @:a function buttonOnNext(en:echoes.Entity,u:UISignal_OnNext,modal:UIModalSetting,set:ISettingComponent){
         set.next();
         modal.refresh(set.getDisplayText());
         en.remove(UISignal_OnNext);
     }
 
-    @a function buttonOnPrevious(en:echoes.Entity,u:UISignal_OnPrevious,modal:UIModalSetting,set:ISettingComponent){
+    @:a function buttonOnPrevious(en:echoes.Entity,u:UISignal_OnPrevious,modal:UIModalSetting,set:ISettingComponent){
         set.prev();
         modal.refresh(set.getDisplayText());
         en.remove(UISignal_OnPrevious);
     }
 
-    @a function addButtonInteractive(en:echoes.Entity,u:UIButton,gp:GridPosition,sc:ScaleGrid){
+    @:a function addButtonInteractive(en:echoes.Entity,u:UIButton,gp:GridPosition,sc:ScaleGrid){
         // Mouse Right click is map on gamepad action X so no need to interact.Onclick
 
         u.interactive = new Interactive(sc.width,sc.height,sc);
@@ -69,21 +69,21 @@ class UIButtonInteractionSystem extends echoes.System {
 
     }
     
-    @u function controllerAccessPressSelct(inp:InputComponent,selector:UISelectorFlag){
+    @:u function controllerAccessPressSelct(inp:InputComponent,selector:UISelectorFlag){
         if(inp.ca.isPressed(ActionX) && !inp.cd.has("select")){
             inputAnyKey = true;
             inp.cd.setMs("select",100);
         }
     }
 
-    @u function orderPadInput(en:echoes.Entity,b:UIButton,on:Currently_Hovered){
+    @:u function orderPadInput(en:echoes.Entity,b:UIButton,on:Currently_Hovered){
         if(inputAnyKey){
             en.add(new UISignalPressSelect());
             inputAnyKey = false;
         }
     }
 
-    @a function triggerButtonFunction(en:echoes.Entity,b:UIButton,addOnClick:UISignalPressSelect){
+    @:a function triggerButtonFunction(en:echoes.Entity,b:UIButton,addOnClick:UISignalPressSelect){
         b.embedded_function();
         en.remove(UISignalPressSelect);
     }

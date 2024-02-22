@@ -12,7 +12,7 @@ class BoundingBoxRenderer extends echoes.System{
         this.gameScroller = scroller;
     }
 
-    @a function onEntityAdd(bb:BoundingBox,gp:GridPosition,spr:SpriteComponent,se:SpriteExtension){
+    @:a function onEntityAdd(bb:BoundingBox,gp:GridPosition,spr:SpriteComponent,se:SpriteExtension){
         bb.attachX = gp.attachX;
         bb.attachY = gp.attachY;
 		
@@ -23,11 +23,11 @@ class BoundingBoxRenderer extends echoes.System{
 		bb.wid = Const.GRID;
     }
 
-    @u function updateDebugBounds(bb:BoundingBox,gp:GridPosition) {
+    @:u function updateDebugBounds(bb:BoundingBox,gp:GridPosition) {
         debugRequest(bb);
         renderAllDebugs(bb);
     }
-	@r function onEntityRemove(bb:BoundingBox) {
+	@:r function onEntityRemove(bb:BoundingBox) {
         bb.debugBounds.remove();
     }
     private function renderDebugBounds(bb:BoundingBox) {

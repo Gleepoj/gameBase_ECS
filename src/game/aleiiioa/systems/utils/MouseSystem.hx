@@ -12,7 +12,7 @@ class MouseSystem extends echoes.System {
     public function new (){
     }
 
-    @u function mouse_position_update(dt:Float,m:MouseComponent,gp:GridPosition,spr:SpriteComponent) {
+    @:u function mouse_position_update(dt:Float,m:MouseComponent,gp:GridPosition,spr:SpriteComponent) {
         m.cd.update(dt);
         m.setLastPos(m.x,m.y);
         m.x = window.mouseX;

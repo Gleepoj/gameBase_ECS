@@ -10,17 +10,17 @@ class GarbageCollectionSystem extends echoes.System {
         
     }
     
-    @r function onRemoveMasterGridPos(en:echoes.Entity,mgp:MasterGridPosition,mf:MasterPositionFlag) {
+    @:r function onRemoveMasterGridPos(en:echoes.Entity,mgp:MasterGridPosition,mf:MasterPositionFlag) {
         mgp.isMasterAlive = false;
     }
 
-    @u function flagChild(en:echoes.Entity,cflag:ChildPositionFlag,mgp:MasterGridPosition){
+    @:u function flagChild(en:echoes.Entity,cflag:ChildPositionFlag,mgp:MasterGridPosition){
         if(!en.get(MasterGridPosition).isMasterAlive){
             en.add(new IsDiedFlag()); 
         }
     }
 
-    @u function destroyEntity(en:echoes.Entity,dflag:IsDiedFlag) {
+    @:u function destroyEntity(en:echoes.Entity,dflag:IsDiedFlag) {
         en.destroy();
     }
 

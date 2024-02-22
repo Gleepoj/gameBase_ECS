@@ -10,12 +10,12 @@ class SpriteExtensionFx extends echoes.System {
     public function new() {
         
     }
-    @a function onAdded(spr:SpriteComponent,se:SpriteExtension) {
+    @:a function onAdded(spr:SpriteComponent,se:SpriteExtension) {
         if(se.baseColor != null)
             spr.colorize(se.baseColor.toColor());
     }
 
-    @u function collideDebug(spr:SpriteComponent,se:SpriteExtension,cl:CollisionSensor,il:InteractionListener) {
+    @:u function collideDebug(spr:SpriteComponent,se:SpriteExtension,cl:CollisionSensor,il:InteractionListener) {
         spr.colorize(se.baseColor.toColor());
         
         if(il.onArea){

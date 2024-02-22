@@ -12,13 +12,13 @@ import aleiiioa.components.core.physics.velocity.*;
 class VelocitySystem extends echoes.System {
 	public function new() {}
 	
-	@u function undefinedInputAffects(vas:AnalogSpeedComponent,vc:VelocityComponent,part:ParticuleBodyFlag) {
+	@:u function undefinedInputAffects(vas:AnalogSpeedComponent,vc:VelocityComponent,part:ParticuleBodyFlag) {
 		
 		vc.dx = vas.xSpeed;
 		vc.dy = vas.ySpeed;
 	}
 
-	@u function kinematicInputAffects(vas:AnalogSpeedComponent,vc:VelocityComponent,kin:KinematicBodyFlag) {
+	@:u function kinematicInputAffects(vas:AnalogSpeedComponent,vc:VelocityComponent,kin:KinematicBodyFlag) {
 		if (vas.xSpeed != 0) {
 			var speed = 0.1;
 				vc.dx += vas.xSpeed * speed;
@@ -32,7 +32,7 @@ class VelocitySystem extends echoes.System {
 		vas.ySpeed = 0;
 	}
 
-	@u function kinematicGravityAffects(cl:CollisionSensor,vc:VelocityComponent,kin:KinematicBodyFlag,gr:GravitySensitiveAffects){
+	@:u function kinematicGravityAffects(cl:CollisionSensor,vc:VelocityComponent,kin:KinematicBodyFlag,gr:GravitySensitiveAffects){
 		
 		if(cl.onGround)
 			cl.cd.setS("recentlyOnGround",0.01);
@@ -42,7 +42,7 @@ class VelocitySystem extends echoes.System {
 		}
 	}
 
-	@u function agnosticFrictionAffects(vc:VelocityComponent,fr:FrictionSensitiveAffects) {
+	@:u function agnosticFrictionAffects(vc:VelocityComponent,fr:FrictionSensitiveAffects) {
 		// X frictions
 		vc.dx *= vc.frictX;
 		vc.bdx *= vc.bumpFrictX;

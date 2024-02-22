@@ -19,7 +19,7 @@ class DialogUISystem extends echoes.System {
         
     }
 
-    @a public function onBubbleAdded(udc:UIDialog,b:DialogUIBubble,ydl:YarnDialogListener){
+    @:a public function onBubbleAdded(udc:UIDialog,b:DialogUIBubble,ydl:YarnDialogListener){
         
         b.flow = new h2d.Flow(udc.dialogLayer);
         b.flow.setPosition(ydl.attachX,ydl.attachY + Game.ME.scroller.y);
@@ -44,7 +44,7 @@ class DialogUISystem extends echoes.System {
     }
 
     
-    @a public function onOptionFlowAdded(ud:UIDialog,o:DialogUIOptionLayout){
+    @:a public function onOptionFlowAdded(ud:UIDialog,o:DialogUIOptionLayout){
         
         o.flow = new h2d.Flow(ud.dialogLayer);
 
@@ -54,7 +54,7 @@ class DialogUISystem extends echoes.System {
         o.flow.padding = 10;
     }
 
-    @u public function updateDialogText(ydl:YarnDialogListener,b:DialogUIBubble,o:DialogUIOptionLayout) {
+    @:u public function updateDialogText(ydl:YarnDialogListener,b:DialogUIBubble,o:DialogUIOptionLayout) {
         
         if(ydl.onSpeak && b.text.text != ydl.text){
             b.bubble.removeChild(b.text);
@@ -109,7 +109,7 @@ class DialogUISystem extends echoes.System {
         o.bubbles.push(f);
     }
 
-    @u function colorizeOption(o:DialogUIOptionLayout,yl:YarnDialogListener){
+    @:u function colorizeOption(o:DialogUIOptionLayout,yl:YarnDialogListener){
         
         for(bubble in o.bubbles){
             bubble.colorizeBg(0xA56FF7);
@@ -123,11 +123,11 @@ class DialogUISystem extends echoes.System {
     }
 
     
-    @r function onRemoveBubble(b:DialogUIBubble){
+    @:r function onRemoveBubble(b:DialogUIBubble){
         b.flow.removeChildren();
     }
 
-    @r function onRemoveOption(o:DialogUIOptionLayout){
+    @:r function onRemoveOption(o:DialogUIOptionLayout){
         o.flow.removeChildren();
     }
 

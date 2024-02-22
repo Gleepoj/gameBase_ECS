@@ -13,11 +13,11 @@ class DebugLabelRenderer extends echoes.System{
         this.gameScroller = scroller;
     }
 
-    @a function onEntityAdd(dl:DebugLabel,gp:GridPosition){
+    @:a function onEntityAdd(dl:DebugLabel,gp:GridPosition){
 
     }
 
-    @r function onEntityRemove(dl:DebugLabel) {
+    @:r function onEntityRemove(dl:DebugLabel) {
         dl.debugLabel.remove();
     }
 

@@ -5,7 +5,7 @@ class  SteeringBehaviors extends System {
         
     }
 
-    @u function updatePlayerSteeringForce(sw:SteeringWheel,psc:PaddleSharedComponent,pl:PlayerFlag){
+    @:u function updatePlayerSteeringForce(sw:SteeringWheel,psc:PaddleSharedComponent,pl:PlayerFlag){
         var d:Vector = sw.solverUVatCoord;
         var stream:Vector = new Vector(0,0);
         var speed:Vector = new Vector(0,0);
@@ -30,7 +30,7 @@ class  SteeringBehaviors extends System {
         sw.steering = forces;
     }
 
-    @u function updateVectorsTarget(sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition,tgp:TargetGridPosition){
+    @:u function updateVectorsTarget(sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition,tgp:TargetGridPosition){
             sw.location.x = 0;
             sw.location.y = 0;
 
@@ -41,7 +41,7 @@ class  SteeringBehaviors extends System {
 
     }
 
-    @u function updateVectors(en:Entity,sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition,suv:SolverUVComponent){
+    @:u function updateVectors(en:Entity,sw:SteeringWheel,vc:VelocityComponent,gp:GridPosition,suv:SolverUVComponent){
         sw.solverUVatCoord = suv.uv;
         
         if(!en.exists(TargetGridPosition)){
@@ -56,11 +56,11 @@ class  SteeringBehaviors extends System {
         }
     }
 
-    @u function updateTargetFromTargetGridPosition(sw:SteeringWheel,tgp:TargetGridPosition,gp:GridPosition) {
+    @:u function updateTargetFromTargetGridPosition(sw:SteeringWheel,tgp:TargetGridPosition,gp:GridPosition) {
         sw.target = new Vector(tgp.attachX-gp.attachX,tgp.attachY-gp.attachY);
     }
 
-    @u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {
+    @:u function computeSteeringForce(en:echoes.Entity,sw:SteeringWheel) {
         if(!en.exists(TargetGridPosition) && !en.exists(PlayerFlag)){
             var d:Vector = sw.solverUVatCoord;
             sw.steering = d.sub(sw.velocity);
@@ -124,7 +124,7 @@ class  SteeringBehaviors extends System {
 
     }
 
-        @u function updateKayakTarget(pad:PaddleSharedComponent,gp:GridPosition,vas:AnalogSpeedComponent,tf:TargetedFlag,tsf:SteeringPointFlag){
+        @:u function updateKayakTarget(pad:PaddleSharedComponent,gp:GridPosition,vas:AnalogSpeedComponent,tf:TargetedFlag,tsf:SteeringPointFlag){
         if(pad.rb){
             trace("ok rb");
             gp.xr += Math.cos(kayakAngle)*0.1;

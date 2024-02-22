@@ -10,11 +10,11 @@ class DelayedMovementSystem extends echoes.System {
 
     }
 
-    @a function addTransform(en:echoes.Entity,tr:TransformPositionComponent,gp:GridPosition){
+    @:a function addTransform(en:echoes.Entity,tr:TransformPositionComponent,gp:GridPosition){
         tr.tw.createS(tr.ratio,0>1,tr.tw_type,tr.delay).end(function (){en.add(new OnTransformComplete());});
     }
 
-    @u function transformGridPosition(en:echoes.Entity,tr:TransformPositionComponent,gp:GridPosition) {
+    @:u function transformGridPosition(en:echoes.Entity,tr:TransformPositionComponent,gp:GridPosition) {
 		
         var target  = tr.target;
         var origin  = tr.origin;
@@ -34,7 +34,7 @@ class DelayedMovementSystem extends echoes.System {
         tr.tw.update();
 	}
 
-    @a function clearTransformOnCallback(en:echoes.Entity,add:OnTransformComplete){
+    @:a function clearTransformOnCallback(en:echoes.Entity,add:OnTransformComplete){
         en.remove(TransformPositionComponent);
         en.remove(OnTransformComplete);
     }

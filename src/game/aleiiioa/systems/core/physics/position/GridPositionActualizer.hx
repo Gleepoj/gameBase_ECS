@@ -16,16 +16,16 @@ class GridPositionActualizer extends echoes.System {
         
     }
 
-    @a function onGridPositionAdded(gp:GridPosition) {
+    @:a function onGridPositionAdded(gp:GridPosition) {
 	   gp.onPosManuallyChanged();
     }
 
-	@u function updateDebugBoundsAnchor(bb:BoundingBox,gp:GridPosition) {
+	@:u function updateDebugBoundsAnchor(bb:BoundingBox,gp:GridPosition) {
         bb.attachX = gp.attachX;
         bb.attachY = gp.attachY;
 	}
 	
-	@u function steppedPositionUpdateAndCollisionCall(en:echoes.Entity,gp:GridPosition,vc:VelocityComponent) {
+	@:u function steppedPositionUpdateAndCollisionCall(en:echoes.Entity,gp:GridPosition,vc:VelocityComponent) {
 		// step is the max lenght of a implemented movement (in grid ratio) in one frame (0.33 is the max speed) precision could be improved by using a smaller step 0.2
 		// allowing continuous collision detection 
 		var steps = M.ceil((M.fabs(vc.dxTotal) + M.fabs(vc.dyTotal)) / 0.33);
@@ -72,21 +72,21 @@ class GridPositionActualizer extends echoes.System {
 		}
 	}
 
-	@u function updateMasterGridPosition(mgp:MasterGridPosition,gp:GridPosition,mflag:MasterPositionFlag) {
+	@:u function updateMasterGridPosition(mgp:MasterGridPosition,gp:GridPosition,mflag:MasterPositionFlag) {
 	  	mgp.cx = gp.cx;
 		mgp.cy = gp.cy;
 		mgp.xr = gp.xr;
 		mgp.yr = gp.yr;
 	}
 
-	@u function updateChildPos(mgp:MasterGridPosition,gp:GridPosition,gpo:GridPositionOffset,cflag:ChildPositionFlag) {
+	@:u function updateChildPos(mgp:MasterGridPosition,gp:GridPosition,gpo:GridPositionOffset,cflag:ChildPositionFlag) {
 		gp.cx = mgp.cx + gpo.ocx;
 		gp.cy = mgp.cy + gpo.ocy;
 		gp.xr = mgp.xr + gpo.oxr;
 		gp.yr = mgp.yr + gpo.oyr;
 	}
 
-    @u function ActualizeGridComponent(gp:GridPosition){
+    @:u function ActualizeGridComponent(gp:GridPosition){
 		gp.onPosManuallyChanged();
     }
 

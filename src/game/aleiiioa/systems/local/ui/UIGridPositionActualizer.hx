@@ -10,20 +10,20 @@ class UIGridPositionActualizer extends echoes.System {
     public function new (){
     }
 
-    @a function syncUIButton(gp:GridPosition,sc:ScaleGrid){
+    @:a function syncUIButton(gp:GridPosition,sc:ScaleGrid){
         var pos = sc.getAbsPos();
         gp.setPosPixel(pos.x,pos.y+sc.height/2);
     }
 
-    @a function colorize(u:Currently_Hovered,s:ScaleGrid){
+    @:a function colorize(u:Currently_Hovered,s:ScaleGrid){
         s.color = new Vector4(0.7,0.3,0.3);
     }
 
-    @r function uncolorize(rem:Currently_Hovered,s:ScaleGrid){
+    @:r function uncolorize(rem:Currently_Hovered,s:ScaleGrid){
         s.color = new Vector4(1,1,1);
     }
 
-    @r function removeSc(sc:ScaleGrid){
+    @:r function removeSc(sc:ScaleGrid){
         sc.remove();
     }
 

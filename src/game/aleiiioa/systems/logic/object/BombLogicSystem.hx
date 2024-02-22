@@ -13,15 +13,15 @@ class BombLogicSystem  extends echoes.System{
     public function new() {
     }
 
-    @a function onAddIsCatchedLaunchCountDown(en:echoes.Entity,add:IsCatched,ic:BombComponent){
+    @:a function onAddIsCatchedLaunchCountDown(en:echoes.Entity,add:IsCatched,ic:BombComponent){
         ic.cd.setS("countdown",3);
     }
 
-    @u function updateInteractCooldown(dt:Float,ic:BombComponent) {
+    @:u function updateInteractCooldown(dt:Float,ic:BombComponent) {
         ic.cd.update(dt);
     }
 
-    @u function bombBehavior(en:echoes.Entity,ic:BombComponent,em:EmitterComponent,gp:GridPosition){
+    @:u function bombBehavior(en:echoes.Entity,ic:BombComponent,em:EmitterComponent,gp:GridPosition){
   
         if(ic.cd.has("countdown")){
             if(ic.cd.getRatio("countdown") <= 0.05){

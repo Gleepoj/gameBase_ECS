@@ -10,7 +10,7 @@ import flixel.math.FlxPoint;
 import flixel.util.FlxDestroyUtil;
 
 /**
- * @author Zaphod
+ * @:author Zaphod
  *
 class FlxSkewedSprite extends FlxSprite
 {
