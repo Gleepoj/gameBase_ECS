@@ -11,8 +11,8 @@ import aleiiioa.components.core.physics.position.GridPosition;
 
 class DialogAreaCollisions extends echoes.System {
     
-    var ALL_PNJ:View<GridPosition,PNJDialogFlag>;
-    var PLAYER_SPEAKER:View<GridPosition,PlayerDialogFlag>;
+    var ALL_PNJ:View<GridPosition,PNJDialogFlag> = getLinkedView(GridPosition,PNJDialogFlag);
+    var PLAYER_SPEAKER:View<GridPosition,PlayerDialogFlag> = getLinkedView(GridPosition,PlayerDialogFlag);
 
     var events:InstancedInteractionEvent;
 
@@ -21,36 +21,36 @@ class DialogAreaCollisions extends echoes.System {
     }
 
     @:u function playerInDialogArea(gp:GridPosition,flag:PlayerDialogFlag,il:InteractionListener) {
-        var head = ALL_PNJ.entities.head;
         var playerPos = gp.gpToVector();
 
-        while (head != null){
-            var pnj = head.value;
+        for (head in ALL_PNJ.entities){
+            var pnj = head;
             var pnjPos = pnj.get(GridPosition).gpToVector();
             if(playerPos.distance(pnjPos)<30){
                 il.lastEvent = events.allowDialog;
                 il.order();
             }
-            head = head.next;
         }
     }
 
     @:u function pnjInDialogArea(gp:GridPosition,flag:PNJDialogFlag,il:InteractionListener) {
-        var head = PLAYER_SPEAKER.entities.head;
-        if(head!=null){
-            var player = head.value;
-            var playerPos = player.get(GridPosition).gpToVector();
-            var pnjPos = gp.gpToVector();
+        var speakers = PLAYER_SPEAKER.entities;
 
-            if(playerPos.distance(pnjPos)<30){
-                il.lastEvent = events.allowDialog;
-                il.order();
+            for (player in speakers) {
+                var playerPos = player.get(GridPosition).gpToVector();
+                var pnjPos = gp.gpToVector();
+    
+                if(playerPos.distance(pnjPos)<30){
+                    il.lastEvent = events.allowDialog;
+                    il.order();
             }
         }
+        
     }
+}
     
 /*     function orderListener(cl:CollisionSensor){
         if (cl.lastEvent!=null)
             cl.lastEvent.send(cl);
     } */
-}
+

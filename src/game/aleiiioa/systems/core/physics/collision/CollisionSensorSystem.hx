@@ -20,7 +20,7 @@ class CollisionSensorSystem extends echoes.System {
     }
 
     @:u public function updateListener(entity:echoes.Entity,gp:GridPosition,cl:CollisionSensor,vc:VelocityComponent,chunk:ChunkCollisionLayer) {
-        if(entity.isValid() && !entity.exists(GridPositionOffset)){
+        if(!entity.exists(GridPositionOffset)){
             cl.on_ground = chunk.hasCollision(gp.lcx,gp.lcy+1) && vc.dy == 0 && gp.yr == 0.5;
             cl.on_land   = chunk.hasCollision(gp.lcx,gp.lcy+1) && vc.dy > 0;
             cl.on_ceil   = chunk.hasCollision(gp.lcx,gp.lcy-1);

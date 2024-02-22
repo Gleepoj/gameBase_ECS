@@ -14,7 +14,7 @@ import aleiiioa.systems.local.ui.pad.UIPadNavigationSystem;
 import aleiiioa.systems.local.ui.pad.UIPadInputSystem;
 import echoes.SystemList;
 import echoes.Entity;
-import echoes.Workflow;
+import echoes.Echoes;
 
 import aleiiioa.systems.logic.object.BombLogicSystem;
 import aleiiioa.builders.*;
@@ -36,7 +36,7 @@ import aleiiioa.systems.core.collisions.*;
 
 import aleiiioa.systems.local.dialog.*;
 
-class WorkflowBuilders {
+class EchoesBuilders {
     var game(get,never) : Game; inline function get_game() return Game.ME;
 	
 	
@@ -45,7 +45,8 @@ class WorkflowBuilders {
 		Game.ME.scroller.removeChildren();
 		Game.ME.origin.removeChildren();
 
-		Workflow.reset();
+		Echoes.reset();
+		Echoes.init();
 
 		var ocx = level.data.f_ci * Const.CHUNK_SIZE;
 		var ocy = level.data.f_cj * Const.CHUNK_SIZE;
@@ -68,27 +69,30 @@ class WorkflowBuilders {
 		var active = new Chunk_Active();
 
 		new echoes.Entity().add(_level,focus,active);
- 
-		Workflow.add60FpsSystem(new VelocitySystem());
-		Workflow.add60FpsSystem(new GridPositionActualizer());
-        Workflow.add60FpsSystem(new DelayedMovementSystem());
+		var list:SystemList = new SystemList();
 		
-		Workflow.add60FpsSystem(new UIGridPositionActualizer());
-		Workflow.add60FpsSystem(new UIPadInputSystem());
-		Workflow.add60FpsSystem(new UIPadNavigationSystem());
-		Workflow.add60FpsSystem(new UIButtonInteractionSystem());
+		list.add(new VelocitySystem());
+		list.add(new GridPositionActualizer());
+        list.add(new DelayedMovementSystem());
+		
+		list.add(new UIGridPositionActualizer());
+		list.add(new UIPadInputSystem());
+		list.add(new UIPadNavigationSystem());
+		list.add(new UIButtonInteractionSystem());
 		
 		//Graphics
-		Workflow.add60FpsSystem(new CameraSynchronizer());
-		Workflow.add60FpsSystem(new LevelRenderer());
-		Workflow.add60FpsSystem(new SquashRenderer());
-		Workflow.add60FpsSystem(new SpriteExtensionFx());
-		Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
-		Workflow.add60FpsSystem(new DebugLabelRenderer(Game.ME.origin));
+		list.add(new CameraSynchronizer());
+		list.add(new LevelRenderer());
+		list.add(new SquashRenderer());
+		list.add(new SpriteExtensionFx());
+		list.add(new SpriteRenderer(Game.ME.origin,Game.ME));
+		list.add(new DebugLabelRenderer(Game.ME.origin));
 		
-	    Workflow.addSystem(new UIHelperSystem());
-		Workflow.add60FpsSystem(new InputSystem());
-		Workflow.add60FpsSystem(new GarbageCollectionSystem()); 
+	    list.add( new UIHelperSystem());
+		list.add( new InputSystem());
+		list.add( new GarbageCollectionSystem()); 
+
+		list.activate();
     }
 
 	//////////////////////////////////////////////////
@@ -143,7 +147,7 @@ class WorkflowBuilders {
 		loadedLevels.set(level.data.iid, true);
 		loadNeighbours(level,loadedLevels);
 
-	    createWorkflow();
+	    createEchoes();
 	}
 
 	public static function loadNeighbours(level:Level, _previouslyLoaded:Map<String,Bool>) {
@@ -185,59 +189,64 @@ class WorkflowBuilders {
 	   }
 
 	   var _level = new LevelComponent(level.data);
-	   new echoes.Entity().add(_level);
+	   var el = new echoes.Entity();
+	   el.add(_level);
+	   //new echoes.Entity().add(_level);
 	   for(l in level.data.neighbours){
 		 var a:World_Level = Assets.worldData.all_worlds.Default.getLevel(l.levelIid);
 		 var new_l = new LevelComponent(a);
 		 new echoes.Entity().add(new_l);
 	   } 
 	   
-	   createWorkflow();
+	   createEchoes();
 
 
    }
 
-   public static function createWorkflow() {
+   public static function createEchoes() {
 		   //Collision
-		   Workflow.addSystem(new GarbageCollectionSystem());
+		   var list:SystemList = new SystemList();
+
+		   list.add(new GarbageCollectionSystem());
 	   
 		   //Object
-		   Workflow.addSystem(new CollisionSensorSystem());
-		   Workflow.addSystem(new VelocitySystem());
-		   Workflow.addSystem(new CollisionReactionEvent());
-		   Workflow.add60FpsSystem(new GridPositionActualizer());
-		   Workflow.add60FpsSystem(new DelayedMovementSystem());
-		   Workflow.addSystem(new TemporarySystem());
+		   list.add(new CollisionSensorSystem());
+		   list.add(new VelocitySystem());
+		   list.add(new CollisionReactionEvent());
+		   list.add(new GridPositionActualizer());
+		   list.add(new DelayedMovementSystem());
+		   list.add(new TemporarySystem());
 		   
 		  
 	
 		   //Interaction
-		   Workflow.add60FpsSystem(new CatchLogicSystem());
-		   Workflow.add60FpsSystem(new BombLogicSystem());
+		   list.add(new CatchLogicSystem());
+		   list.add(new BombLogicSystem());
 		   
 		   //Particles
-		   Workflow.addSystem(new ParticulesVelocitySystem());
-		   Workflow.add60FpsSystem(new ParticulesSystem());
-		   Workflow.add60FpsSystem(new ParticuleRenderer());
+		   list.add(new ParticulesVelocitySystem());
+		   list.add(new ParticulesSystem());
+		   list.add(new ParticuleRenderer());
 		   
 		   //Graphics
-		   Workflow.add60FpsSystem(new CameraSynchronizer());
-		   Workflow.add60FpsSystem(new LevelRenderer());
-		   Workflow.add60FpsSystem(new SquashRenderer());
-		   Workflow.add60FpsSystem(new BoundingBoxRenderer(Game.ME.origin));
-		   Workflow.add60FpsSystem(new SpriteExtensionFx());
-		   Workflow.add60FpsSystem(new SpriteRenderer(Game.ME.origin,Game.ME));
+		   list.add(new CameraSynchronizer());
+		   list.add(new LevelRenderer());
+		   list.add(new SquashRenderer());
+		   list.add(new BoundingBoxRenderer(Game.ME.origin));
+		   list.add(new SpriteExtensionFx());
+		   list.add(new SpriteRenderer(Game.ME.origin,Game.ME));
 		   
 		   //Dialog
-		   Workflow.add60FpsSystem(new DialogAreaCollisions());
-		   Workflow.add60FpsSystem(new DialogYarnSystem());	
-		   Workflow.add60FpsSystem(new DialogInputSystem());
-		   Workflow.add60FpsSystem(new DialogUISystem());
+		   list.add(new DialogAreaCollisions());
+		   list.add(new DialogYarnSystem());	
+		   list.add(new DialogInputSystem());
+		   list.add(new DialogUISystem());
 		   
 			   //Helpers
-		   Workflow.add60FpsSystem(new UIHelperSystem());
+		   list.add(new UIHelperSystem());
 		   //Input
-		   Workflow.add60FpsSystem(new InputSystem());
+		   list.add(new InputSystem());
+		   list.activate();
    }
 }
 

@@ -17,8 +17,8 @@ import aleiiioa.builders.entity.local.UIBuilders;
 
 
 class TemporarySystem extends echoes.System {
-    var ALL_LEVELS:View<LevelComponent>;
-    var ALL_ACTIVE_LEVELS:View<LevelComponent,Chunk_Active>;
+    var ALL_LEVELS:View<LevelComponent> = getLinkedView(LevelComponent);
+    var ALL_ACTIVE_LEVELS:View<LevelComponent,Chunk_Active> = getLinkedView(LevelComponent,Chunk_Active);
 
     var player_world_cx:Float = 0.;
     var player_world_cy:Float = 0.;
@@ -51,32 +51,32 @@ class TemporarySystem extends echoes.System {
     }
 
     @:a function addChunkCollisionMask(en:echoes.Entity,gp:GridPosition,k:KinematicBodyFlag){
-        var head = ALL_LEVELS.entities.head;
-        while(head != null){
-            var level = head.value.get(LevelComponent);
+        var levels = ALL_LEVELS.entities;
+        for(head in levels){
+            var level = head.get(LevelComponent);
             if(level.i == gp.iw && level.j == gp.jw){
                 en.add(new ChunkCollisionLayer(level.marks,level.i,level.j));
                 //trace("add collision layer");
                 if(en.exists(Focused_Entity)){
                     //trace("add new focus chunk at ch.i :"+ level.i+" ch.j"+level.j+"");
-                    head.value.add(new Focused_Chunk());
+                    head.add(new Focused_Chunk());
                 }
             }
-            head = head.next;
+            //head = head.next;
         }
     }
 
     @:a function onEntityFocusChangeChunk(en:echoes.Entity,gp:GridPosition,f:Focused_Entity,c:ChunkCollisionLayer){
-        var head = ALL_LEVELS.entities.head;
-        while(head != null){
-            var level = head.value.get(LevelComponent);
+        var levels = ALL_LEVELS.entities;
+        for(head in levels){
+            var level = head.get(LevelComponent);
             if(level.i == gp.iw && level.j == gp.jw){
-                if(!head.value.exists(Focused_Chunk)){
+                if(!head.exists(Focused_Chunk)){
                     //trace("add new focus chunk at ch.i :"+ level.i+" ch.j"+level.j+"");
-                    head.value.add(new Focused_Chunk());
+                    head.add(new Focused_Chunk());
                 }
             }
-            head = head.next;
+            //head = head.next;
         }
     }
 
@@ -117,12 +117,12 @@ class TemporarySystem extends echoes.System {
     }
 
     function removeActiveFlag() {
-        var head = ALL_ACTIVE_LEVELS.entities.head;
-        while(head != null){
-            if(!head.value.exists(Focused_Chunk)){
-                head.value.remove(Chunk_Active);
+        var active_levels = ALL_ACTIVE_LEVELS.entities;
+        for(head in active_levels){
+            if(!head.exists(Focused_Chunk)){
+                head.remove(Chunk_Active);
             }
-            head = head.next;
+           // head = head.next;
         }
     }
 
@@ -167,28 +167,28 @@ class TemporarySystem extends echoes.System {
                     j++;
             }
     
-            var head = ALL_LEVELS.entities.head;
-            while(head != null){
-                var neighbour = head.value.get(LevelComponent);
+            var all_levels = ALL_LEVELS.entities;
+            for (head in all_levels){
+                var neighbour = head.get(LevelComponent);
                 if(neighbour.i == i && neighbour.j == j){
-                   head.value.add(new Chunk_Active());
+                   head.add(new Chunk_Active());
                 }
-                head = head.next;
+                //head = head.next;
             }
         }
     }
 
     @:u function swapChunkCollisionMask(en:echoes.Entity,gp:GridPosition,c:ChunkCollisionLayer){
         if(gp.iw != c.i || gp.jw != c.j){
-            var head = ALL_LEVELS.entities.head;
-            while(head != null){
-                var level = head.value.get(LevelComponent);
+            var levels = ALL_LEVELS.entities;
+            for(head in levels){
+                var level = head.get(LevelComponent);
                 if(level.i == gp.iw && level.j == gp.jw){
                     en.remove(ChunkCollisionLayer);
                     en.add(new ChunkCollisionLayer(level.marks,level.i,level.j));
                     //trace("swap collision to i:"+ level.i + " j: "+ level.j+"");
                 }
-            head = head.next;
+            //head = head.next;
             }
         }
     }

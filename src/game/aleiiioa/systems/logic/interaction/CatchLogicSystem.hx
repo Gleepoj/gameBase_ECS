@@ -15,9 +15,9 @@ import echoes.View;
 
 class CatchLogicSystem extends echoes.System {
     
-    var ALL_CATCHER  :View<Catcher,GridPosition,InteractionListener>;
-    var ALL_CATCHABLE:View<CatchableCollection,GridPosition,InteractionListener>;
-    var ALL_CATCHED  :View<IsCatched,MasterGridPosition,GridPositionOffset,ChildPositionFlag>;
+    var ALL_CATCHER  :View<Catcher,GridPosition,InteractionListener> = getLinkedView(Catcher,GridPosition,InteractionListener);
+    var ALL_CATCHABLE:View<CatchableCollection,GridPosition,InteractionListener> = getLinkedView(CatchableCollection,GridPosition,InteractionListener);
+    var ALL_CATCHED  :View<IsCatched,MasterGridPosition,GridPositionOffset,ChildPositionFlag> = getLinkedView(IsCatched,MasterGridPosition,GridPositionOffset,ChildPositionFlag);
 
     var events:InstancedInteractionEvent;
 
@@ -43,60 +43,60 @@ class CatchLogicSystem extends echoes.System {
     
 
     @:u function CatcherInInteractArea(catcher:Catcher,gp:GridPosition,il:InteractionListener) {
-        var head = ALL_CATCHABLE.entities.head;
+        var catchable = ALL_CATCHABLE.entities;
         var playerPos = gp.gpToVector();
 
-        while (head != null){
-            var obj = head.value;
+        for(head in catchable){
+            var obj = head;
             var objPos = obj.get(GridPosition).gpToVector();
             if(playerPos.distance(objPos)<10){
                 il.lastEvent = events.allowInteract;
                 il.order();
             }
-            head = head.next;
+            //head = head.next;
         }
     }
 
     
     @:u function CatchableInInteractArea(catchable:CatchableCollection,gp:GridPosition,il:InteractionListener) {
-        var head = ALL_CATCHER.entities.head;
+        var list_catcher = ALL_CATCHER.entities;
         var objPos = gp.gpToVector();
 
-        while (head != null){
-            var catcher = head.value;
+        for (head in list_catcher){
+            var catcher = head;
             var catcherPos = catcher.get(GridPosition).gpToVector();
             if(catcherPos.distance(objPos)<10){
                 il.lastEvent = events.allowInteract;
                 il.order();
             }
-            head = head.next;
+            //head = head.next;
         }    
     }
 
 
     @:u function onAddQueryCatch(en:echoes.Entity,add:OnQueryCatch,catcher:Catcher,mgp:MasterGridPosition){
-        var head = ALL_CATCHABLE.entities.head;
+        var all_catchable = ALL_CATCHABLE.entities;
         
-        while (head != null){
-            var catchable = head.value;
+        for (head in all_catchable){
+            var catchable = head;
             var ocl = catchable.get(InteractionListener);
             if(ocl.onInteract){
                 linkObject(catchable,mgp);
                 en.add(new IsOnCatch());
             }
-            head = head.next;
+            //head = head.next;
         }
         en.remove(OnQueryCatch);
     }
 
     @:u function onAddQueryThrow(en:echoes.Entity,add:OnQueryThrow,catcher:Catcher,mgp:MasterGridPosition,vc:VelocityComponent){
-        var head = ALL_CATCHED.entities.head;
+        var all_catched = ALL_CATCHED.entities;
         
-        while (head != null){
-            var catched = head.value;
+        for (head in all_catched){
+            var catched = head;
             unlinkObject(catched);
             throwObject(catched,vc);
-            head = head.next;
+            //head = head.next;
             }
             
         en.remove(IsOnCatch);

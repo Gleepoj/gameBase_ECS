@@ -15,8 +15,8 @@ import echoes.View;
 
 class UIPadNavigationSystem extends echoes.System {
 	
-	var SELECTOR:View<UISelectorFlag>;
-	var SELECTABLE:View<Currently_Selectable>;
+	var SELECTOR:View<UISelectorFlag> = getLinkedView(UISelectorFlag);
+	var SELECTABLE:View<Currently_Selectable> = getLinkedView(Currently_Selectable);
 
 	var dist_to_selector:Float = 500;
 	var current_category:UISelectableType = Category_None;
@@ -53,10 +53,10 @@ class UIPadNavigationSystem extends echoes.System {
 	@:u function preCastNearestInSelectorIntent(en:echoes.Entity, s:Currently_Selectable, gp:GridPosition) {
 		var dist = 10000.;
 		var select = false;
-		var selector_i = SELECTOR.entities.head;
+		var selector_i = SELECTOR.entities;
 		
-		if (selector_i != null) {
-			var selector = selector_i.value;
+		if (selector_i.length > 0 ) {
+			var selector = selector_i[1];
 			
 
 			if (selector.exists(UISignalArrowMove) && !selector.exists(TransformPositionComponent)) {
@@ -110,7 +110,7 @@ class UIPadNavigationSystem extends echoes.System {
 				en.remove(Currently_Hovered);
 			}
 
-			if (select) {
+			if(select){
 				en.add(new Nearest_Selectable(dist));
 				onChangeSelect = true;
 				if (dist < dist_to_selector)
@@ -138,18 +138,19 @@ class UIPadNavigationSystem extends echoes.System {
 	}
 
 	@:a function updateNearest(en:echoes.Entity, add:On_Targeted_Selectable, s:Currently_Selectable, gp:GridPosition) {
-
-		var selector = SELECTOR.entities.head.value;
-		
-		if(!selector.exists(TransformPositionComponent)){
-			var duration:Float = 0.1;
-			var tar = gp.gpToVector();
-			var ori = selector.get(GridPosition).gpToVector();
-			selector.remove(UISignalArrowMove);
-			selector.add(new TransformPositionComponent(ori,tar,duration,TBurnOut));
-			
+		trace("On Add");
+		var selectors = SELECTOR.entities;
+		for(selector in selectors){
+			if(!selector.exists(TransformPositionComponent)){
+				var duration:Float = 0.1;
+				var tar = gp.gpToVector();
+				var ori = selector.get(GridPosition).gpToVector();
+				selector.remove(UISignalArrowMove);
+				selector.add(new TransformPositionComponent(ori,tar,duration,TBurnOut));
+				
+			}
 		}
-
+		
 		en.add(new Currently_Hovered());
 		en.remove(On_Targeted_Selectable);
 	}

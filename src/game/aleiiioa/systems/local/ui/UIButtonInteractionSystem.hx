@@ -25,7 +25,7 @@ import aleiiioa.components.local.ui.signal.UISignalPressSelect;
 class UIButtonInteractionSystem extends echoes.System {
     var inputAnyKey:Bool = false;
     
-    var PREVIOUSLY_SELECTED:View<Currently_Hovered>;
+    var PREVIOUSLY_SELECTED:View<Currently_Hovered> = getLinkedView(Currently_Hovered);
 
     public function new (){
  
@@ -90,12 +90,11 @@ class UIButtonInteractionSystem extends echoes.System {
         
     function clearCurrentlySelected(){
 
-        var head = PREVIOUSLY_SELECTED.entities.head;
+        var previously_selected = PREVIOUSLY_SELECTED.entities;
 
-        while(head != null){
-            var en = head.value;
+        for(head in previously_selected){
+            var en = head;
             en.remove(Currently_Hovered);
-            head = head.next;
         }
         
     }

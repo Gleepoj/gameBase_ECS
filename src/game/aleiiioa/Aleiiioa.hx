@@ -1,7 +1,7 @@
 package aleiiioa;
 
-import aleiiioa.builders.worlds.WorkflowBuilders;
-import echoes.Workflow;
+import aleiiioa.builders.worlds.EchoesBuilders;
+import echoes.Echoes;
 
 class Aleiiioa extends Game {
 
@@ -12,47 +12,47 @@ class Aleiiioa extends Game {
 		super();
 		
 		ME = this;
-		Workflow.reset();
+		Echoes.reset();
 		#if( hl && !debug )
         goToMenu();
 		#else
 		//goToMenu();
-		goToSetting();
-		//startPlay();
+		//goToSetting();
+		startPlay();
         #end
 	}
 
 	public function startPlay(){
-		Workflow.reset();
+		Echoes.reset();
 		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Hero_home);
-		//WorkflowBuilders.newPlateformerLevel(level);
-		WorkflowBuilders.newTopDownLevel(level);
+		//EchoesBuilders.newPlateformerLevel(level);
+		EchoesBuilders.newTopDownLevel(level);
 	}
 
 	public function goToSetting(){
-		Workflow.reset();
+		Echoes.reset();
 		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Setting);
-		WorkflowBuilders.newMenu(level);
+		EchoesBuilders.newMenu(level);
 	}
 
 	public function goToMenu(){
 		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Menu);
-		WorkflowBuilders.newMenu(level);
+		EchoesBuilders.newMenu(level);
 	}
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
-		Workflow.update(Const.FIXED_DELTA);
+		Echoes.update();
 	}
 
 	override function postUpdate() {
 		super.postUpdate();
-		Workflow.postUpdate(tmod);
+		//Echoes.postUpdate(tmod);
 	}
 
 	override function onDispose() {
 		super.onDispose();
-		Workflow.reset();
+		Echoes.reset();
 	}
 
 }
