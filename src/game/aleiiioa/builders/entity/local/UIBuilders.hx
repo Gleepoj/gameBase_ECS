@@ -64,28 +64,28 @@ class UIBuilders {
     
 
         
-    public static function selector(){
+    public static function selector(s:Entity_UI_Selector){
         // Make a basic entity with a position and a sprite 
-        var pos = new GridPosition(0,0,0,0);
+        var pos = new GridPosition(s.cx,s.cy,0,0);
         var spr = new SpriteComponent(D.tiles.pointer);
         var sq  = new SquashComponent();
         var se  = new SpriteExtension();
 
-        spr.visible = false;
+        //spr.visible = false;
 
         //Physics Component
         var vc  = new VelocityComponent();
         var vas = new AnalogSpeedComponent(0,0);
         
         var input    = new InputComponent();
-        var selector = new UISelectorFlag();
+        var selector_flag = new UISelectorFlag();
 
-        new echoes.Entity().add(pos,spr,sq,se,vc,vas,input,selector);
+        new echoes.Entity().add(pos,spr,sq,se,vc,vas,input,selector_flag);
     }
 
-    public static function menu(e:Entity_UIWindow) {
+    public static function menu(e:Entity_UIWindow,select:Entity_UI_Selector) {
             //Physics Component
-            selector();
+            selector(select);
 
             var pos = new GridPosition(e.cx,e.cy,0,0);
             var spr = new SpriteComponent(D.tiles.fxDot0);
@@ -140,6 +140,7 @@ class UIBuilders {
             }
                        
             viewport.reflow();
+            viewport.alpha = 0.2;
            
         }
 

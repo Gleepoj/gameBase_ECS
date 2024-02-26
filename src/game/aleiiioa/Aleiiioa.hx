@@ -42,12 +42,13 @@ class Aleiiioa extends Game {
 
 	override function fixedUpdate() {
 		super.fixedUpdate();
-		Echoes.update();
+		
 	}
 
 	override function postUpdate() {
 		super.postUpdate();
 		//Echoes.postUpdate(tmod);
+		Echoes.update();
 	}
 
 	override function onDispose() {

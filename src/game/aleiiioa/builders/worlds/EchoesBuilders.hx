@@ -54,15 +54,19 @@ class EchoesBuilders {
 		var cyoff = M.floor(level.data.worldY/Const.GRID);
 		//trace('$cxoff :: $cyoff');
 		//level.coordId()
-		// ECS //
+		// ECS /
+		var selector:Entity_UI_Selector = level.data.l_Entities.all_UI_Selector[0];
 		
-        for (e in level.data.l_Entities.all_UIWindow){
-            UIBuilders.menu(e);
-		} 
-
 		for (c in level.data.l_Entities.all_Camera_Center){
 			CoreEntity.cameraBis(c.cx+cxoff,c.cy+cyoff);
 	   	} 
+
+        for (e in level.data.l_Entities.all_UIWindow){
+            UIBuilders.menu(e,selector);
+		} 
+
+
+
 		var _level = new LevelComponent(level.data);
 		
 		var focus  = new Focused_Chunk();
@@ -88,11 +92,13 @@ class EchoesBuilders {
 		list.add(new SpriteRenderer(Game.ME.origin,Game.ME));
 		list.add(new DebugLabelRenderer(Game.ME.origin));
 		
-	    list.add( new UIHelperSystem());
-		list.add( new InputSystem());
-		list.add( new GarbageCollectionSystem()); 
+	    list.add(new UIHelperSystem());
+		list.add(new InputSystem());
+		list.add(new GarbageCollectionSystem()); 
 
 		list.activate();
+		//list.clock.setFixedTickLength();
+		
     }
 
 	//////////////////////////////////////////////////
@@ -217,8 +223,6 @@ class EchoesBuilders {
 		   list.add(new DelayedMovementSystem());
 		   list.add(new TemporarySystem());
 		   
-		  
-	
 		   //Interaction
 		   list.add(new CatchLogicSystem());
 		   list.add(new BombLogicSystem());

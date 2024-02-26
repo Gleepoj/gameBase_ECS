@@ -46,14 +46,16 @@ class CatchLogicSystem extends echoes.System {
         var catchable = ALL_CATCHABLE.entities;
         var playerPos = gp.gpToVector();
 
-        for(head in catchable){
-            var obj = head;
+        //for(head in catchable){
+        var i = 0;
+        while (i < catchable.length) {
+            var obj = catchable[i];
             var objPos = obj.get(GridPosition).gpToVector();
             if(playerPos.distance(objPos)<10){
                 il.lastEvent = events.allowInteract;
                 il.order();
             }
-            //head = head.next;
+            i++;
         }
     }
 
@@ -62,15 +64,20 @@ class CatchLogicSystem extends echoes.System {
         var list_catcher = ALL_CATCHER.entities;
         var objPos = gp.gpToVector();
 
-        for (head in list_catcher){
-            var catcher = head;
+        var i = 0;
+        while (i < list_catcher.length) {
+            var catcher = list_catcher[i];
             var catcherPos = catcher.get(GridPosition).gpToVector();
             if(catcherPos.distance(objPos)<10){
                 il.lastEvent = events.allowInteract;
                 il.order();
             }
+            i++;
+        }
+       
+           
             //head = head.next;
-        }    
+           
     }
 
 
