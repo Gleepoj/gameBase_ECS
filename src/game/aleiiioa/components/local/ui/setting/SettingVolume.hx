@@ -8,16 +8,16 @@ class SettingVolume implements ISettingComponent {
     public var display_text:String = "..";
     public var mapped_values:Map<String, Dynamic> = new Map();
     public var keys:Array<String> = [];
-    public var currentIndex:Int = 0;
+    public var currentIndex:Int = 2;
     public var callback:Void->Void;
 
     public function new(){
         
-        addResolution("800", 1);
-        addResolution("108",2);
-        addResolution("H", 3);
-        addResolution("llH",4);
-        addResolution("ss",5);
+        addResolution("Mute",1);
+        addResolution("Low",2);
+        addResolution("Mid",3);
+        addResolution("High",4);
+        addResolution("High_+2",5);
      
  
         updateDisplayValue();
@@ -48,14 +48,14 @@ class SettingVolume implements ISettingComponent {
     private function updateDisplayValue():Void {
         
         if (currentIndex < 0) {
-            currentIndex = keys.length - 1;
-        } else if (currentIndex >= keys.length) {
             currentIndex = 0;
+        } else if (currentIndex > keys.length-1) {
+            currentIndex = keys.length-1;
         }
 
         var key = keys[currentIndex];
-        var resolution = mapped_values.get(key);
-        current_display_value = '$resolution';
+        var volume = mapped_values.get(key);
+        current_display_value = '$volume';
         display_text = current_display_value;
     }
 

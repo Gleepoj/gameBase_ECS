@@ -27,9 +27,11 @@ class BoundingBoxRenderer extends echoes.System{
         debugRequest(bb);
         renderAllDebugs(bb);
     }
+	
 	@r function onEntityRemove(bb:BoundingBox) {
         bb.debugBounds.remove();
     }
+
     private function renderDebugBounds(bb:BoundingBox) {
 		// debug bound origin is attachX attachY 
 		var c = Col.randomRGB(0.9,0.3,0.3);

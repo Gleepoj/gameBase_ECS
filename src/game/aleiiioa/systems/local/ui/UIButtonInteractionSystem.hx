@@ -44,6 +44,9 @@ class UIButtonInteractionSystem extends echoes.System {
             case Order_Undefined: b.embedded_function = function(){ en.add(new UISignal_OnUndefined());}
         }
     }
+    @a function onAddModalSetting(en:echoes.Entity,modal:UIModalSetting,set:ISettingComponent){
+        modal.refresh(set.getDisplayText());
+    }
 
     @a function buttonOnNext(en:echoes.Entity,u:UISignal_OnNext,modal:UIModalSetting,set:ISettingComponent){
         set.next();

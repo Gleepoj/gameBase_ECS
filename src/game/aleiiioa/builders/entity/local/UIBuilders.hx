@@ -192,7 +192,7 @@ class UIBuilders {
 
             var lab = e.f_UI_Setting_Type;
             var shared = new UIModalSetting();
-            var setter:ISettingComponent = new SettingResolution();
+            var setter:ISettingComponent;
 
             switch(e.f_UI_Setting_Type){
                 case Window_Size:

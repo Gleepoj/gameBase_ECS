@@ -7,8 +7,8 @@ class SettingWindowMode implements ISettingComponent {
 
     public var current_display_value:String = "bannane plantain";
     public var current_key:Int;
-    public var display_text:String = "..";
-    public var mapped_values:Map<String, Dynamic> = new Map();
+    public var display_text:String = "...";
+    public var mapped_values:Map<String, hxd.Window.DisplayMode> = new Map();
     public var keys:Array<String> = [];
     public var currentIndex:Int = 0;
     public var callback:Void->Void;
@@ -19,7 +19,8 @@ class SettingWindowMode implements ISettingComponent {
         addResolution("Borderless", Borderless);
         addResolution("Fullscreen", Fullscreen);
         
-        updateDisplayValue();
+        //updateDisplayValue();
+        initDisplayValue();
 
         callback = function(){      
             var mode = mapped_values.get(keys[currentIndex]);
@@ -45,9 +46,25 @@ class SettingWindowMode implements ISettingComponent {
         updateDisplayValue();
         callback();
     }
+    
+    private function initDisplayValue():Void{
+        var win = hxd.Window.getInstance();
+        //trace(win.displayMode);
+        var v:DisplayMode = win.displayMode;
+        for (key => value in mapped_values) {
+            if(value == v){
+                //trace('key : $key :: window mode : $v');
+                current_display_value = '$key';
+                display_text = current_display_value;
+            }
+        }
+
+        
+    }
 
     private function updateDisplayValue():Void {
         
+        //Loop Value
         if (currentIndex < 0) {
             currentIndex = keys.length - 1;
         } else if (currentIndex >= keys.length) {

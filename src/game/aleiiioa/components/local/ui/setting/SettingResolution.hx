@@ -11,26 +11,26 @@ class SettingResolution implements ISettingComponent {
     public var callback:Void->Void;
 
     public function new(){
+        //trace("new setting");
+        addResolution("::800x600::", {width: 800,  height: 600, i:0});
+        addResolution(":1024x768::", {width: 1024, height: 768, i:1});
+        addResolution(":::Old Hd::", {width: 1280, height: 1024,i:2});
+        addResolution(":::HD::::::", {width: 1280, height: 720, i:3});
+        addResolution(":::Full HD:", {width: 1920, height: 1080,i:4});
+        addResolution(":::2K::::::", {width: 2560, height: 1440,i:5});
+        addResolution(":::4K::::::", {width: 3840, height: 2160,i:6});
         
-        addResolution("::800x600::", {width: 800,  height: 600});
-        addResolution(":1024x768::", {width: 1024, height: 768});
-        addResolution(":::Old Hd::", {width: 1280, height: 1024});
-        addResolution(":::HD::::::", {width: 1280, height: 720});
-        addResolution(":::Full HD:", {width: 1920, height: 1080});
-        addResolution(":::2K::::::", {width: 2560, height: 1440});
-        addResolution(":::4K::::::", {width: 3840, height: 2160});
- 
+        initDisplayValue();
         updateDisplayValue();
 
         callback = function(){      
             var resolution = mapped_values.get(keys[currentIndex]);
             var w = hxd.Window.getInstance();
             w.resize(resolution.width, resolution.height);
-
         };
     }
 
-    public function addResolution(key:String, value:{width:Int, height:Int}):Void {
+    public function addResolution(key:String, value:{width:Int, height:Int,i:Int}):Void {
         mapped_values.set(key, value);
         keys.push(key);
     }
@@ -45,6 +45,21 @@ class SettingResolution implements ISettingComponent {
         currentIndex --;
         updateDisplayValue();
         callback();
+    }
+        
+    private function initDisplayValue():Void{
+        var win = hxd.Window.getInstance();
+        var res = {width:win.width,height:win.height};
+        trace(res);
+        
+        for (key => value in mapped_values) {
+            if(value.width == res.width && value.height == res.height){
+                trace('key : $key :: window size : $res');
+                //current_display_value = '$key';
+                currentIndex = value.i;
+                //display_text = current_display_value;
+            }
+        }
     }
 
     private function updateDisplayValue():Void {
