@@ -1,5 +1,8 @@
 package aleiiioa.systems.core.camera;
 
+import aleiiioa.components.core.level.On_Resize_Event;
+import aleiiioa.components.core.level.On_Resize_Event;
+import aleiiioa.components.core.level.GameStateManager;
 import aleiiioa.components.core.physics.velocity.AnalogSpeedComponent;
 import aleiiioa.components.core.physics.velocity.VelocityComponent;
 import aleiiioa.components.core.input.InputComponent;
@@ -65,6 +68,12 @@ class CameraSynchronizer extends echoes.System {
         gp.moveTo(en,focus.gpToVector(),0.2);
     }
  */
+    @a function onAddResize(en:echoes.Entity, game:GameStateManager,add:On_Resize_Event){
+        wwid = window.width/2;
+        whei = window.height/2;
+        en.remove(On_Resize_Event);
+    }
+
     @u function order(en:echoes.Entity,c:CameraBisComponent,inp:InputComponent,gp:GridPosition,vas:AnalogSpeedComponent){
         if(inp.ca.isKeyboardPressed(K.U)){
             //trace("move to player");
@@ -87,11 +96,21 @@ class CameraSynchronizer extends echoes.System {
         }
 
         if(inp.ca.isKeyboardPressed(K.T)){
-            zoom -= 0.1;
+            zoom -= 1;
+            //var w = hxd.Window.getInstance();
+            //w.resize(M.floor(512*zoom),M.floor(512*zoom));
+            //wwid = w.width/2;
+            //whei = w.height/2;
+            //Game.ME.onResize();
         }
 
         if(inp.ca.isKeyboardPressed(K.Y)){
-            zoom += 0.1;
+            zoom += 1;
+            //var w = hxd.Window.getInstance();
+           // w.resize(M.floor(512*zoom), M.floor(512*zoom));
+           // wwid = w.width/2;
+            //whei = w.height/2;
+            //Game.ME.onResize();
         }
 
         if(inp.ca.isKeyboardDown(K.I)){

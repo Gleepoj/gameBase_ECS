@@ -107,6 +107,7 @@ class Game extends Process {
 	/** Window/app resize event **/
 	override function onResize() {
 		super.onResize();
+		//trace("trigger_on_resi");
 	}
 
 

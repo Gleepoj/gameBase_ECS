@@ -1431,7 +1431,7 @@
 			"iid": "6229c0b0-8990-11ee-a11f-f3d464144184",
 			"uid": 51,
 			"worldX": -1280,
-			"worldY": 256,
+			"worldY": 0,
 			"worldDepth": 0,
 			"pxWid": 512,
 			"pxHei": 512,
@@ -1496,7 +1496,7 @@
 								"params": ["e99da3e0-8990-11ee-b1fb-311beef4d32f"]
 							}] }],
 							"__worldX": -1112,
-							"__worldY": 496
+							"__worldY": 240
 						},
 						{
 							"__identifier": "UISetting",
@@ -1521,7 +1521,7 @@
 								}] }
 							],
 							"__worldX": -1032,
-							"__worldY": 448
+							"__worldY": 192
 						},
 						{
 							"__identifier": "UISetting",
@@ -1543,7 +1543,7 @@
 								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 55, "realEditorValues": [] }
 							],
 							"__worldX": -1032,
-							"__worldY": 480
+							"__worldY": 224
 						},
 						{
 							"__identifier": "UISetting",
@@ -1565,7 +1565,7 @@
 								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 55, "realEditorValues": [] }
 							],
 							"__worldX": -1032,
-							"__worldY": 512
+							"__worldY": 256
 						},
 						{
 							"__identifier": "UISetting",
@@ -1587,7 +1587,7 @@
 								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 55, "realEditorValues": [] }
 							],
 							"__worldX": -1032,
-							"__worldY": 544
+							"__worldY": 288
 						},
 						{
 							"__identifier": "UIButton",
@@ -1616,7 +1616,7 @@
 								}] }
 							],
 							"__worldX": -1032,
-							"__worldY": 584
+							"__worldY": 328
 						},
 						{
 							"__identifier": "Camera_Center",
@@ -1632,7 +1632,7 @@
 							"px": [248,240],
 							"fieldInstances": [],
 							"__worldX": -1032,
-							"__worldY": 496
+							"__worldY": 240
 						},
 						{
 							"__identifier": "UIWindow",
@@ -1700,7 +1700,7 @@
 								}
 							] }],
 							"__worldX": -936,
-							"__worldY": 488
+							"__worldY": 232
 						}
 					]
 				},

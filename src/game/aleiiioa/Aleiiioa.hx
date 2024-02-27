@@ -1,5 +1,9 @@
 package aleiiioa;
 
+import aleiiioa.components.core.level.GameStateManager;
+import aleiiioa.components.core.level.On_Resize_Event;
+
+import echoes.Entity;
 import aleiiioa.builders.worlds.WorkflowBuilders;
 import echoes.Workflow;
 
@@ -7,6 +11,7 @@ class Aleiiioa extends Game {
 
 	var game(get,never) : Game; inline function get_game() return Game.ME;
 	public static var ME : Aleiiioa;
+	var global:echoes.Entity;
 
 	public function new() {
 		super();
@@ -20,6 +25,8 @@ class Aleiiioa extends Game {
 		goToSetting();
 		//startPlay();
         #end
+
+		global = new echoes.Entity().add(new GameStateManager());
 	}
 
 	public function startPlay(){
@@ -53,6 +60,11 @@ class Aleiiioa extends Game {
 	override function onDispose() {
 		super.onDispose();
 		Workflow.reset();
+	}
+
+	override function onResize(){
+		super.onResize();
+		global.add(new On_Resize_Event());
 	}
 
 }
