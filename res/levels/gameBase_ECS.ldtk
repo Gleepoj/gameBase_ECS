@@ -5,12 +5,12 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "1.5.2",
+		"appVersion": "1.5.3",
 		"url": "https://ldtk.io"
 	},
 	"iid": "37006fc0-8990-11ee-95e1-c1ff7c03c62e",
-	"jsonVersion": "1.5.2",
-	"appBuildId": 473624,
+	"jsonVersion": "1.5.3",
+	"appBuildId": 473703,
 	"nextUid": 75,
 	"identifierStyle": "Capitalize",
 	"toc": [],
@@ -1430,11 +1430,11 @@
 			"identifier": "Setting",
 			"iid": "6229c0b0-8990-11ee-a11f-f3d464144184",
 			"uid": 51,
-			"worldX": -1024,
-			"worldY": 0,
+			"worldX": -1280,
+			"worldY": 256,
 			"worldDepth": 0,
-			"pxWid": 1024,
-			"pxHei": 768,
+			"pxWid": 512,
+			"pxHei": 512,
 			"__bgColor": "#1A212E",
 			"bgColor": null,
 			"useAutoIdentifier": false,
@@ -1443,7 +1443,7 @@
 			"bgPivotX": 0.5,
 			"bgPivotY": 0.5,
 			"__smartColor": "#81858C",
-			"__bgPos": { "topLeftPx": [0,0], "scale": [2,2], "cropRect": [0,64,512,384] },
+			"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,0,512,512] },
 			"externalRelPath": null,
 			"fieldInstances": [
 				{ "__identifier": "ci", "__type": "Int", "__value": null, "__tile": null, "defUid": 72, "realEditorValues": [] },
@@ -1453,8 +1453,8 @@
 				{
 					"__identifier": "Entities",
 					"__type": "Entities",
-					"__cWid": 64,
-					"__cHei": 48,
+					"__cWid": 32,
+					"__cHei": 32,
 					"__gridSize": 16,
 					"__opacity": 1,
 					"__pxTotalOffsetX": 0,
@@ -1476,7 +1476,7 @@
 					"entityInstances": [
 						{
 							"__identifier": "UI_Selector",
-							"__grid": [23,15],
+							"__grid": [10,14],
 							"__pivot": [0.5,1],
 							"__tags": [],
 							"__tile": null,
@@ -1485,23 +1485,167 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 48,
-							"px": [376,256],
-							"fieldInstances": [{ "__identifier": "First_targeted", "__type": "EntityRef", "__value": null, "__tile": null, "defUid": 49, "realEditorValues": [] }],
-							"__worldX": -648,
-							"__worldY": 256
+							"px": [168,240],
+							"fieldInstances": [{ "__identifier": "First_targeted", "__type": "EntityRef", "__value": {
+								"entityIid": "e99da3e0-8990-11ee-b1fb-311beef4d32f",
+								"layerIid": "6229e7c0-8990-11ee-a11f-337f88faffc2",
+								"levelIid": "6229c0b0-8990-11ee-a11f-f3d464144184",
+								"worldIid": "37018130-8990-11ee-95e1-f54865b6c996"
+							}, "__tile": null, "defUid": 49, "realEditorValues": [{
+								"id": "V_String",
+								"params": ["e99da3e0-8990-11ee-b1fb-311beef4d32f"]
+							}] }],
+							"__worldX": -1112,
+							"__worldY": 496
+						},
+						{
+							"__identifier": "UISetting",
+							"__grid": [15,11],
+							"__pivot": [0.5,1],
+							"__tags": ["UIObject"],
+							"__tile": null,
+							"__smartColor": "#E4A672",
+							"iid": "1b3bfcd0-8990-11ee-a11f-cd9d4e26d430",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [248,192],
+							"fieldInstances": [
+								{ "__identifier": "UI_Setting_Type", "__type": "ExternEnum.UI_Setting_Type", "__value": "Window_Size", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Window_Size"]
+								}] },
+								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": true, "__tile": null, "defUid": 55, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] }
+							],
+							"__worldX": -1032,
+							"__worldY": 448
+						},
+						{
+							"__identifier": "UISetting",
+							"__grid": [15,13],
+							"__pivot": [0.5,1],
+							"__tags": ["UIObject"],
+							"__tile": null,
+							"__smartColor": "#E4A672",
+							"iid": "1da81ad0-8990-11ee-a11f-db06813ab39b",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [248,224],
+							"fieldInstances": [
+								{ "__identifier": "UI_Setting_Type", "__type": "ExternEnum.UI_Setting_Type", "__value": "Window_Mode", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Window_Mode"]
+								}] },
+								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 55, "realEditorValues": [] }
+							],
+							"__worldX": -1032,
+							"__worldY": 480
+						},
+						{
+							"__identifier": "UISetting",
+							"__grid": [15,15],
+							"__pivot": [0.5,1],
+							"__tags": ["UIObject"],
+							"__tile": null,
+							"__smartColor": "#E4A672",
+							"iid": "205400f0-8990-11ee-a11f-45b2433d9606",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [248,256],
+							"fieldInstances": [
+								{ "__identifier": "UI_Setting_Type", "__type": "ExternEnum.UI_Setting_Type", "__value": "Volume_Music", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Volume_Music"]
+								}] },
+								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 55, "realEditorValues": [] }
+							],
+							"__worldX": -1032,
+							"__worldY": 512
+						},
+						{
+							"__identifier": "UISetting",
+							"__grid": [15,17],
+							"__pivot": [0.5,1],
+							"__tags": ["UIObject"],
+							"__tile": null,
+							"__smartColor": "#E4A672",
+							"iid": "231bd380-8990-11ee-a11f-054fa01953a4",
+							"width": 16,
+							"height": 16,
+							"defUid": 52,
+							"px": [248,288],
+							"fieldInstances": [
+								{ "__identifier": "UI_Setting_Type", "__type": "ExternEnum.UI_Setting_Type", "__value": "Volume_SFX", "__tile": null, "defUid": 54, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Volume_SFX"]
+								}] },
+								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 55, "realEditorValues": [] }
+							],
+							"__worldX": -1032,
+							"__worldY": 544
+						},
+						{
+							"__identifier": "UIButton",
+							"__grid": [15,20],
+							"__pivot": [0.5,0.5],
+							"__tags": ["UIObject"],
+							"__tile": null,
+							"__smartColor": "#D77643",
+							"iid": "e99da3e0-8990-11ee-b1fb-311beef4d32f",
+							"width": 16,
+							"height": 16,
+							"defUid": 44,
+							"px": [248,328],
+							"fieldInstances": [
+								{ "__identifier": "UI_Button_Event", "__type": "ExternEnum.UI_Button_Event", "__value": "GameState_Menu", "__tile": null, "defUid": 46, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["GameState_Menu"]
+								}] },
+								{ "__identifier": "Label", "__type": "String", "__value": "Menu", "__tile": null, "defUid": 47, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["Menu"]
+								}] },
+								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": true, "__tile": null, "defUid": 50, "realEditorValues": [{
+									"id": "V_Bool",
+									"params": [ true ]
+								}] }
+							],
+							"__worldX": -1032,
+							"__worldY": 584
+						},
+						{
+							"__identifier": "Camera_Center",
+							"__grid": [15,14],
+							"__pivot": [0.5,1],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#733E39",
+							"iid": "f3043d10-b0a0-11ee-9734-232f3eb84170",
+							"width": 16,
+							"height": 16,
+							"defUid": 71,
+							"px": [248,240],
+							"fieldInstances": [],
+							"__worldX": -1032,
+							"__worldY": 496
 						},
 						{
 							"__identifier": "UIWindow",
-							"__grid": [27,15],
+							"__grid": [21,14],
 							"__pivot": [0.5,0.5],
 							"__tags": ["flow"],
 							"__tile": null,
 							"__smartColor": "#BE4A2F",
-							"iid": "6cf78f90-8990-11ee-a11f-0718b8a24cc8",
+							"iid": "35aad410-b0a0-11ee-8b0a-0513329c060b",
 							"width": 16,
 							"height": 16,
 							"defUid": 42,
-							"px": [440,248],
+							"px": [344,232],
 							"fieldInstances": [{ "__identifier": "Entity_ref", "__type": "Array<EntityRef>", "__value": [
 								{
 									"entityIid": "1b3bfcd0-8990-11ee-a11f-cd9d4e26d430",
@@ -1555,152 +1699,16 @@
 									"params": ["e99da3e0-8990-11ee-b1fb-311beef4d32f"]
 								}
 							] }],
-							"__worldX": -584,
-							"__worldY": 248
-						},
-						{
-							"__identifier": "UISetting",
-							"__grid": [27,17],
-							"__pivot": [0.5,1],
-							"__tags": ["UIObject"],
-							"__tile": null,
-							"__smartColor": "#E4A672",
-							"iid": "1b3bfcd0-8990-11ee-a11f-cd9d4e26d430",
-							"width": 16,
-							"height": 16,
-							"defUid": 52,
-							"px": [440,288],
-							"fieldInstances": [
-								{ "__identifier": "UI_Setting_Type", "__type": "ExternEnum.UI_Setting_Type", "__value": "Window_Size", "__tile": null, "defUid": 54, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Window_Size"]
-								}] },
-								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": true, "__tile": null, "defUid": 55, "realEditorValues": [{
-									"id": "V_Bool",
-									"params": [ true ]
-								}] }
-							],
-							"__worldX": -584,
-							"__worldY": 288
-						},
-						{
-							"__identifier": "UISetting",
-							"__grid": [27,19],
-							"__pivot": [0.5,1],
-							"__tags": ["UIObject"],
-							"__tile": null,
-							"__smartColor": "#E4A672",
-							"iid": "1da81ad0-8990-11ee-a11f-db06813ab39b",
-							"width": 16,
-							"height": 16,
-							"defUid": 52,
-							"px": [440,320],
-							"fieldInstances": [
-								{ "__identifier": "UI_Setting_Type", "__type": "ExternEnum.UI_Setting_Type", "__value": "Window_Mode", "__tile": null, "defUid": 54, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Window_Mode"]
-								}] },
-								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 55, "realEditorValues": [] }
-							],
-							"__worldX": -584,
-							"__worldY": 320
-						},
-						{
-							"__identifier": "UISetting",
-							"__grid": [27,21],
-							"__pivot": [0.5,1],
-							"__tags": ["UIObject"],
-							"__tile": null,
-							"__smartColor": "#E4A672",
-							"iid": "205400f0-8990-11ee-a11f-45b2433d9606",
-							"width": 16,
-							"height": 16,
-							"defUid": 52,
-							"px": [440,352],
-							"fieldInstances": [
-								{ "__identifier": "UI_Setting_Type", "__type": "ExternEnum.UI_Setting_Type", "__value": "Volume_Music", "__tile": null, "defUid": 54, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Volume_Music"]
-								}] },
-								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 55, "realEditorValues": [] }
-							],
-							"__worldX": -584,
-							"__worldY": 352
-						},
-						{
-							"__identifier": "UISetting",
-							"__grid": [27,23],
-							"__pivot": [0.5,1],
-							"__tags": ["UIObject"],
-							"__tile": null,
-							"__smartColor": "#E4A672",
-							"iid": "231bd380-8990-11ee-a11f-054fa01953a4",
-							"width": 16,
-							"height": 16,
-							"defUid": 52,
-							"px": [440,384],
-							"fieldInstances": [
-								{ "__identifier": "UI_Setting_Type", "__type": "ExternEnum.UI_Setting_Type", "__value": "Volume_SFX", "__tile": null, "defUid": 54, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Volume_SFX"]
-								}] },
-								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 55, "realEditorValues": [] }
-							],
-							"__worldX": -584,
-							"__worldY": 384
-						},
-						{
-							"__identifier": "UIButton",
-							"__grid": [27,27],
-							"__pivot": [0.5,0.5],
-							"__tags": ["UIObject"],
-							"__tile": null,
-							"__smartColor": "#D77643",
-							"iid": "e99da3e0-8990-11ee-b1fb-311beef4d32f",
-							"width": 16,
-							"height": 16,
-							"defUid": 44,
-							"px": [440,440],
-							"fieldInstances": [
-								{ "__identifier": "UI_Button_Event", "__type": "ExternEnum.UI_Button_Event", "__value": "GameState_Menu", "__tile": null, "defUid": 46, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["GameState_Menu"]
-								}] },
-								{ "__identifier": "Label", "__type": "String", "__value": "Menu", "__tile": null, "defUid": 47, "realEditorValues": [{
-									"id": "V_String",
-									"params": ["Menu"]
-								}] },
-								{ "__identifier": "isFirstTargeted", "__type": "Bool", "__value": false, "__tile": null, "defUid": 50, "realEditorValues": [{
-									"id": "V_Bool",
-									"params": [ false ]
-								}] }
-							],
-							"__worldX": -584,
-							"__worldY": 440
-						},
-						{
-							"__identifier": "Camera_Center",
-							"__grid": [27,22],
-							"__pivot": [0.5,1],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#733E39",
-							"iid": "f3043d10-b0a0-11ee-9734-232f3eb84170",
-							"width": 16,
-							"height": 16,
-							"defUid": 71,
-							"px": [440,368],
-							"fieldInstances": [],
-							"__worldX": -584,
-							"__worldY": 368
+							"__worldX": -936,
+							"__worldY": 488
 						}
 					]
 				},
 				{
 					"__identifier": "Collisions",
 					"__type": "IntGrid",
-					"__cWid": 64,
-					"__cHei": 48,
+					"__cWid": 32,
+					"__cHei": 32,
 					"__gridSize": 16,
 					"__opacity": 1,
 					"__pxTotalOffsetX": 0,
@@ -1744,65 +1752,7 @@
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+						0,0,0,0,0,0,0,0,0
 					],
 					"autoLayerTiles": [],
 					"seed": 2664549,
@@ -1811,7 +1761,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "562b2070-8990-11ee-a484-2b4fc9710140", "dir": "e" }, { "levelIid": "38332900-8990-11ee-a484-43974a52233e", "dir": "e" } ]
+			"__neighbours": []
 		},
 		{
 			"identifier": "Hero_home",
@@ -2525,7 +2475,16 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "3ee13672-8990-11ee-a484-037cd241bb8a", "dir": "n" }, { "levelIid": "38332900-8990-11ee-a484-43974a52233e", "dir": "w" }, { "levelIid": "ce67af90-8990-11ee-8f82-13b00b11e4b1", "dir": "e" }, { "levelIid": "621b9d60-8990-11ee-a484-57d0fb69388d", "dir": "s" } ]
+			"__neighbours": [
+				{ "levelIid": "3ee13672-8990-11ee-a484-037cd241bb8a", "dir": "n" },
+				{ "levelIid": "562b2070-8990-11ee-a484-2b4fc9710140", "dir": "nw" },
+				{ "levelIid": "593245f1-8990-11ee-a484-6b05ca798c9a", "dir": "ne" },
+				{ "levelIid": "45f99e70-8990-11ee-a484-6da89e609d94", "dir": "sw" },
+				{ "levelIid": "38332900-8990-11ee-a484-43974a52233e", "dir": "w" },
+				{ "levelIid": "ce67af90-8990-11ee-8f82-13b00b11e4b1", "dir": "e" },
+				{ "levelIid": "621b9d60-8990-11ee-a484-57d0fb69388d", "dir": "s" },
+				{ "levelIid": "63d31162-8990-11ee-a484-3bebc83ea888", "dir": "se" }
+			]
 		},
 		{
 			"identifier": "Place_du_Village3",
@@ -2644,7 +2603,13 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "s" }, { "levelIid": "562b2070-8990-11ee-a484-2b4fc9710140", "dir": "w" }, { "levelIid": "593245f1-8990-11ee-a484-6b05ca798c9a", "dir": "e" } ]
+			"__neighbours": [
+				{ "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "s" },
+				{ "levelIid": "562b2070-8990-11ee-a484-2b4fc9710140", "dir": "w" },
+				{ "levelIid": "593245f1-8990-11ee-a484-6b05ca798c9a", "dir": "e" },
+				{ "levelIid": "38332900-8990-11ee-a484-43974a52233e", "dir": "sw" },
+				{ "levelIid": "ce67af90-8990-11ee-8f82-13b00b11e4b1", "dir": "se" }
+			]
 		},
 		{
 			"identifier": "Place_du_Village5",
@@ -2776,7 +2741,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "6229c0b0-8990-11ee-a11f-f3d464144184", "dir": "w" }, { "levelIid": "3ee13672-8990-11ee-a484-037cd241bb8a", "dir": "e" }, { "levelIid": "38332900-8990-11ee-a484-43974a52233e", "dir": "s" } ]
+			"__neighbours": [ { "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "se" }, { "levelIid": "3ee13672-8990-11ee-a484-037cd241bb8a", "dir": "e" }, { "levelIid": "38332900-8990-11ee-a484-43974a52233e", "dir": "s" } ]
 		},
 		{
 			"identifier": "Place_du_Village6",
@@ -2903,7 +2868,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "3ee13672-8990-11ee-a484-037cd241bb8a", "dir": "w" }, { "levelIid": "ce67af90-8990-11ee-8f82-13b00b11e4b1", "dir": "s" } ]
+			"__neighbours": [ { "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "sw" }, { "levelIid": "3ee13672-8990-11ee-a484-037cd241bb8a", "dir": "w" }, { "levelIid": "ce67af90-8990-11ee-8f82-13b00b11e4b1", "dir": "s" } ]
 		},
 		{
 			"identifier": "Place_du_Village4",
@@ -3041,7 +3006,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "38332900-8990-11ee-a484-43974a52233e", "dir": "n" }, { "levelIid": "621b9d60-8990-11ee-a484-57d0fb69388d", "dir": "e" } ]
+			"__neighbours": [ { "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "ne" }, { "levelIid": "38332900-8990-11ee-a484-43974a52233e", "dir": "n" }, { "levelIid": "621b9d60-8990-11ee-a484-57d0fb69388d", "dir": "e" } ]
 		},
 		{
 			"identifier": "Place_du_Village2",
@@ -3171,7 +3136,13 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "6229c0b0-8990-11ee-a11f-f3d464144184", "dir": "w" }, { "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "e" }, { "levelIid": "562b2070-8990-11ee-a484-2b4fc9710140", "dir": "n" }, { "levelIid": "45f99e70-8990-11ee-a484-6da89e609d94", "dir": "s" } ]
+			"__neighbours": [
+				{ "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "e" },
+				{ "levelIid": "3ee13672-8990-11ee-a484-037cd241bb8a", "dir": "ne" },
+				{ "levelIid": "562b2070-8990-11ee-a484-2b4fc9710140", "dir": "n" },
+				{ "levelIid": "45f99e70-8990-11ee-a484-6da89e609d94", "dir": "s" },
+				{ "levelIid": "621b9d60-8990-11ee-a484-57d0fb69388d", "dir": "se" }
+			]
 		},
 		{
 			"identifier": "Place_du_Village9",
@@ -3463,7 +3434,13 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "w" }, { "levelIid": "593245f1-8990-11ee-a484-6b05ca798c9a", "dir": "n" }, { "levelIid": "63d31162-8990-11ee-a484-3bebc83ea888", "dir": "s" } ]
+			"__neighbours": [
+				{ "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "w" },
+				{ "levelIid": "3ee13672-8990-11ee-a484-037cd241bb8a", "dir": "nw" },
+				{ "levelIid": "593245f1-8990-11ee-a484-6b05ca798c9a", "dir": "n" },
+				{ "levelIid": "621b9d60-8990-11ee-a484-57d0fb69388d", "dir": "sw" },
+				{ "levelIid": "63d31162-8990-11ee-a484-3bebc83ea888", "dir": "s" }
+			]
 		},
 		{
 			"identifier": "Place_du_Village7",
@@ -3600,7 +3577,13 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "n" }, { "levelIid": "45f99e70-8990-11ee-a484-6da89e609d94", "dir": "w" }, { "levelIid": "63d31162-8990-11ee-a484-3bebc83ea888", "dir": "e" } ]
+			"__neighbours": [
+				{ "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "n" },
+				{ "levelIid": "45f99e70-8990-11ee-a484-6da89e609d94", "dir": "w" },
+				{ "levelIid": "38332900-8990-11ee-a484-43974a52233e", "dir": "nw" },
+				{ "levelIid": "ce67af90-8990-11ee-8f82-13b00b11e4b1", "dir": "ne" },
+				{ "levelIid": "63d31162-8990-11ee-a484-3bebc83ea888", "dir": "e" }
+			]
 		},
 		{
 			"identifier": "Place_du_Village8",
@@ -3724,7 +3707,7 @@
 					"entityInstances": []
 				}
 			],
-			"__neighbours": [ { "levelIid": "ce67af90-8990-11ee-8f82-13b00b11e4b1", "dir": "n" }, { "levelIid": "621b9d60-8990-11ee-a484-57d0fb69388d", "dir": "w" } ]
+			"__neighbours": [ { "levelIid": "29a4c870-8990-11ee-b907-9d21bbc2e79e", "dir": "nw" }, { "levelIid": "ce67af90-8990-11ee-8f82-13b00b11e4b1", "dir": "n" }, { "levelIid": "621b9d60-8990-11ee-a484-57d0fb69388d", "dir": "w" } ]
 		},
 		{
 			"identifier": "Plateformer_template",
