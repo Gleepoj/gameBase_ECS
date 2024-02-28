@@ -1,16 +1,14 @@
 package aleiiioa.systems.core.camera;
 
 import aleiiioa.components.core.level.On_Resize_Event;
-import aleiiioa.components.core.level.On_Resize_Event;
 import aleiiioa.components.core.level.GameStateManager;
 import aleiiioa.components.core.physics.velocity.AnalogSpeedComponent;
-import aleiiioa.components.core.physics.velocity.VelocityComponent;
+
 import aleiiioa.components.core.input.InputComponent;
 import aleiiioa.components.core.level.CameraBisComponent;
-import aleiiioa.components.core.level.LevelComponent;
+
 import aleiiioa.components.logic.qualia.PlayerFlag;
 import aleiiioa.components.core.physics.position.GridPosition;
-import aleiiioa.components.utils.camera.CameraFocusComponent;
 
 class CameraSynchronizer extends echoes.System {
 
@@ -104,7 +102,7 @@ class CameraSynchronizer extends echoes.System {
         }
     }
 
-    @u function debugControlSpace(c:CameraBisComponent,gp:GridPosition){
+    function debugControlSpace(c:CameraBisComponent,gp:GridPosition){
         var w = 30;
         var h = 30;
         
@@ -119,12 +117,13 @@ class CameraSynchronizer extends echoes.System {
         debugBounds.moveTo(-w*0.5,0);
         debugBounds.lineTo(w*0.5,0);
 
-/*         for(resolution in Const.RESOLUTIONS){
+        for(resolution in Const.RESOLUTIONS){
             debugBounds.lineStyle(4, dn.Col.green());
             debugBounds.drawRect(-resolution.x*0.5,-resolution.y*0.5,resolution.x,resolution.y);
-        } */
+
 
     }
+
     @u function pushScrollerWhenLimitsReach(c:CameraBisComponent,gp:GridPosition){
         var s = Const.SCALE + zoom;
         Game.ME.origin.x = -(gp.attachX*s) + (wwid);
@@ -138,10 +137,15 @@ class CameraSynchronizer extends echoes.System {
     @r function onRemoveCamera(c:CameraBisComponent){
         //trace("reset scroller");
         var s = 1;
+        Game.ME.origin.removeChildren();
+        Game.ME.scroller.removeChildren();
+
         Game.ME.origin.x = 0;
         Game.ME.origin.y = 0;
+
         Game.ME.scroller.x = 0;
         Game.ME.scroller.y = 0;
+        
         Game.ME.scroller.setScale(s);
         Game.ME.origin.setScale(s);
     }
