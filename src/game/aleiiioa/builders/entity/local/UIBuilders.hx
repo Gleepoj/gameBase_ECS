@@ -140,6 +140,7 @@ class UIBuilders {
             }
                        
             viewport.reflow();
+            new echoes.Entity().add(viewport);
            
         }
 

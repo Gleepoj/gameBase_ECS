@@ -44,7 +44,7 @@ class CameraSynchronizer extends echoes.System {
 
     var scroll :Bool;
     var lock:Bool = false;
-    var zoom:Float = 1.;
+    var zoom:Float = 0.;
 
 
     public function new(){
@@ -69,6 +69,7 @@ class CameraSynchronizer extends echoes.System {
     }
  */
     @a function onAddResize(en:echoes.Entity, game:GameStateManager,add:On_Resize_Event){
+        //trace("resize screen");
         wwid = window.width/2;
         whei = window.height/2;
         en.remove(On_Resize_Event);
@@ -96,7 +97,7 @@ class CameraSynchronizer extends echoes.System {
         }
 
         if(inp.ca.isKeyboardPressed(K.T)){
-            zoom -= 1;
+            zoom -= 0.1;
             //var w = hxd.Window.getInstance();
             //w.resize(M.floor(512*zoom),M.floor(512*zoom));
             //wwid = w.width/2;
@@ -105,7 +106,7 @@ class CameraSynchronizer extends echoes.System {
         }
 
         if(inp.ca.isKeyboardPressed(K.Y)){
-            zoom += 1;
+            zoom += 0.1;
             //var w = hxd.Window.getInstance();
            // w.resize(M.floor(512*zoom), M.floor(512*zoom));
            // wwid = w.width/2;
@@ -157,7 +158,7 @@ class CameraSynchronizer extends echoes.System {
 
     }
     @u function pushScrollerWhenLimitsReach(c:CameraBisComponent,gp:GridPosition){
-        var s = zoom;
+        var s = Const.SCALE + zoom;
         Game.ME.origin.x = -(gp.attachX*s) + (wwid);
         Game.ME.origin.y = -(gp.attachY*s) + (whei);
         Game.ME.scroller.x = Game.ME.origin.x;

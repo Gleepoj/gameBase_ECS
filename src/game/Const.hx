@@ -35,25 +35,6 @@ class Const {
 	**/
 	public static final FIXED_UPDATE_FPS = 30;
 	public static var FIXED_DELTA = 1/FIXED_UPDATE_FPS;
-	
-/* 	public static final RESOLUTIONS:Array<Vector> = [
-		new Vector(800.,600.),
-		new Vector(1024.,768.),
-		new Vector(1280.,720.),
-		new Vector(1280.,800.),
-		new Vector(1280.,1024.),
-		new Vector(1366.,768.),
-		new Vector(1440.,900.),
-		new Vector(1600.,900.),
-		new Vector(1680.,1050.),
-		new Vector(1920.,1080.),
-		new Vector(1920.,1200.),
-		new Vector(2560.,1440.),
-		new Vector(2560.,1600.),
-		new Vector(3840.,2160.),
-		new Vector(4096.,2160.)
-	]; */
-
 		
 	public static final RESOLUTIONS:Array<Vector> = [
 		
@@ -65,6 +46,8 @@ class Const {
 		new Vector(1920.,1080.),
 	];
 
+	public static final NATIVE_WIDTH :Int = 512;
+	public static final NATIVE_HEIGHT:Int = 512;
 	/** Grid size in pixels **/
 	public static final GRID:Int = 16;
 	//in nb case (32*grid = 512px)
@@ -96,7 +79,8 @@ class Const {
 	public static var SCALE(get,never) : Int;
 		static inline function get_SCALE() {
 			// can be replaced with another way to determine the game scaling
-			return dn.heaps.Scaler.bestFit_i(400,400);
+			//return dn.heaps.Scaler.bestFit_i(512,512);
+			return dn.heaps.Scaler.bestFitAspectRatioHei_i(512,512);
 		}
 
 	/** Specific scaling for top UI elements **/

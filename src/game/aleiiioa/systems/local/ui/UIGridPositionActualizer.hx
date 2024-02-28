@@ -5,9 +5,29 @@ import h2d.ScaleGrid;
 
 import aleiiioa.components.local.ui.algo.Currently_Hovered;
 import aleiiioa.components.core.physics.position.GridPosition;
+import aleiiioa.components.core.level.GameStateManager;
+import aleiiioa.components.core.level.On_Resize_Event;
 
 class UIGridPositionActualizer extends echoes.System {
+    var reflow:Bool = false;
     public function new (){
+        
+
+    }
+
+    @a function onAddResize(en:echoes.Entity, game:GameStateManager,add:On_Resize_Event){
+        //wwid = window.width/2;
+        //whei = window.height/2;
+        //en.remove(On_Resize_Event);
+        reflow = true;
+        //trace("reflow UI ");
+
+    }
+
+    @u function requestReflow(flow:dn.heaps.FlowBg){
+        if(reflow)
+            flow.reflow();
+        reflow = false;
     }
 
     @a function syncUIButton(gp:GridPosition,sc:ScaleGrid){
