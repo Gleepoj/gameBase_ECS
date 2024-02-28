@@ -3,36 +3,31 @@ package aleiiioa.builders.worlds;
 import aleiiioa.components.core.level.Chunk_Active;
 import aleiiioa.components.core.level.Focused_Chunk;
 import aleiiioa.components.core.level.LevelComponent;
+
 import aleiiioa.builders.entity.local.UIBuilders;
 import aleiiioa.builders.entity.plateformer.PlateformerEntity;
 import aleiiioa.builders.entity.topdown.TopDownEntity;
 import aleiiioa.builders.entity.CoreEntity;
-import aleiiioa.systems.local.ui.UIButtonInteractionSystem;
 
-import aleiiioa.systems.local.ui.UIGridPositionActualizer;
-import aleiiioa.systems.local.ui.pad.UIPadNavigationSystem;
-import aleiiioa.systems.local.ui.pad.UIPadInputSystem;
-import echoes.SystemList;
+import aleiiioa.systems.local.ui.*;
+import aleiiioa.systems.local.ui.pad.*;
+
 import echoes.Entity;
 import echoes.Workflow;
 
 import aleiiioa.systems.logic.object.BombLogicSystem;
-import aleiiioa.builders.*;
-import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.systems.logic.interaction.CatchLogicSystem;
 
 import aleiiioa.systems.utils.*;
-import aleiiioa.systems.core.*;
 import aleiiioa.systems.core.camera.*;
 import aleiiioa.systems.local.particules.*;
 import aleiiioa.systems.core.renderer.*;
 import aleiiioa.systems.core.input.*;
 import aleiiioa.systems.logic.qualia.*;
-import aleiiioa.systems.core.physics.*;
 import aleiiioa.systems.core.physics.collision.*;
 import aleiiioa.systems.core.physics.position.*;
 import aleiiioa.systems.core.physics.velocity.*;
-import aleiiioa.systems.core.collisions.*;
+
 
 import aleiiioa.systems.local.dialog.*;
 
@@ -191,11 +186,10 @@ class WorkflowBuilders {
 		   Workflow.addSystem(new CollisionSensorSystem());
 		   Workflow.addSystem(new VelocitySystem());
 		   Workflow.addSystem(new CollisionReactionEvent());
+		   Workflow.addSystem(new ChunkLoaderSystem());
+
 		   Workflow.add60FpsSystem(new GridPositionActualizer());
 		   Workflow.add60FpsSystem(new DelayedMovementSystem());
-		   Workflow.addSystem(new ChunkLoaderSystem());
-		   
-		  
 	
 		   //Interaction
 		   Workflow.add60FpsSystem(new CatchLogicSystem());

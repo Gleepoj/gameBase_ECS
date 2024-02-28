@@ -13,7 +13,34 @@
 	"appBuildId": 473703,
 	"nextUid": 75,
 	"identifierStyle": "Capitalize",
-	"toc": [],
+	"toc": [{
+		"identifier": "Player",
+		"instances": [ {
+			"worldIid": "37018130-8990-11ee-95e1-f54865b6c996",
+			"levelIid": "621b9d60-8990-11ee-a484-57d0fb69388d",
+			"layerIid": "621b9d61-8990-11ee-a484-630338f8346a",
+			"entityIid": "a40486a0-b0a0-11ee-bad0-17515ce2cfba"
+		}, {
+			"worldIid": "37018130-8990-11ee-95e1-f54865b6c996",
+			"levelIid": "a90a34d0-dbe0-11ec-a977-c73202b491f6",
+			"layerIid": "a90a5be0-dbe0-11ec-a977-ab6375dae606",
+			"entityIid": "4781e210-8990-11ee-8f82-f7ce60f7bb1c"
+		} ],
+		"instancesData": [
+			{ "iids": {
+				"worldIid": "37018130-8990-11ee-95e1-f54865b6c996",
+				"levelIid": "621b9d60-8990-11ee-a484-57d0fb69388d",
+				"layerIid": "621b9d61-8990-11ee-a484-630338f8346a",
+				"entityIid": "a40486a0-b0a0-11ee-bad0-17515ce2cfba"
+			}, "worldX": 760, "worldY": 1288, "widPx": 16, "heiPx": 16, "fields" : {} },
+			{ "iids": {
+				"worldIid": "37018130-8990-11ee-95e1-f54865b6c996",
+				"levelIid": "a90a34d0-dbe0-11ec-a977-c73202b491f6",
+				"layerIid": "a90a5be0-dbe0-11ec-a977-ab6375dae606",
+				"entityIid": "4781e210-8990-11ee-8f82-f7ce60f7bb1c"
+			}, "worldX": -1016, "worldY": 2712, "widPx": 16, "heiPx": 16, "fields" : {} }
+		]
+	}],
 	"worldLayout": "GridVania",
 	"worldGridWidth": 256,
 	"worldGridHeight": 256,
@@ -314,7 +341,7 @@
 			"identifier": "Player",
 			"uid": 21,
 			"tags": [],
-			"exportToToc": false,
+			"exportToToc": true,
 			"allowOutOfBounds": false,
 			"doc": null,
 			"width": 16,
@@ -339,7 +366,7 @@
 			"uiTileRect": null,
 			"nineSliceBorders": [],
 			"maxCount": 1,
-			"limitScope": "PerLevel",
+			"limitScope": "PerWorld",
 			"limitBehavior": "MoveLastOne",
 			"pivotX": 0.5,
 			"pivotY": 0.5,
@@ -922,7 +949,7 @@
 			"tileRect": null,
 			"uiTileRect": null,
 			"nineSliceBorders": [],
-			"maxCount": 0,
+			"maxCount": 1,
 			"limitScope": "PerLevel",
 			"limitBehavior": "MoveLastOne",
 			"pivotX": 0.5,
@@ -2101,38 +2128,6 @@
 							"fieldInstances": [],
 							"__worldX": 984,
 							"__worldY": 960
-						},
-						{
-							"__identifier": "Camera_Center",
-							"__grid": [0,0],
-							"__pivot": [0.5,1],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#733E39",
-							"iid": "df3dd7b0-8990-11ee-b7cc-19e9c797cff4",
-							"width": 16,
-							"height": 16,
-							"defUid": 71,
-							"px": [8,16],
-							"fieldInstances": [],
-							"__worldX": 520,
-							"__worldY": 528
-						},
-						{
-							"__identifier": "Player",
-							"__grid": [4,8],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#75FF00",
-							"iid": "4f800400-8990-11ee-b7cc-aba7f7656329",
-							"width": 16,
-							"height": 16,
-							"defUid": 21,
-							"px": [72,136],
-							"fieldInstances": [],
-							"__worldX": 584,
-							"__worldY": 648
 						}
 					]
 				},
@@ -3443,7 +3438,7 @@
 			]
 		},
 		{
-			"identifier": "Place_du_Village7",
+			"identifier": "Start_Level",
 			"iid": "621b9d60-8990-11ee-a484-57d0fb69388d",
 			"uid": 67,
 			"worldX": 512,
@@ -3489,7 +3484,40 @@
 					"seed": 3066008,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "Player",
+							"__grid": [15,16],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#75FF00",
+							"iid": "a40486a0-b0a0-11ee-bad0-17515ce2cfba",
+							"width": 16,
+							"height": 16,
+							"defUid": 21,
+							"px": [248,264],
+							"fieldInstances": [],
+							"__worldX": 760,
+							"__worldY": 1288
+						},
+						{
+							"__identifier": "Camera_Center",
+							"__grid": [15,12],
+							"__pivot": [0.5,1],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#733E39",
+							"iid": "a6d84010-b0a0-11ee-bad0-7de609767d6f",
+							"width": 16,
+							"height": 16,
+							"defUid": 71,
+							"px": [248,208],
+							"fieldInstances": [],
+							"__worldX": 760,
+							"__worldY": 1232
+						}
+					]
 				},
 				{
 					"__identifier": "Collisions",

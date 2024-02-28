@@ -51,7 +51,7 @@ class Const {
 	/** Grid size in pixels **/
 	public static final GRID:Int = 16;
 	//in nb case (32*grid = 512px)
-	public static final CHUNK_SIZE:Int = 32;
+	public static final CHUNK_SIZE:Int = 64;
 
 	public static var WINDOW_HEIGHT:Int = 860; // resolution ecran a cleaner
 	public static final FLUID_MAX_HEIGHT:Int = 80;
@@ -64,8 +64,6 @@ class Const {
 
 	public static final SCROLLING_MIN_SPEED:Float = -2.3;
 	
-	
-
 	/** "Infinite", sort-of. More like a "big number" **/
 	public static final INFINITE : Int = 0xfffFfff;
 
