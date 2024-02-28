@@ -23,7 +23,7 @@ import aleiiioa.systems.logic.interaction.CatchLogicSystem;
 
 import aleiiioa.systems.utils.*;
 import aleiiioa.systems.core.*;
-import aleiiioa.systems.core.camera.CameraSynchronizer;
+import aleiiioa.systems.core.camera.*;
 import aleiiioa.systems.local.particules.*;
 import aleiiioa.systems.core.renderer.*;
 import aleiiioa.systems.core.input.*;
@@ -51,8 +51,7 @@ class WorkflowBuilders {
 		var ocy = level.data.f_cj * Const.CHUNK_SIZE;
 		var cxoff = M.floor(level.data.worldX/Const.GRID);
 		var cyoff = M.floor(level.data.worldY/Const.GRID);
-		//trace('$cxoff :: $cyoff');
-		//level.coordId()
+
 		// ECS //
 		
         for (e in level.data.l_Entities.all_UIWindow){
@@ -119,8 +118,7 @@ class WorkflowBuilders {
 			PlateformerEntity.chouxPeteur(cp.cx+ocx,cp.cy+ocy);
 		}
 	   
-	   var loadedLevels = new Map<String, Bool>();
-	   // Load the initial level
+	    var loadedLevels = new Map<String, Bool>();
 		var start_level = new LevelComponent(level.data);
 		
 		var focus  = new Focused_Chunk();
@@ -195,7 +193,7 @@ class WorkflowBuilders {
 		   Workflow.addSystem(new CollisionReactionEvent());
 		   Workflow.add60FpsSystem(new GridPositionActualizer());
 		   Workflow.add60FpsSystem(new DelayedMovementSystem());
-		   Workflow.addSystem(new TemporarySystem());
+		   Workflow.addSystem(new ChunkLoaderSystem());
 		   
 		  
 	

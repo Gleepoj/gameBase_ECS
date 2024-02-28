@@ -1,4 +1,4 @@
-package aleiiioa.systems.utils;
+package aleiiioa.systems.core.camera;
 
 import aleiiioa.components.core.level.Chunk_Active;
 import aleiiioa.components.core.level.Focused_Entity;
@@ -16,7 +16,7 @@ import aleiiioa.builders.entity.local.UIBuilders;
 
 
 
-class TemporarySystem extends echoes.System {
+class ChunkLoaderSystem extends echoes.System {
     var ALL_LEVELS:View<LevelComponent>;
     var ALL_ACTIVE_LEVELS:View<LevelComponent,Chunk_Active>;
 
@@ -26,8 +26,9 @@ class TemporarySystem extends echoes.System {
     var local_pos_x:Float = 0.;
     var local_pos_y:Float = 0.;
 
-    var level_chunk_x:Float =0.;
-    var level_chunk_y:Float =0.;
+    var level_chunk_x:Float = 0.;
+    var level_chunk_y:Float = 0.;
+
     var last_position:String = "unknown";
 
     public function new (){
@@ -56,7 +57,6 @@ class TemporarySystem extends echoes.System {
             var level = head.value.get(LevelComponent);
             if(level.i == gp.iw && level.j == gp.jw){
                 en.add(new ChunkCollisionLayer(level.marks,level.i,level.j));
-                //trace("add collision layer");
                 if(en.exists(Focused_Entity)){
                     //trace("add new focus chunk at ch.i :"+ level.i+" ch.j"+level.j+"");
                     head.value.add(new Focused_Chunk());

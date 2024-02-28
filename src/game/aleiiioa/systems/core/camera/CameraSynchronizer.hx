@@ -13,39 +13,18 @@ import aleiiioa.components.core.physics.position.GridPosition;
 import aleiiioa.components.utils.camera.CameraFocusComponent;
 
 class CameraSynchronizer extends echoes.System {
-    var onWest:Bool = false;
-    var onEast:Bool = false;
-    var onNorth:Bool = false;
-    var onSouth:Bool = false;
-
-    var loadCxDistance:Int = 5;
-    var loadCyDistance:Int = 5;
-
-    var east:Int = 0;
-    var west:Int = 0 ;
-    var north:Int = 0;
-    var south:Int = 0;
-
 
     var focus:GridPosition;
     var debugBounds:h2d.Graphics;
     var window:hxd.Window;
+
     var wwid:Float;// = window.width;
     var whei:Float;//  window.height;
     var ori:h2d.Layers;//  Game.ME.origin;
 
-    var inner_width:Float;//  = wwid*1/6;
-    var inner_height:Float;//  = whei*1/6;
-
-    var limitNorth:Float;
-    var limitSouth:Float;
-    var limitEast:Float;
-    var limitWest:Float;
-
     var scroll :Bool;
-    var lock:Bool = false;
+    var lock:Bool = true;
     var zoom:Float = 0.;
-
 
     public function new(){
         debugBounds = new h2d.Graphics();
@@ -57,19 +36,18 @@ class CameraSynchronizer extends echoes.System {
 
     @a function onNoFocusedEntity(c:CameraBisComponent,gp:GridPosition) {
         focus = gp;
-       // trace(gp.gpToVector());
     }
-    
-/*     @a function onAddPlayer(player:PlayerFlag,gp:GridPosition){
+
+    @a function onAddPlayer(player:PlayerFlag,gp:GridPosition){
         focus = gp;
     }
  
     @a function onAddCamera(en:echoes.Entity,c:CameraBisComponent,gp:GridPosition){
         gp.moveTo(en,focus.gpToVector(),0.2);
     }
- */
-    @a function onAddResize(en:echoes.Entity, game:GameStateManager,add:On_Resize_Event){
-        //trace("resize screen");
+
+    @a function onAddResizeEvent(en:echoes.Entity, game:GameStateManager,add:On_Resize_Event){
+       
         wwid = window.width/2;
         whei = window.height/2;
         en.remove(On_Resize_Event);
@@ -98,20 +76,10 @@ class CameraSynchronizer extends echoes.System {
 
         if(inp.ca.isKeyboardPressed(K.T)){
             zoom -= 0.1;
-            //var w = hxd.Window.getInstance();
-            //w.resize(M.floor(512*zoom),M.floor(512*zoom));
-            //wwid = w.width/2;
-            //whei = w.height/2;
-            //Game.ME.onResize();
         }
 
         if(inp.ca.isKeyboardPressed(K.Y)){
             zoom += 0.1;
-            //var w = hxd.Window.getInstance();
-           // w.resize(M.floor(512*zoom), M.floor(512*zoom));
-           // wwid = w.width/2;
-            //whei = w.height/2;
-            //Game.ME.onResize();
         }
 
         if(inp.ca.isKeyboardDown(K.I)){
@@ -138,7 +106,7 @@ class CameraSynchronizer extends echoes.System {
 
     @u function debugControlSpace(c:CameraBisComponent,gp:GridPosition){
         var w = 30;
-        var h = 60;
+        var h = 30;
         
         debugBounds.setPosition(gp.attachX,gp.attachY);
         debugBounds.clear();
@@ -151,10 +119,10 @@ class CameraSynchronizer extends echoes.System {
         debugBounds.moveTo(-w*0.5,0);
         debugBounds.lineTo(w*0.5,0);
 
-        for(resolution in Const.RESOLUTIONS){
+/*         for(resolution in Const.RESOLUTIONS){
             debugBounds.lineStyle(4, dn.Col.green());
             debugBounds.drawRect(-resolution.x*0.5,-resolution.y*0.5,resolution.x,resolution.y);
-        }
+        } */
 
     }
     @u function pushScrollerWhenLimitsReach(c:CameraBisComponent,gp:GridPosition){
