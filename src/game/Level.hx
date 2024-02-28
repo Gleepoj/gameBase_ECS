@@ -37,10 +37,6 @@ class Level extends dn.Process {
 		if(ldtkLevel.hasBgImage())
 			backgroundImage = ldtkLevel.getBgBitmap();
 
-
-
-		//Game.ME.scroller.x = ldtkLevel.worldX;
-		//Game.ME.scroller.y = ldtkLevel.worldY;
 	}
 
 	public function setFocus(_focus:GridPosition){

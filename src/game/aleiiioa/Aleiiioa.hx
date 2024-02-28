@@ -21,8 +21,8 @@ class Aleiiioa extends Game {
 		#if( hl && !debug )
         goToMenu();
 		#else
-		//goToMenu();
-		goToSetting();
+		goToMenu();
+		//goToSetting();
 		//startPlay();
         #end
 
@@ -31,8 +31,7 @@ class Aleiiioa extends Game {
 
 	public function startPlay(){
 		Workflow.reset();
-		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Hero_home);
-		//WorkflowBuilders.newPlateformerLevel(level);
+		game.loadLevel(Assets.worldData.all_worlds.Default.all_levels.Start_Level);
 		WorkflowBuilders.newTopDownLevel(level);
 	}
 

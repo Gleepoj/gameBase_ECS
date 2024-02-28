@@ -62,6 +62,7 @@ class WorkflowBuilders {
 		for (c in level.data.l_Entities.all_Camera_Center){
 			CoreEntity.cameraBis(c.cx+cxoff,c.cy+cyoff);
 	   	} 
+
 		var _level = new LevelComponent(level.data);
 		
 		var focus  = new Focused_Chunk();
@@ -98,13 +99,10 @@ class WorkflowBuilders {
 
 	public static function newTopDownLevel(level:Level){
 		Game.ME.ui_layer.removeChildren();
-	   
+		// To know where the player is investigate "JSON Table of content" in ldtk doc it is an accessible list without loading level 
 		var ocx = level.data.f_ci * Const.CHUNK_SIZE;
 		var ocy = level.data.f_cj * Const.CHUNK_SIZE;
-		//level.coordId() quesako ? 
-		//trace(level.coordId(level.w));
-		//trace('custom x $ocx y $ocy');
-		// ECS //
+	
 		var player = level.data.l_Entities.all_Player[0];
 		
 		TopDownEntity.player(player.cx+ocx,player.cy+ocy);
@@ -121,24 +119,14 @@ class WorkflowBuilders {
 			PlateformerEntity.chouxPeteur(cp.cx+ocx,cp.cy+ocy);
 		}
 	   
-	   //var _level = new LevelComponent(level.data);
-	   //var focus = new Focused_Chunk();
-/* 
-	   new echoes.Entity().add(_level,focus);
-	   for(l in level.data.neighbours){
-		 var a:World_Level = Assets.worldData.all_worlds.Default.getLevel(l.levelIid);
-		 var new_l = new LevelComponent(a);
-		 new echoes.Entity().add(new_l);
-	   }
- */
 	   var loadedLevels = new Map<String, Bool>();
 	   // Load the initial level
-		var _level = new LevelComponent(level.data);
+		var start_level = new LevelComponent(level.data);
 		
-		var focus = new Focused_Chunk();
+		var focus  = new Focused_Chunk();
 		var active = new Chunk_Active();
 
-		new echoes.Entity().add(_level,focus,active);
+		new echoes.Entity().add(start_level,focus,active);
 
 		loadedLevels.set(level.data.iid, true);
 		loadNeighbours(level,loadedLevels);
@@ -150,7 +138,7 @@ class WorkflowBuilders {
 		for(l in level.data.neighbours){
 			if (!_previouslyLoaded.exists(l.levelIid)) {
 				var a:World_Level = Assets.worldData.all_worlds.Default.getLevel(l.levelIid);
-				var new_l = new LevelComponent(a);
+				var new_l  = new LevelComponent(a);
 				var new_wl = new Level(a);
 				var active = new Chunk_Active();
 				new echoes.Entity().add(new_l,active);
