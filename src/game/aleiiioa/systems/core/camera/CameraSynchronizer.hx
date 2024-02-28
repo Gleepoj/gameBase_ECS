@@ -120,6 +120,7 @@ class CameraSynchronizer extends echoes.System {
         for(resolution in Const.RESOLUTIONS){
             debugBounds.lineStyle(4, dn.Col.green());
             debugBounds.drawRect(-resolution.x*0.5,-resolution.y*0.5,resolution.x,resolution.y);
+        }
 
 
     }
@@ -151,3 +152,4 @@ class CameraSynchronizer extends echoes.System {
     }
 
 }
+
