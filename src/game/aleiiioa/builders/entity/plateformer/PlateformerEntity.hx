@@ -1,8 +1,8 @@
 package aleiiioa.builders.entity.plateformer;
 
 
-import dn.FileTools;
-import sys.FileSystem;
+//import dn.FileTools;
+//import sys.FileSystem;
 import aleiiioa.components.logic.interaction.InteractionListener;
 import aleiiioa.components.core.physics.collision.affects.*;
 import aleiiioa.components.core.physics.velocity.body.*;
