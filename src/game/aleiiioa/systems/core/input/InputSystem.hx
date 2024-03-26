@@ -32,8 +32,8 @@ class InputSystem extends echoes.System {
 		
 		var speed = 0.6;
 
-		var tl = inp.ca.input.pad.values[inp.conf.LT];
-		var ratio = 1+tl;
+		
+		var ratio = 1;
 
 		if(inp.ca.isDown(MoveRight)){
 			vas.xSpeed = speed*ratio;
@@ -58,8 +58,8 @@ class InputSystem extends echoes.System {
 		
 		var speed = 0.6;
 
-		var tl = inp.ca.input.pad.values[inp.conf.LT];
-		var ratio = 1+tl;
+		
+		var ratio = 1;
 
 		if(inp.ca.isDown(MoveRight)){
 			vas.xSpeed = speed*ratio;
